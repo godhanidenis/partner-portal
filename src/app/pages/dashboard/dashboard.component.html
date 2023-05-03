@@ -21,17 +21,21 @@
       >
         <span nz-icon nzType="dashboard" ></span>
         <span>Dashboard</span>
-      </li>
-      
+        </li>
+
+      <li
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      routerLinkActive="active" routerLink="/profile"
+    >
+      <span nz-icon nzType="profile" ></span>
+      <span>profile</span>
+    </li>
       <!-- //// -->
           <ul >
-          
-            <li nz-submenu  [nzTitle]="isCollapsed ? '' : 'profile'" nzIcon="profile" >
-              <ul >
-                <li nz-menu-item>View</li>
-                <li nz-menu-item>Modify</li>
-              </ul>
-            </li>
+            
+         
             <li nz-submenu  [nzTitle]="isCollapsed ? '' : 'Products'" nzIcon="shop">
               <ul>
                 <li nz-menu-item>View/edit products</li>

@@ -9,7 +9,7 @@ export class DashboardComponent implements OnInit {
   isCollapsed = false;
   constructor() { }
  
-  ngOnInit() {
+  ngOnInit() { 
   }
 
 }
