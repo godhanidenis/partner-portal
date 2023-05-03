@@ -21,6 +21,6 @@ export class ProfileComponent {
   }
 
   navigate() {
-    this.router.navigate(['/dashboard/profile/asc-form']);
+    this.router.navigate(['/dashboard/profile/ach-form']);
   }
 }

@@ -5,7 +5,7 @@ import { AscFormComponent } from './component/asc-form/asc-form.component';
 import { ProfileComponent } from './component/profile/profile.component';
 
 const routes: Routes = [
-  { path: 'profile/asc-form', component: AscFormComponent },
+  { path: 'profile/ach-form', component: AscFormComponent },
   { path: 'profile', component: ProfileComponent },
 ];
 
