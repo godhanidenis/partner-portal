@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
 @Component({
@@ -14,10 +14,10 @@ export class AscFormComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
+    private router: Router
   ) {
     this.breadcrumbService.breadcrumbs.next(this.activatedRoute.snapshot.url);
-    console.log(this.activatedRoute.snapshot.url);
   }
 
   ngOnInit(): void {
@@ -60,5 +60,9 @@ export class AscFormComponent implements OnInit {
     } else {
       this.reTypeAccountNumber = true;
     }
+  }
+
+  backButton() {
+    this.router.navigate(['/dashboard/profile']);
   }
 }

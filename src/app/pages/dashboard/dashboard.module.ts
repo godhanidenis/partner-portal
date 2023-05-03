@@ -10,9 +10,10 @@ import { CommonModule } from '@angular/common';
 import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.module';
 import { AscFormComponent } from './component/asc-form/asc-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './component/profile/profile.component';
 
 @NgModule({
-  declarations: [DashboardComponent, AscFormComponent],
+  declarations: [DashboardComponent, AscFormComponent, ProfileComponent],
   imports: [
     DashboardRoutingModule,
     NzLayoutModule,

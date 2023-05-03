@@ -1,0 +1,46 @@
+.profile-section {
+    ::ng-deep .ant-card-head-title {
+        padding: 16px 18px;
+    }
+
+
+    ::ng-deep .ant-card-body {
+        padding: 2px 2px;
+        // padding: 0px 30px;
+        border: none;
+    }
+
+    .card-title {
+        color: rgba(0, 0, 0, 0.85);
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+    ::ng-deep .ant-col {
+        border: 1px solid #d9d9d9;
+        margin: 22px 22px;
+        border-radius: 11px;
+    }
+
+    ::ng-deep .ant-menu-submenu-title {
+        padding-left: 49px !important;
+    }
+
+    ::ng-deep .anticon svg {
+        display: inline-block;
+        color: #1890ff;
+        // font-size: 20px;
+    }
+
+    .card-icon {
+        font-size: 20px;
+    }
+
+    ::ng-deep .ant-menu-submenu-arrow::before {
+        color: #1890ff;
+    }
+
+    ::ng-deep .ant-menu-submenu-arrow::after {
+        color: #1890ff;
+    }
+}
