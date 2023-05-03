@@ -62,6 +62,10 @@ export class AscFormComponent implements OnInit {
     }
   }
 
+  submitForm() {
+    console.log(this.ascSetupForm.value);
+  }
+
   backButton() {
     this.router.navigate(['/dashboard/profile']);
   }

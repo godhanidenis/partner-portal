@@ -212,6 +212,7 @@
         nz-button
         class="login-form-button login-form-margin"
         [nzType]="'primary'"
+        (click)="submitForm()"
         [disabled]="!ascSetupForm.valid || reTypeAccountNumber"
       >
         Submit
