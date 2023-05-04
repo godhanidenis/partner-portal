@@ -12,6 +12,7 @@ import { AscFormComponent } from './component/asc-form/asc-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './component/profile/profile.component';
 import { HomeComponent } from './component/home/home.component';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HomeComponent } from './component/home/home.component';
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    NzDividerModule
   ],
   exports: [DashboardComponent],
 })

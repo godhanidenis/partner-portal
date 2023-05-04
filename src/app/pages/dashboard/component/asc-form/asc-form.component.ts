@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
 @Component({
@@ -12,6 +13,11 @@ export class AscFormComponent implements OnInit {
   ascSetupForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
   breadcrumb: any;
+
+  tooltipIcon: NzFormTooltipIcon = {
+    type: 'info-circle',
+    theme: 'twotone',
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
