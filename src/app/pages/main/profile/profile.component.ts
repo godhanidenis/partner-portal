@@ -21,6 +21,6 @@ export class ProfileComponent {
   }
 
   navigate() {
-    this.router.navigate(['/dashboard/profile/ach-set-up']);
+    this.router.navigate(['/dashboard/profile/payment/ach-set-up']);
   }
 }

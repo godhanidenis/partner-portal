@@ -1,6 +1,12 @@
 <nz-breadcrumb style="margin-bottom: 16px">
   <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-    <a (click)="backButton(i, data.path)">{{ formatBreadcrumb(data.path) }}</a>
+    <a (click)="backButton(i, 'profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, 'profile')">Payment</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a>Ach set up</a>
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 <div class="asc-form-section">
