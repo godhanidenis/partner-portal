@@ -1,46 +1,74 @@
-.profile-section {
-    ::ng-deep .ant-card-head-title {
-        padding: 16px 18px;
-    }
+ @import'../../../../../assets/variable/variable.scss';
+
+ .profile-section {
+     border: 0 solid rgba(0, 0, 0, 0.125);
+     background-color: $white;
+     background-clip: border-box;
+     border-radius: 5px;
+     height: 85vh;
+
+     ::ng-deep .ant-card-head-title {
+         padding: 16px 18px;
+     }
+
+     //  .user-content {
+     //      border: 0 solid rgba(0, 0, 0, 0.125);
+     //      background-color: $white;
+     //      background-clip: border-box;
+     //      border-radius: 5px;
+     //      margin-top: 10px;
+     //      background-color: $white;
+
+     //      .table-layout {
+     //          padding: 15px;
+     //      }
+     //  }
+
+     ::ng-deep .ant-menu-light .ant-menu-item:hover,
+
+     .ant-menu-light .ant-menu-submenu-title:hover {
+         color: $theme-color !important;
+     }
+
+     ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
+         color: $theme-color !important;
+     }
 
 
-    ::ng-deep .ant-card-body {
-        padding: 2px 0px;
-        // padding: 0px 30px;
-        border: none;
-    }
+     ::ng-deep .ant-card-body {
+         padding: 2px 0px;
+         border: none;
+     }
 
-    .card-title {
-        color: rgba(0, 0, 0, 0.85);
-        font-weight: 500;
-        font-size: 16px;
-    }
+     .card-title {
+         color: rgba(0, 0, 0, 0.85);
+         font-weight: 500;
+         font-size: 16px;
+     }
 
-    ::ng-deep .ant-col {
-        // border: 1px solid #d9d9d9;
-        margin: 22px 22px;
-        // border-radius: 11px;
-    }
+     ::ng-deep .ant-col {
+         margin: 22px 22px;
+     }
 
-    ::ng-deep .ant-menu-submenu-title {
-        padding-left: 49px !important;
-    }
+     ::ng-deep .ant-menu-submenu-title {
+         padding-left: 49px !important;
+     }
 
-    ::ng-deep .anticon svg {
-        display: inline-block;
-        color: #1890ff;
-        // font-size: 20px;
-    }
+     ::ng-deep .anticon svg {
+         display: inline-block;
+         color: $theme-color;
+         // font-size: 20px;
+     }
 
-    .card-icon {
-        font-size: 20px;
-    }
+     .card-icon {
+         font-size: 20px;
+     }
 
-    ::ng-deep .ant-menu-submenu-arrow::before {
-        color: #1890ff;
-    }
+     ::ng-deep .ant-menu-submenu-arrow::before {
+         color: $theme-color;
+     }
 
-    ::ng-deep .ant-menu-submenu-arrow::after {
-        color: #1890ff;
-    }
-}
+     ::ng-deep .ant-menu-submenu-arrow::after {
+         color: $theme-color;
+     }
+ }
