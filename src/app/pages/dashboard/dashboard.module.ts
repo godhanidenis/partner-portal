@@ -11,9 +11,15 @@ import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.mo
 import { AscFormComponent } from './component/asc-form/asc-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './component/profile/profile.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
-  declarations: [DashboardComponent, AscFormComponent, ProfileComponent],
+  declarations: [
+    DashboardComponent,
+    AscFormComponent,
+    ProfileComponent,
+    HomeComponent,
+  ],
   imports: [
     DashboardRoutingModule,
     NzLayoutModule,

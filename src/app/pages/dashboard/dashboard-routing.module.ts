@@ -3,8 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { AscFormComponent } from './component/asc-form/asc-form.component';
 import { ProfileComponent } from './component/profile/profile.component';
+import { HomeComponent } from './component/home/home.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'profile/ach-set-up', component: AscFormComponent },
   { path: 'profile', component: ProfileComponent },
 ];

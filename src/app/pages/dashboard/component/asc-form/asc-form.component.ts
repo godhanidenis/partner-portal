@@ -73,4 +73,8 @@ export class AscFormComponent implements OnInit {
       this.router.navigate([`/dashboard/${path}`]);
     }
   }
+
+  formatBreadcrumb(data: string) {
+    return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
+  }
 }
