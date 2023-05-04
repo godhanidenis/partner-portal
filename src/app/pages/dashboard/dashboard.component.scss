@@ -115,7 +115,7 @@
 
   .active {
     color: $teb-font-color;
-    background-color: #ff8b4d14;
+    background-color: #ff8b4d14 !important;
     border-right: 3px solid $teb-font-color;
   }
 
@@ -131,7 +131,7 @@
   }
 
   ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
-    color: $black;
+    color: $teb-font-color;
   }
 
   ::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
