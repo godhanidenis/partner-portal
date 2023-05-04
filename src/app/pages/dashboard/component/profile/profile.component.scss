@@ -8,6 +8,8 @@
         padding: 2px 0px;
         // padding: 0px 30px;
         border: none;
+        height: 398px;
+     
     }
 
     .card-title {
@@ -18,12 +20,12 @@
 
     ::ng-deep .ant-col {
         // border: 1px solid #d9d9d9;
-        margin: 22px 22px;
+        margin: 15px 15px;
         // border-radius: 11px;
     }
 
     ::ng-deep .ant-menu-submenu-title {
-        padding-left: 49px !important;
+        padding-left: 28px !important;
     }
 
     ::ng-deep .anticon svg {
@@ -43,4 +45,17 @@
     ::ng-deep .ant-menu-submenu-arrow::after {
         color: #1890ff;
     }
+
+
+    ::ng-deep .ant-menu-submenu {
+        padding: 0px;
+    }
+
+
+    @media only screen and (max-width: 1230px) {
+        ::ng-deep .ant-col {
+            margin: 15px 0px;
+
+        }
+      }
 }
