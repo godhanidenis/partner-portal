@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/dashboard/home' },
+  { path: '', pathMatch: 'full', redirectTo: '/main/dashboard' },
   {
-    path: 'dashboard',
+    path: 'main',
     component: MainLayoutComponent,
     loadChildren: () =>
       import('./pages/main/main.module').then((m) => m.MainModule),

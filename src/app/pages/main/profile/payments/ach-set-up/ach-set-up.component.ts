@@ -72,7 +72,7 @@ export class AchSetUpComponent implements OnInit {
 
   backButton(no: number, path: string) {
     if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
-      this.router.navigate([`/dashboard/${path}`]);
+      this.router.navigate([`/main/${path}`]);
     }
   }
 
