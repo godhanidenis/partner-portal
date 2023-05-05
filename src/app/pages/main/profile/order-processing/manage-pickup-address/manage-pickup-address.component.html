@@ -1,0 +1,107 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, 'profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, 'profile')">Order processing</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a>shipout location</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="manage-pickup-address">
+  <button
+    (click)="addPickupAddress()"
+    nz-button
+    nzType="primary"
+    class="Pickup-Address"
+  >
+    <span nz-icon nzType="plus"></span> Add Pickup Address
+  </button>
+  <button nz-button class="pull-push-btn">
+    <span nz-icon nzType="download"></span>
+  </button>
+  <button nz-button class="pull-push-btn">
+    <span nz-icon nzType="upload" nzTheme="outline"></span>
+  </button>
+
+  <nz-table
+    nzShowSizeChanger
+    [nzFrontPagination]="false"
+    class="manage-pickup-table"
+  >
+    <tbody>
+      <tr>
+        <td>&lt;<b> Address Nickname</b> &#62;</td>
+        <td class="merge-cel">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </td>
+        <td><span class="bagde">Active</span>Location id: <b>1698485</b></td>
+        <td></td>
+        <td class="merge-cel">
+          <nz-radio-group>
+            <label nz-radio nzValue="A">Primary Address</label>
+          </nz-radio-group>
+
+          <nz-switch [ngModel]="true"></nz-switch>
+        </td>
+        <td class="plus-icon">
+          <span
+            nz-icon
+            class="plus-icon-span"
+            nzType="plus"
+            nzTheme="outline"
+          ></span>
+        </td>
+      </tr>
+      <tr>
+        <td>&lt;<b> Address Nickname</b> &#62;</td>
+        <td class="merge-cel">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </td>
+        <td><span class="bagde">Active</span>Location id: <b>1698485</b></td>
+        <td></td>
+        <td class="merge-cel">
+          <nz-radio-group>
+            <label nz-radio nzValue="A">Primary Address</label>
+          </nz-radio-group>
+
+          <nz-switch [ngModel]="true"></nz-switch>
+        </td>
+        <td class="plus-icon">
+          <span
+            nz-icon
+            class="plus-icon-span"
+            nzType="plus"
+            nzTheme="outline"
+          ></span>
+        </td>
+      </tr>
+      <tr>
+        <td>&lt;<b> Address Nickname</b> &#62;</td>
+        <td class="merge-cel">
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </td>
+        <td><span class="bagde">Active</span>Location id: <b>1698485</b></td>
+        <td></td>
+        <td class="merge-cel">
+          <nz-radio-group>
+            <label nz-radio nzValue="A">Primary Address</label>
+          </nz-radio-group>
+
+          <nz-switch [ngModel]="true"></nz-switch>
+        </td>
+
+        <td class="plus-icon">
+          <span
+            nz-icon
+            class="plus-icon-span"
+            nzType="plus"
+            nzTheme="outline"
+          ></span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
