@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
 @Component({
-  selector: 'app-asc-form',
-  templateUrl: './asc-form.component.html',
-  styleUrls: ['./asc-form.component.scss'],
+  selector: 'app-ach-set-up',
+  templateUrl: './ach-set-up.component.html',
+  styleUrls: ['./ach-set-up.component.scss'],
 })
-export class AscFormComponent implements OnInit {
+export class AchSetUpComponent implements OnInit {
   ascSetupForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
   breadcrumb: any;
@@ -19,6 +19,8 @@ export class AscFormComponent implements OnInit {
     private router: Router
   ) {
     this.breadcrumbService.breadcrumbs.next(this.activatedRoute.snapshot.url);
+    console.log(this.activatedRoute.snapshot.url);
+
     this.breadcrumb = this.activatedRoute.snapshot.url;
   }
 
@@ -70,7 +72,7 @@ export class AscFormComponent implements OnInit {
 
   backButton(no: number, path: string) {
     if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
-      this.router.navigate([`/dashboard/${path}`]);
+      this.router.navigate([`/main/${path}`]);
     }
   }
 
