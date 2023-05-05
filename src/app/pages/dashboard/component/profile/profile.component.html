@@ -1,6 +1,11 @@
-<div class="profile-section" style="padding: 30px">
-  <div nz-row>
-    <div nz-col [nzSm]="6" [nzMd]="8"  [nzXl]="5" >
+<div class="profile-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Profile</span>
+    </div>
+  </div>
+  <div class="body-section" nz-row>
+    <div nz-col [nzXs]="12" [nzSm]="6" [nzMd]="8" [nzXl]="5">
       <nz-card>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item>
@@ -8,17 +13,15 @@
             <span class="card-title">Company</span>
           </li>
         </ul>
+        <nz-divider></nz-divider>
         <ul nz-menu>
-      
           <a href=""><li nz-submenu nzTitle="Company Profile"></li></a>
           <a href=""><li nz-submenu nzTitle="Wq Set up"></li></a>
           <a href=""><li nz-submenu nzTitle="Col"></li></a>
-          
-    
         </ul>
       </nz-card>
     </div>
-    <div nz-col [nzSm]="6"  [nzMd]="8"  [nzXl]="5">
+    <div nz-col [nzXs]="12" [nzSm]="6" [nzMd]="8" [nzXl]="5">
       <nz-card>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item>
@@ -26,16 +29,26 @@
             <span class="card-title">Order processing</span>
           </li>
         </ul>
+        <nz-divider></nz-divider>
         <ul nz-menu>
           <a href=""><li nz-submenu nzTitle="Label prefernaces"></li></a>
-          <a href=""><li nz-submenu nzTitle="Shipout Location/Manage pickup Address"></li></a>
-          <a href=""><li nz-submenu nzTitle="Po (Sending method)/ prefernaces"></li></a>
+          <a href=""
+            ><li
+              nz-submenu
+              nzTitle="Shipout Location/Manage pickup Address"
+            ></li
+          ></a>
+          <a href=""
+            ><li nz-submenu nzTitle="Po (Sending method)/ prefernaces"></li
+          ></a>
           <a href=""><li nz-submenu nzTitle="Holidays"></li></a>
-          <a href=""><li nz-submenu nzTitle="Invoice Set-up/Prefernaces"></li></a>
+          <a href=""
+            ><li nz-submenu nzTitle="Invoice Set-up/Prefernaces"></li
+          ></a>
         </ul>
       </nz-card>
     </div>
-    <div nz-col [nzSm]="6"  [nzMd]="8"  [nzXl]="5">
+    <div nz-col [nzXs]="12" [nzSm]="6" [nzMd]="8" [nzXl]="5">
       <nz-card>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item>
@@ -43,15 +56,14 @@
             <span class="card-title">Catalog & feed (inventory)</span>
           </li>
         </ul>
+        <nz-divider></nz-divider>
         <ul nz-menu>
-        
           <a href=""><li nz-submenu nzTitle="Catalog prefernaces"></li></a>
           <a href=""><li nz-submenu nzTitle="Feed prefernaces"></li></a>
-         
         </ul>
       </nz-card>
     </div>
-    <div nz-col [nzSm]="6"  [nzMd]="8" [nzXl]="5">
+    <div nz-col [nzXs]="12" [nzSm]="6" [nzMd]="8" [nzXl]="5">
       <nz-card>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item>
@@ -59,16 +71,19 @@
             <span class="card-title">Return</span>
           </li>
         </ul>
+        <nz-divider></nz-divider>
         <ul nz-menu>
           <!-- <a (click)="navigate()"
             ><li nz-submenu nzTitle="ACH satup profile"></li
           ></a> -->
-          <a href=""><li nz-submenu nzTitle="Return settings/Prefernace"></li></a>
+          <a href=""
+            ><li nz-submenu nzTitle="Return settings/Prefernace"></li
+          ></a>
           <a href=""><li nz-submenu nzTitle="Return Location/Address"></li></a>
         </ul>
       </nz-card>
     </div>
-    <div nz-col [nzSm]="6"  [nzMd]="8" [nzXl]="5">
+    <div nz-col [nzXs]="12" [nzSm]="6" [nzMd]="8" [nzXl]="5">
       <nz-card>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item>
@@ -76,16 +91,14 @@
             <span class="card-title">Allowances</span>
           </li>
         </ul>
+        <nz-divider></nz-divider>
         <ul nz-menu>
-        
           <a href=""><li nz-submenu nzTitle="Rebate"></li></a>
-            <a href=""><li nz-submenu nzTitle="Co-op"></li></a>
-  
-        
+          <a href=""><li nz-submenu nzTitle="Co-op"></li></a>
         </ul>
       </nz-card>
     </div>
-    <div nz-col [nzSm]="6"  [nzMd]="8" [nzXl]="5">
+    <div nz-col [nzXs]="12" [nzSm]="6" [nzMd]="8" [nzXl]="5">
       <nz-card>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item>
@@ -93,16 +106,14 @@
             <span class="card-title">Payments</span>
           </li>
         </ul>
+        <nz-divider></nz-divider>
         <ul nz-menu>
-          <a (click)="navigate()"
-          ><li nz-submenu nzTitle="ACH set up "></li
-        ></a>
+          <a (click)="navigate()"><li nz-submenu nzTitle="ACH set up "></li></a>
           <a href=""><li nz-submenu nzTitle="ACH verification"></li></a>
-        
         </ul>
       </nz-card>
     </div>
-    <div nz-col [nzSm]="6"  [nzMd]="8" [nzXl]="5">
+    <div nz-col [nzXs]="12" [nzSm]="6" [nzMd]="8" [nzXl]="5">
       <nz-card>
         <ul nz-menu nzMode="inline">
           <li nz-menu-item>
@@ -110,8 +121,8 @@
             <span class="card-title">Communications</span>
           </li>
         </ul>
+        <nz-divider></nz-divider>
         <ul nz-menu>
-       
           <a href=""><li nz-submenu nzTitle="Contact prefernaces"></li></a>
           <a href=""><li nz-submenu nzTitle="Notification prefernaces"></li></a>
         </ul>

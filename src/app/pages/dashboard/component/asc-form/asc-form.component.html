@@ -1,43 +1,38 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px;">
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, data.path)">{{ formatBreadcrumb(data.path) }}</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
 <div class="asc-form-section">
-  <div class="heading-section">
-    <div class="header">ACH Set Up</div>
-    <div class="back-button">
-      <button
-        (click)="backButton()"
-        nz-icon
-        nzType="close"
-        nzTheme="outline"
-      ></button>
+  <div class="user-content">
+    <div class="tab-header">
+      <span>ACH Set Up</span>
     </div>
   </div>
-  <nz-divider></nz-divider>
   <div class="body-section">
     <form nz-form [formGroup]="ascSetupForm">
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="nameOfAccount">
-          <nz-form-label nzFor="name_of_account"
-            >Name Of Account<span style="color: red; font-weight: 500">*</span>
-          </nz-form-label>
-          <span
-            nzTooltipTitle="Account Holder Name must match the name on 
-            your bank account. Do not include the name of your bank 
-            itself. Example: John Doe or Company XYZ. Match what your 
-            bank has on file using ISO basic Latin characters. This 
-            information must be accurate in order to receive your 
-            payments."
-            nzTooltipPlacement="right"
-            nz-button
-            nz-tooltip
-            nz-icon
-            nzType="question-circle"
-            nzTheme="twotone"
-          ></span>
+        <nz-form-label
+          [nzSm]="4"
+          [nzXs]="24"
+          nzRequired
+          nzFor="name_of_account"
+          nzTooltipTitle="Account Holder Name must match the name on 
+          your bank account. Do not include the name of your bank 
+          itself. Example: John Doe or Company XYZ. Match what your 
+          bank has on file using ISO basic Latin characters. This 
+          information must be accurate in order to receive your 
+          payments."
+          [nzTooltipIcon]="tooltipIcon"
+          >Account Name</nz-form-label
+        >
+        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="nameOfAccount">
           <nz-input-group>
             <input
               formControlName="name_of_account"
               type="text"
               nz-input
-              placeholder="Insert text hear"
+              placeholder="Enter An Account Name"
             />
             <ng-template #nameOfAccount let-control>
               <ng-container *ngIf="control.hasError('minlength')"
@@ -56,28 +51,26 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="accountNumber!">
-          <nz-form-label nzFor="account number"
-            >Account Number<span style="color: red; font-weight: 500">*</span>
-          </nz-form-label>
-          <span
-            nzTooltipTitle="Your account must be enabled to receive deposits 
-            through the Automated Clearing House (ACH). Please contact 
-            your bank for assistance. (Up to 17 digits)"
-            nzTooltipPlacement="right"
-            nz-button
-            nz-tooltip
-            nz-icon
-            nzType="question-circle"
-            nzTheme="twotone"
-          ></span>
+        <nz-form-label
+          [nzSm]="4"
+          [nzXs]="24"
+          nzRequired
+          nzFor="account_number"
+          nzTooltipTitle="Your account must be enabled to receive deposits 
+          through the Automated Clearing House (ACH). Please contact 
+          your bank for assistance. (Up to 17 digits)"
+          [nzTooltipIcon]="tooltipIcon"
+          >Account Number</nz-form-label
+        >
+        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="accountNumber!">
           <nz-input-group>
             <input
               formControlName="account_number"
               type="text"
               nz-input
-              placeholder="Insert text hear"
+              placeholder="Enter An Account Number"
             />
             <ng-template #accountNumber let-control>
               <ng-container *ngIf="control.hasError('minlength')"
@@ -96,28 +89,27 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+
+
       <nz-form-item>
-        <nz-form-control
-          [nzValidateStatus]="reTypeAccountNumber ? 'error' : ''"
+        <nz-form-label
+          [nzSm]="4"
+          [nzXs]="24"
+          nzRequired
+          nzFor="re_type_account_number"
+          nzTooltipTitle="Your account must be enabled to receive deposits 
+          through the Automated Clearing House (ACH). Please contact 
+          your bank for assistance. (Up to 17 digits)"
+          [nzTooltipIcon]="tooltipIcon"
+          >Re-Type Account Number</nz-form-label
         >
-          <nz-form-label nzFor="re_type_account_number"
-            >Re-Type Account Number
-          </nz-form-label>
-          <span
-            nzTooltipTitle="not needed"
-            nzTooltipPlacement="right"
-            nz-button
-            nz-tooltip
-            nz-icon
-            nzType="question-circle"
-            nzTheme="twotone"
-          ></span>
+        <nz-form-control [nzSm]="8" [nzXs]="24" [nzValidateStatus]="reTypeAccountNumber ? 'error' : ''">
           <nz-input-group>
             <input
               formControlName="re_type_account_number"
               type="text"
               nz-input
-              placeholder="Insert text hear"
+              placeholder="Re-Type An Account Number"
               (input)="reTypeAccount($event)"
             />
             <span *ngIf="reTypeAccountNumber" style="color: red"
@@ -126,27 +118,25 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="bankName">
-          <nz-form-label nzFor="bank_name"
-            >Bank Name<span style="color: red; font-weight: 500">*</span>
-          </nz-form-label>
-          <span
-            nzTooltipTitle="Enter your US bank name (e.g., Bank of America, 
-            Chase, Wells Fargo) for accurate deposit processing."
-            nzTooltipPlacement="right"
-            nz-button
-            nz-tooltip
-            nz-icon
-            nzType="question-circle"
-            nzTheme="twotone"
-          ></span>
+        <nz-form-label
+          [nzSm]="4"
+          [nzXs]="24"
+          nzRequired
+          nzFor="bank_name"
+          nzTooltipTitle="Enter your US bank name (e.g., Bank of America, 
+          Chase, Wells Fargo) for accurate deposit processing."
+          [nzTooltipIcon]="tooltipIcon"
+          >Bank Name</nz-form-label
+        >
+        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="bankName">
           <nz-input-group>
             <input
               formControlName="bank_name"
               type="text"
               nz-input
-              placeholder="Insert text hear"
+              placeholder="Enter Bank Name"
             />
             <ng-template #bankName let-control>
               <ng-container *ngIf="control.hasError('minlength')"
@@ -165,31 +155,28 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+
+
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="routingTransferNumber">
-          <nz-form-label nzFor="routing_transfer_number"
-            >Routing Transfer Number<span style="color: red; font-weight: 500"
-              >*</span
-            >
-          </nz-form-label>
-          <span
-            nzTooltipTitle="(Federal ABA Number) Provide a routing number 
-            for Automated Clearing House (ACH) or electronic funds 
-            transfers instead of wire transfers. Please contact your bank 
-            for assistance."
-            nzTooltipPlacement="right"
-            nz-button
-            nz-tooltip
-            nz-icon
-            nzType="question-circle"
-            nzTheme="twotone"
-          ></span>
+        <nz-form-label
+          [nzSm]="4"
+          [nzXs]="24"
+          nzRequired
+          nzFor="routing_transfer_number"
+          nzTooltipTitle="(Federal ABA Number) Provide a routing number 
+          for Automated Clearing House (ACH) or electronic funds 
+          transfers instead of wire transfers. Please contact your bank 
+          for assistance."
+          [nzTooltipIcon]="tooltipIcon"
+          >Routing Transfer Number</nz-form-label
+        >
+        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="routingTransferNumber">
           <nz-input-group>
             <input
               formControlName="routing_transfer_number"
               type="text"
               nz-input
-              placeholder="Insert text hear"
+              placeholder="Enter Routing Transfer Number"
             />
             <ng-template #routingTransferNumber let-control>
               <ng-container *ngIf="control.hasError('minlength')"
@@ -208,15 +195,19 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <button
-        nz-button
-        class="login-form-button login-form-margin"
-        [nzType]="'primary'"
-        (click)="submitForm()"
-        [disabled]="!ascSetupForm.valid || reTypeAccountNumber"
-      >
-        Submit
-      </button>
+      
+      <div nz-row>
+        <div nz-col [nzSm]="12" [nzXs]="24"><button
+          nz-button
+          class="login-form-button login-form-margin"
+          [nzType]="'primary'"
+          (click)="submitForm()"
+          [disabled]="!ascSetupForm.valid || reTypeAccountNumber"
+        >
+          Submit
+        </button></div>
+      </div>
+      
     </form>
   </div>
 </div>

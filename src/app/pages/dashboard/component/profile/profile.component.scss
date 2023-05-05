@@ -1,61 +1,96 @@
-.profile-section {
-    ::ng-deep .ant-card-head-title {
-        padding: 16px 18px;
+ @import'../../../../../assets/variable/variable.scss';
+
+ .profile-section {
+     border: 0 solid rgba(0, 0, 0, 0.125);
+     background-color: $white;
+     background-clip: border-box;
+     border-radius: 5px;
+
+    a{
+        color: $theme-color;
     }
 
+     .body-section {
+         padding: 0 10px;
+         max-height: 80vh;
+         overflow-y: scroll;
+     }
 
-    ::ng-deep .ant-card-body {
-        padding: 2px 0px;
-        // padding: 0px 30px;
-        border: none;
-        height: 398px;
-     
-    }
+     ::ng-deep .ant-card-head-title {
+         padding: 16px 18px;
+     }
 
-    .card-title {
-        color: rgba(0, 0, 0, 0.85);
-        font-weight: 500;
-        font-size: 16px;
-    }
+     ::ng-deep .ant-menu-light .ant-menu-item:hover,
 
-    ::ng-deep .ant-col {
-        // border: 1px solid #d9d9d9;
-        margin: 15px 15px;
-        // border-radius: 11px;
-    }
+     .ant-menu-light .ant-menu-submenu-title:hover {
+         color: $theme-color !important;
+     }
 
-    ::ng-deep .ant-menu-submenu-title {
-        padding-left: 28px !important;
-    }
+     ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
+         color: $theme-color !important;
+     }
 
-    ::ng-deep .anticon svg {
-        display: inline-block;
-        color: #1890ff;
-        // font-size: 20px;
-    }
-
-    .card-icon {
-        font-size: 20px;
-    }
-
-    ::ng-deep .ant-menu-submenu-arrow::before {
-        color: #1890ff;
-    }
-
-    ::ng-deep .ant-menu-submenu-arrow::after {
-        color: #1890ff;
-    }
+     ::ng-deep .ant-card-head-title {
+         padding: 16px 18px;
+     }
 
 
-    ::ng-deep .ant-menu-submenu {
-        padding: 0px;
-    }
+     ::ng-deep .ant-card-body {
+         padding: 2px 0px;
+         // padding: 0px 30px;
+         border: none;
+         min-height: 300px;
+
+     }
+
+     .card-title {
+         color: rgba(0, 0, 0, 0.85);
+         font-weight: 500;
+         font-size: 16px;
+     }
+
+     ::ng-deep .ant-divider-horizontal{
+        margin: 0;
+     }
+
+     ::ng-deep .ant-col {
+         // border: 1px solid #d9d9d9;
+         margin: 15px 15px;
+         // border-radius: 11px;
+     }
+
+     ::ng-deep .ant-menu-submenu-title {
+         padding-left: 28px !important;
+     }
+
+     ::ng-deep .anticon svg {
+         display: inline-block;
+         color: $black;
+         // font-size: 20px;
+     }
+
+     .card-icon {
+         font-size: 20px;
+     }
+
+     ::ng-deep .ant-menu-submenu-arrow::before {
+         color: $theme-color;
+     }
+
+     ::ng-deep .ant-menu-submenu-arrow::after {
+         color: $theme-color;
+     }
 
 
-    @media only screen and (max-width: 1230px) {
-        ::ng-deep .ant-col {
-            margin: 15px 0px;
+     ::ng-deep .ant-menu-submenu {
+         padding: 0px;
+     }
 
-        }
-      }
-}
+
+     @media only screen and (max-width: 1230px) {
+         ::ng-deep .ant-col {
+             margin: 15px 0px;
+             padding: 0 5px;
+         }
+     }
+ }

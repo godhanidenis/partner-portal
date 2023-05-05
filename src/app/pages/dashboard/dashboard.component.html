@@ -2,122 +2,98 @@
   <nz-sider
     class="menu-sidebar"
     nzCollapsible
-    nzWidth="298px"
-    nzBreakpoint="md"
     [(nzCollapsed)]="isCollapsed"
     [nzTrigger]="null"
   >
-    <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <!-- <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
-        <h1>Ant Design Of Angular</h1> -->
-        <h1>123 Stores</h1>
-      </a>
+    <div class="logo">
+      <img
+        *ngIf="isCollapsed"
+        nz-image
+        width="50px"
+        height="40px"
+        nzSrc="assets\img\small-logo.png"
+        alt=""
+      />
+      <img
+        *ngIf="!isCollapsed"
+        nz-image
+        width="150px"
+        height="40px"
+        nzSrc="assets\img\logo.png"
+        alt=""
+      />
     </div>
-
-    <ul
-      nz-menu
-      nzMode="inline"
-      nzTheme="dark"
-      [nzInlineCollapsed]="isCollapsed"
-    >
-      <li nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected>
+    <ul nz-menu nzMode="inline" class="sider-menu">
+      <li nz-menu-item routerLinkActive="active" routerLink="/dashboard/home">
         <span nz-icon nzType="dashboard"></span>
         <span>Dashboard</span>
       </li>
-
-      <!-- //// -->
-      <ul>
-        <!-- <li
-          nz-submenu
-          [nzTitle]="isCollapsed ? '' : 'profile'"
-          nzIcon="profile"
-        >
-          <ul>
-            <li nz-menu-item routerLink="/dashboard/profile/payment/asc-form">
-              ASC Form
-            </li>
-            <li nz-menu-item>Modify</li>
-          </ul>
-        </li> -->
-        <li
-          nz-menu-item
-          routerLinkActive="active"
-          routerLink="/dashboard/profile"
-        >
-          <!-- nz-tooltip
-          nzTooltipPlacement="right" -->
-          <span nz-icon nzType="profile"></span>
-          <span>profile</span>
-        </li>
-        <li
-          routerLinkActive="active"
-          nz-submenu
-          [nzTitle]="isCollapsed ? '' : 'Products'"
-          nzIcon="shop"
-        >
-          <ul>
-            <li nz-menu-item>View/edit products</li>
-            <li nz-menu-item>Inventory</li>
-          </ul>
-        </li>
-        <li
-          routerLinkActive="active"
-          nz-submenu
-          [nzTitle]="isCollapsed ? '' : 'Oders'"
-          nzIcon="shopping"
-        >
-          <ul>
-            <li nz-menu-item>Pending acknowledgement</li>
-            <li nz-menu-item>Pending shipment</li>
-            <li nz-menu-item>In-transit</li>
-            <li nz-menu-item>Pending customer cancellation confirm</li>
-            <li nz-menu-item>Returns</li>
-          </ul>
-        </li>
-      </ul>
-
       <li
-        routerLinkActive="active"
         nz-menu-item
-        nz-tooltip
-        nzTooltipPlacement="right"
+        routerLinkActive="active"
+        routerLink="/dashboard/profile"
       >
-        <span nz-icon nzType="dollar"></span>
-        <span>Payment</span>
+        <span nz-icon nzType="user"></span>
+        <span>Profile</span>
       </li>
-      <li
-        routerLinkActive="active"
-        nz-menu-item
-        nz-tooltip
-        nzTooltipPlacement="right"
-      >
+      <li nz-submenu nzTitle="Products" nzIcon="shop">
+        <ul>
+          <li nz-menu-item routerLinkActive="active" routerLink="##">
+            View / Edit Products
+          </li>
+          <li nz-menu-item routerLinkActive="active" routerLink="##">
+            Inventory
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Orders" nzIcon="shopping">
+        <ul>
+          <li nz-menu-item routerLinkActive="active" routerLink="##">
+            Pending Acknowledgement
+          </li>
+          <li nz-menu-item routerLinkActive="active" routerLink="##">
+            Pending Shipment
+          </li>
+          <li nz-menu-item routerLinkActive="active" routerLink="##">
+            In-transit
+          </li>
+          <li nz-menu-item routerLinkActive="active" routerLink="##">
+            Pending Customer Cancellation Only
+          </li>
+          <li nz-menu-item routerLinkActive="active" routerLink="##">
+            Returns
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-item routerLinkActive="active" routerLink="##">
+        <span nz-icon nzType="dollar"></span>
+        <span>Payments</span>
+      </li>
+      <li nz-menu-item routerLinkActive="active" routerLink="##">
         <span nz-icon nzType="apartment"></span>
         <span>Support</span>
       </li>
-      <li
-        routerLinkActive="active"
-        nz-menu-item
-        nz-tooltip
-        nzTooltipPlacement="right"
-      >
+      <li nz-menu-item routerLinkActive="active" routerLink="##">
         <span nz-icon nzType="setting"></span>
         <span>Settings</span>
+      </li>
+    </ul>
+    <ul nz-menu nzMode="inline" class="sider-menu" style="margin-top: auto">
+      <li nz-menu-item [ngClass]="{ logout: isCollapsed }">
+        <span nz-icon nzType="logout"></span>
+        <span *ngIf="!isCollapsed">Logout</span>
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-          <span
-            class="trigger"
-            nz-icon
-            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-          ></span>
-        </span>
-      </div>
-      <div class="show-account-dropdown">
+      <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></span>
+      <div class="profile-menu">
         <a href="#">Help</a>
         <div class="profile-menu">
           <a
@@ -145,13 +121,12 @@
       </div>
     </nz-header>
     <nz-content>
-      <nz-breadcrumb>
-        <nz-breadcrumb-item> dashboard </nz-breadcrumb-item>
-        <nz-breadcrumb-item *ngFor="let data of breadcrumb">{{
-          data.path
-        }}</nz-breadcrumb-item>
-      </nz-breadcrumb>
-      <div class="inner-content">
+      <div class="p-2">
+        <!-- <nz-breadcrumb>
+          <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+            <a (click)="backButton(i, data.path)">{{ data.path }}</a>
+          </nz-breadcrumb-item>
+        </nz-breadcrumb> -->
         <router-outlet></router-outlet>
       </div>
     </nz-content>
