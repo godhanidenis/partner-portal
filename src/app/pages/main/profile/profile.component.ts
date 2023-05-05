@@ -23,4 +23,9 @@ export class ProfileComponent {
   navigate() {
     this.router.navigate(['/main/profile/payment/ach-set-up']);
   }
+  
+  Shipout(){
+    this.router.navigate(['/main/profile/order-processing/shipout-location']);
+
+  }
 }
