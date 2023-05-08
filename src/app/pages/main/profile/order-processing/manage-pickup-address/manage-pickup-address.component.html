@@ -27,8 +27,18 @@
   </button>
 
   <nz-table
+    id="tablerecords"
+    #nzTable
+    nzBordered
+    nzOuterBordered
+    nzTableLayout="fixed"
     nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
     class="manage-pickup-table"
   >
     <tbody>
@@ -105,3 +115,17 @@
     </tbody>
   </nz-table>
 </div>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [(nzVisible)]="addAddressVisible"
+  nzTitle="Add Pickup Address"
+  (nzOnCancel)="handleCancel()"
+  nzWidth="90%"
+>
+  <div *nzModalContent>
+    <app-add-pickup-address
+      (closeModel)="handleCancel()"
+    ></app-add-pickup-address>
+  </div>
+</nz-modal>

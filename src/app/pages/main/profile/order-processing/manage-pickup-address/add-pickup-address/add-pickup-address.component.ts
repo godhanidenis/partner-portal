@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
@@ -10,9 +10,12 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
   styleUrls: ['./add-pickup-address.component.scss'],
 })
 export class AddPickupAddressComponent implements OnInit {
+  @Output() closeModel = new EventEmitter();
+
   ascSetupForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
   breadcrumb: any;
+  isLoading: boolean = false;
 
   tooltipIcon: NzFormTooltipIcon = {
     type: 'info-circle',
@@ -38,7 +41,7 @@ export class AddPickupAddressComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9_.]+$'),
       ]),
-      alternate_phone: new FormControl(''),
+      extension: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       address_line_1: new FormControl('', [Validators.required]),
       pin_code: new FormControl('', [
@@ -52,6 +55,7 @@ export class AddPickupAddressComponent implements OnInit {
       state: new FormControl('', [Validators.required]),
       open_at: new FormControl(new Date(0, 0, 0, 0, 0, 0)),
       close_at: new FormControl(new Date(0, 0, 0, 0, 0, 0)),
+      time_zone: new FormControl(''),
       vendor_address: new FormControl(false),
       rto_address: new FormControl(false),
       supplier_name: new FormControl(''),
@@ -92,5 +96,9 @@ export class AddPickupAddressComponent implements OnInit {
 
   formatBreadcrumb(data: string) {
     return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
+  }
+
+  handleCancel() {
+    this.closeModel.emit();
   }
 }

@@ -5,7 +5,7 @@
      background-color: $white;
      background-clip: border-box;
      border-radius: 5px;
-     height: 85vh;
+     //  height: 85vh;
 
      ::ng-deep .ant-divider-horizontal {
          margin: 0;
@@ -25,13 +25,18 @@
      }
 
      .body-section {
-         padding: 24px;
+         padding: 10px 24px;
          max-height: 79vh;
          overflow-y: scroll;
 
          form {
              width: 100%;
              padding: 0 2px;
+
+             .subHeader {
+                 font-size: 19px;
+                 font-weight: 600;
+             }
 
              nz-form-label {
                  font-size: 18px !important;
@@ -53,9 +58,10 @@
                  border-radius: 5px !important;
              }
 
-             ::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+             ::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+             .ant-picker {
                  border-radius: 5px !important;
-                 height: 40px !important;
+                 height: 35px !important;
                  font-size: 16px;
              }
 
@@ -130,18 +136,46 @@
              }
          }
      }
+
+     .button-disabled {
+         background: $header-of-tab;
+         opacity: 0.8;
+     }
+ }
+
+ ::ng-deep .ant-modal-footer {
+     display: none;
+ }
+
+ ::ng-deep .ant-modal-header {
+     background-color: $header-of-tab;
+     //  padding: 15px 24px;
+
+     .ant-modal-title {
+         color: $white;
+         font-size: 1.1rem;
+         font-weight: 600;
+     }
+ }
+
+ ::ng-deep .ant-modal-body {
+     padding: 0;
+ }
+
+ ::ng-deep .ant-modal-close {
+     color: $white !important;
  }
 
  @media screen and (min-width:766px) {
-     .add-pickup-address-section {
-         height: 84vh;
-     }
+     //  .add-pickup-address-section {
+     //      height: 84vh;
+     //  }
  }
 
 
  @media screen and (max-width:765px) {
      .add-pickup-address-section {
-         height: 82vh;
+         //  height: 82vh;
 
          .body-section {
              max-height: 76vh;
