@@ -204,7 +204,7 @@
 
       <span class="subHeader">Address Details</span>
       <div nz-row [nzGutter]="16">
-        <div nz-col class="gutter-row" [nzSm]="24" [nzMd]="12">
+        <div nz-col class="gutter-row" [nzLg]="24" [nzXl]="12">
           <div nz-row [nzGutter]="16">
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzMd]="24">
               <nz-form-control nzErrorTip="Address 1 is required!">
@@ -303,7 +303,13 @@
             </nz-form-item>
           </div>
         </div>
-        <div nz-col class="gutter-row" [nzSm]="24" [nzMd]="12">
+        <div
+          style="width: 100%"
+          nz-col
+          class="gutter-row"
+          [nzLg]="24"
+          [nzXl]="12"
+        >
           <div nz-row [nzGutter]="16">
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzMd]="24">
               <nz-form-control nzErrorTip="Warehouse Timings is required!">
