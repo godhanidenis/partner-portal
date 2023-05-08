@@ -9,24 +9,27 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 })
 export class ManagePickupAddressComponent {
   breadcrumb: any;
+  addAddressVisible: boolean = false;
+  editAddressVisible: boolean = false;
+  isLoading: boolean = false;
+  total = 1;
   pageSize = 10;
   pageIndex = 1;
-  total = 1;
   pageSizeOptions = [5, 10, 15, 20];
-  shipout = [
+  shipOut = [
     {
       nickname: 'surat',
-      id: 179890
+      id: 179890,
     },
     {
       nickname: 'rajkot',
-      id: 189079
+      id: 189079,
     },
     {
       nickname: 'jamanager',
-      id: 145979
+      id: 145979,
     },
-];
+  ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -40,9 +43,10 @@ export class ManagePickupAddressComponent {
   }
 
   addPickupAddress() {
-    this.router.navigate([
-      `/main/profile/order-processing/manage-pickup-address/add-pickup-address`,
-    ]);
+    this.addAddressVisible = true;
+    // this.router.navigate([
+    //   `/main/profile/order-processing/manage-pickup-address/add-pickup-address`,
+    // ]);
   }
 
   backButton(no: number, path: string) {
@@ -53,5 +57,10 @@ export class ManagePickupAddressComponent {
 
   formatBreadcrumb(data: string) {
     return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
+  }
+
+  handleCancel(): void {
+    this.addAddressVisible = false;
+    this.editAddressVisible = false;
   }
 }

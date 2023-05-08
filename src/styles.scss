@@ -14,6 +14,36 @@
     height: 47px;
 }
 
+// Model Footer
+.model-footer {
+    padding: 0.75rem 0;
+
+    .model-action {
+        padding-top: 10px;
+        border-top: 1px solid $border;
+        display: flex;
+        justify-content: center;
+
+        button {
+            color: $white;
+            font-weight: 400;
+            border-radius: 4px;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            height: 40px !important;
+        }
+
+        .action-btn {
+            background-color: $header-of-tab;
+            border: none;
+        }
+
+        button:hover {
+            color: $white;
+        }
+    }
+}
 
 ::-webkit-scrollbar {
     width: 5px;

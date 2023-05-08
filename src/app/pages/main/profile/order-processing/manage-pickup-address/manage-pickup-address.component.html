@@ -29,7 +29,7 @@
 
   <nz-table
     class="manage-pickup-table"
-    [nzData]="shipout"
+    [nzData]="shipOut"
     #nzTable
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
@@ -39,14 +39,16 @@
     [nzPageIndex]="pageIndex"
   >
     <tbody>
-    
-
       <tr *ngFor="let data of nzTable.data">
-        <td>&lt;<b> {{data.nickname}}</b> &#62;</td>
+        <td>
+          &lt;<b> {{ data.nickname }}</b> &#62;
+        </td>
         <td class="edit-icon">
           <span nz-icon nzType="edit" nzTheme="outline"></span>
         </td>
-        <td><span class="bagde">Active</span>Location id: <b>{{data.id}}</b></td>
+        <td>
+          <span class="bagde">Active</span>Location id: <b>{{ data.id }}</b>
+        </td>
         <td class="merge-cel">
           <nz-radio-group>
             <label nz-radio nzValue="A">Primary Address</label>
@@ -63,11 +65,22 @@
           ></span>
         </td>
       </tr>
-  </tbody>   
-
+    </tbody>
   </nz-table>
-
-
 
   <!-- <nz-pagination  nzShowSizeChanger  [nzSize]="'small'"></nz-pagination> -->
 </div>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [(nzVisible)]="addAddressVisible"
+  nzTitle="Add Pickup Address"
+  (nzOnCancel)="handleCancel()"
+  nzWidth="90%"
+>
+  <div *nzModalContent>
+    <app-add-pickup-address
+      (closeModel)="handleCancel()"
+    ></app-add-pickup-address>
+  </div>
+</nz-modal>
