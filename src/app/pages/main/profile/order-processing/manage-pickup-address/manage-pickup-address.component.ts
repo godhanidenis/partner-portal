@@ -16,6 +16,20 @@ export class ManagePickupAddressComponent {
   pageSize = 10;
   pageIndex = 1;
   pageSizeOptions = [5, 10, 15, 20];
+  shipOut = [
+    {
+      nickname: 'surat',
+      id: 179890,
+    },
+    {
+      nickname: 'rajkot',
+      id: 189079,
+    },
+    {
+      nickname: 'jamanager',
+      id: 145979,
+    },
+  ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
