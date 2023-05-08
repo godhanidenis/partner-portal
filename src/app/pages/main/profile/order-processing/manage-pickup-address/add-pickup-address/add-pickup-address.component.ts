@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
@@ -11,6 +11,7 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 })
 export class AddPickupAddressComponent implements OnInit {
   @Output() closeModel = new EventEmitter();
+  @Input() editData: any = '';
 
   ascSetupForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
@@ -62,6 +63,73 @@ export class AddPickupAddressComponent implements OnInit {
       supplier_gstin: new FormControl(''),
       select_pickup_address: new FormControl(''),
     });
+
+    setTimeout(() => {
+      console.log(this.editData);
+      if (this.editData) {
+        this.ascSetupForm.controls['address_nickname'].setValue(
+          this.editData?.address_nickname
+        );
+        this.ascSetupForm.controls['company_name'].setValue(
+          this.editData?.company_name
+        );
+        this.ascSetupForm.controls['contact_name'].setValue(
+          this.editData?.contact_name
+        );
+        this.ascSetupForm.controls['phone'].setValue(this.editData?.phone);
+        this.ascSetupForm.controls['extension'].setValue(
+          this.editData?.extension
+        );
+        this.ascSetupForm.controls['email'].setValue(this.editData?.email);
+        this.ascSetupForm.controls['address_line_1'].setValue(
+          this.editData?.address_line_1
+        );
+        this.ascSetupForm.controls['pin_code'].setValue(
+          this.editData?.pin_code
+        );
+        this.ascSetupForm.controls['city'].setValue(this.editData?.city);
+        this.ascSetupForm.controls['address_line_2'].setValue(
+          this.editData?.address_line_2
+        );
+        this.ascSetupForm.controls['state'].setValue(this.editData?.state);
+        this.ascSetupForm.controls['open_at'].setValue(this.editData?.open_at);
+        this.ascSetupForm.controls['close_at'].setValue(
+          this.editData?.close_at
+        );
+        this.ascSetupForm.controls['time_zone'].setValue(
+          this.editData?.time_zone
+        );
+        this.ascSetupForm.controls['vendor_address'].setValue(
+          this.editData?.vendor_address
+        );
+        this.ascSetupForm.controls['rto_address'].setValue(
+          this.editData?.rto_address
+        );
+        this.ascSetupForm.controls['supplier_name'].setValue(
+          this.editData?.supplier_name
+        );
+        this.ascSetupForm.controls['supplier_gstin'].setValue(
+          this.editData?.supplier_gstin
+        );
+        this.ascSetupForm.controls['select_pickup_address'].setValue(
+          this.editData?.select_pickup_address
+        );
+
+        this.ascSetupForm.controls['address_nickname'].disable();
+        this.ascSetupForm.controls['company_name'].disable();
+        this.ascSetupForm.controls['contact_name'].disable();
+        this.ascSetupForm.controls['extension'].disable();
+        this.ascSetupForm.controls['email'].disable();
+        this.ascSetupForm.controls['address_line_1'].disable();
+        this.ascSetupForm.controls['pin_code'].disable();
+        this.ascSetupForm.controls['city'].disable();
+        this.ascSetupForm.controls['address_line_2'].disable();
+        this.ascSetupForm.controls['state'].disable();
+        this.ascSetupForm.controls['open_at'].disable();
+        this.ascSetupForm.controls['close_at'].disable();
+        this.ascSetupForm.controls['time_zone'].disable();
+      }
+    }, 100);
   }
 
   reTypeAccount(event: any) {

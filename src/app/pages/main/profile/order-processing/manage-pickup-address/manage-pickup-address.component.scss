@@ -13,71 +13,46 @@
         font-size: 19px;
     }
 
-
-    .pull-push-btn {
-        float: right;
-        margin: 0px 0px 0px 7px;
-        border-radius: 5px;
-        background: #2a3036f0;
-        border: 0;
-        color: white;
-        width: 52px;
-    }
-
-    .Pickup-Address {
-        float: right;
-        margin: 0px 0px 0px 7px;
-        border-radius: 5px;
-        border: 0;
-    }
-
-    .manage-pickup-table {
-        padding: 20px 0px;
-    }
-
-    .merge-cel {
+    .button-group {
         display: flex;
         justify-content: end;
-        padding: 16px 0px;
+        margin-bottom: 10px;
+
+        button {
+            border-radius: 5px;
+            border: 0;
+            margin-left: 5px;
+        }
+
+        .pull-push-btn {
+            background: #2a3036f0;
+            color: white;
+            width: 52px;
+        }
     }
 
-    .bagde {
-        background: #00c13b;
+    nz-table {
+        .radio {
+            color: $black;
+
+            &-selected {
+                color: $skyBlue;
+                line-height: 0;
+                font-size: 24px;
+                width: 22px;
+                height: 5px;
+            }
+        }
+    }
+
+    .badge {
         border-radius: 8px;
-        color: white;
-        padding: 1px 22px;
+        color: $white;
+        padding: 1px;
         font-weight: 600;
-        margin-right: 19px;
-    }
-
-    .merge-cel {
         display: flex;
-        justify-content: end;
-        padding: 16px 0px;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
     }
-
-    ::ng-deep .anticon-edit {
-        float: right;
-    }
-
-    .edit-icon {
-        padding-right: 0px;
-    }
-
-    .plus-icon {
-        padding: 16px 0px 15px 0px;
-    }
-
-    .plus-icon-span {
-        float: right;
-    }
-
-    ::ng-deep .anticon-edit {
-        float: right;
-    }
-
-    .edit-icon {
-        padding-right: 0px;
-    }
-
 }

@@ -1,4 +1,4 @@
-<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px;">
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
   <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
     <a (click)="backButton(i, 'profile')">Profile</a>
   </nz-breadcrumb-item>
@@ -19,7 +19,8 @@
     <form nz-form [formGroup]="ascSetupForm">
       <nz-form-item>
         <nz-form-label
-          [nzSm]="4"
+          [nzXl]="4"
+          [nzSm]="7"
           [nzXs]="24"
           nzRequired
           nzFor="name_of_account"
@@ -32,7 +33,12 @@
           [nzTooltipIcon]="tooltipIcon"
           >Account Name</nz-form-label
         >
-        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="nameOfAccount">
+        <nz-form-control
+          [nzXl]="8"
+          [nzSm]="12"
+          [nzXs]="24"
+          [nzErrorTip]="nameOfAccount"
+        >
           <nz-input-group>
             <input
               formControlName="name_of_account"
@@ -60,7 +66,8 @@
 
       <nz-form-item>
         <nz-form-label
-          [nzSm]="4"
+          [nzXl]="4"
+          [nzSm]="7"
           [nzXs]="24"
           nzRequired
           nzFor="account_number"
@@ -70,7 +77,12 @@
           [nzTooltipIcon]="tooltipIcon"
           >Account Number</nz-form-label
         >
-        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="accountNumber!">
+        <nz-form-control
+          [nzXl]="8"
+          [nzSm]="12"
+          [nzXs]="24"
+          [nzErrorTip]="accountNumber!"
+        >
           <nz-input-group>
             <input
               formControlName="account_number"
@@ -96,10 +108,10 @@
         </nz-form-control>
       </nz-form-item>
 
-
       <nz-form-item>
         <nz-form-label
-          [nzSm]="4"
+          [nzXl]="4"
+          [nzSm]="7"
           [nzXs]="24"
           nzRequired
           nzFor="re_type_account_number"
@@ -109,7 +121,12 @@
           [nzTooltipIcon]="tooltipIcon"
           >Re-Type Account Number</nz-form-label
         >
-        <nz-form-control [nzSm]="8" [nzXs]="24" [nzValidateStatus]="reTypeAccountNumber ? 'error' : ''">
+        <nz-form-control
+          [nzXl]="8"
+          [nzSm]="12"
+          [nzXs]="24"
+          [nzValidateStatus]="reTypeAccountNumber ? 'error' : ''"
+        >
           <nz-input-group>
             <input
               formControlName="re_type_account_number"
@@ -127,7 +144,8 @@
 
       <nz-form-item>
         <nz-form-label
-          [nzSm]="4"
+          [nzXl]="4"
+          [nzSm]="7"
           [nzXs]="24"
           nzRequired
           nzFor="bank_name"
@@ -136,7 +154,12 @@
           [nzTooltipIcon]="tooltipIcon"
           >Bank Name</nz-form-label
         >
-        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="bankName">
+        <nz-form-control
+          [nzXl]="8"
+          [nzSm]="12"
+          [nzXs]="24"
+          [nzErrorTip]="bankName"
+        >
           <nz-input-group>
             <input
               formControlName="bank_name"
@@ -162,10 +185,10 @@
         </nz-form-control>
       </nz-form-item>
 
-
       <nz-form-item>
         <nz-form-label
-          [nzSm]="4"
+          [nzXl]="4"
+          [nzSm]="7"
           [nzXs]="24"
           nzRequired
           nzFor="routing_transfer_number"
@@ -176,7 +199,12 @@
           [nzTooltipIcon]="tooltipIcon"
           >Routing Transfer Number</nz-form-label
         >
-        <nz-form-control [nzSm]="8" [nzXs]="24" [nzErrorTip]="routingTransferNumber">
+        <nz-form-control
+          [nzXl]="8"
+          [nzSm]="12"
+          [nzXs]="24"
+          [nzErrorTip]="routingTransferNumber"
+        >
           <nz-input-group>
             <input
               formControlName="routing_transfer_number"
@@ -201,19 +229,20 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      
+
       <div nz-row>
-        <div nz-col [nzSm]="12" [nzXs]="24"><button
-          nz-button
-          class="login-form-button login-form-margin"
-          [nzType]="'primary'"
-          (click)="submitForm()"
-          [disabled]="!ascSetupForm.valid || reTypeAccountNumber"
-        >
-          Submit
-        </button></div>
+        <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
+          <button
+            nz-button
+            class="login-form-button login-form-margin"
+            [nzType]="'primary'"
+            (click)="submitForm()"
+            [disabled]="!ascSetupForm.valid || reTypeAccountNumber"
+          >
+            Submit
+          </button>
+        </div>
       </div>
-      
     </form>
   </div>
 </div>

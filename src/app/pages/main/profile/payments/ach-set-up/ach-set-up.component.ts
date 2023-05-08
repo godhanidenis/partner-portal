@@ -13,6 +13,13 @@ export class AchSetUpComponent implements OnInit {
   ascSetupForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
   breadcrumb: any;
+  achData = {
+    name_of_account: 'Saving',
+    account_number: 8529637418529635,
+    re_type_account_number: 8529637418529635,
+    bank_name: 'SBI',
+    routing_transfer_number: 852963755,
+  };
 
   tooltipIcon: NzFormTooltipIcon = {
     type: 'info-circle',
@@ -32,31 +39,36 @@ export class AchSetUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.ascSetupForm = new FormGroup({
-      name_of_account: new FormControl('', [
+      name_of_account: new FormControl(this.achData?.name_of_account, [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(22),
         Validators.pattern('^[A-Za-z0-9_.]+$'),
       ]),
-      account_number: new FormControl('', [
+      account_number: new FormControl(this.achData?.account_number, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(17),
         Validators.pattern('^[0-9_.]+$'),
       ]),
-      re_type_account_number: new FormControl(''),
-      bank_name: new FormControl('', [
+      re_type_account_number: new FormControl(
+        this.achData?.re_type_account_number
+      ),
+      bank_name: new FormControl(this.achData?.bank_name, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(30),
         Validators.pattern('^[A-Za-z0-9_.]+$'),
       ]),
-      routing_transfer_number: new FormControl('', [
-        Validators.required,
-        Validators.minLength(9),
-        Validators.maxLength(9),
-        Validators.pattern('^[0-9_.]+$'),
-      ]),
+      routing_transfer_number: new FormControl(
+        this.achData?.routing_transfer_number,
+        [
+          Validators.required,
+          Validators.minLength(9),
+          Validators.maxLength(9),
+          Validators.pattern('^[0-9_.]+$'),
+        ]
+      ),
     });
   }
 
