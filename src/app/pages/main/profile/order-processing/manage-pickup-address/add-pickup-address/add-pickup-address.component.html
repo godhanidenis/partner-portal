@@ -83,20 +83,6 @@
             <nz-form-label nzFor="contact_name"
               >Contact Name<span style="color: red; font-weight: 500">*</span>
             </nz-form-label>
-            <!-- <span
-              nzTooltipTitle="Account Holder Name must match the name on 
-            your bank account. Do not include the name of your bank 
-            itself. Example: John Doe or Company XYZ. Match what your 
-            bank has on file using ISO basic Latin characters. This 
-            information must be accurate in order to receive your 
-            payments."
-              nzTooltipPlacement="right"
-              nz-button
-              nz-tooltip
-              nz-icon
-              nzType="question-circle"
-              nzTheme="twotone"
-            ></span> -->
             <nz-input-group>
               <input
                 formControlName="contact_name"
@@ -218,7 +204,7 @@
 
       <span class="subHeader">Address Details</span>
       <div nz-row [nzGutter]="16">
-        <div nz-col class="gutter-row" [nzSm]="24" [nzMd]="12">
+        <div nz-col class="gutter-row" [nzLg]="24" [nzXl]="12">
           <div nz-row [nzGutter]="16">
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzMd]="24">
               <nz-form-control nzErrorTip="Address 1 is required!">
@@ -317,7 +303,13 @@
             </nz-form-item>
           </div>
         </div>
-        <div nz-col class="gutter-row" [nzSm]="24" [nzMd]="12">
+        <div
+          style="width: 100%"
+          nz-col
+          class="gutter-row"
+          [nzLg]="24"
+          [nzXl]="12"
+        >
           <div nz-row [nzGutter]="16">
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzMd]="24">
               <nz-form-control nzErrorTip="Warehouse Timings is required!">
@@ -325,7 +317,7 @@
                   >Warehouse Timings
                 </nz-form-label>
                 <div nz-row>
-                  <div nz-col nzSpan="8">
+                  <div nz-col class="gutter-row" [nzSm]="24" [nzMd]="8">
                     <nz-form-control nzErrorTip="Open At is required!">
                       <label nzFor="open_at">Open At</label>
                       <nz-input-group>
@@ -335,7 +327,7 @@
                       </nz-input-group>
                     </nz-form-control>
                   </div>
-                  <div nz-col nzSpan="8">
+                  <div nz-col class="gutter-row" [nzSm]="24" [nzMd]="8">
                     <nz-form-control nzErrorTip="Close At is required!">
                       <label nzFor="close_at">Close At</label>
                       <nz-input-group>
@@ -345,7 +337,7 @@
                       </nz-input-group>
                     </nz-form-control>
                   </div>
-                  <div nz-col nzSpan="8">
+                  <div nz-col class="gutter-row" [nzSm]="24" [nzMd]="8">
                     <nz-form-control nzErrorTip="Time Zone is required!">
                       <label nzFor="close_at">Time Zone</label>
                       <nz-input-group>

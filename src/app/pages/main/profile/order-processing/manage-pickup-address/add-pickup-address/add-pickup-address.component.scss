@@ -26,8 +26,8 @@
 
      .body-section {
          padding: 10px 24px;
-         max-height: 79vh;
-         overflow-y: scroll;
+         max-height: 70vh;
+         overflow-y: auto;
 
          form {
              width: 100%;
@@ -180,6 +180,12 @@
          .body-section {
              max-height: 76vh;
 
+             form {
+                 nz-time-picker {
+                     width: 100%;
+                 }
+             }
+
              .verify-section {
                  .left {
                      justify-content: center;
@@ -189,6 +195,8 @@
                      justify-content: center;
                  }
              }
+
          }
+
      }
  }
