@@ -16,6 +16,17 @@ export class ManagePickupAddressComponent implements OnInit {
   pageSize = 10;
   pageIndex = 1;
   pageSizeOptions = [5, 10, 15, 20];
+
+  uploadModelVisible: boolean = false;
+
+  expandSet = new Set<number>();
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
+    }
+  }
   shipOut = [
     {
       id: 1,
@@ -131,13 +142,17 @@ export class ManagePickupAddressComponent implements OnInit {
   }
 
   addPickupAddress(actionType: string, data: any) {
-    this.modelHeader = actionType;
-    if (actionType === 'Edit') {
-      this.editData = data;
+    if (actionType === 'upload') {
+      this.uploadModelVisible = true;
     } else {
-      this.editData = '';
+      this.modelHeader = actionType;
+      if (actionType === 'Edit') {
+        this.editData = data;
+      } else {
+        this.editData = '';
+      }
+      this.addAddressVisible = true;
     }
-    this.addAddressVisible = true;
   }
 
   backButton(no: number, path: string) {
@@ -153,5 +168,6 @@ export class ManagePickupAddressComponent implements OnInit {
   handleCancel(): void {
     this.addAddressVisible = false;
     this.editAddressVisible = false;
+    this.uploadModelVisible = false;
   }
 }

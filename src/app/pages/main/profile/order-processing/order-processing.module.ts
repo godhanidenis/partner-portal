@@ -8,9 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderProcessingRoutingModule } from './order-processing-routing.module';
 import { AddPickupAddressComponent } from './manage-pickup-address/add-pickup-address/add-pickup-address.component';
 import { ManagePickupAddressComponent } from './manage-pickup-address/manage-pickup-address.component';
+import { UploadModelComponent } from './manage-pickup-address/upload-model/upload-model.component';
 
 @NgModule({
-  declarations: [AddPickupAddressComponent, ManagePickupAddressComponent],
+  declarations: [AddPickupAddressComponent, ManagePickupAddressComponent, UploadModelComponent ],
   imports: [
     OrderProcessingRoutingModule,
     NzLayoutModule,

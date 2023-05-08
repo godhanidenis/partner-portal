@@ -12,7 +12,11 @@
 
 <div class="manage-pickup-address">
   <div class="button-group">
-    <button nz-button class="pull-push-btn">
+    <button
+      nz-button
+      class="pull-push-btn"
+      (click)="addPickupAddress('upload', '')"
+    >
       <span nz-icon nzType="download"></span>
     </button>
     <button nz-button class="pull-push-btn">
@@ -133,4 +137,14 @@
       (closeModel)="handleCancel()"
     ></app-add-pickup-address>
   </div>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="uploadModelVisible"
+  nzTitle="The first Modal"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <app-upload-model (closeModel)="handleCancel()"></app-upload-model>
+  </ng-container>
 </nz-modal>
