@@ -5,10 +5,11 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 @Component({
   selector: 'app-manage-pickup-address',
   templateUrl: './manage-pickup-address.component.html',
-  styleUrls: ['./manage-pickup-address.component.scss']
+  styleUrls: ['./manage-pickup-address.component.scss'],
 })
 export class ManagePickupAddressComponent {
   breadcrumb: any;
+<<<<<<< HEAD
   pageSize = 10;
   pageIndex = 1;
   total = 1;
@@ -27,6 +28,8 @@ export class ManagePickupAddressComponent {
       id: 145979
     },
 ];
+=======
+>>>>>>> 772fd29b04b616c045935e57beb4f0afb91b6456
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,13 +41,19 @@ export class ManagePickupAddressComponent {
 
     this.breadcrumb = this.activatedRoute.snapshot.url;
   }
-  
+
+  addPickupAddress() {
+    this.router.navigate([
+      `/main/profile/order-processing/manage-pickup-address/add-pickup-address`,
+    ]);
+  }
+
   backButton(no: number, path: string) {
     if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
       this.router.navigate([`/main/${path}`]);
     }
   }
-  
+
   formatBreadcrumb(data: string) {
     return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
   }

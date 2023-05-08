@@ -20,12 +20,7 @@ export class ProfileComponent {
     this.breadcrumbService.breadcrumbs.next(this.activatedRoute.snapshot.url);
   }
 
-  navigate() {
-    this.router.navigate(['/main/profile/payment/ach-set-up']);
-  }
-  
-  Shipout(){
-    this.router.navigate(['/main/profile/order-processing/shipout-location']);
-
+  navigate(path: string) {
+    this.router.navigate([`/main/profile/${path}`]);
   }
 }

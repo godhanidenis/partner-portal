@@ -1,0 +1,501 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Order processing</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a>{{ formatBreadcrumb(data.path) }}</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<div class="add-pickup-address-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Add Pickup Address</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <form nz-form [formGroup]="ascSetupForm">
+      <h2>Contact Info</h2>
+      <div nz-row [nzGutter]="16">
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="6"
+        >
+          <nz-form-control nzErrorTip="Address nickname is required!">
+            <nz-form-label nzFor="address_nickname"
+              >Address Nickname<span style="color: red; font-weight: 500"
+                >*</span
+              >
+            </nz-form-label>
+            <span
+              nzTooltipTitle="It acts a nickname for your pick up address. We recommended you to enter a value which can be easily recalled."
+              nzTooltipPlacement="right"
+              nz-button
+              nz-tooltip
+              nz-icon
+              nzType="question-circle"
+              nzTheme="twotone"
+            ></span>
+            <nz-input-group>
+              <input
+                formControlName="address_nickname"
+                type="text"
+                nz-input
+                placeholder="Enter Address Nickname"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="6"
+        >
+          <nz-form-control nzErrorTip="Company name is required!">
+            <nz-form-label nzFor="company_name"
+              >Company Name<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <nz-input-group>
+              <input
+                formControlName="company_name"
+                type="text"
+                nz-input
+                placeholder="Enter Company Name"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="6"
+        >
+          <nz-form-control nzErrorTip="Contact name is required!">
+            <nz-form-label nzFor="contact_name"
+              >Contact Name<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <!-- <span
+              nzTooltipTitle="Account Holder Name must match the name on 
+            your bank account. Do not include the name of your bank 
+            itself. Example: John Doe or Company XYZ. Match what your 
+            bank has on file using ISO basic Latin characters. This 
+            information must be accurate in order to receive your 
+            payments."
+              nzTooltipPlacement="right"
+              nz-button
+              nz-tooltip
+              nz-icon
+              nzType="question-circle"
+              nzTheme="twotone"
+            ></span> -->
+            <nz-input-group>
+              <input
+                formControlName="contact_name"
+                type="text"
+                nz-input
+                placeholder="Enter Contact Name"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="6"
+        >
+          <nz-form-control [nzErrorTip]="phone">
+            <nz-form-label nzFor="phone"
+              >Phone<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <span
+              nzTooltipTitle="Enter contact details of your warehouse manager/operations head available at this pickup location."
+              nzTooltipPlacement="right"
+              nz-button
+              nz-tooltip
+              nz-icon
+              nzType="question-circle"
+              nzTheme="twotone"
+            ></span>
+            <nz-input-group>
+              <input
+                formControlName="phone"
+                type="text"
+                nz-input
+                placeholder="Enter Phone Number"
+              />
+              <ng-template #phone let-control>
+                <ng-container *ngIf="control.hasError('required')"
+                  >Phone number is required!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('pattern')"
+                  >Please input valid name of account!</ng-container
+                >
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="6"
+        >
+          <nz-form-control nzErrorTip="Alternate phone is required!">
+            <nz-form-label nzFor="alternate_phone"
+              >Alternate Phone
+            </nz-form-label>
+            <span
+              nzTooltipTitle="Provide a secondary contact number for your buyers (For example: Customer Care Number)."
+              nzTooltipPlacement="right"
+              nz-button
+              nz-tooltip
+              nz-icon
+              nzType="question-circle"
+              nzTheme="twotone"
+            ></span>
+            <nz-input-group>
+              <input
+                formControlName="alternate_phone"
+                type="text"
+                nz-input
+                placeholder="Enter Alternate Phone"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="6"
+        >
+          <nz-form-control [nzErrorTip]="email">
+            <nz-form-label nzFor="email"
+              >Email<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <nz-input-group>
+              <input
+                formControlName="email"
+                type="email"
+                nz-input
+                placeholder="Enter Email"
+              />
+              <ng-template #email let-control>
+                <ng-container *ngIf="control.hasError('required')"
+                  >Email is required!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('email')"
+                  >Please input valid email!</ng-container
+                >
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="verify-section" nz-row nzJustify="center">
+        <div class="left" nz-col [nzXs]="24" [nzSm]="24" [nzMd]="4">
+          <a href="#">Verify via OTP</a>
+        </div>
+        <div class="center" nz-col [nzXs]="24" [nzSm]="24" [nzMd]="2">
+          <span>OR</span>
+        </div>
+        <div class="right" nz-col [nzXs]="24" [nzSm]="24" [nzMd]="4">
+          <a href="#">Verify via IVR</a>
+        </div>
+      </div>
+
+      <h2>Address Details</h2>
+      <div nz-row [nzGutter]="16">
+        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzMd]="10">
+          <nz-form-control nzErrorTip="Address 1 is required!">
+            <nz-form-label nzFor="address_line_1"
+              >Address Line 1<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <nz-input-group>
+              <input
+                formControlName="address_line_1"
+                type="text"
+                nz-input
+                placeholder="Enter Address 1"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="7"
+        >
+          <nz-form-control [nzErrorTip]="pinCode">
+            <nz-form-label nzFor="pin_code"
+              >Pin Code<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <nz-input-group>
+              <input
+                formControlName="pin_code"
+                type="text"
+                nz-input
+                placeholder="Enter Pin Code"
+              />
+              <ng-template #pinCode let-control>
+                <ng-container *ngIf="control.hasError('minlength')"
+                  >Please input minimum 6 number!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('maxlength')"
+                  >Please input maximum 6 number!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('required')"
+                  >Pin Code is required!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('pattern')"
+                  >Please input valid pin code!</ng-container
+                >
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="7"
+        >
+          <nz-form-control nzErrorTip="City is required!">
+            <nz-form-label nzFor="city"
+              >City<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <nz-input-group>
+              <input
+                formControlName="city"
+                type="text"
+                nz-input
+                placeholder="Enter City"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzMd]="10">
+          <nz-form-control nzErrorTip="Address 2 is required!">
+            <nz-form-label nzFor="address_line_2"
+              >Address Line 2
+            </nz-form-label>
+            <nz-input-group>
+              <input
+                formControlName="address_line_2"
+                type="text"
+                nz-input
+                placeholder="Enter Address 2"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="7"
+        >
+          <nz-form-control nzErrorTip="State is required!">
+            <nz-form-label nzFor="state"
+              >State<span style="color: red; font-weight: 500">*</span>
+            </nz-form-label>
+            <nz-input-group>
+              <nz-select
+                nzShowSearch
+                nzAllowClear
+                nzPlaceHolder="Select a state"
+                formControlName="state"
+              >
+                <nz-option nzLabel="state 1" nzValue="State 1"></nz-option>
+                <nz-option nzLabel="state 2" nzValue="State 2"></nz-option>
+                <nz-option nzLabel="state 3" nzValue="State 3"></nz-option>
+              </nz-select>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzMd]="12"
+          [nzXl]="7"
+        >
+          <nz-form-control nzErrorTip="Alternate phone is required!">
+            <nz-form-label nzFor="alternate_phone"
+              >Warehouse Timings
+            </nz-form-label>
+            <div nz-row>
+              <div nz-col nzSpan="12">
+                <nz-form-control nzErrorTip="Alternate phone is required!">
+                  <label nzFor="alternate_phone">Open At </label>
+                  <nz-input-group>
+                    <nz-time-picker formControlName="open_at"></nz-time-picker>
+                  </nz-input-group>
+                </nz-form-control>
+              </div>
+              <div nz-col nzSpan="12">
+                <nz-form-control nzErrorTip="Alternate phone is required!">
+                  <label nzFor="alternate_phone">Close At </label>
+                  <nz-input-group>
+                    <nz-time-picker formControlName="close_at"></nz-time-picker>
+                  </nz-input-group>
+                </nz-form-control>
+              </div>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col class="gutter-row" [nzSm]="24">
+          <nz-form-control>
+            <label
+              nz-checkbox
+              formControlName="vendor_address"
+              (ngModelChange)="updateAllChecked('vendor', $event)"
+              >Add this address as supplier/vendor address</label
+            >
+            <span
+              nzTooltipTitle="Enabled this to ship order directly from your vendor's location and generate customer invoice with vendor details."
+              nzTooltipPlacement="right"
+              nz-button
+              nz-tooltip
+              nz-icon
+              nzType="question-circle"
+              nzTheme="twotone"
+            ></span>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div nz-col class="gutter-row" [nzSm]="24" *ngIf="vendorAddress">
+          <div nz-row>
+            <nz-form-item
+              nz-col
+              class="gutter-row"
+              [nzSm]="24"
+              [nzMd]="12"
+              [nzXl]="6"
+            >
+              <nz-form-control>
+                <nz-form-label nzFor="supplier_name"
+                  >Supplier/Vendor's Name
+                </nz-form-label>
+                <nz-input-group>
+                  <input
+                    formControlName="supplier_name"
+                    type="text"
+                    nz-input
+                    placeholder="Enter Name"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item
+              nz-col
+              class="gutter-row"
+              [nzSm]="24"
+              [nzMd]="12"
+              [nzXl]="6"
+            >
+              <nz-form-control>
+                <nz-form-label nzFor="supplier_gstin"
+                  >Supplier/Vendor's GSTIN
+                </nz-form-label>
+                <nz-input-group>
+                  <input
+                    formControlName="supplier_gstin"
+                    type="text"
+                    nz-input
+                    placeholder="Enter GSTIN"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <nz-form-item nz-col class="gutter-row" [nzSm]="24">
+          <nz-form-control>
+            <label
+              formControlName="rto_address"
+              nz-checkbox
+              (ngModelChange)="updateAllChecked('rto', $event)"
+              >Use a different address as RTO address</label
+            >
+          </nz-form-control>
+        </nz-form-item>
+
+        <div nz-col class="gutter-row" [nzSm]="24" *ngIf="rtoAddress">
+          <div nz-row>
+            <nz-form-item
+              nz-col
+              class="gutter-row"
+              [nzSm]="24"
+              [nzMd]="11"
+              [nzXl]="6"
+            >
+              <nz-form-control>
+                <nz-form-label nzFor="select_pickup_address"
+                  >Select Pickup Address
+                </nz-form-label>
+                <nz-input-group>
+                  <input
+                    formControlName="select_pickup_address"
+                    type="text"
+                    nz-input
+                    placeholder="Search an existing pickup location"
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+
+            <div class="center" nz-col [nzXs]="24" [nzSm]="24" [nzMd]="2">
+              <span>OR</span>
+            </div>
+
+            <div
+              nz-col
+              class="gutter-row"
+              style="display: flex; align-items: end; margin-bottom: 16px"
+              [nzSm]="24"
+              [nzMd]="11"
+              [nzXl]="6"
+            >
+              <button style="width: 200px" nz-button [nzType]="'primary'">
+                Add a new RTO address
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-section" nz-row nzJustify="center">
+        <div style="display: flex; justify-content: end" nz-col nzSpan="6">
+          <button nz-button [nzType]="'default'" (click)="submitForm()">
+            Cancel
+          </button>
+        </div>
+        <div style="display: flex; justify-content: start" nz-col nzSpan="6">
+          <button nz-button [nzType]="'primary'" (click)="submitForm()">
+            Save Address
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -32,8 +32,12 @@
         <nz-divider></nz-divider>
         <ul nz-menu>
           <a href=""><li nz-submenu nzTitle="Label prefernaces"></li></a>
-          <a  (click)="Shipout()" ><li nz-submenu nzTitle="Shipout Location/Manage pickup Address"></li ></a>
-           <!-- fffffffffffff  -->
+          <a (click)="navigate('order-processing/manage-pickup-address')"
+            ><li
+              nz-submenu
+              nzTitle="Shipout Location/Manage pickup Address"
+            ></li
+          ></a>
           <a href=""
             ><li nz-submenu nzTitle="Po (Sending method)/ prefernaces"></li
           ></a>
@@ -104,7 +108,9 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a (click)="navigate()"><li nz-submenu nzTitle="ACH set up "></li></a>
+          <a (click)="navigate('payment/ach-set-up')"
+            ><li nz-submenu nzTitle="ACH set up "></li
+          ></a>
           <a href=""><li nz-submenu nzTitle="ACH verification"></li></a>
         </ul>
       </nz-card>

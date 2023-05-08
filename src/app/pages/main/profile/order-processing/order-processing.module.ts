@@ -6,12 +6,11 @@ import { CommonModule } from '@angular/common';
 import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderProcessingRoutingModule } from './order-processing-routing.module';
+import { AddPickupAddressComponent } from './manage-pickup-address/add-pickup-address/add-pickup-address.component';
 import { ManagePickupAddressComponent } from './manage-pickup-address/manage-pickup-address.component';
 
 @NgModule({
-  declarations: [
-    ManagePickupAddressComponent
-  ],
+  declarations: [AddPickupAddressComponent, ManagePickupAddressComponent],
   imports: [
     OrderProcessingRoutingModule,
     NzLayoutModule,
