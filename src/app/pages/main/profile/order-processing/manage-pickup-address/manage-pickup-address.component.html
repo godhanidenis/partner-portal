@@ -11,7 +11,13 @@
 </nz-breadcrumb>
 
 <div class="manage-pickup-address">
-  <button nz-button nzType="primary" class="Pickup-Address">
+  <!-- <button nz-button nzType="primary" class="Pickup-Address"> -->
+  <button
+    (click)="addPickupAddress()"
+    nz-button
+    nzType="primary"
+    class="Pickup-Address"
+  >
     <span nz-icon nzType="plus"></span> Add Pickup Address
   </button>
   <button nz-button class="pull-push-btn">
@@ -24,11 +30,7 @@
   <nz-table
     class="manage-pickup-table"
     [nzData]="shipout"
-
     #nzTable
-   
-   
-
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
@@ -45,11 +47,13 @@
           <span nz-icon nzType="edit" nzTheme="outline"></span>
         </td>
         <td><span class="bagde">Active</span>Location id: <b>{{data.id}}</b></td>
-        <td></td>
         <td class="merge-cel">
-          <span nz-icon nzType="edit" nzTheme="outline"></span>
-        </td>
+          <nz-radio-group>
+            <label nz-radio nzValue="A">Primary Address</label>
+          </nz-radio-group>
 
+          <nz-switch [ngModel]="true"></nz-switch>
+        </td>
         <td class="plus-icon">
           <span
             nz-icon
@@ -59,9 +63,7 @@
           ></span>
         </td>
       </tr>
-    </tbody>
-
-    
+  </tbody>   
 
   </nz-table>
 

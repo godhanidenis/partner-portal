@@ -9,7 +9,6 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 })
 export class ManagePickupAddressComponent {
   breadcrumb: any;
-<<<<<<< HEAD
   pageSize = 10;
   pageIndex = 1;
   total = 1;
@@ -28,8 +27,6 @@ export class ManagePickupAddressComponent {
       id: 145979
     },
 ];
-=======
->>>>>>> 772fd29b04b616c045935e57beb4f0afb91b6456
 
   constructor(
     private activatedRoute: ActivatedRoute,
