@@ -44,7 +44,8 @@
 }
 
 .merge-cel{
-    float: right;
+    display: flex;
+    justify-content: end;
     padding: 16px 0px;
 }
 
@@ -53,6 +54,13 @@
 }
 .plus-icon-span{
     float: right;
+}
+
+::ng-deep .anticon-edit{
+    float: right;
+}
+.edit-icon{
+    padding-right: 0px;
 }
 
 }
