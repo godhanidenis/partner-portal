@@ -23,7 +23,7 @@
   <button nz-button class="pull-push-btn">
     <span nz-icon nzType="download"></span>
   </button>
-  <button nz-button class="pull-push-btn">
+  <button nz-button class="pull-push-btn" (click)="uploadModel()">
     <span nz-icon nzType="upload" nzTheme="outline"></span>
   </button>
 
@@ -39,32 +39,44 @@
     [nzPageIndex]="pageIndex"
   >
     <tbody>
-      <tr *ngFor="let data of nzTable.data">
-        <td>
-          &lt;<b> {{ data.nickname }}</b> &#62;
-        </td>
-        <td class="edit-icon">
-          <span nz-icon nzType="edit" nzTheme="outline"></span>
-        </td>
-        <td>
-          <span class="bagde">Active</span>Location id: <b>{{ data.id }}</b>
-        </td>
-        <td class="merge-cel">
-          <nz-radio-group>
-            <label nz-radio nzValue="A">Primary Address</label>
-          </nz-radio-group>
+      <ng-container *ngFor="let data of nzTable.data">
+        <tr>
+          <td>
+            &lt;<b> {{ data.nickname }}</b> &#62;
+          </td>
+          <td class="edit-icon">
+            <span nz-icon nzType="edit" nzTheme="outline"></span>
+          </td>
+          <td>
+            <span class="bagde">Active</span>Location id:
+            <b>{{ data.location }}</b>
+          </td>
+          <td class="merge-cel">
+            <nz-radio-group>
+              <label nz-radio nzValue="A">Primary Address</label>
+            </nz-radio-group>
 
-          <nz-switch [ngModel]="true"></nz-switch>
-        </td>
-        <td class="plus-icon">
+            <nz-switch [ngModel]="true"></nz-switch>
+          </td>
+
+          <!-- <td class="plus-icon">
           <span
             nz-icon
             class="plus-icon-span"
             nzType="plus"
             nzTheme="outline"
           ></span>
-        </td>
-      </tr>
+        </td> -->
+
+          <td
+            [nzExpand]="expandSet.has(data.id)"
+            (nzExpandChange)="onExpandChange(data.id, $event)"
+          ></td>
+        </tr>
+        <tr [nzExpand]="expandSet.has(data.id)">
+          <span>{{ data.description }}</span>
+        </tr>
+      </ng-container>
     </tbody>
   </nz-table>
 
@@ -84,3 +96,14 @@
     ></app-add-pickup-address>
   </div>
 </nz-modal>
+
+<nz-modal
+  [(nzVisible)]="uploadModelVisible"
+  nzTitle="The first Modal"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <app-upload-model (closeModel)="handleCancel()"></app-upload-model>
+  </ng-container>
+</nz-modal>
+

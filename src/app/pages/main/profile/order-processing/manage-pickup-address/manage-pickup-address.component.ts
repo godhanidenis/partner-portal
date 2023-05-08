@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
+
+
 @Component({
   selector: 'app-manage-pickup-address',
   templateUrl: './manage-pickup-address.component.html',
@@ -16,19 +18,39 @@ export class ManagePickupAddressComponent {
   pageSize = 10;
   pageIndex = 1;
   pageSizeOptions = [5, 10, 15, 20];
+   
+
+  uploadModelVisible:boolean = false;
+
+
+
+  expandSet = new Set<number>();
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
+    }
+  }
   shipOut = [
     {
+      id: 1,
       nickname: 'surat',
-      id: 179890,
+      location: 179890,
+      description: 'My name is John Brown.'
     },
     {
+      id: 2,
       nickname: 'rajkot',
-      id: 189079,
+      location: 189079,
+      description: 'My name is Jim Green'
     },
     {
+      id: 3,
       nickname: 'jamanager',
-      id: 145979,
-    },
+      location: 145979,
+      description: 'My name is Joe Black.'
+    }
   ];
 
   constructor(
@@ -62,5 +84,11 @@ export class ManagePickupAddressComponent {
   handleCancel(): void {
     this.addAddressVisible = false;
     this.editAddressVisible = false;
+    this.uploadModelVisible = false;
   }
+
+  uploadModel(){
+    this.uploadModelVisible = true;
+  }
+
 }
