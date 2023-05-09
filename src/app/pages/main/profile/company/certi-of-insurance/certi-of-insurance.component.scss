@@ -1,0 +1,55 @@
+
+
+@import'../../../../../../assets/variable/variable.scss';
+
+ 
+.w9-setup-section{
+
+ border: 0 solid rgba(0, 0, 0, 0.125);
+ background-color: $white;
+ background-clip: border-box;
+ border-radius: 5px;
+ height: 100%;
+
+
+
+
+
+  .grid-sec{
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+ 
+  .grid-key{
+    display: inline;
+    color: #4c4b4b9c;
+  }
+  .kyc-grid-span{
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 12px;
+  }
+
+ 
+
+  
+  .gotohome-btn{
+    border-radius: 5px;
+   
+    background-color: $header-of-tab;
+    color: white;
+  }
+  .ticket-btn{
+    border-radius: 5px;
+   
+    background-color: $header-of-tab;
+    color: white;
+    margin-top: 30px;
+  }
+
+  .sec-grid{
+    margin-top: 20px;
+  }
+
+}
