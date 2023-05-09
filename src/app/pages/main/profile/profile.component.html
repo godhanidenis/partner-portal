@@ -31,20 +31,27 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a href=""><li nz-submenu nzTitle="Label prefernaces"></li></a>
+          <a
+            (click)="
+              navigate('order-processing/po-label-and-invoice-preferences')
+            "
+            ><li nz-submenu nzTitle="PO, Label and Invoice Preferences"></li
+          ></a>
           <a (click)="navigate('order-processing/manage-pickup-address')"
             ><li
               nz-submenu
               nzTitle="Shipout Location/Manage pickup Address"
             ></li
           ></a>
-          <a href=""
-            ><li nz-submenu nzTitle="Po (Sending method)/ prefernaces"></li
+          <a (click)="navigate('order-processing/courier-preferences')"
+            ><li nz-submenu nzTitle="Courier Preferences"></li
           ></a>
-          <a href=""><li nz-submenu nzTitle="Holidays"></li></a>
-          <a href=""
+          <a (click)="navigate('order-processing/holidays')"
+            ><li nz-submenu nzTitle="Holidays"></li
+          ></a>
+          <!-- <a href=""
             ><li nz-submenu nzTitle="Invoice Set-up/Prefernaces"></li
-          ></a>
+          ></a> -->
         </ul>
       </nz-card>
     </div>

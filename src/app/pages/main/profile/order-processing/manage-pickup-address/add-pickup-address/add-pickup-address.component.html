@@ -18,7 +18,7 @@
   <div class="body-section">
     <form nz-form [formGroup]="ascSetupForm">
       <span class="subHeader">Contact Info</span>
-      <div nz-row [nzGutter]="16">
+      <div style="margin-bottom: 10px" nz-row [nzGutter]="16">
         <nz-form-item
           nz-col
           class="gutter-row"
@@ -113,6 +113,11 @@
               nzType="question-circle"
               nzTheme="twotone"
             ></span>
+            <a
+              (click)="editPhoneNumber()"
+              style="color: black; margin-left: 10px"
+              ><span nz-icon nzType="edit" nzTheme="outline"></span
+            ></a>
             <nz-input-group>
               <input
                 formControlName="phone"
@@ -130,6 +135,17 @@
               </ng-template>
             </nz-input-group>
           </nz-form-control>
+          <div *ngIf="showVerifiedNumber" class="verify-section">
+            <div class="left">
+              <a href="#">Verify via OTP</a>
+            </div>
+            <div class="center">
+              <span>OR</span>
+            </div>
+            <div class="right">
+              <a href="#">Verify via IVR</a>
+            </div>
+          </div>
         </nz-form-item>
         <nz-form-item
           nz-col
@@ -188,18 +204,6 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-      </div>
-
-      <div class="verify-section" nz-row nzJustify="center">
-        <div class="left" nz-col [nzXs]="24" [nzSm]="24" [nzMd]="4">
-          <a href="#">Verify via OTP</a>
-        </div>
-        <div class="center" nz-col [nzXs]="24" [nzSm]="24" [nzMd]="2">
-          <span>OR</span>
-        </div>
-        <div class="right" nz-col [nzXs]="24" [nzSm]="24" [nzMd]="4">
-          <a href="#">Verify via IVR</a>
-        </div>
       </div>
 
       <span class="subHeader">Address Details</span>
@@ -428,7 +432,7 @@
           </div>
         </div>
 
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24">
+        <!-- <nz-form-item nz-col class="gutter-row" [nzSm]="24">
           <nz-form-control>
             <label
               formControlName="rto_address"
@@ -490,7 +494,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </form>
   </div>

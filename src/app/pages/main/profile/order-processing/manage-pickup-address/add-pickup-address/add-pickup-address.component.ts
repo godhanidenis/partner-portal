@@ -24,6 +24,7 @@ export class AddPickupAddressComponent implements OnInit {
   };
   vendorAddress: boolean = false;
   rtoAddress: boolean = false;
+  showVerifiedNumber: boolean = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -58,10 +59,10 @@ export class AddPickupAddressComponent implements OnInit {
       close_at: new FormControl(new Date(0, 0, 0, 0, 0, 0)),
       time_zone: new FormControl(''),
       vendor_address: new FormControl(false),
-      rto_address: new FormControl(false),
+      // rto_address: new FormControl(false),
       supplier_name: new FormControl(''),
       supplier_gstin: new FormControl(''),
-      select_pickup_address: new FormControl(''),
+      // select_pickup_address: new FormControl(''),
     });
 
     setTimeout(() => {
@@ -102,34 +103,37 @@ export class AddPickupAddressComponent implements OnInit {
         this.ascSetupForm.controls['vendor_address'].setValue(
           this.editData?.vendor_address
         );
-        this.ascSetupForm.controls['rto_address'].setValue(
-          this.editData?.rto_address
-        );
+        // this.ascSetupForm.controls['rto_address'].setValue(
+        //   this.editData?.rto_address
+        // );
         this.ascSetupForm.controls['supplier_name'].setValue(
           this.editData?.supplier_name
         );
         this.ascSetupForm.controls['supplier_gstin'].setValue(
           this.editData?.supplier_gstin
         );
-        this.ascSetupForm.controls['select_pickup_address'].setValue(
-          this.editData?.select_pickup_address
-        );
+        // this.ascSetupForm.controls['select_pickup_address'].setValue(
+        //   this.editData?.select_pickup_address
+        // );
 
-        this.ascSetupForm.controls['address_nickname'].disable();
-        this.ascSetupForm.controls['company_name'].disable();
-        this.ascSetupForm.controls['contact_name'].disable();
-        this.ascSetupForm.controls['extension'].disable();
-        this.ascSetupForm.controls['email'].disable();
+        this.showVerifiedNumber = false;
+        this.ascSetupForm.controls['phone'].disable();
         this.ascSetupForm.controls['address_line_1'].disable();
         this.ascSetupForm.controls['pin_code'].disable();
         this.ascSetupForm.controls['city'].disable();
         this.ascSetupForm.controls['address_line_2'].disable();
         this.ascSetupForm.controls['state'].disable();
-        this.ascSetupForm.controls['open_at'].disable();
-        this.ascSetupForm.controls['close_at'].disable();
-        this.ascSetupForm.controls['time_zone'].disable();
       }
     }, 100);
+  }
+
+  editPhoneNumber() {
+    this.showVerifiedNumber = !this.showVerifiedNumber;
+    if (this.showVerifiedNumber) {
+      this.ascSetupForm.controls['phone'].enable();
+    } else {
+      this.ascSetupForm.controls['phone'].disable();
+    }
   }
 
   reTypeAccount(event: any) {

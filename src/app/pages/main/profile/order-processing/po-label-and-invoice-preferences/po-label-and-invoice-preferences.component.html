@@ -1,0 +1,188 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Order Processing</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>PO, Label and Invoice Preferences</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<div class="po-label-and-invoice-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>PO, Label and Invoice Preferences</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <div class="po-label-preferences-section">
+      <form nz-form [formGroup]="poAndInvoiceForm">
+        <div nz-row [nzGutter]="16">
+          <nz-form-item
+            nz-col
+            class="gutter-row"
+            [nzSm]="24"
+            style="padding-left: 8px; padding-right: 8px"
+          >
+            <nz-form-control nzErrorTip="PO Method is required!">
+              <nz-form-label nzFor="poMethod">PO Method </nz-form-label>
+              <nz-input-group>
+                <nz-radio-group
+                  (ngModelChange)="selectPoMethod($event)"
+                  formControlName="poMethod"
+                >
+                  <label nz-radio nzValue="edi">EDI</label>
+                  <label nz-radio nzValue="email">Email</label>
+                </nz-radio-group>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <div
+            *ngIf="showEmailSection"
+            formArrayName="emailList"
+            style="width: 50%"
+          >
+            <nz-form-label nzFor="email">Email List</nz-form-label>
+            <div
+              nz-col
+              class="gutter-row"
+              [nzSm]="24"
+              *ngFor="let email of emailList.controls; let i = index"
+            >
+              <div [formGroupName]="i">
+                <nz-form-item>
+                  <nz-form-control nzErrorTip="PO Method is required!">
+                    <nz-input-group>
+                      <input
+                        type="text"
+                        nz-input
+                        placeholder="Enter Email"
+                        formControlName="email"
+                      />
+                    </nz-input-group>
+                  </nz-form-control>
+                  <a
+                    *ngIf="i === 0"
+                    nz-button
+                    class="add-button"
+                    nzShape="circle"
+                    [disabled]="emailList.controls.length > 9"
+                    (click)="addEmails()"
+                  >
+                    +
+                  </a>
+                  <a
+                    *ngIf="i !== 0"
+                    nz-button
+                    class="add-button"
+                    nzShape="circle"
+                    (click)="removeEmail(i)"
+                  >
+                    -
+                  </a>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div nz-row>
+          <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
+            <button
+              nz-button
+              class="login-form-button login-form-margin"
+              [nzType]="'primary'"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="po-label-preferences-section">
+      <form nz-form [formGroup]="labelForm">
+        <div nz-row [nzGutter]="16">
+          <nz-form-item
+            nz-col
+            class="gutter-row"
+            [nzSm]="24"
+            style="padding-left: 8px; padding-right: 8px"
+          >
+            <nz-form-control nzErrorTip="Prepaid Label is required!">
+              <nz-form-label nzFor="prepaidLabel">Prepaid Label </nz-form-label>
+              <nz-input-group>
+                <nz-radio-group
+                  (ngModelChange)="selectPrepaidLabel($event)"
+                  formControlName="prepaidLabel"
+                >
+                  <label nz-radio nzValue="yes">Yes</label>
+                  <label nz-radio nzValue="no">No</label>
+                </nz-radio-group>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <div *ngIf="showLabelSection">
+            <nz-form-item
+              nz-col
+              class="gutter-row"
+              [nzSm]="24"
+              style="padding-left: 8px; padding-right: 8px"
+            >
+              <nz-form-control nzErrorTip="Size is required!">
+                <nz-form-label nzFor="size">Size </nz-form-label>
+                <nz-input-group>
+                  <nz-radio-group formControlName="size">
+                    <label nz-radio nzValue="4By6">
+                      <img
+                        src="assets/img/foreBySix.png"
+                        width="150px"
+                        height="150px"
+                        alt=""
+                      />
+                    </label>
+                    <label nz-radio nzValue="8.5By11">
+                      <img
+                        src="assets/img/eightBy11.png"
+                        width="150px"
+                        height="200px"
+                        alt=""
+                      />
+                    </label>
+                  </nz-radio-group>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item
+              nz-col
+              class="gutter-row"
+              [nzSm]="24"
+              style="padding-left: 8px; padding-right: 8px"
+            >
+              <nz-form-control nzErrorTip="Formate is required!">
+                <nz-form-label nzFor="formate">Formate </nz-form-label>
+                <nz-input-group>
+                  <nz-radio-group formControlName="formate">
+                    <label nz-radio nzValue="png">PNG</label>
+                    <label nz-radio nzValue="pdf">PDF</label>
+                    <label nz-radio nzValue="zpl">ZPL</label>
+                  </nz-radio-group>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row>
+          <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
+            <button
+              nz-button
+              class="login-form-button login-form-margin"
+              [nzType]="'primary'"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-holidays',
+  templateUrl: './holidays.component.html',
+  styleUrls: ['./holidays.component.scss'],
+})
+export class HolidaysComponent implements OnInit {
+  holidayForm!: FormGroup;
+
+  constructor(private router: Router, private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.holidayForm = this.fb.group({
+      holidayDetail: this.fb.array([]),
+    });
+    this.addHolidays();
+  }
+
+  get holidayDetail(): FormArray {
+    return this.holidayForm.controls['holidayDetail'] as FormArray;
+  }
+
+  newHoliday(): FormGroup {
+    return this.fb.group({
+      date: '',
+      remark: '',
+    });
+  }
+
+  addHolidays() {
+    this.holidayDetail.push(this.newHoliday());
+  }
+
+  removeHoliday(i: number) {
+    this.holidayDetail.removeAt(i);
+  }
+
+  backButton(path: string) {
+    this.router.navigate([`/main/${path}`]);
+  }
+}

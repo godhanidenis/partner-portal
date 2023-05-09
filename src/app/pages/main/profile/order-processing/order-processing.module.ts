@@ -9,9 +9,12 @@ import { OrderProcessingRoutingModule } from './order-processing-routing.module'
 import { AddPickupAddressComponent } from './manage-pickup-address/add-pickup-address/add-pickup-address.component';
 import { ManagePickupAddressComponent } from './manage-pickup-address/manage-pickup-address.component';
 import { UploadModelComponent } from './manage-pickup-address/upload-model/upload-model.component';
+import { PoLabelAndInvoicePreferencesComponent } from './po-label-and-invoice-preferences/po-label-and-invoice-preferences.component';
+import { HolidaysComponent } from './holidays/holidays.component';
+import { CourierPreferencesComponent } from './courier-preferences/courier-preferences.component';
 
 @NgModule({
-  declarations: [AddPickupAddressComponent, ManagePickupAddressComponent, UploadModelComponent ],
+  declarations: [AddPickupAddressComponent, ManagePickupAddressComponent, UploadModelComponent, PoLabelAndInvoicePreferencesComponent, HolidaysComponent, CourierPreferencesComponent ],
   imports: [
     OrderProcessingRoutingModule,
     NzLayoutModule,
