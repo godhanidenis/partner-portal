@@ -15,9 +15,27 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a href=""><li nz-submenu nzTitle="Company Profile"></li></a>
-          <a href=""><li nz-submenu nzTitle="Wq Set up"></li></a>
-          <a href=""><li nz-submenu nzTitle="Col"></li></a>
+          <a (click)="navigate('company/company-profile')"
+          ><li
+            nz-submenu
+            nzTitle="Company Profile"
+          ></li
+        ></a>
+          <!-- <a href=""><li nz-submenu nzTitle="Company Profile"></li></a> -->
+          <a (click)="navigate('company/w9-setup')"
+          ><li
+            nz-submenu
+            nzTitle="W9 Set up"
+          ></li
+        ></a>
+          <a (click)="navigate('company/certi-of-insu')"
+          ><li
+            nz-submenu
+            nzTitle=" Certificate of Insurance"
+          ></li
+        ></a>
+         
+         
         </ul>
       </nz-card>
     </div>
