@@ -12,6 +12,7 @@ import { OrderProcessingModule } from './order-processing/order-processing.modul
 import { CompanyModule } from './company/company.module';
 import { AllowancesModule } from './allowances/allowances.module';
 import { ReturnModule } from './return/return.module';
+import { CatalogFeedModule } from './catalog-feed/catalog-feed.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -28,6 +29,7 @@ import { ReturnModule } from './return/return.module';
     CompanyModule,
     AllowancesModule,
     ReturnModule,
+    CatalogFeedModule,
   ],
   exports: [],
 })

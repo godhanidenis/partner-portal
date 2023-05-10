@@ -31,6 +31,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./payments/payments.module').then((m) => m.PaymentsModule),
   },
+  {
+    path: 'catalog-feed',
+    loadChildren: () =>
+      import('./catalog-feed/catalog-feed.module').then(
+        (m) => m.CatalogFeedModule
+      ),
+  },
 ];
 
 @NgModule({

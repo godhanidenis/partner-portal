@@ -1,0 +1,43 @@
+@import'../../../../../../assets/variable/variable.scss';
+
+.catalog-section{
+    border: 0 solid rgba(0, 0, 0, 0.125);
+ background-color: $white;
+ background-clip: border-box;
+ border-radius: 5px;
+ height: 100%;
+
+ .catalog-content{
+    padding: 20px;
+ }
+ [nz-radio] {
+    display: block;
+   
+  }
+  .ch-number{
+    margin-bottom: 10px;
+  }
+  .hand-set{
+    height: 35px;
+    line-height: 24px;
+    
+  }
+  input {
+    width: 100px;
+    margin-left: 10px;
+  }
+  .map{
+    font-weight: 700;
+  }
+
+  .ant-form-item-label > label{
+    font-size: 16px;
+  }
+  .submit-btn{
+    border-radius: 5px;
+   
+    background-color: $header-of-tab;
+    color: white;
+  }
+
+}

@@ -72,8 +72,13 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a href=""><li nz-submenu nzTitle="Catalog prefernaces"></li></a>
-          <a href=""><li nz-submenu nzTitle="Feed prefernaces"></li></a>
+          <a (click)="navigate('catalog-feed/catalog-preferences')"
+            ><li nz-submenu nzTitle="Catalog prefernaces"></li
+          ></a>
+
+          <a (click)="navigate('catalog-feed/feed-preferences')"
+            ><li nz-submenu nzTitle="Feed prefernaces"></li
+          ></a>
         </ul>
       </nz-card>
     </div>
