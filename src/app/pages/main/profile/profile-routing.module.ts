@@ -23,6 +23,13 @@ const routes: Routes = [
         (m) => m.CompanyModule
       ),
   },
+  {
+    path: 'catalog-feed',
+    loadChildren: () =>
+      import('./catalog-feed/catalog-feed.module').then(
+        (m) => m.CatalogFeedModule
+      ),
+  },
 ];
 
 @NgModule({

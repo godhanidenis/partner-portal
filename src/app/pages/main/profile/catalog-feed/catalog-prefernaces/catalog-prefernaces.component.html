@@ -1,0 +1,102 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Catalog & Feed</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>Catalog prefernaces</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="catalog-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Catalog prefernaces</span>
+    </div>
+  </div>
+
+  <div class="catalog-content">
+  
+    
+   
+
+    <form nz-form [formGroup]="catalogForm">
+
+      <div nz-row [nzGutter]="16">
+
+        <nz-form-item
+        nz-col
+        class="gutter-row"
+        [nzSm]="24"
+        style="padding-left: 8px; padding-right: 8px"
+      >
+        <nz-form-control>
+          <nz-form-label nzFor="Map" class="map">Map</nz-form-label>
+          <nz-input-group>
+            <nz-radio-group formControlName="map">
+              <label nz-radio nzValue="yes">Yes</label>
+              <label nz-radio nzValue="no">No</label>
+              <label nz-radio nzValue="incart">Incart</label>
+            </nz-radio-group>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          style="padding-left: 8px; padding-right: 8px"
+        >
+          <nz-form-control >
+            <nz-form-label nzFor="handling-set-up" class="map">Handling set up</nz-form-label>
+            <nz-input-group>
+              <nz-radio-group
+                (ngModelChange)="selectPrepaidLabel($event)"
+                formControlName="handlingSetup"
+              >
+                <label nz-radio nzValue="yes">Account level</label>
+                <label nz-radio nzValue="no">Product level</label>
+              </nz-radio-group>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div *ngIf="showLabelSection" class="ch-number">
+          <nz-form-item
+            nz-col
+            class="gutter-row"
+            [nzSm]="24"
+            style="padding-left: 8px; padding-right: 8px"
+          >
+        
+          </nz-form-item>
+          <label nzValue="A"  class="map ">Choose number of days data feild</label>
+          <input type="text" nz-input  />
+        </div>
+
+      </div>
+      <div nz-row>
+        <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
+          <button
+            nz-button
+            class="login-form-button login-form-margin"
+         
+            class="submit-btn"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+
+
+
+
+  </div>
+</div>
+
+

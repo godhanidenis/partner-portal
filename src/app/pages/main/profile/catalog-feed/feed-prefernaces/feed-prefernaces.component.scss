@@ -1,0 +1,15 @@
+@import'../../../../../../assets/variable/variable.scss';
+
+
+.feed-section{
+    border: 0 solid rgba(0, 0, 0, 0.125);
+ background-color: $white;
+ background-clip: border-box;
+ border-radius: 5px;
+ height: 100%;
+
+    .feed-content{
+        padding: 20px;
+    }
+
+}

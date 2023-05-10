@@ -83,8 +83,14 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a href=""><li nz-submenu nzTitle="Catalog prefernaces"></li></a>
-          <a href=""><li nz-submenu nzTitle="Feed prefernaces"></li></a>
+          <a (click)="navigate('catalog-feed/catalog-preferences')"
+          ><li nz-submenu nzTitle="Catalog prefernaces"></li
+        ></a>
+
+          <a (click)="navigate('catalog-feed/feed-preferences')"
+          ><li nz-submenu nzTitle="Feed prefernaces"></li
+        ></a>
+         
         </ul>
       </nz-card>
     </div>
@@ -118,8 +124,14 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a href=""><li nz-submenu nzTitle="Rebate"></li></a>
-          <a href=""><li nz-submenu nzTitle="Co-op"></li></a>
+          <a (click)="navigate('allowances/rebate')"
+          ><li nz-submenu nzTitle="Rebate"></li
+        ></a>
+          <a (click)="navigate('allowances/co-op')"
+          ><li nz-submenu nzTitle="Co-op"></li
+        ></a>
+         
+        
         </ul>
       </nz-card>
     </div>
