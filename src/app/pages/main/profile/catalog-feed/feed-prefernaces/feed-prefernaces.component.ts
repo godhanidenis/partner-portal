@@ -8,16 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./feed-prefernaces.component.scss'],
 })
 export class FeedPrefernacesComponent implements OnInit {
-  showEmailSection: boolean = false;
   feedForm!: FormGroup;
+  labelForm!: FormGroup;
+  showEmailSection: boolean = false;
  
-  constructor( private router: Router, private fb: FormBuilder ) {}
+
+  constructor(private router: Router, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.feedForm = this.fb.group({
-      poMethod: 'edi',
+      feedMethod: 'edi',
       emailList: this.fb.array([]),
     });
+    this.labelForm = new FormGroup({
+      prepaidLabel: new FormControl('no'),
+      size: new FormControl(''),
+      formate: new FormControl(''),
+    });
+    this.addEmails();
   }
 
   get emailList(): FormArray {
@@ -37,17 +45,19 @@ export class FeedPrefernacesComponent implements OnInit {
   removeEmail(i: number) {
     this.emailList.removeAt(i);
   }
-    
-    backButton(path: string) {
-      this.router.navigate([`/main/${path}`]);   
-  }
 
-  selectPoMethod(event: string) {
+  selectMethod(event: string) {
     if (event === 'email') {
       this.showEmailSection = true;
     } else {
       this.showEmailSection = false;
     }
+  }
+
+
+
+  backButton(path: string) {
+    this.router.navigate([`/main/${path}`]);
   }
  
 }
