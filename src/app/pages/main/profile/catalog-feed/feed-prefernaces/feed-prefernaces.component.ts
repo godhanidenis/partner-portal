@@ -9,9 +9,8 @@ import { Router } from '@angular/router';
 })
 export class FeedPrefernacesComponent implements OnInit {
   feedForm!: FormGroup;
- 
+
   showEmailSection: boolean = false;
- 
 
   constructor(private router: Router, private fb: FormBuilder) {}
 
@@ -21,9 +20,8 @@ export class FeedPrefernacesComponent implements OnInit {
       mpn: [''],
       quantity: [''],
       type: [''],
-      emailList: this.fb.array([]), 
+      emailList: this.fb.array([]),
     });
- 
     this.addEmails();
   }
 
@@ -53,10 +51,7 @@ export class FeedPrefernacesComponent implements OnInit {
     }
   }
 
-
-
   backButton(path: string) {
     this.router.navigate([`/main/${path}`]);
   }
- 
 }
