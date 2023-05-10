@@ -8,26 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./catalog-prefernaces.component.scss'],
 })
 export class CatalogrefernacesComponent implements OnInit {
- 
- 
-  
   showLabelSection: boolean = false;
   catalogForm!: FormGroup;
-  
-  constructor(  private router: Router  ) {}
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.catalogForm = new FormGroup({
+      map: new FormControl(''),
       handlingSetup: new FormControl('no'),
-      map: new FormControl(),
-     
+      choose_number_of_days_data: new FormControl(''),
     });
   }
 
-
-  
   backButton(path: string) {
-      this.router.navigate([`/main/${path}`]);   
+    this.router.navigate([`/main/${path}`]);
   }
 
   selectPrepaidLabel(event: string) {
@@ -37,5 +32,4 @@ export class CatalogrefernacesComponent implements OnInit {
       this.showLabelSection = false;
     }
   }
-  
 }

@@ -18,22 +18,15 @@
   </div>
 
   <div class="catalog-content">
-  
-    
-   
-
     <form nz-form [formGroup]="catalogForm">
-
-      <div nz-row [nzGutter]="16">
-
-        <nz-form-item
-        nz-col
-        class="gutter-row"
-        [nzSm]="24"
-        style="padding-left: 8px; padding-right: 8px"
-      >
-        <nz-form-control>
-          <nz-form-label nzFor="Map" class="map">Map</nz-form-label>
+      <nz-form-item>
+        <nz-form-label nz-col nzFor="map">Map</nz-form-label>
+        <nz-form-control
+          [nzXl]="8"
+          [nzSm]="12"
+          [nzXs]="24"
+          nzErrorTip="PO Method is required!"
+        >
           <nz-input-group>
             <nz-radio-group formControlName="map">
               <label nz-radio nzValue="yes">Yes</label>
@@ -42,51 +35,53 @@
             </nz-radio-group>
           </nz-input-group>
         </nz-form-control>
-
-        
       </nz-form-item>
 
+      <nz-form-item>
+        <nz-form-label nz-col nzFor="map">Handling set up</nz-form-label>
+        <nz-form-control
+          [nzXl]="8"
+          [nzSm]="12"
+          [nzXs]="24"
+          nzErrorTip="PO Method is required!"
+        >
+          <nz-input-group>
+            <nz-radio-group
+              (ngModelChange)="selectPrepaidLabel($event)"
+              formControlName="handlingSetup"
+            >
+              <label nz-radio nzValue="yes">Account level</label>
+              <label nz-radio nzValue="no">Product level</label>
+            </nz-radio-group>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
 
+      <div nz-row [nzGutter]="16" *ngIf="showLabelSection">
         <nz-form-item
           nz-col
           class="gutter-row"
-          [nzSm]="24"
-          style="padding-left: 8px; padding-right: 8px"
+          [nzSm]="12"
+          style="padding: 0 8px"
         >
-          <nz-form-control >
-            <nz-form-label nzFor="handling-set-up" class="map">Handling set up</nz-form-label>
+          <nz-form-label nzFor="date">Choose number of days data</nz-form-label>
+          <nz-form-control nzErrorTip="Choose number of day is required!">
             <nz-input-group>
-              <nz-radio-group
-                (ngModelChange)="selectPrepaidLabel($event)"
-                formControlName="handlingSetup"
-              >
-                <label nz-radio nzValue="yes">Account level</label>
-                <label nz-radio nzValue="no">Product level</label>
-              </nz-radio-group>
+              <input
+                type="text"
+                nz-input
+                placeholder="Choose number of day"
+                formControlName="choose_number_of_days_data"
+              />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-
-        <div *ngIf="showLabelSection" class="ch-number">
-          <nz-form-item
-            nz-col
-            class="gutter-row"
-            [nzSm]="24"
-            style="padding-left: 8px; padding-right: 8px"
-          >
-        
-          </nz-form-item>
-          <label nzValue="A"  class="map ">Choose number of days data feild</label>
-          <input type="text" nz-input  />
-        </div>
-
       </div>
       <div nz-row>
         <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
           <button
             nz-button
             class="login-form-button login-form-margin"
-         
             class="submit-btn"
           >
             Submit
@@ -94,11 +89,5 @@
         </div>
       </div>
     </form>
-
-
-
-
   </div>
 </div>
-
-
