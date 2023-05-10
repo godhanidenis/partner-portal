@@ -1,20 +1,4 @@
-<!-- <nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Profile</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Order processing</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-    <a>{{ formatBreadcrumb(data.path) }}</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb> -->
 <div class="add-pickup-address-section">
-  <!-- <div class="user-content">
-    <div class="tab-header">
-      <span>Add Pickup Address</span>
-    </div>
-  </div> -->
   <div class="body-section">
     <form nz-form [formGroup]="ascSetupForm">
       <span class="subHeader">Contact Info</span>
@@ -137,7 +121,7 @@
           </nz-form-control>
           <div *ngIf="showVerifiedNumber" class="verify-section">
             <div class="left">
-              <a href="#">Verify via OTP</a>
+              <a (click)="verifyOTP()">Verify via OTP</a>
             </div>
             <div class="center">
               <span>OR</span>
@@ -504,7 +488,7 @@
         nz-button
         nzType="default"
         style="color: black; margin-right: 5px"
-        (click)="handleCancel()"
+        (click)="handleCancel('close')"
       >
         Cancel
       </button>
@@ -530,3 +514,56 @@
     </div>
   </div>
 </div>
+
+<nz-modal
+  [(nzVisible)]="verifyOTPVisible"
+  nzTitle="Verify OTP"
+  (nzOnCancel)="handleCancel('')"
+>
+  <ng-container *nzModalContent>
+    <div class="add-pickup-address-section">
+      <div class="body-section">
+        <div class="model-content">
+          <span
+            >A 6 digit OTP hab been sent to the mobile number
+            {{ ascSetupForm.value.phone }}. Please enter it below.</span
+          >
+          <form [formGroup]="otpForm">
+            <div class="otp-form">
+              <input type="text" formControlName="one" />
+              <input type="text" formControlName="two" />
+              <input type="text" formControlName="three" />
+              <input type="text" formControlName="four" />
+              <input type="text" formControlName="five" />
+              <input type="text" formControlName="six" />
+            </div>
+            <div style="display: flex; justify-content: center">
+              <a href="#">Resend OTP</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="model-footer">
+        <div class="model-action">
+          <!-- <button
+            nz-button
+            nzType="default"
+            style="color: black; margin-right: 5px"
+            (click)="handleCancel('close')"
+          >
+            Cancel
+          </button> -->
+          <button
+            nz-button
+            class="action-btn"
+            (click)="submitOTP()"
+            [nzType]="'primary'"
+            style="width: 150px"
+          >
+            Verify OTP
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

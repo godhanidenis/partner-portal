@@ -14,7 +14,14 @@ import { HolidaysComponent } from './holidays/holidays.component';
 import { CourierPreferencesComponent } from './courier-preferences/courier-preferences.component';
 
 @NgModule({
-  declarations: [AddPickupAddressComponent, ManagePickupAddressComponent, UploadModelComponent, PoLabelAndInvoicePreferencesComponent, HolidaysComponent, CourierPreferencesComponent ],
+  declarations: [
+    AddPickupAddressComponent,
+    ManagePickupAddressComponent,
+    UploadModelComponent,
+    PoLabelAndInvoicePreferencesComponent,
+    HolidaysComponent,
+    CourierPreferencesComponent,
+  ],
   imports: [
     OrderProcessingRoutingModule,
     NzLayoutModule,

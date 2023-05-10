@@ -14,9 +14,11 @@ export class AddPickupAddressComponent implements OnInit {
   @Input() editData: any = '';
 
   ascSetupForm!: FormGroup;
+  otpForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
   breadcrumb: any;
   isLoading: boolean = false;
+  verifyOTPVisible: boolean = false;
 
   tooltipIcon: NzFormTooltipIcon = {
     type: 'info-circle',
@@ -63,6 +65,15 @@ export class AddPickupAddressComponent implements OnInit {
       supplier_name: new FormControl(''),
       supplier_gstin: new FormControl(''),
       // select_pickup_address: new FormControl(''),
+    });
+
+    this.otpForm = new FormGroup({
+      one: new FormControl(''),
+      two: new FormControl(''),
+      three: new FormControl(''),
+      four: new FormControl(''),
+      five: new FormControl(''),
+      six: new FormControl(''),
     });
 
     setTimeout(() => {
@@ -160,6 +171,12 @@ export class AddPickupAddressComponent implements OnInit {
     console.log(this.ascSetupForm.value);
   }
 
+  verifyOTP() {
+    this.verifyOTPVisible = true;
+  }
+
+  submitOTP() {}
+
   backButton(path: string) {
     if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
       this.router.navigate([`/main/${path}`]);
@@ -170,7 +187,10 @@ export class AddPickupAddressComponent implements OnInit {
     return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
   }
 
-  handleCancel() {
-    this.closeModel.emit();
+  handleCancel(type: string) {
+    if (type === 'close') {
+      this.closeModel.emit();
+    }
+    this.verifyOTPVisible = false;
   }
 }
