@@ -16,7 +16,8 @@
     </div>
   </div>
   <div class="body-section">
-    <nz-descriptions nzTitle="Rebate Info :">
+    <nz-divider nzText="Rebate Info" nzOrientation="left"></nz-divider>
+    <nz-descriptions>
       <nz-descriptions-item nzTitle="Rebate Code"
         ><b>{{ rebateDate.code }}</b></nz-descriptions-item
       >
@@ -27,8 +28,7 @@
         ><b>{{ rebateDate.type }}</b></nz-descriptions-item
       >
     </nz-descriptions>
-    <nz-divider></nz-divider>
-    <h3>Rebate Table :</h3>
+    <nz-divider nzText="Rebate Table" nzOrientation="left"></nz-divider>
     <nz-table
       #nzTable
       nzOuterBordered

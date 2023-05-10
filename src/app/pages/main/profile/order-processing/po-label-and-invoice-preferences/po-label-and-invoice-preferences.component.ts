@@ -8,40 +8,59 @@ import { Router } from '@angular/router';
   styleUrls: ['./po-label-and-invoice-preferences.component.scss'],
 })
 export class PoLabelAndInvoicePreferencesComponent implements OnInit {
-  poAndInvoiceForm!: FormGroup;
+  poForm!: FormGroup;
   labelForm!: FormGroup;
+  invoiceForm!: FormGroup;
   showEmailSection: boolean = false;
   showLabelSection: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.poAndInvoiceForm = this.fb.group({
+    this.poForm = this.fb.group({
       poMethod: 'edi',
-      emailList: this.fb.array([]),
+      authorizeSender: this.fb.array([]),
     });
     this.labelForm = new FormGroup({
       prepaidLabel: new FormControl('no'),
       size: new FormControl(''),
       formate: new FormControl(''),
     });
+    this.invoiceForm = this.fb.group({
+      emailList: this.fb.array([]),
+    });
+    this.addAuthorizeSender();
     this.addEmails();
   }
 
+  get authorizeSender(): FormArray {
+    return this.poForm.controls['authorizeSender'] as FormArray;
+  }
   get emailList(): FormArray {
-    return this.poAndInvoiceForm.controls['emailList'] as FormArray;
+    return this.invoiceForm.controls['emailList'] as FormArray;
   }
 
-  newEmail(): FormGroup {
+  newAuthorizeSender(): FormGroup {
     return this.fb.group({
       email: '',
     });
   }
+  newEmail(): FormGroup {
+    return this.fb.group({
+      emails: '',
+    });
+  }
 
+  addAuthorizeSender() {
+    this.authorizeSender.push(this.newAuthorizeSender());
+  }
   addEmails() {
     this.emailList.push(this.newEmail());
   }
 
+  removeAuthorizeSender(i: number) {
+    this.authorizeSender.removeAt(i);
+  }
   removeEmail(i: number) {
     this.emailList.removeAt(i);
   }

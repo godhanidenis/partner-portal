@@ -98,6 +98,7 @@
               nzTheme="twotone"
             ></span>
             <a
+              *ngIf="editData"
               (click)="editPhoneNumber()"
               style="color: black; margin-left: 10px"
               ><span nz-icon nzType="edit" nzTheme="outline"></span
@@ -509,7 +510,10 @@
           </ng-template>
           <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
         </div>
-        <span *ngIf="!isLoading">Save Address</span>
+        <span *ngIf="!isLoading"
+          ><span nz-icon nzType="file-text" nzTheme="outline"></span> Save
+          Address</span
+        >
       </button>
     </div>
   </div>
