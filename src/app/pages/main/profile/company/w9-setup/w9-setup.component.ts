@@ -10,6 +10,16 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 export class W9SetupComponent implements OnInit {
   breadcrumb: any;
 
+  forminfo = [
+    {
+      legalname: 'rajveer',
+      taxNumber: '123234324',
+      address: 'rajkot',
+      classification: 'senior class',
+      doctype: 'pdf',
+    },
+  ];
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private breadcrumbService: BreadcrumbService,
@@ -20,7 +30,6 @@ export class W9SetupComponent implements OnInit {
 
     this.breadcrumb = this.activatedRoute.snapshot.url;
   }
-  
 
   backButton(no: number, path: string) {
     if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {

@@ -6,7 +6,7 @@
  background-color: $white;
  background-clip: border-box;
  border-radius: 5px;
- height: 100%;
+ min-height: 95%;
 
     .feed-content{
         padding: 20px;
@@ -50,6 +50,10 @@
             a.ant-btn {
                 padding-top: 1.01px !important;
             }
+
+            .mpn-quality-sec{
+                padding: 0px !important;
+            }
         }
 
         form {
@@ -84,6 +88,11 @@
                 }
             }
 
+            .minimize-witdh{
+                width: 50%;
+            }
+            
+
             button {
                 background-color: #1dbae1;
                 color: #fff;
@@ -101,4 +110,13 @@
     }
 
 
+}
+
+@media screen and (max-width:765px) {
+    .asc-form-section {
+        .body-section {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+    }
 }

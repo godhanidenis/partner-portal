@@ -25,10 +25,10 @@
 
 <div class="grid-sec">
 
-<div nz-row [nzGutter]="16" >
+<div nz-row [nzGutter]="16" *ngFor="let data of forminfo">
     <div nz-col class="gutter-row"  [nzMd]="{ span: 6}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
         <div>
-            <h3 class="grid-key">Legal Name :</h3> <span class="kyc-grid-span">Subhveer</span>
+            <h3 class="grid-key">Legal Name :</h3> <span class="kyc-grid-span">{{data.legalname}}</span>
         </div>
         
       
@@ -36,22 +36,22 @@
     </div>
     <div nz-col class="gutter-row"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
         <div>
-            <h3 class="grid-key">Tax Identification Number:</h3> <span class="kyc-grid-span">132534535</span>
+            <h3 class="grid-key">Tax Identification Number:</h3> <span class="kyc-grid-span">{{data.taxNumber}}</span>
         </div>
     </div>
     <div nz-col class="gutter-row"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
         <div>
-            <h3 class="grid-key">Address:</h3> <span class="kyc-grid-span">rajkot</span>
+            <h3 class="grid-key">Address:</h3> <span class="kyc-grid-span">{{data.address}}</span>
         </div>
     </div>
     <div nz-col class="gutter-row"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
         <div>
-            <h3 class="grid-key">Classification:</h3> <span class="kyc-grid-span">data collection</span>
+            <h3 class="grid-key">Classification:</h3> <span class="kyc-grid-span">{{data.classification}}</span>
         </div>
     </div>
     <div nz-col class="gutter-row sec-grid"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
         <div>
-            <h3 class="grid-key">Document Type</h3> <span class="kyc-grid-span">PDF</span>
+            <h3 class="grid-key">Document:Type</h3> <span class="kyc-grid-span">{{data.doctype}}</span>
         </div>
     </div>
 

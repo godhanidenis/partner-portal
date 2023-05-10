@@ -11,7 +11,6 @@
 </nz-breadcrumb>
 
 <div class="feed-section">
-
   <div class="user-content">
     <div class="tab-header">
       <span>Feed Preferences</span>
@@ -20,7 +19,6 @@
 
   <div class="feed-content">
     <div class="feed-prefernaces-section">
-      
       <div class="body-section">
         <div class="feed-prefernaces-section">
           <form nz-form [formGroup]="feedForm">
@@ -44,11 +42,70 @@
                   </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
+
+
+              <nz-form-label nzFor="email">Type</nz-form-label>
+
+              <div nz-col class="gutter-row" [nzSm]="24" >
+                <nz-form-item>
+                  <nz-form-control nzErrorTip=" Method is required!">
+                    <nz-input-group>
+                      <input
+                        type="text"
+                        nz-input
+                        placeholder="Location specific consolidated"
+                        formControlName="type"
+                        class="minimize-witdh"
+                      />
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+
+
+                <div *ngIf="showEmailSection" >
+                  <nz-form-label nzFor="email" class="mpn-quality-sec">MPN column header</nz-form-label>
+                  <div nz-col class="gutter-row" [nzSm]="24" class="mpn-quality-sec">
+                    <nz-form-item>
+                      <nz-form-control nzErrorTip=" Method is required!">
+                        <nz-input-group>
+                          <input
+                            type="text"
+                            nz-input
+                            placeholder="Enter Mpn"
+                            formControlName="mpn"
+                            class="minimize-witdh"
+                          />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+    
+                  <nz-form-label nzFor="email" class="mpn-quality-sec">Quantity column header</nz-form-label>
+                  <div nz-col class="gutter-row" [nzSm]="24" class="mpn-quality-sec">
+                    <nz-form-item>
+                      <nz-form-control nzErrorTip=" Method is required!">
+                        <nz-input-group>
+                          <input
+                            type="text"
+                            nz-input
+                            placeholder="Enter Quantity"
+                            formControlName="quantity"
+                            class="minimize-witdh"
+                          />
+                        </nz-input-group>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+              </div>
+
+
               <div
                 *ngIf="showEmailSection"
                 formArrayName="emailList"
                 style="width: 50%"
               >
+
                 <nz-form-label nzFor="email">Email List</nz-form-label>
                 <div
                   nz-col
@@ -58,7 +115,7 @@
                 >
                   <div [formGroupName]="i">
                     <nz-form-item>
-                      <nz-form-control nzErrorTip="PO Method is required!">
+                      <nz-form-control nzErrorTip=" Method is required!">
                         <nz-input-group>
                           <input
                             type="text"

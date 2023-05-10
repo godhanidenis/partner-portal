@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class FeedPrefernacesComponent implements OnInit {
   feedForm!: FormGroup;
-  labelForm!: FormGroup;
+ 
   showEmailSection: boolean = false;
  
 
@@ -18,13 +18,12 @@ export class FeedPrefernacesComponent implements OnInit {
   ngOnInit(): void {
     this.feedForm = this.fb.group({
       feedMethod: 'edi',
-      emailList: this.fb.array([]),
+      mpn: [''],
+      quantity: [''],
+      type: [''],
+      emailList: this.fb.array([]), 
     });
-    this.labelForm = new FormGroup({
-      prepaidLabel: new FormControl('no'),
-      size: new FormControl(''),
-      formate: new FormControl(''),
-    });
+ 
     this.addEmails();
   }
 
