@@ -5,26 +5,23 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { CommonModule } from '@angular/common';
 import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProfileRoutingModule } from './profile-routing.module';
-import { ProfileComponent } from './profile.component';
-import { PaymentsModule } from './payments/payments.module';
-import { OrderProcessingModule } from './order-processing/order-processing.module';
-import { CompanyModule } from './company/company.module';
+import { CompanyRoutingModule } from './company-routing.module';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
+import { W9SetupComponent } from './w9-setup/w9-setup.component';
+import { CertiOfInsuComponent } from './certi-of-insurance/certi-of-insurance.component';
+
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [CompanyProfileComponent, W9SetupComponent, CertiOfInsuComponent ],
   imports: [
-    ProfileRoutingModule,
+    CompanyRoutingModule,
     NzLayoutModule,
     CommonModule,
     ListNgZorroModule,
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
-    PaymentsModule,
-    OrderProcessingModule,
-    CompanyModule,
   ],
   exports: [],
 })
-export class ProfileModule {}
+export class CompanyModule {}

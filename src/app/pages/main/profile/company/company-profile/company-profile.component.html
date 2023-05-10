@@ -1,0 +1,134 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, 'profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, 'profile')">Company</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a>Company Profile</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+
+<div class="company-profile-section">
+
+    
+    
+    <div class="asc-form-section">
+      <div class="user-content">
+        <div class="tab-header">
+          <span>Company Details</span>
+        </div>
+      </div>
+      <div class="body-section">
+        <form nz-form [formGroup]="companyprofile" >
+          <nz-form-item>
+            <nz-form-label
+              [nzXl]="2"
+              [nzSm]="7"
+              [nzXs]="24"
+              
+              nzFor="patner_code"
+            
+            
+              >Patner Code</nz-form-label
+            >
+            <nz-form-control
+              [nzXl]="8"
+              [nzSm]="12"
+              [nzXs]="24"
+              
+            >
+              <nz-input-group>
+                <input
+                  formControlName="patnercode"
+                  type="text"
+                  nz-input
+                  [disabled]="disableInput"
+                  class="com-pro-input"
+                />
+              
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label
+              [nzXl]="2"
+              [nzSm]="7"
+              [nzXs]="24"
+              nzRequired
+              nzFor="display_name"
+            
+            
+              >Display Name</nz-form-label
+            >
+            <nz-form-control
+              [nzXl]="8"
+              [nzSm]="12"
+              [nzXs]="24"
+              
+            >
+              <nz-input-group>
+                <input
+                  formControlName="displayname"
+                  type="text"
+                  nz-input
+                  placeholder="Enter An Account Name"
+                  class="com-pro-input"
+                />
+              
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label
+              [nzXl]="2"
+              [nzSm]="7"
+              [nzXs]="24"
+             
+              nzFor="website"
+            
+            
+              >Website</nz-form-label
+            >
+            <nz-form-control
+              [nzXl]="8"
+              [nzSm]="12"
+              [nzXs]="24"
+              
+            >
+              <nz-input-group>
+                <input
+                  formControlName="website"
+                  type="text"
+                  nz-input
+                  placeholder="http://www.xyz.com"
+                  class="com-pro-input"
+                />
+              
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+    
+      
+    
+        
+      
+    
+          <div nz-row>
+            <div nz-col [nzXl]="10" [nzSm]="19" [nzXs]="24">
+              <button
+                nz-button
+                class="login-form-button login-form-margin"
+                [nzType]="'primary'"
+              >
+               <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+</div>

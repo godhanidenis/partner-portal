@@ -1,0 +1,37 @@
+@import "../../../../../../assets/variable/variable.scss";
+
+.company-profile-section {
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  background-color: $white;
+  background-clip: border-box;
+  border-radius: 5px;
+  height: 100%;
+
+//   padding: 20px;
+
+  .inputs-label {
+    font-weight: 700;
+  }
+
+  form{
+
+    button{
+        float: right;
+    }
+  }
+ 
+
+  .body-section{
+    padding: 20px;
+  }
+
+  .com-pro-input{
+    height: 40px;
+    font-size: 16px;
+    border-radius: 5px !important;
+  }
+}
+
+ ::ng-deep .ant-form-item-label{
+    text-align: right;
+ }
