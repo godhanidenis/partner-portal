@@ -8,25 +8,19 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
   styleUrls: ['./certi-of-insurance.component.scss'],
 })
 export class CertiOfInsuComponent implements OnInit {
-  breadcrumb: any;
+  certiOfInsuranceDate = {
+    producerNameAddress: 'Insurance Pvt Ltd, New York, New York 10001',
+    insuredNameAddress: 'XYZ Stores, Livingston, Montana 59101',
+    dateInsured: 'Aug 24, 2022',
+    classification: 'data collection',
+    documentType: 'PDF',
+  };
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService,
-    private router: Router
-  ) {
-    this.breadcrumbService.breadcrumbs.next(this.activatedRoute.snapshot.url);
-    console.log(this.activatedRoute.snapshot.url);
-
-    this.breadcrumb = this.activatedRoute.snapshot.url;
-  }
-  
-
-  backButton(no: number, path: string) {
-    if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
-      this.router.navigate([`/main/${path}`]);
-    }
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  backButton(path: string) {
+    this.router.navigate([`/main/${path}`]);
+  }
 }

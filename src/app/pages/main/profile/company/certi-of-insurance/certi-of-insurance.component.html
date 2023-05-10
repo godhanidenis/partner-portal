@@ -1,64 +1,45 @@
 <nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-    <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-      <a (click)="backButton(i, 'profile')">Profile</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-      <a (click)="backButton(i, 'profile')">Company</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-      <a>Certificate of Insurance</a>
-    </nz-breadcrumb-item>
-  </nz-breadcrumb>
-  
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Company</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>Certificate of Insurance</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
 
-
-<div class="w9-setup-section">
-
-    <div class="user-content">
-        <div class="tab-header">
-          <span>Certificate of Insurance</span>
-          <button nz-button class="gotohome-btn" >Download</button>
-        </div>
-      </div>
-
-  
-
-<div class="grid-sec">
-
-<div nz-row [nzGutter]="16" >
-    <div nz-col class="gutter-row"  [nzMd]="{ span: 6}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 9}">
-        <div>
-            <h3 class="grid-key">Producer (Name + Address) :</h3> <span class="kyc-grid-span">Insurance Pvt Ltd, New York, New York 10001</span>
-        </div>
-        
-      
-
+<div class="certi-of-insurance-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Certificate of Insurance</span>
+      <button nz-button class="gotohome-btn">Download</button>
     </div>
-    <div nz-col class="gutter-row"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 10}">
-        <div>
-            <h3 class="grid-key">Insured (Name + Address):</h3> <span class="kyc-grid-span">XYZ Stores, Livingston, Montana 59101</span>
-        </div>
-    </div>
-    <div nz-col class="gutter-row "  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 5}">
-        <div>
-            <h3 class="grid-key">Date insured:</h3> <span class="kyc-grid-span">Aug 24, 2022</span>
-        </div>
-    </div>
-    <div nz-col class="gutter-row sec-grid"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 9}">
-        <div>
-            <h3 class="grid-key">Classification:</h3> <span class="kyc-grid-span">data collection</span>
-        </div>
-    </div>
-    <div nz-col class="gutter-row sec-grid"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 12}">
-        <div>
-            <h3 class="grid-key">Document Type</h3> <span class="kyc-grid-span">PDF</span>
-        </div>
-    </div>
+  </div>
 
-</div>
-
-<button nz-button class="ticket-btn " >Go to Ticket page</button>
-
-</div>
-
+  <div class="body-section">
+    <nz-descriptions>
+      <nz-descriptions-item nzTitle="Producer (Name + Address)"
+        ><b>{{
+          certiOfInsuranceDate.producerNameAddress
+        }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Insured Identification Number"
+        ><b>{{
+          certiOfInsuranceDate.insuredNameAddress
+        }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Date insured"
+        ><b>{{ certiOfInsuranceDate.dateInsured }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Classification"
+        ><b>{{ certiOfInsuranceDate.classification }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Document Type Type"
+        ><b>{{ certiOfInsuranceDate.documentType }}</b></nz-descriptions-item
+      >
+    </nz-descriptions>
+    <button nz-button class="ticket-btn">Go to Ticket page</button>
+  </div>
 </div>
