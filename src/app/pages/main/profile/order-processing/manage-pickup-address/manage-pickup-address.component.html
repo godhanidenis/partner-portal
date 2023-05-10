@@ -1,11 +1,11 @@
 <nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-    <a (click)="backButton(i, 'profile')">Profile</a>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
   </nz-breadcrumb-item>
-  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-    <a (click)="backButton(i, 'profile')">Order processing</a>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Order processing</a>
   </nz-breadcrumb-item>
-  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+  <nz-breadcrumb-item>
     <a>shipout location</a>
   </nz-breadcrumb-item>
 </nz-breadcrumb>

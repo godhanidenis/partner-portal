@@ -1,0 +1,31 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Allowances</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>Co Op</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<div class="co-op-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>CO OP</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <nz-descriptions nzTitle="CO OP Info :">
+      <nz-descriptions-item nzTitle="Code"
+        ><b>{{ rebateDate.code }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Discount"
+        ><b>{{ rebateDate.discount }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Calcul Method"
+        ><b>{{ rebateDate.calculMethod }}</b></nz-descriptions-item
+      >
+    </nz-descriptions>
+  </div>
+</div>

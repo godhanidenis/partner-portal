@@ -31,6 +31,6 @@ import { CourierPreferencesComponent } from './courier-preferences/courier-prefe
     ReactiveFormsModule,
     FormsModule,
   ],
-  exports: [],
+  exports: [AddPickupAddressComponent],
 })
 export class OrderProcessingModule {}

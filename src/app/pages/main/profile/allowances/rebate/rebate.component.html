@@ -1,0 +1,58 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Allowances</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>Rebate</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<div class="rebate-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Rebate</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <nz-descriptions nzTitle="Rebate Info :">
+      <nz-descriptions-item nzTitle="Rebate Code"
+        ><b>{{ rebateDate.code }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Rebate Year"
+        ><b>{{ rebateDate.year }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Rebate Type"
+        ><b>{{ rebateDate.type }}</b></nz-descriptions-item
+      >
+    </nz-descriptions>
+    <nz-divider></nz-divider>
+    <h3>Rebate Table :</h3>
+    <nz-table
+      #nzTable
+      nzOuterBordered
+      [nzData]="rebateList"
+      nzTableLayout="fixed"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+    >
+      <thead>
+        <tr>
+          <th>Lower (in $) Threshold</th>
+          <th>Upper (in $) Threshold</th>
+          <th>Discount %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-data [ngForOf]="rebateList">
+          <tr>
+            <td>{{ data?.lowerThreshold }}</td>
+            <td>{{ data?.upperThreshold }}</td>
+            <td>{{ data?.discount }} %</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

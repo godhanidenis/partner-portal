@@ -1,0 +1,89 @@
+<!-- <nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Payment</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>ACH Verification</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb> -->
+
+<div class="ach-verification-sections">
+  <!-- <div class="user-content">
+    <div class="tab-header">
+      <span>ACH Verification</span>
+    </div>
+  </div> -->
+  <div class="body-section">
+    <form nz-form [formGroup]="ascVerificationForm">
+      <nz-form-item>
+        <nz-form-label
+          [nzXl]="3"
+          [nzLg]="4"
+          [nzSm]="5"
+          [nzXs]="24"
+          nzRequired
+          nzFor="deposit_value_one"
+          >Deposit value 1
+        </nz-form-label>
+        <nz-form-control
+          [nzXl]="9"
+          [nzLg]="12"
+          [nzSm]="13"
+          [nzXs]="24"
+          nzErrorTip="Deposit value 1 is required!"
+        >
+          <nz-input-group>
+            <input
+              formControlName="deposit_value_one"
+              type="text"
+              nz-input
+              placeholder="Enter Deposit value 1 "
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label
+          [nzXl]="3"
+          [nzLg]="4"
+          [nzSm]="5"
+          [nzXs]="24"
+          nzRequired
+          nzFor="deposit_value_two"
+          >Deposit value 1
+        </nz-form-label>
+        <nz-form-control
+          [nzXl]="9"
+          [nzLg]="12"
+          [nzSm]="13"
+          [nzXs]="24"
+          nzErrorTip="Deposit value 2 is required!"
+        >
+          <nz-input-group>
+            <input
+              formControlName="deposit_value_two"
+              type="text"
+              nz-input
+              placeholder="Enter Deposit value 1 "
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row>
+        <div nz-col [nzXl]="12" [nzLg]="16" [nzSm]="19" [nzXs]="24">
+          <button
+            nz-button
+            [nzType]="'primary'"
+            (click)="submitForm()"
+            [disabled]="!ascVerificationForm.valid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -10,6 +10,8 @@ import { ProfileComponent } from './profile.component';
 import { PaymentsModule } from './payments/payments.module';
 import { OrderProcessingModule } from './order-processing/order-processing.module';
 import { CompanyModule } from './company/company.module';
+import { AllowancesModule } from './allowances/allowances.module';
+import { ReturnModule } from './return/return.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -24,6 +26,8 @@ import { CompanyModule } from './company/company.module';
     PaymentsModule,
     OrderProcessingModule,
     CompanyModule,
+    AllowancesModule,
+    ReturnModule,
   ],
   exports: [],
 })

@@ -1,64 +1,126 @@
-<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-    <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-      <a (click)="backButton(i, 'profile')">Profile</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-      <a (click)="backButton(i, 'profile')">Company</a>
-    </nz-breadcrumb-item>
-    <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
-      <a>W9 Set up</a>
-    </nz-breadcrumb-item>
-  </nz-breadcrumb>
-  
-
+<!-- <nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, 'profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a (click)="backButton(i, 'profile')">Company</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor="let data of breadcrumb; let i = index">
+    <a>W9 Set up</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
 
 <div class="w9-setup-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>W9 Set up</span>
+      <button nz-button class="gotohome-btn">Download</button>
+    </div>
+  </div>
 
-    <div class="user-content">
-        <div class="tab-header">
-          <span>W9 Set up</span>
-          <button nz-button class="gotohome-btn" >Download</button>
+  <div class="grid-sec">
+    <div nz-row [nzGutter]="16">
+      <div
+        nz-col
+        class="gutter-row"
+        [nzMd]="{ span: 6 }"
+        [nzLg]="{ span: 7 }"
+        [nzXl]="{ span: 6 }"
+      >
+        <div>
+          <h3 class="grid-key">Legal Name :</h3>
+          <span class="kyc-grid-span">Subhveer</span>
         </div>
       </div>
-
-  
-
-<div class="grid-sec">
-
-<div nz-row [nzGutter]="16" >
-    <div nz-col class="gutter-row"  [nzMd]="{ span: 6}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
+      <div
+        nz-col
+        class="gutter-row"
+        [nzMd]="{ span: 5 }"
+        [nzLg]="{ span: 7 }"
+        [nzXl]="{ span: 6 }"
+      >
         <div>
-            <h3 class="grid-key">Legal Name :</h3> <span class="kyc-grid-span">Subhveer</span>
+          <h3 class="grid-key">Tax Identification Number:</h3>
+          <span class="kyc-grid-span">132534535</span>
         </div>
-        
-      
-
-    </div>
-    <div nz-col class="gutter-row"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
+      </div>
+      <div
+        nz-col
+        class="gutter-row"
+        [nzMd]="{ span: 5 }"
+        [nzLg]="{ span: 7 }"
+        [nzXl]="{ span: 6 }"
+      >
         <div>
-            <h3 class="grid-key">Tax Identification Number:</h3> <span class="kyc-grid-span">132534535</span>
+          <h3 class="grid-key">Address:</h3>
+          <span class="kyc-grid-span">rajkot</span>
         </div>
-    </div>
-    <div nz-col class="gutter-row"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
+      </div>
+      <div
+        nz-col
+        class="gutter-row"
+        [nzMd]="{ span: 5 }"
+        [nzLg]="{ span: 7 }"
+        [nzXl]="{ span: 6 }"
+      >
         <div>
-            <h3 class="grid-key">Address:</h3> <span class="kyc-grid-span">rajkot</span>
+          <h3 class="grid-key">Classification:</h3>
+          <span class="kyc-grid-span">data collection</span>
         </div>
-    </div>
-    <div nz-col class="gutter-row"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
+      </div>
+      <div
+        nz-col
+        class="gutter-row sec-grid"
+        [nzMd]="{ span: 5 }"
+        [nzLg]="{ span: 7 }"
+        [nzXl]="{ span: 6 }"
+      >
         <div>
-            <h3 class="grid-key">Classification:</h3> <span class="kyc-grid-span">data collection</span>
+          <h3 class="grid-key">Document Type</h3>
+          <span class="kyc-grid-span">PDF</span>
         </div>
-    </div>
-    <div nz-col class="gutter-row sec-grid"  [nzMd]="{ span: 5}"  [nzLg]="{ span: 7} "  [nzXl]="{ span: 6}">
-        <div>
-            <h3 class="grid-key">Document Type</h3> <span class="kyc-grid-span">PDF</span>
-        </div>
+      </div>
     </div>
 
-</div>
+    <button nz-button class="ticket-btn">Go to Ticket page</button>
+  </div>
+</div> -->
 
-<button nz-button class="ticket-btn " >Go to Ticket page</button>
-
-</div>
-
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Company</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>W9 Set up</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<div class="co-op-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>W9 Set up</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <nz-descriptions nzTitle="CO OP Info :">
+      <nz-descriptions-item nzTitle="Legal Name"
+        ><b>{{ w9SetUpDate.legalName }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Tax Identification Number"
+        ><b>{{ w9SetUpDate.taxIdentificationNumber }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Address"
+        ><b>{{ w9SetUpDate.address }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Classification"
+        ><b>{{ w9SetUpDate.classification }}</b></nz-descriptions-item
+      >
+      <nz-descriptions-item nzTitle="Document Type"
+        ><b>{{ w9SetUpDate.documentType }}</b></nz-descriptions-item
+      >
+    </nz-descriptions>
+    <button nz-button class="ticket-btn">Go to Ticket page</button>
+  </div>
 </div>

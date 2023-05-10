@@ -7,9 +7,11 @@ import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.mo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaymentsRoutingModule } from './payments-routing.module';
 import { AchSetUpComponent } from './ach-set-up/ach-set-up.component';
+import { AchVerificationComponent } from './ach-verification/ach-verification.component';
+import { AchSectionComponent } from './ach-section/ach-section.component';
 
 @NgModule({
-  declarations: [AchSetUpComponent],
+  declarations: [AchSetUpComponent, AchVerificationComponent, AchSectionComponent],
   imports: [
     PaymentsRoutingModule,
     NzLayoutModule,

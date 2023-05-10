@@ -5,9 +5,9 @@ import { ProfileComponent } from './profile.component';
 const routes: Routes = [
   { path: '', component: ProfileComponent },
   {
-    path: 'payment',
+    path: 'company',
     loadChildren: () =>
-      import('./payments/payments.module').then((m) => m.PaymentsModule),
+      import('./company/company.module').then((m) => m.CompanyModule),
   },
   {
     path: 'order-processing',
@@ -17,11 +17,19 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'company',
+    path: 'return',
     loadChildren: () =>
-      import('./company/company.module').then(
-        (m) => m.CompanyModule
-      ),
+      import('./return/return.module').then((m) => m.ReturnModule),
+  },
+  {
+    path: 'allowances',
+    loadChildren: () =>
+      import('./allowances/allowances.module').then((m) => m.AllowancesModule),
+  },
+  {
+    path: 'payment',
+    loadChildren: () =>
+      import('./payments/payments.module').then((m) => m.PaymentsModule),
   },
 ];
 

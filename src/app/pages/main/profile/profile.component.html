@@ -16,26 +16,15 @@
         <nz-divider></nz-divider>
         <ul nz-menu>
           <a (click)="navigate('company/company-profile')"
-          ><li
-            nz-submenu
-            nzTitle="Company Profile"
-          ></li
-        ></a>
+            ><li nz-submenu nzTitle="Company Profile"></li
+          ></a>
           <!-- <a href=""><li nz-submenu nzTitle="Company Profile"></li></a> -->
           <a (click)="navigate('company/w9-setup')"
-          ><li
-            nz-submenu
-            nzTitle="W9 Set up"
-          ></li
-        ></a>
+            ><li nz-submenu nzTitle="W9 Set up"></li
+          ></a>
           <a (click)="navigate('company/certi-of-insu')"
-          ><li
-            nz-submenu
-            nzTitle=" Certificate of Insurance"
-          ></li
-        ></a>
-         
-         
+            ><li nz-submenu nzTitle=" Certificate of Insurance"></li
+          ></a>
         </ul>
       </nz-card>
     </div>
@@ -98,13 +87,12 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <!-- <a (click)="navigate()"
-            ><li nz-submenu nzTitle="ACH satup profile"></li
-          ></a> -->
           <a href=""
             ><li nz-submenu nzTitle="Return settings/Prefernace"></li
           ></a>
-          <a href=""><li nz-submenu nzTitle="Return Location/Address"></li></a>
+          <a (click)="navigate('return/return-location')"
+            ><li nz-submenu nzTitle="Return Location/Address"></li
+          ></a>
         </ul>
       </nz-card>
     </div>
@@ -118,8 +106,12 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a href=""><li nz-submenu nzTitle="Rebate"></li></a>
-          <a href=""><li nz-submenu nzTitle="Co-op"></li></a>
+          <a (click)="navigate('allowances/rebate')"
+            ><li nz-submenu nzTitle="Rebate"></li
+          ></a>
+          <a (click)="navigate('allowances/co-op')"
+            ><li nz-submenu nzTitle="Co-op"></li
+          ></a>
         </ul>
       </nz-card>
     </div>
@@ -133,10 +125,12 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a (click)="navigate('payment/ach-set-up')"
-            ><li nz-submenu nzTitle="ACH set up "></li
+          <a (click)="navigate('payment/ach-section')"
+            ><li nz-submenu nzTitle="ACH Section "></li
           ></a>
-          <a href=""><li nz-submenu nzTitle="ACH verification"></li></a>
+          <!-- <a (click)="navigate('payment/ach-verification')"
+            ><li nz-submenu nzTitle="ACH verification"></li
+          ></a> -->
         </ul>
       </nz-card>
     </div>

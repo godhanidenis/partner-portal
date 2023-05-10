@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-manage-pickup-address',
-  templateUrl: './manage-pickup-address.component.html',
-  styleUrls: ['./manage-pickup-address.component.scss'],
+  selector: 'app-return-location',
+  templateUrl: './return-location.component.html',
+  styleUrls: ['./return-location.component.scss'],
 })
-export class ManagePickupAddressComponent implements OnInit {
+export class ReturnLocationComponent {
   breadcrumb: any;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
@@ -19,27 +18,19 @@ export class ManagePickupAddressComponent implements OnInit {
 
   uploadModelVisible: boolean = false;
 
-  expandSet = new Set<number>();
-  onExpandChange(id: number, checked: boolean): void {
-    if (checked) {
-      this.expandSet.add(id);
-    } else {
-      this.expandSet.delete(id);
-    }
-  }
-  shipOut = [
+  returnLocationList = [
     {
       id: 1,
       location_id: 179890,
-      address_nickname: 'surat',
-      company_name: 'Fly On Tech',
-      contact_name: 'Jay',
-      phone: '9578461232',
-      extension: '9587461223',
-      email: 'jay@gmail.com',
-      address_line_1: 'vip circle,surat',
-      pin_code: '958746',
-      city: 'surat',
+      address_nickname: 'Ahmadabad',
+      company_name: 'InfoTech',
+      contact_name: 'Lax',
+      phone: '8529637410',
+      extension: '9517536842',
+      email: 'lax@gmail.com',
+      address_line_1: 'SG Rode,Ahmadabad',
+      pin_code: '684265',
+      city: 'Ahmadabad',
       address_line_2: '',
       state: 'state 1',
       open_at: new Date(0, 0, 0, 0, 9, 30),
@@ -49,7 +40,7 @@ export class ManagePickupAddressComponent implements OnInit {
       rto_address: true,
       supplier_name: 'max',
       supplier_gstin: '78451',
-      select_pickup_address: 'addres3',
+      select_pickup_address: 'address 2',
       status: 1,
       expand: false,
       activeStatus: false,
@@ -58,15 +49,15 @@ export class ManagePickupAddressComponent implements OnInit {
     {
       id: 2,
       location_id: 852963,
-      address_nickname: 'Rajkot',
+      address_nickname: 'Vadodra',
       company_name: 'TCS',
       contact_name: 'Max',
       phone: '9578461232',
       extension: '9587461223',
       email: 'max@gmail.com',
-      address_line_1: 'Varachaa,surat',
+      address_line_1: 'Varachaa,Vadodra',
       pin_code: '958746',
-      city: 'surat',
+      city: 'Vadodra',
       address_line_2: '',
       state: 'state 2',
       open_at: new Date(0, 0, 0, 0, 10, 0),
@@ -76,7 +67,7 @@ export class ManagePickupAddressComponent implements OnInit {
       rto_address: false,
       supplier_name: 'max',
       supplier_gstin: '78451',
-      select_pickup_address: '',
+      select_pickup_address: 'address 3',
       status: 0,
       expand: false,
       activeStatus: true,
@@ -87,10 +78,10 @@ export class ManagePickupAddressComponent implements OnInit {
       location_id: 963852,
       address_nickname: 'Bhavnagar',
       company_name: 'Skill Code',
-      contact_name: 'Lax',
+      contact_name: 'Loy',
       phone: '9578461232',
       extension: '9587461223',
-      email: 'lax@gmail.com',
+      email: 'loy@gmail.com',
       address_line_1: 'Simada,surat',
       pin_code: '958746',
       city: 'surat',
@@ -103,7 +94,7 @@ export class ManagePickupAddressComponent implements OnInit {
       rto_address: true,
       supplier_name: '',
       supplier_gstin: '',
-      select_pickup_address: 'addres3',
+      select_pickup_address: 'address 4',
       status: 0,
       expand: false,
       activeStatus: false,
@@ -114,24 +105,13 @@ export class ManagePickupAddressComponent implements OnInit {
   modelHeader: string = 'Add';
   primaryContact: number = 1;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService,
-    private router: Router
-  ) {
-    this.breadcrumbService.breadcrumbs.next(this.activatedRoute.snapshot.url);
-    console.log(this.activatedRoute.snapshot.url);
-    // this.shipOut = this.shipOut.map((ele: any) => {
-    //   return { ...ele, expand: false };
-    // });
-    this.breadcrumb = this.activatedRoute.snapshot.url;
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   primaryClick(element: number) {
     this.primaryContact = element;
-    this.shipOut.filter((res: any) => {
+    this.returnLocationList.filter((res: any) => {
       if (res.id === element) {
         res.primaryAddress = true;
       } else {

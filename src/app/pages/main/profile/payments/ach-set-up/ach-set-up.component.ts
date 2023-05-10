@@ -13,7 +13,7 @@ export class AchSetUpComponent implements OnInit {
   ascSetupForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
   breadcrumb: any;
-  
+
   achData = {
     name_of_account: 'Saving',
     account_number: 8529637418529635,

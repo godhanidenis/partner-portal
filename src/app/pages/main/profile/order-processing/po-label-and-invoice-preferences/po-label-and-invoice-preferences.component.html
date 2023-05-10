@@ -63,7 +63,7 @@
                     </nz-input-group>
                   </nz-form-control>
                   <a
-                    *ngIf="i === 0"
+                    *ngIf="i === emailList.controls.length - 1"
                     nz-button
                     class="add-button"
                     nzShape="circle"
@@ -73,7 +73,7 @@
                     +
                   </a>
                   <a
-                    *ngIf="i !== 0"
+                    *ngIf="i !== emailList.controls.length - 1"
                     nz-button
                     class="add-button"
                     nzShape="circle"

@@ -1,0 +1,150 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Return</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>Return Location</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="return-location-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Return Location</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <div class="button-group">
+      <button
+        nz-button
+        class="pull-push-btn"
+        (click)="addPickupAddress('upload', '')"
+      >
+        <span nz-icon nzType="download"></span>
+      </button>
+      <button nz-button class="pull-push-btn">
+        <span nz-icon nzType="upload" nzTheme="outline"></span>
+      </button>
+      <button
+        (click)="addPickupAddress('Add', '')"
+        nz-button
+        nzType="primary"
+        class="return-location"
+      >
+        <span nz-icon nzType="plus"></span> Add Return Location
+      </button>
+    </div>
+
+    <nz-table
+      #nzTable
+      nzOuterBordered
+      [nzData]="returnLocationList"
+      nzTableLayout="fixed"
+      nzShowSizeChanger
+      [nzPageSizeOptions]="pageSizeOptions"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzLoading]="isLoading"
+    >
+      <thead>
+        <tr>
+          <th style="width: 55px"></th>
+          <th>Address Nickname</th>
+          <th>Location Id</th>
+          <th>Status</th>
+          <th>Set Primary Address</th>
+          <th>Active/Inactive</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-data [ngForOf]="returnLocationList">
+          <tr>
+            <td [(nzExpand)]="data.expand"></td>
+            <td>{{ data?.address_nickname }}</td>
+            <td>{{ data?.location_id }}</td>
+            <td>
+              <span
+                *ngIf="data?.status === 1"
+                class="badge"
+                style="background: #00c13b"
+                >Active</span
+              >
+              <span
+                *ngIf="data?.status === 0"
+                class="badge"
+                style="background: #f41e2c"
+                >Inactive</span
+              >
+            </td>
+            <td>
+              <a class="radio" (click)="primaryClick(data.id)">
+                <label
+                  *ngIf="data.primaryAddress"
+                  style="display: flex; align-items: center"
+                  ><span class="radio-selected">&#10687;</span> Primary
+                  Address</label
+                >
+                <label *ngIf="!data.primaryAddress"
+                  ><span style="margin-left: 2px">&#9711;</span> Primary
+                  Address</label
+                >
+              </a>
+            </td>
+            <td>
+              <nz-switch
+                nzSize="small"
+                [ngModel]="data.activeStatus"
+              ></nz-switch>
+            </td>
+            <td>
+              <a (click)="addPickupAddress('Edit', data)"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
+            </td>
+          </tr>
+          <tr [nzExpand]="data.expand">
+            <nz-table
+              style="margin: 6px 0"
+              #innerTable
+              [nzData]="[data]"
+              nzSize="middle"
+              [nzShowPagination]="false"
+            >
+              <!-- <thead>
+                  <tr>
+                    <th>Guests</th>
+                  </tr>
+                </thead> -->
+              <tbody>
+                <tr>
+                  <td>No Data</td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [(nzVisible)]="addAddressVisible"
+  [nzTitle]="modelHeader + ' Return Address'"
+  (nzOnCancel)="handleCancel()"
+  nzWidth="70%"
+>
+  <div *nzModalContent>
+    <app-add-pickup-address
+      [editData]="editData"
+      (closeModel)="handleCancel()"
+    ></app-add-pickup-address>
+  </div>
+</nz-modal>
