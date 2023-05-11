@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./return-location.component.scss'],
 })
 export class ReturnLocationComponent {
-  breadcrumb: any;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;
@@ -143,10 +142,6 @@ export class ReturnLocationComponent {
 
   backButton(path: string) {
     this.router.navigate([`/main/${path}`]);
-  }
-
-  formatBreadcrumb(data: string) {
-    return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
   }
 
   handleCancel(): void {

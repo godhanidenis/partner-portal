@@ -146,8 +146,12 @@
         </ul>
         <nz-divider></nz-divider>
         <ul nz-menu>
-          <a href=""><li nz-submenu nzTitle="Contact prefernaces"></li></a>
-          <a href=""><li nz-submenu nzTitle="Notification prefernaces"></li></a>
+          <a (click)="navigate('communications/contact-preferences')"
+            ><li nz-submenu nzTitle="Contact preferences"></li
+          ></a>
+          <a (click)="navigate('communications/notification-preferences')"
+            ><li nz-submenu nzTitle="Notification preferences"></li
+          ></a>
         </ul>
       </nz-card>
     </div>
