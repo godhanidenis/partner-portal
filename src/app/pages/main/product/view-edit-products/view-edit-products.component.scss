@@ -1,0 +1,45 @@
+@import "../../../../../assets/variable/variable.scss";
+
+.view-edit-products-section {
+  border: 0 solid rgba(0, 0, 0, 0.125);
+  background-color: $white;
+  background-clip: border-box;
+  border-radius: 5px;
+  min-height: 95%;
+
+  button {
+    background-color: #1dbae1;
+    color: #fff;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .view-edit-products-section-content {
+    padding: 20px;
+
+    form{
+     .search{
+        // width: 12%;
+        border-radius: 17px;
+        float: right;
+      }
+
+      
+      ::ng-deep .ant-form-item {
+        display: inline-block;
+        float: right;
+        margin-left: 4px;
+      }
+
+    }
+    
+
+    button {
+      float: right;
+      margin-left: 4px;
+    }
+  }
+}
