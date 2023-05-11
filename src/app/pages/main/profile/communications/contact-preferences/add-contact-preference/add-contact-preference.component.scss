@@ -1,0 +1,111 @@
+  @import'../../../../../../../assets/variable/variable.scss';
+
+  .add-contact-preferences-section {
+      border: 0 solid rgba(0, 0, 0, 0.125);
+      background-color: $white;
+      background-clip: border-box;
+      border-radius: 5px;
+
+      .body-section {
+          padding: 24px;
+
+          form {
+              width: 100%;
+              padding: 0 2px;
+
+              .subHeader {
+                  font-size: 19px;
+                  font-weight: 600;
+              }
+
+              nz-form-label {
+                  font-size: 18px !important;
+                  font-weight: 700 !important;
+                  padding-bottom: 2px;
+              }
+
+              label {
+                  font-size: 14px !important;
+                  font-weight: 600 !important;
+              }
+
+              ::ng-deep .ant-input-prefix {
+                  font-size: x-large;
+                  margin-right: 10px;
+              }
+
+              ::ng-deep .ant-input {
+                  border-radius: 5px !important;
+              }
+
+              ::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+              .ant-picker {
+                  border-radius: 5px !important;
+                  height: 35px !important;
+                  font-size: 16px;
+              }
+
+              ::ng-deep .ant-form-item {
+                  margin-bottom: 0px;
+                  padding: 5px;
+              }
+
+              nz-input-group {
+                  border-radius: 5px;
+
+                  input {
+                      height: 40px;
+                      font-size: 16px;
+                  }
+              }
+
+              nz-time-picker {
+                  width: 90%;
+              }
+
+              .submit-section {
+                  margin-top: 2%;
+
+                  div {
+                      margin: 10px;
+                  }
+              }
+
+              nz-divider {
+                  margin-bottom: 10px;
+              }
+
+              ::ng-deep .ant-divider-horizontal.ant-divider-with-text-left::before {
+                  width: 0% !important;
+
+              }
+
+              ::ng-deep .ant-divider-inner-text {
+                  padding-left: 0px !important;
+              }
+          }
+      }
+  }
+
+  ::ng-deep .ant-modal-footer {
+      display: none;
+  }
+
+  ::ng-deep .ant-modal-header {
+      background-color: $header-of-tab;
+      //  padding: 15px 24px;
+
+      .ant-modal-title {
+          color: $white;
+          font-size: 1.1rem;
+          font-weight: 600;
+      }
+  }
+
+  ::ng-deep .ant-modal-body {
+      padding: 0;
+  }
+
+  ::ng-deep .ant-modal-close {
+      color: $white !important;
+  }

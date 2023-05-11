@@ -13,6 +13,7 @@ import { CompanyModule } from './company/company.module';
 import { AllowancesModule } from './allowances/allowances.module';
 import { ReturnModule } from './return/return.module';
 import { CatalogFeedModule } from './catalog-feed/catalog-feed.module';
+import { CommunicationsModule } from './communications/communications.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -30,6 +31,7 @@ import { CatalogFeedModule } from './catalog-feed/catalog-feed.module';
     AllowancesModule,
     ReturnModule,
     CatalogFeedModule,
+    CommunicationsModule,
   ],
   exports: [],
 })
