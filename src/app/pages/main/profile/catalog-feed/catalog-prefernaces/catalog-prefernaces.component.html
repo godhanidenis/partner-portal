@@ -75,10 +75,10 @@
               />
 
               <ng-template #day let-control>
-                <ng-container *ngIf="control.hasError('minlength')"
+                <ng-container *ngIf="control.hasError('min')"
                   >Please input minimum 1 number!</ng-container
                 >
-                <ng-container *ngIf="control.hasError('maxlength')"
+                <ng-container *ngIf="control.hasError('max')"
                   >Please input maximum 30 number!</ng-container
                 >
                 <ng-container *ngIf="control.hasError('required')"
