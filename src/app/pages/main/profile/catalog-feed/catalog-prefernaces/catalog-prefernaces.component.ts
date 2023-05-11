@@ -20,8 +20,8 @@ export class CatalogrefernacesComponent implements OnInit {
       handlingSetup: new FormControl('no'),
       choose_number_of_days_data: new FormControl('', [ 
         Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(3),
+        Validators.min(1),
+        Validators.max(30),
         Validators.pattern('^[0-9_.]+$'),]),
     });
   }
