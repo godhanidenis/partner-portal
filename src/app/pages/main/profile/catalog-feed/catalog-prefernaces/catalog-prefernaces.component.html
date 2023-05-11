@@ -6,14 +6,14 @@
     <a (click)="backButton('profile')">Catalog & Feed</a>
   </nz-breadcrumb-item>
   <nz-breadcrumb-item>
-    <a>Catalog prefernaces</a>
+    <a>Catalog Prefernaces</a>
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 
 <div class="catalog-section">
   <div class="user-content">
     <div class="tab-header">
-      <span>Catalog prefernaces</span>
+      <span>Catalog Prefernaces</span>
     </div>
   </div>
 
@@ -64,15 +64,30 @@
           [nzSm]="12"
           style="padding: 0 8px"
         >
-          <nz-form-label nzFor="date">Choose number of days data</nz-form-label>
-          <nz-form-control nzErrorTip="Choose number of day is required!">
+          <nz-form-label nzFor="date">Choose number of days </nz-form-label>
+          <nz-form-control  [nzErrorTip]="day">
             <nz-input-group>
               <input
                 type="text"
                 nz-input
-                placeholder="Choose number of day"
+                
                 formControlName="choose_number_of_days_data"
               />
+
+              <ng-template #day let-control>
+                <ng-container *ngIf="control.hasError('minlength')"
+                  >Please input minimum 1 number!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('maxlength')"
+                  >Please input maximum 30 number!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('required')"
+                  >day is required!</ng-container
+                >
+                <ng-container *ngIf="control.hasError('pattern')"
+                  >Please input valid number!</ng-container
+                >
+              </ng-template>
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>

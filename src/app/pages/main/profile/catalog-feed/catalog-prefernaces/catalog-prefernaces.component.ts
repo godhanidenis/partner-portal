@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class CatalogrefernacesComponent implements OnInit {
   showLabelSection: boolean = false;
   catalogForm!: FormGroup;
+ 
 
   constructor(private router: Router) {}
 
@@ -17,7 +18,11 @@ export class CatalogrefernacesComponent implements OnInit {
     this.catalogForm = new FormGroup({
       map: new FormControl(''),
       handlingSetup: new FormControl('no'),
-      choose_number_of_days_data: new FormControl(''),
+      choose_number_of_days_data: new FormControl('', [ 
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(3),
+        Validators.pattern('^[0-9_.]+$'),]),
     });
   }
 

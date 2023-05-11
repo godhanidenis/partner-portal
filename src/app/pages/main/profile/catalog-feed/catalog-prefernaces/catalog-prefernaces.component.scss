@@ -33,19 +33,24 @@
       margin-bottom: 10px;
     }
 
+    ::ng-deep .ant-col-sm-12 {
+      display: flex;
+    }
+
     nz-input-group {
       border-radius: 5px;
 
       input {
         height: 40px;
+        width: 78px;
         font-size: 16px;
+        display: in;
       }
     }
 
     button {
       background-color: #1dbae1;
       color: #fff;
-      float: right;
       border: none;
       color: $white;
       font-weight: 400;
