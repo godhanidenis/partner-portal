@@ -77,6 +77,19 @@
                      margin: 10px;
                  }
              }
+
+             nz-divider {
+                 margin-bottom: 10px;
+             }
+
+             ::ng-deep .ant-divider-horizontal.ant-divider-with-text-left::before {
+                 width: 0% !important;
+
+             }
+
+             ::ng-deep .ant-divider-inner-text {
+                 padding-left: 0px !important;
+             }
          }
 
          button {

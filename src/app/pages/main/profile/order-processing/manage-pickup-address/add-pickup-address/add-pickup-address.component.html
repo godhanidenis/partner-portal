@@ -1,7 +1,7 @@
 <div class="add-pickup-address-section">
   <div class="body-section">
     <form nz-form [formGroup]="ascSetupForm">
-      <span class="subHeader">Contact Info</span>
+      <nz-divider nzText="Contact Info" nzOrientation="left"></nz-divider>
       <div style="margin-bottom: 10px" nz-row [nzGutter]="16">
         <nz-form-item
           nz-col
@@ -97,12 +97,12 @@
               nzType="question-circle"
               nzTheme="twotone"
             ></span>
-            <a
+            <!-- <a
               *ngIf="editData"
               (click)="editPhoneNumber()"
               style="color: black; margin-left: 10px"
               ><span nz-icon nzType="edit" nzTheme="outline"></span
-            ></a>
+            ></a> -->
             <nz-input-group>
               <input
                 formControlName="phone"
@@ -120,7 +120,7 @@
               </ng-template>
             </nz-input-group>
           </nz-form-control>
-          <div *ngIf="showVerifiedNumber" class="verify-section">
+          <!-- <div *ngIf="showVerifiedNumber" class="verify-section">
             <div class="left">
               <a (click)="verifyOTP()">Verify via OTP</a>
             </div>
@@ -130,7 +130,7 @@
             <div class="right">
               <a href="#">Verify via IVR</a>
             </div>
-          </div>
+          </div> -->
         </nz-form-item>
         <nz-form-item
           nz-col
@@ -191,7 +191,11 @@
         </nz-form-item>
       </div>
 
-      <span class="subHeader">Address Details</span>
+      <nz-divider
+        style="margin-top: 35px"
+        nzText="Address Details"
+        nzOrientation="left"
+      ></nz-divider>
       <div nz-row [nzGutter]="16">
         <div nz-col class="gutter-row" [nzLg]="24" [nzXl]="12">
           <div nz-row [nzGutter]="16">
@@ -416,70 +420,6 @@
             </nz-form-item>
           </div>
         </div>
-
-        <!-- <nz-form-item nz-col class="gutter-row" [nzSm]="24">
-          <nz-form-control>
-            <label
-              formControlName="rto_address"
-              nz-checkbox
-              (ngModelChange)="updateAllChecked('rto', $event)"
-              >Use a different address as RTO address</label
-            >
-          </nz-form-control>
-        </nz-form-item>
-
-        <div nz-col class="gutter-row" [nzSm]="24" *ngIf="rtoAddress">
-          <div nz-row>
-            <nz-form-item
-              nz-col
-              class="gutter-row"
-              [nzSm]="24"
-              [nzMd]="11"
-              [nzXl]="6"
-            >
-              <nz-form-control>
-                <nz-form-label nzFor="select_pickup_address"
-                  >Select Pickup Address
-                </nz-form-label>
-                <nz-input-group>
-                  <input
-                    formControlName="select_pickup_address"
-                    type="text"
-                    nz-input
-                    placeholder="Search an existing pickup location"
-                  />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-
-            <div
-              class="center"
-              style="align-items: end; margin-bottom: 16px"
-              nz-col
-              [nzXs]="24"
-              [nzSm]="24"
-              [nzMd]="2"
-            >
-              <span>OR</span>
-            </div>
-
-            <div
-              nz-col
-              class="gutter-row"
-              style="display: flex; align-items: end"
-              [nzSm]="24"
-              [nzMd]="11"
-              [nzXl]="6"
-            >
-              <div style="display: flex; flex-direction: column">
-                <button style="width: 200px" nz-button [nzType]="'primary'">
-                  Add a new RTO address
-                </button>
-                <span>*New address will be saved ass a pickup address</span>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </form>
   </div>
@@ -518,56 +458,3 @@
     </div>
   </div>
 </div>
-
-<nz-modal
-  [(nzVisible)]="verifyOTPVisible"
-  nzTitle="Verify OTP"
-  (nzOnCancel)="handleCancel('')"
->
-  <ng-container *nzModalContent>
-    <div class="add-pickup-address-section">
-      <div class="body-section">
-        <div class="model-content">
-          <span
-            >A 6 digit OTP hab been sent to the mobile number
-            {{ ascSetupForm.value.phone }}. Please enter it below.</span
-          >
-          <form [formGroup]="otpForm">
-            <div class="otp-form">
-              <input type="text" formControlName="one" />
-              <input type="text" formControlName="two" />
-              <input type="text" formControlName="three" />
-              <input type="text" formControlName="four" />
-              <input type="text" formControlName="five" />
-              <input type="text" formControlName="six" />
-            </div>
-            <div style="display: flex; justify-content: center">
-              <a href="#">Resend OTP</a>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="model-footer">
-        <div class="model-action">
-          <!-- <button
-            nz-button
-            nzType="default"
-            style="color: black; margin-right: 5px"
-            (click)="handleCancel('close')"
-          >
-            Cancel
-          </button> -->
-          <button
-            nz-button
-            class="action-btn"
-            (click)="submitOTP()"
-            [nzType]="'primary'"
-            style="width: 150px"
-          >
-            Verify OTP
-          </button>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</nz-modal>

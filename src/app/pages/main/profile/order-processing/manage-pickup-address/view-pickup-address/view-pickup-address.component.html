@@ -1,0 +1,144 @@
+<div class="view-pickup-address-section">
+  <div class="body-section">
+    <nz-list nzBordered nzSize="small">
+      <nz-list-item>
+        <span>Location Id:</span>
+        <span
+          ><b>{{ viewData?.location_id }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Address Nickname:</span>
+        <span
+          ><b>{{ viewData?.address_nickname }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Company Name:</span>
+        <span
+          ><b>{{ viewData?.company_name }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Contact Name:</span>
+        <span
+          ><b>{{ viewData?.contact_name }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Phone:</span>
+        <span
+          ><b>{{ viewData?.phone }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Extension:</span>
+        <span
+          ><b>{{ viewData?.extension }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Email:</span>
+        <span
+          ><b>{{ viewData?.email }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Address Line 1:</span>
+        <span
+          ><b>{{ viewData?.address_line_1 }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Pin Code:</span>
+        <span
+          ><b>{{ viewData?.pin_code }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>City:</span>
+        <span
+          ><b>{{ viewData?.city }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Address Line 2:</span>
+        <span
+          ><b>{{ viewData?.address_line_2 }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>State:</span>
+        <span
+          ><b>{{ viewData?.state }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Open At:</span>
+        <span
+          ><b>{{ viewData?.open_at | date : "hh:mm:ss a" }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Close At:</span>
+        <span
+          ><b>{{ viewData?.close_at | date : "hh:mm:ss a" }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Time Zone:</span>
+        <span
+          ><b>{{ viewData?.time_zone }}</b></span
+        >
+      </nz-list-item>
+      <!-- <nz-list-item>
+        <span>Vendor Address:</span>
+        <span
+          ><b>{{ viewData?.vendor_address }}</b></span
+        >
+      </nz-list-item> -->
+      <nz-list-item>
+        <span>Supplier Name:</span>
+        <span
+          ><b>{{ viewData?.supplier_name }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Supplier GSTIN:</span>
+        <span
+          ><b>{{ viewData?.supplier_gstin }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Status:</span>
+        <span
+          ><b>{{ viewData?.status }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Active Status:</span>
+        <span
+          ><b>{{ viewData?.activeStatus }}</b></span
+        >
+      </nz-list-item>
+      <nz-list-item>
+        <span>Primary Address:</span>
+        <span
+          ><b>{{ viewData?.primaryAddress }}</b></span
+        >
+      </nz-list-item>
+    </nz-list>
+  </div>
+  <div class="model-footer">
+    <div class="model-action">
+      <button
+        nz-button
+        nzType="default"
+        style="color: black; margin-right: 24px"
+        (click)="handleCancel()"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

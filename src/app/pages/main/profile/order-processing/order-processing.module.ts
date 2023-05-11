@@ -12,6 +12,7 @@ import { UploadModelComponent } from './manage-pickup-address/upload-model/uploa
 import { PoLabelAndInvoicePreferencesComponent } from './po-label-and-invoice-preferences/po-label-and-invoice-preferences.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { CourierPreferencesComponent } from './courier-preferences/courier-preferences.component';
+import { ViewPickupAddressComponent } from './manage-pickup-address/view-pickup-address/view-pickup-address.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CourierPreferencesComponent } from './courier-preferences/courier-prefe
     PoLabelAndInvoicePreferencesComponent,
     HolidaysComponent,
     CourierPreferencesComponent,
+    ViewPickupAddressComponent,
   ],
   imports: [
     OrderProcessingRoutingModule,
@@ -31,6 +33,6 @@ import { CourierPreferencesComponent } from './courier-preferences/courier-prefe
     ReactiveFormsModule,
     FormsModule,
   ],
-  exports: [AddPickupAddressComponent],
+  exports: [AddPickupAddressComponent, ViewPickupAddressComponent],
 })
 export class OrderProcessingModule {}

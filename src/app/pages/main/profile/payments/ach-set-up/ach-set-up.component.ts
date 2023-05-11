@@ -88,14 +88,4 @@ export class AchSetUpComponent implements OnInit {
   submitForm() {
     console.log(this.ascSetupForm.value);
   }
-
-  backButton(no: number, path: string) {
-    if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
-      this.router.navigate([`/main/${path}`]);
-    }
-  }
-
-  formatBreadcrumb(data: string) {
-    return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
-  }
 }

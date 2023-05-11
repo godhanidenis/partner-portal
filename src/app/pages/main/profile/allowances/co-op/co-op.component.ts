@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./co-op.component.scss'],
 })
 export class CoOpComponent implements OnInit {
+  addCoOpVisible: boolean = false;
+  addCoOpForm!: FormGroup;
   rebateDate = {
     code: 123,
     calculMethod: 'calculMethod',
@@ -15,9 +18,24 @@ export class CoOpComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addCoOpForm = new FormGroup({
+      discount: new FormControl(0, [Validators.required]),
+      calculMethod: new FormControl('', [Validators.required]),
+    });
+  }
 
   backButton(path: string) {
     this.router.navigate([`/main/${path}`]);
+  }
+
+  addCoOp() {
+    this.addCoOpVisible = true;
+  }
+
+  submit() {}
+
+  handleCancel() {
+    this.addCoOpVisible = false;
   }
 }

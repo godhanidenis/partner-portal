@@ -35,8 +35,4 @@ export class AchVerificationComponent implements OnInit {
   submitForm() {
     console.log(this.ascVerificationForm.value);
   }
-
-  backButton(path: string) {
-    this.router.navigate([`/main/${path}`]);
-  }
 }
