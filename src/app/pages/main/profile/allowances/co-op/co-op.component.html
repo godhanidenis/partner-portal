@@ -16,6 +16,17 @@
     </div>
   </div>
   <div class="body-section">
+    <div class="button-group">
+      <button
+        nz-button
+        class="action-button"
+        nzType="primary"
+        (click)="addCoOp()"
+        style="line-height: 0.5; margin-top: 0; height: 35px"
+      >
+        <span nz-icon nzType="plus"></span> Add CO OP
+      </button>
+    </div>
     <nz-descriptions nzTitle="CO OP Info :">
       <nz-descriptions-item nzTitle="Code"
         ><b>{{ rebateDate.code }}</b></nz-descriptions-item
@@ -28,4 +39,87 @@
       >
     </nz-descriptions>
   </div>
+  <nz-modal
+    [(nzVisible)]="addCoOpVisible"
+    nzTitle="Add CO OP"
+    (nzOnCancel)="handleCancel()"
+  >
+    <ng-container *nzModalContent>
+      <div class="modal-body-section" style="margin-top: 20px">
+        <form [formGroup]="addCoOpForm">
+          <nz-form-item>
+            <nz-form-label nzRequired [nzXl]="6" [nzXs]="24" nzFor="discount"
+              >Discount</nz-form-label
+            >
+            <nz-form-control
+              [nzXl]="16"
+              [nzXs]="24"
+              re
+              nzErrorTip="Discount is required!"
+            >
+              <nz-input-group>
+                <input
+                  formControlName="discount"
+                  type="number"
+                  nz-input
+                  placeholder="Enter Discount"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label
+              nzRequired
+              [nzXl]="6"
+              [nzXs]="24"
+              nzFor="calculMethod"
+              >Calcul Method</nz-form-label
+            >
+            <nz-form-control
+              [nzXl]="16"
+              [nzXs]="24"
+              nzErrorTip="Calcul Method is required!"
+            >
+              <nz-input-group>
+                <nz-select
+                  nzShowSearch
+                  nzAllowClear
+                  nzPlaceHolder="Select a Calcul Method"
+                  formControlName="calculMethod"
+                >
+                  <nz-option nzLabel="Method 1" nzValue="Method 1"></nz-option>
+                  <nz-option nzLabel="Method 2" nzValue="Method 2"></nz-option>
+                  <nz-option nzLabel="Method 3" nzValue="Method 3"></nz-option>
+                </nz-select>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+      <div class="model-footer">
+        <div class="model-action">
+          <button
+            nz-button
+            nzType="default"
+            style="color: black; margin-right: 5px"
+            (click)="handleCancel()"
+          >
+            Cancel
+          </button>
+          <button
+            nz-button
+            class="action-btn"
+            (click)="submit()"
+            [disabled]="!addCoOpForm.valid"
+            [ngClass]="{
+              'button-disabled': !addCoOpForm.valid
+            }"
+            [nzType]="'primary'"
+          >
+            <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </nz-modal>
 </div>

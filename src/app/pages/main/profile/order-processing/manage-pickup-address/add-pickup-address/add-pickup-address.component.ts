@@ -114,21 +114,15 @@ export class AddPickupAddressComponent implements OnInit {
         this.ascSetupForm.controls['vendor_address'].setValue(
           this.editData?.vendor_address
         );
-        // this.ascSetupForm.controls['rto_address'].setValue(
-        //   this.editData?.rto_address
-        // );
         this.ascSetupForm.controls['supplier_name'].setValue(
           this.editData?.supplier_name
         );
         this.ascSetupForm.controls['supplier_gstin'].setValue(
           this.editData?.supplier_gstin
         );
-        // this.ascSetupForm.controls['select_pickup_address'].setValue(
-        //   this.editData?.select_pickup_address
-        // );
 
-        this.showVerifiedNumber = false;
-        this.ascSetupForm.controls['phone'].disable();
+        // this.showVerifiedNumber = false;
+        // this.ascSetupForm.controls['phone'].disable();
         this.ascSetupForm.controls['address_line_1'].disable();
         this.ascSetupForm.controls['pin_code'].disable();
         this.ascSetupForm.controls['city'].disable();
@@ -138,14 +132,14 @@ export class AddPickupAddressComponent implements OnInit {
     }, 100);
   }
 
-  editPhoneNumber() {
-    this.showVerifiedNumber = !this.showVerifiedNumber;
-    if (this.showVerifiedNumber) {
-      this.ascSetupForm.controls['phone'].enable();
-    } else {
-      this.ascSetupForm.controls['phone'].disable();
-    }
-  }
+  // editPhoneNumber() {
+  //   this.showVerifiedNumber = !this.showVerifiedNumber;
+  //   if (this.showVerifiedNumber) {
+  //     this.ascSetupForm.controls['phone'].enable();
+  //   } else {
+  //     this.ascSetupForm.controls['phone'].disable();
+  //   }
+  // }
 
   reTypeAccount(event: any) {
     this.reTypeAccountNumber = event.target.value;
@@ -171,9 +165,9 @@ export class AddPickupAddressComponent implements OnInit {
     console.log(this.ascSetupForm.value);
   }
 
-  verifyOTP() {
-    this.verifyOTPVisible = true;
-  }
+  // verifyOTP() {
+  //   this.verifyOTPVisible = true;
+  // }
 
   submitOTP() {}
 

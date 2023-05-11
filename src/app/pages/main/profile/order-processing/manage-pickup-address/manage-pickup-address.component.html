@@ -26,7 +26,8 @@
       (click)="addPickupAddress('Add', '')"
       nz-button
       nzType="primary"
-      class="Pickup-Address"
+      class="action-button"
+      style="line-height: 0.5; margin-top: 0"
     >
       <span nz-icon nzType="plus"></span> Add Pickup Address
     </button>
@@ -94,8 +95,11 @@
             <nz-switch nzSize="small" [ngModel]="data.activeStatus"></nz-switch>
           </td>
           <td>
-            <a (click)="addPickupAddress('Edit', data)"
+            <a style="margin: 0 5px" (click)="addPickupAddress('Edit', data)"
               ><span nz-icon nzType="edit" nzTheme="outline"></span
+            ></a>
+            <a style="margin: 0 5px" (click)="addPickupAddress('View', data)"
+              ><span nz-icon nzType="eye" nzTheme="outline"></span
             ></a>
           </td>
         </tr>
@@ -146,5 +150,18 @@
 >
   <ng-container *nzModalContent>
     <app-upload-model (closeModel)="handleCancel()"></app-upload-model>
+  </ng-container>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="viewAddressVisible"
+  nzTitle="View Pickup Address"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <app-view-pickup-address
+      [viewData]="viewData"
+      (closeModel)="handleCancel()"
+    ></app-view-pickup-address>
   </ng-container>
 </nz-modal>

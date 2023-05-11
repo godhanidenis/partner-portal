@@ -104,6 +104,8 @@ export class ReturnLocationComponent {
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
+  viewData: any;
+  viewAddressVisible: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -126,12 +128,16 @@ export class ReturnLocationComponent {
       this.uploadModelVisible = true;
     } else {
       this.modelHeader = actionType;
-      if (actionType === 'Edit') {
-        this.editData = data;
-      } else {
+      if (actionType === 'Add') {
         this.editData = '';
+        this.addAddressVisible = true;
+      } else if (actionType === 'Edit') {
+        this.editData = data;
+        this.addAddressVisible = true;
+      } else if (actionType === 'View') {
+        this.viewData = data;
+        this.viewAddressVisible = true;
       }
-      this.addAddressVisible = true;
     }
   }
 
@@ -145,7 +151,7 @@ export class ReturnLocationComponent {
 
   handleCancel(): void {
     this.addAddressVisible = false;
-    this.editAddressVisible = false;
+    this.viewAddressVisible = false;
     this.uploadModelVisible = false;
   }
 }

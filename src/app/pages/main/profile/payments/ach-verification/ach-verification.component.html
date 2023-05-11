@@ -1,21 +1,4 @@
-<!-- <nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Profile</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Payment</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a>ACH Verification</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb> -->
-
 <div class="ach-verification-sections">
-  <!-- <div class="user-content">
-    <div class="tab-header">
-      <span>ACH Verification</span>
-    </div>
-  </div> -->
   <div class="body-section">
     <form nz-form [formGroup]="ascVerificationForm">
       <nz-form-item>
@@ -77,6 +60,7 @@
           <button
             nz-button
             [nzType]="'primary'"
+            class="action-button"
             (click)="submitForm()"
             [disabled]="!ascVerificationForm.valid"
           >

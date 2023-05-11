@@ -1,0 +1,53 @@
+ @import'../../../../../../../assets/variable/variable.scss';
+
+ .view-pickup-address-section {
+     border: 0 solid rgba(0, 0, 0, 0.125);
+     background-color: $white;
+     background-clip: border-box;
+     border-radius: 5px;
+     //  height: 85vh;
+
+     ::ng-deep .ant-divider-horizontal {
+         margin: 0;
+     }
+
+     .body-section {
+         padding: 10px 24px;
+         max-height: 70vh;
+         overflow-y: auto;
+
+         button {
+             width: 150px;
+             padding: 4px 10px;
+             border-radius: 5px;
+         }
+     }
+
+     .button-disabled {
+         background: $header-of-tab;
+         opacity: 0.8;
+     }
+ }
+
+ ::ng-deep .ant-modal-footer {
+     display: none;
+ }
+
+ ::ng-deep .ant-modal-header {
+     background-color: $header-of-tab;
+     //  padding: 15px 24px;
+
+     .ant-modal-title {
+         color: $white;
+         font-size: 1.1rem;
+         font-weight: 600;
+     }
+ }
+
+ ::ng-deep .ant-modal-body {
+     padding: 0;
+ }
+
+ ::ng-deep .ant-modal-close {
+     color: $white !important;
+ }

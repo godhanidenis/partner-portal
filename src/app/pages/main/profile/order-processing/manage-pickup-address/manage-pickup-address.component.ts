@@ -10,14 +10,15 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 export class ManagePickupAddressComponent implements OnInit {
   breadcrumb: any;
   addAddressVisible: boolean = false;
-  editAddressVisible: boolean = false;
+  viewAddressVisible: boolean = false;
+  uploadModelVisible: boolean = false;
   isLoading: boolean = false;
   total = 1;
   pageSize = 10;
   pageIndex = 1;
   pageSizeOptions = [5, 10, 15, 20];
-
-  uploadModelVisible: boolean = false;
+  editData: any;
+  viewData: any;
 
   expandSet = new Set<number>();
   onExpandChange(id: number, checked: boolean): void {
@@ -110,7 +111,7 @@ export class ManagePickupAddressComponent implements OnInit {
       primaryAddress: true,
     },
   ];
-  editData: any;
+
   modelHeader: string = 'Add';
   primaryContact: number = 1;
 
@@ -146,12 +147,16 @@ export class ManagePickupAddressComponent implements OnInit {
       this.uploadModelVisible = true;
     } else {
       this.modelHeader = actionType;
-      if (actionType === 'Edit') {
-        this.editData = data;
-      } else {
+      if (actionType === 'Add') {
         this.editData = '';
+        this.addAddressVisible = true;
+      } else if (actionType === 'Edit') {
+        this.editData = data;
+        this.addAddressVisible = true;
+      } else if (actionType === 'View') {
+        this.viewData = data;
+        this.viewAddressVisible = true;
       }
-      this.addAddressVisible = true;
     }
   }
 
@@ -165,7 +170,7 @@ export class ManagePickupAddressComponent implements OnInit {
 
   handleCancel(): void {
     this.addAddressVisible = false;
-    this.editAddressVisible = false;
+    this.viewAddressVisible = false;
     this.uploadModelVisible = false;
   }
 }
