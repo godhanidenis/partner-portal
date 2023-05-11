@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
-import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
 @Component({
   selector: 'app-add-pickup-address',
@@ -16,7 +15,6 @@ export class AddPickupAddressComponent implements OnInit {
   ascSetupForm!: FormGroup;
   otpForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
-  breadcrumb: any;
   isLoading: boolean = false;
   verifyOTPVisible: boolean = false;
 
@@ -28,13 +26,7 @@ export class AddPickupAddressComponent implements OnInit {
   rtoAddress: boolean = false;
   showVerifiedNumber: boolean = true;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService,
-    private router: Router
-  ) {
-    this.breadcrumb = this.activatedRoute.snapshot.url;
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.ascSetupForm = new FormGroup({
@@ -172,13 +164,7 @@ export class AddPickupAddressComponent implements OnInit {
   submitOTP() {}
 
   backButton(path: string) {
-    if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
-      this.router.navigate([`/main/${path}`]);
-    }
-  }
-
-  formatBreadcrumb(data: string) {
-    return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
+    this.router.navigate([`/main/${path}`]);
   }
 
   handleCancel(type: string) {

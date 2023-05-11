@@ -38,6 +38,13 @@ const routes: Routes = [
         (m) => m.CatalogFeedModule
       ),
   },
+  {
+    path: 'communications',
+    loadChildren: () =>
+      import('./communications/communications.module').then(
+        (m) => m.CommunicationsModule
+      ),
+  },
 ];
 
 @NgModule({
