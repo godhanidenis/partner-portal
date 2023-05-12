@@ -7,7 +7,7 @@
           nz-button
           nzType="primary"
           nzShape="round"
-          (click)="navigatePage('product/add-product')"
+          (click)="navigatePage('product/view-list-filter/add-product')"
         >
           <span nz-icon nzType="plus" nzTheme="outline"></span>
           Add new Product
@@ -81,7 +81,11 @@
             <td>
               <a
                 style="color: black"
-                (click)="navigatePage('product/view-single-product/' + data.id)"
+                (click)="
+                  navigatePage(
+                    'product/view-list-filter/view-single-product/' + data.id
+                  )
+                "
                 >{{ data.productName }}</a
               >
             </td>

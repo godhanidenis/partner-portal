@@ -6,8 +6,11 @@ import { ViewSingleProductComponent } from './view-list-filter/view-single-produ
 
 const routes: Routes = [
   { path: 'view-list-filter', component: ViewListFilterComponent },
-  { path: 'add-product', component: AddEditProductComponent },
-  { path: 'view-single-product/:id', component: ViewSingleProductComponent },
+  { path: 'view-list-filter/add-product', component: AddEditProductComponent },
+  {
+    path: 'view-list-filter/view-single-product/:id',
+    component: ViewSingleProductComponent,
+  },
 ];
 
 @NgModule({
