@@ -7,9 +7,11 @@ import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.mo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductRoutingModule } from './product-routing.module';
 import { ViewListFilterComponent } from './view-list-filter/view-list-filter.component';
+import { AddEditProductComponent } from './view-list-filter/add-edit-product/add-edit-product.component';
+import { ViewSingleProductComponent } from './view-list-filter/view-single-product/view-single-product.component';
 
 @NgModule({
-  declarations: [ViewListFilterComponent],
+  declarations: [ViewListFilterComponent, AddEditProductComponent, ViewSingleProductComponent],
   imports: [
     ProductRoutingModule,
     NzLayoutModule,

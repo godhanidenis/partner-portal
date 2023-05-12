@@ -3,7 +3,12 @@
     <div class="user-content">
       <div class="tab-header">
         <span>View Products</span>
-        <button nz-button nzType="primary" nzShape="round">
+        <button
+          nz-button
+          nzType="primary"
+          nzShape="round"
+          (click)="navigatePage('product/add-product')"
+        >
           <span nz-icon nzType="plus" nzTheme="outline"></span>
           Add new Product
         </button>
@@ -73,7 +78,13 @@
         <tbody>
           <tr *ngFor="let data of nzTable.data">
             <td>{{ data.mpn }}</td>
-            <td>{{ data.productName }}</td>
+            <td>
+              <a
+                style="color: black"
+                (click)="navigatePage('product/view-single-product/' + data.id)"
+                >{{ data.productName }}</a
+              >
+            </td>
             <td>{{ data.unitPrice }}</td>
             <td>{{ data.brand }}</td>
             <td>{{ data.productStatus }}</td>

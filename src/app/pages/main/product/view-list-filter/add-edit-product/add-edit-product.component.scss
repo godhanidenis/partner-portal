@@ -1,0 +1,60 @@
+ @import'../../../../../../assets/variable/variable.scss';
+
+ .add-product-section {
+     border: 0 solid rgba(0, 0, 0, 0.125);
+     background-color: $white;
+     background-clip: border-box;
+     border-radius: 5px;
+     min-height: 95%;
+
+     .display {
+         max-height: 78vh;
+         overflow-y: scroll;
+     }
+
+     .body-section {
+         padding: 10px 24px;
+
+         form {
+             width: 100%;
+             padding: 0 2px;
+
+             nz-form-label {
+                 font-size: 18px !important;
+                 font-weight: 600 !important;
+                 padding-bottom: 2px;
+             }
+
+             ::ng-deep .ant-input-prefix {
+                 font-size: x-large;
+                 margin-right: 10px;
+             }
+
+             ::ng-deep .ant-input {
+                 border-radius: 5px !important;
+             }
+
+             ::ng-deep .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+             .ant-picker {
+                 border-radius: 5px !important;
+                 height: 35px !important;
+                 font-size: 16px;
+             }
+
+             ::ng-deep .ant-form-item {
+                 margin-bottom: 0px;
+                 padding: 5px;
+             }
+
+             nz-input-group {
+                 border-radius: 5px;
+
+                 input {
+                     height: 40px;
+                     font-size: 16px;
+                 }
+             }
+         }
+     }
+
+ }

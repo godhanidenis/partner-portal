@@ -164,10 +164,6 @@ export class ManagePickupAddressComponent implements OnInit {
     this.router.navigate([`/main/${path}`]);
   }
 
-  formatBreadcrumb(data: string) {
-    return (data.charAt(0).toUpperCase() + data.slice(1)).replace(/-/g, ' ');
-  }
-
   handleCancel(): void {
     this.addAddressVisible = false;
     this.viewAddressVisible = false;
