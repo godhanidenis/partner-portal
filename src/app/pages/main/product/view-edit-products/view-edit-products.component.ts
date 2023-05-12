@@ -27,8 +27,8 @@ export class ViewEditProductsComponent implements OnInit {
     },
     {
       mpn: 'circle',
-      productName: 'keyboard',
-      unitPrice: '1340',
+      productName: 'keyboard', 
+      unitPrice: '1340', 
       brand: 'cruse',
       productStatus: 'yes',
       asinStatus: 'First Copy',
@@ -55,4 +55,6 @@ export class ViewEditProductsComponent implements OnInit {
       search: new FormControl(''),
     })
   }
+
+
 }
