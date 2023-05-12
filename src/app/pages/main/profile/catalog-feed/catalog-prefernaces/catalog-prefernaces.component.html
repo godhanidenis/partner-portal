@@ -49,6 +49,7 @@
             <nz-radio-group
               (ngModelChange)="selectPrepaidLabel($event)"
               formControlName="handlingSetup"
+              
             >
               <label nz-radio nzValue="yes">Account level</label>
               <label nz-radio nzValue="no">Product level</label>
@@ -68,7 +69,7 @@
           <nz-form-control  [nzErrorTip]="day">
             <nz-input-group>
               <input
-                type="text"
+                type="number"
                 nz-input
                 
                 formControlName="choose_number_of_days_data"
@@ -97,10 +98,13 @@
           <button
             nz-button
             class="login-form-button login-form-margin"
+            style="height: 35px"
             class="submit-btn"
           >
-            Submit
+          <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
           </button>
+
+         
         </div>
       </div>
     </form>

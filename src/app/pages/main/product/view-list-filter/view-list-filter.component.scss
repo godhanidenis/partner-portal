@@ -7,6 +7,11 @@
   border-radius: 5px;
   min-height: 100%;
 
+
+  nz-select {
+    width: 100%;
+  }
+
   .filter-section {
     height: 90%;
     width: 0;
@@ -81,6 +86,8 @@
       .action {
         display: flex;
         justify-content: end;
+
+       
       }
 
       form {
@@ -90,6 +97,7 @@
           float: right;
         }
 
+      
 
         ::ng-deep .ant-form-item {
           display: inline-block;
@@ -97,9 +105,16 @@
           margin-left: 4px;
         }
 
+       
+       
+    
+        
       }
+    
 
+     
 
+      
       button {
         float: right;
         margin-left: 4px;
@@ -107,4 +122,28 @@
     }
   }
 
+
+  
+}
+
+::ng-deep .ant-modal-header {
+  background-color: $header-of-tab;
+  //  padding: 15px 24px;
+
+  .ant-modal-title {
+    color: $white;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+}
+
+::ng-deep .ant-modal-footer {
+  display: none;
+}
+
+::ng-deep .ant-modal-close-x {
+  color: $white;
+}
+::ng-deep .ant-modal-body {
+  padding: 24px 0px 17px 24px;
 }

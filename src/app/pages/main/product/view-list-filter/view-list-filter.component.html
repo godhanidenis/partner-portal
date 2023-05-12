@@ -12,7 +12,7 @@
 
     <div class="view-edit-products-section-content">
       <div class="action">
-        <nz-badge [nzShowZero]="false" [nzCount]="1">
+        <nz-badge [nzShowZero]="false" [nzCount]="beagetotal">
           <button
             (click)="openNav()"
             nz-button
@@ -29,8 +29,54 @@
           nzType="primary"
           nzShape="round"
         >
-          <span nz-icon nzType="upload" nzTheme="outline"></span>
+          <span nz-icon nzType="upload" nzTheme="outline"  (click)="showUploadModal()"></span>
         </button>
+
+        <form nz-form [formGroup]="uploadmodal">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group >
+                <nz-modal [(nzVisible)]="isVisible" nzTitle="Which item do you want to export?" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                  <ng-container *nzModalContent>
+                    <nz-radio-group style="display: grid;" formControlName="export" >
+                      <label nz-radio nzValue="A">All</label>
+                      <label nz-radio nzValue="B">Filtered(0)</label>
+                      <label nz-radio nzValue="C">Selected(0)</label>
+                     
+                      
+                    </nz-radio-group>
+                    <h4 style="margin-top: 12px;">Your items and all their data will be downloaded as a CSV file</h4>
+
+                    <div class="model-footer" style="padding: 0px;">
+                      <div class="model-action">
+                        <button
+                          nz-button
+                          nzType="default"
+                          style="color: black; margin-right: 5px"
+                          (click)="handleCancel()"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          nz-button
+                          class="action-btn"
+                          [nzType]="'primary'"
+                          style="width: 100px"
+                        >
+                          Upload
+                        </button>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  
+                </nz-modal>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+
+
         <form nz-form [formGroup]="viewEditProducts">
           <nz-form-item>
             <nz-form-control nzErrorTip="Please input your valid code!">
@@ -83,60 +129,70 @@
           </tr>
         </tbody>
       </nz-table>
+
+
+
+     
+      
     </div>
+
+
+  
+    
+
   </div>
   <div #mySidenav class="filter-section">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
       >&times;</a
     >
+    <form nz-form [formGroup]="filter">
     <div class="filter-content">
-      <div class="example-input">
-        <input
-          placeholder="Select a Brand"
-          nz-input
-          [(ngModel)]="inputValue"
-          (ngModelChange)="onChange($event)"
-          [nzAutocomplete]="auto"
-        />
-        <nz-autocomplete
-          [nzDataSource]="filteredOptions"
-          #auto
-        ></nz-autocomplete>
-      </div>
+      <!-- <div class="example-input">
+        <nz-select nzMode="multiple" nzPlaceHolder="Inserted are removed"   >
+          <nz-option *ngFor="let option of listOfOption" [nzLabel]="option" [nzValue]="option"></nz-option>
+        </nz-select>
+      </div> -->
+
+      <nz-select nzAllowClear nzPlaceHolder="Select A Brand"  (ngModelChange)="change($event,'brand')" formControlName="brand">
+        <nz-option nzLabel="Sony" nzValue="sony"></nz-option>
+        <nz-option nzLabel="Dell" nzValue="dell"></nz-option>
+        <nz-option nzLabel="Samsung" nzValue="samsung"></nz-option>
+      </nz-select>
 
       <h3>Inventory :</h3>
-      <nz-radio-group>
-        <label nz-radio nzValue="inStock">In Stock</label>
+      <nz-radio-group  (ngModelChange)="change($event,'inventory')" formControlName="inventory">
+        <label nz-radio nzValue="inStock" >In Stock</label>
         <label nz-radio nzValue="outOfStock">Out Of Stock</label>
       </nz-radio-group>
 
       <h3>Now View :</h3>
-      <nz-select nzAllowClear nzPlaceHolder="Select A View">
+      <nz-select nzAllowClear nzPlaceHolder="Select A View"  (ngModelChange)="change($event,'viewSelect')" formControlName="viewSelect">
         <nz-option nzLabel="Collection" nzValue="collection"></nz-option>
         <nz-option nzLabel="Category" nzValue="category"></nz-option>
         <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
       </nz-select>
 
       <h3>Asin Status :</h3>
-      <nz-radio-group>
+      <nz-radio-group   (ngModelChange)="change($event,'asin')" formControlName="asin">
         <label nz-radio nzValue="approved">Approved</label>
-        <label nz-radio nzValue="notApproved">Not Approved</label>
+        <label nz-radio nzValue="notapproved">Not Approved</label>
       </nz-radio-group>
 
       <h3>Status :</h3>
-      <nz-select nzAllowClear nzPlaceHolder="Select A Status">
+      <nz-select nzAllowClear nzPlaceHolder="Select A Status"  (ngModelChange)="change($event,'status')" formControlName="status">
         <nz-option nzLabel="Discontented" nzValue="discontented"></nz-option>
         <nz-option nzLabel="Active" nzValue="active"></nz-option>
         <nz-option nzLabel="Restricted" nzValue="restricted"></nz-option>
-        <nz-option nzLabel="Suppressed" nzValue="suppressed"></nz-option>
-        <nz-option nzLabel="LTL" nzValue="ltl"></nz-option>
+     
       </nz-select>
 
       <h3>MAP :</h3>
-      <nz-radio-group>
+      <nz-radio-group   (ngModelChange)="change($event,'map')" formControlName="map">
         <label nz-radio nzValue="true">Yes</label>
         <label nz-radio nzValue="false">No</label>
       </nz-radio-group>
     </div>
+    </form>
   </div>
 </div>
+{{beagetotal}}
