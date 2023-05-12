@@ -1,72 +1,142 @@
 <div class="view-edit-products-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>View / Edit Products</span>
-      <button nz-button nzType="primary" nzShape="round">
-        <span nz-icon nzType="plus" nzTheme="outline"></span>
-        Add new Product
-      </button>
+  <div #content class="content-section">
+    <div class="user-content">
+      <div class="tab-header">
+        <span>View / Edit Products</span>
+        <button nz-button nzType="primary" nzShape="round">
+          <span nz-icon nzType="plus" nzTheme="outline"></span>
+          Add new Product
+        </button>
+      </div>
+    </div>
+
+    <div class="view-edit-products-section-content">
+      <div class="action">
+        <nz-badge [nzShowZero]="false" [nzCount]="1">
+          <button
+            (click)="openNav()"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+          >
+            <span nz-icon nzType="filter" nzTheme="outline"></span>
+            Filter
+          </button>
+        </nz-badge>
+        <button
+          style="margin: 0 10px"
+          nz-button
+          nzType="primary"
+          nzShape="round"
+        >
+          <span nz-icon nzType="upload" nzTheme="outline"></span>
+        </button>
+        <form nz-form [formGroup]="viewEditProducts">
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your valid code!">
+              <nz-input-group nzPrefixIcon="search" class="search">
+                <input
+                  formControlName="search"
+                  nz-input
+                  placeholder="Search..."
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+
+      <nz-table
+        #nzTable
+        nzTableLayout="fixed"
+        nzShowSizeChanger
+        [nzPageSizeOptions]="pageSizeOptions"
+        [nzFrontPagination]="false"
+        [nzTotal]="total"
+        [nzPageSize]="pageSize"
+        [nzPageIndex]="pageIndex"
+        [nzLoading]="isLoading"
+        [nzData]="data"
+      >
+        <thead>
+          <tr>
+            <th>MPN</th>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Brand</th>
+            <th>Product Status</th>
+            <th>ASIN Status</th>
+            <th>Inventory</th>
+            <th>MAP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of nzTable.data">
+            <td>{{ data.mpn }}</td>
+            <td>{{ data.productName }}</td>
+            <td>{{ data.unitPrice }}</td>
+            <td>{{ data.brand }}</td>
+            <td>{{ data.productStatus }}</td>
+            <td>{{ data.asinStatus }}</td>
+            <td>{{ data.inventory }}</td>
+            <td>{{ data.map }}</td>
+          </tr>
+        </tbody>
+      </nz-table>
     </div>
   </div>
-
-  <div class="view-edit-products-section-content">
-    <form nz-form [formGroup]="viewEditProducts">
-      <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your valid code!">
-          <nz-input-group nzPrefixIcon="search" class="search">
-            <input formControlName="search" nz-input placeholder="Search data" />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-
-    <button nz-button nzType="primary" nzShape="round">
-      <span nz-icon nzType="upload" nzTheme="outline"></span>
-    </button>
-    <button nz-button nzType="primary" nzShape="round">
-      <span nz-icon nzType="filter" nzTheme="outline"></span>
-      Filter
-    </button>
-
-    <nz-table
-      #nzTable
-      nzOuterBordered
-      nzTableLayout="fixed"
-      nzShowSizeChanger
-      [nzPageSizeOptions]="pageSizeOptions"
-      [nzFrontPagination]="false"
-      [nzTotal]="total"
-      [nzPageSize]="pageSize"
-      [nzPageIndex]="pageIndex"
-      [nzLoading]="isLoading"
-      [nzData]="data"
+  <div #mySidenav class="filter-section">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
+      >&times;</a
     >
-      <thead>
-        <tr>
-          <th>MPN</th>
-          <th>Product Name</th>
-          <th>Unit Price</th>
-          <th>Brand</th>
-          <th>Product Status</th>
-          <th>ASIN Status</th>
-          <th>Inventory</th>
-          <th>MAP</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of nzTable.data">
-          <td>{{ data.mpn }}</td>
-          <td>{{ data.productName }}</td>
-          <td>{{ data.unitPrice }}</td>
-          <td>{{ data.brand }}</td>
-          <td>{{ data.productStatus }}</td>
-          <td>{{ data.asinStatus }}</td>
-          <td>{{ data.inventory }}</td>
-          <td>{{ data.map }}</td>
-        </tr>
-      </tbody>
-    </nz-table>
+    <div class="filter-content">
+      <div class="example-input">
+        <input
+          placeholder="Select a Brand"
+          nz-input
+          [(ngModel)]="inputValue"
+          (ngModelChange)="onChange($event)"
+          [nzAutocomplete]="auto"
+        />
+        <nz-autocomplete
+          [nzDataSource]="filteredOptions"
+          #auto
+        ></nz-autocomplete>
+      </div>
 
-   
+      <h3>Inventory :</h3>
+      <nz-radio-group>
+        <label nz-radio nzValue="inStock">In Stock</label>
+        <label nz-radio nzValue="outOfStock">Out Of Stock</label>
+      </nz-radio-group>
+
+      <h3>Now View :</h3>
+      <nz-select nzAllowClear nzPlaceHolder="Select A View">
+        <nz-option nzLabel="Collection" nzValue="collection"></nz-option>
+        <nz-option nzLabel="Category" nzValue="category"></nz-option>
+        <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
+      </nz-select>
+
+      <h3>Asin Status :</h3>
+      <nz-radio-group>
+        <label nz-radio nzValue="approved">Approved</label>
+        <label nz-radio nzValue="notApproved">Not Approved</label>
+      </nz-radio-group>
+
+      <h3>Status :</h3>
+      <nz-select nzAllowClear nzPlaceHolder="Select A Status">
+        <nz-option nzLabel="Discontented" nzValue="discontented"></nz-option>
+        <nz-option nzLabel="Active" nzValue="active"></nz-option>
+        <nz-option nzLabel="Restricted" nzValue="restricted"></nz-option>
+        <nz-option nzLabel="Suppressed" nzValue="suppressed"></nz-option>
+        <nz-option nzLabel="LTL" nzValue="ltl"></nz-option>
+      </nz-select>
+
+      <h3>MAP :</h3>
+      <nz-radio-group>
+        <label nz-radio nzValue="true">Yes</label>
+        <label nz-radio nzValue="false">No</label>
+      </nz-radio-group>
+    </div>
   </div>
 </div>

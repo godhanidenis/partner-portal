@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,12 +7,18 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./view-edit-products.component.scss'],
 })
 export class ViewEditProductsComponent implements OnInit {
+  @ViewChild('content', { static: false }) contentSection!: ElementRef;
+  @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
+
+  viewEditProducts!: FormGroup;
   isLoading: boolean = false;
   total = 1;
   pageSize = 10;
   pageIndex = 1;
   pageSizeOptions = [5, 10, 15, 20];
-  viewEditProducts!: FormGroup;
+  inputValue?: string;
+  filteredOptions: string[] = [];
+  options = ['Burns Bay Road', 'Downing Street', 'Wall Street'];
 
   data = [
     {
@@ -23,7 +29,7 @@ export class ViewEditProductsComponent implements OnInit {
       productStatus: 'yes',
       asinStatus: 'deep Copy',
       inventory: 'yes',
-      map: 'New York'
+      map: 'New York',
     },
     {
       mpn: 'circle',
@@ -33,7 +39,7 @@ export class ViewEditProductsComponent implements OnInit {
       productStatus: 'yes',
       asinStatus: 'First Copy',
       inventory: 'no',
-      map: 'paris'
+      map: 'paris',
     },
     {
       mpn: 'build',
@@ -43,17 +49,34 @@ export class ViewEditProductsComponent implements OnInit {
       productStatus: 'yes',
       asinStatus: 'deep Copy',
       inventory: 'yes',
-      map: 'dubai'
+      map: 'dubai',
     },
-    
   ];
 
-  constructor() {}
+  constructor() {
+    this.filteredOptions = this.options;
+  }
 
   ngOnInit(): void {
     this.viewEditProducts = new FormGroup({
       search: new FormControl(''),
-    })
+    });
+  }
+
+  onChange(value: string): void {
+    this.filteredOptions = this.options.filter(
+      (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    );
+  }
+
+  openNav() {
+    this.sidenavSection.nativeElement.style.width = '280px';
+    this.contentSection.nativeElement.style.marginRight = '280px';
+  }
+
+  closeNav() {
+    this.sidenavSection.nativeElement.style.width = '0';
+    this.contentSection.nativeElement.style.marginRight = '0';
   }
 
 
