@@ -1,0 +1,131 @@
+<div class="add-contact-preferences-section">
+  <div class="body-section">
+    <form nz-form [formGroup]="addContactPreferencesForm">
+      <nz-form-item>
+        <nz-form-label [nzXs]="9" nzRequired>First Name</nz-form-label>
+        <nz-form-control nzErrorTip="First Name is required!">
+          <nz-input-group>
+            <input
+              formControlName="first_name"
+              type="text"
+              nz-input
+              placeholder="Enter An First Name"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="9" nzRequired>Last Name</nz-form-label>
+        <nz-form-control nzErrorTip="Last Name is required!">
+          <nz-input-group>
+            <input
+              formControlName="last_name"
+              type="text"
+              nz-input
+              placeholder="Enter An Last Name"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="9" nzRequired>Designation</nz-form-label>
+        <nz-form-control nzErrorTip="Designation is required!">
+          <nz-input-group>
+            <input
+              formControlName="designation"
+              type="text"
+              nz-input
+              placeholder="Enter An Designation"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="9" nzRequired>Work Phone</nz-form-label>
+        <nz-form-control nzErrorTip="Work Phone is required!">
+          <nz-input-group>
+            <input
+              formControlName="work_phone"
+              type="number"
+              nz-input
+              placeholder="Enter An Work Phone"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="9" nzRequired
+          >Work Phone Extension</nz-form-label
+        >
+        <nz-form-control nzErrorTip="Work Phone Extension is required!">
+          <nz-input-group>
+            <input
+              formControlName="work_phone_extension"
+              type="number"
+              nz-input
+              placeholder="Enter An Work Phone Extension"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="9" nzRequired>Mobile</nz-form-label>
+        <nz-form-control nzErrorTip="Mobile is required!">
+          <nz-input-group>
+            <input
+              formControlName="mobile"
+              type="number"
+              nz-input
+              placeholder="Enter An Mobile"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzXs]="9" nzRequired>Email</nz-form-label>
+        <nz-form-control nzErrorTip="Email is required!">
+          <nz-input-group>
+            <input
+              formControlName="email"
+              type="text"
+              nz-input
+              placeholder="Enter An Email"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <div class="model-footer">
+    <div class="model-action">
+      <button
+        nz-button
+        nzType="default"
+        style="color: black; margin-right: 5px"
+        (click)="handleCancel()"
+      >
+        Cancel
+      </button>
+      <button
+        nz-button
+        class="action-btn"
+        (click)="submitForm()"
+        [disabled]="!addContactPreferencesForm.valid || isLoading"
+        [ngClass]="{
+          'button-disabled': !addContactPreferencesForm.valid || isLoading
+        }"
+        [nzType]="'primary'"
+      >
+        <div *ngIf="isLoading">
+          <ng-template #indicatorTemplate
+            ><span style="font-size: 16px" nz-icon nzType="loading"></span>
+          </ng-template>
+          <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+        </div>
+        <span *ngIf="!isLoading"
+          ><span nz-icon nzType="file-text" nzTheme="outline"></span> Save</span
+        >
+      </button>
+    </div>
+  </div>
+</div>

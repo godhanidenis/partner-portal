@@ -1,0 +1,93 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Communication</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>Contact Preferences</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="contact-preferences-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Return Location</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <div class="button-group">
+      <button
+        (click)="addContactPreferences('Add', '')"
+        nz-button
+        nzType="primary"
+        class="action-button"
+        style="line-height: 0.5; margin-top: 0"
+      >
+        <span nz-icon nzType="plus"></span> Add Contact Preferences
+      </button>
+    </div>
+
+    <nz-table
+      #nzTable
+      nzOuterBordered
+      [nzData]="contactPreferencesList"
+      nzTableLayout="fixed"
+      nzShowSizeChanger
+      [nzPageSizeOptions]="pageSizeOptions"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzLoading]="isLoading"
+    >
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Designation</th>
+          <th>Work phone</th>
+          <th>Work phone extension</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-data [ngForOf]="contactPreferencesList">
+          <tr>
+            <td>{{ data?.first_name }}</td>
+            <td>{{ data?.last_name }}</td>
+            <td>{{ data?.designation }}</td>
+            <td>{{ data?.work_phone }}</td>
+            <td>{{ data?.work_phone_extension }}</td>
+            <td>{{ data?.mobile }}</td>
+            <td>{{ data?.email }}</td>
+            <td>
+              <a
+                style="margin: 0 5px"
+                (click)="addContactPreferences('Edit', data)"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [(nzVisible)]="addContactPreferencesVisible"
+  [nzTitle]="modelHeader + ' Contact Preferences'"
+  (nzOnCancel)="handleCancel()"
+>
+  <div *nzModalContent>
+    <app-add-contact-preference
+      [editData]="editData"
+      (closeModel)="handleCancel()"
+    ></app-add-contact-preference>
+  </div>
+</nz-modal>
