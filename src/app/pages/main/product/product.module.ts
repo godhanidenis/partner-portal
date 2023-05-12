@@ -6,12 +6,10 @@ import { CommonModule } from '@angular/common';
 import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductRoutingModule } from './product-routing.module';
-import { ViewEditProductsComponent } from './view-edit-products/view-edit-products.component';
-
-
+import { ViewListFilterComponent } from './view-list-filter/view-list-filter.component';
 
 @NgModule({
-  declarations: [ViewEditProductsComponent],
+  declarations: [ViewListFilterComponent],
   imports: [
     ProductRoutingModule,
     NzLayoutModule,

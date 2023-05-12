@@ -2,11 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-view-edit-products',
-  templateUrl: './view-edit-products.component.html',
-  styleUrls: ['./view-edit-products.component.scss'],
+  selector: 'app-view-list-filter',
+  templateUrl: './view-list-filter.component.html',
+  styleUrls: ['./view-list-filter.component.scss'],
 })
-export class ViewEditProductsComponent implements OnInit {
+export class ViewListFilterComponent implements OnInit {
   @ViewChild('content', { static: false }) contentSection!: ElementRef;
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 

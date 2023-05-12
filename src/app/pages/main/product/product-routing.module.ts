@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ViewEditProductsComponent } from './view-edit-products/view-edit-products.component';
+import { ViewListFilterComponent } from './view-list-filter/view-list-filter.component';
 
 const routes: Routes = [
- 
-  { path: '', component: ViewEditProductsComponent },
+  { path: 'view-list-filter', component: ViewListFilterComponent },
 ];
 
 @NgModule({
