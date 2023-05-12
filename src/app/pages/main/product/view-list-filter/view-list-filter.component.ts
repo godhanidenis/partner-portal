@@ -33,8 +33,8 @@ export class ViewListFilterComponent implements OnInit {
     },
     {
       mpn: 'circle',
-      productName: 'keyboard',
-      unitPrice: '1340',
+      productName: 'keyboard', 
+      unitPrice: '1340', 
       brand: 'cruse',
       productStatus: 'yes',
       asinStatus: 'First Copy',
@@ -78,4 +78,6 @@ export class ViewListFilterComponent implements OnInit {
     this.sidenavSection.nativeElement.style.width = '0';
     this.contentSection.nativeElement.style.marginRight = '0';
   }
+
+
 }
