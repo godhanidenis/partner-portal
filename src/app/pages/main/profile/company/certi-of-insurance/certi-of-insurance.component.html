@@ -14,7 +14,6 @@
   <div class="user-content">
     <div class="tab-header">
       <span>Certificate of Insurance</span>
-      
     </div>
   </div>
 
@@ -25,18 +24,19 @@
           certiOfInsuranceDate.producerNameAddress
         }}</b></nz-descriptions-item
       >
-     
-      <nz-descriptions-item nzTitle="Document Type" 
-        ><b >{{ certiOfInsuranceDate.documentType }} 
+
+      <nz-descriptions-item nzTitle="Document Type"
+        ><b
+          >{{ certiOfInsuranceDate.documentType }}
 
           <a> download</a>
         </b></nz-descriptions-item
       >
     </nz-descriptions>
 
-      <div>
-        <nz-descriptions class="vertical-sec">
-          <nz-descriptions-item nzTitle="Insured Identification Number"
+    <div>
+      <nz-descriptions class="vertical-sec">
+        <nz-descriptions-item nzTitle="Insured Identification Number"
           ><b>{{
             certiOfInsuranceDate.insuredNameAddress
           }}</b></nz-descriptions-item
@@ -45,21 +45,14 @@
           ><b>{{ certiOfInsuranceDate.dateInsured }}</b></nz-descriptions-item
         >
         <nz-descriptions-item nzTitle="Classification"
-          ><b>{{ certiOfInsuranceDate.classification }}</b></nz-descriptions-item
+          ><b>{{
+            certiOfInsuranceDate.classification
+          }}</b></nz-descriptions-item
         >
         <nz-descriptions-item nzTitle="For any changes in COI"
           ><a>click here</a></nz-descriptions-item
-        >  
-        
-
-        </nz-descriptions>
-
-
-      </div>
-
-      
-     
-
-    
+        >
+      </nz-descriptions>
+    </div>
   </div>
 </div>

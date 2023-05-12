@@ -64,6 +64,12 @@
                  height: 35px !important;
              }
          }
+
+         .button-disabled {
+             background: $darkBlue;
+             opacity: 0.8;
+             color: $white;
+         }
      }
  }
 

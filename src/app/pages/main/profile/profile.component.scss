@@ -8,7 +8,7 @@
      min-height: 100%;
 
      a {
-         color: $theme-color;
+         color: $darkBlue;
      }
 
      .body-section {
@@ -24,11 +24,11 @@
      ::ng-deep .ant-menu-light .ant-menu-item:hover,
 
      .ant-menu-light .ant-menu-submenu-title:hover {
-         color: $theme-color !important;
+         color: $darkBlue !important;
      }
 
      ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
-         color: $theme-color !important;
+         color: $darkBlue !important;
      }
 
      ::ng-deep .ant-card-head-title {
@@ -75,11 +75,11 @@
      }
 
      ::ng-deep .ant-menu-submenu-arrow::before {
-         color: $theme-color;
+         color: $darkBlue;
      }
 
      ::ng-deep .ant-menu-submenu-arrow::after {
-         color: $theme-color;
+         color: $darkBlue;
      }
 
 

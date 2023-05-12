@@ -1,0 +1,32 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('product/view-list-filter')">Product</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('product/view-list-filter')">View List Filter</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>View Single Product</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="view-single-product-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>View Single Product</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <nz-tabset nzType="card">
+      <nz-tab nzTitle="Edit Product">
+        <app-add-edit-product [editSection]="true"></app-add-edit-product>
+      </nz-tab>
+      <nz-tab nzTitle="Insights / Analytics">
+        <h2>Coming Soon</h2>
+      </nz-tab>
+      <nz-tab nzTitle="History">
+        <h2>Coming Soon</h2>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>

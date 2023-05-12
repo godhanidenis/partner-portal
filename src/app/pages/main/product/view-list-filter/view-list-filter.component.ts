@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-list-filter',
@@ -35,6 +36,7 @@ export class ViewListFilterComponent implements OnInit {
 
   data = [
     {
+      id: 1,
       mpn: 'powershell',
       productName: 'sunglass',
       unitPrice: '1200',
@@ -45,6 +47,7 @@ export class ViewListFilterComponent implements OnInit {
       map: 'New York',
     },
     {
+      id: 2,
       mpn: 'circle',
       productName: 'keyboard',
       unitPrice: '1340',
@@ -55,6 +58,7 @@ export class ViewListFilterComponent implements OnInit {
       map: 'paris',
     },
     {
+      id: 3,
       mpn: 'build',
       productName: 'bottle',
       unitPrice: '1780',
@@ -66,7 +70,7 @@ export class ViewListFilterComponent implements OnInit {
     },
   ];
 
-  constructor() {
+  constructor(private router: Router) {
     this.filteredOptions = this.options;
   }
 
@@ -85,6 +89,10 @@ export class ViewListFilterComponent implements OnInit {
       status: new FormControl(''),
       map: new FormControl(''),
     });
+  }
+
+  navigatePage(path: string) {
+    this.router.navigate([`/main/${path}`]);
   }
 
   onChange(value: string): void {
