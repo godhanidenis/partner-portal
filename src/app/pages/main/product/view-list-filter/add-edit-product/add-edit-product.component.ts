@@ -43,10 +43,10 @@ export class AddEditProductComponent implements OnInit {
       sales_tier: new FormControl('', [Validators.maxLength(34)]),
       unit_price: new FormControl('', [
         Validators.required,
-        Validators.max(99),
+        Validators.pattern('^[0-9]+(.[0-9]{1,2})?$'),
       ]),
-      map: new FormControl('', [Validators.max(99)]),
-      msrp: new FormControl('', [Validators.max(99)]),
+      map: new FormControl('', [Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]),
+      msrp: new FormControl('', [Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]),
       handling_time: new FormControl('', [
         Validators.required,
         Validators.min(1),
@@ -60,7 +60,7 @@ export class AddEditProductComponent implements OnInit {
       ]),
       shipping_dimensions_of_each_box: new FormControl('', [
         Validators.required,
-        Validators.max(99),
+        Validators.pattern('^[0-9]+(.[0-9]{1,2})?$'),
       ]),
       product_status: new FormControl('', [Validators.required]),
       asin_status: new FormControl('', [Validators.required]),

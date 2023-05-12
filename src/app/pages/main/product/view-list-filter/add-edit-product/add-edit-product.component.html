@@ -207,7 +207,7 @@
             <nz-form-label nzFor="unit_price"
               >Unit Price<span style="color: red; font-weight: 500">*</span>
             </nz-form-label>
-            <nz-input-group>
+            <nz-input-group nzPrefix="$">
               <input
                 formControlName="unit_price"
                 type="number"
@@ -215,8 +215,8 @@
                 placeholder="Enter Unit Price"
               />
               <ng-template #unit_price let-control>
-                <ng-container *ngIf="control.hasError('max')"
-                  >Please input maximum 2 characters!</ng-container
+                <ng-container *ngIf="control.hasError('pattern')"
+                  >Please input more than 2 decimal!</ng-container
                 >
                 <ng-container *ngIf="control.hasError('required')"
                   >Please input your Unit Price!</ng-container
@@ -228,7 +228,7 @@
         <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
           <nz-form-control [nzErrorTip]="map">
             <nz-form-label nzFor="map">MAP </nz-form-label>
-            <nz-input-group>
+            <nz-input-group nzPrefix="$">
               <input
                 formControlName="map"
                 type="number"
@@ -236,8 +236,8 @@
                 placeholder="Enter MAP"
               />
               <ng-template #map let-control>
-                <ng-container *ngIf="control.hasError('max')"
-                  >Please input maximum 2 characters!</ng-container
+                <ng-container *ngIf="control.hasError('pattern')"
+                  >Please input more than 2 decimal!</ng-container
                 >
               </ng-template>
             </nz-input-group>
@@ -246,7 +246,7 @@
         <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
           <nz-form-control [nzErrorTip]="msrp">
             <nz-form-label nzFor="msrp">MSRP </nz-form-label>
-            <nz-input-group>
+            <nz-input-group nzPrefix="$">
               <input
                 formControlName="msrp"
                 type="number"
@@ -254,8 +254,8 @@
                 placeholder="Enter MSRP "
               />
               <ng-template #msrp let-control>
-                <ng-container *ngIf="control.hasError('max')"
-                  >Please input maximum 2 characters!</ng-container
+                <ng-container *ngIf="control.hasError('pattern')"
+                  >Please input more than 2 decimal!</ng-container
                 >
               </ng-template>
             </nz-input-group>
@@ -295,15 +295,20 @@
               >
             </nz-form-label>
             <nz-input-group>
-              <input
+              <nz-select
+                nzAllowClear
                 formControlName="shipping_Method"
-                type="text"
-                nz-input
-                placeholder="Shipping Method"
-              />
+                nzPlaceHolder="Select Shipping Method"
+              >
+                <nz-option
+                  nzLabel="Small Parcel"
+                  nzValue="smallParcel"
+                ></nz-option>
+                <nz-option nzLabel="LTL" nzValue="ltl"></nz-option>
+              </nz-select>
               <ng-template #shipping_Method let-control>
                 <ng-container *ngIf="control.hasError('required')"
-                  >Please input your Shipping Method!</ng-container
+                  >Please select your shipping method!</ng-container
                 >
               </ng-template>
             </nz-input-group>
@@ -351,8 +356,8 @@
                 placeholder="Enter Shipping Dimensions"
               />
               <ng-template #shipping_dimensions_of_each_box let-control>
-                <ng-container *ngIf="control.hasError('max')"
-                  >Please input maximum 2 characters!</ng-container
+                <ng-container *ngIf="control.hasError('pattern')"
+                  >Please input more than 2 decimal!</ng-container
                 >
               </ng-template>
             </nz-input-group>

@@ -26,7 +26,7 @@
              }
 
              ::ng-deep .ant-input-prefix {
-                 font-size: x-large;
+                 font-size: 18px;
                  margin-right: 10px;
              }
 
@@ -46,11 +46,15 @@
                  padding: 5px;
              }
 
+             ::ng-deep .ant-input-affix-wrapper {
+                 padding: 0px 11px !important;
+             }
+
              nz-input-group {
                  border-radius: 5px;
 
                  input {
-                     height: 40px;
+                     height: 35px;
                      font-size: 16px;
                  }
              }
