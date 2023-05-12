@@ -55,12 +55,16 @@
 
         form {
             width: 100%;
-            padding: 0 2px;
+            padding: 0 24px;
 
             nz-form-label {
                 font-size: 16px !important;
                 font-weight: 700 !important;
-                padding-bottom: 2px;
+                padding-bottom: 5px;
+            }
+            .ant-input-group {
+                display: inline !important;
+               
             }
 
             ::ng-deep .ant-input-prefix {

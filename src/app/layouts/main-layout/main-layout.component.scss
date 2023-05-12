@@ -112,15 +112,19 @@
   }
 
   .active {
-    color: $teb-font-color;
-    background-color: #ff8b4d14 !important;
-    border-right: 3px solid $teb-font-color;
+    // color: $teb-font-color;
+    // background-color: #ff8b4d14 !important;
+    // border-right: 3px solid $teb-font-color;
+    color: $darkBlue;
+    background-color: rgb(33 33 195 / 8%) !important;
+    border-right: 3px solid $darkBlue;
   }
 
   ::ng-deep .ant-menu-light .ant-menu-item:hover,
 
   .ant-menu-light .ant-menu-submenu-title:hover {
-    color: $teb-font-color;
+    // color: $teb-font-color;
+    color: $darkBlue;
   }
 
   ::ng-deep .ant-menu-item-selected,
@@ -129,7 +133,8 @@
   }
 
   ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
-    color: $teb-font-color;
+    // color: $teb-font-color;
+    color: $darkBlue;
   }
 
   ::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {

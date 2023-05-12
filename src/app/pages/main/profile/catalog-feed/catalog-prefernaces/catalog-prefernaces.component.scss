@@ -11,6 +11,7 @@
     padding: 20px;
   }
 
+  
   form {
     width: 100%;
 
@@ -36,7 +37,7 @@
     ::ng-deep .ant-col-sm-12 {
       display: flex;
     }
-
+  
     nz-input-group {
       border-radius: 5px;
 
@@ -91,5 +92,8 @@
     background-color: $header-of-tab;
     color: white;
   }
+
+ 
+
 
 }

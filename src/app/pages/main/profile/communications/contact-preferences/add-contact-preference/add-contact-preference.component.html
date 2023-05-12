@@ -108,13 +108,14 @@
       </button>
       <button
         nz-button
-        class="action-btn"
+        class="action-button"
         (click)="submitForm()"
         [disabled]="!addContactPreferencesForm.valid || isLoading"
         [ngClass]="{
           'button-disabled': !addContactPreferencesForm.valid || isLoading
         }"
         [nzType]="'primary'"
+        style="height: 35px; margin-top: 0px; margin-right: 10px"
       >
         <div *ngIf="isLoading">
           <ng-template #indicatorTemplate

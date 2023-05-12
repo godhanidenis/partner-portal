@@ -435,14 +435,14 @@
       </button>
       <button
         nz-button
-        class="action-btn"
+        class="action-button"
         (click)="submitForm()"
         [disabled]="!ascSetupForm.valid || isLoading"
         [ngClass]="{
           'button-disabled': !ascSetupForm.valid || isLoading
         }"
         [nzType]="'primary'"
-        style="width: 150px"
+        style="width: 150px; margin-top: 0px; margin-right: 10px"
       >
         <div *ngIf="isLoading">
           <ng-template #indicatorTemplate

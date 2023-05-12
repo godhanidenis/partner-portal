@@ -85,6 +85,11 @@
               }
           }
       }
+
+      .button-disabled {
+          background: $darkBlue;
+          opacity: 0.8;
+      }
   }
 
   ::ng-deep .ant-modal-footer {
