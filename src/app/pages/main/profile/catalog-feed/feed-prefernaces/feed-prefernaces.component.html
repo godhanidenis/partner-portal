@@ -22,15 +22,18 @@
       <div class="body-section">
         <div class="feed-prefernaces-section">
           <form nz-form [formGroup]="feedForm">
-            <div nz-row [nzGutter]="16">
-              <nz-form-item
-                nz-col
-                class="gutter-row"
-                [nzSm]="24"
-                style="padding-left: 8px; padding-right: 8px"
-              >
-                <nz-form-control nzErrorTip=" Method is required!">
-                  <nz-form-label nzFor="Method">Method </nz-form-label>
+            <div >
+
+              <nz-form-item style="padding-left: 8px; padding-right: 8px">
+                <nz-form-label nz-col nzFor="Method"  
+                  [nzXl]="4"
+                  [nzSm]="7"
+                  [nzXs]="24">Method </nz-form-label>
+                <nz-form-control nzErrorTip=" Method is required!"
+                [nzXl]="8"
+                [nzSm]="12"
+                [nzXs]="24">
+                  
                   <nz-input-group>
                     <nz-radio-group
                       (ngModelChange)="selectMethod($event)"
@@ -45,13 +48,17 @@
 
 
               <nz-form-item
-                nz-col
-                class="gutter-row"
-                [nzSm]="24"
                 style="padding-left: 8px; padding-right: 8px"
               >
-                <nz-form-control nzErrorTip=" Type is required!">
-                  <nz-form-label nzFor="Type">Type </nz-form-label>
+              <nz-form-label nzFor="Type"
+              [nzXl]="4"
+              [nzSm]="7"
+              [nzXs]="24">Type </nz-form-label>
+                <nz-form-control nzErrorTip=" Type is required!"
+                [nzXl]="8"
+                [nzSm]="12"
+                [nzXs]="24">
+                 
                   <nz-input-group>
                     <nz-radio-group
                      
@@ -68,17 +75,23 @@
               
 
                 <div *ngIf="showEmailSection">
-                  <nz-form-label nzFor="email" class="mpn-quality-sec"
-                    >MPN column header</nz-form-label
-                  >
+                 
                   <div
                     nz-col
                     class="gutter-row"
                     [nzSm]="24"
                     class="mpn-quality-sec"
                   >
+                 
                     <nz-form-item>
-                      <nz-form-control nzErrorTip=" Method is required!">
+                      <nz-form-label nzFor="email" class="mpn-quality-sec" 
+                       [nzXl]="4"
+                      [nzSm]="7"
+                      [nzXs]="24"
+                      >MPN column header</nz-form-label
+                    >
+                      <nz-form-control nzErrorTip=" Method is required!"
+                      >
                         <nz-input-group>
                           <input
                             type="text"
@@ -92,9 +105,7 @@
                     </nz-form-item>
                   </div>
 
-                  <nz-form-label nzFor="email" class="mpn-quality-sec"
-                    >Quantity column header</nz-form-label
-                  >
+                 
                   <div
                     nz-col
                     class="gutter-row"
@@ -102,7 +113,13 @@
                     class="mpn-quality-sec"
                   >
                     <nz-form-item>
-                      <nz-form-control nzErrorTip=" Method is required!">
+                      <nz-form-label nzFor="email" class="mpn-quality-sec" 
+                       [nzXl]="4"
+                      [nzSm]="7"
+                      [nzXs]="24"
+                      >Quantity column header</nz-form-label
+                    >
+                      <nz-form-control nzErrorTip=" Method is required!" >
                         <nz-input-group>
                           <input
                             type="text"
@@ -114,6 +131,7 @@
                         </nz-input-group>
                       </nz-form-control>
                     </nz-form-item>
+
                   </div>
                 </div>
               </div>
@@ -121,9 +139,10 @@
               <div
             
               formArrayName="emailList"
-              style="width: 50%"
+             
+              class="email-sec"
             >
-              <nz-form-label nzFor="email">Email List</nz-form-label>
+             
               <div
                 nz-col
                 class="gutter-row"
@@ -132,7 +151,11 @@
               >
                 <div [formGroupName]="i">
                   <nz-form-item>
-                    <nz-form-control nzErrorTip=" Method is required!">
+                    <nz-form-label nzFor="email" 
+                    [nzXl]="7"
+                    [nzSm]="7"
+                    [nzXs]="24" >Email List</nz-form-label>
+                    <nz-form-control nzErrorTip=" Method is required!"   >
                       <nz-input-group>
                         <input
                           type="text"
@@ -173,7 +196,7 @@
              
             </div>
             <div nz-row>
-              <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
+              <div nz-col [nzXl]="14" [nzSm]="24" [nzXs]="24">
                 <button
                 nz-button
                 class="login-form-button login-form-margin"

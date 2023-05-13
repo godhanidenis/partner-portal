@@ -59,8 +59,14 @@
       padding: 0.375rem 0.75rem;
       font-size: 1rem;
       line-height: 1.5;
+      float: right;
+     
       height: 35px !important;
     }
+    
+    ::ng-deep .ant-form-item-label > label{
+      font-weight: 700;
+     }
   }
 
   // .ch-number {
