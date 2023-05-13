@@ -52,5 +52,9 @@
     button {
       height: 35px !important;
     }
+
+    ::ng-deep .ant-form-item-label>label {
+      font-weight: 700;
+    }
   }
 }

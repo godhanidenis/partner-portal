@@ -97,7 +97,6 @@
           float: right;
         }
 
-      
 
         ::ng-deep .ant-form-item {
           display: inline-block;
@@ -105,19 +104,14 @@
           margin-left: 4px;
         }
 
-       
-       
-    
-        
-      }
-    
 
-     
+      }
 
       
       button {
         float: right;
         margin-left: 4px;
+       
       }
     }
   }
@@ -127,7 +121,7 @@
 }
 
 ::ng-deep .ant-modal-header {
-  background-color: $header-of-tab;
+  background-color: $darkBlue;
   //  padding: 15px 24px;
 
   .ant-modal-title {
@@ -139,6 +133,7 @@
 
 ::ng-deep .ant-modal-footer {
   display: none;
+   
 }
 
 ::ng-deep .ant-modal-close-x {

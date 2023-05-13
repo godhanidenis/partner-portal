@@ -8,8 +8,8 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
   styleUrls: ['./certi-of-insurance.component.scss'],
 })
 export class CertiOfInsuComponent implements OnInit {
-  certiOfInsuranceDate = {
-    producerNameAddress: 'Insurance Pvt Ltd, New York, New York 10001',
+  certiOfInsuranceDate = { 
+    producerNameAddress: 'Insurance Pvt Ltd, New York, New York 10001        dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsf',
     insuredNameAddress: 'XYZ Stores, Livingston, Montana 59101',
     dateInsured: 'Aug 24, 2022',
     classification: 'data collection',

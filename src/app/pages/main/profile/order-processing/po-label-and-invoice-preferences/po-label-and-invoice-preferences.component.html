@@ -152,8 +152,7 @@
           nzText="Invoice Preferences"
           nzOrientation="left"
         ></nz-divider>
-        <div nz-row formArrayName="emailList" style="width: 50%">
-          <nz-form-label nzFor="email">Email List</nz-form-label>
+        <div nz-row formArrayName="emailList">
           <div
             nz-col
             class="gutter-row"
@@ -162,7 +161,20 @@
           >
             <div [formGroupName]="i">
               <nz-form-item>
-                <nz-form-control nzErrorTip="Email is required!">
+                <nz-form-label
+                  nz-col
+                  [nzXl]="2"
+                  [nzSm]="4"
+                  [nzXs]="24"
+                  nzFor="email"
+                  >Email List</nz-form-label
+                >
+                <nz-form-control
+                  [nzXl]="8"
+                  [nzSm]="12"
+                  [nzXs]="24"
+                  nzErrorTip="Email is required!"
+                >
                   <nz-input-group>
                     <input
                       type="text"
