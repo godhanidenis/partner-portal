@@ -5,25 +5,11 @@
   background-color: $white;
   background-clip: border-box;
   border-radius: 5px;
-  height: 100%;
-
-  //   padding: 20px;
+  height: 95%;
 
   .inputs-label {
     font-weight: 700;
   }
-
-  // form{
-
-  //   button{
-  //       float: right;
-  //   }
-
-  //   ::ng-deep .ant-form-item {
-  //     margin-bottom: 10px;
-  // }
-
-  // }
 
   form {
     width: 100%;
@@ -60,6 +46,12 @@
     button {
       height: 35px !important;
     }
+  }
+
+  .button-disabled {
+    background: $darkBlue;
+    opacity: 0.8;
+    color: $white;
   }
 
 

@@ -39,72 +39,12 @@
         <button
           style="margin: 0 10px"
           nz-button
+          (click)="showUploadModal()"
           nzType="primary"
           nzShape="round"
         >
-          <span
-            nz-icon
-            nzType="upload"
-            nzTheme="outline"
-            (click)="showUploadModal()"
-          ></span>
+          <span nz-icon nzType="upload" nzTheme="outline"></span>
         </button>
-
-        <form nz-form [formGroup]="uploadmodal">
-          <nz-form-item>
-            <nz-form-control>
-              <nz-input-group>
-                <nz-modal
-                  [(nzVisible)]="isVisible"
-                  nzTitle="Which item do you want to export?"
-                  (nzOnCancel)="handleCancel()"
-                  (nzOnOk)="handleOk()"
-                >
-                  <ng-container *nzModalContent>
-                    <nz-radio-group
-                      style="display: grid"
-                      formControlName="export"
-                    >
-                      <label nz-radio nzValue="A">All</label>
-                      <label nz-radio nzValue="B">Filtered(0)</label>
-                      <label nz-radio nzValue="C">Selected(0)</label>
-                    </nz-radio-group>
-                    <h4 style="margin-top: 12px">
-                      Your items and all their data will be downloaded as a CSV
-                      file
-                    </h4>
-
-                    <div class="model-footer" style="padding: 0px">
-                      <div class="model-action">
-                        <button
-                          nz-button
-                          nzType="default"
-                          style="color: black; margin-right: 5px"
-                          (click)="handleCancel()"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          nz-button
-                          class="upload-btn"
-                          [nzType]="'primary'"
-                          style="
-                            width: 100px;
-                            margin-right: 24px;
-                            background-color: #2121c3;
-                            border: none;
-                          "
-                        >
-                          Upload
-                        </button>
-                      </div>
-                    </div>
-                  </ng-container>
-                </nz-modal>
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-        </form>
 
         <form nz-form [formGroup]="viewEditProducts">
           <nz-form-item>
@@ -246,4 +186,57 @@
       </div>
     </form>
   </div>
+
+  <nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="Which item do you want to export?"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+  >
+    <ng-container *nzModalContent>
+      <div style="padding: 15px">
+        <form nz-form [formGroup]="uploadmodal">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group>
+                <nz-radio-group style="display: grid" formControlName="export">
+                  <label nz-radio nzValue="A">All</label>
+                  <label nz-radio nzValue="B">Filtered(0)</label>
+                </nz-radio-group>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+
+        <h4 style="margin-top: 12px">
+          Your items and all their data will be downloaded as a CSV file
+        </h4>
+      </div>
+      <div class="model-footer">
+        <div class="model-action" style="padding: 15px; padding-bottom: 0">
+          <button
+            nz-button
+            nzType="default"
+            style="color: black; margin-right: 5px"
+            (click)="handleCancel()"
+          >
+            Cancel
+          </button>
+          <button
+            nz-button
+            class="upload-btn"
+            [nzType]="'primary'"
+            style="
+              width: 100px;
+              margin-right: 24px;
+              background-color: #2121c3;
+              border: none;
+            "
+          >
+            Upload
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </nz-modal>
 </div>

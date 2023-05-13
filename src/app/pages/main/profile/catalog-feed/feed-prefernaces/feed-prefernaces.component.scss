@@ -58,6 +58,7 @@
         font-weight: 700 !important;
         padding-bottom: 5px;
       }
+
       .ant-input-group {
         display: inline !important;
       }
@@ -84,26 +85,13 @@
         }
       }
 
-      .minimize-witdh {
-        width: 50%;
-      }
-      .email-sec{
-        width: 58%;
-    }
+      // .minimize-witdh {
+      //   width: 50%;
+      // }
 
-      button {
-        background-color: #1dbae1;
-        color: #fff;
-        float: right;
-        border: none;
-        color: $white;
-        font-weight: 400;
-        border-radius: 4px;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        height: 35px !important;
-      }
+      // .email-sec {
+      //   width: 58%;
+      // }
     }
   }
 }
@@ -111,22 +99,79 @@
 @media screen and (max-width: 765px) {
   .asc-form-section {
     .body-section {
-      max-height: 70vh;
-      overflow-y: auto;
-    }
-  }
-}
-@media screen and (max-width: 1025px) {
-  .body-section {
-    .feed-prefernaces-section {
-      form {
-        .minimize-witdh {
-          width: 100%;
+
+      .feed-prefernaces-section {
+
+        a {
+          margin: 4px 10px;
+          // background-color: #1dbae1;
+          color: $white;
+          font-size: xx-large;
+          //  font-weight: 600;
+          line-height: 0.7;
+          border: none;
         }
 
-        .email-sec{
-            width: 100%;
+        a.ant-btn {
+          padding-top: 1.01px !important;
         }
+
+        .mpn-quality-sec {
+          padding: 0px !important;
+        }
+      }
+
+      .email-sec {
+        width: 100%;
+        padding: 0 24px;
+
+        nz-form-label {
+          font-size: 16px !important;
+          font-weight: 600 !important;
+          padding-bottom: 5px;
+        }
+
+        .ant-input-group {
+          display: inline !important;
+
+        }
+
+        ::ng-deep .ant-input-prefix {
+          font-size: x-large;
+          margin-right: 10px;
+        }
+
+        ::ng-deep .ant-input {
+          border-radius: 5px !important;
+        }
+
+        ::ng-deep .ant-form-item {
+          margin-bottom: 10px;
+        }
+
+        nz-input-group {
+          border-radius: 5px;
+
+          input {
+            height: 40px;
+            font-size: 16px;
+          }
+        }
+
+        .minimize-witdh {
+          width: 50%;
+        }
+      }
+    }
+
+
+  }
+
+  @media screen and (max-width:765px) {
+    .asc-form-section {
+      .body-section {
+        max-height: 70vh;
+        overflow-y: auto;
       }
     }
   }

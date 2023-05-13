@@ -18,15 +18,15 @@
       </div>
     </div>
     <div class="body-section">
-      <form nz-form [formGroup]="companyprofile">
+      <form nz-form [formGroup]="companyProfile">
         <nz-form-item>
-          <nz-form-label [nzXl]="2" [nzSm]="7" [nzXs]="24" nzFor="patner_code"
-            >Patner Code</nz-form-label
+          <nz-form-label [nzXl]="3" [nzSm]="7" [nzXs]="24" nzFor="partnerCode"
+            >Partner Code</nz-form-label
           >
           <nz-form-control [nzXl]="8" [nzSm]="12" [nzXs]="24">
             <nz-input-group>
               <input
-                formControlName="patnercode"
+                formControlName="partnerCode"
                 type="text"
                 nz-input
                 [disabled]="disableInput"
@@ -37,14 +37,19 @@
         </nz-form-item>
         <nz-form-item>
           <nz-form-label
-            [nzXl]="2"
+            [nzXl]="3"
             [nzSm]="7"
             [nzXs]="24"
             nzRequired
             nzFor="display_name"
             >Display Name</nz-form-label
           >
-          <nz-form-control [nzXl]="8" [nzSm]="12" [nzXs]="24">
+          <nz-form-control
+            [nzXl]="8"
+            [nzSm]="12"
+            [nzXs]="24"
+            nzErrorTip="Please input your Name!"
+          >
             <nz-input-group>
               <input
                 formControlName="displayname"
@@ -57,10 +62,20 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-label [nzXl]="2" [nzSm]="7" [nzXs]="24" nzFor="website"
+          <nz-form-label
+            [nzXl]="3"
+            [nzSm]="7"
+            [nzXs]="24"
+            nzFor="website"
+            nzRequired
             >Website</nz-form-label
           >
-          <nz-form-control [nzXl]="8" [nzSm]="12" [nzXs]="24">
+          <nz-form-control
+            [nzXl]="8"
+            [nzSm]="12"
+            [nzXs]="24"
+            nzErrorTip="Please input your Website Name!"
+          >
             <nz-input-group>
               <input
                 formControlName="website"
@@ -73,8 +88,17 @@
           </nz-form-control>
         </nz-form-item>
         <div nz-row>
-          <div nz-col [nzXl]="10" [nzSm]="19" [nzXs]="24">
-            <button nz-button class="action-button" [nzType]="'primary'">
+          <div nz-col [nzXl]="3" [nzSm]="7" [nzXs]="24"></div>
+          <div nz-col [nzXl]="8" [nzSm]="12" [nzXs]="24">
+            <button
+              [disabled]="!companyProfile.valid"
+              nz-button
+              class="action-button"
+              [ngClass]="{
+                'button-disabled': !companyProfile.valid
+              }"
+              nzType="primary"
+            >
               <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
             </button>
           </div>

@@ -11,6 +11,7 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 export class AddPickupAddressComponent implements OnInit {
   @Output() closeModel = new EventEmitter();
   @Input() editData: any = '';
+  @Input() modelHeader: any = '';
 
   ascSetupForm!: FormGroup;
   otpForm!: FormGroup;
@@ -69,7 +70,6 @@ export class AddPickupAddressComponent implements OnInit {
     });
 
     setTimeout(() => {
-      console.log(this.editData);
       if (this.editData) {
         this.ascSetupForm.controls['address_nickname'].setValue(
           this.editData?.address_nickname
@@ -112,26 +112,16 @@ export class AddPickupAddressComponent implements OnInit {
         this.ascSetupForm.controls['supplier_gstin'].setValue(
           this.editData?.supplier_gstin
         );
-
-        // this.showVerifiedNumber = false;
-        // this.ascSetupForm.controls['phone'].disable();
-        this.ascSetupForm.controls['address_line_1'].disable();
-        this.ascSetupForm.controls['pin_code'].disable();
-        this.ascSetupForm.controls['city'].disable();
-        this.ascSetupForm.controls['address_line_2'].disable();
-        this.ascSetupForm.controls['state'].disable();
+        if (this.modelHeader === 'Edit') {
+          this.ascSetupForm.controls['address_line_1'].disable();
+          this.ascSetupForm.controls['pin_code'].disable();
+          this.ascSetupForm.controls['city'].disable();
+          this.ascSetupForm.controls['address_line_2'].disable();
+          this.ascSetupForm.controls['state'].disable();
+        }
       }
     }, 100);
   }
-
-  // editPhoneNumber() {
-  //   this.showVerifiedNumber = !this.showVerifiedNumber;
-  //   if (this.showVerifiedNumber) {
-  //     this.ascSetupForm.controls['phone'].enable();
-  //   } else {
-  //     this.ascSetupForm.controls['phone'].disable();
-  //   }
-  // }
 
   reTypeAccount(event: any) {
     this.reTypeAccountNumber = event.target.value;

@@ -41,7 +41,6 @@ export class ReturnLocationComponent {
       supplier_gstin: '78451',
       select_pickup_address: 'address 2',
       status: 1,
-      expand: false,
       activeStatus: false,
       primaryAddress: false,
     },
@@ -68,7 +67,6 @@ export class ReturnLocationComponent {
       supplier_gstin: '78451',
       select_pickup_address: 'address 3',
       status: 0,
-      expand: false,
       activeStatus: true,
       primaryAddress: false,
     },
@@ -95,7 +93,6 @@ export class ReturnLocationComponent {
       supplier_gstin: '',
       select_pickup_address: 'address 4',
       status: 0,
-      expand: false,
       activeStatus: false,
       primaryAddress: true,
     },
@@ -130,13 +127,14 @@ export class ReturnLocationComponent {
       if (actionType === 'Add') {
         this.editData = '';
         this.addAddressVisible = true;
-      } else if (actionType === 'Edit') {
+      } else if (actionType === 'Edit' || actionType === 'View') {
         this.editData = data;
         this.addAddressVisible = true;
-      } else if (actionType === 'View') {
-        this.viewData = data;
-        this.viewAddressVisible = true;
       }
+      // else if (actionType === 'View') {
+      //   this.viewData = data;
+      //   this.viewAddressVisible = true;
+      // }
     }
   }
 
