@@ -220,6 +220,9 @@
           <button
             nz-button
             class="action-button"
+            [ngClass]="{
+              'button-disabled': !ascSetupForm.valid
+            }"
             [nzType]="'primary'"
             (click)="submitForm()"
             [disabled]="!ascSetupForm.valid || reTypeAccountNumber"

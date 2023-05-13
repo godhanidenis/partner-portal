@@ -9,8 +9,8 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
   styleUrls: ['./company-profile.component.scss'],
 })
 export class CompanyProfileComponent implements OnInit {
-  disableInput =  true;
-  companyprofile!: FormGroup;
+  disableInput = true;
+  companyProfile!: FormGroup;
   breadcrumb: any;
 
   constructor(
@@ -25,29 +25,17 @@ export class CompanyProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.companyprofile = new FormGroup({
-      patnercode: new FormControl('167343'),
+    this.companyProfile = new FormGroup({
+      partnerCode: new FormControl('167343'),
       displayname: new FormControl('', [Validators.required]),
       website: new FormControl('', [Validators.required]),
-    
     });
-
-
-
-  
-  
-        this.companyprofile.controls['patnercode'].disable();
-    
+    this.companyProfile.controls['patnercode'].disable();
   }
-  
 
   backButton(no: number, path: string) {
     if (this.breadcrumb[this.breadcrumb.length - 1].path !== path) {
       this.router.navigate([`/main/${path}`]);
     }
   }
-
-
-
-
 }

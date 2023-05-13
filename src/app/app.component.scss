@@ -71,7 +71,8 @@
 }
 
 ::ng-deep .ant-modal-header {
-    background-color: $header-of-tab;
+    // background-color: $header-of-tab;
+    background-color: $darkBlue;
 
     .ant-modal-title {
         color: $white;
