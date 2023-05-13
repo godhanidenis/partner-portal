@@ -43,7 +43,6 @@
                 </nz-form-control>
               </nz-form-item>
 
-
               <nz-form-item
                 nz-col
                 class="gutter-row"
@@ -53,20 +52,19 @@
                 <nz-form-control nzErrorTip=" Type is required!">
                   <nz-form-label nzFor="Type">Type </nz-form-label>
                   <nz-input-group>
-                    <nz-radio-group
-                     
-                      formControlName="type"
-                    >
-                      <label nz-radio nzValue="locationSpecific">Location Specific</label>
-                      <label nz-radio nzValue="consolidated">Consolidated</label>
+                    <nz-radio-group formControlName="type">
+                      <label nz-radio nzValue="locationSpecific"
+                        >Location Specific</label
+                      >
+                      <label nz-radio nzValue="consolidated"
+                        >Consolidated</label
+                      >
                     </nz-radio-group>
                   </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
 
               <div nz-col class="gutter-row" [nzSm]="24">
-              
-
                 <div *ngIf="showEmailSection">
                   <nz-form-label nzFor="email" class="mpn-quality-sec"
                     >MPN column header</nz-form-label
@@ -118,71 +116,58 @@
                 </div>
               </div>
 
-              <div
-            
-              formArrayName="emailList"
-              style="width: 50%"
-            >
-              <nz-form-label nzFor="email">Email List</nz-form-label>
-              <div
-                nz-col
-                class="gutter-row"
-                [nzSm]="24"
-                *ngFor="let email of emailList.controls; let i = index"
-              >
-                <div [formGroupName]="i">
-                  <nz-form-item>
-                    <nz-form-control nzErrorTip=" Method is required!">
-                      <nz-input-group>
-                        <input
-                          type="text"
-                          nz-input
-                          placeholder="Enter Email"
-                          formControlName="email"
-                        />
-                      </nz-input-group>
-                    </nz-form-control>
-                    <a
-                      *ngIf="i === emailList.controls.length - 1"
-                      nz-button
-                      class="add-button"
-                      nzShape="circle"
-                      [disabled]="emailList.controls.length > 9"
-                      (click)="addEmails()"
-                    >
-                      +
-                    </a>
-                    <a
-                      *ngIf="i !== emailList.controls.length - 1"
-                      nz-button
-                      class="add-button"
-                      nzShape="circle"
-                       (click)="removeEmail(i)"
-                    >
-                      -
-                    </a>
-                  </nz-form-item>
+              <div formArrayName="emailList" style="width: 50%">
+                <nz-form-label nzFor="email">Email List</nz-form-label>
+                <div
+                  nz-col
+                  class="gutter-row"
+                  [nzSm]="24"
+                  *ngFor="let email of emailList.controls; let i = index"
+                >
+                  <div [formGroupName]="i">
+                    <nz-form-item>
+                      <nz-form-control nzErrorTip=" Method is required!">
+                        <nz-input-group>
+                          <input
+                            type="text"
+                            nz-input
+                            placeholder="Enter Email"
+                            formControlName="email"
+                          />
+                        </nz-input-group>
+                      </nz-form-control>
+                      <a
+                        *ngIf="i === emailList.controls.length - 1"
+                        nz-button
+                        class="add-button"
+                        style="background: #00c13b"
+                        nzShape="circle"
+                        [disabled]="emailList.controls.length > 9"
+                        (click)="addEmails()"
+                      >
+                        +
+                      </a>
+                      <a
+                        *ngIf="i !== emailList.controls.length - 1"
+                        nz-button
+                        class="add-button"
+                        style="background: #f41e2c"
+                        nzShape="circle"
+                        (click)="removeEmail(i)"
+                      >
+                        -
+                      </a>
+                    </nz-form-item>
+                  </div>
                 </div>
               </div>
             </div>
-
-             
-
-             
-
-             
-            </div>
             <div nz-row>
               <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
-                <button
-                nz-button
-                class="login-form-button login-form-margin"
-                style="height: 35px"
-                class="submit-btn"
-              >
-              <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
-              </button>
-    
+                <button nz-button class="action-button" style="height: 35px">
+                  <span nz-icon nzType="file-text" nzTheme="outline"></span>
+                  Save
+                </button>
               </div>
             </div>
           </form>

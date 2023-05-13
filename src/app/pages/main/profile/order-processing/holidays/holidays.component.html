@@ -17,7 +17,7 @@
   </div>
   <div class="body-section">
     <form nz-form [formGroup]="holidayForm">
-      <div nz-row [nzGutter]="16">
+      <div style="padding-left: 8px" nz-row [nzGutter]="16">
         <div formArrayName="holidayDetail" style="width: 50%">
           <div
             nz-col
@@ -52,6 +52,7 @@
                   *ngIf="i === holidayDetail.controls.length - 1"
                   nz-button
                   class="add-button"
+                  style="background: #00c13b"
                   nzShape="circle"
                   (click)="addHolidays()"
                 >
@@ -61,6 +62,7 @@
                   *ngIf="i !== holidayDetail.controls.length - 1"
                   nz-button
                   class="add-button"
+                  style="background: #f41e2c"
                   nzShape="circle"
                   (click)="removeHoliday(i)"
                 >

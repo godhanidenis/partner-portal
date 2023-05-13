@@ -176,6 +176,7 @@
                   *ngIf="i === emailList.controls.length - 1"
                   nz-button
                   class="add-button"
+                  style="background: #00c13b"
                   nzShape="circle"
                   [disabled]="emailList.controls.length > 9"
                   (click)="addEmails()"
@@ -186,6 +187,7 @@
                   *ngIf="i !== emailList.controls.length - 1"
                   nz-button
                   class="add-button"
+                  style="background: #f41e2c"
                   nzShape="circle"
                   (click)="removeEmail(i)"
                 >

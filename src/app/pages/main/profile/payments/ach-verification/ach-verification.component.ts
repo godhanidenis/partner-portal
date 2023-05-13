@@ -13,8 +13,8 @@ export class AchVerificationComponent implements OnInit {
   breadcrumb: any;
 
   achVerificationData = {
-    deposit_value_one: 'Deposit value 1',
-    deposit_value_two: 'Deposit value 2',
+    deposit_value_one: '11.11',
+    deposit_value_two: '22.22',
   };
 
   constructor(private router: Router) {}
@@ -23,11 +23,11 @@ export class AchVerificationComponent implements OnInit {
     this.ascVerificationForm = new FormGroup({
       deposit_value_one: new FormControl(
         this.achVerificationData?.deposit_value_one,
-        [Validators.required]
+        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]
       ),
       deposit_value_two: new FormControl(
         this.achVerificationData?.deposit_value_two,
-        [Validators.required]
+        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]
       ),
     });
   }

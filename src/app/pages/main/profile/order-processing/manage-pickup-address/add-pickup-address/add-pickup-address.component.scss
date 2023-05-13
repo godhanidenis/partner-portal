@@ -137,34 +137,6 @@
              }
          }
      }
-
-     .button-disabled {
-         background: $darkBlue;
-         opacity: 0.8;
-     }
- }
-
- ::ng-deep .ant-modal-footer {
-     display: none;
- }
-
- ::ng-deep .ant-modal-header {
-     background-color: $header-of-tab;
-     //  padding: 15px 24px;
-
-     .ant-modal-title {
-         color: $white;
-         font-size: 1.1rem;
-         font-weight: 600;
-     }
- }
-
- ::ng-deep .ant-modal-body {
-     padding: 0;
- }
-
- ::ng-deep .ant-modal-close {
-     color: $white !important;
  }
 
  @media screen and (min-width:766px) {

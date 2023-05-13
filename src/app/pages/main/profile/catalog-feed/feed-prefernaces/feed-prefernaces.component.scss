@@ -36,11 +36,11 @@
 
             a {
                 margin: 4px 10px;
-                background-color: #1dbae1;
-                color: #fff;
-                font-size: x-large;
-                font-weight: 600;
-                line-height: 1;
+                // background-color: #1dbae1;
+                color: $white;
+                font-size: xx-large;
+                //  font-weight: 600;
+                line-height: 0.7;
                 border: none;
             }
 
@@ -59,12 +59,13 @@
 
             nz-form-label {
                 font-size: 16px !important;
-                font-weight: 700 !important;
+                font-weight: 600 !important;
                 padding-bottom: 5px;
             }
+
             .ant-input-group {
                 display: inline !important;
-               
+
             }
 
             ::ng-deep .ant-input-prefix {
@@ -91,21 +92,6 @@
 
             .minimize-witdh {
                 width: 50%;
-            }
-
-
-            button {
-                background-color: #1dbae1;
-                color: #fff;
-                float: right;
-                border: none;
-                color: $white;
-                font-weight: 400;
-                border-radius: 4px;
-                padding: 0.375rem 0.75rem;
-                font-size: 1rem;
-                line-height: 1.5;
-                height: 35px !important;
             }
         }
     }

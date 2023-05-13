@@ -1,0 +1,112 @@
+@import '../assets/variable/variable.scss';
+
+
+::ng-deep .ant-pagination-item-active a {
+    color: $darkBlue !important;
+}
+
+::ng-deep .ant-pagination-item-active {
+    border-color: $darkBlue !important;
+}
+
+::ng-deep .ant-switch-checked {
+    background: $darkBlue !important;
+}
+
+::ng-deep .ant-radio-checked::after {
+    border: 1px solid $darkBlue !important;
+}
+
+::ng-deep .ant-radio-checked .ant-radio-inner {
+    border-color: $darkBlue !important;
+}
+
+::ng-deep .ant-radio-inner::after {
+    background-color: $darkBlue !important;
+}
+
+::ng-deep .ant-btn:hover,
+.ant-btn:focus {
+    border-color: $darkBlue !important;
+}
+
+::ng-deep .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    border-color: $darkBlue !important;
+}
+
+::ng-deep .ant-pagination-prev:hover .ant-pagination-item-link {
+    color: $darkBlue !important;
+    border-color: $darkBlue !important;
+}
+
+::ng-deep .ant-pagination-next:hover .ant-pagination-item-link {
+    color: $darkBlue !important;
+    border-color: $darkBlue !important;
+}
+
+::ng-deep .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon {
+    color: $darkBlue !important;
+}
+
+::ng-deep .ant-pagination-item:hover {
+    a {
+        color: $darkBlue !important;
+    }
+
+    border-color: $darkBlue !important;
+}
+
+
+::ng-deep .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: rgba(33, 33, 195, 0.08);
+}
+
+::ng-deep .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-color: $darkBlue;
+    box-shadow: 0 0 0 2px rgb(24 42 255 / 20%);
+}
+
+::ng-deep .ant-modal-footer {
+    display: none;
+}
+
+::ng-deep .ant-modal-header {
+    background-color: $header-of-tab;
+
+    .ant-modal-title {
+        color: $white;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+}
+
+::ng-deep .ant-modal-body {
+    padding: 0;
+}
+
+::ng-deep .ant-modal-close {
+    color: $white !important;
+}
+
+::ng-deep .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    color: $black !important;
+    background: $white !important;
+    cursor: not-allowed;
+}
+
+::ng-deep .ant-picker.ant-picker-disabled {
+    background: $white !important;
+}
+
+::ng-deep .ant-picker-input>input[disabled] {
+    color: $black !important;
+}
+
+::ng-deep .ant-checkbox-disabled+span {
+    color: $black !important;
+}
+
+::ng-deep .ant-input[disabled] {
+    background-color: $white !important;
+    color: $black !important;
+}
