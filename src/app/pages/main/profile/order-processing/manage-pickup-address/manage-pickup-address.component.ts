@@ -52,7 +52,6 @@ export class ManagePickupAddressComponent implements OnInit {
       supplier_gstin: '78451',
       select_pickup_address: 'addres3',
       status: 1,
-      expand: false,
       activeStatus: false,
       primaryAddress: false,
     },
@@ -79,7 +78,6 @@ export class ManagePickupAddressComponent implements OnInit {
       supplier_gstin: '78451',
       select_pickup_address: '',
       status: 0,
-      expand: false,
       activeStatus: true,
       primaryAddress: false,
     },
@@ -106,7 +104,6 @@ export class ManagePickupAddressComponent implements OnInit {
       supplier_gstin: '',
       select_pickup_address: 'addres3',
       status: 0,
-      expand: false,
       activeStatus: false,
       primaryAddress: true,
     },
@@ -150,13 +147,14 @@ export class ManagePickupAddressComponent implements OnInit {
       if (actionType === 'Add') {
         this.editData = '';
         this.addAddressVisible = true;
-      } else if (actionType === 'Edit') {
+      } else if (actionType === 'Edit' || actionType === 'View') {
         this.editData = data;
         this.addAddressVisible = true;
-      } else if (actionType === 'View') {
-        this.viewData = data;
-        this.viewAddressVisible = true;
       }
+      // else if (actionType === 'View') {
+      //   this.viewData = data;
+      //   this.viewAddressVisible = true;
+      // }
     }
   }
 

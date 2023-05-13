@@ -44,7 +44,6 @@
     >
       <thead>
         <tr>
-          <th style="width: 55px"></th>
           <th>Address Nickname</th>
           <th>Location Id</th>
           <th>Active/Inactive</th>
@@ -54,7 +53,6 @@
       <tbody>
         <ng-template ngFor let-data [ngForOf]="returnLocationList">
           <tr>
-            <td [(nzExpand)]="data.expand"></td>
             <td>{{ data?.address_nickname }}</td>
             <td>{{ data?.location_id }}</td>
             <td>
@@ -64,33 +62,17 @@
               ></nz-switch>
             </td>
             <td>
-              <a style="margin: 0 5px" (click)="addPickupAddress('Edit', data)"
+              <a
+                style="margin: 0 5px; color: #2121c3; font-size: 20px"
+                (click)="addPickupAddress('Edit', data)"
                 ><span nz-icon nzType="edit" nzTheme="outline"></span
               ></a>
-              <a style="margin: 0 5px" (click)="addPickupAddress('View', data)"
+              <a
+                style="margin: 0 5px; color: #2121c3; font-size: 20px"
+                (click)="addPickupAddress('View', data)"
                 ><span nz-icon nzType="eye" nzTheme="outline"></span
               ></a>
             </td>
-          </tr>
-          <tr [nzExpand]="data.expand">
-            <nz-table
-              style="margin: 6px 0"
-              #innerTable
-              [nzData]="[data]"
-              nzSize="middle"
-              [nzShowPagination]="false"
-            >
-              <!-- <thead>
-                  <tr>
-                    <th>Guests</th>
-                  </tr>
-                </thead> -->
-              <tbody>
-                <tr>
-                  <td>No Data</td>
-                </tr>
-              </tbody>
-            </nz-table>
           </tr>
         </ng-template>
       </tbody>
@@ -108,6 +90,7 @@
   <div *nzModalContent>
     <app-add-pickup-address
       [editData]="editData"
+      [modelHeader]="modelHeader"
       (closeModel)="handleCancel()"
     ></app-add-pickup-address>
   </div>

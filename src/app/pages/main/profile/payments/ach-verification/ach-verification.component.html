@@ -16,15 +16,23 @@
           [nzLg]="12"
           [nzSm]="13"
           [nzXs]="24"
-          nzErrorTip="Deposit value 1 is required!"
+          [nzErrorTip]="deposit_value_one"
         >
-          <nz-input-group>
+          <nz-input-group nzPrefix="$">
             <input
               formControlName="deposit_value_one"
-              type="text"
+              type="number"
               nz-input
-              placeholder="Enter Deposit value 1 "
+              placeholder="00.00"
             />
+            <ng-template #deposit_value_one let-control>
+              <ng-container *ngIf="control.hasError('pattern')"
+                >Please input more than 2 decimal!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('required')"
+                >Please input your Deposit value 1!</ng-container
+              >
+            </ng-template>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -36,32 +44,44 @@
           [nzXs]="24"
           nzRequired
           nzFor="deposit_value_two"
-          >Deposit value 1
+          >Deposit value 2
         </nz-form-label>
         <nz-form-control
           [nzXl]="9"
           [nzLg]="12"
           [nzSm]="13"
           [nzXs]="24"
-          nzErrorTip="Deposit value 2 is required!"
+          [nzErrorTip]="deposit_value_two"
         >
-          <nz-input-group>
+          <nz-input-group nzPrefix="$">
             <input
               formControlName="deposit_value_two"
-              type="text"
+              type="number"
               nz-input
-              placeholder="Enter Deposit value 1 "
+              placeholder="00.00"
             />
+            <ng-template #deposit_value_two let-control>
+              <ng-container *ngIf="control.hasError('pattern')"
+                >Please input more than 2 decimal!</ng-container
+              >
+              <ng-container *ngIf="control.hasError('required')"
+                >Please input your Deposit value 2!</ng-container
+              >
+            </ng-template>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <div nz-row>
-        <div nz-col [nzXl]="12" [nzLg]="16" [nzSm]="19" [nzXs]="24">
+        <div nz-col [nzXl]="3" [nzLg]="4" [nzSm]="5" [nzXs]="24"></div>
+        <div nz-col [nzXl]="9" [nzLg]="12" [nzSm]="13" [nzXs]="24">
           <button
             nz-button
             [nzType]="'primary'"
             class="action-button"
             (click)="submitForm()"
+            [ngClass]="{
+              'button-disabled': !ascVerificationForm.valid
+            }"
             [disabled]="!ascVerificationForm.valid"
           >
             <span nz-icon nzType="file-text" nzTheme="outline"></span> Save

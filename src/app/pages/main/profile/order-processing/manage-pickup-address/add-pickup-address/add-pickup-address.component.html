@@ -27,6 +27,7 @@
             ></span>
             <nz-input-group>
               <input
+                [readonly]="modelHeader === 'View'"
                 formControlName="address_nickname"
                 type="text"
                 nz-input
@@ -48,6 +49,7 @@
             </nz-form-label>
             <nz-input-group>
               <input
+                [readonly]="modelHeader === 'View'"
                 formControlName="company_name"
                 type="text"
                 nz-input
@@ -69,6 +71,7 @@
             </nz-form-label>
             <nz-input-group>
               <input
+                [readonly]="modelHeader === 'View'"
                 formControlName="contact_name"
                 type="text"
                 nz-input
@@ -97,14 +100,9 @@
               nzType="question-circle"
               nzTheme="twotone"
             ></span>
-            <!-- <a
-              *ngIf="editData"
-              (click)="editPhoneNumber()"
-              style="color: black; margin-left: 10px"
-              ><span nz-icon nzType="edit" nzTheme="outline"></span
-            ></a> -->
             <nz-input-group>
               <input
+                [readonly]="modelHeader === 'View'"
                 formControlName="phone"
                 type="text"
                 nz-input
@@ -120,17 +118,6 @@
               </ng-template>
             </nz-input-group>
           </nz-form-control>
-          <!-- <div *ngIf="showVerifiedNumber" class="verify-section">
-            <div class="left">
-              <a (click)="verifyOTP()">Verify via OTP</a>
-            </div>
-            <div class="center">
-              <span>OR</span>
-            </div>
-            <div class="right">
-              <a href="#">Verify via IVR</a>
-            </div>
-          </div> -->
         </nz-form-item>
         <nz-form-item
           nz-col
@@ -152,6 +139,7 @@
             ></span>
             <nz-input-group>
               <input
+                [readonly]="modelHeader === 'View'"
                 formControlName="extension"
                 type="text"
                 nz-input
@@ -173,6 +161,7 @@
             </nz-form-label>
             <nz-input-group>
               <input
+                [readonly]="modelHeader === 'View'"
                 formControlName="email"
                 type="email"
                 nz-input
@@ -208,6 +197,7 @@
                 </nz-form-label>
                 <nz-input-group>
                   <input
+                    [readonly]="modelHeader === 'View'"
                     formControlName="address_line_1"
                     type="text"
                     nz-input
@@ -223,6 +213,7 @@
                 </nz-form-label>
                 <nz-input-group>
                   <input
+                    [readonly]="modelHeader === 'View'"
                     formControlName="address_line_2"
                     type="text"
                     nz-input
@@ -238,6 +229,7 @@
                 </nz-form-label>
                 <nz-input-group>
                   <input
+                    [readonly]="modelHeader === 'View'"
                     formControlName="pin_code"
                     type="text"
                     nz-input
@@ -267,6 +259,7 @@
                 </nz-form-label>
                 <nz-input-group>
                   <input
+                    [readonly]="modelHeader === 'View'"
                     formControlName="city"
                     type="text"
                     nz-input
@@ -282,6 +275,7 @@
                 </nz-form-label>
                 <nz-input-group>
                   <nz-select
+                    [nzDisabled]="modelHeader === 'View'"
                     nzShowSearch
                     nzAllowClear
                     nzPlaceHolder="Select a state"
@@ -315,6 +309,7 @@
                       <label nzFor="open_at">Open At</label>
                       <nz-input-group>
                         <nz-time-picker
+                          [nzDisabled]="modelHeader === 'View'"
                           formControlName="open_at"
                         ></nz-time-picker>
                       </nz-input-group>
@@ -325,6 +320,7 @@
                       <label nzFor="close_at">Close At</label>
                       <nz-input-group>
                         <nz-time-picker
+                          [nzDisabled]="modelHeader === 'View'"
                           formControlName="close_at"
                         ></nz-time-picker>
                       </nz-input-group>
@@ -335,6 +331,7 @@
                       <label nzFor="close_at">Time Zone</label>
                       <nz-input-group>
                         <nz-select
+                          [nzDisabled]="modelHeader === 'View'"
                           nzShowSearch
                           nzAllowClear
                           nzPlaceHolder="Select time zone"
@@ -357,6 +354,7 @@
         <nz-form-item nz-col class="gutter-row" [nzSm]="24">
           <nz-form-control>
             <label
+              [nzDisabled]="modelHeader === 'View'"
               nz-checkbox
               formControlName="vendor_address"
               (ngModelChange)="updateAllChecked('vendor', $event)"
@@ -389,6 +387,7 @@
                 </nz-form-label>
                 <nz-input-group>
                   <input
+                    [readonly]="modelHeader === 'View'"
                     formControlName="supplier_name"
                     type="text"
                     nz-input
@@ -410,6 +409,7 @@
                 </nz-form-label>
                 <nz-input-group>
                   <input
+                    [readonly]="modelHeader === 'View'"
                     formControlName="supplier_gstin"
                     type="text"
                     nz-input
@@ -434,6 +434,7 @@
         Cancel
       </button>
       <button
+        *ngIf="modelHeader !== 'View'"
         nz-button
         class="action-button"
         (click)="submitForm()"

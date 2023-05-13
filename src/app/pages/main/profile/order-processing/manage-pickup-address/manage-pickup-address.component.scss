@@ -27,7 +27,7 @@
 
         .pull-push-btn {
             background: #2a3036f0;
-            color: white;
+            color: $white;
             width: 52px;
         }
     }
@@ -37,7 +37,7 @@
             color: $black;
 
             &-selected {
-                color: $skyBlue;
+                color: $darkBlue;
                 line-height: 0;
                 font-size: 24px;
                 width: 22px;

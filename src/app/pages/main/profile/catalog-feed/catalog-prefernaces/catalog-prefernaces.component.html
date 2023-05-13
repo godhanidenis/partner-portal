@@ -20,9 +20,11 @@
   <div class="catalog-content">
     <form nz-form [formGroup]="catalogForm">
       <nz-form-item>
-        <nz-form-label nz-col nzFor="map">Map</nz-form-label>
+        <nz-form-label nz-col nzFor="map" [nzXl]="4" [nzSm]="7" [nzXs]="24"
+          >Map</nz-form-label
+        >
         <nz-form-control
-          [nzXl]="8"
+          [nzXl]="10"
           [nzSm]="12"
           [nzXs]="24"
           nzErrorTip="PO Method is required!"
@@ -38,9 +40,11 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label nz-col nzFor="map">Handling set up</nz-form-label>
+        <nz-form-label nz-col nzFor="map" [nzXl]="4" [nzSm]="7" [nzXs]="24"
+          >Handling set up</nz-form-label
+        >
         <nz-form-control
-          [nzXl]="8"
+          [nzXl]="10"
           [nzSm]="12"
           [nzXs]="24"
           nzErrorTip="PO Method is required!"
@@ -49,7 +53,6 @@
             <nz-radio-group
               (ngModelChange)="selectPrepaidLabel($event)"
               formControlName="handlingSetup"
-              
             >
               <label nz-radio nzValue="yes">Account level</label>
               <label nz-radio nzValue="no">Product level</label>
@@ -58,20 +61,26 @@
         </nz-form-control>
       </nz-form-item>
 
-      <div nz-row [nzGutter]="16" *ngIf="showLabelSection">
+      <div nz-row *ngIf="showLabelSection">
         <nz-form-item
           nz-col
           class="gutter-row"
           [nzSm]="12"
           style="padding: 0 8px"
         >
-          <nz-form-label nzFor="date">Choose number of days </nz-form-label>
-          <nz-form-control  [nzErrorTip]="day">
+          <nz-form-label nzFor="date" [nzXl]="8" [nzSm]="14" [nzXs]="24"
+            >Choose number of days
+          </nz-form-label>
+          <nz-form-control
+            [nzErrorTip]="day"
+            [nzXl]="10"
+            [nzSm]="12"
+            [nzXs]="24"
+          >
             <nz-input-group>
               <input
                 type="number"
                 nz-input
-                
                 formControlName="choose_number_of_days_data"
               />
 
@@ -94,17 +103,11 @@
         </nz-form-item>
       </div>
       <div nz-row>
-        <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
-          <button
-            nz-button
-            class="login-form-button login-form-margin"
-            style="height: 35px"
-            class="submit-btn"
-          >
-          <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
+        <div nz-col [nzXl]="4" [nzSm]="7" [nzXs]="24"></div>
+        <div nz-col [nzXl]="5" [nzSm]="6" [nzXs]="24">
+          <button nz-button class="action-button">
+            <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
           </button>
-
-         
         </div>
       </div>
     </form>

@@ -20,9 +20,10 @@
 
     .model-action {
         padding-top: 10px;
+        padding-left: 23px;
         border-top: 1px solid $border;
-        display: flex;
-        justify-content: end;
+        // display: flex;
+        // justify-content: end;
 
         button {
             color: $white;
@@ -35,13 +36,19 @@
         }
 
         .action-btn {
-            background-color: $header-of-tab;
+            background-color: $darkBlue ;
             border: none;
             margin-right: 24px;
         }
 
         button:hover {
             color: $white;
+        }
+
+        .button-disabled,
+        .button-disabled:hover {
+            background: $darkBlue;
+            opacity: 0.8;
         }
     }
 }
@@ -50,7 +57,7 @@
 .action-button:hover {
     background-color: $darkBlue;
     color: $white;
-    float: right;
+    // float: right;
     border: none;
     color: $white;
     font-weight: 400;
@@ -62,6 +69,13 @@
     margin-top: 10px;
 }
 
+::ng-deep .ant-pagination-item-active a {
+    color: $darkBlue !important;
+}
+
+::ng-deep .ant-pagination-item-active {
+    border-color: $darkBlue !important;
+}
 
 ::-webkit-scrollbar {
     width: 5px;

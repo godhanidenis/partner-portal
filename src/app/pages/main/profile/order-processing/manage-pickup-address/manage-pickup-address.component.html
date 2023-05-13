@@ -38,11 +38,10 @@
   >
     <thead>
       <tr>
-        <th style="width: 55px"></th>
         <th>Address Nickname</th>
         <th>Location Id</th>
-        <th>Status</th>
-        <th>Set Primary Address</th>
+        <!-- <th>Status</th>
+        <th>Set Primary Address</th> -->
         <th>Active/Inactive</th>
         <th>Action</th>
       </tr>
@@ -50,10 +49,9 @@
     <tbody>
       <ng-template ngFor let-data [ngForOf]="shipOut">
         <tr>
-          <td [(nzExpand)]="data.expand"></td>
           <td>{{ data?.address_nickname }}</td>
           <td>{{ data?.location_id }}</td>
-          <td>
+          <!-- <td>
             <span
               *ngIf="data?.status === 1"
               class="badge"
@@ -80,38 +78,22 @@
                 Address</label
               >
             </a>
-          </td>
+          </td> -->
           <td>
             <nz-switch nzSize="small" [ngModel]="data.activeStatus"></nz-switch>
           </td>
           <td>
-            <a style="margin: 0 5px" (click)="addPickupAddress('Edit', data)"
+            <a
+              style="margin: 0 5px; color: #2121c3"
+              (click)="addPickupAddress('Edit', data)"
               ><span nz-icon nzType="edit" nzTheme="outline"></span
             ></a>
-            <a style="margin: 0 5px" (click)="addPickupAddress('View', data)"
+            <a
+              style="margin: 0 5px; color: #2121c3"
+              (click)="addPickupAddress('View', data)"
               ><span nz-icon nzType="eye" nzTheme="outline"></span
             ></a>
           </td>
-        </tr>
-        <tr [nzExpand]="data.expand">
-          <nz-table
-            style="margin: 6px 0"
-            #innerTable
-            [nzData]="[data]"
-            nzSize="middle"
-            [nzShowPagination]="false"
-          >
-            <!-- <thead>
-                  <tr>
-                    <th>Guests</th>
-                  </tr>
-                </thead> -->
-            <tbody>
-              <tr>
-                <td>No Data</td>
-              </tr>
-            </tbody>
-          </nz-table>
         </tr>
       </ng-template>
     </tbody>
@@ -128,6 +110,7 @@
   <div *nzModalContent>
     <app-add-pickup-address
       [editData]="editData"
+      [modelHeader]="modelHeader"
       (closeModel)="handleCancel()"
     ></app-add-pickup-address>
   </div>

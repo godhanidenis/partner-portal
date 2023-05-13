@@ -30,10 +30,9 @@
          flex-direction: column;
 
          .button-group {
-             float: right;
-             margin-bottom: 10px;
+             display: flex;
+             justify-content: end;
          }
-
      }
 
 
@@ -80,6 +79,7 @@
      button {
          height: 35px !important;
      }
+
  }
 
 
@@ -91,28 +91,4 @@
              overflow-y: auto;
          }
      }
- }
-
-
-
- ::ng-deep .ant-modal-footer {
-     display: none;
- }
-
- ::ng-deep .ant-modal-header {
-     background-color: $header-of-tab;
-
-     .ant-modal-title {
-         color: $white;
-         font-size: 1.1rem;
-         font-weight: 600;
-     }
- }
-
- ::ng-deep .ant-modal-body {
-     padding: 0;
- }
-
- ::ng-deep .ant-modal-close {
-     color: $white !important;
  }
