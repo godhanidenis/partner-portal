@@ -22,12 +22,16 @@
         <nz-tag *ngIf="asin">{{ asin }}</nz-tag>
         <nz-tag *ngIf="Selectstatus">{{ Selectstatus }}</nz-tag>
         <nz-tag *ngIf="map">{{ map }}</nz-tag>
-        <button *ngIf="clear_btn"
-         nz-button nzType="primary"
-        (click)="tagfunc()"
-        style="float: none;"
-        class="action-button" >
-        <span nz-icon nzType="delete" ></span>clear</button>
+        <button
+          *ngIf="clear_btn"
+          nz-button
+          nzType="primary"
+          (click)="tagfunc()"
+          style="float: none"
+          class="action-button"
+        >
+          <span nz-icon nzType="delete"></span>clear
+        </button>
       </div>
       <div class="action">
         <nz-badge [nzShowZero]="false" [nzCount]="beagetotal">
