@@ -162,13 +162,22 @@
             <div [formGroupName]="i">
               <nz-form-item>
                 <nz-form-label
+                  *ngIf="i === 0"
                   nz-col
+                  nzFor="email"
                   [nzXl]="2"
                   [nzSm]="4"
                   [nzXs]="24"
-                  nzFor="email"
                   >Email List</nz-form-label
                 >
+                <div
+                  *ngIf="i !== 0"
+                  nz-col
+                  nzFor="email"
+                  [nzXl]="2"
+                  [nzSm]="4"
+                  [nzXs]="24"
+                ></div>
                 <nz-form-control
                   [nzXl]="8"
                   [nzSm]="12"

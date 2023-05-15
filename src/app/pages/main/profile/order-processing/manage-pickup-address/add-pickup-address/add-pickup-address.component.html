@@ -110,8 +110,8 @@
               />
               <ng-template #phone let-control>
                 <ng-container *ngIf="control.hasError('required')"
-                  >Phone number is required!</ng-container
-                >
+                  >Phone number is required!<br
+                /></ng-container>
                 <ng-container *ngIf="control.hasError('pattern')"
                   >Please input valid name of account!</ng-container
                 >
@@ -169,8 +169,8 @@
               />
               <ng-template #email let-control>
                 <ng-container *ngIf="control.hasError('required')"
-                  >Email is required!</ng-container
-                >
+                  >Email is required!<br
+                /></ng-container>
                 <ng-container *ngIf="control.hasError('email')"
                   >Please input valid email!</ng-container
                 >
@@ -237,14 +237,14 @@
                   />
                   <ng-template #pinCode let-control>
                     <ng-container *ngIf="control.hasError('minlength')"
-                      >Please input minimum 6 number!</ng-container
-                    >
+                      >Please input minimum 6 number!<br
+                    /></ng-container>
                     <ng-container *ngIf="control.hasError('maxlength')"
-                      >Please input maximum 6 number!</ng-container
-                    >
+                      >Please input maximum 6 number!<br
+                    /></ng-container>
                     <ng-container *ngIf="control.hasError('required')"
-                      >Pin Code is required!</ng-container
-                    >
+                      >Pin Code is required!<br
+                    /></ng-container>
                     <ng-container *ngIf="control.hasError('pattern')"
                       >Please input valid pin code!</ng-container
                     >
