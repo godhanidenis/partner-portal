@@ -9,7 +9,7 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 })
 export class CertiOfInsuComponent implements OnInit {
   certiOfInsuranceDate = { 
-    producerNameAddress: 'Insurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsfInsurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsfInsurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsfInsurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsfInsurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsfInsurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsfInsurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsfInsurance Pvt Ltd, New York, New York 10001 dfdsfdsdsdsfsdsfd ddsfd  ssddsddxddr dxtfffg ddfgdfgd rgdg dsxdsf',
+    producerNameAddress: 'Insurance Pvt Ltd, New York, New York 10001 ',
     insuredNameAddress: 'XYZ Stores, Livingston, Montana 59101',
     dateInsured: 'Aug 24, 2022',
     classification: 'data collection',
