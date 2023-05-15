@@ -18,24 +18,14 @@
   </div>
 
   <div class="body-section">
-    <nz-descriptions>
-      <nz-descriptions-item nzTitle="Producer"
+    <div nz-row [nzGutter]="16">
+      <div nz-col nz-col class="gutter-row" [nzSpan]="12">
+        <nz-descriptions class="vertical-sec">
+        <nz-descriptions-item nzTitle="Producer"
         ><b>{{
           certiOfInsuranceDate.producerNameAddress
         }}</b></nz-descriptions-item
       >
-
-      <nz-descriptions-item nzTitle="Document Type" class="ab"
-        ><b
-          >{{ certiOfInsuranceDate.documentType }}
-
-          <a> download</a>
-        </b></nz-descriptions-item
-      >
-    </nz-descriptions>
-
-    <div>
-      <nz-descriptions class="vertical-sec">
         <nz-descriptions-item nzTitle="Insured Identification Number"
           ><b>{{
             certiOfInsuranceDate.insuredNameAddress
@@ -52,7 +42,22 @@
         <nz-descriptions-item nzTitle="For any changes in COI"
           ><a>click here</a></nz-descriptions-item
         >
-      </nz-descriptions>
+        </nz-descriptions>
+      </div>
+
+      <div style="margin-left: 100px;" nz-col class="gutter-row" [nzSpan]="10">
+        <nz-descriptions> 
+            <nz-descriptions-item nzTitle="Document Type" class="ab"
+            ><b
+              >{{ certiOfInsuranceDate.documentType }}
+
+              <a> download</a>
+            </b></nz-descriptions-item>
+        </nz-descriptions>
+      </div>
     </div>
+    
+
+      
   </div>
 </div>

@@ -1,6 +1,11 @@
 @import '../assets/variable/variable.scss';
 
 
+::ng-deep .ant-btn-primary{
+    border-color: $darkBlue !important;
+    background: $darkBlue !important;
+}
+
 ::ng-deep .ant-pagination-item-active a {
     color: $darkBlue !important;
 }
