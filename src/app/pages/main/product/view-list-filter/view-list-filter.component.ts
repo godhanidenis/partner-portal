@@ -23,6 +23,7 @@ export class ViewListFilterComponent implements OnInit {
   stock: number = 0;
   status: number = 0;
   beagetotal: number = 0;
+  clear_btn: boolean = false
 
   inventory: string = '';
   viewSelect: string = '';
@@ -140,10 +141,12 @@ export class ViewListFilterComponent implements OnInit {
    this.Selectstatus = '';
    this.map = '';
    this.beagetotal = 0;
-
+   this.clear_btn = false;
+   this.filter.reset();
   }
 
   change(value: string, type: string) {
+    
     console.log(value);
     switch (type) {
 
@@ -153,6 +156,8 @@ export class ViewListFilterComponent implements OnInit {
           value == 'dell' ||
           value == 'samsung'
         ) {
+          this.clear_btn = true;
+
           if (this.brand == 0) {
             this.brand++;
             this.beagetotal++;
@@ -167,6 +172,7 @@ export class ViewListFilterComponent implements OnInit {
 
       case 'inventory':
         if (value == 'inStock' || value == 'outOfStock') {
+          this.clear_btn = true;
           this.inventory = value;
           if (this.stock == 0) {
             this.stock++;
@@ -183,6 +189,7 @@ export class ViewListFilterComponent implements OnInit {
           value == 'category' ||
           value == 'salesTire'
         ) {
+          this.clear_btn = true;
           this.viewSelect = value;
           if (this.collection == 0) {
             this.collection++;
@@ -198,11 +205,13 @@ export class ViewListFilterComponent implements OnInit {
         break;
       case 'asin':
         if (value == 'approved' || value == 'notapproved') {
-        this.asin = value;
+          this.clear_btn = true;
+          this.asin = value;
 
           if (this.aprove == 0) {
             this.aprove++;
             this.beagetotal++;
+            this.clear_btn = true;
           }
 
          
@@ -212,6 +221,7 @@ export class ViewListFilterComponent implements OnInit {
 
         case 'status':
           if (value == 'discontented' || value == 'active' || value == 'restricted') {
+            this.clear_btn = true;
             this.Selectstatus = value;
 
             if (this.status == 0) {
@@ -230,6 +240,7 @@ export class ViewListFilterComponent implements OnInit {
 
           case 'map':
           if (value == 'true' || value == 'false') {
+            this.clear_btn = true;
             this.map = value;
 
             if (this.beage == 0) {
