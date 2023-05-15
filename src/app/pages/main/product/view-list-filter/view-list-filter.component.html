@@ -3,10 +3,20 @@
     <div class="user-content">
       <div class="tab-header">
         <span>View Products</span>
+    
+      </div>
+    </div>
+
+   
+
+    <div class="view-edit-products-section-content">
+
+      <div>
         <button
           nz-button
           nzType="primary"
           nzShape="round"
+          style="display: block;"
           (click)="navigatePage('product/view-list-filter/add-product')"
         >
           <span nz-icon nzType="plus" nzTheme="outline"></span>
@@ -16,19 +26,7 @@
     </div>
 
     <div class="view-edit-products-section-content">
-      <div>
-        <nz-tag *ngIf="inventory">{{ inventory }}</nz-tag>
-        <nz-tag *ngIf="viewSelect">{{ viewSelect }}</nz-tag>
-        <nz-tag *ngIf="asin">{{ asin }}</nz-tag>
-        <nz-tag *ngIf="Selectstatus">{{ Selectstatus }}</nz-tag>
-        <nz-tag *ngIf="map">{{ map }}</nz-tag>
-        <button *ngIf="clear_btn"
-         nz-button nzType="primary"
-        (click)="tagfunc()"
-        style="float: none;"
-        class="action-button" >
-        <span nz-icon nzType="delete" ></span>clear</button>
-      </div>
+      
       <div class="action">
         <nz-badge [nzShowZero]="false" [nzCount]="beagetotal">
           <button
@@ -66,6 +64,49 @@
         </form>
       </div>
 
+      <div  *ngIf="clear_btn" style="margin-bottom: 10px;">
+        <nz-divider></nz-divider>
+        
+        <!-- <nz-tag
+          *ngIf="selectBrand"
+          nzMode="closeable"
+          (nzOnClose)="selecBrandOnClose()"
+          >{{ selectBrand }}</nz-tag
+        > -->
+        <nz-tag
+          *ngIf="inventory"
+          nzMode="closeable"
+          (nzOnClose)="inventoryOnClose()"
+          >{{ inventory }}</nz-tag
+        >
+        <nz-tag
+          *ngIf="viewSelect"
+          nzMode="closeable"
+          (nzOnClose)="viewSelectOnClose()"
+          >{{ viewSelect }}</nz-tag
+        >
+        <nz-tag *ngIf="asin" nzMode="closeable" (nzOnClose)="asinOnClose()">{{
+          asin
+        }}</nz-tag>
+        <nz-tag
+          *ngIf="Selectstatus"
+          nzMode="closeable"
+          (nzOnClose)="selectstatusOnClose()"
+          >{{ Selectstatus }}</nz-tag
+        >
+        <nz-tag *ngIf="map" nzMode="closeable" (nzOnClose)="mapOnClose()">{{
+          map
+        }}</nz-tag>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="tagfunc()"
+          style="float: none"
+          class="action-button clear-btn"
+        >
+          clear
+        </button>
+      </div>
       <nz-table
         #nzTable
         nzTableLayout="fixed"

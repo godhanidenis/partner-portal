@@ -27,8 +27,8 @@
             />
             <ng-template #deposit_value_one let-control>
               <ng-container *ngIf="control.hasError('pattern')"
-                >Please input more than 2 decimal!</ng-container
-              >
+                >Please input more than 2 decimal!<br
+              /></ng-container>
               <ng-container *ngIf="control.hasError('required')"
                 >Please input your Deposit value 1!</ng-container
               >
@@ -62,8 +62,8 @@
             />
             <ng-template #deposit_value_two let-control>
               <ng-container *ngIf="control.hasError('pattern')"
-                >Please input more than 2 decimal!</ng-container
-              >
+                >Please input more than 2 decimal!<br
+              /></ng-container>
               <ng-container *ngIf="control.hasError('required')"
                 >Please input your Deposit value 2!</ng-container
               >

@@ -25,6 +25,7 @@ export class ViewListFilterComponent implements OnInit {
   beagetotal: number = 0;
   clear_btn: boolean = false
 
+  selectBrand: string = '';
   inventory: string = '';
   viewSelect: string = '';
   asin: string = '';
@@ -135,6 +136,7 @@ export class ViewListFilterComponent implements OnInit {
     this.isVisible = false;
   }
   tagfunc(){
+   this.selectBrand = '';
    this.inventory = '';
    this.viewSelect = '';
    this.asin = '';
@@ -143,6 +145,38 @@ export class ViewListFilterComponent implements OnInit {
    this.beagetotal = 0;
    this.clear_btn = false;
    this.filter.reset();
+  }
+
+  // selecBrandOnClose(){
+  //   this.filter.controls['brand'].reset();
+  //   this.beagetotal--;
+  //   this.selectBrand = '';
+   
+  // }
+
+  inventoryOnClose(){
+    this.filter.controls['inventory'].reset();
+    this.beagetotal--;
+    this.inventory = '';
+   
+  }
+  viewSelectOnClose(){
+    this.filter.controls['viewSelect'].reset();
+    this.viewSelect = '';
+  }
+  asinOnClose(){
+    this.filter.controls['asin'].reset();
+    this.beagetotal--;
+    this.asin = '';
+  }
+  selectstatusOnClose(){
+    this.filter.controls['status'].reset();
+    this.Selectstatus = '';
+  }
+  mapOnClose(){
+    this.filter.controls['map'].reset()
+    this.beagetotal--;
+    this.map = '';
   }
 
   change(value: string, type: string) {
@@ -157,7 +191,7 @@ export class ViewListFilterComponent implements OnInit {
           value == 'samsung'
         ) {
           this.clear_btn = true;
-
+          this.selectBrand = value;
           if (this.brand == 0) {
             this.brand++;
             this.beagetotal++;

@@ -34,3 +34,9 @@ $skyBlue: #1890ff;
 // $header-of-tab: #6c757d;
 $header-of-tab: #1dbae1;
 $darkBlue: #2121c3;
+
+
+::ng-deep .ant-table-thead > tr > th {
+    border-top: 3px solid #2121c3;
+    background-color: rgba(33, 33, 195, 0.08) !important;
+  }

@@ -35,13 +35,16 @@
          padding: 16px 18px;
      }
 
+     nz-card {
+         border-radius: 5px;
+     }
 
      ::ng-deep .ant-card-body {
          padding: 2px 0px;
-         // padding: 0px 30px;
          border: none;
-         height: 330px;
-
+         height: 250px;
+         border-top: 2px solid #2121c3;
+         border-radius: 5px;
      }
 
      .card-title {
