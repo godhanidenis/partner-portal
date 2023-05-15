@@ -21,7 +21,7 @@
     <div nz-row [nzGutter]="16">
       <div nz-col nz-col class="gutter-row" [nzSpan]="12">
         <nz-descriptions class="vertical-sec">
-        <nz-descriptions-item nzTitle="Producer"
+        <nz-descriptions-item nzTitle="Provider"
         ><b>{{
           certiOfInsuranceDate.producerNameAddress
         }}</b></nz-descriptions-item
@@ -39,9 +39,6 @@
             certiOfInsuranceDate.classification
           }}</b></nz-descriptions-item
         >
-        <nz-descriptions-item nzTitle="For any changes in COI"
-          ><a>click here</a></nz-descriptions-item
-        >
         </nz-descriptions>
       </div>
 
@@ -54,6 +51,11 @@
               <a> download</a>
             </b></nz-descriptions-item>
         </nz-descriptions>
+      </div>
+    </div>
+    <div nz-row style="margin-top: 30px;">
+      <div>
+        <span style="color:red">For any changes in COI&nbsp;<a>click here</a></span>
       </div>
     </div>
     
