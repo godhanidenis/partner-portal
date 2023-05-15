@@ -22,11 +22,12 @@
           <span nz-icon nzType="plus" nzTheme="outline"></span>
           Add new Product
         </button>
-        <br><br>
       </div>
+    </div>
+
+    <div class="view-edit-products-section-content">
       
-      <div class="filter-upload-search-sec">
-       
+      <div class="action">
         <nz-badge [nzShowZero]="false" [nzCount]="beagetotal">
           <button
             (click)="openNav()"
@@ -63,7 +64,7 @@
         </form>
       </div>
 
-      <div>
+      <div  *ngIf="clear_btn" style="margin-bottom: 10px;">
         <nz-divider></nz-divider>
         
         <!-- <nz-tag
@@ -97,7 +98,6 @@
           map
         }}</nz-tag>
         <button
-          *ngIf="clear_btn"
           nz-button
           nzType="primary"
           (click)="tagfunc()"
@@ -106,7 +106,6 @@
         >
           clear
         </button>
-        <nz-divider></nz-divider>
       </div>
       <nz-table
         #nzTable

@@ -71,6 +71,36 @@
     box-shadow: 0 0 0 2px rgb(24 42 255 / 20%);
 }
 
+::ng-deep .ant-input:focus,
+.ant-input-focuseds {
+    border-color: $darkBlue;
+    box-shadow: 0 0 0 2px rgb(24 42 255 / 20%);
+}
+
+::ng-deep .ant-input:hover {
+    border-color: $darkBlue;
+}
+
+::ng-deep .ant-picker:hover {
+    border-color: $darkBlue;
+    box-shadow: 0 0 0 2px rgb(24 42 255 / 20%);
+}
+
+::ng-deep .ant-picker-focused {
+    border-color: $darkBlue;
+    box-shadow: 0 0 0 2px rgb(24 42 255 / 20%);
+}
+
+::ng-deep .ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+    border-color: $darkBlue;
+    box-shadow: 0 0 0 2px rgb(24 42 255 / 20%);
+}
+
+::ng-deep .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border-color: $darkBlue;
+}
+
 ::ng-deep .ant-modal-footer {
     display: none;
 }

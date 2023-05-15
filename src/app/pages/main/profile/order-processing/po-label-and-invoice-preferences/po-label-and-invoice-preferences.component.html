@@ -101,19 +101,35 @@
               <nz-radio-group formControlName="size">
                 <label nz-radio nzValue="4By6">
                   <div class="radio-label">
-                    <nz-divider nzType="vertical" nzText="6"></nz-divider>
+                    <div class="left-divider">
+                      <div class="left-border"></div>
+                      <div class="text">6"</div>
+                      <div class="right-border"></div>
+                    </div>
                     <div class="create-box">
-                      <div class="box">6*4</div>
-                      <nz-divider nzType="horizontal" nzText="4"></nz-divider>
+                      <div class="box">6" * 4"</div>
+                      <div class="bottom-divider">
+                        <div class="left-border"></div>
+                        <div class="text">4"</div>
+                        <div class="right-border"></div>
+                      </div>
                     </div>
                   </div>
                 </label>
                 <label nz-radio nzValue="8.5By11">
                   <div class="radio-label">
-                    <nz-divider nzType="vertical" nzText="11"></nz-divider>
+                    <div class="left-divider">
+                      <div class="left-border"></div>
+                      <div class="text">11"</div>
+                      <div class="right-border"></div>
+                    </div>
                     <div class="create-box">
-                      <div class="box">11*8.5</div>
-                      <nz-divider nzType="horizontal" nzText="8.5"></nz-divider>
+                      <div class="box">11" * 8.5"</div>
+                      <div class="bottom-divider">
+                        <div class="left-border"></div>
+                        <div class="text">8.5"</div>
+                        <div class="right-border"></div>
+                      </div>
                     </div>
                   </div>
                 </label>
@@ -162,13 +178,22 @@
             <div [formGroupName]="i">
               <nz-form-item>
                 <nz-form-label
+                  *ngIf="i === 0"
                   nz-col
+                  nzFor="email"
                   [nzXl]="2"
                   [nzSm]="4"
                   [nzXs]="24"
-                  nzFor="email"
                   >Email List</nz-form-label
                 >
+                <div
+                  *ngIf="i !== 0"
+                  nz-col
+                  nzFor="email"
+                  [nzXl]="2"
+                  [nzSm]="4"
+                  [nzXs]="24"
+                ></div>
                 <nz-form-control
                   [nzXl]="8"
                   [nzSm]="12"
@@ -210,7 +235,8 @@
           </div>
         </div>
         <div nz-row>
-          <div nz-col [nzXl]="12" [nzSm]="19" [nzXs]="24">
+          <div nz-col [nzXl]="2" [nzSm]="4" [nzXs]="24"></div>
+          <div nz-col [nzXl]="8" [nzSm]="12" [nzXs]="24">
             <button
               nz-button
               class="action-button"

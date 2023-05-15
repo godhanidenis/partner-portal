@@ -16,34 +16,40 @@
     </div>
   </div>
   <div class="body-section">
-    <nz-table
-      #nzTable
-      nzOuterBordered
-      [nzData]="courierPreferenceList"
-      nzTableLayout="fixed"
-      [nzFrontPagination]="false"
-      [nzShowPagination]="false"
-    >
-      <thead>
-        <tr>
-          <th>Address Nickname</th>
-          <th>Active/Inactive</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-template ngFor let-data [ngForOf]="courierPreferenceList">
+    <div nz-row>
+      <nz-table
+        #nzTable
+        nzOuterBordered
+        [nzData]="courierPreferenceList"
+        nzTableLayout="fixed"
+        [nzFrontPagination]="false"
+        [nzShowPagination]="false"
+        nz-col
+        [nzXl]="12"
+        [nzSm]="24"
+        [nzXs]="24"
+      >
+        <thead>
           <tr>
-            <td>{{ data?.courierPreferenceName }}</td>
-            <td>
-              <nz-switch
-                nzSize="small"
-                [ngModel]="data.activeStatus"
-              ></nz-switch>
-            </td>
+            <th>Address Nickname</th>
+            <th>Active/Inactive</th>
           </tr>
-        </ng-template>
-      </tbody>
-    </nz-table>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="courierPreferenceList">
+            <tr>
+              <td>{{ data?.courierPreferenceName }}</td>
+              <td>
+                <nz-switch
+                  nzSize="small"
+                  [ngModel]="data.activeStatus"
+                ></nz-switch>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+    </div>
 
     <div nz-row>
       <div nz-col [nzXl]="24" [nzSm]="24" [nzXs]="24">
