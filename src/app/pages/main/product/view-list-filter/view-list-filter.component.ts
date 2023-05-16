@@ -180,23 +180,22 @@ export class ViewListFilterComponent implements OnInit {
             this.filter.controls['asin'].reset();
             this.asin = '';
             this.aprove--;
-          
+            this.beagetotal--;
             break;
           case 'Selectstatus':
             this.filter.controls['productStatus'].reset();
             this.Selectstatus = '';
             this.status--;
           break;
-
-          case 'SelectSales':
-            this.filter.controls['status'].reset();
-            this.Selectstatus = '';
-          break;
           case 'map':
             this.filter.controls['map'].reset();
             this.map = '';
             this.beagetotal--;
             this.mapradio--;
+          break;
+          case 'SelectSales':
+            this.filter.controls['status'].reset();
+            this.Selectstatus = '';
           break;
           case 'selectBrand':
             this.filter.controls['brand'].reset();
@@ -209,7 +208,7 @@ export class ViewListFilterComponent implements OnInit {
               this.selectCollection = '';
           break;
           case 'selectCategory':
-            this.filter.controls['selectCategory'].reset();
+            this.filter.controls['category'].reset();
             this.selectCategory = '';
           break;   
           case 'salesTire':

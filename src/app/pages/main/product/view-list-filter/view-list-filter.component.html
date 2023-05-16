@@ -44,7 +44,7 @@
         </button>
 
         <form nz-form [formGroup]="viewEditProducts">
-          <nz-form-item>
+          <nz-form-item style="margin-bottom: 0;">
             <nz-form-control nzErrorTip="Please input your valid code!">
               <nz-input-group nzPrefixIcon="search" class="search">
                 <input
@@ -58,8 +58,8 @@
         </form>
       </div>
 
-      <div *ngIf="clear_btn" style="margin-bottom: 20px">
-        <nz-divider></nz-divider>
+      <div *ngIf="clear_btn"  class="tag-section">
+       
         <nz-tag
           *ngIf="selectCategory"
           nzMode="closeable"

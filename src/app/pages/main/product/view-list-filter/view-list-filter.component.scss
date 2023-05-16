@@ -105,15 +105,21 @@
 
 
     .view-edit-products-section-content {
-      padding: 20px 20px 20px 20px;
+      padding: 13px 20px 20px 20px;
 
       .action {
         display: flex;
         justify-content: end;
-
-
+        border: 1px solid $border;
+        padding: 10px;
+        margin-top: 10px;
       }
-
+      .tag-section{
+        border-left: 1px solid $border;
+        border-right: 1px solid $border;
+        padding-bottom: 13px;
+        padding-left: 10px;
+      }
       form {
         .search {
           // width: 12%;
