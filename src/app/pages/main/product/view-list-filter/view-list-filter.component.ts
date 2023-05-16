@@ -26,6 +26,8 @@ export class ViewListFilterComponent implements OnInit {
   beagetotal: number = 0;
   clear_btn: boolean = false;
 
+  category: number = 0;
+  selectCategory: string = '';
   selectBrand: string = '';
   inventory: string = '';
   viewSelect: string = '';
@@ -98,6 +100,9 @@ export class ViewListFilterComponent implements OnInit {
       asin: new FormControl(''),
       status: new FormControl(''),
       map: new FormControl(''),
+      category: new FormControl(''),
+      salesTire: new FormControl(''),
+      collection: new FormControl(''),
     });
   }
 
@@ -114,7 +119,7 @@ export class ViewListFilterComponent implements OnInit {
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
     this.contentSection.nativeElement.style.marginRight = '280px';
-    this.section.nativeElement.style.minHeight = '86%';
+    this.section.nativeElement.style.minHeight = '97%';
   }
 
   closeNav() {
@@ -155,6 +160,12 @@ export class ViewListFilterComponent implements OnInit {
     this.beagetotal--;
     this.inventory = '';
   }
+
+  categoryOnClose() {
+    this.filter.controls['selectCategory'].reset();
+    this.beagetotal--;
+    this.selectCategory = '';
+  }
   viewSelectOnClose() {
     this.filter.controls['viewSelect'].reset();
     this.viewSelect = '';
@@ -183,6 +194,22 @@ export class ViewListFilterComponent implements OnInit {
           this.selectBrand = value;
           if (this.brand == 0) {
             this.brand++;
+            this.beagetotal++;
+          }
+        }
+
+        if (value == null) {
+          this.brand--;
+          this.beagetotal--;
+        }
+        break;
+
+      case 'category':
+        if (value == 'kidFurniture' || value == 'rugs' || value == 'tables') {
+          this.clear_btn = true;
+          this.selectCategory = value;
+          if (this.category == 0) {
+            this.category++;
             this.beagetotal++;
           }
         }

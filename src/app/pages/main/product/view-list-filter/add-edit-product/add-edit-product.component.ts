@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -24,8 +25,43 @@ export class AddEditProductComponent implements OnInit {
   productCategoryIndex = 0;
   listOfSalesTier = ['SalesTier 1', 'SalesTier 2'];
   salesTierIndex = 0;
+  editData = {
+    mpn: 'powershell',
+    upc: '1234212342342',
+    amazon_asin: 'AS123',
+    product_name: 'Demo',
+    brand: 'Brand 1',
+    collection: 'Collection 1',
+    product_category: 'Category 2',
+    sales_tier: 'SalesTier 1',
+    unit_price: '123.21',
+    map: '6.2',
+    msrp: '5.21',
+    handling_time: '25',
+    shipping_Method: 'smallParcel',
+    number_of_boxes: '2',
+    product_status: 'active',
+    shipping_dimensions_of_box: [
+      {
+        length: 2.6,
+        width: 4,
+        height: 6,
+        gross_weight: 8,
+      },
+      {
+        length: 1.6,
+        width: 2,
+        height: 3,
+        gross_weight: 4,
+      },
+    ],
+  };
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private modal: NzModalService
+  ) {}
 
   ngOnInit(): void {
     this.addEditProductForm = new FormGroup({
@@ -73,7 +109,63 @@ export class AddEditProductComponent implements OnInit {
       product_status: new FormControl('active'),
       shipping_dimensions_of_box: this.formBuilder.array([]),
     });
-    this.addShippingDimensionsOfBoxes();
+
+    if (this.editSection) {
+      this.addEditProductForm.controls['mpn'].setValue(this.editData?.mpn);
+      this.addEditProductForm.controls['upc'].setValue(this.editData?.upc);
+      this.addEditProductForm.controls['amazon_asin'].setValue(
+        this.editData?.amazon_asin
+      );
+      this.addEditProductForm.controls['product_name'].setValue(
+        this.editData?.product_name
+      );
+      this.addEditProductForm.controls['brand'].setValue(this.editData?.brand);
+      this.addEditProductForm.controls['collection'].setValue(
+        this.editData?.collection
+      );
+      this.addEditProductForm.controls['product_category'].setValue(
+        this.editData?.product_category
+      );
+      this.addEditProductForm.controls['sales_tier'].setValue(
+        this.editData?.sales_tier
+      );
+      this.addEditProductForm.controls['unit_price'].setValue(
+        this.editData?.unit_price
+      );
+      this.addEditProductForm.controls['map'].setValue(this.editData?.map);
+      this.addEditProductForm.controls['msrp'].setValue(this.editData?.msrp);
+      this.addEditProductForm.controls['handling_time'].setValue(
+        this.editData?.handling_time
+      );
+      this.addEditProductForm.controls['shipping_Method'].setValue(
+        this.editData?.shipping_Method
+      );
+      this.addEditProductForm.controls['number_of_boxes'].setValue(
+        this.editData?.number_of_boxes
+      );
+      this.addEditProductForm.controls['product_status'].setValue(
+        this.editData?.product_status
+      );
+      this.editData?.shipping_dimensions_of_box.map(
+        (res: {
+          length: number;
+          width: number;
+          height: number;
+          gross_weight: number;
+        }) => {
+          this.shippingDimensionsOfBoxes.push(
+            this.formBuilder.group({
+              length: res?.length,
+              width: res?.width,
+              height: res?.height,
+              gross_weight: res?.gross_weight,
+            })
+          );
+        }
+      );
+    } else {
+      this.addShippingDimensionsOfBoxes();
+    }
   }
 
   get shippingDimensionsOfBoxes(): FormArray {
@@ -112,39 +204,47 @@ export class AddEditProductComponent implements OnInit {
   }
 
   addItem(input: HTMLInputElement, type: string): void {
-    switch (type) {
-      case 'Brand':
-        if (this.listOfBrand.indexOf(input.value) === -1) {
-          this.listOfBrand = [
-            ...this.listOfBrand,
-            input.value || `New item ${this.brandIndex++}`,
-          ];
-        }
-        break;
-      case 'Collection':
-        if (this.listOfCollection.indexOf(input.value) === -1) {
-          this.listOfCollection = [
-            ...this.listOfCollection,
-            input.value || `New item ${this.collectionIndex++}`,
-          ];
-        }
-        break;
-      case 'product_category':
-        if (this.listOfProductCategory.indexOf(input.value) === -1) {
-          this.listOfProductCategory = [
-            ...this.listOfProductCategory,
-            input.value || `New item ${this.productCategoryIndex++}`,
-          ];
-        }
-        break;
-      default:
-        if (this.listOfSalesTier.indexOf(input.value) === -1) {
-          this.listOfSalesTier = [
-            ...this.listOfSalesTier,
-            input.value || `New item ${this.salesTierIndex++}`,
-          ];
-        }
-        break;
+    if (input.value) {
+      this.modal.confirm({
+        nzTitle: `<i>Do you Want to add?</i>`,
+        nzContent: `<b>${type}</b>`,
+        nzOnOk: () => {
+          switch (type) {
+            case 'Brand':
+              if (this.listOfBrand.indexOf(input.value) === -1) {
+                this.listOfBrand = [
+                  ...this.listOfBrand,
+                  input.value || `New item ${this.brandIndex++}`,
+                ];
+              }
+              break;
+            case 'Collection':
+              if (this.listOfCollection.indexOf(input.value) === -1) {
+                this.listOfCollection = [
+                  ...this.listOfCollection,
+                  input.value || `New item ${this.collectionIndex++}`,
+                ];
+              }
+              break;
+            case 'Product Category':
+              if (this.listOfProductCategory.indexOf(input.value) === -1) {
+                this.listOfProductCategory = [
+                  ...this.listOfProductCategory,
+                  input.value || `New item ${this.productCategoryIndex++}`,
+                ];
+              }
+              break;
+            default:
+              if (this.listOfSalesTier.indexOf(input.value) === -1) {
+                this.listOfSalesTier = [
+                  ...this.listOfSalesTier,
+                  input.value || `New item ${this.salesTierIndex++}`,
+                ];
+              }
+              break;
+          }
+        },
+      });
     }
   }
 

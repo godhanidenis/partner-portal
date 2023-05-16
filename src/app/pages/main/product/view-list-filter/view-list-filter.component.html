@@ -60,13 +60,12 @@
 
       <div *ngIf="clear_btn" style="margin-bottom: 10px">
         <nz-divider></nz-divider>
-
-        <!-- <nz-tag
-          *ngIf="selectBrand"
+        <nz-tag
+          *ngIf="selectCategory"
           nzMode="closeable"
-          (nzOnClose)="selecBrandOnClose()"
-          >{{ selectBrand }}</nz-tag
-        > -->
+          (nzOnClose)="categoryOnClose()"
+          >{{ selectCategory }}</nz-tag
+        >
         <nz-tag
           *ngIf="inventory"
           nzMode="closeable"
@@ -156,7 +155,64 @@
     >
     <form nz-form [formGroup]="filter">
       <div class="filter-content">
-        <h3>Brand :</h3>
+        <nz-divider nzText="Inventory" nzOrientation="left"></nz-divider>
+        <nz-radio-group
+          (ngModelChange)="change($event, 'inventory')"
+          formControlName="inventory"
+        >
+          <label nz-radio nzValue="inStock">In Stock</label>
+          <label nz-radio nzValue="outOfStock">Out Of Stock</label>
+        </nz-radio-group>
+
+        <nz-divider
+          style="margin-top: 35px"
+          nzText="Asin Status"
+          nzOrientation="left"
+        ></nz-divider>
+        <nz-radio-group
+          (ngModelChange)="change($event, 'asin')"
+          formControlName="asin"
+        >
+          <label nz-radio nzValue="approved">Approved</label>
+          <label nz-radio nzValue="notapproved">Not Approved</label>
+        </nz-radio-group>
+
+        <nz-divider
+          style="margin-top: 35px"
+          nzText="Product Status"
+          nzOrientation="left"
+        ></nz-divider>
+        <nz-select
+          nzAllowClear
+          nzPlaceHolder="Select A Status"
+          (ngModelChange)="change($event, 'status')"
+          formControlName="status"
+        >
+          <nz-option nzLabel="Discontented" nzValue="discontented"></nz-option>
+          <nz-option nzLabel="Active" nzValue="active"></nz-option>
+          <nz-option nzLabel="Restricted" nzValue="restricted"></nz-option>
+          <nz-option nzLabel="Suppressed" nzValue="suppressed"></nz-option>
+          <nz-option nzLabel="LTL" nzValue="ltl"></nz-option>
+        </nz-select>
+
+        <nz-divider
+          style="margin-top: 35px"
+          nzText="MAP"
+          nzOrientation="left"
+        ></nz-divider>
+        <nz-radio-group
+          (ngModelChange)="change($event, 'map')"
+          formControlName="map"
+        >
+          <label nz-radio nzValue="true">Yes</label>
+          <label nz-radio nzValue="false">No</label>
+        </nz-radio-group>
+
+        <nz-divider
+          style="margin-top: 35px"
+          nzText="Brand"
+          nzOrientation="left"
+        ></nz-divider>
         <nz-select
           nzAllowClear
           nzPlaceHolder="Select A Brand"
@@ -168,80 +224,69 @@
           <nz-option nzLabel="Samsung" nzValue="samsung"></nz-option>
         </nz-select>
 
-        <h3>Collection :</h3>
+        <nz-divider
+          style="margin-top: 35px"
+          nzText="Collection"
+          nzOrientation="left"
+        ></nz-divider>
         <nz-select
           nzAllowClear
-          nzPlaceHolder="Select A View"
-          (ngModelChange)="change($event, 'viewSelect')"
-          formControlName="viewSelect"
+          nzPlaceHolder="Select A Collection"
+          (ngModelChange)="change($event, 'collection')"
+          formControlName="collection"
         >
-          <nz-option nzLabel="Collection" nzValue="collection"></nz-option>
-          <nz-option nzLabel="Category" nzValue="category"></nz-option>
-          <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
+          <nz-option
+            nzLabel="Floral Collection"
+            nzValue="floral_collection"
+          ></nz-option>
+          <nz-option
+            nzLabel="White Collection"
+            nzValue="white_collection"
+          ></nz-option>
+          <nz-option
+            nzLabel="Kids Collection"
+            nzValue="kids_collection"
+          ></nz-option>
         </nz-select>
 
-        <h3>Category :</h3>
+        <nz-divider
+          style="margin-top: 35px"
+          nzText="Category"
+          nzOrientation="left"
+        ></nz-divider>
         <nz-select
           nzAllowClear
-          nzPlaceHolder="Select A View"
-          (ngModelChange)="change($event, 'viewSelect')"
-          formControlName="viewSelect"
+          nzPlaceHolder="Select A Category"
+          (ngModelChange)="change($event, 'category')"
+          formControlName="category"
         >
-          <nz-option nzLabel="Collection" nzValue="collection"></nz-option>
-          <nz-option nzLabel="Category" nzValue="category"></nz-option>
-          <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
+          <nz-option
+            nzLabel="Kid’s Furniture"
+            nzValue="kidFurniture"
+          ></nz-option>
+          <nz-option nzLabel="Rugs" nzValue="rugs"></nz-option>
+          <nz-option nzLabel="Tables" nzValue="tables"></nz-option>
         </nz-select>
 
-        <h3>Sales Tire :</h3>
+        <nz-divider
+          style="margin-top: 35px"
+          nzText="Sales Tier"
+          nzOrientation="left"
+        ></nz-divider>
         <nz-select
           nzAllowClear
-          nzPlaceHolder="Select A View"
-          (ngModelChange)="change($event, 'viewSelect')"
-          formControlName="viewSelect"
+          nzPlaceHolder="Select A Sales Tire"
+          (ngModelChange)="change($event, 'salesTire')"
+          formControlName="salesTire"
         >
-          <nz-option nzLabel="Collection" nzValue="collection"></nz-option>
-          <nz-option nzLabel="Category" nzValue="category"></nz-option>
-          <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
+          <nz-option nzLabel="Top Seller" nzValue="top_seller"></nz-option>
+          <nz-option
+            nzLabel="Medium Seller"
+            nzValue="medium_seller"
+          ></nz-option>
+          <nz-option nzLabel="Low Seller" nzValue="low_seller"></nz-option>
+          <nz-option nzLabel="Slow Seller" nzValue="slow_seller"></nz-option>
         </nz-select>
-
-        <h3>Inventory :</h3>
-        <nz-radio-group
-          (ngModelChange)="change($event, 'inventory')"
-          formControlName="inventory"
-        >
-          <label nz-radio nzValue="inStock">In Stock</label>
-          <label nz-radio nzValue="outOfStock">Out Of Stock</label>
-        </nz-radio-group>
-
-        <h3>Asin Status :</h3>
-        <nz-radio-group
-          (ngModelChange)="change($event, 'asin')"
-          formControlName="asin"
-        >
-          <label nz-radio nzValue="approved">Approved</label>
-          <label nz-radio nzValue="notapproved">Not Approved</label>
-        </nz-radio-group>
-
-        <h3>Status :</h3>
-        <nz-select
-          nzAllowClear
-          nzPlaceHolder="Select A Status"
-          (ngModelChange)="change($event, 'status')"
-          formControlName="status"
-        >
-          <nz-option nzLabel="Discontented" nzValue="discontented"></nz-option>
-          <nz-option nzLabel="Active" nzValue="active"></nz-option>
-          <nz-option nzLabel="Restricted" nzValue="restricted"></nz-option>
-        </nz-select>
-
-        <h3>MAP :</h3>
-        <nz-radio-group
-          (ngModelChange)="change($event, 'map')"
-          formControlName="map"
-        >
-          <label nz-radio nzValue="true">Yes</label>
-          <label nz-radio nzValue="false">No</label>
-        </nz-radio-group>
       </div>
     </form>
   </div>

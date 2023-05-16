@@ -428,7 +428,7 @@
                       />
                       <a
                         class="add-item"
-                        (click)="addItem(inputElement3, 'product_category')"
+                        (click)="addItem(inputElement3, 'Product Category')"
                       >
                         <span nz-icon nzType="plus"></span>
                         Add item
@@ -471,7 +471,7 @@
                       />
                       <a
                         class="add-item"
-                        (click)="addItem(inputElement4, 'sales_tier')"
+                        (click)="addItem(inputElement4, 'Sales Tier')"
                       >
                         <span nz-icon nzType="plus"></span>
                         Add item
@@ -516,11 +516,8 @@
                     placeholder="Enter Length"
                   />
                   <ng-template #length let-control>
-                    <ng-container *ngIf="control.hasError('min')"
-                      >Please input minimum 1 Box!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('max')"
-                      >Please input maximum 10 Boxes!<br
+                    <ng-container *ngIf="control.hasError('pattern')"
+                      >Please input more than 2 decimal!<br
                     /></ng-container>
                     <ng-container *ngIf="control.hasError('required')"
                       >Please input your Length!</ng-container
@@ -531,9 +528,6 @@
             </nz-form-item>
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
               <nz-form-control [nzErrorTip]="width">
-                <!-- <nz-form-label nzFor="width"
-                  >Width<span style="color: red; font-weight: 500">*</span>
-                </nz-form-label> -->
                 <nz-input-group>
                   <input
                     formControlName="width"
@@ -542,11 +536,8 @@
                     placeholder="Enter Width"
                   />
                   <ng-template #width let-control>
-                    <ng-container *ngIf="control.hasError('min')"
-                      >Please input minimum 1 Box!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('max')"
-                      >Please input maximum 10 Boxes!<br
+                    <ng-container *ngIf="control.hasError('pattern')"
+                      >Please input more than 2 decimal!<br
                     /></ng-container>
                     <ng-container *ngIf="control.hasError('required')"
                       >Please input your Width!</ng-container
@@ -557,9 +548,6 @@
             </nz-form-item>
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
               <nz-form-control [nzErrorTip]="height">
-                <!-- <nz-form-label nzFor="height"
-                  >Height<span style="color: red; font-weight: 500">*</span>
-                </nz-form-label> -->
                 <nz-input-group>
                   <input
                     formControlName="height"
@@ -568,11 +556,8 @@
                     placeholder="Enter Height"
                   />
                   <ng-template #height let-control>
-                    <ng-container *ngIf="control.hasError('min')"
-                      >Please input minimum 1 Box!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('max')"
-                      >Please input maximum 10 Boxes!<br
+                    <ng-container *ngIf="control.hasError('pattern')"
+                      >Please input more than 2 decimal!<br
                     /></ng-container>
                     <ng-container *ngIf="control.hasError('required')"
                       >Please input your Height!</ng-container
@@ -583,11 +568,6 @@
             </nz-form-item>
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
               <nz-form-control [nzErrorTip]="gross_weight">
-                <!-- <nz-form-label nzFor="gross_weight"
-                  >Gross Weight<span style="color: red; font-weight: 500"
-                    >*</span
-                  >
-                </nz-form-label> -->
                 <nz-input-group>
                   <input
                     formControlName="gross_weight"
@@ -596,11 +576,8 @@
                     placeholder="Gross Weight"
                   />
                   <ng-template #gross_weight let-control>
-                    <ng-container *ngIf="control.hasError('min')"
-                      >Please input minimum 1 Box!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('max')"
-                      >Please input maximum 10 Boxes!<br
+                    <ng-container *ngIf="control.hasError('pattern')"
+                      >Please input more than 2 decimal!<br
                     /></ng-container>
                     <ng-container *ngIf="control.hasError('required')"
                       >Please input your Gross Weight!</ng-container
@@ -612,7 +589,7 @@
             <div
               nz-col
               class="gutter-row"
-              style="display: flex; align-items: end; margin-bottom: 3px"
+              style="margin-top: 3px"
               [nzSm]="24"
               [nzXl]="2"
             >
