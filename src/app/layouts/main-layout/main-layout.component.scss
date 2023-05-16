@@ -143,8 +143,12 @@
   }
 
   ::ng-deep .ant-menu-sub.ant-menu-inline {
-    background-color: $darkBlue;
+    background-color: #1616a1;
 
+  }
+
+  ::ng-deep .ant-menu-submenu-arrow{
+    color: white;
   }
 
   ::ng-deep .ant-menu-item-selected,
