@@ -43,7 +43,7 @@ export class AddEditProductComponent implements OnInit {
     msrp: '5.21',
     handling_time: '25',
     shipping_Method: 'smallParcel',
-    number_of_boxes: '2',
+    number_of_boxes: 'box2',
     product_status: 'active',
     shipping_dimensions_of_box: [
       {

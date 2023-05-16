@@ -21,7 +21,6 @@
   }
 
   .filter-section {
-    // height: 90%;
     width: 0;
     position: fixed;
     z-index: 1;
@@ -29,10 +28,8 @@
     right: 16px;
     overflow-x: hidden;
     transition: 0.5s;
-    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     padding-top: 60px;
-    background-color: rgb(24 42 255 / 5%);
-    // border-left: 0.5px solid #d3d3d36b;
 
     .filter-content {
       padding: 5px 15px;
@@ -71,6 +68,11 @@
     ::ng-deep .ant-divider-inner-text {
       padding-left: 0px !important;
     }
+  }
+
+  ::ng-deep .ant-tag {
+    background: #2121c31a;
+    font-weight: 600;
   }
 
   .filter-section a {

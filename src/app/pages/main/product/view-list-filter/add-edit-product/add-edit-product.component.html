@@ -247,21 +247,21 @@
               </nz-form-control>
             </nz-form-item>
             <!-- <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-              <nz-form-control [nzErrorTip]="shipping_dimensions_of_each_box">
-                <nz-form-label nzFor="shipping_dimensions_of_each_box"
-                  >Shipping Dimensions of Each Box
+              <nz-form-control [nzErrorTip]="number_of_boxes">
+                <nz-form-label nzFor="number_of_boxes"
+                  >Number of boxes
                   <span style="color: red; font-weight: 500">*</span>
                 </nz-form-label>
                 <nz-input-group>
                   <input
-                    formControlName="shipping_dimensions_of_each_box"
+                    formControlName="number_of_boxes"
                     type="number"
                     nz-input
-                    placeholder="Enter Shipping Dimensions"
+                    placeholder="Enter number of boxes"
                   />
-                  <ng-template #shipping_dimensions_of_each_box let-control>
+                  <ng-template #number_of_boxes let-control>
                     <ng-container *ngIf="control.hasError('required')"
-                      >Please input your Shipping Dimensions of Boxes!<br
+                      >Please input your number of boxes!<br
                     /></ng-container>
                     <ng-container *ngIf="control.hasError('pattern')"
                       >Please input more than 2 decimal!</ng-container
@@ -490,9 +490,7 @@
         </div>
       </div>
       <nz-form-label nzFor="length"
-        >Shipping Dimensions of Boxes<span style="color: red; font-weight: 500"
-          >*</span
-        >
+        >Shipping Dimensions of Boxes
       </nz-form-label>
       <div nz-row [nzGutter]="16" formArrayName="shipping_dimensions_of_box">
         <div
@@ -505,8 +503,13 @@
           "
         >
           <div nz-row [formGroupName]="i">
-            <h3 style="display: flex; align-items: center">{{ i + 1 }}.</h3>
+            <h3 style="display: flex; align-items: end; margin-bottom: 10px">
+              {{ i + 1 }}.
+            </h3>
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+              <nz-form-label nzFor="brand" *ngIf="i === 0"
+                >Length<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
               <nz-form-control [nzErrorTip]="length">
                 <nz-input-group>
                   <input
@@ -527,6 +530,9 @@
               </nz-form-control>
             </nz-form-item>
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+              <nz-form-label nzFor="brand" *ngIf="i === 0"
+                >Width<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
               <nz-form-control [nzErrorTip]="width">
                 <nz-input-group>
                   <input
@@ -547,6 +553,9 @@
               </nz-form-control>
             </nz-form-item>
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+              <nz-form-label nzFor="brand" *ngIf="i === 0"
+                >Height<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
               <nz-form-control [nzErrorTip]="height">
                 <nz-input-group>
                   <input
@@ -567,13 +576,16 @@
               </nz-form-control>
             </nz-form-item>
             <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+              <nz-form-label nzFor="brand" *ngIf="i === 0"
+                >Gross Weight<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
               <nz-form-control [nzErrorTip]="gross_weight">
                 <nz-input-group>
                   <input
                     formControlName="gross_weight"
                     type="number"
                     nz-input
-                    placeholder="Gross Weight"
+                    placeholder="Enter Gross Weight"
                   />
                   <ng-template #gross_weight let-control>
                     <ng-container *ngIf="control.hasError('pattern')"
@@ -589,7 +601,7 @@
             <div
               nz-col
               class="gutter-row"
-              style="margin-top: 3px"
+              style="display: flex; align-items: end; margin-bottom: 3px"
               [nzSm]="24"
               [nzXl]="2"
             >
