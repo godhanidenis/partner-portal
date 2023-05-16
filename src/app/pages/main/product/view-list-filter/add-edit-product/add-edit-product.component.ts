@@ -17,23 +17,27 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class AddEditProductComponent implements OnInit {
   @Input() editSection: boolean = false;
   addEditProductForm!: FormGroup;
-  listOfBrand = ['Brand 1', 'Brand 2'];
+  listOfBrand = ['Sony', 'Dell', 'Samsung'];
   brandIndex = 0;
-  listOfCollection = ['Collection 1', 'Collection 2'];
+  listOfCollection = [
+    'Floral Collection',
+    'White Collection',
+    'Kids Collection',
+  ];
   collectionIndex = 0;
-  listOfProductCategory = ['Category 1', 'Category 2'];
+  listOfProductCategory = ['Kid’s Furniture', 'Rugs', 'Tables'];
   productCategoryIndex = 0;
-  listOfSalesTier = ['SalesTier 1', 'SalesTier 2'];
+  listOfSalesTier = ['Medium Seller', 'Low Seller', 'Slow Seller'];
   salesTierIndex = 0;
   editData = {
     mpn: 'powershell',
     upc: '1234212342342',
     amazon_asin: 'AS123',
     product_name: 'Demo',
-    brand: 'Brand 1',
-    collection: 'Collection 1',
-    product_category: 'Category 2',
-    sales_tier: 'SalesTier 1',
+    brand: 'Sony',
+    collection: 'Floral Collection',
+    product_category: 'Rugs',
+    sales_tier: 'Slow Seller',
     unit_price: '123.21',
     map: '6.2',
     msrp: '5.21',
