@@ -26,11 +26,17 @@
         overflow-y: scroll;
 
         a {
-            margin: 4px 10px;
+            border-radius: 50%;
+            margin: 10px 5px;
             color: $white;
-            font-size: x-large;
-            line-height: 1.1;
+            font-size: 16px;
+            line-height: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
             border: none;
+            justify-content: center;
+            padding-top: 9px;
         }
 
         form {

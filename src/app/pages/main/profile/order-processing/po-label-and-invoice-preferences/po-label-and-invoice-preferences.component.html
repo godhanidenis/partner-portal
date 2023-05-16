@@ -211,21 +211,14 @@
                 </nz-form-control>
                 <a
                   *ngIf="i === emailList.controls.length - 1"
-                  nz-button
-                  class="add-button"
                   style="background: #00c13b"
-                  nzShape="circle"
-                  [disabled]="emailList.controls.length > 9"
                   (click)="addEmails()"
                 >
                   +
                 </a>
                 <a
                   *ngIf="i !== emailList.controls.length - 1"
-                  nz-button
-                  class="add-button"
                   style="background: #f41e2c"
-                  nzShape="circle"
                   (click)="removeEmail(i)"
                 >
                   -
@@ -235,8 +228,13 @@
           </div>
         </div>
         <div nz-row>
-          <div nz-col [nzXl]="2" [nzSm]="4" [nzXs]="24"></div>
-          <div nz-col [nzXl]="8" [nzSm]="12" [nzXs]="24">
+          <div
+            style="display: flex; justify-content: end"
+            nz-col
+            [nzXl]="2"
+            [nzSm]="4"
+            [nzXs]="24"
+          >
             <button
               nz-button
               class="action-button"

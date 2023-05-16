@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ViewListFilterComponent implements OnInit {
   @ViewChild('content', { static: false }) contentSection!: ElementRef;
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
+  @ViewChild('section', { static: false }) section!: ElementRef;
 
   viewEditProducts!: FormGroup;
   uploadmodal!: FormGroup;
@@ -23,7 +24,7 @@ export class ViewListFilterComponent implements OnInit {
   stock: number = 0;
   status: number = 0;
   beagetotal: number = 0;
-  clear_btn: boolean = false
+  clear_btn: boolean = false;
 
   selectBrand: string = '';
   inventory: string = '';
@@ -113,11 +114,13 @@ export class ViewListFilterComponent implements OnInit {
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
     this.contentSection.nativeElement.style.marginRight = '280px';
+    this.section.nativeElement.style.minHeight = '86%';
   }
 
   closeNav() {
     this.sidenavSection.nativeElement.style.width = '0';
     this.contentSection.nativeElement.style.marginRight = '0';
+    this.section.nativeElement.style.minHeight = 'auto';
   }
 
   isVisible = false;
@@ -135,61 +138,47 @@ export class ViewListFilterComponent implements OnInit {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-  tagfunc(){
-   this.selectBrand = '';
-   this.inventory = '';
-   this.viewSelect = '';
-   this.asin = '';
-   this.Selectstatus = '';
-   this.map = '';
-   this.beagetotal = 0;
-   this.clear_btn = false;
-   this.filter.reset();
+  tagfunc() {
+    this.selectBrand = '';
+    this.inventory = '';
+    this.viewSelect = '';
+    this.asin = '';
+    this.Selectstatus = '';
+    this.map = '';
+    this.beagetotal = 0;
+    this.clear_btn = false;
+    this.filter.reset();
   }
 
-  // selecBrandOnClose(){
-  //   this.filter.controls['brand'].reset();
-  //   this.beagetotal--;
-  //   this.selectBrand = '';
-   
-  // }
-
-  inventoryOnClose(){
+  inventoryOnClose() {
     this.filter.controls['inventory'].reset();
     this.beagetotal--;
     this.inventory = '';
-   
   }
-  viewSelectOnClose(){
+  viewSelectOnClose() {
     this.filter.controls['viewSelect'].reset();
     this.viewSelect = '';
   }
-  asinOnClose(){
+  asinOnClose() {
     this.filter.controls['asin'].reset();
     this.beagetotal--;
     this.asin = '';
   }
-  selectstatusOnClose(){
+  selectstatusOnClose() {
     this.filter.controls['status'].reset();
     this.Selectstatus = '';
   }
-  mapOnClose(){
-    this.filter.controls['map'].reset()
+  mapOnClose() {
+    this.filter.controls['map'].reset();
     this.beagetotal--;
     this.map = '';
   }
 
   change(value: string, type: string) {
-    
     console.log(value);
     switch (type) {
-
       case 'brand':
-        if (
-          value == 'sony' ||
-          value == 'dell' ||
-          value == 'samsung'
-        ) {
+        if (value == 'sony' || value == 'dell' || value == 'samsung') {
           this.clear_btn = true;
           this.selectBrand = value;
           if (this.brand == 0) {
@@ -211,14 +200,12 @@ export class ViewListFilterComponent implements OnInit {
           if (this.stock == 0) {
             this.stock++;
             this.beagetotal++;
-            
           }
         }
 
         break;
       case 'viewSelect':
         if (
-         
           value == 'collection' ||
           value == 'category' ||
           value == 'salesTire'
@@ -247,52 +234,47 @@ export class ViewListFilterComponent implements OnInit {
             this.beagetotal++;
             this.clear_btn = true;
           }
-
-         
         }
 
         break;
 
-        case 'status':
-          if (value == 'discontented' || value == 'active' || value == 'restricted') {
-            this.clear_btn = true;
-            this.Selectstatus = value;
+      case 'status':
+        if (
+          value == 'discontented' ||
+          value == 'active' ||
+          value == 'restricted'
+        ) {
+          this.clear_btn = true;
+          this.Selectstatus = value;
 
-            if (this.status == 0) {
-              this.status++;
-              this.beagetotal++;
-            }
+          if (this.status == 0) {
+            this.status++;
+            this.beagetotal++;
           }
+        }
 
-          if (value == null) {
-            this.status--;
-            this.beagetotal--;
-            this.Selectstatus = '';
+        if (value == null) {
+          this.status--;
+          this.beagetotal--;
+          this.Selectstatus = '';
+        }
+
+        break;
+
+      case 'map':
+        if (value == 'true' || value == 'false') {
+          this.clear_btn = true;
+          this.map = value;
+
+          if (this.beage == 0) {
+            this.beage++;
+            this.beagetotal++;
           }
-      
-          break;
-
-          case 'map':
-          if (value == 'true' || value == 'false') {
-            this.clear_btn = true;
-            this.map = value;
-
-            if (this.beage == 0) {
-              this.beage++;
-              this.beagetotal++;
-            }
-          }
-          break;
+        }
+        break;
 
       default:
         break;
     }
-
-  
-
-   
-    
-
-   
   }
 }

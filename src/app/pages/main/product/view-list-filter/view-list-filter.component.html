@@ -1,22 +1,17 @@
-<div class="view-edit-products-section">
+<div #section class="view-edit-products-section">
   <div #content class="content-section">
     <div class="user-content">
       <div class="tab-header">
         <span>View Products</span>
-    
       </div>
     </div>
-
-   
-
     <div class="view-edit-products-section-content">
-
       <div>
         <button
           nz-button
           nzType="primary"
           nzShape="round"
-          style="display: block;"
+          style="display: block"
           (click)="navigatePage('product/view-list-filter/add-product')"
         >
           <span nz-icon nzType="plus" nzTheme="outline"></span>
@@ -26,7 +21,6 @@
     </div>
 
     <div class="view-edit-products-section-content">
-      
       <div class="action">
         <nz-badge [nzShowZero]="false" [nzCount]="beagetotal">
           <button
@@ -64,9 +58,9 @@
         </form>
       </div>
 
-      <div  *ngIf="clear_btn" style="margin-bottom: 10px;">
+      <div *ngIf="clear_btn" style="margin-bottom: 10px">
         <nz-divider></nz-divider>
-        
+
         <!-- <nz-tag
           *ngIf="selectBrand"
           nzMode="closeable"
@@ -136,13 +130,13 @@
             <td>{{ data.mpn }}</td>
             <td>
               <a
-                style="color: black"
+                style="color: #2121c3"
                 (click)="
                   navigatePage(
                     'product/view-list-filter/view-single-product/' + data.id
                   )
                 "
-                >{{ data.productName }}</a
+                ><u>{{ data.productName }}</u></a
               >
             </td>
             <td>{{ data.unitPrice }}</td>
@@ -162,12 +156,7 @@
     >
     <form nz-form [formGroup]="filter">
       <div class="filter-content">
-        <!-- <div class="example-input">
-        <nz-select nzMode="multiple" nzPlaceHolder="Inserted are removed"   >
-          <nz-option *ngFor="let option of listOfOption" [nzLabel]="option" [nzValue]="option"></nz-option>
-        </nz-select>
-      </div> -->
-
+        <h3>Brand :</h3>
         <nz-select
           nzAllowClear
           nzPlaceHolder="Select A Brand"
@@ -179,16 +168,7 @@
           <nz-option nzLabel="Samsung" nzValue="samsung"></nz-option>
         </nz-select>
 
-        <h3>Inventory :</h3>
-        <nz-radio-group
-          (ngModelChange)="change($event, 'inventory')"
-          formControlName="inventory"
-        >
-          <label nz-radio nzValue="inStock">In Stock</label>
-          <label nz-radio nzValue="outOfStock">Out Of Stock</label>
-        </nz-radio-group>
-
-        <h3>Now View :</h3>
+        <h3>Collection :</h3>
         <nz-select
           nzAllowClear
           nzPlaceHolder="Select A View"
@@ -199,6 +179,39 @@
           <nz-option nzLabel="Category" nzValue="category"></nz-option>
           <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
         </nz-select>
+
+        <h3>Category :</h3>
+        <nz-select
+          nzAllowClear
+          nzPlaceHolder="Select A View"
+          (ngModelChange)="change($event, 'viewSelect')"
+          formControlName="viewSelect"
+        >
+          <nz-option nzLabel="Collection" nzValue="collection"></nz-option>
+          <nz-option nzLabel="Category" nzValue="category"></nz-option>
+          <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
+        </nz-select>
+
+        <h3>Sales Tire :</h3>
+        <nz-select
+          nzAllowClear
+          nzPlaceHolder="Select A View"
+          (ngModelChange)="change($event, 'viewSelect')"
+          formControlName="viewSelect"
+        >
+          <nz-option nzLabel="Collection" nzValue="collection"></nz-option>
+          <nz-option nzLabel="Category" nzValue="category"></nz-option>
+          <nz-option nzLabel="Sales Tire" nzValue="salesTire"></nz-option>
+        </nz-select>
+
+        <h3>Inventory :</h3>
+        <nz-radio-group
+          (ngModelChange)="change($event, 'inventory')"
+          formControlName="inventory"
+        >
+          <label nz-radio nzValue="inStock">In Stock</label>
+          <label nz-radio nzValue="outOfStock">Out Of Stock</label>
+        </nz-radio-group>
 
         <h3>Asin Status :</h3>
         <nz-radio-group

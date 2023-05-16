@@ -50,20 +50,14 @@
               <div nz-col class="gutter-row add-row" [nzSm]="4" [nzXl]="2">
                 <a
                   *ngIf="i === holidayDetail.controls.length - 1"
-                  nz-button
-                  class="add-button"
                   style="background: #00c13b"
-                  nzShape="circle"
                   (click)="addHolidays()"
                 >
                   +
                 </a>
                 <a
                   *ngIf="i !== holidayDetail.controls.length - 1"
-                  nz-button
-                  class="add-button"
                   style="background: #f41e2c"
-                  nzShape="circle"
                   (click)="removeHoliday(i)"
                 >
                   -

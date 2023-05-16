@@ -58,20 +58,14 @@
                 </nz-form-control>
                 <a
                   *ngIf="no === data.formArray.controls.length - 1"
-                  nz-button
-                  class="add-button"
                   style="background: #00c13b"
-                  nzShape="circle"
                   (click)="addNotification(i + 1)"
                 >
                   +
                 </a>
                 <a
                   *ngIf="no !== data.formArray.controls.length - 1"
-                  nz-button
-                  class="add-button"
                   style="background: #f41e2c"
-                  nzShape="circle"
                   (click)="removeNotification(no, i + 1)"
                 >
                   -
