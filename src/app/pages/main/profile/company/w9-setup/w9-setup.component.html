@@ -18,55 +18,44 @@
   <div class="body-section">
     <div nz-row [nzGutter]="16">
       <div nz-col nz-col class="gutter-row" [nzSpan]="12">
-    <nz-descriptions class="vertical-sec">
-      <nz-descriptions-item nzTitle="Legal Name"
-        ><b>{{ w9SetUpDate.legalName }}</b></nz-descriptions-item
-      >
+        <nz-descriptions class="vertical-sec">
+          <nz-descriptions-item nzTitle="Legal Name"
+            ><b>{{ w9SetUpDate.legalName }}</b></nz-descriptions-item
+          >
 
-      <nz-descriptions-item
-      nzTitle="Tax Identification Number"
-      class="tax-add-ticket"
-      ><b>{{
-        w9SetUpDate.taxIdentificationNumber
-      }}</b></nz-descriptions-item
-    >
-    <nz-descriptions-item nzTitle="Address" class="tax-add-ticket"
-      ><b>{{ w9SetUpDate.address }}</b></nz-descriptions-item
-    >
-    <nz-descriptions-item nzTitle="Classification" class="tax-add-ticket"
-      ><b>{{ w9SetUpDate.classification }}</b></nz-descriptions-item
-    >
+          <nz-descriptions-item
+            nzTitle="Tax Identification Number"
+            class="tax-add-ticket"
+            ><b>{{
+              w9SetUpDate.taxIdentificationNumber
+            }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="Address" class="tax-add-ticket"
+            ><b>{{ w9SetUpDate.address }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="Classification" class="tax-add-ticket"
+            ><b>{{ w9SetUpDate.classification }}</b></nz-descriptions-item
+          > 
+        </nz-descriptions>
+      </div>
 
-    <nz-descriptions-item nzTitle="For any changes in W8/W9"
-    ><a>click here</a></nz-descriptions-item
-  >  
+      <div style="margin-left: 100px" nz-col class="gutter-row" [nzSpan]="10">
+        <nz-descriptions>
+          <nz-descriptions-item nzTitle="Document Type"
+            ><b
+              >{{ w9SetUpDate.documentType }}
 
+              <a> download</a>
+            </b></nz-descriptions-item
+          >
+        </nz-descriptions>
+      </div>
 
-     
-    </nz-descriptions>
-  </div>
-
-    
-      <div style="margin-left: 100px;" nz-col class="gutter-row" [nzSpan]="10">
-      <nz-descriptions>
-      
-      <nz-descriptions-item nzTitle="Document Type"
-      ><b>{{ w9SetUpDate.documentType }} 
-        
-        <a> download</a>
-    
-    </b></nz-descriptions-item
-    >
-      </nz-descriptions>
     </div>
- 
-
-    <!-- <div class="ticket-btn">
-      <button nz-button >Go to Ticket page</button>
-    </div> -->
-  </div>
+    <div nz-row style="margin-top: 30px;">
+      <div>
+        <span style="color:red">For any changes in W8/W9&nbsp;<a>click here</a></span>
+      </div>
+    </div>
   </div>
 </div>
-
-
-

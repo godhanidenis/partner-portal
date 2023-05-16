@@ -33,6 +33,7 @@
 
      ::ng-deep .ant-card-head-title {
          padding: 16px 18px;
+         
      }
 
      nz-card {
@@ -45,6 +46,11 @@
          height: 250px;
          border-top: 2px solid #2121c3;
          border-radius: 5px;
+
+         .ant-menu-item{
+            background-color: rgba(33, 33, 195, 0.08) !important;
+            margin: 0px;
+         }
      }
 
      .card-title {
