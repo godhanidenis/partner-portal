@@ -97,3 +97,9 @@
 ::-webkit-scrollbar-thumb:hover {
     background: $gray;
 }
+
+// table header
+ .ant-table-thead > tr > th {
+    border-top: 3px solid #2121c3;
+    background-color: rgba(33, 33, 195, 0.08) !important;
+  }

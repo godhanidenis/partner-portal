@@ -1,4 +1,4 @@
-@import'../../../assets/variable/variable.scss';
+@import "../../../assets/variable/variable.scss";
 
 .app-layout {
   height: 100vh;
@@ -49,7 +49,8 @@
 
   ::ng-deep .ant-dropdown {
     background-color: $white;
-    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
+      0 9px 28px 8px rgb(0 0 0 / 5%);
 
     .user-type {
       padding: 5px 20px 0px 20px;
@@ -88,14 +89,16 @@
     }
   }
 
-
   // ::ng-deep .ant-layout-header {
   //   height: 55px;
   // }
 
   nz-sider {
-    background: $white;
-    border-right: 1px solid $border;
+    // background: $white;
+    // background-color: rgb(33 33 195 / 8%) !important;
+    background-color: $darkBlue;
+
+    // border-right: 1px solid #2121c3;
 
     // overflow-y: auto;
     ::ng-deep .ant-layout-sider-children {
@@ -104,9 +107,14 @@
     }
 
     ul {
+      background-color: rgb(255 255 255 / 0%) !important;
+      color: $white;
+      width: 101%;
+
       li {
         font-size: 15px;
         font-weight: 600;
+        width: 99% !important;
       }
     }
   }
@@ -116,29 +124,47 @@
     // background-color: #ff8b4d14 !important;
     // border-right: 3px solid $teb-font-color;
     color: $darkBlue;
-    background-color: rgb(33 33 195 / 8%) !important;
-    border-right: 3px solid $darkBlue;
+    // background-color: rgb(33 33 195 / 8%) !important;
+    background-color: $white;
+    // border-right: 3px solid $darkBlue;
   }
 
   ::ng-deep .ant-menu-light .ant-menu-item:hover,
-
   .ant-menu-light .ant-menu-submenu-title:hover {
     // color: $teb-font-color;
-    color: $darkBlue;
+    color: $white;
+    background-color: rgb(255 255 255 / 20%);
+  }
+
+  ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
+    color: $white;
+    background-color: rgb(255 255 255 / 20%);
+}
+
+  ::ng-deep .ant-menu-sub.ant-menu-inline{
+    background-color: $darkBlue;
+   
   }
 
   ::ng-deep .ant-menu-item-selected,
   .ant-menu-submenu-selected {
-    color: $black;
+    color: $darkBlue;
+    background-color: $darkBlue;
   }
 
   ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
     // color: $teb-font-color;
-    color: $darkBlue;
+    color: $white;
   }
 
   ::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: $white;
+    color: $darkBlue;
+    
+  }
+
+  ::ng-deep .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title{
+    color: $white;
   }
 
   ::ng-deep .ant-menu-vertical .ant-menu-item::after,
@@ -146,15 +172,19 @@
   .ant-menu-vertical-right .ant-menu-item::after,
   .ant-menu-inline .ant-menu-item::after {
     border-right: none;
+    background-color: rgb(33 33 195 / 8%) !important;
   }
 
-  // ::ng-deep .ant-menu-inline {
-  //   height: -webkit-fill-available !important;
-  // }
 
   ::ng-deep .ant-menu-item:active,
   .ant-menu-submenu-title:active {
     background: $white;
+    // background-color: rgb(33 33 195 / 8%) !important;
+  }
+  ::ng-deep .ant-menu-item:active,
+  .ant-menu-submenu-title:active:hover {
+    background: $white;
+    color: #2121c3;
   }
 
   nz-breadcrumb {
@@ -163,7 +193,8 @@
 
   .inner-content {
     padding: 24px;
-    background: $white;
+    // background: $white;
+    background-color: rgb(33 33 195 / 8%) !important;
     min-height: 360px;
   }
 
@@ -179,7 +210,6 @@
       margin-top: 0 !important;
     }
   }
-
 
   // model
   ::ng-deep .ant-modal-header {
