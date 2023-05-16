@@ -17,22 +17,28 @@ export class ViewListFilterComponent implements OnInit {
   filter!: FormGroup;
   isLoading: boolean = false;
 
-  beage: number = 0;
-  brand: number = 0;
-  aprove: number = 0;
-  collection: number = 0;
   stock: number = 0;
+  aprove: number = 0;
   status: number = 0;
+  mapradio: number = 0;
+  brand: number = 0;
+ 
+  collection: number = 0;
+  
   beagetotal: number = 0;
+  sales:number = 0;
   clear_btn: boolean = false;
-
   category: number = 0;
+
+  selectCollection:string = '';
+  Selectstatus: string = '';
   selectCategory: string = '';
   selectBrand: string = '';
   inventory: string = '';
   viewSelect: string = '';
   asin: string = '';
-  Selectstatus: string = '';
+ 
+  selectSales: string = '';
   map: string = '';
 
   total = 1;
@@ -98,11 +104,11 @@ export class ViewListFilterComponent implements OnInit {
       inventory: new FormControl(''),
       viewSelect: new FormControl(''),
       asin: new FormControl(''),
-      status: new FormControl(''),
+      productStatus: new FormControl(''),
       map: new FormControl(''),
       category: new FormControl(''),
-      salesTire: new FormControl(''),
       collection: new FormControl(''),
+      salesTire: new FormControl(''),
     });
   }
 
@@ -144,46 +150,122 @@ export class ViewListFilterComponent implements OnInit {
     this.isVisible = false;
   }
   tagfunc() {
+ 
+
+    this.selectCollection = '';
+    this.selectCategory = '';
     this.selectBrand = '';
     this.inventory = '';
     this.viewSelect = '';
     this.asin = '';
     this.Selectstatus = '';
+    this.selectSales = '';
     this.map = '';
     this.beagetotal = 0;
     this.clear_btn = false;
     this.filter.reset();
   }
 
-  inventoryOnClose() {
-    this.filter.controls['inventory'].reset();
-    this.beagetotal--;
-    this.inventory = '';
+  close(type:string){
+    if (type) {   
+      
+      switch (type) {
+        case 'inventory':
+          this.filter.controls['inventory'].reset();
+          this.inventory = '';
+          this.stock--;
+          this.beagetotal--;
+          break;
+          case 'asin':
+            this.filter.controls['asin'].reset();
+            this.asin = '';
+            this.aprove--;
+            this.beagetotal--;
+            break;
+          case 'Selectstatus':
+            this.filter.controls['productStatus'].reset();
+            this.Selectstatus = '';
+            this.status--;
+          break;
+
+          case 'SelectSales':
+            this.filter.controls['status'].reset();
+            this.Selectstatus = '';
+          break;
+          case 'map':
+            this.filter.controls['map'].reset();
+            this.map = '';
+        
+          break;
+          case 'selectBrand':
+            this.filter.controls['brand'].reset();
+            this.selectBrand = '';
+        
+           
+          break;
+          case 'selectCollection':
+            this.filter.controls['collection'].reset();
+              this.selectCollection = '';
+          break;
+          case 'selectCategory':
+            this.filter.controls['selectCategory'].reset();
+            this.selectCategory = '';
+          break;   
+          case 'salesTire':
+            this.filter.controls['salesTire'].reset();
+            this.selectSales = '';
+          break;        
+          default:
+            break;
+           
+      }
+    }
   }
 
-  categoryOnClose() {
-    this.filter.controls['selectCategory'].reset();
-    this.beagetotal--;
-    this.selectCategory = '';
-  }
-  viewSelectOnClose() {
-    this.filter.controls['viewSelect'].reset();
-    this.viewSelect = '';
-  }
-  asinOnClose() {
-    this.filter.controls['asin'].reset();
-    this.beagetotal--;
-    this.asin = '';
-  }
-  selectstatusOnClose() {
-    this.filter.controls['status'].reset();
-    this.Selectstatus = '';
-  }
-  mapOnClose() {
-    this.filter.controls['map'].reset();
-    this.beagetotal--;
-    this.map = '';
-  }
+  // selectBrandOnClose(){
+  //   this.filter.controls['brand'].reset();
+  //   this.beagetotal--;
+  //   this.selectBrand = '';
+  // }
+  // inventoryOnClose() {
+  //   this.filter.controls['inventory'].reset();
+  //   this.beagetotal--;
+  //   this.inventory = '';
+  // }
+
+  // categoryOnClose() {
+  //   this.filter.controls['selectCategory'].reset();
+  //   this.beagetotal--;
+  //   this.selectCategory = '';
+  // }
+  // viewSelectOnClose() {
+  //   this.filter.controls['viewSelect'].reset();
+  //   this.viewSelect = '';
+  // }
+  // asinOnClose() {
+  //   this.filter.controls['asin'].reset();
+  //   this.beagetotal--;
+  //   this.asin = '';
+  // }
+  // selectstatusOnClose() {
+  //   this.filter.controls['status'].reset();
+  //   this.Selectstatus = '';
+  // }
+  // mapOnClose() {
+  //   this.filter.controls['map'].reset();
+  //   this.beagetotal--;
+  //   this.map = '';
+  // }
+  // selectCollectionClose() {
+  //   this.filter.controls['collection'].reset();
+  //   this.beagetotal--;
+  //   this.selectCollection = '';
+  // }
+  // selectSalesClose() {
+  //   this.filter.controls['salesTire'].reset();
+  //   this.beagetotal--;
+  //   this.selectSales = '';
+  // }
 
   change(value: string, type: string) {
     console.log(value);
@@ -269,7 +351,9 @@ export class ViewListFilterComponent implements OnInit {
         if (
           value == 'discontented' ||
           value == 'active' ||
-          value == 'restricted'
+          value == 'restricted' ||
+          value == 'suppressed' ||
+          value == 'ltl' 
         ) {
           this.clear_btn = true;
           this.Selectstatus = value;
@@ -293,10 +377,53 @@ export class ViewListFilterComponent implements OnInit {
           this.clear_btn = true;
           this.map = value;
 
-          if (this.beage == 0) {
-            this.beage++;
+          if (this.mapradio == 0) {
+            this.mapradio++;
             this.beagetotal++;
           }
+        }
+        break;
+
+        case 'collection':
+        if (
+          value == 'floral_collection' ||
+          value == 'white_collection' ||
+          value == 'kids_collection'
+        ) {
+          this.clear_btn = true;
+          this.selectCollection = value;
+          if (this.collection == 0) {
+            this.collection++;
+            this.beagetotal++;
+          }
+        }
+
+        if (value == null) {
+          this.collection--;
+          this.beagetotal--;
+          this.selectCollection = '';
+        }
+        break;
+
+        case 'salesTire':
+        if (
+          value == 'medium_seller' ||
+          value == 'low_seller' ||
+          value == 'slow_seller' ||
+          value == 'top_seller' 
+        ) {
+          this.clear_btn = true;
+          this.selectSales = value;
+          if (this.sales == 0) {
+            this.sales++;
+            this.beagetotal++;
+          }
+        }
+
+        if (value == null) {
+          this.sales--;
+          this.beagetotal--;
+          this.selectSales = '';
         }
         break;
 

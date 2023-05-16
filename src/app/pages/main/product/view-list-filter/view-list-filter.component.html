@@ -58,38 +58,56 @@
         </form>
       </div>
 
-      <div *ngIf="clear_btn" style="margin-bottom: 10px">
+      <div *ngIf="clear_btn" style="margin-bottom: 20px">
         <nz-divider></nz-divider>
         <nz-tag
           *ngIf="selectCategory"
           nzMode="closeable"
-          (nzOnClose)="categoryOnClose()"
+          (nzOnClose)="close('selectCategory')"
           >{{ selectCategory }}</nz-tag
         >
         <nz-tag
           *ngIf="inventory"
           nzMode="closeable"
-          (nzOnClose)="inventoryOnClose()"
+          (nzOnClose)="close('inventory')"
           >{{ inventory }}</nz-tag
         >
         <nz-tag
           *ngIf="viewSelect"
           nzMode="closeable"
-          (nzOnClose)="viewSelectOnClose()"
+          (nzOnClose)="close('viewSelect')"
           >{{ viewSelect }}</nz-tag
         >
-        <nz-tag *ngIf="asin" nzMode="closeable" (nzOnClose)="asinOnClose()">{{
+        <nz-tag *ngIf="asin" nzMode="closeable" (nzOnClose)="close('asin')">{{
           asin
         }}</nz-tag>
         <nz-tag
           *ngIf="Selectstatus"
           nzMode="closeable"
-          (nzOnClose)="selectstatusOnClose()"
+          (nzOnClose)="close('Selectstatus')"
           >{{ Selectstatus }}</nz-tag
         >
-        <nz-tag *ngIf="map" nzMode="closeable" (nzOnClose)="mapOnClose()">{{
+        <nz-tag *ngIf="map" nzMode="closeable"  (nzOnClose)="close('map')">{{
           map
         }}</nz-tag>
+        <nz-tag
+        *ngIf="selectBrand"
+        nzMode="closeable"
+        (nzOnClose)="close('selectBrand')"
+        >{{ selectBrand }}</nz-tag
+      >
+        <nz-tag
+        *ngIf="selectCollection"
+        nzMode="closeable"
+        (nzOnClose)="close('selectCollection')"
+        >{{ selectCollection }}</nz-tag
+      >
+        <nz-tag
+        *ngIf="selectSales"
+        nzMode="closeable"
+        (nzOnClose)="close('selectSales')"
+        >{{ selectSales }}</nz-tag
+      >
         <button
           nz-button
           nzType="primary"
@@ -186,7 +204,7 @@
           nzAllowClear
           nzPlaceHolder="Select A Status"
           (ngModelChange)="change($event, 'status')"
-          formControlName="status"
+          formControlName="productStatus"
         >
           <nz-option nzLabel="Discontented" nzValue="discontented"></nz-option>
           <nz-option nzLabel="Active" nzValue="active"></nz-option>
