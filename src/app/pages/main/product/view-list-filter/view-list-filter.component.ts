@@ -180,7 +180,7 @@ export class ViewListFilterComponent implements OnInit {
             this.filter.controls['asin'].reset();
             this.asin = '';
             this.aprove--;
-            this.beagetotal--;
+          
             break;
           case 'Selectstatus':
             this.filter.controls['productStatus'].reset();
@@ -195,7 +195,8 @@ export class ViewListFilterComponent implements OnInit {
           case 'map':
             this.filter.controls['map'].reset();
             this.map = '';
-        
+            this.beagetotal--;
+            this.mapradio--;
           break;
           case 'selectBrand':
             this.filter.controls['brand'].reset();
