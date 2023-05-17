@@ -106,6 +106,7 @@
         >{{ selectSales }}</nz-tag
       >
         <button
+        *ngIf="beagetotal >= 1"
           nz-button
           nzType="default"
           (click)="tagfunc()"
