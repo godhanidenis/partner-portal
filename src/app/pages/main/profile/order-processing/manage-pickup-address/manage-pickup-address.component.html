@@ -35,13 +35,12 @@
     [nzPageSize]="pageSize"
     [nzPageIndex]="pageIndex"
     [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
   >
     <thead>
       <tr>
         <th>Address Nickname</th>
         <th>Location Id</th>
-        <!-- <th>Status</th>
-        <th>Set Primary Address</th> -->
         <th>Active/Inactive</th>
         <th>Action</th>
       </tr>
@@ -51,34 +50,6 @@
         <tr>
           <td>{{ data?.address_nickname }}</td>
           <td>{{ data?.location_id }}</td>
-          <!-- <td>
-            <span
-              *ngIf="data?.status === 1"
-              class="badge"
-              style="background: #00c13b"
-              >Active</span
-            >
-            <span
-              *ngIf="data?.status === 0"
-              class="badge"
-              style="background: #f41e2c"
-              >Inactive</span
-            >
-          </td>
-          <td>
-            <a class="radio" (click)="primaryClick(data.id)">
-              <label
-                *ngIf="data.primaryAddress"
-                style="display: flex; align-items: center"
-                ><span class="radio-selected">&#10687;</span> Primary
-                Address</label
-              >
-              <label *ngIf="!data.primaryAddress"
-                ><span style="margin-left: 2px">&#9711;</span> Primary
-                Address</label
-              >
-            </a>
-          </td> -->
           <td>
             <nz-switch nzSize="small" [ngModel]="data.activeStatus"></nz-switch>
           </td>

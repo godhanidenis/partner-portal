@@ -19,36 +19,49 @@ export class ViewListFilterComponent implements OnInit {
 
   stock: number = 0;
   aprove: number = 0;
-  status: number = 0;
+  productStatus: number = 0;
   mapradio: number = 0;
   brand: number = 0;
- 
-  collection: number = 0;
-  
-  beagetotal: number = 0;
-  sales:number = 0;
-  clear_btn: boolean = false;
   category: number = 0;
+  sales: number = 0;
+  collection: number = 0;
+  beagetotal: number = 0;
 
-  selectCollection:string = '';
-  Selectstatus: string = '';
-  selectCategory: string = '';
-  selectBrand: string = '';
+  clear_btn: boolean = false;
+
   inventory: string = '';
-  viewSelect: string = '';
   asin: string = '';
- 
-  selectSales: string = '';
+
   map: string = '';
+  selectBrand: string = '';
+  selectCollection: string = '';
+  selectCategory: string = '';
+  selectSales: string = '';
+  selectStatus: string = '';
 
   total = 1;
-  pageSize = 10;
+  pageSize = 50;
   pageIndex = 1;
-  pageSizeOptions = [5, 10, 15, 20];
+  pageSizeOptions = [50, 100, 250, 500];
   inputValue?: string;
   dropdown?: string;
-  filteredOptions: string[] = [];
-  options = ['Burns Bay Road', 'Downing Street', 'Wall Street'];
+  brandFilter: string[] = [];
+  collectionFilter: string[] = [];
+  categoryFilter: string[] = [];
+  salesTireFilter: string[] = [];
+  brandOptions = ['sony', 'dell', 'samsung'];
+  collectionOptions = [
+    'Floral Collection',
+    'White Collection',
+    'Kids Collection',
+  ];
+  categoryOptions = ['Kid’s Furniture', 'Rugs', 'Tables'];
+  salesTireOptions = [
+    'Top Seller',
+    'Medium Seller',
+    'Low Seller',
+    'Slow Seller',
+  ];
 
   listOfOption = ['Option 01', 'Option 02'];
 
@@ -89,7 +102,10 @@ export class ViewListFilterComponent implements OnInit {
   ];
 
   constructor(private router: Router) {
-    this.filteredOptions = this.options;
+    this.brandFilter = this.brandOptions;
+    this.collectionFilter = this.collectionOptions;
+    this.categoryFilter = this.categoryOptions;
+    this.salesTireFilter = this.salesTireOptions;
   }
 
   ngOnInit(): void {
@@ -100,12 +116,12 @@ export class ViewListFilterComponent implements OnInit {
       export: new FormControl(''),
     });
     this.filter = new FormGroup({
-      brand: new FormControl(''),
       inventory: new FormControl(''),
-      viewSelect: new FormControl(''),
       asin: new FormControl(''),
       productStatus: new FormControl(''),
       map: new FormControl(''),
+      brand: new FormControl(''),
+      viewSelect: new FormControl(''),
       category: new FormControl(''),
       collection: new FormControl(''),
       salesTire: new FormControl(''),
@@ -114,12 +130,6 @@ export class ViewListFilterComponent implements OnInit {
 
   navigatePage(path: string) {
     this.router.navigate([`/main/${path}`]);
-  }
-
-  onChange(value: string): void {
-    this.filteredOptions = this.options.filter(
-      (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
-    );
   }
 
   openNav() {
@@ -150,25 +160,31 @@ export class ViewListFilterComponent implements OnInit {
     this.isVisible = false;
   }
   tagfunc() {
- 
-
+    this.inventory = '';
+    this.asin = '';
+    this.selectStatus = '';
+    this.map = '';
+    this.selectBrand = '';
     this.selectCollection = '';
     this.selectCategory = '';
-    this.selectBrand = '';
-    this.inventory = '';
-    this.viewSelect = '';
-    this.asin = '';
-    this.Selectstatus = '';
     this.selectSales = '';
-    this.map = '';
+
+    this.stock = 0;
+    this.aprove = 0;
+    this.productStatus = 0;
+    this.mapradio = 0;
+    this.brand = 0;
+    this.category = 0;
+    this.collection = 0;
+    this.sales = 0;
+
     this.beagetotal = 0;
     this.clear_btn = false;
     this.filter.reset();
   }
 
-  close(type:string){
-    if (type) {   
-      
+  close(type: string) {
+    if (type) {
       switch (type) {
         case 'inventory':
           this.filter.controls['inventory'].reset();
@@ -176,259 +192,213 @@ export class ViewListFilterComponent implements OnInit {
           this.stock--;
           this.beagetotal--;
           break;
-          case 'asin':
-            this.filter.controls['asin'].reset();
-            this.asin = '';
-            this.aprove--;
-            this.beagetotal--;
-            break;
-          case 'Selectstatus':
-            this.filter.controls['productStatus'].reset();
-            this.Selectstatus = '';
-            this.status--;
+        case 'asin':
+          this.filter.controls['asin'].reset();
+          this.asin = '';
+          this.aprove--;
+          this.beagetotal--;
           break;
-          case 'map':
-            this.filter.controls['map'].reset();
-            this.map = '';
-            this.beagetotal--;
-            this.mapradio--;
+        case 'Selectstatus':
+          this.filter.controls['productStatus'].reset();
+          this.selectStatus = '';
+          this.productStatus--;
+          this.beagetotal--;
           break;
-          case 'SelectSales':
-            this.filter.controls['status'].reset();
-            this.Selectstatus = '';
+        case 'map':
+          this.filter.controls['map'].reset();
+          this.map = '';
+          this.beagetotal--;
+          this.mapradio--;
           break;
-          case 'selectBrand':
-            this.filter.controls['brand'].reset();
-            this.selectBrand = '';
-        
-           
+        case 'selectBrand':
+          this.filter.controls['brand'].reset();
+          this.selectBrand = '';
+          this.brand--;
+          this.beagetotal--;
           break;
-          case 'selectCollection':
-            this.filter.controls['collection'].reset();
-              this.selectCollection = '';
+        case 'selectCollection':
+          this.filter.controls['collection'].reset();
+          this.selectCollection = '';
+          this.beagetotal--;
+          this.collection--;
           break;
-          case 'selectCategory':
-            this.filter.controls['category'].reset();
-            this.selectCategory = '';
-          break;   
-          case 'salesTire':
-            this.filter.controls['salesTire'].reset();
-            this.selectSales = '';
-          break;        
-          default:
-            break;
-           
+        case 'selectCategory':
+          this.filter.controls['category'].reset();
+          this.selectCategory = '';
+          this.category--;
+          this.beagetotal--;
+
+          break;
+
+        case 'selectSales':
+          this.filter.controls['salesTire'].reset();
+          this.selectSales = '';
+          this.sales--;
+          this.beagetotal--;
+          break;
+
+        default:
+          break;
       }
     }
   }
 
-  // selectBrandOnClose(){
-  //   this.filter.controls['brand'].reset();
-  //   this.beagetotal--;
-  //   this.selectBrand = '';
-  // }
-  // inventoryOnClose() {
-  //   this.filter.controls['inventory'].reset();
-  //   this.beagetotal--;
-  //   this.inventory = '';
-  // }
-
-  // categoryOnClose() {
-  //   this.filter.controls['selectCategory'].reset();
-  //   this.beagetotal--;
-  //   this.selectCategory = '';
-  // }
-  // viewSelectOnClose() {
-  //   this.filter.controls['viewSelect'].reset();
-  //   this.viewSelect = '';
-  // }
-  // asinOnClose() {
-  //   this.filter.controls['asin'].reset();
-  //   this.beagetotal--;
-  //   this.asin = '';
-  // }
-  // selectstatusOnClose() {
-  //   this.filter.controls['status'].reset();
-  //   this.Selectstatus = '';
-  // }
-  // mapOnClose() {
-  //   this.filter.controls['map'].reset();
-  //   this.beagetotal--;
-  //   this.map = '';
-  // }
-  // selectCollectionClose() {
-  //   this.filter.controls['collection'].reset();
-  //   this.beagetotal--;
-  //   this.selectCollection = '';
-  // }
-  // selectSalesClose() {
-  //   this.filter.controls['salesTire'].reset();
-  //   this.beagetotal--;
-  //   this.selectSales = '';
-  // }
-
   change(value: string, type: string) {
-    console.log(value);
-    switch (type) {
-      case 'brand':
-        if (value == 'sony' || value == 'dell' || value == 'samsung') {
-          this.clear_btn = true;
-          this.selectBrand = value;
-          if (this.brand == 0) {
-            this.brand++;
-            this.beagetotal++;
-          }
-        }
-
-        if (value == null) {
-          this.brand--;
-          this.beagetotal--;
-        }
-        break;
-
-      case 'category':
-        if (value == 'kidFurniture' || value == 'rugs' || value == 'tables') {
-          this.clear_btn = true;
-          this.selectCategory = value;
-          if (this.category == 0) {
-            this.category++;
-            this.beagetotal++;
-          }
-        }
-
-        if (value == null) {
-          this.brand--;
-          this.beagetotal--;
-        }
-        break;
-
-      case 'inventory':
-        if (value == 'inStock' || value == 'outOfStock') {
-          this.clear_btn = true;
-          this.inventory = value;
-          if (this.stock == 0) {
-            this.stock++;
-            this.beagetotal++;
-          }
-        }
-
-        break;
-      case 'viewSelect':
-        if (
-          value == 'collection' ||
-          value == 'category' ||
-          value == 'salesTire'
-        ) {
-          this.clear_btn = true;
-          this.viewSelect = value;
-          if (this.collection == 0) {
-            this.collection++;
-            this.beagetotal++;
-          }
-        }
-
-        if (value == null) {
-          this.collection--;
-          this.beagetotal--;
-          this.viewSelect = '';
-        }
-        break;
-      case 'asin':
-        if (value == 'approved' || value == 'notapproved') {
-          this.clear_btn = true;
-          this.asin = value;
-
-          if (this.aprove == 0) {
-            this.aprove++;
-            this.beagetotal++;
+    if (value) {
+      switch (type) {
+        case 'brand':
+          this.brandFilter = this.brandOptions.filter(
+            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
+          );
+          if (value == 'sony' || value == 'dell' || value == 'samsung') {
             this.clear_btn = true;
+            this.selectBrand = value;
+            if (this.brand == 0) {
+              this.brand++;
+              this.beagetotal++;
+            }
           }
-        }
 
-        break;
-
-      case 'status':
-        if (
-          value == 'discontented' ||
-          value == 'active' ||
-          value == 'restricted' ||
-          value == 'suppressed' ||
-          value == 'ltl' 
-        ) {
-          this.clear_btn = true;
-          this.Selectstatus = value;
-
-          if (this.status == 0) {
-            this.status++;
-            this.beagetotal++;
+          if (value == null) {
+            this.brand--;
+            this.beagetotal--;
           }
-        }
+          break;
 
-        if (value == null) {
-          this.status--;
-          this.beagetotal--;
-          this.Selectstatus = '';
-        }
-
-        break;
-
-      case 'map':
-        if (value == 'true' || value == 'false') {
-          this.clear_btn = true;
-          this.map = value;
-
-          if (this.mapradio == 0) {
-            this.mapradio++;
-            this.beagetotal++;
+        case 'category':
+          this.categoryFilter = this.categoryOptions.filter(
+            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
+          );
+          if (
+            value == 'Kid’s Furniture' ||
+            value == 'Rugs' ||
+            value == 'Tables'
+          ) {
+            this.clear_btn = true;
+            this.selectCategory = value;
+            if (this.category == 0) {
+              this.category++;
+              this.beagetotal++;
+            }
           }
-        }
-        break;
+
+          if (value == null) {
+            this.brand--;
+            this.beagetotal--;
+          }
+          break;
+
+        case 'inventory':
+          if (value == 'inStock' || value == 'outOfStock') {
+            this.clear_btn = true;
+            this.inventory = value;
+            if (this.stock == 0) {
+              this.stock++;
+              this.beagetotal++;
+            }
+          }
+          break;
+
+        case 'asin':
+          if (value == 'approved' || value == 'notapproved') {
+            this.clear_btn = true;
+            this.asin = value;
+
+            if (this.aprove == 0) {
+              this.aprove++;
+              this.beagetotal++;
+              this.clear_btn = true;
+            }
+          }
+
+          break;
+
+        case 'status':
+          if (
+            value == 'discontented' ||
+            value == 'active' ||
+            value == 'restricted' ||
+            value == 'suppressed' ||
+            value == 'ltl'
+          ) {
+            this.clear_btn = true;
+            this.selectStatus = value;
+
+            if (this.productStatus == 0) {
+              this.productStatus++;
+              this.beagetotal++;
+            }
+          }
+
+          if (value == null) {
+            this.productStatus--;
+            this.beagetotal--;
+            this.selectStatus = '';
+          }
+
+          break;
+
+        case 'map':
+          if (value == 'true' || value == 'false') {
+            this.clear_btn = true;
+            this.map = value;
+
+            if (this.mapradio == 0) {
+              this.mapradio++;
+              this.beagetotal++;
+            }
+          }
+          break;
 
         case 'collection':
-        if (
-          value == 'floral_collection' ||
-          value == 'white_collection' ||
-          value == 'kids_collection'
-        ) {
-          this.clear_btn = true;
-          this.selectCollection = value;
-          if (this.collection == 0) {
-            this.collection++;
-            this.beagetotal++;
+          this.collectionFilter = this.collectionOptions.filter(
+            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
+          );
+          if (
+            value == 'Floral Collection' ||
+            value == 'White Collection' ||
+            value == 'Kids Collection'
+          ) {
+            this.clear_btn = true;
+            this.selectCollection = value;
+            if (this.collection == 0) {
+              this.collection++;
+              this.beagetotal++;
+            }
           }
-        }
 
-        if (value == null) {
-          this.collection--;
-          this.beagetotal--;
-          this.selectCollection = '';
-        }
-        break;
+          if (value == null) {
+            this.collection--;
+            this.beagetotal--;
+            this.selectCollection = '';
+          }
+          break;
 
         case 'salesTire':
-        if (
-          value == 'medium_seller' ||
-          value == 'low_seller' ||
-          value == 'slow_seller' ||
-          value == 'top_seller' 
-        ) {
-          this.clear_btn = true;
-          this.selectSales = value;
-          if (this.sales == 0) {
-            this.sales++;
-            this.beagetotal++;
+          this.salesTireFilter = this.salesTireOptions.filter(
+            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
+          );
+          if (
+            value == 'Top Seller' ||
+            value == 'Medium Seller' ||
+            value == 'Low Seller' ||
+            value == 'Slow Seller'
+          ) {
+            this.clear_btn = true;
+            this.selectSales = value;
+            if (this.sales == 0) {
+              this.sales++;
+              this.beagetotal++;
+            }
           }
-        }
 
-        if (value == null) {
-          this.sales--;
-          this.beagetotal--;
-          this.selectSales = '';
-        }
-        break;
-
-      default:
-        break;
+          if (value === null) {
+            this.sales--;
+            this.beagetotal--;
+            this.selectSales = '';
+          }
+          break;
+      }
     }
   }
 }
