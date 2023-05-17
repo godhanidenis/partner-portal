@@ -6,7 +6,6 @@
       </div>
     </div>
 
-   
     <div class="view-edit-products-section-content">
       <div>
         <button
@@ -46,7 +45,7 @@
         </button>
 
         <form nz-form [formGroup]="viewEditProducts">
-          <nz-form-item style="margin-bottom: 0;">
+          <nz-form-item style="margin-bottom: 0">
             <nz-form-control nzErrorTip="Please input your valid code!">
               <nz-input-group nzPrefixIcon="search" class="search">
                 <input
@@ -60,8 +59,7 @@
         </form>
       </div>
 
-      <div *ngIf="clear_btn"  class="tag-section">
-       
+      <div *ngIf="clear_btn" class="tag-section">
         <nz-tag
           *ngIf="selectCategory"
           nzMode="closeable"
@@ -74,39 +72,39 @@
           (nzOnClose)="close('inventory')"
           >{{ inventory }}</nz-tag
         >
-       
+
         <nz-tag *ngIf="asin" nzMode="closeable" (nzOnClose)="close('asin')">{{
           asin
         }}</nz-tag>
         <nz-tag
-          *ngIf="Selectstatus"
+          *ngIf="selectStatus"
           nzMode="closeable"
           (nzOnClose)="close('Selectstatus')"
-          >{{ Selectstatus }}</nz-tag
+          >{{ selectStatus }}</nz-tag
         >
-        <nz-tag *ngIf="map" nzMode="closeable"  (nzOnClose)="close('map')">{{
+        <nz-tag *ngIf="map" nzMode="closeable" (nzOnClose)="close('map')">{{
           map
         }}</nz-tag>
         <nz-tag
-        *ngIf="selectBrand"
-        nzMode="closeable"
-        (nzOnClose)="close('selectBrand')"
-        >{{ selectBrand }}</nz-tag
-      >
+          *ngIf="selectBrand"
+          nzMode="closeable"
+          (nzOnClose)="close('selectBrand')"
+          >{{ selectBrand }}</nz-tag
+        >
         <nz-tag
-        *ngIf="selectCollection"
-        nzMode="closeable"
-        (nzOnClose)="close('selectCollection')"
-        >{{ selectCollection }}</nz-tag
-      >
+          *ngIf="selectCollection"
+          nzMode="closeable"
+          (nzOnClose)="close('selectCollection')"
+          >{{ selectCollection }}</nz-tag
+        >
         <nz-tag
-        *ngIf="selectSales"
-        nzMode="closeable"
-        (nzOnClose)="close('selectSales')"
-        >{{ selectSales }}</nz-tag
-      >
+          *ngIf="selectSales"
+          nzMode="closeable"
+          (nzOnClose)="close('selectSales')"
+          >{{ selectSales }}</nz-tag
+        >
         <button
-        *ngIf="beagetotal >= 1"
+          *ngIf="beagetotal >= 1"
           nz-button
           nzType="default"
           (click)="tagfunc()"
@@ -132,6 +130,7 @@
         [nzPageIndex]="pageIndex"
         [nzLoading]="isLoading"
         [nzData]="data"
+        [nzScroll]="{ x: '100%' }"
       >
         <thead>
           <tr>
@@ -234,80 +233,73 @@
           nzText="Brand"
           nzOrientation="left"
         ></nz-divider>
-        <nz-select
-          nzAllowClear
-          nzPlaceHolder="Select A Brand"
-          (ngModelChange)="change($event, 'brand')"
-          formControlName="brand"
-        >
-          <nz-option nzLabel="Sony" nzValue="sony"></nz-option>
-          <nz-option nzLabel="Dell" nzValue="dell"></nz-option>
-          <nz-option nzLabel="Samsung" nzValue="samsung"></nz-option>
-        </nz-select>
+        <div class="example-input">
+          <input
+            placeholder="Select A Brand"
+            nz-input
+            (ngModelChange)="change($event, 'brand')"
+            formControlName="brand"
+            [nzAutocomplete]="auto"
+          />
+          <nz-autocomplete [nzDataSource]="brandFilter" #auto></nz-autocomplete>
+        </div>
 
         <nz-divider
           style="margin-top: 35px"
           nzText="Collection"
           nzOrientation="left"
         ></nz-divider>
-        <nz-select
-          nzAllowClear
-          nzPlaceHolder="Select A Collection"
-          (ngModelChange)="change($event, 'collection')"
-          formControlName="collection"
-        >
-          <nz-option
-            nzLabel="Floral Collection"
-            nzValue="floral_collection"
-          ></nz-option>
-          <nz-option
-            nzLabel="White Collection"
-            nzValue="white_collection"
-          ></nz-option>
-          <nz-option
-            nzLabel="Kids Collection"
-            nzValue="kids_collection"
-          ></nz-option>
-        </nz-select>
+        <div class="example-input">
+          <input
+            nz-input
+            placeHolder="Select A Collection"
+            (ngModelChange)="change($event, 'collection')"
+            formControlName="collection"
+            [nzAutocomplete]="collection"
+          />
+          <nz-autocomplete
+            [nzDataSource]="collectionFilter"
+            #collection
+          ></nz-autocomplete>
+        </div>
 
         <nz-divider
           style="margin-top: 35px"
           nzText="Category"
           nzOrientation="left"
         ></nz-divider>
-        <nz-select
-          nzAllowClear
-          nzPlaceHolder="Select A Category"
-          (ngModelChange)="change($event, 'category')"
-          formControlName="category"
-        >
-          <nz-option
-            nzLabel="Kid’s Furniture"
-            nzValue="kidFurniture"
-          ></nz-option>
-          <nz-option nzLabel="Rugs" nzValue="rugs"></nz-option>
-          <nz-option nzLabel="Tables" nzValue="tables"></nz-option>
-        </nz-select>
+        <div class="example-input">
+          <input
+            nz-input
+            placeHolder="Select A Category"
+            (ngModelChange)="change($event, 'category')"
+            formControlName="category"
+            [nzAutocomplete]="category"
+          />
+          <nz-autocomplete
+            [nzDataSource]="categoryFilter"
+            #category
+          ></nz-autocomplete>
+        </div>
 
         <nz-divider
           style="margin-top: 35px"
           nzText="Sales Tier"
           nzOrientation="left"
         ></nz-divider>
-        <nz-select
-          nzAllowClear
-          nzPlaceHolder="Select A Sales Tire"
-          (ngModelChange)="change($event, 'salesTire')"
-          formControlName="salesTire"
-        >
-          <nz-option nzLabel="Top Seller" nzValue="top_seller"></nz-option>
-          <nz-option
-            nzLabel="Medium Seller"
-            nzValue="medium_seller"
-          ></nz-option>
-          <nz-option nzLabel="Low Seller" nzValue="low_seller"></nz-option>
-          <nz-option nzLabel="Slow Seller" nzValue="slow_seller"></nz-option>
-        </nz-select>
+        <div class="example-input">
+          <input
+            nz-input
+            placeHolder="Select A Sales Tire"
+            (ngModelChange)="change($event, 'salesTire')"
+            formControlName="salesTire"
+            [nzAutocomplete]="salesTire"
+          />
+          <nz-autocomplete
+            [nzDataSource]="salesTireFilter"
+            #salesTire
+          ></nz-autocomplete>
+        </div>
       </div>
     </form>
   </div>
