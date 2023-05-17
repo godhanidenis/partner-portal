@@ -33,6 +33,10 @@ import { ViewPickupAddressComponent } from './manage-pickup-address/view-pickup-
     ReactiveFormsModule,
     FormsModule,
   ],
-  exports: [AddPickupAddressComponent, ViewPickupAddressComponent],
+  exports: [
+    AddPickupAddressComponent,
+    ViewPickupAddressComponent,
+    UploadModelComponent,
+  ],
 })
 export class OrderProcessingModule {}

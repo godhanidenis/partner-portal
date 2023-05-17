@@ -12,6 +12,20 @@ export class ViewListFilterComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   @ViewChild('section', { static: false }) section!: ElementRef;
 
+  listOfBrand = ['Sony', 'Dell', 'Samsung'];
+  listOfCollection = [
+    'Floral Collection',
+    'White Collection',
+    'Kids Collection',
+  ];
+  listOfProductCategory = ['Kid’s Furniture', 'Rugs', 'Tables'];
+  listOfSalesTier = [
+    'Top Seller',
+    'Medium Seller',
+    'Low Seller',
+    'Slow Seller',
+  ];
+
   viewEditProducts!: FormGroup;
   uploadmodal!: FormGroup;
   filter!: FormGroup;
@@ -49,19 +63,6 @@ export class ViewListFilterComponent implements OnInit {
   collectionFilter: string[] = [];
   categoryFilter: string[] = [];
   salesTireFilter: string[] = [];
-  brandOptions = ['sony', 'dell', 'samsung'];
-  collectionOptions = [
-    'Floral Collection',
-    'White Collection',
-    'Kids Collection',
-  ];
-  categoryOptions = ['Kid’s Furniture', 'Rugs', 'Tables'];
-  salesTireOptions = [
-    'Top Seller',
-    'Medium Seller',
-    'Low Seller',
-    'Slow Seller',
-  ];
 
   listOfOption = ['Option 01', 'Option 02'];
 
@@ -101,12 +102,7 @@ export class ViewListFilterComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {
-    this.brandFilter = this.brandOptions;
-    this.collectionFilter = this.collectionOptions;
-    this.categoryFilter = this.categoryOptions;
-    this.salesTireFilter = this.salesTireOptions;
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.viewEditProducts = new FormGroup({
@@ -135,7 +131,7 @@ export class ViewListFilterComponent implements OnInit {
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
     this.contentSection.nativeElement.style.marginRight = '280px';
-    this.section.nativeElement.style.minHeight = '97%';
+    this.section.nativeElement.style.minHeight = '88%';
   }
 
   closeNav() {
@@ -144,20 +140,31 @@ export class ViewListFilterComponent implements OnInit {
     this.section.nativeElement.style.minHeight = 'auto';
   }
 
-  isVisible = false;
+  isDownloadVisible: boolean = false;
+  isUploadVisible: boolean = false;
 
-  showUploadModal(): void {
-    this.isVisible = true;
+  showUploadModal(type: string): void {
+    if (type === 'download') {
+      this.isDownloadVisible = true;
+    } else {
+      this.isUploadVisible = true;
+    }
   }
 
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+  handleOk(type: string): void {
+    if (type === 'download') {
+      this.isDownloadVisible = false;
+    } else {
+      this.isUploadVisible = false;
+    }
   }
 
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
+  handleCancel(type: string): void {
+    if (type === 'download') {
+      this.isDownloadVisible = false;
+    } else {
+      this.isUploadVisible = false;
+    }
   }
   tagfunc() {
     this.inventory = '';
@@ -247,10 +254,7 @@ export class ViewListFilterComponent implements OnInit {
     if (value) {
       switch (type) {
         case 'brand':
-          this.brandFilter = this.brandOptions.filter(
-            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
-          );
-          if (value == 'sony' || value == 'dell' || value == 'samsung') {
+          if (value == 'Sony' || value == 'Dell' || value == 'Samsung') {
             this.clear_btn = true;
             this.selectBrand = value;
             if (this.brand == 0) {
@@ -266,9 +270,6 @@ export class ViewListFilterComponent implements OnInit {
           break;
 
         case 'category':
-          this.categoryFilter = this.categoryOptions.filter(
-            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
-          );
           if (
             value == 'Kid’s Furniture' ||
             value == 'Rugs' ||
@@ -351,9 +352,6 @@ export class ViewListFilterComponent implements OnInit {
           break;
 
         case 'collection':
-          this.collectionFilter = this.collectionOptions.filter(
-            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
-          );
           if (
             value == 'Floral Collection' ||
             value == 'White Collection' ||
@@ -375,9 +373,6 @@ export class ViewListFilterComponent implements OnInit {
           break;
 
         case 'salesTire':
-          this.salesTireFilter = this.salesTireOptions.filter(
-            (option) => option.toLowerCase().indexOf(value.toLowerCase()) !== -1
-          );
           if (
             value == 'Top Seller' ||
             value == 'Medium Seller' ||
@@ -392,6 +387,39 @@ export class ViewListFilterComponent implements OnInit {
             }
           }
 
+          if (value === null) {
+            this.sales--;
+            this.beagetotal--;
+            this.selectSales = '';
+          }
+          break;
+      }
+    } else {
+      switch (type) {
+        case 'brand':
+          if (value == null) {
+            this.brand--;
+            this.beagetotal--;
+            this.selectBrand = '';
+          }
+          break;
+
+        case 'category':
+          if (value == null) {
+            this.brand--;
+            this.beagetotal--;
+            this.selectCategory = '';
+          }
+          break;
+        case 'collection':
+          if (value == null) {
+            this.collection--;
+            this.beagetotal--;
+            this.selectCollection = '';
+          }
+          break;
+
+        case 'salesTire':
           if (value === null) {
             this.sales--;
             this.beagetotal--;

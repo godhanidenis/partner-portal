@@ -37,7 +37,16 @@
         <button
           style="margin: 0 10px"
           nz-button
-          (click)="showUploadModal()"
+          (click)="showUploadModal('download')"
+          nzType="primary"
+          nzShape="round"
+        >
+          <span nz-icon nzType="download" nzTheme="outline"></span>
+        </button>
+        <button
+          style="margin: 0 10px"
+          nz-button
+          (click)="showUploadModal('upload')"
           nzType="primary"
           nzShape="round"
         >
@@ -59,7 +68,7 @@
         </form>
       </div>
 
-      <div *ngIf="clear_btn" class="tag-section">
+      <div *ngIf="clear_btn && beagetotal !== 0" class="tag-section">
         <nz-tag
           *ngIf="selectCategory"
           nzMode="closeable"
@@ -173,7 +182,7 @@
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
       >&times;</a
     >
-    <form nz-form [formGroup]="filter">
+    <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
       <div class="filter-content">
         <nz-divider nzText="Inventory" nzOrientation="left"></nz-divider>
         <nz-radio-group
@@ -185,7 +194,7 @@
         </nz-radio-group>
 
         <nz-divider
-          style="margin-top: 35px"
+          style="margin-top: 20px"
           nzText="Asin Status"
           nzOrientation="left"
         ></nz-divider>
@@ -198,7 +207,7 @@
         </nz-radio-group>
 
         <nz-divider
-          style="margin-top: 35px"
+          style="margin-top: 20px"
           nzText="Product Status"
           nzOrientation="left"
         ></nz-divider>
@@ -216,7 +225,7 @@
         </nz-select>
 
         <nz-divider
-          style="margin-top: 35px"
+          style="margin-top: 20px"
           nzText="MAP"
           nzOrientation="left"
         ></nz-divider>
@@ -229,86 +238,89 @@
         </nz-radio-group>
 
         <nz-divider
-          style="margin-top: 35px"
+          style="margin-top: 20px"
           nzText="Brand"
           nzOrientation="left"
         ></nz-divider>
-        <div class="example-input">
-          <input
-            placeholder="Select A Brand"
-            nz-input
-            (ngModelChange)="change($event, 'brand')"
-            formControlName="brand"
-            [nzAutocomplete]="auto"
-          />
-          <nz-autocomplete [nzDataSource]="brandFilter" #auto></nz-autocomplete>
-        </div>
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          (ngModelChange)="change($event, 'brand')"
+          formControlName="brand"
+          nzPlaceHolder="Select A Brand"
+        >
+          <nz-option
+            *ngFor="let item of listOfBrand"
+            [nzLabel]="item"
+            [nzValue]="item"
+          ></nz-option>
+        </nz-select>
 
         <nz-divider
-          style="margin-top: 35px"
+          style="margin-top: 20px"
           nzText="Collection"
           nzOrientation="left"
         ></nz-divider>
-        <div class="example-input">
-          <input
-            nz-input
-            placeHolder="Select A Collection"
-            (ngModelChange)="change($event, 'collection')"
-            formControlName="collection"
-            [nzAutocomplete]="collection"
-          />
-          <nz-autocomplete
-            [nzDataSource]="collectionFilter"
-            #collection
-          ></nz-autocomplete>
-        </div>
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select A Collection"
+          (ngModelChange)="change($event, 'collection')"
+          formControlName="collection"
+        >
+          <nz-option
+            *ngFor="let item of listOfCollection"
+            [nzLabel]="item"
+            [nzValue]="item"
+          ></nz-option>
+        </nz-select>
 
         <nz-divider
-          style="margin-top: 35px"
+          style="margin-top: 20px"
           nzText="Category"
           nzOrientation="left"
         ></nz-divider>
-        <div class="example-input">
-          <input
-            nz-input
-            placeHolder="Select A Category"
-            (ngModelChange)="change($event, 'category')"
-            formControlName="category"
-            [nzAutocomplete]="category"
-          />
-          <nz-autocomplete
-            [nzDataSource]="categoryFilter"
-            #category
-          ></nz-autocomplete>
-        </div>
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select A Category"
+          (ngModelChange)="change($event, 'category')"
+          formControlName="category"
+        >
+          <nz-option
+            *ngFor="let item of listOfProductCategory"
+            [nzLabel]="item"
+            [nzValue]="item"
+          ></nz-option>
+        </nz-select>
 
         <nz-divider
-          style="margin-top: 35px"
+          style="margin-top: 20px"
           nzText="Sales Tier"
           nzOrientation="left"
         ></nz-divider>
-        <div class="example-input">
-          <input
-            nz-input
-            placeHolder="Select A Sales Tire"
-            (ngModelChange)="change($event, 'salesTire')"
-            formControlName="salesTire"
-            [nzAutocomplete]="salesTire"
-          />
-          <nz-autocomplete
-            [nzDataSource]="salesTireFilter"
-            #salesTire
-          ></nz-autocomplete>
-        </div>
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select A Sales Tire"
+          (ngModelChange)="change($event, 'salesTire')"
+          formControlName="salesTire"
+        >
+          <nz-option
+            *ngFor="let item of listOfSalesTier"
+            [nzLabel]="item"
+            [nzValue]="item"
+          ></nz-option>
+        </nz-select>
       </div>
     </form>
   </div>
 
   <nz-modal
-    [(nzVisible)]="isVisible"
+    [(nzVisible)]="isDownloadVisible"
     nzTitle="Which item do you want to export?"
-    (nzOnCancel)="handleCancel()"
-    (nzOnOk)="handleOk()"
+    (nzOnCancel)="handleCancel('download')"
+    (nzOnOk)="handleOk('download')"
   >
     <ng-container *nzModalContent>
       <div style="padding: 15px">
@@ -335,7 +347,7 @@
             nz-button
             nzType="default"
             style="color: black; margin-right: 5px"
-            (click)="handleCancel()"
+            (click)="handleCancel('download')"
           >
             Cancel
           </button>
@@ -350,10 +362,23 @@
               border: none;
             "
           >
-            Upload
+            Download
           </button>
         </div>
       </div>
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal
+    [(nzVisible)]="isUploadVisible"
+    nzTitle="Upload"
+    (nzOnCancel)="handleCancel('upload')"
+    (nzOnOk)="handleOk('upload')"
+  >
+    <ng-container *nzModalContent>
+      <app-upload-model
+        (closeModel)="handleCancel('upload')"
+      ></app-upload-model>
     </ng-container>
   </nz-modal>
 </div>

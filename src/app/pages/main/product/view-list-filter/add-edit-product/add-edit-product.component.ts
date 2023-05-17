@@ -100,7 +100,7 @@ export class AddEditProductComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]+(.[0-9]{1,2})?$'),
       ]),
-      map: new FormControl('', [Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]),
+      map: new FormControl(''),
       msrp: new FormControl('', [Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]),
       handling_time: new FormControl('', [
         Validators.required,
@@ -109,7 +109,11 @@ export class AddEditProductComponent implements OnInit {
       ]),
       shipping_Method: new FormControl('', [Validators.required]),
 
-      number_of_boxes: new FormControl(''),
+      number_of_boxes: new FormControl(1, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(10),
+      ]),
       product_status: new FormControl('active'),
       shipping_dimensions_of_box: this.formBuilder.array([]),
     });
@@ -169,6 +173,24 @@ export class AddEditProductComponent implements OnInit {
       );
     } else {
       this.addShippingDimensionsOfBoxes();
+    }
+  }
+
+  createBoxes() {
+    if (
+      this.addEditProductForm.value.number_of_boxes >= 1 &&
+      this.addEditProductForm.value.number_of_boxes <= 10
+    ) {
+      if (this.shippingDimensionsOfBoxes.controls.length >= 1) {
+        this.shippingDimensionsOfBoxes.controls = [];
+      }
+      for (
+        let index = 1;
+        index < this.addEditProductForm.value.number_of_boxes + 1;
+        index++
+      ) {
+        this.addShippingDimensionsOfBoxes();
+      }
     }
   }
 

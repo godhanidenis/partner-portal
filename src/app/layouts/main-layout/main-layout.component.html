@@ -32,50 +32,29 @@
         <span nz-icon nzType="user"></span>
         <span>Profile</span>
       </li>
-      <li nz-submenu nzTitle="Products" nzIcon="shop">
-        <ul>
-          <li
-            nz-menu-item
-            routerLinkActive="active"
-            routerLink="/main/product/view-list-filter"
-          >
-            View / List / Filter
-          </li>
-          <li nz-menu-item routerLinkActive="active" routerLink="##">
-            Inventory
-          </li>
-        </ul>
+      <li
+        nz-menu-item
+        routerLinkActive="active"
+        routerLink="/main/product/view-list-filter"
+      >
+        <span nz-icon nzType="shop"></span>
+        <span>Products</span>
       </li>
-      <li nz-submenu nzTitle="Orders" nzIcon="shopping">
-        <ul>
-          <li nz-menu-item routerLinkActive="active" routerLink="##">
-            Pending Acknowledgement
-          </li>
-          <li nz-menu-item routerLinkActive="active" routerLink="##">
-            Pending Shipment
-          </li>
-          <li nz-menu-item routerLinkActive="active" routerLink="##">
-            In-transit
-          </li>
-          <li nz-menu-item routerLinkActive="active" routerLink="##">
-            Pending Customer Cancellation Only
-          </li>
-          <li nz-menu-item routerLinkActive="active" routerLink="##">
-            Returns
-          </li>
-        </ul>
+      <li nz-menu-item routerLinkActive="active" routerLink="#">
+        <span nz-icon nzType="user"></span>
+        <span>Inventory</span>
       </li>
-      <li nz-menu-item routerLinkActive="active" routerLink="##">
-        <span nz-icon nzType="dollar"></span>
+      <li nz-menu-item routerLinkActive="active" routerLink="#">
+        <span nz-icon nzType="shopping"></span>
+        <span>Orders</span>
+      </li>
+      <li nz-menu-item routerLinkActive="active" routerLink="#">
+        <span nz-icon nzType="retweet" nzTheme="outline"></span>
+        <span>Returns</span>
+      </li>
+      <li nz-menu-item routerLinkActive="active" routerLink="#">
+        <span nz-icon nzType="dollar-circle" nzTheme="outline"></span>
         <span>Payments</span>
-      </li>
-      <li nz-menu-item routerLinkActive="active" routerLink="##">
-        <span nz-icon nzType="apartment"></span>
-        <span>Support</span>
-      </li>
-      <li nz-menu-item routerLinkActive="active" routerLink="##">
-        <span nz-icon nzType="setting"></span>
-        <span>Settings</span>
       </li>
     </ul>
     <ul nz-menu nzMode="inline" class="sider-menu" style="margin-top: auto">

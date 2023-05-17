@@ -9,9 +9,15 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ViewListFilterComponent } from './view-list-filter/view-list-filter.component';
 import { AddEditProductComponent } from './view-list-filter/add-edit-product/add-edit-product.component';
 import { ViewSingleProductComponent } from './view-list-filter/view-single-product/view-single-product.component';
+import { OrderProcessingModule } from '../profile/order-processing/order-processing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [ViewListFilterComponent, AddEditProductComponent, ViewSingleProductComponent],
+  declarations: [
+    ViewListFilterComponent,
+    AddEditProductComponent,
+    ViewSingleProductComponent,
+  ],
   imports: [
     ProductRoutingModule,
     NzLayoutModule,
@@ -20,6 +26,8 @@ import { ViewSingleProductComponent } from './view-list-filter/view-single-produ
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    OrderProcessingModule,
+    SharedModule,
   ],
   exports: [],
 })
