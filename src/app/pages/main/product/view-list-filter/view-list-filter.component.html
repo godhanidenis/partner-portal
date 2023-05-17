@@ -5,6 +5,8 @@
         <span>View Products</span>
       </div>
     </div>
+
+   
     <div class="view-edit-products-section-content">
       <div>
         <button
@@ -72,12 +74,7 @@
           (nzOnClose)="close('inventory')"
           >{{ inventory }}</nz-tag
         >
-        <nz-tag
-          *ngIf="viewSelect"
-          nzMode="closeable"
-          (nzOnClose)="close('viewSelect')"
-          >{{ viewSelect }}</nz-tag
-        >
+       
         <nz-tag *ngIf="asin" nzMode="closeable" (nzOnClose)="close('asin')">{{
           asin
         }}</nz-tag>

@@ -19,27 +19,27 @@ export class ViewListFilterComponent implements OnInit {
 
   stock: number = 0;
   aprove: number = 0;
-  status: number = 0;
+  prostatus: number = 0;
   mapradio: number = 0;
   brand: number = 0;
- 
-  collection: number = 0;
-  
-  beagetotal: number = 0;
-  sales:number = 0;
-  clear_btn: boolean = false;
   category: number = 0;
+  sales: number = 0;
+  collection: number = 0;
+  beagetotal: number = 0;
 
-  selectCollection:string = '';
-  Selectstatus: string = '';
-  selectCategory: string = '';
-  selectBrand: string = '';
+  clear_btn: boolean = false;
+
   inventory: string = '';
-  viewSelect: string = '';
   asin: string = '';
- 
-  selectSales: string = '';
+  Selectstatus: string = '';
   map: string = '';
+  selectBrand: string = '';
+  selectCollection: string = '';
+  selectCategory: string = '';
+  selectSales: string = '';
+  
+
+
 
   total = 1;
   pageSize = 10;
@@ -100,12 +100,12 @@ export class ViewListFilterComponent implements OnInit {
       export: new FormControl(''),
     });
     this.filter = new FormGroup({
-      brand: new FormControl(''),
       inventory: new FormControl(''),
-      viewSelect: new FormControl(''),
       asin: new FormControl(''),
       productStatus: new FormControl(''),
       map: new FormControl(''),
+      brand: new FormControl(''),
+      viewSelect: new FormControl(''),
       category: new FormControl(''),
       collection: new FormControl(''),
       salesTire: new FormControl(''),
@@ -150,25 +150,31 @@ export class ViewListFilterComponent implements OnInit {
     this.isVisible = false;
   }
   tagfunc() {
- 
-
-    this.selectCollection = '';
-    this.selectCategory = '';
-    this.selectBrand = '';
     this.inventory = '';
-    this.viewSelect = '';
     this.asin = '';
     this.Selectstatus = '';
-    this.selectSales = '';
     this.map = '';
+    this.selectBrand = '';
+    this.selectCollection = '';
+    this.selectCategory = '';
+    this.selectSales = '';
+
+    this.stock = 0;
+    this.aprove= 0;
+    this.prostatus= 0;
+    this.mapradio= 0;
+    this.brand= 0;
+    this.category= 0;
+    this.collection= 0;
+    this.sales= 0;
+
     this.beagetotal = 0;
     this.clear_btn = false;
     this.filter.reset();
   }
 
-  close(type:string){
-    if (type) {   
-      
+  close(type: string) {
+    if (type) {
       switch (type) {
         case 'inventory':
           this.filter.controls['inventory'].reset();
@@ -176,251 +182,200 @@ export class ViewListFilterComponent implements OnInit {
           this.stock--;
           this.beagetotal--;
           break;
-          case 'asin':
-            this.filter.controls['asin'].reset();
-            this.asin = '';
-            this.aprove--;
-            this.beagetotal--;
-            break;
-          case 'Selectstatus':
-            this.filter.controls['productStatus'].reset();
-            this.Selectstatus = '';
-            this.status--;
+        case 'asin':
+          this.filter.controls['asin'].reset();
+          this.asin = '';
+          this.aprove--;
+          this.beagetotal--;
           break;
-          case 'map':
-            this.filter.controls['map'].reset();
-            this.map = '';
-            this.beagetotal--;
-            this.mapradio--;
+        case 'Selectstatus':
+          this.filter.controls['productStatus'].reset();
+          this.Selectstatus = '';
+          this.prostatus--;
+          this.beagetotal--;
           break;
-          case 'SelectSales':
-            this.filter.controls['status'].reset();
-            this.Selectstatus = '';
+        case 'map':
+          this.filter.controls['map'].reset();
+          this.map = '';
+          this.beagetotal--;
+          this.mapradio--;
           break;
-          case 'selectBrand':
-            this.filter.controls['brand'].reset();
-            this.selectBrand = '';
-        
-           
+        case 'selectBrand':
+          this.filter.controls['brand'].reset();
+          this.selectBrand = '';
+          this.brand--;
+          this.beagetotal--;
           break;
-          case 'selectCollection':
-            this.filter.controls['collection'].reset();
-              this.selectCollection = '';
+        case 'selectCollection':
+          this.filter.controls['collection'].reset();
+          this.selectCollection = '';
+          this.beagetotal--;
+          this.collection--;
           break;
-          case 'selectCategory':
-            this.filter.controls['category'].reset();
-            this.selectCategory = '';
-          break;   
-          case 'salesTire':
-            this.filter.controls['salesTire'].reset();
-            this.selectSales = '';
-          break;        
-          default:
-            break;
-           
+        case 'selectCategory':
+          this.filter.controls['category'].reset();
+          this.selectCategory = '';
+          this.category--;
+          this.beagetotal--;
+
+          break;
+
+        case 'selectSales':
+          this.filter.controls['salesTire'].reset();
+          this.selectSales = '';
+          this.sales--;
+          this.beagetotal--;
+          break;
+
+        default:
+          break;
       }
     }
   }
 
-  // selectBrandOnClose(){
-  //   this.filter.controls['brand'].reset();
-  //   this.beagetotal--;
-  //   this.selectBrand = '';
-  // }
-  // inventoryOnClose() {
-  //   this.filter.controls['inventory'].reset();
-  //   this.beagetotal--;
-  //   this.inventory = '';
-  // }
 
-  // categoryOnClose() {
-  //   this.filter.controls['selectCategory'].reset();
-  //   this.beagetotal--;
-  //   this.selectCategory = '';
-  // }
-  // viewSelectOnClose() {
-  //   this.filter.controls['viewSelect'].reset();
-  //   this.viewSelect = '';
-  // }
-  // asinOnClose() {
-  //   this.filter.controls['asin'].reset();
-  //   this.beagetotal--;
-  //   this.asin = '';
-  // }
-  // selectstatusOnClose() {
-  //   this.filter.controls['status'].reset();
-  //   this.Selectstatus = '';
-  // }
-  // mapOnClose() {
-  //   this.filter.controls['map'].reset();
-  //   this.beagetotal--;
-  //   this.map = '';
-  // }
-  // selectCollectionClose() {
-  //   this.filter.controls['collection'].reset();
-  //   this.beagetotal--;
-  //   this.selectCollection = '';
-  // }
-  // selectSalesClose() {
-  //   this.filter.controls['salesTire'].reset();
-  //   this.beagetotal--;
-  //   this.selectSales = '';
-  // }
 
   change(value: string, type: string) {
-    console.log(value);
+    if (value) {
+      console.log(value);
     switch (type) {
+
+      case 'inventory':
+        if (value === 'inStock' || value === 'outOfStock') {
+          this.clear_btn = true;
+          this.inventory = value;
+          console.log(this.stock);
+          if (this.stock === 0) {
+            this.stock++;
+            this.beagetotal++;
+          }
+          console.log(this.stock);
+        }
+
+        break;
+
+        case 'asin':
+          if (value === 'approved' || value === 'notapproved') {
+            this.clear_btn = true;
+            this.asin = value;
+  
+            if (this.aprove === 0) {
+              this.aprove++;
+              this.beagetotal++;
+              this.clear_btn = true;
+            }
+          }
+  
+          break;
+
+          case 'status':
+            if (
+              value === 'discontented' ||
+              value === 'active' ||
+              value === 'restricted' ||
+              value === 'suppressed' ||
+              value === 'ltl'
+            ) {
+              this.clear_btn = true;
+              this.Selectstatus = value;
+    
+              if (this.prostatus === 0) {
+                this.prostatus++;
+                this.beagetotal++;
+              }
+            }
+    
+            if (value === null) {
+              this.prostatus--;
+              this.beagetotal--;
+              this.Selectstatus = '';
+            }
+    
+            break;
+
+            case 'map':
+              if (value === 'true' || value === 'false') {
+                this.clear_btn = true;
+                this.map = value;
+      
+                if (this.mapradio === 0) {
+                  this.mapradio++;
+                  this.beagetotal++;
+                }
+              }
+              break;
+
       case 'brand':
-        if (value == 'sony' || value == 'dell' || value == 'samsung') {
+        if (value === 'sony' || value === 'dell' || value === 'samsung') {
           this.clear_btn = true;
           this.selectBrand = value;
-          if (this.brand == 0) {
+          if (this.brand === 0) {
             this.brand++;
             this.beagetotal++;
           }
         }
 
-        if (value == null) {
+        if (value === null) {
           this.brand--;
           this.beagetotal--;
         }
         break;
 
-      case 'category':
-        if (value == 'kidFurniture' || value == 'rugs' || value == 'tables') {
-          this.clear_btn = true;
-          this.selectCategory = value;
-          if (this.category == 0) {
-            this.category++;
-            this.beagetotal++;
-          }
-        }
-
-        if (value == null) {
-          this.brand--;
-          this.beagetotal--;
-        }
-        break;
-
-      case 'inventory':
-        if (value == 'inStock' || value == 'outOfStock') {
-          this.clear_btn = true;
-          this.inventory = value;
-          if (this.stock == 0) {
-            this.stock++;
-            this.beagetotal++;
-          }
-        }
-
-        break;
-      case 'viewSelect':
+        
+      case 'collection':
         if (
-          value == 'collection' ||
-          value == 'category' ||
-          value == 'salesTire'
-        ) {
-          this.clear_btn = true;
-          this.viewSelect = value;
-          if (this.collection == 0) {
-            this.collection++;
-            this.beagetotal++;
-          }
-        }
-
-        if (value == null) {
-          this.collection--;
-          this.beagetotal--;
-          this.viewSelect = '';
-        }
-        break;
-      case 'asin':
-        if (value == 'approved' || value == 'notapproved') {
-          this.clear_btn = true;
-          this.asin = value;
-
-          if (this.aprove == 0) {
-            this.aprove++;
-            this.beagetotal++;
-            this.clear_btn = true;
-          }
-        }
-
-        break;
-
-      case 'status':
-        if (
-          value == 'discontented' ||
-          value == 'active' ||
-          value == 'restricted' ||
-          value == 'suppressed' ||
-          value == 'ltl' 
-        ) {
-          this.clear_btn = true;
-          this.Selectstatus = value;
-
-          if (this.status == 0) {
-            this.status++;
-            this.beagetotal++;
-          }
-        }
-
-        if (value == null) {
-          this.status--;
-          this.beagetotal--;
-          this.Selectstatus = '';
-        }
-
-        break;
-
-      case 'map':
-        if (value == 'true' || value == 'false') {
-          this.clear_btn = true;
-          this.map = value;
-
-          if (this.mapradio == 0) {
-            this.mapradio++;
-            this.beagetotal++;
-          }
-        }
-        break;
-
-        case 'collection':
-        if (
-          value == 'floral_collection' ||
-          value == 'white_collection' ||
-          value == 'kids_collection'
+          value === 'floral_collection' ||
+          value === 'white_collection' ||
+          value === 'kids_collection'
         ) {
           this.clear_btn = true;
           this.selectCollection = value;
-          if (this.collection == 0) {
+          if (this.collection === 0) {
             this.collection++;
             this.beagetotal++;
           }
         }
 
-        if (value == null) {
+        if (value === null) {
           this.collection--;
           this.beagetotal--;
           this.selectCollection = '';
         }
         break;
 
-        case 'salesTire':
+      case 'category':
+        if (value === 'kidFurniture' || value === 'rugs' || value === 'tables') {
+          this.clear_btn = true;
+          this.selectCategory = value;
+          if (this.category === 0) {
+            this.category++;
+            this.beagetotal++;
+          }
+        }
+
+        if (value === null) {
+          this.brand--;
+          this.beagetotal--;
+        }
+        break;
+
+
+      case 'salesTire':
         if (
-          value == 'medium_seller' ||
-          value == 'low_seller' ||
-          value == 'slow_seller' ||
-          value == 'top_seller' 
+          value === 'medium_seller' ||
+          value === 'low_seller' ||
+          value === 'slow_seller' ||
+          value === 'top_seller'
         ) {
           this.clear_btn = true;
           this.selectSales = value;
-          if (this.sales == 0) {
+          if (this.sales === 0) {
             this.sales++;
             this.beagetotal++;
           }
         }
 
-        if (value == null) {
+        if (value === null) {
           this.sales--;
           this.beagetotal--;
           this.selectSales = '';
@@ -430,5 +385,7 @@ export class ViewListFilterComponent implements OnInit {
       default:
         break;
     }
+    }
+    
   }
 }
