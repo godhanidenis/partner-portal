@@ -1,0 +1,44 @@
+ @import'../../../../../../assets/variable/variable.scss';
+
+ .view-inventory-section {
+     border: 0 solid rgba(0, 0, 0, 0.125);
+     background-color: $white;
+     background-clip: border-box;
+     border-radius: 5px;
+
+     .user-content {
+         border: 0 solid rgba(0, 0, 0, 0.125);
+         background-color: $white;
+         background-clip: border-box;
+         border-radius: 5px;
+         margin-top: 10px;
+         background-color: $white;
+
+         .table-layout {
+             padding: 15px;
+         }
+     }
+
+     .body-section {
+         padding: 24px;
+
+         .header-section {
+             .left-section {
+                 display: flex;
+                 flex-direction: column;
+                 font-size: 16px;
+             }
+
+             .right-section {
+                 display: flex;
+                 flex-direction: column;
+                 font-size: 16px;
+
+                 a,
+                 u {
+                     color: $darkBlue;
+                 }
+             }
+         }
+     }
+ }

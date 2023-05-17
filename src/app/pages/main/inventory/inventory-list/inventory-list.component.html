@@ -1,0 +1,82 @@
+<div class="inventory-list-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Inventory List</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <div class="button-group">
+      <div class="filter">
+        <b>Filter : </b>
+        <nz-range-picker [nzShowTime]="true"></nz-range-picker>
+      </div>
+      <button
+        (click)="openModal()"
+        style="margin: 0 10px"
+        nz-button
+        nzType="primary"
+        nzShape="round"
+      >
+        <span nz-icon nzType="upload" nzTheme="outline"></span>
+      </button>
+    </div>
+
+    <nz-table
+      #nzTable
+      nzOuterBordered
+      [nzData]="inventoryList"
+      nzTableLayout="fixed"
+      nzShowSizeChanger
+      [nzPageSizeOptions]="pageSizeOptions"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzLoading]="isLoading"
+      [nzScroll]="{ x: '100%' }"
+    >
+      <thead>
+        <tr>
+          <th>Feed Code</th>
+          <th>Time</th>
+          <th>Method</th>
+          <th>In Stock</th>
+          <th>Out Of Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-data [ngForOf]="inventoryList">
+          <tr>
+            <td>{{ data?.feedCode }}</td>
+            <td>{{ data?.time }}</td>
+            <td>{{ data?.method }}</td>
+            <td>{{ data?.inStock }}</td>
+            <td>{{ data?.outOfStock }}</td>
+            <td>
+              <a
+                (click)="
+                  navigatePage(
+                    'inventory/inventory-list/view-inventory/' + data?.id
+                  )
+                "
+                style="margin: 0 5px; color: #2121c3; font-size: 20px"
+                ><span nz-icon nzType="eye" nzTheme="outline"></span
+              ></a>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<nz-modal
+  [(nzVisible)]="isUploadVisible"
+  nzTitle="Upload"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <app-upload-model (closeModel)="handleCancel()"></app-upload-model>
+  </ng-container>
+</nz-modal>

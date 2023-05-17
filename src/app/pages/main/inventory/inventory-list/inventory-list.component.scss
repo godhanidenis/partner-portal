@@ -1,0 +1,56 @@
+@import'../../../../../assets/variable/variable.scss';
+
+.inventory-list-section {
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    background-color: $white;
+    background-clip: border-box;
+    border-radius: 5px;
+    // min-height: 95%;
+
+    .user-content {
+        border: 0 solid rgba(0, 0, 0, 0.125);
+        background-color: $white;
+        background-clip: border-box;
+        border-radius: 5px;
+        margin-top: 10px;
+        background-color: $white;
+
+        .table-layout {
+            padding: 15px;
+        }
+    }
+
+    .body-section {
+        padding: 10px 20px 0px 20px;
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+
+            button {
+                border-radius: 20px;
+                border: 0;
+                margin-left: 5px;
+                height: 35px !important;
+            }
+
+            .filter {
+                display: flex;
+
+                b {
+                    margin-right: 10px;
+                    display: flex;
+                    align-items: center;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        ::ng-deep .ant-picker {
+            border-radius: 5px;
+            height: 35px;
+        }
+    }
+
+}

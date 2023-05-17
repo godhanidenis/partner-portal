@@ -1,0 +1,112 @@
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('inventory/inventory-list')">Inventory</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('inventory/inventory-list')">Inventory List</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>View Inventory</a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="view-inventory-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>View Inventory</span>
+    </div>
+  </div>
+  <div class="body-section">
+    <div nz-row [nzGutter]="16" class="header-section">
+      <div
+        nz-col
+        class="gutter-row"
+        [nzSm]="24"
+        [nzXl]="12"
+        class="left-section"
+      >
+        <span><b>Feed Code : </b>{{ editData.feedCode }}</span>
+        <span><b>Time : </b>{{ editData.time }}</span>
+        <span><b>Method : </b>{{ editData.method }}</span>
+      </div>
+      <div
+        nz-col
+        class="gutter-row"
+        [nzSm]="24"
+        [nzXl]="12"
+        class="right-section"
+      >
+        <span
+          ><b
+            ><u><a href="#">download raw file</a></u></b
+          ></span
+        >
+        <span
+          ><b
+            ><u><a href="#">download processed file</a></u></b
+          ></span
+        >
+      </div>
+    </div>
+    <div nz-row [nzGutter]="16">
+      <nz-table
+        style="margin-top: 20px"
+        #nzTable
+        nzOuterBordered
+        [nzData]="inStockProduct"
+        nzTableLayout="fixed"
+        [nzFrontPagination]="false"
+        [nzShowPagination]="false"
+        nz-col
+        [nzXl]="12"
+        [nzSm]="24"
+      >
+        <thead>
+          <tr>
+            <th style="width: 80%">IN-STOCK PRODUCTS</th>
+            <th>COUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="inStockProduct">
+            <tr>
+              <td>{{ data?.name }}</td>
+              <td>
+                <b>{{ data?.count }}</b>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-table
+        style="margin-top: 20px"
+        #nzTable
+        nzOuterBordered
+        [nzData]="outOfStockProduct"
+        nzTableLayout="fixed"
+        [nzFrontPagination]="false"
+        [nzShowPagination]="false"
+        nz-col
+        [nzXl]="12"
+        [nzSm]="24"
+      >
+        <thead>
+          <tr>
+            <th style="width: 80%">OUT OF STOCK PRODUCTS</th>
+            <th>COUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="outOfStockProduct">
+            <tr>
+              <td>{{ data?.name }}</td>
+              <td>
+                <b>{{ data?.count }}</b>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</div>
