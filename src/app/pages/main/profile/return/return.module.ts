@@ -8,9 +8,10 @@ import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.mo
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderProcessingModule } from '../order-processing/order-processing.module';
+import { ReturnSettingComponent } from './return-setting/return-setting.component';
 
 @NgModule({
-  declarations: [ReturnLocationComponent],
+  declarations: [ReturnLocationComponent, ReturnSettingComponent],
   imports: [
     CommonModule,
     ReturnRoutingModule,

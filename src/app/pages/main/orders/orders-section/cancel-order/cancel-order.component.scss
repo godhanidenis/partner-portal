@@ -1,0 +1,12 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.cancel-order-section {
+    padding: 15px;
+    padding-bottom: 0;
+
+    nz-radio-group {
+        label {
+            margin-top: 10px;
+        }
+    }
+}

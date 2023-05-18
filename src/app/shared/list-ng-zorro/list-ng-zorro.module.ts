@@ -69,6 +69,7 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzResizableModule } from 'ng-zorro-antd/resizable';
 import { NzPipesModule } from 'ng-zorro-antd/pipes';
 import { CommonModule } from '@angular/common';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 @NgModule({
   declarations: [],
@@ -142,6 +143,8 @@ import { CommonModule } from '@angular/common';
     NzWaveModule,
     NzResizableModule,
     NzPipesModule,
+    NzWaveModule,
+    NzSpaceModule,
   ],
 })
 export class ListNgZorroModule {}

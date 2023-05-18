@@ -105,6 +105,11 @@
     display: none;
 }
 
+::ng-deep .ant-btn:hover,
+.ant-btn:focus {
+    border-color: $darkBlue;
+}
+
 ::ng-deep .ant-modal-header {
     // background-color: $header-of-tab;
     background-color: $darkBlue;
