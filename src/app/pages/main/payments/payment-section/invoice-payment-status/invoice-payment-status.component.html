@@ -1,0 +1,71 @@
+<div class="invoice-payment-status-section">
+  <div class="filter-section">
+    <form [formGroup]="filterForm">
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group>
+            <div class="editor-tag" (click)="focusTagInput()">
+              <span class="tag-item" *ngFor="let tag of tags">
+                {{ tag }}
+                <span class="remove-tag" (click)="removeTag(tag)">×</span>
+              </span>
+              <input
+                placeholder="Add PO Number"
+                #tagInput
+                type="text"
+                class="input-tag"
+                (keyup)="onKeyUp($event)"
+                formControlName="filter"
+              />
+            </div>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <button nz-button nzType="primary" nzShape="round">
+      <span nz-icon nzType="filter" nzTheme="outline"></span>
+      Filter
+    </button>
+  </div>
+  <nz-table
+    #nzTable
+    nzOuterBordered
+    [nzData]="invoicePaymentStatusList"
+    nzTableLayout="fixed"
+    nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
+  >
+    <thead>
+      <tr>
+        <th>Invoice No.</th>
+        <th>Invoice Date</th>
+        <th>Invoice Amount</th>
+        <th>PO Number</th>
+        <th>Payment Due Date</th>
+        <th>Chargeback Amount</th>
+        <th>To Be Paid Amount</th>
+        <th>Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-data [ngForOf]="invoicePaymentStatusList">
+        <tr>
+          <td>{{ data?.invoiceNo }}</td>
+          <td>{{ data?.invoiceDate }}</td>
+          <td>{{ data?.invoiceAmount }}</td>
+          <td>{{ data?.poNumber }}</td>
+          <td>{{ data?.paymentDueDate }}</td>
+          <td>{{ data?.chargebackAmount }}</td>
+          <td>{{ data?.toBePaidAmount }}</td>
+          <td>{{ data?.remarks }}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </nz-table>
+</div>

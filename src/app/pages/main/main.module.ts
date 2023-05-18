@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { ProfileModule } from './profile/profile.module';
 import { ProductModule } from './product/product.module';
 
-
 @NgModule({
   declarations: [HomeComponent],
   imports: [
@@ -22,7 +21,7 @@ import { ProductModule } from './product/product.module';
     ReactiveFormsModule,
     FormsModule,
     ProfileModule,
-    ProductModule
+    ProductModule,
   ],
   exports: [],
 })
