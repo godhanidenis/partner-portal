@@ -196,43 +196,43 @@ export class ViewListFilterComponent implements OnInit {
         case 'inventory':
           this.filter.controls['inventory'].reset();
           this.inventory = '';
-          this.stock--;
+          this.stock = 0;
           this.beagetotal--;
           break;
         case 'asin':
           this.filter.controls['asin'].reset();
           this.asin = '';
-          this.aprove--;
+          this.aprove = 0;
           this.beagetotal--;
           break;
         case 'Selectstatus':
           this.filter.controls['productStatus'].reset();
           this.selectStatus = '';
-          this.productStatus--;
+          this.productStatus = 0;
           this.beagetotal--;
           break;
         case 'map':
           this.filter.controls['map'].reset();
           this.map = '';
+          this.mapradio = 0;
           this.beagetotal--;
-          this.mapradio--;
           break;
         case 'selectBrand':
           this.filter.controls['brand'].reset();
           this.selectBrand = '';
-          this.brand--;
+          this.brand = 0;
           this.beagetotal--;
           break;
         case 'selectCollection':
           this.filter.controls['collection'].reset();
           this.selectCollection = '';
+          this.collection = 0;
           this.beagetotal--;
-          this.collection--;
           break;
         case 'selectCategory':
           this.filter.controls['category'].reset();
           this.selectCategory = '';
-          this.category--;
+          this.category = 0;
           this.beagetotal--;
 
           break;
@@ -240,7 +240,7 @@ export class ViewListFilterComponent implements OnInit {
         case 'selectSales':
           this.filter.controls['salesTire'].reset();
           this.selectSales = '';
-          this.sales--;
+          this.sales = 0;
           this.beagetotal--;
           break;
 
@@ -262,11 +262,6 @@ export class ViewListFilterComponent implements OnInit {
               this.beagetotal++;
             }
           }
-
-          if (value == null) {
-            this.brand--;
-            this.beagetotal--;
-          }
           break;
 
         case 'category':
@@ -281,11 +276,6 @@ export class ViewListFilterComponent implements OnInit {
               this.category++;
               this.beagetotal++;
             }
-          }
-
-          if (value == null) {
-            this.brand--;
-            this.beagetotal--;
           }
           break;
 
@@ -330,13 +320,6 @@ export class ViewListFilterComponent implements OnInit {
               this.beagetotal++;
             }
           }
-
-          if (value == null) {
-            this.productStatus--;
-            this.beagetotal--;
-            this.selectStatus = '';
-          }
-
           break;
 
         case 'map':
@@ -364,12 +347,6 @@ export class ViewListFilterComponent implements OnInit {
               this.beagetotal++;
             }
           }
-
-          if (value == null) {
-            this.collection--;
-            this.beagetotal--;
-            this.selectCollection = '';
-          }
           break;
 
         case 'salesTire':
@@ -386,46 +363,38 @@ export class ViewListFilterComponent implements OnInit {
               this.beagetotal++;
             }
           }
-
-          if (value === null) {
-            this.sales--;
-            this.beagetotal--;
-            this.selectSales = '';
-          }
           break;
       }
     } else {
-      switch (type) {
-        case 'brand':
-          if (value == null) {
-            this.brand--;
+      if (this.beagetotal > 0 && value !== null) {
+        switch (type) {
+          case 'status':
+            this.selectStatus = '';
+            this.productStatus--;
             this.beagetotal--;
+            break;
+          case 'brand':
             this.selectBrand = '';
-          }
-          break;
-
-        case 'category':
-          if (value == null) {
             this.brand--;
             this.beagetotal--;
+            break;
+          case 'category':
             this.selectCategory = '';
-          }
-          break;
-        case 'collection':
-          if (value == null) {
+            this.brand--;
+            this.beagetotal--;
+            break;
+          case 'collection':
+            this.selectCollection = '';
             this.collection--;
             this.beagetotal--;
-            this.selectCollection = '';
-          }
-          break;
+            break;
 
-        case 'salesTire':
-          if (value === null) {
+          case 'salesTire':
+            this.selectSales = '';
             this.sales--;
             this.beagetotal--;
-            this.selectSales = '';
-          }
-          break;
+            break;
+        }
       }
     }
   }
