@@ -20,7 +20,7 @@ export class NewOrdersComponent implements OnInit {
   isCancelOrderVisible: boolean = false;
   mode = 'date';
   filter!: FormGroup;
-  ordersData = [
+  newOrdersData = [
     {
       id: 1,
       poNumber: 'CLP 4031',
