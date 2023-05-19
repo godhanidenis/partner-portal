@@ -65,7 +65,7 @@
     .user-email {
       width: 100%;
       flex-direction: column !important;
-      background-color: #fff;
+      background-color: $white;
       padding: 0px 20px 10px 20px;
       display: flex;
       border-bottom: 1px solid $border;
@@ -96,10 +96,10 @@
 
   nz-sider {
     // background: $white;
-    background-color: #1616a1;
+    background-color: $darkBlue;
     // background-color: $darkBlue;
 
-    // border-right: 1px solid #2121c3;
+    // border-right: 1px solid $darkBlue;
 
     // overflow-y: auto;
     ::ng-deep .ant-layout-sider-children {
@@ -143,12 +143,12 @@
   }
 
   ::ng-deep .ant-menu-sub.ant-menu-inline {
-    background-color: #1616a1;
+    background-color: $darkBlue;
 
   }
 
-  ::ng-deep .ant-menu-submenu-arrow{
-    color: white;
+  ::ng-deep .ant-menu-submenu-arrow {
+    color: $white;
   }
 
   ::ng-deep .ant-menu-item-selected,
@@ -190,7 +190,7 @@
   ::ng-deep .ant-menu-item:active,
   .ant-menu-submenu-title:active:hover {
     background: $white;
-    color: #2121c3;
+    color: $darkBlue;
   }
 
   nz-breadcrumb {

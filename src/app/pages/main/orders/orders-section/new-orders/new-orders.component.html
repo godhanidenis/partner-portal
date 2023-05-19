@@ -2,7 +2,12 @@
   <div #content class="body-section">
     <div class="header-section">
       <div class="date-range">
-        <nz-space>
+        <nz-range-picker
+          [nzRanges]="ranges"
+          ngModel
+          (ngModelChange)="onChange($event)"
+        ></nz-range-picker>
+        <!-- <nz-space>
           <nz-select style="width: 115px" *nzSpaceItem [(ngModel)]="mode">
             <nz-option nzValue="date" nzLabel="Today"></nz-option>
             <nz-option nzValue="date" nzLabel="Yesterday"></nz-option>
@@ -13,7 +18,7 @@
             <nz-option nzValue="custom" nzLabel="Custom"></nz-option>
           </nz-select>
           <nz-date-picker *nzSpaceItem [nzMode]="mode"></nz-date-picker>
-        </nz-space>
+        </nz-space> -->
       </div>
       <div class="filter">
         <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">

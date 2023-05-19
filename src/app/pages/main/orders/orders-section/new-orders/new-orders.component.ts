@@ -1,12 +1,6 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { endOfMonth } from 'date-fns';
 
 @Component({
   selector: 'app-new-orders',
@@ -58,6 +52,31 @@ export class NewOrdersComponent implements OnInit {
   selectSku: string = '';
   selectCarrier: string = '';
   selectDate: string = '';
+  ranges = {
+    Today: [new Date(), new Date()],
+    YesterDay: [
+      new Date(new Date().setDate(new Date().getDate() - 1)),
+      new Date(new Date().setDate(new Date().getDate() - 1)),
+    ],
+    'Last 7 Days': [
+      new Date(new Date().setDate(new Date().getDate() - 6)),
+      new Date(new Date()),
+    ],
+    'Last 30 Days': [
+      new Date(new Date().setDate(new Date().getDate() - 29)),
+      new Date(new Date()),
+    ],
+    'This Month': [new Date(), endOfMonth(new Date())],
+    'Last Month': [
+      new Date(
+        new Date().getFullYear(),
+        new Date().getMonth() - 1,
+        new Date().getDate()
+      ),
+      new Date(),
+    ],
+    Custom: [],
+  };
 
   constructor() {}
 
@@ -68,6 +87,10 @@ export class NewOrdersComponent implements OnInit {
       carrier: new FormControl(''),
       committedShipDate: new FormControl(''),
     });
+  }
+
+  onChange(result: Date[]): void {
+    console.log('From: ', result[0], ', to: ', result[1]);
   }
 
   openNav() {
@@ -134,6 +157,8 @@ export class NewOrdersComponent implements OnInit {
       }
     } else {
       if (this.badgeTotal > 0) {
+        console.log(value);
+
         switch (type) {
           case 'shipOutLocation':
             this.selectLocation = '';
@@ -178,6 +203,8 @@ export class NewOrdersComponent implements OnInit {
   }
 
   close(type: string) {
+    console.log(type);
+
     if (type) {
       switch (type) {
         case 'shipOutLocation':
@@ -206,5 +233,7 @@ export class NewOrdersComponent implements OnInit {
           break;
       }
     }
+
+    console.log(this.badgeTotal);
   }
 }
