@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { TwoDigitDecimalNumberDirective } from './directives/two-digit-decimal-number.directive';
+import { TwoDigitDecimaNumberDirective } from './directives/two-digit-decimal-number.directive';
 
 @NgModule({
-  declarations: [TwoDigitDecimalNumberDirective],
+  declarations: [TwoDigitDecimaNumberDirective],
   imports: [],
-  exports: [TwoDigitDecimalNumberDirective],
+  exports: [TwoDigitDecimaNumberDirective],
 })
 export class SharedModule {}

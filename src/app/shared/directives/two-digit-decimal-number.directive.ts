@@ -1,9 +1,9 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appTwoDigitDecimalNumber]',
+  selector: '[appTwoDigitDecimaNumber]',
 })
-export class TwoDigitDecimalNumberDirective {
+export class TwoDigitDecimaNumberDirective {
   // Allow decimal numbers and negative values
   private regex: RegExp = new RegExp(/^\d*\.?\d{0,2}$/g);
   // Allow key codes for special events. Reflect :
@@ -13,7 +13,6 @@ export class TwoDigitDecimalNumberDirective {
     'Tab',
     'End',
     'Home',
-    '-',
     'ArrowLeft',
     'ArrowRight',
     'Del',
@@ -23,7 +22,6 @@ export class TwoDigitDecimalNumberDirective {
   constructor(private el: ElementRef) {}
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
-    console.log(this.el.nativeElement.value);
     // Allow Backspace, tab, end, and home keys
     if (this.specialKeys.indexOf(event.key) !== -1) {
       return;

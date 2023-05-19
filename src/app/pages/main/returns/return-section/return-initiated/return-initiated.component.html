@@ -1,0 +1,116 @@
+<div class="return-initiated-section">
+  <nz-table
+    #nzTable
+    nzOuterBordered
+    [nzData]="returnInitiatedList"
+    nzTableLayout="fixed"
+    nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
+  >
+    <thead>
+      <tr>
+        <th>PO</th>
+        <th>Invoice</th>
+        <th>Customer Name</th>
+        <th>MPN</th>
+        <th>Return Classification</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-data [ngForOf]="returnInitiatedList">
+        <tr>
+          <td>
+            <a style="color: #1221c3"
+              ><u
+                ><b>{{ data?.po }}</b></u
+              ></a
+            >
+          </td>
+          <td>{{ data?.invoice }}</td>
+          <td>{{ data?.customerName }}</td>
+          <td>
+            <div>
+              <b>{{ data?.mpn }}</b>
+            </div>
+            <div>{{ data?.orderQty }}</div>
+            <div>{{ data?.returnQty }}</div>
+          </td>
+          <td>{{ data?.returnClassification }}</td>
+          <td>
+            <button
+              style="height: 35px"
+              nz-button
+              class="action-button"
+              [nzType]="'primary'"
+              (click)="addRaVisible = true"
+            >
+              Add RA#
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </nz-table>
+  <nz-modal
+    [(nzVisible)]="addRaVisible"
+    nzTitle="Add RA #"
+    (nzOnCancel)="addRaVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <div class="model-section">
+        <form nz-form [formGroup]="addRaForm">
+          <nz-form-item>
+            <nz-form-label [nzXs]="3" nzRequired>RA</nz-form-label>
+            <nz-form-control nzErrorTip="RA is required!">
+              <nz-input-group>
+                <input
+                  formControlName="raInput"
+                  type="text"
+                  nz-input
+                  placeholder="Enter An Ra"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+      <div class="model-footer">
+        <div class="model-action">
+          <button
+            nz-button
+            nzType="default"
+            style="color: black; margin-right: 5px"
+            (click)="addRaVisible = false"
+          >
+            Cancel
+          </button>
+          <button
+            nz-button
+            class="action-button"
+            (click)="submitForm()"
+            [nzType]="'primary'"
+            style="height: 35px; margin-top: 0px; margin-right: 10px"
+          >
+            <div *ngIf="isLoading">
+              <ng-template #indicatorTemplate
+                ><span style="font-size: 16px" nz-icon nzType="loading"></span>
+              </ng-template>
+              <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+            </div>
+            <span *ngIf="!isLoading"
+              ><span nz-icon nzType="file-text" nzTheme="outline"></span>
+              Save</span
+            >
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </nz-modal>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -16,6 +16,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 })
 export class AddEditProductComponent implements OnInit {
   @Input() editSection: boolean = false;
+  @ViewChild('addInput', { static: false }) addInput!: ElementRef;
+
   addEditProductForm!: FormGroup;
   listOfBrand = ['Sony', 'Dell', 'Samsung'];
   brandIndex = 0;
@@ -96,12 +98,9 @@ export class AddEditProductComponent implements OnInit {
       collection: new FormControl('', [Validators.maxLength(34)]),
       product_category: new FormControl('', [Validators.maxLength(34)]),
       sales_tier: new FormControl('', [Validators.maxLength(34)]),
-      unit_price: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]+(.[0-9]{1,2})?$'),
-      ]),
+      unit_price: new FormControl('', [Validators.required]),
       map: new FormControl(''),
-      msrp: new FormControl('', [Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]),
+      msrp: new FormControl(''),
       handling_time: new FormControl('', [
         Validators.required,
         Validators.min(1),
@@ -199,25 +198,14 @@ export class AddEditProductComponent implements OnInit {
       'shipping_dimensions_of_box'
     ] as FormArray;
   }
+  // , Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')
 
   newShippingDimensionsOfBoxes(): FormGroup {
     return this.formBuilder.group({
-      length: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')],
-      ],
-      width: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')],
-      ],
-      height: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')],
-      ],
-      gross_weight: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')],
-      ],
+      length: ['', [Validators.required]],
+      width: ['', [Validators.required]],
+      height: ['', [Validators.required]],
+      gross_weight: ['', [Validators.required]],
     });
   }
 
@@ -231,46 +219,47 @@ export class AddEditProductComponent implements OnInit {
 
   addItem(input: HTMLInputElement, type: string): void {
     if (input.value) {
-      this.modal.confirm({
-        nzTitle: `<i>Do you Want to add?</i>`,
-        nzContent: `<b>${type}</b>`,
-        nzOnOk: () => {
-          switch (type) {
-            case 'Brand':
-              if (this.listOfBrand.indexOf(input.value) === -1) {
-                this.listOfBrand = [
-                  ...this.listOfBrand,
-                  input.value || `New item ${this.brandIndex++}`,
-                ];
-              }
-              break;
-            case 'Collection':
-              if (this.listOfCollection.indexOf(input.value) === -1) {
-                this.listOfCollection = [
-                  ...this.listOfCollection,
-                  input.value || `New item ${this.collectionIndex++}`,
-                ];
-              }
-              break;
-            case 'Product Category':
-              if (this.listOfProductCategory.indexOf(input.value) === -1) {
-                this.listOfProductCategory = [
-                  ...this.listOfProductCategory,
-                  input.value || `New item ${this.productCategoryIndex++}`,
-                ];
-              }
-              break;
-            default:
-              if (this.listOfSalesTier.indexOf(input.value) === -1) {
-                this.listOfSalesTier = [
-                  ...this.listOfSalesTier,
-                  input.value || `New item ${this.salesTierIndex++}`,
-                ];
-              }
-              break;
+      // this.modal.confirm({
+      //   nzTitle: `<i>Do you Want to add?</i>`,
+      //   nzContent: `<b>${type}</b>`,
+      //   nzOnOk: () => {
+      switch (type) {
+        case 'Brand':
+          if (this.listOfBrand.indexOf(input.value) === -1) {
+            this.listOfBrand = [
+              ...this.listOfBrand,
+              input.value || `New item ${this.brandIndex++}`,
+            ];
           }
-        },
-      });
+          break;
+        case 'Collection':
+          if (this.listOfCollection.indexOf(input.value) === -1) {
+            this.listOfCollection = [
+              ...this.listOfCollection,
+              input.value || `New item ${this.collectionIndex++}`,
+            ];
+          }
+          break;
+        case 'Product Category':
+          if (this.listOfProductCategory.indexOf(input.value) === -1) {
+            this.listOfProductCategory = [
+              ...this.listOfProductCategory,
+              input.value || `New item ${this.productCategoryIndex++}`,
+            ];
+          }
+          break;
+        default:
+          if (this.listOfSalesTier.indexOf(input.value) === -1) {
+            this.listOfSalesTier = [
+              ...this.listOfSalesTier,
+              input.value || `New item ${this.salesTierIndex++}`,
+            ];
+          }
+          break;
+      }
+      //   },
+      // });
+      this.addInput.nativeElement.value = '';
     }
   }
 
