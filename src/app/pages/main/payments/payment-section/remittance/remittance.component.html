@@ -35,6 +35,9 @@
           <td>{{ data?.remittanceAmount }} %</td>
           <td>
             <button
+              nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="menu"
               style="height: 35px"
               nz-button
               class="action-button"
@@ -42,6 +45,12 @@
             >
               Download
             </button>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-menu-item>Excels</li>
+                <li nz-menu-item>PDF</li>
+              </ul>
+            </nz-dropdown-menu>
           </td>
         </tr>
       </ng-template>
