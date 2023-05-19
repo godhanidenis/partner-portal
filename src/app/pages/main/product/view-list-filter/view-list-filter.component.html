@@ -214,7 +214,9 @@
         <nz-select
           nzAllowClear
           nzPlaceHolder="Select A Status"
-          (ngModelChange)="change($event, 'status')"
+          (ngModelChange)="
+            change(filter.value.productStatus ? $event : '', 'status')
+          "
           formControlName="productStatus"
         >
           <nz-option nzLabel="Discontented" nzValue="discontented"></nz-option>
@@ -245,7 +247,7 @@
         <nz-select
           nzShowSearch
           nzAllowClear
-          (ngModelChange)="change($event, 'brand')"
+          (ngModelChange)="change(filter.value.brand ? $event : '', 'brand')"
           formControlName="brand"
           nzPlaceHolder="Select A Brand"
         >
@@ -265,7 +267,9 @@
           nzShowSearch
           nzAllowClear
           nzPlaceHolder="Select A Collection"
-          (ngModelChange)="change($event, 'collection')"
+          (ngModelChange)="
+            change(filter.value.collection ? $event : '', 'collection')
+          "
           formControlName="collection"
         >
           <nz-option
@@ -284,7 +288,9 @@
           nzShowSearch
           nzAllowClear
           nzPlaceHolder="Select A Category"
-          (ngModelChange)="change($event, 'category')"
+          (ngModelChange)="
+            change(filter.value.category ? $event : '', 'category')
+          "
           formControlName="category"
         >
           <nz-option
@@ -303,7 +309,9 @@
           nzShowSearch
           nzAllowClear
           nzPlaceHolder="Select A Sales Tire"
-          (ngModelChange)="change($event, 'salesTire')"
+          (ngModelChange)="
+            change(filter.value.salesTire ? $event : '', 'salesTire')
+          "
           formControlName="salesTire"
         >
           <nz-option
