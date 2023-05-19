@@ -21,9 +21,10 @@
           <nz-input-group nzPrefix="$">
             <input
               formControlName="deposit_value_one"
-              type="number"
+              type="textbox"
               nz-input
               placeholder="00.00"
+              appTwoDigitDecimaNumber
             />
             <ng-template #deposit_value_one let-control>
               <ng-container *ngIf="control.hasError('pattern')"
@@ -56,9 +57,10 @@
           <nz-input-group nzPrefix="$">
             <input
               formControlName="deposit_value_two"
-              type="number"
+              type="textbox"
               nz-input
               placeholder="00.00"
+              appTwoDigitDecimaNumber
             />
             <ng-template #deposit_value_two let-control>
               <ng-container *ngIf="control.hasError('pattern')"

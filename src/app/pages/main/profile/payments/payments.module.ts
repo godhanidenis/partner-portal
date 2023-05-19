@@ -9,9 +9,14 @@ import { PaymentsRoutingModule } from './payments-routing.module';
 import { AchSetUpComponent } from './ach-set-up/ach-set-up.component';
 import { AchVerificationComponent } from './ach-verification/ach-verification.component';
 import { AchSectionComponent } from './ach-section/ach-section.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [AchSetUpComponent, AchVerificationComponent, AchSectionComponent],
+  declarations: [
+    AchSetUpComponent,
+    AchVerificationComponent,
+    AchSectionComponent,
+  ],
   imports: [
     PaymentsRoutingModule,
     NzLayoutModule,
@@ -20,6 +25,7 @@ import { AchSectionComponent } from './ach-section/ach-section.component';
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule,
   ],
   exports: [],
 })

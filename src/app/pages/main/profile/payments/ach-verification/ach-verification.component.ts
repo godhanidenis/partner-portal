@@ -23,11 +23,12 @@ export class AchVerificationComponent implements OnInit {
     this.ascVerificationForm = new FormGroup({
       deposit_value_one: new FormControl(
         this.achVerificationData?.deposit_value_one,
-        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]
+        [Validators.required]
       ),
+      // , Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')
       deposit_value_two: new FormControl(
         this.achVerificationData?.deposit_value_two,
-        [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')]
+        [Validators.required]
       ),
     });
   }

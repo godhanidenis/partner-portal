@@ -153,6 +153,7 @@
                     type="text"
                     nz-input
                     #inputElement1
+                    #addInput
                   />
                   <a class="add-item" (click)="addItem(inputElement1, 'Brand')">
                     <span nz-icon nzType="plus"></span>
@@ -196,6 +197,7 @@
                     type="text"
                     nz-input
                     #inputElement2
+                    #addInput
                   />
                   <a
                     class="add-item"
@@ -241,6 +243,7 @@
                     type="text"
                     nz-input
                     #inputElement3
+                    #addInput
                   />
                   <a
                     class="add-item"
@@ -283,6 +286,7 @@
                     style="width: 150px"
                     type="text"
                     nz-input
+                    #addInput
                     #inputElement4
                   />
                   <a
@@ -310,10 +314,10 @@
             <nz-input-group nzPrefix="$">
               <input
                 formControlName="unit_price"
-                type="number"
+                type="textbox"
                 nz-input
                 placeholder="Enter Unit Price"
-                appTwoDigitDecimalNumber
+                appTwoDigitDecimaNumber
               />
               <ng-template #unit_price let-control>
                 <ng-container *ngIf="control.hasError('pattern')"
@@ -332,10 +336,10 @@
             <nz-input-group nzPrefix="$">
               <input
                 formControlName="map"
-                type="number"
+                type="textbox"
                 nz-input
                 placeholder="Enter MAP"
-                appTwoDigitDecimalNumber
+                appTwoDigitDecimaNumber
               />
               <ng-template #map let-control>
                 <ng-container *ngIf="control.hasError('pattern')"
@@ -351,10 +355,10 @@
             <nz-input-group nzPrefix="$">
               <input
                 formControlName="msrp"
-                type="number"
+                type="textbox"
                 nz-input
                 placeholder="Enter MSRP "
-                appTwoDigitDecimalNumber
+                appTwoDigitDecimaNumber
               />
               <ng-template #msrp let-control>
                 <ng-container *ngIf="control.hasError('pattern')"
@@ -500,9 +504,10 @@
                 <nz-input-group>
                   <input
                     formControlName="length"
-                    type="number"
+                    type="textbox"
                     nz-input
                     placeholder="Enter Length"
+                    appTwoDigitDecimaNumber
                   />
                   <ng-template #length let-control>
                     <ng-container *ngIf="control.hasError('pattern')"
@@ -523,9 +528,10 @@
                 <nz-input-group>
                   <input
                     formControlName="width"
-                    type="number"
+                    type="textbox"
                     nz-input
                     placeholder="Enter Width"
+                    appTwoDigitDecimaNumber
                   />
                   <ng-template #width let-control>
                     <ng-container *ngIf="control.hasError('pattern')"
@@ -546,9 +552,10 @@
                 <nz-input-group>
                   <input
                     formControlName="height"
-                    type="number"
+                    type="textbox"
                     nz-input
                     placeholder="Enter Height"
+                    appTwoDigitDecimaNumber
                   />
                   <ng-template #height let-control>
                     <ng-container *ngIf="control.hasError('pattern')"
@@ -569,9 +576,10 @@
                 <nz-input-group>
                   <input
                     formControlName="gross_weight"
-                    type="number"
+                    type="textbox"
                     nz-input
                     placeholder="Enter Gross Weight"
+                    appTwoDigitDecimaNumber
                   />
                   <ng-template #gross_weight let-control>
                     <ng-container *ngIf="control.hasError('pattern')"
@@ -584,28 +592,6 @@
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
-            <!-- <div
-              nz-col
-              class="gutter-row"
-              style="display: flex; align-items: end; margin-bottom: 3px"
-              [nzSm]="24"
-              [nzXl]="2"
-            >
-              <a
-                *ngIf="i === shippingDimensionsOfBoxes.controls.length - 1"
-                style="background: #00c13b"
-                (click)="addShippingDimensionsOfBoxes()"
-              >
-                +
-              </a>
-              <a
-                *ngIf="i !== shippingDimensionsOfBoxes.controls.length - 1"
-                style="background: #f41e2c"
-                (click)="removeShippingDimensionsOfBoxes(i)"
-              >
-                -
-              </a>
-            </div> -->
           </div>
         </div>
       </div>

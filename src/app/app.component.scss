@@ -101,6 +101,11 @@
     border-color: $darkBlue;
 }
 
+::ng-deep .ant-input-affix-wrapper-focused {
+    border-color: $darkBlue !important;
+    box-shadow: 0 0 0 2px rgb(24 42 255 / 20%) !important;
+}
+
 ::ng-deep .ant-modal-footer {
     display: none;
 }
