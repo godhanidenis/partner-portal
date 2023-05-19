@@ -75,7 +75,7 @@ export class NewOrdersComponent implements OnInit {
       ),
       new Date(),
     ],
-    Custom: [],
+    // Custom: [],
   };
 
   constructor() {}
