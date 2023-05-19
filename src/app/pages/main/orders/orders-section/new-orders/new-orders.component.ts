@@ -75,7 +75,7 @@ export class NewOrdersComponent implements OnInit {
       ),
       new Date(),
     ],
-    Custom: [],
+    // Custom: [],
   };
 
   constructor() {}
@@ -156,9 +156,7 @@ export class NewOrdersComponent implements OnInit {
           break;
       }
     } else {
-      if (this.badgeTotal > 0) {
-        console.log(value);
-
+      if (this.badgeTotal > 0 && value !== null) {
         switch (type) {
           case 'shipOutLocation':
             this.selectLocation = '';
@@ -203,8 +201,6 @@ export class NewOrdersComponent implements OnInit {
   }
 
   close(type: string) {
-    console.log(type);
-
     if (type) {
       switch (type) {
         case 'shipOutLocation':
@@ -233,7 +229,5 @@ export class NewOrdersComponent implements OnInit {
           break;
       }
     }
-
-    console.log(this.badgeTotal);
   }
 }

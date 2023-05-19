@@ -7,18 +7,6 @@
           ngModel
           (ngModelChange)="onChange($event)"
         ></nz-range-picker>
-        <!-- <nz-space>
-          <nz-select style="width: 115px" *nzSpaceItem [(ngModel)]="mode">
-            <nz-option nzValue="date" nzLabel="Today"></nz-option>
-            <nz-option nzValue="date" nzLabel="Yesterday"></nz-option>
-            <nz-option nzValue="week" nzLabel="Last 7 Days"></nz-option>
-            <nz-option nzValue="month" nzLabel="Last 30 Days"></nz-option>
-            <nz-option nzValue="month" nzLabel="This Month"></nz-option>
-            <nz-option nzValue="month" nzLabel="Last Month"></nz-option>
-            <nz-option nzValue="custom" nzLabel="Custom"></nz-option>
-          </nz-select>
-          <nz-date-picker *nzSpaceItem [nzMode]="mode"></nz-date-picker>
-        </nz-space> -->
       </div>
       <div class="filter">
         <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
@@ -150,7 +138,12 @@
           nzAllowClear
           nzPlaceHolder="Select A Location"
           formControlName="shipOutLocation"
-          (ngModelChange)="change($event, 'shipOutLocation')"
+          (ngModelChange)="
+            change(
+              filter.value.shipOutLocation ? $event : '',
+              'shipOutLocation'
+            )
+          "
         >
           <nz-option nzLabel="Ahmadabad" nzValue="ahmadabad"></nz-option>
           <nz-option nzLabel="Surat" nzValue="surat"></nz-option>
@@ -171,7 +164,9 @@
                 type="text"
                 nz-input
                 placeholder="Enter SKU"
-                (input)="change(filter.value.sku, 'sku')"
+                (input)="
+                  change(filter.value.sku ? filter.value.sku : '', 'sku')
+                "
               />
             </nz-input-group>
           </nz-form-control>
@@ -183,7 +178,9 @@
           nzAllowClear
           nzPlaceHolder="Select A Carrier "
           formControlName="carrier"
-          (ngModelChange)="change($event, 'carrier')"
+          (ngModelChange)="
+            change(filter.value.carrier ? $event : '', 'carrier')
+          "
         >
           <nz-option nzLabel="Carrier 1" nzValue="carrier1"></nz-option>
           <nz-option nzLabel="Carrier 2" nzValue="carrier2"></nz-option>
@@ -196,7 +193,12 @@
         ></nz-divider>
         <nz-range-picker
           formControlName="committedShipDate"
-          (ngModelChange)="change($event, 'committedShipDate')"
+          (ngModelChange)="
+            change(
+              filter.value.committedShipDate ? $event : '',
+              'committedShipDate'
+            )
+          "
           [nzShowWeekNumber]="false"
         ></nz-range-picker>
       </div>
