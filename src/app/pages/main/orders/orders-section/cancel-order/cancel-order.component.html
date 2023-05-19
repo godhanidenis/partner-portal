@@ -1,0 +1,36 @@
+<div class="cancel-order-section">
+  <h4 style="margin-bottom: 10px">
+    If you would lick to cancel this PO, select from one of the following reason
+    :
+  </h4>
+  <form nz-form [formGroup]="cancelOrderForm">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group>
+          <nz-radio-group style="display: grid" formControlName="option">
+            <label nz-radio nzValue="A">Out Of Stock</label>
+            <label nz-radio nzValue="B">Restrict Product</label>
+            <label nz-radio nzValue="C">Discontinued Product</label>
+            <label nz-radio nzValue="D">Prize Error</label>
+            <label nz-radio nzValue="E">Cannot Ship Group</label>
+            <label nz-radio nzValue="F">Cannot Ship Before Cancel Data</label>
+            <label nz-radio nzValue="G">Other</label>
+          </nz-radio-group>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<div class="model-footer">
+  <div class="model-action">
+    <button
+      nz-button
+      nzType="default"
+      style="color: black; margin-right: 5px"
+      (click)="handleCancel()"
+    >
+      Cancel
+    </button>
+    <button nz-button class="action-button" [nzType]="'primary'">Submit</button>
+  </div>
+</div>
