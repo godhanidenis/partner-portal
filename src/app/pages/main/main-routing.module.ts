@@ -20,6 +20,11 @@ const routes: Routes = [
       import('./inventory/inventory.module').then((m) => m.InventoryModule),
   },
   {
+    path: 'returns',
+    loadChildren: () =>
+      import('./returns/returns.module').then((m) => m.ReturnsModule),
+  },
+  {
     path: 'payments',
     loadChildren: () =>
       import('./payments/payments.module').then((m) => m.PaymentsModule),

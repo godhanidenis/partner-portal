@@ -1,0 +1,12 @@
+ @import'../../../../../../assets/variable/variable.scss';
+
+ .in-carrier-claims-section {
+     border: 0 solid rgba(0, 0, 0, 0.125);
+     background-color: $white;
+     background-clip: border-box;
+     border-radius: 5px;
+     height: 35vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
