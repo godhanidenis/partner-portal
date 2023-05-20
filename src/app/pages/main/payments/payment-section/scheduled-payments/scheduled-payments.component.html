@@ -1,9 +1,16 @@
 <div class="scheduled-payment-section">
+  <div style="display: flex;justify-content: end;margin-bottom: 10px;">
+    <button style="margin: 0 10px" nz-button nzType="primary" nzShape="round">
+      <div style="display: flex;align-items: center;">
+        <span nz-icon nzType="upload" nzTheme="outline"></span>
+        <span style="margin-left:5px;margin-top:-3px">Export</span>
+      </div>
+    </button>
+  </div>
   <nz-table
     #nzTable
     nzOuterBordered
     [nzData]="scheduledPaymentsList"
-    
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"

@@ -1,4 +1,22 @@
 <div class="return-initiated-section">
+  <div class="header-section">
+    <div class="date-range">
+      <nz-range-picker
+        [nzRanges]="ranges"
+        ngModel
+        (ngModelChange)="onChange($event)"
+      ></nz-range-picker>
+    </div>
+    <div class="filter">
+      <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
+        <button nz-button nzType="primary" nzShape="round">
+          <!-- (click)="openNav()" -->
+          <span nz-icon nzType="filter" nzTheme="outline"></span>
+          Filter
+        </button>
+      </nz-badge>
+    </div>
+  </div>
   <nz-table
     #nzTable
     nzOuterBordered
