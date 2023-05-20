@@ -65,7 +65,7 @@
     </div>
     <nz-table
       #nzTable
-      nzTableLayout="fixed"
+      
       nzShowSizeChanger
       [nzPageSizeOptions]="pageSizeOptions"
       [nzFrontPagination]="false"
@@ -78,7 +78,7 @@
     >
       <thead>
         <tr>
-          <th>PO Number</th>
+          <th>PO #</th>
           <th>Customer Name</th>
           <th>Products</th>
           <th>PO Total</th>
@@ -89,7 +89,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data">
-          <td>{{ data.poNumber }}</td>
+          <td>
+            <a style="color: #1221c3"
+              ><u
+                ><b>{{ data.poNumber }}</b></u
+              ></a
+            >
+          </td>
           <td>{{ data.customerName }}</td>
           <td>{{ data.products }}</td>
           <td>$ {{ data.poTotal }}</td>

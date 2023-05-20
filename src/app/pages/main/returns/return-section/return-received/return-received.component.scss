@@ -1,8 +1,21 @@
 @import '../../../../../../assets/variable/variable.scss';
 
 .return-in-transit-section {
+
+    .sub-section{
+        margin-bottom: 4px;
+        padding-left:15px;
+        .sub-val{
+            font-size: 12px;
+            .title{
+                font-weight: 500;
+            }
+        }
+    }
+    
     .action {
         display: flex;
+        align-items: center;
 
         button {
             margin: 5px;

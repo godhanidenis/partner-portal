@@ -1,0 +1,11 @@
+@import '../../../assets/variable/variable.scss';
+
+.three-dot-menu-btn {
+    height: 35px !important;
+    padding: 0px 4px !important;
+    border-radius: 16% !important;
+    float: none;
+    background-color: $white;
+    color: $darkBlue;
+    border: 1px solid $darkBlue;
+}

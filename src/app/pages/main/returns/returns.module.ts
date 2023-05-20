@@ -12,6 +12,8 @@ import { ReturnInTransitComponent } from './return-section/return-in-transit/ret
 import { ReturnReceivedComponent } from './return-section/return-received/return-received.component';
 import { InCarrierClaimsComponent } from './return-section/in-carrier-claims/in-carrier-claims.component';
 import { AllReturnComponent } from './return-section/all-return/all-return.component';
+import { ThreeDotMenuBtnModule } from 'src/app/components/three-dot-menu-btn/three-dot-menu-btn.module';
+import { StatusBadgeModule } from 'src/app/components/status-badge/status-badge.module';
 
 @NgModule({
   declarations: [ReturnSectionComponent, ReturnInitiatedComponent, ReturnInTransitComponent, ReturnReceivedComponent, InCarrierClaimsComponent, AllReturnComponent],
@@ -23,6 +25,8 @@ import { AllReturnComponent } from './return-section/all-return/all-return.compo
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ThreeDotMenuBtnModule,
+    StatusBadgeModule
   ],
 })
 export class ReturnsModule {}

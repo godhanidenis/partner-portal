@@ -3,7 +3,6 @@
     #nzTable
     nzOuterBordered
     [nzData]="returnReceivedList"
-    nzTableLayout="fixed"
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
@@ -31,35 +30,41 @@
           <td>
             <a style="color: #1221c3"
               ><u
-                ><b>{{ data?.po }}</b></u
+                ><b class="no-wrap">{{ data?.po }}</b></u
               ></a
             >
           </td>
-          <td>{{ data?.invoice }}</td>
-          <td>{{ data?.customerName }}</td>
-          <td>{{ data?.returnClassification }}</td>
+          <td class="no-wrap">{{ data?.invoice }}</td>
+          <td nzBreakWord>{{ data?.customerName }}</td>
+          <td class="no-wrap">{{ data?.returnClassification }}</td>
           <td>
             <div>
-              <b>{{ data?.mpn }}</b>
+              <b class="no-wrap">{{ data?.mpn }}</b>
             </div>
-            <div>{{ data?.orderQty }}</div>
-            <div>{{ data?.returnQty }}</div>
+            <ul class="sub-section">
+              <li class="no-wrap"><div class="sub-val"><span class="title">Order Qty&nbsp;&nbsp;-&nbsp;</span>{{ data?.orderQty }}</div></li>
+              <li class="no-wrap"><div class="sub-val"><span class="title">Return Qty&nbsp;-&nbsp;{{ data?.returnQty }}</span></div></li>
+            </ul>
           </td>
           <td>
             <span *ngFor="let ra of data?.raNumber">
               <div>
-                <b>{{ ra?.name }}</b>
+                <b class="no-wrap">{{ ra?.name }}</b>
               </div>
-              <div>{{ ra?.number }}</div>
+              <ul class="sub-section">
+                <li class="no-wrap"><div class="sub-val"><span class="title">RA #:&nbsp;</span>{{ ra?.number }}</div></li>
+              </ul>
             </span>
           </td>
           <td>
             <div>
-              <b>{{ data?.trackingNo?.name }}</b>
+              <b class="no-wrap">{{ data?.trackingNo?.name }}</b>
             </div>
-            <div>{{ data?.trackingNo?.number }}</div>
+            <ul class="sub-section">
+              <li><div class="sub-val no-wrap"><span class="title">AWB:&nbsp;</span>{{ data?.trackingNo?.number }}</div></li>
+            </ul>
           </td>
-          <td>
+          <td> 
             <div class="action">
               <button
                 style="height: 35px"
@@ -70,16 +75,7 @@
               >
                 Approve Credit
               </button>
-              <button
-                nz-dropdown
-                nzTrigger="click"
-                [nzDropdownMenu]="menu"
-                nz-button
-                nzType="default"
-                class="action-button clear-btn"
-              >
-                <span nz-icon nzType="more" nzTheme="outline"></span>
-              </button>
+              <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
               <nz-dropdown-menu #menu="nzDropdownMenu">
                 <ul nz-menu>
                   <li (click)="modelVisible = true" nz-menu-item>

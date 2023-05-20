@@ -10,7 +10,7 @@
                 <span class="remove-tag" (click)="removeTag(tag)">×</span>
               </span>
               <input
-                placeholder="Add PO Number"
+                placeholder="Add Invoice/ PO Number"
                 #tagInput
                 type="text"
                 class="input-tag"
@@ -21,6 +21,7 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+      <span><b>Note : Press enter/ backspace to add multiple values</b></span>
     </form>
     <button
       nz-button
@@ -35,7 +36,7 @@
     #nzTable
     nzOuterBordered
     [nzData]="invoicePaymentStatusList"
-    nzTableLayout="fixed"
+    
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
@@ -47,10 +48,10 @@
   >
     <thead>
       <tr>
-        <th>Invoice No.</th>
+        <th>Invoice #</th>
         <th>Invoice Date</th>
         <th>Invoice Amount</th>
-        <th>PO Number</th>
+        <th>PO #</th>
         <th>Payment Due Date</th>
         <th>Chargeback Amount</th>
         <th>To Be Paid Amount</th>
@@ -62,11 +63,15 @@
         <tr>
           <td>{{ data?.invoiceNo }}</td>
           <td>{{ data?.invoiceDate }}</td>
-          <td>{{ data?.invoiceAmount }}</td>
-          <td>{{ data?.poNumber }}</td>
+          <td>{{ data?.invoiceAmount | currency }}</td>
+          <td><a style="color: #1221c3"
+            ><u
+              ><b>{{ data.poNumber }}</b></u
+            ></a
+          ></td>
           <td>{{ data?.paymentDueDate }}</td>
-          <td>{{ data?.chargebackAmount }}</td>
-          <td>{{ data?.toBePaidAmount }}</td>
+          <td>{{ data?.chargebackAmount | currency }}</td>
+          <td>{{ data?.toBePaidAmount | currency }}</td>
           <td>{{ data?.remarks }}</td>
         </tr>
       </ng-template>

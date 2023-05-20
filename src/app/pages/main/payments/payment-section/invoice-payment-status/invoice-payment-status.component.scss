@@ -3,7 +3,8 @@
 .invoice-payment-status-section {
     .filter-section {
         display: flex;
-        align-items: center;
+        margin-bottom: 10px;
+        // align-items: center;
 
         .editor-tag {
             cursor: text;
@@ -60,8 +61,6 @@
 
             ::ng-deep .ant-form-item {
                 margin-bottom: 0px;
-                padding: 5px;
-                padding-left: 0px;
             }
 
             nz-input-group {
@@ -70,6 +69,7 @@
                 input {
                     height: 40px;
                     font-size: 16px;
+                    width: 100%;
                 }
             }
         }

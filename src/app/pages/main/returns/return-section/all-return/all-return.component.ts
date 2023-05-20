@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-all-return',
@@ -12,6 +13,7 @@ export class AllReturnComponent implements OnInit {
   pageIndex = 1;
   pageSizeOptions = [5, 10, 15, 20];
   addRaVisible: boolean = false;
+  statusEnum: typeof StatusEnum = StatusEnum;
 
   returnInitiatedList = [
     {
@@ -21,21 +23,21 @@ export class AllReturnComponent implements OnInit {
       customerName: 'maynard j megginson jr',
       returnClassification: 'Mis-Ship',
       mpn: '99446823823',
-      orderQty: 'Order Qty - 1',
-      returnQty: 'Return Qty - 1',
+      orderQty: '1',
+      returnQty: '1',
       raNumber: [
         {
           name: 'AMZ',
-          number: 'RA#:82382',
+          number: '82382',
         },
         {
           name: 'Your',
-          number: 'RA#:82384',
+          number: '82384',
         },
       ],
       trackingNo: {
         name: 'Ekart Logistics',
-        number: 'AWB:SRTP5737737138',
+        number: 'SRTP5737737138',
       },
       status: 'Refund Completed',
     },

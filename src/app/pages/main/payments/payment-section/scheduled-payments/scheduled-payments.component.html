@@ -1,41 +1,9 @@
 <div class="scheduled-payment-section">
-  <div class="filter-section">
-    <form [formGroup]="filterForm">
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group>
-            <div class="editor-tag" (click)="focusTagInput()">
-              <span class="tag-item" *ngFor="let tag of tags">
-                {{ tag }}
-                <span class="remove-tag" (click)="removeTag(tag)">×</span>
-              </span>
-              <input
-                placeholder="Add PO Number"
-                #tagInput
-                type="text"
-                class="input-tag"
-                (keyup)="onKeyUp($event)"
-                formControlName="filter"
-              />
-            </div>
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-    <button
-      nz-button
-      nzType="primary"
-      style="margin-top: 0px"
-      class="action-button"
-    >
-      Submit
-    </button>
-  </div>
   <nz-table
     #nzTable
     nzOuterBordered
     [nzData]="scheduledPaymentsList"
-    nzTableLayout="fixed"
+    
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
@@ -47,10 +15,10 @@
   >
     <thead>
       <tr>
-        <th>Invoice No.</th>
+        <th>Invoice #</th>
         <th>Invoice Date</th>
         <th>Invoice Amount</th>
-        <th>PO Number</th>
+        <th>PO #</th>
         <th>Payment Due Date</th>
         <th>Chargeback Amount</th>
         <th>To Be Paid Amount</th>
@@ -62,11 +30,17 @@
         <tr>
           <td>{{ data?.invoiceNo }}</td>
           <td>{{ data?.invoiceDate }}</td>
-          <td>{{ data?.invoiceAmount }}</td>
-          <td>{{ data?.poNumber }}</td>
+          <td>{{ data?.invoiceAmount | currency }}</td>
+          <td>
+            <a style="color: #1221c3"
+              ><u
+                ><b>{{ data.poNumber }}</b></u
+              ></a
+            >
+          </td>
           <td>{{ data?.paymentDueDate }}</td>
-          <td>{{ data?.chargebackAmount }}</td>
-          <td>{{ data?.toBePaidAmount }}</td>
+          <td>{{ data?.chargebackAmount | currency }}</td>
+          <td>{{ data?.toBePaidAmount | currency }}</td>
           <td>{{ data?.remarks }}</td>
         </tr>
       </ng-template>

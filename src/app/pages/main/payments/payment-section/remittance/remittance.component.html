@@ -3,7 +3,7 @@
     #nzTable
     nzOuterBordered
     [nzData]="remittanceList"
-    nzTableLayout="fixed"
+    
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
@@ -30,9 +30,9 @@
           <td>{{ data?.remittanceCode }}</td>
           <td>{{ data?.date }}</td>
           <td>{{ data?.totalNo }}</td>
-          <td>{{ data?.invoiceAmount }}</td>
-          <td>{{ data?.creditAmount }}</td>
-          <td>{{ data?.remittanceAmount }} %</td>
+          <td>{{ data?.invoiceAmount | currency }}</td>
+          <td>{{ data?.creditAmount | currency }}</td>
+          <td>{{ data?.remittanceAmount | currency }}</td>
           <td>
             <button
               nz-dropdown
@@ -47,7 +47,7 @@
             </button>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
-                <li nz-menu-item>Excels</li>
+                <li nz-menu-item>Excel</li>
                 <li nz-menu-item>PDF</li>
               </ul>
             </nz-dropdown-menu>

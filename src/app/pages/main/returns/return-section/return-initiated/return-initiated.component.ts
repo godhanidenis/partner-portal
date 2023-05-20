@@ -22,8 +22,8 @@ export class ReturnInitiatedComponent implements OnInit {
       invoice: '2 - 8528363',
       customerName: 'maynard j megginson jr',
       mpn: '99446823823',
-      orderQty: 'Order Qty - 1',
-      returnQty: 'Return Qty - 1',
+      orderQty: '1',
+      returnQty: '1',
       returnClassification: 'Mis-Ship',
     },
   ];
