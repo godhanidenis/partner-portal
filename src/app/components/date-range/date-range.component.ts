@@ -35,6 +35,8 @@ export class DateRangeComponent implements OnInit {
     ],
     // Custom: [],
   };
+
+  constructor() {}
   ngOnInit(): void {}
 
   onChange(event: Date[]) {

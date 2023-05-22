@@ -16,44 +16,6 @@
         [selectCarrier]="selectCarrier"
         [selectDate]="selectDate"
       ></app-filter-tag>
-      <!-- <nz-tag
-        *ngIf="selectLocation"
-        nzMode="closeable"
-        (nzOnClose)="close('shipOutLocation')"
-        >{{ selectLocation }}</nz-tag
-      >
-      <nz-tag *ngIf="selectSku" nzMode="closeable" (nzOnClose)="close('sku')">{{
-        selectSku
-      }}</nz-tag>
-
-      <nz-tag
-        *ngIf="selectCarrier"
-        nzMode="closeable"
-        (nzOnClose)="close('carrier')"
-        >{{ selectCarrier }}</nz-tag
-      >
-      <nz-tag
-        *ngIf="selectDate"
-        nzMode="closeable"
-        (nzOnClose)="close('committedShipDate')"
-        >{{ selectDate | date : "dd/MM/yyyy" }}</nz-tag
-      >
-      <button
-        *ngIf="badgeTotal >= 1"
-        nz-button
-        nzType="default"
-        (click)="tagRemove()"
-        nzShape="round"
-        style="
-          float: none;
-          background-color: white;
-          color: #1221c3;
-          border: 1px solid #1221c3;
-        "
-        class="action-button clear-btn"
-      >
-        clear
-      </button> -->
     </div>
 
     <nz-table
@@ -115,84 +77,14 @@
     </nz-table>
   </div>
   <div #mySidenav class="filter-section">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
-      >&times;</a
-    >
-    <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
-      <div class="filter-content">
-        <nz-divider
-          nzText="Ship Out Locations"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A Location"
-          formControlName="shipOutLocation"
-          (ngModelChange)="
-            change(
-              filter.value.shipOutLocation ? $event : '',
-              'shipOutLocation'
-            )
-          "
-        >
-          <nz-option nzLabel="Ahmadabad" nzValue="ahmadabad"></nz-option>
-          <nz-option nzLabel="Surat" nzValue="surat"></nz-option>
-          <nz-option nzLabel="Rajkot" nzValue="rajkot"></nz-option>
-          <nz-option nzLabel="Bhavnagar" nzValue="bhavnagar"></nz-option>
-        </nz-select>
-
-        <nz-divider
-          style="margin-top: 20px"
-          nzText="SKU"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group>
-              <input
-                formControlName="sku"
-                type="text"
-                nz-input
-                placeholder="Enter SKU"
-                (input)="
-                  change(filter.value.sku ? filter.value.sku : '', 'sku')
-                "
-              />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-divider nzText="Carrier " nzOrientation="left"></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A Carrier "
-          formControlName="carrier"
-          (ngModelChange)="
-            change(filter.value.carrier ? $event : '', 'carrier')
-          "
-        >
-          <nz-option nzLabel="Carrier 1" nzValue="carrier1"></nz-option>
-          <nz-option nzLabel="Carrier 2" nzValue="carrier2"></nz-option>
-          <nz-option nzLabel="Carrier 3" nzValue="carrier3"></nz-option>
-        </nz-select>
-
-        <nz-divider
-          nzText="Committed Ship Date"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-date-picker
-          formControlName="committedShipDate"
-          (ngModelChange)="
-            change(
-              filter.value.committedShipDate ? $event : '',
-              'committedShipDate'
-            )
-          "
-        ></nz-date-picker>
-      </div>
-    </form>
+    <app-filter-section
+      (closeNav)="closeNav()"
+      (changeData)="change($event)"
+      [shipOutLocation]="selectLocation"
+      [sku]="selectSku"
+      [carrier]="selectCarrier"
+      [committedShipDate]="selectDate"
+    ></app-filter-section>
   </div>
 </div>
 

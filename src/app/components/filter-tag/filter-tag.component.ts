@@ -16,6 +16,8 @@ export class FilterTagComponent implements OnInit {
   @Input() selectDate = '';
   @Input() selectStatus = '';
 
+  constructor() {}
+
   ngOnInit(): void {}
 
   close(type: string) {

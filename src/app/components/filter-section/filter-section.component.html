@@ -1,0 +1,64 @@
+<div class="filter-section">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeSideBar()"
+    >&times;</a
+  >
+  <!-- <form nz-form style="padding-bottom: 10px"> -->
+  <div class="filter-content">
+    <nz-divider nzText="Ship Out Locations" nzOrientation="left"></nz-divider>
+    <nz-select
+      nzShowSearch
+      nzAllowClear
+      nzPlaceHolder="Select A Location"
+      [(ngModel)]="shipOutLocation"
+      (ngModelChange)="
+        changeValue(shipOutLocation ? $event : '', 'shipOutLocation')
+      "
+    >
+      <nz-option nzLabel="Ahmadabad" nzValue="ahmadabad"></nz-option>
+      <nz-option nzLabel="Surat" nzValue="surat"></nz-option>
+      <nz-option nzLabel="Rajkot" nzValue="rajkot"></nz-option>
+      <nz-option nzLabel="Bhavnagar" nzValue="bhavnagar"></nz-option>
+    </nz-select>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="SKU"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group>
+          <input
+            [(ngModel)]="sku"
+            type="text"
+            nz-input
+            placeholder="Enter SKU"
+            (input)="changeValue(sku ? sku : '', 'sku')"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-divider nzText="Carrier " nzOrientation="left"></nz-divider>
+    <nz-select
+      nzShowSearch
+      nzAllowClear
+      nzPlaceHolder="Select A Carrier "
+      [(ngModel)]="carrier"
+      (ngModelChange)="changeValue(carrier ? $event : '', 'carrier')"
+    >
+      <nz-option nzLabel="Carrier 1" nzValue="carrier1"></nz-option>
+      <nz-option nzLabel="Carrier 2" nzValue="carrier2"></nz-option>
+      <nz-option nzLabel="Carrier 3" nzValue="carrier3"></nz-option>
+    </nz-select>
+
+    <nz-divider nzText="Committed Ship Date" nzOrientation="left"></nz-divider>
+    <nz-date-picker
+      [(ngModel)]="committedShipDate"
+      (ngModelChange)="
+        changeValue(committedShipDate ? $event : '', 'committedShipDate')
+      "
+    ></nz-date-picker>
+  </div>
+  <!-- </form> -->
+</div>
