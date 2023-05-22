@@ -1,1 +1,22 @@
-<p>date-range works!</p>
+<div class="date-range-section">
+  <div class="date-range">
+    <nz-range-picker
+      [nzRanges]="ranges"
+      ngModel
+      (ngModelChange)="onChange($event)"
+    ></nz-range-picker>
+  </div>
+  <div class="filter">
+    <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
+      <button
+        (click)="onFilterChange()"
+        nz-button
+        nzType="primary"
+        nzShape="round"
+      >
+        <span nz-icon nzType="filter" nzTheme="outline"></span>
+        Filter
+      </button>
+    </nz-badge>
+  </div>
+</div>

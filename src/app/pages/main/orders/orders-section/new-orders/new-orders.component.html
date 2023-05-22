@@ -1,30 +1,22 @@
 <div #section class="new-order-section">
   <div class="body-section">
-    <div class="header-section">
-      <div class="date-range">
-        <nz-range-picker
-          [nzRanges]="ranges"
-          ngModel
-          (ngModelChange)="onChange($event)"
-        ></nz-range-picker>
-      </div>
-      <div class="filter">
-        <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
-          <button
-            (click)="openNav()"
-            nz-button
-            nzType="primary"
-            nzShape="round"
-          >
-            <span nz-icon nzType="filter" nzTheme="outline"></span>
-            Filter
-          </button>
-        </nz-badge>
-      </div>
-    </div>
+    <app-date-range
+      (modelChange)="onChange($event)"
+      [badgeTotal]="badgeTotal"
+      (filterChange)="openNav()"
+    ></app-date-range>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
-      <nz-tag
+      <app-filter-tag
+        (closeTag)="close($event)"
+        (tagRemove)="tagRemove()"
+        [badgeTotal]="badgeTotal"
+        [selectLocation]="selectLocation"
+        [selectSku]="selectSku"
+        [selectCarrier]="selectCarrier"
+        [selectDate]="selectDate"
+      ></app-filter-tag>
+      <!-- <nz-tag
         *ngIf="selectLocation"
         nzMode="closeable"
         (nzOnClose)="close('shipOutLocation')"
@@ -44,7 +36,7 @@
         *ngIf="selectDate"
         nzMode="closeable"
         (nzOnClose)="close('committedShipDate')"
-        >{{ selectDate }}</nz-tag
+        >{{ selectDate | date : "dd/MM/yyyy" }}</nz-tag
       >
       <button
         *ngIf="badgeTotal >= 1"
@@ -61,8 +53,9 @@
         class="action-button clear-btn"
       >
         clear
-      </button>
+      </button> -->
     </div>
+
     <nz-table
       #nzTable
       nzShowSizeChanger
@@ -189,7 +182,7 @@
           nzText="Committed Ship Date"
           nzOrientation="left"
         ></nz-divider>
-        <nz-range-picker
+        <nz-date-picker
           formControlName="committedShipDate"
           (ngModelChange)="
             change(
@@ -197,8 +190,7 @@
               'committedShipDate'
             )
           "
-          [nzShowWeekNumber]="false"
-        ></nz-range-picker>
+        ></nz-date-picker>
       </div>
     </form>
   </div>

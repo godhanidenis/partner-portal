@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { endOfMonth } from 'date-fns';
 
 @Component({
@@ -7,6 +7,9 @@ import { endOfMonth } from 'date-fns';
   styleUrls: ['./date-range.component.scss'],
 })
 export class DateRangeComponent implements OnInit {
+  @Output() modelChange = new EventEmitter();
+  @Output() filterChange = new EventEmitter();
+  @Input() badgeTotal: number = 0;
   ranges = {
     Today: [new Date(), new Date()],
     YesterDay: [
@@ -33,4 +36,11 @@ export class DateRangeComponent implements OnInit {
     // Custom: [],
   };
   ngOnInit(): void {}
+
+  onChange(event: Date[]) {
+    this.modelChange.emit(event);
+  }
+  onFilterChange() {
+    this.filterChange.emit();
+  }
 }

@@ -1,22 +1,9 @@
 <div class="return-initiated-section">
-  <div class="header-section">
-    <div class="date-range">
-      <nz-range-picker
-        [nzRanges]="ranges"
-        ngModel
-        (ngModelChange)="onChange($event)"
-      ></nz-range-picker>
-    </div>
-    <div class="filter">
-      <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
-        <button nz-button nzType="primary" nzShape="round">
-          <!-- (click)="openNav()" -->
-          <span nz-icon nzType="filter" nzTheme="outline"></span>
-          Filter
-        </button>
-      </nz-badge>
-    </div>
-  </div>
+  <app-date-range
+    (modelChange)="onChange($event)"
+    [badgeTotal]="badgeTotal"
+  ></app-date-range>
+  <!-- (filterChange)="openNav()" -->
   <nz-table
     #nzTable
     nzOuterBordered
@@ -57,8 +44,18 @@
               <b class="no-wrap">{{ data?.mpn }}</b>
             </div>
             <ul class="sub-section">
-              <li class="no-wrap"><div class="sub-val"><span class="title">Order Qty&nbsp;&nbsp;-&nbsp;</span>{{ data?.orderQty }}</div></li>
-              <li class="no-wrap"><div class="sub-val"><span class="title">Return Qty&nbsp;-&nbsp;</span>{{ data?.returnQty }}</div></li>
+              <li class="no-wrap">
+                <div class="sub-val">
+                  <span class="title">Order Qty&nbsp;&nbsp;-&nbsp;</span
+                  >{{ data?.orderQty }}
+                </div>
+              </li>
+              <li class="no-wrap">
+                <div class="sub-val">
+                  <span class="title">Return Qty&nbsp;-&nbsp;</span
+                  >{{ data?.returnQty }}
+                </div>
+              </li>
             </ul>
           </td>
           <td class="no-wrap">{{ data?.returnClassification }}</td>

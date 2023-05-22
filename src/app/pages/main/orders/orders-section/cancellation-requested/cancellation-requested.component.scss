@@ -4,21 +4,6 @@
     .body-section {
         transition: margin-left .5s;
 
-        .header-section {
-            display: flex;
-            border: 1px solid $border;
-            padding: 10px;
-            margin-top: 15px 0;
-
-            .date-range {
-                margin-right: 10px;
-            }
-
-            .filter {
-                display: flex;
-                align-items: center;
-            }
-        }
 
         td {
             button {
@@ -37,17 +22,6 @@
             border-right: 1px solid $border;
             padding-bottom: 13px;
             padding-left: 10px;
-        }
-
-        ::ng-deep .ant-tag {
-            padding: 3px 8px;
-            border-radius: 16px;
-        }
-
-        .clear-btn {
-            height: 28px !important;
-            padding: 0px 12px !important;
-            border-radius: 17px !important;
         }
     }
 
@@ -118,11 +92,6 @@
         ::ng-deep .ant-divider-inner-text {
             padding-left: 0px !important;
         }
-    }
-
-    ::ng-deep .ant-tag {
-        background: #2121c31a;
-        font-weight: 600;
     }
 
     ::ng-deep .ant-input-prefix {

@@ -7,9 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatusBadgeComponent } from './status-badge/status-badge.component';
 import { ThreeDotMenuBtnComponent } from './three-dot-menu-btn/three-dot-menu-btn.component';
 import { DateRangeComponent } from './date-range/date-range.component';
+import { FilterTagComponent } from './filter-tag/filter-tag.component';
 
 @NgModule({
-  declarations: [StatusBadgeComponent, ThreeDotMenuBtnComponent, DateRangeComponent],
+  declarations: [
+    StatusBadgeComponent,
+    ThreeDotMenuBtnComponent,
+    DateRangeComponent,
+    FilterTagComponent,
+  ],
   imports: [
     CommonModule,
     NzLayoutModule,
@@ -18,6 +24,11 @@ import { DateRangeComponent } from './date-range/date-range.component';
     ReactiveFormsModule,
     FormsModule,
   ],
-  exports: [StatusBadgeComponent, ThreeDotMenuBtnComponent],
+  exports: [
+    StatusBadgeComponent,
+    ThreeDotMenuBtnComponent,
+    DateRangeComponent,
+    FilterTagComponent,
+  ],
 })
 export class ComponentModule {}

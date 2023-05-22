@@ -1,0 +1,47 @@
+<div class="filter-tag">
+  <nz-tag
+    *ngIf="selectLocation"
+    nzMode="closeable"
+    (nzOnClose)="close('shipOutLocation')"
+    >{{ selectLocation }}</nz-tag
+  >
+  <nz-tag *ngIf="selectSku" nzMode="closeable" (nzOnClose)="close('sku')">{{
+    selectSku
+  }}</nz-tag>
+
+  <nz-tag
+    *ngIf="selectCarrier"
+    nzMode="closeable"
+    (nzOnClose)="close('carrier')"
+    >{{ selectCarrier }}</nz-tag
+  >
+  <nz-tag
+    *ngIf="selectDate"
+    nzMode="closeable"
+    (nzOnClose)="close('committedShipDate')"
+    >{{ selectDate | date : "dd/MM/yyyy" }}</nz-tag
+  >
+  <nz-tag
+    *ngIf="selectStatus"
+    nzMode="closeable"
+    (nzOnClose)="close('status')"
+    >{{ selectStatus }}</nz-tag
+  >
+
+  <button
+    *ngIf="badgeTotal >= 1"
+    nz-button
+    nzType="default"
+    (click)="tagDelete()"
+    nzShape="round"
+    style="
+      float: none;
+      background-color: white;
+      color: #1221c3;
+      border: 1px solid #1221c3;
+    "
+    class="action-button clear-btn"
+  >
+    clear
+  </button>
+</div>

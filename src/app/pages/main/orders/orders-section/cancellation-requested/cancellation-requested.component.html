@@ -1,6 +1,11 @@
 <div #section class="cancellation-requested-section">
   <div class="body-section">
-    <div class="header-section">
+    <app-date-range
+      (modelChange)="onChange($event)"
+      [badgeTotal]="badgeTotal"
+      (filterChange)="openNav()"
+    ></app-date-range>
+    <!-- <div class="header-section">
       <div class="date-range">
         <nz-range-picker
           [nzRanges]="ranges"
@@ -21,33 +26,17 @@
           </button>
         </nz-badge>
       </div>
-    </div>
+    </div> -->
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
-      <nz-tag
-        *ngIf="selectStatus"
-        nzMode="closeable"
-        (nzOnClose)="close('status')"
-        >{{ selectStatus }}</nz-tag
-      >
-
-      <button
-        *ngIf="badgeTotal >= 1"
-        nz-button
-        nzType="default"
-        (click)="tagRemove()"
-        nzShape="round"
-        style="
-          float: none;
-          background-color: white;
-          color: #1221c3;
-          border: 1px solid #1221c3;
-        "
-        class="action-button clear-btn"
-      >
-        clear
-      </button>
+      <app-filter-tag
+        (closeTag)="close($event)"
+        (tagRemove)="tagRemove()"
+        [badgeTotal]="badgeTotal"
+        [selectStatus]="selectStatus"
+      ></app-filter-tag>
     </div>
+
     <nz-table
       #nzTable
       nzShowSizeChanger

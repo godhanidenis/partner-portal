@@ -4,22 +4,6 @@
     .body-section {
         transition: margin-left .5s;
 
-        .header-section {
-            display: flex;
-            border: 1px solid $border;
-            padding: 10px;
-            margin-top: 15px 0;
-
-            .date-range {
-                margin-right: 10px;
-            }
-
-            .filter {
-                display: flex;
-                align-items: center;
-            }
-        }
-
         td {
             button {
                 height: 35px;
@@ -37,17 +21,6 @@
             border-right: 1px solid $border;
             padding-bottom: 13px;
             padding-left: 10px;
-        }
-
-        ::ng-deep .ant-tag {
-            padding: 3px 8px;
-            border-radius: 16px;
-        }
-
-        .clear-btn {
-            height: 28px !important;
-            padding: 0px 12px !important;
-            border-radius: 17px !important;
         }
     }
 
@@ -90,6 +63,10 @@
             }
         }
 
+        nz-date-picker {
+            width: 100%;
+        }
+
         a {
             // padding: 8px 8px 8px 32px;
             text-decoration: none;
@@ -120,10 +97,6 @@
         }
     }
 
-    ::ng-deep .ant-tag {
-        background: #2121c31a;
-        font-weight: 600;
-    }
 
     ::ng-deep .ant-input-prefix {
         font-size: x-large;

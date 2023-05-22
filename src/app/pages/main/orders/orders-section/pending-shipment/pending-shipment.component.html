@@ -1,66 +1,22 @@
 <div #section class="pending-shipment-section">
   <div class="body-section">
-    <div class="header-section">
-      <div class="date-range">
-        <nz-range-picker
-          [nzRanges]="ranges"
-          ngModel
-          (ngModelChange)="onChange($event)"
-        ></nz-range-picker>
-      </div>
-      <div class="filter">
-        <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
-          <button
-            (click)="openNav()"
-            nz-button
-            nzType="primary"
-            nzShape="round"
-          >
-            <span nz-icon nzType="filter" nzTheme="outline"></span>
-            Filter
-          </button>
-        </nz-badge>
-      </div>
-    </div>
+    <app-date-range
+      (modelChange)="onChange($event)"
+      [badgeTotal]="badgeTotal"
+      (filterChange)="openNav()"
+    ></app-date-range>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
-      <nz-tag
-        *ngIf="selectLocation"
-        nzMode="closeable"
-        (nzOnClose)="close('shipOutLocation')"
-        >{{ selectLocation }}</nz-tag
-      >
-
-      <nz-tag
-        *ngIf="selectStatus"
-        nzMode="closeable"
-        (nzOnClose)="close('status')"
-        >{{ selectStatus }}</nz-tag
-      >
-
-      <nz-tag
-        *ngIf="selectDate"
-        nzMode="closeable"
-        (nzOnClose)="close('committedShipDate')"
-        >{{ selectDate }}</nz-tag
-      >
-      <button
-        *ngIf="badgeTotal >= 1"
-        nz-button
-        nzType="default"
-        (click)="tagRemove()"
-        nzShape="round"
-        style="
-          float: none;
-          background-color: white;
-          color: #1221c3;
-          border: 1px solid #1221c3;
-        "
-        class="action-button clear-btn"
-      >
-        clear
-      </button>
+      <app-filter-tag
+        (closeTag)="close($event)"
+        (tagRemove)="tagRemove()"
+        [badgeTotal]="badgeTotal"
+        [selectLocation]="selectLocation"
+        [selectDate]="selectDate"
+        [selectStatus]="selectStatus"
+      ></app-filter-tag>
     </div>
+
     <nz-table
       #nzTable
       nzShowSizeChanger
@@ -170,7 +126,7 @@
           nzText="Committed Ship Date"
           nzOrientation="left"
         ></nz-divider>
-        <nz-range-picker
+        <nz-date-picker
           formControlName="committedShipDate"
           (ngModelChange)="
             change(
@@ -178,8 +134,7 @@
               'committedShipDate'
             )
           "
-          [nzShowWeekNumber]="false"
-        ></nz-range-picker>
+        ></nz-date-picker>
       </div>
     </form>
   </div>

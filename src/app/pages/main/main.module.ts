@@ -9,6 +9,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ProfileModule } from './profile/profile.module';
 import { ProductModule } from './product/product.module';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -22,6 +23,7 @@ import { ProductModule } from './product/product.module';
     FormsModule,
     ProfileModule,
     ProductModule,
+    ComponentModule,
   ],
   exports: [],
 })
