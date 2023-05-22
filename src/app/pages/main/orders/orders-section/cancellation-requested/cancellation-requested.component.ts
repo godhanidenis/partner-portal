@@ -42,15 +42,9 @@ export class CancellationRequestedComponent implements OnInit {
   clear_btn: boolean = false;
 
   badgeTotal: number = 0;
-  locationCount: number = 0;
-  skuCount: number = 0;
-  carrierCount: number = 0;
-  dateCount: number = 0;
+  statusCount: number = 0;
 
-  selectLocation: string = '';
-  selectSku: string = '';
-  selectCarrier: string = '';
-  selectDate: string = '';
+  selectStatus: string = '';
   ranges = {
     Today: [new Date(), new Date()],
     YesterDay: [
@@ -81,14 +75,62 @@ export class CancellationRequestedComponent implements OnInit {
 
   ngOnInit(): void {
     this.filter = new FormGroup({
-      shipOutLocation: new FormControl(''),
-      sku: new FormControl(''),
-      carrier: new FormControl(''),
-      committedShipDate: new FormControl(''),
+      status: new FormControl(''),
     });
   }
 
   onChange(result: Date[]): void {
     console.log('From: ', result[0], ', to: ', result[1]);
+  }
+
+  openNav() {
+    this.sidenavSection.nativeElement.style.width = '280px';
+    this.contentSection.nativeElement.style.marginRight = '280px';
+    this.section.nativeElement.style.minHeight = '88%';
+  }
+
+  closeNav() {
+    this.sidenavSection.nativeElement.style.width = '0';
+    this.contentSection.nativeElement.style.marginRight = '0';
+    this.section.nativeElement.style.minHeight = 'auto';
+  }
+
+  change(value: string) {
+    if (value && value.length !== 0) {
+      if (value === 'Accepted' || value === 'Already Shipped') {
+        this.clear_btn = true;
+        this.selectStatus = value;
+        if (this.statusCount === 0) {
+          this.statusCount++;
+          this.badgeTotal++;
+        }
+      }
+    } else {
+      if (this.badgeTotal > 0 && value !== null) {
+        this.selectStatus = '';
+        this.statusCount = 0;
+        this.badgeTotal--;
+      }
+    }
+  }
+
+  tagRemove() {
+    this.selectStatus = '';
+
+    this.statusCount = 0;
+
+    this.filter.reset();
+    this.badgeTotal = 0;
+    this.clear_btn = false;
+    console.log(this.badgeTotal);
+  }
+
+  close(type: string) {
+    if (type === 'status') {
+      this.selectStatus = '';
+      this.statusCount = 0;
+      this.badgeTotal--;
+      this.filter.controls['status'].reset();
+    }
   }
 }

@@ -10,8 +10,12 @@
       </div>
       <div class="filter">
         <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
-          <button nz-button nzType="primary" nzShape="round">
-            <!-- (click)="openNav()" -->
+          <button
+            (click)="openNav()"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+          >
             <span nz-icon nzType="filter" nzTheme="outline"></span>
             Filter
           </button>
@@ -19,7 +23,7 @@
       </div>
     </div>
 
-    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <nz-tag
         *ngIf="selectLocation"
         nzMode="closeable"
@@ -42,6 +46,12 @@
         (nzOnClose)="close('committedShipDate')"
         >{{ selectDate }}</nz-tag
       >
+      <nz-tag
+        *ngIf="selectStatus"
+        nzMode="closeable"
+        (nzOnClose)="close('status')"
+        >{{ selectStatus }}</nz-tag
+      >
       <button
         *ngIf="badgeTotal >= 1"
         nz-button
@@ -58,7 +68,7 @@
       >
         clear
       </button>
-    </div> -->
+    </div>
     <nz-table
       #nzTable
       nzTableLayout="fixed"
@@ -99,7 +109,7 @@
       </tbody>
     </nz-table>
   </div>
-  <!-- <div #mySidenav class="filter-section">
+  <div #mySidenav class="filter-section">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
       >&times;</a
     >
@@ -177,7 +187,34 @@
           "
           [nzShowWeekNumber]="false"
         ></nz-range-picker>
+
+        <nz-divider
+          style="margin-top: 20px"
+          nzText="Status"
+          nzOrientation="left"
+        ></nz-divider>
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select A status"
+          formControlName="status"
+          (ngModelChange)="change(filter.value.status ? $event : '', 'status')"
+        >
+          <nz-option nzLabel="New" nzValue="New"></nz-option>
+          <nz-option
+            nzLabel="Pending Shipment"
+            nzValue="Pending Shipment"
+          ></nz-option>
+          <nz-option nzLabel="In-Transit" nzValue="In-Transit"></nz-option>
+          <nz-option nzLabel="Delivered" nzValue="Delivered"></nz-option>
+          <nz-option
+            nzLabel="Cancellation Requested"
+            nzValue="Cancellation Requested"
+          ></nz-option>
+          <nz-option nzLabel="Cancelled" nzValue="Cancelled"></nz-option>
+          <nz-option nzLabel="RTO" nzValue="RTO"></nz-option>
+        </nz-select>
       </div>
     </form>
-  </div> -->
+  </div>
 </div>
