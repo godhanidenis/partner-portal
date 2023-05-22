@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-return-setting',
@@ -6,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./return-setting.component.scss'],
 })
 export class ReturnSettingComponent implements OnInit {
-  constructor() {}
+  preferenceDate = {
+    reimbursementMethod: 'Credit Note',
+    cosDocumentation: true,
+    corsDocumentation: false,
+    buyerRemorseRestocking: 10,
+    rtoRestocking: 5,
+    returnAllowance: 2,
+    fieldDestroy: true,
+  };
+
+  constructor(private router: Router) {}
+
   ngOnInit(): void {}
+
+  backButton(path: string) {
+    this.router.navigate([`/main/${path}`]);
+  }
 }
