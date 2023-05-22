@@ -1,1 +1,71 @@
-<div class="return-setting-section"><h1>Coming Soon</h1></div>
+<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Profile</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a (click)="backButton('profile')">Return</a>
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item>
+    <a>Return Preferences </a>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="return-setting-section">
+  <div class="user-content">
+    <div class="tab-header">
+      <span>Return Preferences </span>
+    </div>
+  </div>
+  <div class="body-section">
+    <div nz-row [nzGutter]="16">
+      <div nz-col nz-col class="gutter-row" [nzSpan]="12">
+        <nz-descriptions class="vertical-sec">
+          <nz-descriptions-item nzTitle="Reimbursement Method"
+            ><b>{{
+              preferenceDate.reimbursementMethod
+            }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="COS Documentation"
+            ><b>{{
+              preferenceDate.cosDocumentation === true ? "Yes" : "No"
+            }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="CORS Documentation"
+            ><b>{{
+              preferenceDate.corsDocumentation === true ? "Yes" : "No"
+            }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item
+            *ngIf="preferenceDate.buyerRemorseRestocking > 0"
+            nzTitle="Buyer Remorse Restocking"
+            ><b
+              >{{ preferenceDate.buyerRemorseRestocking }} %</b
+            ></nz-descriptions-item
+          >
+          <nz-descriptions-item
+            *ngIf="preferenceDate.rtoRestocking > 0"
+            nzTitle="RTO Restocking"
+            ><b>{{ preferenceDate.rtoRestocking }} %</b></nz-descriptions-item
+          >
+          <nz-descriptions-item
+            *ngIf="preferenceDate.returnAllowance > 0"
+            nzTitle="Return Allowance"
+            ><b>{{ preferenceDate.returnAllowance }} %</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="Field Destroy"
+            ><b>{{
+              preferenceDate.fieldDestroy === true ? "Yes" : "No"
+            }}</b></nz-descriptions-item
+          >
+        </nz-descriptions>
+      </div>
+    </div>
+    <div nz-row style="margin-top: 30px">
+      <div>
+        <span style="color: red"
+          >For any changes in Return Preferences &nbsp;<a>click here</a></span
+        >
+      </div>
+    </div>
+  </div>
+</div>
