@@ -48,15 +48,11 @@ export class DeliveredComponent implements OnInit {
   clear_btn: boolean = false;
 
   badgeTotal: number = 0;
-  locationCount: number = 0;
   skuCount: number = 0;
   carrierCount: number = 0;
-  dateCount: number = 0;
 
-  selectLocation: string = '';
   selectSku: string = '';
   selectCarrier: string = '';
-  selectDate: string = '';
   ranges = {
     Today: [new Date(), new Date()],
     YesterDay: [
@@ -87,14 +83,99 @@ export class DeliveredComponent implements OnInit {
 
   ngOnInit(): void {
     this.filter = new FormGroup({
-      shipOutLocation: new FormControl(''),
       sku: new FormControl(''),
       carrier: new FormControl(''),
-      committedShipDate: new FormControl(''),
     });
   }
 
   onChange(result: Date[]): void {
     console.log('From: ', result[0], ', to: ', result[1]);
+  }
+
+  openNav() {
+    this.sidenavSection.nativeElement.style.width = '280px';
+    this.contentSection.nativeElement.style.marginRight = '280px';
+    this.section.nativeElement.style.minHeight = '88%';
+  }
+
+  closeNav() {
+    this.sidenavSection.nativeElement.style.width = '0';
+    this.contentSection.nativeElement.style.marginRight = '0';
+    this.section.nativeElement.style.minHeight = 'auto';
+  }
+
+  change(value: string, type: string) {
+    if (value && value.length !== 0) {
+      switch (type) {
+        case 'sku':
+          this.clear_btn = true;
+          this.selectSku = value;
+          if (this.skuCount === 0) {
+            this.skuCount++;
+            this.badgeTotal++;
+          }
+          break;
+        case 'carrier':
+          if (
+            value === 'carrier1' ||
+            value === 'carrier2' ||
+            value === 'carrier3'
+          ) {
+            this.clear_btn = true;
+            this.selectCarrier = value;
+            if (this.carrierCount === 0) {
+              this.carrierCount++;
+              this.badgeTotal++;
+            }
+          }
+          break;
+      }
+    } else {
+      if (this.badgeTotal > 0 && value !== null) {
+        switch (type) {
+          case 'sku':
+            this.selectSku = '';
+            this.skuCount = 0;
+            this.badgeTotal--;
+            break;
+          case 'carrier':
+            this.selectCarrier = '';
+            this.carrierCount = 0;
+            this.badgeTotal--;
+            break;
+        }
+      }
+    }
+  }
+
+  tagRemove() {
+    this.selectSku = '';
+    this.selectCarrier = '';
+
+    this.skuCount = 0;
+    this.carrierCount = 0;
+
+    this.filter.reset();
+    this.badgeTotal = 0;
+    this.clear_btn = false;
+  }
+
+  close(type: string) {
+    if (type) {
+      switch (type) {
+        case 'sku':
+          this.selectSku = '';
+          this.skuCount = 0;
+          this.badgeTotal--;
+          this.filter.controls['sku'].reset();
+          break;
+        case 'carrier':
+          this.selectCarrier = '';
+          this.carrierCount = 0;
+          this.badgeTotal--;
+          this.filter.controls['carrier'].reset();
+          break;
+      }
+    }
   }
 }

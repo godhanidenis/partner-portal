@@ -44,13 +44,11 @@ export class PendingShipmentComponent implements OnInit {
 
   badgeTotal: number = 0;
   locationCount: number = 0;
-  skuCount: number = 0;
-  carrierCount: number = 0;
+  statusCount: number = 0;
   dateCount: number = 0;
 
   selectLocation: string = '';
-  selectSku: string = '';
-  selectCarrier: string = '';
+  selectStatus: string = '';
   selectDate: string = '';
   ranges = {
     Today: [new Date(), new Date()],
@@ -83,13 +81,125 @@ export class PendingShipmentComponent implements OnInit {
   ngOnInit(): void {
     this.filter = new FormGroup({
       shipOutLocation: new FormControl(''),
-      sku: new FormControl(''),
-      carrier: new FormControl(''),
+      status: new FormControl(''),
       committedShipDate: new FormControl(''),
     });
   }
 
   onChange(result: Date[]): void {
     console.log('From: ', result[0], ', to: ', result[1]);
+  }
+
+  openNav() {
+    this.sidenavSection.nativeElement.style.width = '280px';
+    this.contentSection.nativeElement.style.marginRight = '280px';
+    this.section.nativeElement.style.minHeight = '88%';
+  }
+
+  closeNav() {
+    this.sidenavSection.nativeElement.style.width = '0';
+    this.contentSection.nativeElement.style.marginRight = '0';
+    this.section.nativeElement.style.minHeight = 'auto';
+  }
+
+  change(value: string, type: string) {
+    if (value && value.length !== 0) {
+      switch (type) {
+        case 'shipOutLocation':
+          if (
+            value === 'ahmadabad' ||
+            value === 'surat' ||
+            value === 'rajkot' ||
+            value === 'bhavnagar'
+          ) {
+            this.clear_btn = true;
+            this.selectLocation = value;
+
+            if (this.locationCount === 0) {
+              this.locationCount++;
+              this.badgeTotal++;
+            }
+          }
+          break;
+        case 'status':
+          if (value === 'Manifested' || value === 'Not yet Manifested') {
+            this.clear_btn = true;
+            this.selectStatus = value;
+            if (this.statusCount === 0) {
+              this.statusCount++;
+              this.badgeTotal++;
+            }
+          }
+          break;
+        default:
+          this.clear_btn = true;
+          this.selectDate = value;
+          if (this.dateCount === 0) {
+            this.dateCount++;
+            this.badgeTotal++;
+          }
+          break;
+      }
+    } else {
+      if (this.badgeTotal > 0 && value !== null) {
+        switch (type) {
+          case 'shipOutLocation':
+            this.selectLocation = '';
+            this.locationCount = 0;
+            this.badgeTotal--;
+            break;
+          case 'status':
+            this.selectStatus = '';
+            this.statusCount = 0;
+            this.badgeTotal--;
+            break;
+          default:
+            this.selectDate = '';
+            this.dateCount = 0;
+            this.badgeTotal--;
+            break;
+        }
+      }
+    }
+  }
+
+  tagRemove() {
+    this.selectLocation = '';
+    this.selectStatus = '';
+    this.selectDate = '';
+
+    this.locationCount = 0;
+    this.statusCount = 0;
+    this.dateCount = 0;
+
+    this.filter.reset();
+    this.badgeTotal = 0;
+    this.clear_btn = false;
+    console.log(this.badgeTotal);
+  }
+
+  close(type: string) {
+    if (type) {
+      switch (type) {
+        case 'shipOutLocation':
+          this.selectLocation = '';
+          this.locationCount = 0;
+          this.badgeTotal--;
+          this.filter.controls['shipOutLocation'].reset();
+          break;
+        case 'status':
+          this.selectStatus = '';
+          this.statusCount = 0;
+          this.badgeTotal--;
+          this.filter.controls['status'].reset();
+          break;
+        default:
+          this.selectDate = '';
+          this.dateCount = 0;
+          this.badgeTotal--;
+          this.filter.controls['committedShipDate'].reset();
+          break;
+      }
+    }
   }
 }

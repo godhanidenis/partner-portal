@@ -10,8 +10,12 @@
       </div>
       <div class="filter">
         <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
-          <button nz-button nzType="primary" nzShape="round">
-            <!-- (click)="openNav()" -->
+          <button
+            (click)="openNav()"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+          >
             <span nz-icon nzType="filter" nzTheme="outline"></span>
             Filter
           </button>
@@ -19,23 +23,21 @@
       </div>
     </div>
 
-    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <nz-tag
         *ngIf="selectLocation"
         nzMode="closeable"
         (nzOnClose)="close('shipOutLocation')"
         >{{ selectLocation }}</nz-tag
       >
-      <nz-tag *ngIf="selectSku" nzMode="closeable" (nzOnClose)="close('sku')">{{
-        selectSku
-      }}</nz-tag>
 
       <nz-tag
-        *ngIf="selectCarrier"
+        *ngIf="selectStatus"
         nzMode="closeable"
-        (nzOnClose)="close('carrier')"
-        >{{ selectCarrier }}</nz-tag
+        (nzOnClose)="close('status')"
+        >{{ selectStatus }}</nz-tag
       >
+
       <nz-tag
         *ngIf="selectDate"
         nzMode="closeable"
@@ -58,7 +60,7 @@
       >
         clear
       </button>
-    </div> -->
+    </div>
     <nz-table
       #nzTable
       
@@ -125,7 +127,7 @@
       </tbody>
     </nz-table>
   </div>
-  <!-- <div #mySidenav class="filter-section">
+  <div #mySidenav class="filter-section">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
       >&times;</a
     >
@@ -155,38 +157,21 @@
 
         <nz-divider
           style="margin-top: 20px"
-          nzText="SKU"
+          nzText="Status"
           nzOrientation="left"
         ></nz-divider>
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group>
-              <input
-                formControlName="sku"
-                type="text"
-                nz-input
-                placeholder="Enter SKU"
-                (input)="
-                  change(filter.value.sku ? filter.value.sku : '', 'sku')
-                "
-              />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-divider nzText="Carrier " nzOrientation="left"></nz-divider>
         <nz-select
           nzShowSearch
           nzAllowClear
-          nzPlaceHolder="Select A Carrier "
-          formControlName="carrier"
-          (ngModelChange)="
-            change(filter.value.carrier ? $event : '', 'carrier')
-          "
+          nzPlaceHolder="Select A status"
+          formControlName="status"
+          (ngModelChange)="change(filter.value.status ? $event : '', 'status')"
         >
-          <nz-option nzLabel="Carrier 1" nzValue="carrier1"></nz-option>
-          <nz-option nzLabel="Carrier 2" nzValue="carrier2"></nz-option>
-          <nz-option nzLabel="Carrier 3" nzValue="carrier3"></nz-option>
+          <nz-option nzLabel="Manifested" nzValue="Manifested"></nz-option>
+          <nz-option
+            nzLabel="Not yet Manifested"
+            nzValue="Not yet Manifested"
+          ></nz-option>
         </nz-select>
 
         <nz-divider
@@ -205,7 +190,7 @@
         ></nz-range-picker>
       </div>
     </form>
-  </div> -->
+  </div>
 </div>
 
 <nz-modal
