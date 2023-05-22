@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-scheduled-promotions',
@@ -26,7 +27,15 @@ export class ScheduledPromotionsComponent implements OnInit {
       status: 'Schedule',
     },
   ];
+  addDateForm!: FormGroup;
+  addEndDateVisible: boolean = false;
 
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addDateForm = new FormGroup({
+      endDate: new FormControl(''),
+    });
+  }
+
+  submitForm() {}
 }

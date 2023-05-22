@@ -19,8 +19,8 @@
         <th>Start Date</th>
         <th>End Date</th>
         <th>Promotion Type</th>
-        <th>SKU</th>
-        <th>Count</th>
+        <!-- <th></th> -->
+        <th>SKU Count</th>
         <th>Promotion Avg</th>
         <th>Status</th>
         <th>Download</th>
@@ -35,7 +35,7 @@
           <td>{{ data?.startDate }}</td>
           <td>{{ data?.endDate }}</td>
           <td>{{ data?.promotionType }}</td>
-          <td>{{ data?.sku }}</td>
+          <!-- <td>{{ data?.sku }}</td> -->
           <td>{{ data?.count }}</td>
           <td>{{ data?.promotionAvg }} %</td>
           <td>{{ data?.status }}</td>
@@ -64,11 +64,15 @@
             <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
-                <li nz-menu-item>EOD</li>
-                <li nz-menu-item>Stop Promotion</li>
-                <li nz-menu-item>Now</li>
-                <li nz-menu-item>Shorten Promotion</li>
-                <li nz-menu-item>Extend Promotion</li>
+                <li nz-menu-item>Cancel Promotion request</li>
+                <li nz-menu-item>Stop Promotion EOD</li>
+                <li nz-menu-item>Stop Promotion Now</li>
+                <li nz-menu-item (click)="addEndDateVisible = true">
+                  Shorten Promotion
+                </li>
+                <li nz-menu-item (click)="addEndDateVisible = true">
+                  Extend Promotion
+                </li>
               </ul>
             </nz-dropdown-menu>
           </td>
@@ -76,4 +80,50 @@
       </ng-template>
     </tbody>
   </nz-table>
+  <nz-modal
+    [(nzVisible)]="addEndDateVisible"
+    nzTitle="Add End Date"
+    (nzOnCancel)="addEndDateVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <div class="model-section">
+        <form nz-form [formGroup]="addDateForm">
+          <nz-form-item>
+            <nz-form-label [nzXs]="5" nzRequired>End Date</nz-form-label>
+            <nz-date-picker formControlName="endDate"></nz-date-picker>
+          </nz-form-item>
+        </form>
+      </div>
+      <div class="model-footer">
+        <div class="model-action">
+          <button
+            nz-button
+            nzType="default"
+            style="color: black; margin-right: 5px"
+            (click)="addEndDateVisible = false"
+          >
+            Cancel
+          </button>
+          <button
+            nz-button
+            class="action-button"
+            (click)="submitForm()"
+            [nzType]="'primary'"
+            style="height: 35px; margin-top: 0px; margin-right: 10px"
+          >
+            <div *ngIf="isLoading">
+              <ng-template #indicatorTemplate
+                ><span style="font-size: 16px" nz-icon nzType="loading"></span>
+              </ng-template>
+              <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+            </div>
+            <span *ngIf="!isLoading"
+              ><span nz-icon nzType="file-text" nzTheme="outline"></span>
+              Save</span
+            >
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </nz-modal>
 </div>
