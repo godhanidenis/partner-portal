@@ -41,7 +41,7 @@
           <td>{{ data?.status }}</td>
           <td>
             <button
-              style="height: 35px"
+              style="height: 35px; margin-top: 0"
               nz-button
               class="action-button"
               [nzType]="'primary'"
@@ -50,7 +50,7 @@
             </button>
           </td>
           <td>
-            <button
+            <!-- <button
               nz-dropdown
               nzTrigger="click"
               [nzDropdownMenu]="menu"
@@ -60,7 +60,8 @@
               [nzType]="'primary'"
             >
               Promotion
-            </button>
+            </button> -->
+            <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
                 <li nz-menu-item>EOD</li>

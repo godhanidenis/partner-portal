@@ -1,5 +1,5 @@
 <div #section class="new-order-section">
-  <div #content class="body-section">
+  <div class="body-section">
     <div class="header-section">
       <div class="date-range">
         <nz-range-picker
@@ -65,7 +65,6 @@
     </div>
     <nz-table
       #nzTable
-      
       nzShowSizeChanger
       [nzPageSizeOptions]="pageSizeOptions"
       [nzFrontPagination]="false"
@@ -101,29 +100,22 @@
           <td>$ {{ data.poTotal }}</td>
           <td>{{ data.committedShip }}</td>
           <td>{{ data.afterDate }}</td>
-          <td style="display: flex">
-            <button class="action-button" nz-button nzType="primary">
-              Acknowledge
-            </button>
-            <button
-              nz-button
-              nz-dropdown
-              [nzDropdownMenu]="menu"
-              nzPlacement="bottomRight"
-              nzShape="round"
-              style="color: #1221c3"
-            >
-              <span nz-icon nzType="more" nzTheme="outline"></span>
-            </button>
-            <nz-dropdown-menu #menu="nzDropdownMenu">
-              <ul nz-menu>
-                <li nz-menu-item>Download PO</li>
-                <li nz-menu-item>Download Label</li>
-                <li (click)="isCancelOrderVisible = true" nz-menu-item>
-                  Cancel Order
-                </li>
-              </ul>
-            </nz-dropdown-menu>
+          <td>
+            <div style="display: flex; align-items: center">
+              <button class="action-button" nz-button nzType="primary">
+                Acknowledge
+              </button>
+              <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item>Download PO</li>
+                  <li nz-menu-item>Download Label</li>
+                  <li (click)="isCancelOrderVisible = true" nz-menu-item>
+                    Cancel Order
+                  </li>
+                </ul>
+              </nz-dropdown-menu>
+            </div>
           </td>
         </tr>
       </tbody>

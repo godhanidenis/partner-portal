@@ -6,13 +6,16 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ThreeDotMenuBtnModule } from 'src/app/components/three-dot-menu-btn/three-dot-menu-btn.module';
-import { StatusBadgeModule } from 'src/app/components/status-badge/status-badge.module';
 import { ScheduledPromotionsComponent } from './promotions/scheduled-promotions/scheduled-promotions.component';
 import { CompletedPromotionsComponent } from './promotions/completed-promotions/completed-promotions.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [PromotionsComponent, ScheduledPromotionsComponent, CompletedPromotionsComponent],
+  declarations: [
+    PromotionsComponent,
+    ScheduledPromotionsComponent,
+    CompletedPromotionsComponent,
+  ],
   imports: [
     CommonModule,
     PromotionsRoutingModule,
@@ -21,8 +24,7 @@ import { CompletedPromotionsComponent } from './promotions/completed-promotions/
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
-    ThreeDotMenuBtnModule,
-    StatusBadgeModule,
+    ComponentModule,
   ],
 })
 export class PromotionsModule {}

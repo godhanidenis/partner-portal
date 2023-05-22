@@ -95,13 +95,13 @@ export class NewOrdersComponent implements OnInit {
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
-    this.contentSection.nativeElement.style.marginRight = '280px';
+    // this.contentSection.nativeElement.style.marginRight = '280px';
     this.section.nativeElement.style.minHeight = '88%';
   }
 
   closeNav() {
     this.sidenavSection.nativeElement.style.width = '0';
-    this.contentSection.nativeElement.style.marginRight = '0';
+    // this.contentSection.nativeElement.style.marginRight = '0';
     this.section.nativeElement.style.minHeight = 'auto';
   }
 

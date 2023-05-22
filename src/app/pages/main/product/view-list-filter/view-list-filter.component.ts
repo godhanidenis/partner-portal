@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./view-list-filter.component.scss'],
 })
 export class ViewListFilterComponent implements OnInit {
-  @ViewChild('content', { static: false }) contentSection!: ElementRef;
+  // @ViewChild('content', { static: false }) contentSection!: ElementRef;
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   @ViewChild('section', { static: false }) section!: ElementRef;
 
@@ -130,13 +130,13 @@ export class ViewListFilterComponent implements OnInit {
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
-    this.contentSection.nativeElement.style.marginRight = '280px';
+    // this.contentSection.nativeElement.style.marginRight = '280px';
     this.section.nativeElement.style.minHeight = '88%';
   }
 
   closeNav() {
     this.sidenavSection.nativeElement.style.width = '0';
-    this.contentSection.nativeElement.style.marginRight = '0';
+    // this.contentSection.nativeElement.style.marginRight = '0';
     this.section.nativeElement.style.minHeight = 'auto';
   }
 

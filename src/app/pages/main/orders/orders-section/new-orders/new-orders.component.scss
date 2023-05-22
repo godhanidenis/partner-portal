@@ -54,14 +54,14 @@
     .filter-section {
         width: 0;
         position: fixed;
-        z-index: 1;
+        z-index: 10;
         top: 90px;
         right: 16px;
         overflow-x: hidden;
         transition: 0.5s;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         padding-top: 30px;
-        // height: 75%;
+        height: 90%;
         overflow-y: scroll;
         background-color: white;
 

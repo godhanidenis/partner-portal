@@ -12,11 +12,17 @@ import { ReturnInTransitComponent } from './return-section/return-in-transit/ret
 import { ReturnReceivedComponent } from './return-section/return-received/return-received.component';
 import { InCarrierClaimsComponent } from './return-section/in-carrier-claims/in-carrier-claims.component';
 import { AllReturnComponent } from './return-section/all-return/all-return.component';
-import { ThreeDotMenuBtnModule } from 'src/app/components/three-dot-menu-btn/three-dot-menu-btn.module';
-import { StatusBadgeModule } from 'src/app/components/status-badge/status-badge.module';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [ReturnSectionComponent, ReturnInitiatedComponent, ReturnInTransitComponent, ReturnReceivedComponent, InCarrierClaimsComponent, AllReturnComponent],
+  declarations: [
+    ReturnSectionComponent,
+    ReturnInitiatedComponent,
+    ReturnInTransitComponent,
+    ReturnReceivedComponent,
+    InCarrierClaimsComponent,
+    AllReturnComponent,
+  ],
   imports: [
     CommonModule,
     ReturnsRoutingModule,
@@ -25,8 +31,7 @@ import { StatusBadgeModule } from 'src/app/components/status-badge/status-badge.
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
-    ThreeDotMenuBtnModule,
-    StatusBadgeModule
+    ComponentModule,
   ],
 })
 export class ReturnsModule {}

@@ -15,6 +15,7 @@ import { DeliveredComponent } from './orders-section/delivered/delivered.compone
 import { RtoOrdersComponent } from './orders-section/rto-orders/rto-orders.component';
 import { AllOrdersComponent } from './orders-section/all-orders/all-orders.component';
 import { CancelOrderComponent } from './orders-section/cancel-order/cancel-order.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CancelOrderComponent } from './orders-section/cancel-order/cancel-order
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentModule,
   ],
 })
 export class OrdersModule {}
