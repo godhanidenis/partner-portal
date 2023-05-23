@@ -62,6 +62,7 @@ export class AddEditProductComponent implements OnInit {
       },
     ],
   };
+  setDropDownValue: string = '';
 
   constructor(
     private router: Router,
@@ -175,6 +176,12 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
+  searchValue(event: any) {
+    // if (event) {
+    this.setDropDownValue = event;
+    // }
+  }
+
   createBoxes() {
     if (
       this.addEditProductForm.value.number_of_boxes >= 1 &&
@@ -217,49 +224,43 @@ export class AddEditProductComponent implements OnInit {
     this.shippingDimensionsOfBoxes.removeAt(i);
   }
 
-  addItem(input: HTMLInputElement, type: string): void {
-    if (input.value) {
-      // this.modal.confirm({
-      //   nzTitle: `<i>Do you Want to add?</i>`,
-      //   nzContent: `<b>${type}</b>`,
-      //   nzOnOk: () => {
+  addItem(type: string): void {
+    // input: HTMLInputElement,
+    if (this.setDropDownValue) {
       switch (type) {
         case 'Brand':
-          if (this.listOfBrand.indexOf(input.value) === -1) {
-            this.listOfBrand = [
-              ...this.listOfBrand,
-              input.value || `New item ${this.brandIndex++}`,
-            ];
+          if (this.listOfBrand.indexOf(this.setDropDownValue) === -1) {
+            this.listOfBrand = [...this.listOfBrand, this.setDropDownValue];
           }
           break;
         case 'Collection':
-          if (this.listOfCollection.indexOf(input.value) === -1) {
+          if (this.listOfCollection.indexOf(this.setDropDownValue) === -1) {
             this.listOfCollection = [
               ...this.listOfCollection,
-              input.value || `New item ${this.collectionIndex++}`,
+              this.setDropDownValue,
             ];
           }
           break;
         case 'Product Category':
-          if (this.listOfProductCategory.indexOf(input.value) === -1) {
+          if (
+            this.listOfProductCategory.indexOf(this.setDropDownValue) === -1
+          ) {
             this.listOfProductCategory = [
               ...this.listOfProductCategory,
-              input.value || `New item ${this.productCategoryIndex++}`,
+              this.setDropDownValue,
             ];
           }
           break;
         default:
-          if (this.listOfSalesTier.indexOf(input.value) === -1) {
+          if (this.listOfSalesTier.indexOf(this.setDropDownValue) === -1) {
             this.listOfSalesTier = [
               ...this.listOfSalesTier,
-              input.value || `New item ${this.salesTierIndex++}`,
+              this.setDropDownValue,
             ];
           }
           break;
       }
-      //   },
-      // });
-      this.addInput.nativeElement.value = '';
+      // this.addInput.nativeElement.value = '';
     }
   }
 
