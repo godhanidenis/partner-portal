@@ -5,28 +5,6 @@
       [badgeTotal]="badgeTotal"
       (filterChange)="openNav()"
     ></app-date-range>
-    <!-- <div class="header-section">
-      <div class="date-range">
-        <nz-range-picker
-          [nzRanges]="ranges"
-          ngModel
-          (ngModelChange)="onChange($event)"
-        ></nz-range-picker>
-      </div>
-      <div class="filter">
-        <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
-          <button
-            (click)="openNav()"
-            nz-button
-            nzType="primary"
-            nzShape="round"
-          >
-            <span nz-icon nzType="filter" nzTheme="outline"></span>
-            Filter
-          </button>
-        </nz-badge>
-      </div>
-    </div> -->
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-filter-tag
@@ -87,26 +65,11 @@
     </nz-table>
   </div>
   <div #mySidenav class="filter-section">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
-      >&times;</a
-    >
-    <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
-      <div class="filter-content">
-        <nz-divider nzText="Status" nzOrientation="left"></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A status"
-          formControlName="status"
-          (ngModelChange)="change(filter.value.status ? $event : '')"
-        >
-          <nz-option nzLabel="Accepted" nzValue="Accepted"></nz-option>
-          <nz-option
-            nzLabel="Already Shipped"
-            nzValue="Already Shipped"
-          ></nz-option>
-        </nz-select>
-      </div>
-    </form>
+    <app-filter-section
+      (closeNav)="closeNav()"
+      (changeData)="change($event)"
+      [status]="selectStatus"
+      [tabName]="'cancellationRequested'"
+    ></app-filter-section>
   </div>
 </div>

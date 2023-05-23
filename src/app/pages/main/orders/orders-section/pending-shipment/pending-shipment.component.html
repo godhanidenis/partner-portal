@@ -76,7 +76,15 @@
     </nz-table>
   </div>
   <div #mySidenav class="filter-section">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
+    <app-filter-section
+      (closeNav)="closeNav()"
+      (changeData)="change($event)"
+      [shipOutLocation]="selectLocation"
+      [status]="selectStatus"
+      [committedShipDate]="selectDate"
+      [tabName]="'pendingShipment'"
+    ></app-filter-section>
+    <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
       >&times;</a
     >
     <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
@@ -136,7 +144,7 @@
           "
         ></nz-date-picker>
       </div>
-    </form>
+    </form> -->
   </div>
 </div>
 

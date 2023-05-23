@@ -79,12 +79,12 @@ export class DeliveredComponent implements OnInit {
     this.section.nativeElement.style.minHeight = 'auto';
   }
 
-  change(value: string, type: string) {
-    if (value && value.length !== 0) {
-      switch (type) {
+  change(data: any) {
+    if (data.value && data.value.length !== 0) {
+      switch (data.type) {
         case 'sku':
           this.clear_btn = true;
-          this.selectSku = value;
+          this.selectSku = data.value;
           if (this.skuCount === 0) {
             this.skuCount++;
             this.badgeTotal++;
@@ -92,12 +92,12 @@ export class DeliveredComponent implements OnInit {
           break;
         case 'carrier':
           if (
-            value === 'carrier1' ||
-            value === 'carrier2' ||
-            value === 'carrier3'
+            data.value === 'carrier1' ||
+            data.value === 'carrier2' ||
+            data.value === 'carrier3'
           ) {
             this.clear_btn = true;
-            this.selectCarrier = value;
+            this.selectCarrier = data.value;
             if (this.carrierCount === 0) {
               this.carrierCount++;
               this.badgeTotal++;
@@ -106,8 +106,8 @@ export class DeliveredComponent implements OnInit {
           break;
       }
     } else {
-      if (this.badgeTotal > 0 && value !== null) {
-        switch (type) {
+      if (this.badgeTotal > 0 && data.value !== null) {
+        switch (data.type) {
           case 'sku':
             this.selectSku = '';
             this.skuCount = 0;

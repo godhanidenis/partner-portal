@@ -13,6 +13,9 @@ export class FilterSectionComponent implements OnInit {
   @Input() sku: string = '';
   @Input() carrier: string = '';
   @Input() committedShipDate: string = '';
+  @Input() status: string = '';
+
+  @Input() tabName: string = '';
 
   constructor() {}
   ngOnInit(): void {}

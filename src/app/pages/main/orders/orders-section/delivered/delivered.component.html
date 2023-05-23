@@ -61,48 +61,14 @@
       </tbody>
     </nz-table>
   </div>
-  <div #mySidenav class="filter-section">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
-      >&times;</a
-    >
-    <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
-      <div class="filter-content">
-        <nz-divider
-          style="margin-top: 20px"
-          nzText="SKU"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group>
-              <input
-                formControlName="sku"
-                type="text"
-                nz-input
-                placeholder="Enter SKU"
-                (input)="
-                  change(filter.value.sku ? filter.value.sku : '', 'sku')
-                "
-              />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
 
-        <nz-divider nzText="Carrier " nzOrientation="left"></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A Carrier "
-          formControlName="carrier"
-          (ngModelChange)="
-            change(filter.value.carrier ? $event : '', 'carrier')
-          "
-        >
-          <nz-option nzLabel="Carrier 1" nzValue="carrier1"></nz-option>
-          <nz-option nzLabel="Carrier 2" nzValue="carrier2"></nz-option>
-          <nz-option nzLabel="Carrier 3" nzValue="carrier3"></nz-option>
-        </nz-select>
-      </div>
-    </form>
+  <div #mySidenav class="filter-section">
+    <app-filter-section
+      (closeNav)="closeNav()"
+      (changeData)="change($event)"
+      [sku]="selectSku"
+      [carrier]="selectCarrier"
+      [tabName]="'delivered'"
+    ></app-filter-section>
   </div>
 </div>

@@ -18,7 +18,6 @@ export class CancellationRequestedComponent implements OnInit {
   pageSizeOptions = [50, 100, 250, 500];
   isLoading: boolean = false;
   mode = 'date';
-  filter!: FormGroup;
   cancellationRequestedData = [
     {
       id: 1,
@@ -48,11 +47,7 @@ export class CancellationRequestedComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.filter = new FormGroup({
-      status: new FormControl(''),
-    });
-  }
+  ngOnInit(): void {}
 
   onChange(result: Date[]): void {
     console.log('From: ', result[0], ', to: ', result[1]);
@@ -70,18 +65,18 @@ export class CancellationRequestedComponent implements OnInit {
     this.section.nativeElement.style.minHeight = 'auto';
   }
 
-  change(value: string) {
-    if (value && value.length !== 0) {
-      if (value === 'Accepted' || value === 'Already Shipped') {
+  change(data: any) {
+    if (data.value && data.value.length !== 0) {
+      if (data.value === 'Accepted' || data.value === 'Already Shipped') {
         this.clear_btn = true;
-        this.selectStatus = value;
+        this.selectStatus = data.value;
         if (this.statusCount === 0) {
           this.statusCount++;
           this.badgeTotal++;
         }
       }
     } else {
-      if (this.badgeTotal > 0 && value !== null) {
+      if (this.badgeTotal > 0 && data.value !== null) {
         this.selectStatus = '';
         this.statusCount = 0;
         this.badgeTotal--;
@@ -94,10 +89,8 @@ export class CancellationRequestedComponent implements OnInit {
 
     this.statusCount = 0;
 
-    this.filter.reset();
     this.badgeTotal = 0;
     this.clear_btn = false;
-    console.log(this.badgeTotal);
   }
 
   close(type: string) {
@@ -105,7 +98,6 @@ export class CancellationRequestedComponent implements OnInit {
       this.selectStatus = '';
       this.statusCount = 0;
       this.badgeTotal--;
-      this.filter.controls['status'].reset();
     }
   }
 }

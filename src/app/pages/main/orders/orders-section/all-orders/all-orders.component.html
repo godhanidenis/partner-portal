@@ -5,29 +5,6 @@
       [badgeTotal]="badgeTotal"
       (filterChange)="openNav()"
     ></app-date-range>
-    <!-- <div class="header-section">
-      <div class="date-range">
-        <nz-range-picker
-          [nzRanges]="ranges"
-          ngModel
-          (ngModelChange)="onChange($event)"
-        ></nz-range-picker>
-      </div>
-      <div class="filter">
-        <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
-          <button
-            (click)="openNav()"
-            nz-button
-            nzType="primary"
-            nzShape="round"
-          >
-            <span nz-icon nzType="filter" nzTheme="outline"></span>
-            Filter
-          </button>
-        </nz-badge>
-      </div>
-    </div> -->
-
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-filter-tag
         (closeTag)="close($event)"
@@ -40,6 +17,7 @@
         [selectStatus]="selectStatus"
       ></app-filter-tag>
     </div>
+
     <nz-table
       #nzTable
       nzShowSizeChanger
@@ -85,111 +63,17 @@
       </tbody>
     </nz-table>
   </div>
+
   <div #mySidenav class="filter-section">
-    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
-      >&times;</a
-    >
-    <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
-      <div class="filter-content">
-        <nz-divider
-          nzText="Ship Out Locations"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A Location"
-          formControlName="shipOutLocation"
-          (ngModelChange)="
-            change(
-              filter.value.shipOutLocation ? $event : '',
-              'shipOutLocation'
-            )
-          "
-        >
-          <nz-option nzLabel="Ahmadabad" nzValue="ahmadabad"></nz-option>
-          <nz-option nzLabel="Surat" nzValue="surat"></nz-option>
-          <nz-option nzLabel="Rajkot" nzValue="rajkot"></nz-option>
-          <nz-option nzLabel="Bhavnagar" nzValue="bhavnagar"></nz-option>
-        </nz-select>
-
-        <nz-divider
-          style="margin-top: 20px"
-          nzText="SKU"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group>
-              <input
-                formControlName="sku"
-                type="text"
-                nz-input
-                placeholder="Enter SKU"
-                (input)="
-                  change(filter.value.sku ? filter.value.sku : '', 'sku')
-                "
-              />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-divider nzText="Carrier " nzOrientation="left"></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A Carrier "
-          formControlName="carrier"
-          (ngModelChange)="
-            change(filter.value.carrier ? $event : '', 'carrier')
-          "
-        >
-          <nz-option nzLabel="Carrier 1" nzValue="carrier1"></nz-option>
-          <nz-option nzLabel="Carrier 2" nzValue="carrier2"></nz-option>
-          <nz-option nzLabel="Carrier 3" nzValue="carrier3"></nz-option>
-        </nz-select>
-
-        <nz-divider
-          nzText="Committed Ship Date"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-date-picker
-          formControlName="committedShipDate"
-          (ngModelChange)="
-            change(
-              filter.value.committedShipDate ? $event : '',
-              'committedShipDate'
-            )
-          "
-        ></nz-date-picker>
-
-        <nz-divider
-          style="margin-top: 20px"
-          nzText="Status"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A status"
-          formControlName="status"
-          (ngModelChange)="change(filter.value.status ? $event : '', 'status')"
-        >
-          <nz-option nzLabel="New" nzValue="New"></nz-option>
-          <nz-option
-            nzLabel="Pending Shipment"
-            nzValue="Pending Shipment"
-          ></nz-option>
-          <nz-option nzLabel="In-Transit" nzValue="In-Transit"></nz-option>
-          <nz-option nzLabel="Delivered" nzValue="Delivered"></nz-option>
-          <nz-option
-            nzLabel="Cancellation Requested"
-            nzValue="Cancellation Requested"
-          ></nz-option>
-          <nz-option nzLabel="Cancelled" nzValue="Cancelled"></nz-option>
-          <nz-option nzLabel="RTO" nzValue="RTO"></nz-option>
-        </nz-select>
-      </div>
-    </form>
+    <app-filter-section
+      (closeNav)="closeNav()"
+      (changeData)="change($event)"
+      [shipOutLocation]="selectLocation"
+      [sku]="selectSku"
+      [carrier]="selectCarrier"
+      [committedShipDate]="selectDate"
+      [status]="selectStatus"
+      [tabName]="'allOrders'"
+    ></app-filter-section>
   </div>
 </div>

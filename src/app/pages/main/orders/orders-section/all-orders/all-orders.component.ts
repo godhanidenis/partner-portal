@@ -88,18 +88,18 @@ export class AllOrdersComponent implements OnInit {
     this.section.nativeElement.style.minHeight = 'auto';
   }
 
-  change(value: string, type: string) {
-    if (value && value.length !== 0) {
-      switch (type) {
+  change(data: any) {
+    if (data.value && data.value.length !== 0) {
+      switch (data.type) {
         case 'shipOutLocation':
           if (
-            value === 'ahmadabad' ||
-            value === 'surat' ||
-            value === 'rajkot' ||
-            value === 'bhavnagar'
+            data.value === 'ahmadabad' ||
+            data.value === 'surat' ||
+            data.value === 'rajkot' ||
+            data.value === 'bhavnagar'
           ) {
             this.clear_btn = true;
-            this.selectLocation = value;
+            this.selectLocation = data.value;
 
             if (this.locationCount === 0) {
               this.locationCount++;
@@ -109,7 +109,7 @@ export class AllOrdersComponent implements OnInit {
           break;
         case 'sku':
           this.clear_btn = true;
-          this.selectSku = value;
+          this.selectSku = data.value;
           if (this.skuCount === 0) {
             this.skuCount++;
             this.badgeTotal++;
@@ -117,12 +117,12 @@ export class AllOrdersComponent implements OnInit {
           break;
         case 'carrier':
           if (
-            value === 'carrier1' ||
-            value === 'carrier2' ||
-            value === 'carrier3'
+            data.value === 'carrier1' ||
+            data.value === 'carrier2' ||
+            data.value === 'carrier3'
           ) {
             this.clear_btn = true;
-            this.selectCarrier = value;
+            this.selectCarrier = data.value;
             if (this.carrierCount === 0) {
               this.carrierCount++;
               this.badgeTotal++;
@@ -131,16 +131,16 @@ export class AllOrdersComponent implements OnInit {
           break;
         case 'status':
           if (
-            value === 'New' ||
-            value === 'Pending Shipment' ||
-            value === 'In-Transit' ||
-            value === 'Delivered' ||
-            value === 'Cancellation Requested' ||
-            value === 'Cancelled' ||
-            value === 'RTO'
+            data.value === 'New' ||
+            data.value === 'Pending Shipment' ||
+            data.value === 'In-Transit' ||
+            data.value === 'Delivered' ||
+            data.value === 'Cancellation Requested' ||
+            data.value === 'Cancelled' ||
+            data.value === 'RTO'
           ) {
             this.clear_btn = true;
-            this.selectStatus = value;
+            this.selectStatus = data.value;
             if (this.statusCount === 0) {
               this.statusCount++;
               this.badgeTotal++;
@@ -149,7 +149,7 @@ export class AllOrdersComponent implements OnInit {
           break;
         default:
           this.clear_btn = true;
-          this.selectDate = value;
+          this.selectDate = data.value;
           if (this.dateCount === 0) {
             this.dateCount++;
             this.badgeTotal++;
@@ -157,8 +157,8 @@ export class AllOrdersComponent implements OnInit {
           break;
       }
     } else {
-      if (this.badgeTotal > 0 && value !== null) {
-        switch (type) {
+      if (this.badgeTotal > 0 && data.value !== null) {
+        switch (data.type) {
           case 'shipOutLocation':
             this.selectLocation = '';
             this.locationCount = 0;

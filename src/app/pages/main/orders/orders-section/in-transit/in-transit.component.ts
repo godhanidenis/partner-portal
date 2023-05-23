@@ -18,7 +18,6 @@ export class InTransitComponent implements OnInit {
   pageSizeOptions = [50, 100, 250, 500];
   isLoading: boolean = false;
   mode = 'date';
-  filter!: FormGroup;
   inTransitData = [
     {
       id: 1,
@@ -58,13 +57,7 @@ export class InTransitComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.filter = new FormGroup({
-      status: new FormControl(''),
-      sku: new FormControl(''),
-      carrier: new FormControl(''),
-    });
-  }
+  ngOnInit(): void {}
 
   onChange(result: Date[]): void {
     console.log('From: ', result[0], ', to: ', result[1]);
@@ -82,17 +75,17 @@ export class InTransitComponent implements OnInit {
     this.section.nativeElement.style.minHeight = 'auto';
   }
 
-  change(value: string, type: string) {
-    if (value && value.length !== 0) {
-      switch (type) {
+  change(data: any) {
+    if (data.value && data.value.length !== 0) {
+      switch (data.type) {
         case 'status':
           if (
-            value === 'Picked Up' ||
-            value === 'Picked Up' ||
-            value === 'Out for Delivery'
+            data.value === 'Picked Up' ||
+            data.value === 'Picked Up' ||
+            data.value === 'Out for Delivery'
           ) {
             this.clear_btn = true;
-            this.selectStatus = value;
+            this.selectStatus = data.value;
 
             if (this.statusCount === 0) {
               this.statusCount++;
@@ -102,7 +95,7 @@ export class InTransitComponent implements OnInit {
           break;
         case 'sku':
           this.clear_btn = true;
-          this.selectSku = value;
+          this.selectSku = data.value;
           if (this.skuCount === 0) {
             this.skuCount++;
             this.badgeTotal++;
@@ -110,12 +103,12 @@ export class InTransitComponent implements OnInit {
           break;
         case 'carrier':
           if (
-            value === 'carrier1' ||
-            value === 'carrier2' ||
-            value === 'carrier3'
+            data.value === 'carrier1' ||
+            data.value === 'carrier2' ||
+            data.value === 'carrier3'
           ) {
             this.clear_btn = true;
-            this.selectCarrier = value;
+            this.selectCarrier = data.value;
             if (this.carrierCount === 0) {
               this.carrierCount++;
               this.badgeTotal++;
@@ -124,8 +117,8 @@ export class InTransitComponent implements OnInit {
           break;
       }
     } else {
-      if (this.badgeTotal > 0 && value !== null) {
-        switch (type) {
+      if (this.badgeTotal > 0 && data.value !== null) {
+        switch (data.type) {
           case 'status':
             this.selectStatus = '';
             this.statusCount = 0;
@@ -155,10 +148,8 @@ export class InTransitComponent implements OnInit {
     this.skuCount = 0;
     this.carrierCount = 0;
 
-    this.filter.reset();
     this.badgeTotal = 0;
     this.clear_btn = false;
-    console.log(this.badgeTotal);
   }
 
   close(type: string) {
@@ -168,19 +159,16 @@ export class InTransitComponent implements OnInit {
           this.selectStatus = '';
           this.statusCount = 0;
           this.badgeTotal--;
-          this.filter.controls['status'].reset();
           break;
         case 'sku':
           this.selectSku = '';
           this.skuCount = 0;
           this.badgeTotal--;
-          this.filter.controls['sku'].reset();
           break;
         case 'carrier':
           this.selectCarrier = '';
           this.carrierCount = 0;
           this.badgeTotal--;
-          this.filter.controls['carrier'].reset();
           break;
       }
     }
