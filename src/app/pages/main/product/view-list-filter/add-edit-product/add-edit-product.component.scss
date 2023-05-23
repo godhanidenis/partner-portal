@@ -79,5 +79,13 @@
              }
 
          }
+
+         ::ng-deep .ant-card-head {
+             min-height: 35px;
+         }
+
+         ::ng-deep .ant-card-type-inner .ant-card-head-title {
+             padding: 5px 0;
+         }
      }
  }

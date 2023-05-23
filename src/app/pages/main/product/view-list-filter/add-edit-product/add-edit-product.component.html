@@ -136,25 +136,21 @@
                 nzShowSearch
                 formControlName="brand"
                 nzAllowClear
-                [nzDropdownRender]="renderTemplate1"
                 nzPlaceHolder="Select Brand"
-                (nzOnSearch)="searchValue($event)"
+                (nzOnSearch)="searchValue($event, 'Brand')"
+                (ngModelChange)="addItem('Brand')"
               >
                 <nz-option
                   *ngFor="let item of listOfBrand"
                   [nzLabel]="item"
                   [nzValue]="item"
                 ></nz-option>
+                <nz-option
+                  *ngIf="setDropDownValue && searchList.length === 0"
+                  [nzLabel]="setDropDownValue"
+                  [nzValue]="setDropDownValue"
+                ></nz-option>
               </nz-select>
-              <ng-template #renderTemplate1>
-                <nz-divider style="margin: 9px 0"></nz-divider>
-                <div style="margin: 0 10px">
-                  <a class="add-item" (click)="addItem('Brand')">
-                    <span nz-icon nzType="plus"></span>
-                    Add item
-                  </a>
-                </div>
-              </ng-template>
               <ng-template #brand let-control>
                 <ng-container *ngIf="control.hasError('maxlength')"
                   >Please input maximum 34 characters!<br
@@ -174,25 +170,21 @@
                 nzShowSearch
                 formControlName="collection"
                 nzAllowClear
-                [nzDropdownRender]="renderTemplate2"
                 nzPlaceHolder="Select Collection"
-                (nzOnSearch)="searchValue($event)"
+                (nzOnSearch)="searchValue($event, 'Collection')"
+                (ngModelChange)="addItem('Collection')"
               >
                 <nz-option
                   *ngFor="let item of listOfCollection"
                   [nzLabel]="item"
                   [nzValue]="item"
                 ></nz-option>
+                <nz-option
+                  *ngIf="setDropDownValue && searchList.length === 0"
+                  [nzLabel]="setDropDownValue"
+                  [nzValue]="setDropDownValue"
+                ></nz-option>
               </nz-select>
-              <ng-template #renderTemplate2>
-                <nz-divider style="margin: 9px 0"></nz-divider>
-                <div style="margin: 0 10px">
-                  <a class="add-item" (click)="addItem('Collection')">
-                    <span nz-icon nzType="plus"></span>
-                    Add item
-                  </a>
-                </div>
-              </ng-template>
               <ng-template #collection let-control>
                 <ng-container *ngIf="control.hasError('maxlength')"
                   >Please input maximum 34 characters!</ng-container
@@ -211,25 +203,21 @@
                 nzShowSearch
                 formControlName="product_category"
                 nzAllowClear
-                [nzDropdownRender]="renderTemplate3"
                 nzPlaceHolder="Select Product Category"
-                (nzOnSearch)="searchValue($event)"
+                (nzOnSearch)="searchValue($event, 'Product Category')"
+                (ngModelChange)="addItem('Product Category')"
               >
                 <nz-option
                   *ngFor="let item of listOfProductCategory"
                   [nzLabel]="item"
                   [nzValue]="item"
                 ></nz-option>
+                <nz-option
+                  *ngIf="setDropDownValue && searchList.length === 0"
+                  [nzLabel]="setDropDownValue"
+                  [nzValue]="setDropDownValue"
+                ></nz-option>
               </nz-select>
-              <ng-template #renderTemplate3>
-                <nz-divider style="margin: 9px 0"></nz-divider>
-                <div style="margin: 0 10px">
-                  <a class="add-item" (click)="addItem('Product Category')">
-                    <span nz-icon nzType="plus"></span>
-                    Add item
-                  </a>
-                </div>
-              </ng-template>
               <ng-template #product_category let-control>
                 <ng-container *ngIf="control.hasError('maxlength')"
                   >Please input maximum 34 characters!</ng-container
@@ -246,25 +234,21 @@
                 nzShowSearch
                 formControlName="sales_tier"
                 nzAllowClear
-                [nzDropdownRender]="renderTemplate4"
                 nzPlaceHolder="Select Sales Tier"
-                (nzOnSearch)="searchValue($event)"
+                (nzOnSearch)="searchValue($event, 'Sales Tier')"
+                (ngModelChange)="addItem('Sales Tier')"
               >
                 <nz-option
                   *ngFor="let item of listOfSalesTier"
                   [nzLabel]="item"
                   [nzValue]="item"
                 ></nz-option>
+                <nz-option
+                  *ngIf="setDropDownValue && searchList.length === 0"
+                  [nzLabel]="setDropDownValue"
+                  [nzValue]="setDropDownValue"
+                ></nz-option>
               </nz-select>
-              <ng-template #renderTemplate4>
-                <nz-divider style="margin: 9px 0"></nz-divider>
-                <div style="margin: 0 10px">
-                  <a class="add-item" (click)="addItem('Sales Tier')">
-                    <span nz-icon nzType="plus"></span>
-                    Add item
-                  </a>
-                </div>
-              </ng-template>
               <ng-template #sales_tier let-control>
                 <ng-container *ngIf="control.hasError('maxlength')"
                   >Please input maximum 34 characters!</ng-container
@@ -568,122 +552,6 @@
           </div>
         </div>
       </nz-card>
-      <!-- <nz-form-label nzFor="length"
-        >Shipping Dimensions of Boxes
-      </nz-form-label>
-      <div nz-row [nzGutter]="16" formArrayName="shipping_dimensions_of_box">
-        <div
-          nz-col
-          class="gutter-row"
-          [nzXl]="24"
-          *ngFor="
-            let email of shippingDimensionsOfBoxes.controls;
-            let i = index
-          "
-        >
-          <div nz-row [formGroupName]="i">
-            <h3 style="display: flex; align-items: end; margin-bottom: 10px">
-              {{ i + 1 }}.
-            </h3>
-            <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-              <nz-form-label nzFor="brand" *ngIf="i === 0"
-                >Length<span style="color: red; font-weight: 500">*</span>
-              </nz-form-label>
-              <nz-form-control [nzErrorTip]="length">
-                <nz-input-group>
-                  <input
-                    formControlName="length"
-                    type="textbox"
-                    nz-input
-                    placeholder="Enter Length"
-                    appTwoDigitDecimaNumber
-                  />
-                  <ng-template #length let-control>
-                    <ng-container *ngIf="control.hasError('pattern')"
-                      >Please input more than 2 decimal!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('required')"
-                      >Please input your Length!</ng-container
-                    >
-                  </ng-template>
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-            <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-              <nz-form-label nzFor="brand" *ngIf="i === 0"
-                >Width<span style="color: red; font-weight: 500">*</span>
-              </nz-form-label>
-              <nz-form-control [nzErrorTip]="width">
-                <nz-input-group>
-                  <input
-                    formControlName="width"
-                    type="textbox"
-                    nz-input
-                    placeholder="Enter Width"
-                    appTwoDigitDecimaNumber
-                  />
-                  <ng-template #width let-control>
-                    <ng-container *ngIf="control.hasError('pattern')"
-                      >Please input more than 2 decimal!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('required')"
-                      >Please input your Width!</ng-container
-                    >
-                  </ng-template>
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-            <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-              <nz-form-label nzFor="brand" *ngIf="i === 0"
-                >Height<span style="color: red; font-weight: 500">*</span>
-              </nz-form-label>
-              <nz-form-control [nzErrorTip]="height">
-                <nz-input-group>
-                  <input
-                    formControlName="height"
-                    type="textbox"
-                    nz-input
-                    placeholder="Enter Height"
-                    appTwoDigitDecimaNumber
-                  />
-                  <ng-template #height let-control>
-                    <ng-container *ngIf="control.hasError('pattern')"
-                      >Please input more than 2 decimal!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('required')"
-                      >Please input your Height!</ng-container
-                    >
-                  </ng-template>
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-            <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-              <nz-form-label nzFor="brand" *ngIf="i === 0"
-                >Gross Weight<span style="color: red; font-weight: 500">*</span>
-              </nz-form-label>
-              <nz-form-control [nzErrorTip]="gross_weight">
-                <nz-input-group>
-                  <input
-                    formControlName="gross_weight"
-                    type="textbox"
-                    nz-input
-                    placeholder="Enter Gross Weight"
-                    appTwoDigitDecimaNumber
-                  />
-                  <ng-template #gross_weight let-control>
-                    <ng-container *ngIf="control.hasError('pattern')"
-                      >Please input more than 2 decimal!<br
-                    /></ng-container>
-                    <ng-container *ngIf="control.hasError('required')"
-                      >Please input your Gross Weight!</ng-container
-                    >
-                  </ng-template>
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
-        </div>
-      </div> -->
 
       <div nz-row>
         <div nz-col [nzXs]="24">

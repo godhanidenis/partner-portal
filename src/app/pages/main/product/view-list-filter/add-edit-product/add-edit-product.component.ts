@@ -63,6 +63,7 @@ export class AddEditProductComponent implements OnInit {
     ],
   };
   setDropDownValue: string = '';
+  searchList: string[] = [];
 
   constructor(
     private router: Router,
@@ -176,10 +177,32 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
-  searchValue(event: any) {
-    // if (event) {
+  searchValue(event: string, type: string) {
     this.setDropDownValue = event;
-    // }
+    if (event) {
+      switch (type) {
+        case 'Brand':
+          this.searchList = this.listOfBrand.filter((res: string) => {
+            return res.toLocaleLowerCase().includes(event.toLocaleLowerCase());
+          });
+          break;
+        case 'Collection':
+          this.searchList = this.listOfCollection.filter((res: string) => {
+            return res.toLocaleLowerCase().includes(event.toLocaleLowerCase());
+          });
+          break;
+        case 'Product Category':
+          this.searchList = this.listOfProductCategory.filter((res: string) => {
+            return res.toLocaleLowerCase().includes(event.toLocaleLowerCase());
+          });
+          break;
+        default:
+          this.searchList = this.listOfSalesTier.filter((res: string) => {
+            return res.toLocaleLowerCase().includes(event.toLocaleLowerCase());
+          });
+          break;
+      }
+    }
   }
 
   createBoxes() {
@@ -225,8 +248,7 @@ export class AddEditProductComponent implements OnInit {
   }
 
   addItem(type: string): void {
-    // input: HTMLInputElement,
-    if (this.setDropDownValue) {
+    if (this.setDropDownValue && this.searchList.length === 0) {
       switch (type) {
         case 'Brand':
           if (this.listOfBrand.indexOf(this.setDropDownValue) === -1) {
@@ -260,7 +282,6 @@ export class AddEditProductComponent implements OnInit {
           }
           break;
       }
-      // this.addInput.nativeElement.value = '';
     }
   }
 
