@@ -26,6 +26,10 @@ export class ViewListFilterComponent implements OnInit {
     'Slow Seller',
   ];
 
+  isDownloadVisible: boolean = false;
+  isUploadVisible: boolean = false;
+  isImportVisible: boolean = false;
+
   viewEditProducts!: FormGroup;
   uploadmodal!: FormGroup;
   filter!: FormGroup;
@@ -140,14 +144,13 @@ export class ViewListFilterComponent implements OnInit {
     // this.section.nativeElement.style.minHeight = 'auto';
   }
 
-  isDownloadVisible: boolean = false;
-  isUploadVisible: boolean = false;
-
   showUploadModal(type: string): void {
     if (type === 'download') {
       this.isDownloadVisible = true;
-    } else {
+    } else if (type === 'upload') {
       this.isUploadVisible = true;
+    } else {
+      this.isImportVisible = true;
     }
   }
 
@@ -162,8 +165,10 @@ export class ViewListFilterComponent implements OnInit {
   handleCancel(type: string): void {
     if (type === 'download') {
       this.isDownloadVisible = false;
-    } else {
+    } else if (type === 'upload') {
       this.isUploadVisible = false;
+    } else {
+      this.isImportVisible = false;
     }
   }
   tagfunc() {

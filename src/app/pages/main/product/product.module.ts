@@ -11,12 +11,14 @@ import { AddEditProductComponent } from './view-list-filter/add-edit-product/add
 import { ViewSingleProductComponent } from './view-list-filter/view-single-product/view-single-product.component';
 import { OrderProcessingModule } from '../profile/order-processing/order-processing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AddEditMultipleProductsComponent } from './view-list-filter/add-edit-multiple-products/add-edit-multiple-products.component';
 
 @NgModule({
   declarations: [
     ViewListFilterComponent,
     AddEditProductComponent,
     ViewSingleProductComponent,
+    AddEditMultipleProductsComponent,
   ],
   imports: [
     ProductRoutingModule,

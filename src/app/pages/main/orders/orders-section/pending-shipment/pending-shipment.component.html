@@ -84,67 +84,6 @@
       [committedShipDate]="selectDate"
       [tabName]="'pendingShipment'"
     ></app-filter-section>
-    <!-- <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
-      >&times;</a
-    >
-    <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
-      <div class="filter-content">
-        <nz-divider
-          nzText="Ship Out Locations"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A Location"
-          formControlName="shipOutLocation"
-          (ngModelChange)="
-            change(
-              filter.value.shipOutLocation ? $event : '',
-              'shipOutLocation'
-            )
-          "
-        >
-          <nz-option nzLabel="Ahmadabad" nzValue="ahmadabad"></nz-option>
-          <nz-option nzLabel="Surat" nzValue="surat"></nz-option>
-          <nz-option nzLabel="Rajkot" nzValue="rajkot"></nz-option>
-          <nz-option nzLabel="Bhavnagar" nzValue="bhavnagar"></nz-option>
-        </nz-select>
-
-        <nz-divider
-          style="margin-top: 20px"
-          nzText="Status"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-select
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Select A status"
-          formControlName="status"
-          (ngModelChange)="change(filter.value.status ? $event : '', 'status')"
-        >
-          <nz-option nzLabel="Manifested" nzValue="Manifested"></nz-option>
-          <nz-option
-            nzLabel="Not yet Manifested"
-            nzValue="Not yet Manifested"
-          ></nz-option>
-        </nz-select>
-
-        <nz-divider
-          nzText="Committed Ship Date"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-date-picker
-          formControlName="committedShipDate"
-          (ngModelChange)="
-            change(
-              filter.value.committedShipDate ? $event : '',
-              'committedShipDate'
-            )
-          "
-        ></nz-date-picker>
-      </div>
-    </form> -->
   </div>
 </div>
 

@@ -7,6 +7,17 @@
   border-radius: 5px;
   // min-height: 520px;
 
+  .header-action-button {
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+    padding-bottom: 0;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+
   ::ng-deep .ant-tag {
     padding: 3px 8px;
     border-radius: 16px;

@@ -1,0 +1,38 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.add-edit-multiple-products-model {
+    .body-section {
+        padding: 15px;
+
+        .download {
+            display: flex;
+
+            div {
+                padding: 5px;
+            }
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 25%;
+
+                span {
+                    font-size: xx-large;
+                }
+            }
+
+            .contact {
+                display: block;
+                width: 75%;
+            }
+
+            button,
+            button:hover {
+                margin-top: 10px;
+                border: 1px solid $darkBlue;
+                color: $darkBlue;
+            }
+        }
+    }
+}

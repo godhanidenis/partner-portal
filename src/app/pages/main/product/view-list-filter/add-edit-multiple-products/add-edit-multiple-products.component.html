@@ -1,0 +1,74 @@
+<div class="add-edit-multiple-products-model">
+  <div class="body-section">
+    <h4>Use this tool to import or edit multiple in one go.</h4>
+    <nz-divider></nz-divider>
+    <div class="download">
+      <div class="icon">
+        <span nz-icon nzType="download" nzTheme="outline"></span>
+      </div>
+      <div class="contact">
+        <h3>Step 1. Download the Wix CSV template file</h3>
+        <span
+          >Choose if you want to download a blank Wix CSV template file, or CSV
+          file with all your current Wix products.</span
+        ><br />
+        <button nz-button nzType="default" nzShape="round">
+          Download CSV File
+        </button>
+      </div>
+    </div>
+    <nz-divider></nz-divider>
+    <div class="download">
+      <div class="icon">
+        <span nz-icon nzType="upload" nzTheme="outline"></span>
+      </div>
+      <div class="contact">
+        <h3>Step 1. Upload your products</h3>
+        <span
+          >Add or edit your product info in the Wix CSV file, making sure you
+          don't add or delete columns. Once your Wix CSV file is ready to go,
+          upload it here.</span
+        ><br />
+        <button
+          (click)="actionFile('upload')"
+          nz-button
+          nzType="default"
+          nzShape="round"
+        >
+          Upload CSV File
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="model-footer">
+    <div class="model-action">
+      <button
+        nz-button
+        nzType="default"
+        style="color: black; margin-right: 5px"
+        (click)="handleCancel('close')"
+      >
+        Cancel
+      </button>
+      <button
+        nz-button
+        class="action-btn"
+        [nzType]="'primary'"
+        style="width: 100px"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+  <nz-modal
+    [(nzVisible)]="isUploadVisible"
+    nzTitle="Upload"
+    (nzOnCancel)="handleCancel('upload')"
+  >
+    <ng-container *nzModalContent>
+      <app-upload-model
+        (closeModel)="handleCancel('upload')"
+      ></app-upload-model>
+    </ng-container>
+  </nz-modal>
+</div>

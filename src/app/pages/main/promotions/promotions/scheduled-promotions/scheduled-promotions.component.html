@@ -23,7 +23,7 @@
         <th>SKU Count</th>
         <th>Promotion Avg</th>
         <th>Status</th>
-        <th>Download</th>
+        <!-- <th>Download</th> -->
         <th>Action</th>
       </tr>
     </thead>
@@ -39,7 +39,7 @@
           <td>{{ data?.count }}</td>
           <td>{{ data?.promotionAvg }} %</td>
           <td>{{ data?.status }}</td>
-          <td>
+          <!-- <td>
             <button
               style="height: 35px; margin-top: 0"
               nz-button
@@ -48,33 +48,32 @@
             >
               Download
             </button>
-          </td>
+          </td> -->
           <td>
-            <!-- <button
-              nz-dropdown
-              nzTrigger="click"
-              [nzDropdownMenu]="menu"
-              style="height: 35px"
-              nz-button
-              class="action-button"
-              [nzType]="'primary'"
-            >
-              Promotion
-            </button> -->
-            <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
-            <nz-dropdown-menu #menu="nzDropdownMenu">
-              <ul nz-menu>
-                <li nz-menu-item>Cancel Promotion request</li>
-                <li nz-menu-item>Stop Promotion EOD</li>
-                <li nz-menu-item>Stop Promotion Now</li>
-                <li nz-menu-item (click)="addEndDateVisible = true">
-                  Shorten Promotion
-                </li>
-                <li nz-menu-item (click)="addEndDateVisible = true">
-                  Extend Promotion
-                </li>
-              </ul>
-            </nz-dropdown-menu>
+            <div style="display: flex; align-items: center">
+              <button
+                style="height: 35px; margin-top: 0; margin-right: 10px"
+                nz-button
+                class="action-button"
+                [nzType]="'primary'"
+              >
+                Download
+              </button>
+              <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item>Cancel Promotion request</li>
+                  <li nz-menu-item>Stop Promotion EOD</li>
+                  <li nz-menu-item>Stop Promotion Now</li>
+                  <li nz-menu-item (click)="addEndDateVisible = true">
+                    Shorten Promotion
+                  </li>
+                  <li nz-menu-item (click)="addEndDateVisible = true">
+                    Extend Promotion
+                  </li>
+                </ul>
+              </nz-dropdown-menu>
+            </div>
           </td>
         </tr>
       </ng-template>
