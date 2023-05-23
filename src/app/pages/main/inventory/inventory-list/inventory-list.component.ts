@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +15,7 @@ export class InventoryListComponent implements OnInit {
   pageSizeOptions = [5, 10, 15, 20];
 
   isUploadVisible: boolean = false;
+  isDownloadVisible: boolean = false;
 
   inventoryList = [
     {
@@ -41,20 +43,33 @@ export class InventoryListComponent implements OnInit {
       outOfStock: true,
     },
   ];
+  uploadModal!: FormGroup;
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.uploadModal = new FormGroup({
+      export: new FormControl(''),
+    });
+  }
 
   navigatePage(path: string) {
     this.router.navigate([`/main/${path}`]);
   }
 
-  openModal() {
-    this.isUploadVisible = true;
+  openModal(type: string) {
+    if (type === 'download') {
+      this.isDownloadVisible = true;
+    } else if (type === 'Upload') {
+      this.isUploadVisible = true;
+    }
   }
 
-  handleCancel() {
-    this.isUploadVisible = false;
+  handleCancel(type: string) {
+    if (type === 'download') {
+      this.isDownloadVisible = false;
+    } else if (type === 'Upload') {
+      this.isUploadVisible = false;
+    }
   }
 }

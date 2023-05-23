@@ -413,8 +413,8 @@
                 type="number"
                 nz-input
                 placeholder="Number Of Boxes 1 to 10"
-                (input)="createBoxes()"
               />
+              <!-- (input)="createBoxes()" -->
               <ng-template #number_of_boxes let-control>
                 <ng-container *ngIf="control.hasError('min')"
                   >Please input minimum 1 Day!<br
@@ -548,6 +548,22 @@
                   </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
+              <div style="display: flex; align-items: end; margin-bottom: 5px">
+                <a
+                  *ngIf="i === shippingDimensionsOfBoxes.controls.length - 1"
+                  style="background: #00c13b"
+                  (click)="addShippingDimensionsOfBoxes()"
+                >
+                  +
+                </a>
+                <a
+                  *ngIf="i !== shippingDimensionsOfBoxes.controls.length - 1"
+                  style="background: #f41e2c"
+                  (click)="removeShippingDimensionsOfBoxes(i)"
+                >
+                  -
+                </a>
+              </div>
             </div>
           </div>
         </div>

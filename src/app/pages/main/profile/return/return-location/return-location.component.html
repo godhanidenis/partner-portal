@@ -33,7 +33,6 @@
       #nzTable
       nzOuterBordered
       [nzData]="returnLocationList"
-      
       nzShowSizeChanger
       [nzPageSizeOptions]="pageSizeOptions"
       [nzFrontPagination]="false"
@@ -60,6 +59,7 @@
               <nz-switch
                 nzSize="small"
                 [ngModel]="data.activeStatus"
+                (ngModelChange)="switchChange()"
               ></nz-switch>
             </td>
             <td>

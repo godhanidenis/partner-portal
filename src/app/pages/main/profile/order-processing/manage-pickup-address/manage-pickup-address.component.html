@@ -27,7 +27,6 @@
     #nzTable
     nzOuterBordered
     [nzData]="shipOut"
-    
     nzShowSizeChanger
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
@@ -51,7 +50,11 @@
           <td>{{ data?.address_nickname }}</td>
           <td>{{ data?.location_id }}</td>
           <td>
-            <nz-switch nzSize="small" [ngModel]="data.activeStatus"></nz-switch>
+            <nz-switch
+              nzSize="small"
+              [ngModel]="data.activeStatus"
+              (ngModelChange)="switchChange()"
+            ></nz-switch>
           </td>
           <td>
             <a

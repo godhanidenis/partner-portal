@@ -53,10 +53,10 @@ export class AddPickupAddressComponent implements OnInit {
       open_at: new FormControl(new Date(0, 0, 0, 0, 0, 0)),
       close_at: new FormControl(new Date(0, 0, 0, 0, 0, 0)),
       time_zone: new FormControl(''),
-      vendor_address: new FormControl(false),
+      // vendor_address: new FormControl(false),
       // rto_address: new FormControl(false),
-      supplier_name: new FormControl(''),
-      supplier_gstin: new FormControl(''),
+      // supplier_name: new FormControl(''),
+      // supplier_gstin: new FormControl(''),
       // select_pickup_address: new FormControl(''),
     });
 

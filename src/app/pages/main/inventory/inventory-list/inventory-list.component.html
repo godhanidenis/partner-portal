@@ -10,15 +10,26 @@
         <b>Filter : </b>
         <nz-range-picker [nzShowTime]="true"></nz-range-picker>
       </div>
-      <button
-        (click)="openModal()"
-        style="margin: 0 10px"
-        nz-button
-        nzType="primary"
-        nzShape="round"
-      >
-        <span nz-icon nzType="upload" nzTheme="outline"></span> Export
-      </button>
+      <div>
+        <button
+          style="margin-right: 10px"
+          nz-button
+          (click)="openModal('download')"
+          nzType="primary"
+          nzShape="round"
+        >
+          <span nz-icon nzType="download" nzTheme="outline"></span> Import
+        </button>
+        <button
+          (click)="openModal('Upload')"
+          style="margin-right: 10px"
+          nz-button
+          nzType="primary"
+          nzShape="round"
+        >
+          <span nz-icon nzType="upload" nzTheme="outline"></span> Export
+        </button>
+      </div>
     </div>
 
     <nz-table
@@ -37,7 +48,7 @@
       <thead>
         <tr>
           <th>Feed Code</th>
-          <th>Time</th>
+          <!-- <th>Time</th> -->
           <th>Method</th>
           <th>In Stock</th>
           <th>Out Of Stock</th>
@@ -48,7 +59,7 @@
         <ng-template ngFor let-data [ngForOf]="inventoryList">
           <tr>
             <td>{{ data?.feedCode }}</td>
-            <td>{{ data?.time }}</td>
+            <!-- <td>{{ data?.time }}</td> -->
             <td>{{ data?.method }}</td>
             <td>{{ data?.inStock }}</td>
             <td>{{ data?.outOfStock }}</td>
@@ -73,9 +84,61 @@
 <nz-modal
   [(nzVisible)]="isUploadVisible"
   nzTitle="Upload"
-  (nzOnCancel)="handleCancel()"
+  (nzOnCancel)="handleCancel('Upload')"
 >
   <ng-container *nzModalContent>
-    <app-upload-model (closeModel)="handleCancel()"></app-upload-model>
+    <app-upload-model (closeModel)="handleCancel('Upload')"></app-upload-model>
+  </ng-container>
+</nz-modal>
+
+<nz-modal
+  [(nzVisible)]="isDownloadVisible"
+  nzTitle="Which item do you want to export?"
+  (nzOnCancel)="handleCancel('download')"
+>
+  <ng-container *nzModalContent>
+    <div style="padding: 15px">
+      <form nz-form [formGroup]="uploadModal">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group>
+              <nz-radio-group style="display: grid" formControlName="export">
+                <label nz-radio nzValue="A">All</label>
+                <label nz-radio nzValue="B">Filtered(0)</label>
+              </nz-radio-group>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+
+      <h4 style="margin-top: 12px">
+        Your items and all their data will be downloaded as a CSV file
+      </h4>
+    </div>
+    <div class="model-footer">
+      <div class="model-action" style="padding: 15px; padding-bottom: 0">
+        <button
+          nz-button
+          nzType="default"
+          style="color: black; margin-right: 5px"
+          (click)="handleCancel('download')"
+        >
+          Cancel
+        </button>
+        <button
+          nz-button
+          class="upload-btn"
+          [nzType]="'primary'"
+          style="
+            width: 100px;
+            margin-right: 24px;
+            background-color: #2121c3;
+            border: none;
+          "
+        >
+          Download
+        </button>
+      </div>
+    </div>
   </ng-container>
 </nz-modal>

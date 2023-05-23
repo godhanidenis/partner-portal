@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-return-location',
@@ -103,9 +104,21 @@ export class ReturnLocationComponent {
   viewData: any;
   viewAddressVisible: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private modal: NzModalService) {}
 
   ngOnInit(): void {}
+
+  switchChange() {
+    console.log('switch');
+    this.modal.confirm({
+      nzTitle: 'Active / Inactive',
+      nzContent: 'Do you Want to change these status?',
+      nzOnOk: () =>
+        new Promise((resolve, reject) => {
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        }).catch(() => console.log('Oops errors!')),
+    });
+  }
 
   primaryClick(element: number) {
     this.primaryContact = element;

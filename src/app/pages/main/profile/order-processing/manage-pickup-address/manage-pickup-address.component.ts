@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
 @Component({
@@ -115,7 +116,8 @@ export class ManagePickupAddressComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private breadcrumbService: BreadcrumbService,
-    private router: Router
+    private router: Router,
+    private modal: NzModalService
   ) {
     this.breadcrumbService.breadcrumbs.next(this.activatedRoute.snapshot.url);
     console.log(this.activatedRoute.snapshot.url);
@@ -126,6 +128,18 @@ export class ManagePickupAddressComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  switchChange() {
+    console.log('switch');
+    this.modal.confirm({
+      nzTitle: 'Active / Inactive',
+      nzContent: 'Do you Want to change these status?',
+      nzOnOk: () =>
+        new Promise((resolve, reject) => {
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        }).catch(() => console.log('Oops errors!')),
+    });
+  }
 
   primaryClick(element: number) {
     this.primaryContact = element;

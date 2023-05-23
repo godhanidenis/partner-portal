@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-edit-multiple-products',
@@ -8,6 +9,22 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class AddEditMultipleProductsComponent implements OnInit {
   @Output() closeModel = new EventEmitter();
   isUploadVisible: boolean = false;
+  chooseType = [
+    'Add Product',
+    'Edit Full Catalog',
+    'Edit MPN',
+    'Add/Edit ASIN',
+    'Add/Edit UPC',
+    'Edit Price',
+    'Add/Edit MAP',
+    'Edit SKU specific Handling time',
+    'Edit Shipping Dimensions',
+    'Edit Product Details',
+    'Remove ASIN',
+    'Remove UPC',
+    'Change Product Status',
+  ];
+  name = new FormControl('');
 
   constructor() {}
   ngOnInit(): void {}

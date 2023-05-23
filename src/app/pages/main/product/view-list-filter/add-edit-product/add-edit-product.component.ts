@@ -45,7 +45,7 @@ export class AddEditProductComponent implements OnInit {
     msrp: '5.21',
     handling_time: '25',
     shipping_Method: 'smallParcel',
-    number_of_boxes: 'box2',
+    number_of_boxes: 2,
     product_status: 'active',
     shipping_dimensions_of_box: [
       {
@@ -175,6 +175,8 @@ export class AddEditProductComponent implements OnInit {
     } else {
       this.addShippingDimensionsOfBoxes();
     }
+
+    this.addEditProductForm.controls['number_of_boxes'].disable();
   }
 
   searchValue(event: string, type: string) {
@@ -205,23 +207,23 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
-  createBoxes() {
-    if (
-      this.addEditProductForm.value.number_of_boxes >= 1 &&
-      this.addEditProductForm.value.number_of_boxes <= 10
-    ) {
-      if (this.shippingDimensionsOfBoxes.controls.length >= 1) {
-        this.shippingDimensionsOfBoxes.controls = [];
-      }
-      for (
-        let index = 1;
-        index < this.addEditProductForm.value.number_of_boxes + 1;
-        index++
-      ) {
-        this.addShippingDimensionsOfBoxes();
-      }
-    }
-  }
+  // createBoxes() {
+  //   if (
+  //     this.addEditProductForm.value.number_of_boxes >= 1 &&
+  //     this.addEditProductForm.value.number_of_boxes <= 10
+  //   ) {
+  //     if (this.shippingDimensionsOfBoxes.controls.length >= 1) {
+  //       this.shippingDimensionsOfBoxes.controls = [];
+  //     }
+  //     for (
+  //       let index = 1;
+  //       index < this.addEditProductForm.value.number_of_boxes + 1;
+  //       index++
+  //     ) {
+  //       this.addShippingDimensionsOfBoxes();
+  //     }
+  //   }
+  // }
 
   get shippingDimensionsOfBoxes(): FormArray {
     return this.addEditProductForm.controls[
@@ -241,10 +243,16 @@ export class AddEditProductComponent implements OnInit {
 
   addShippingDimensionsOfBoxes() {
     this.shippingDimensionsOfBoxes.push(this.newShippingDimensionsOfBoxes());
+    this.addEditProductForm.controls['number_of_boxes'].setValue(
+      this.shippingDimensionsOfBoxes.controls.length
+    );
   }
 
   removeShippingDimensionsOfBoxes(i: number) {
     this.shippingDimensionsOfBoxes.removeAt(i);
+    this.addEditProductForm.controls['number_of_boxes'].setValue(
+      this.shippingDimensionsOfBoxes.controls.length
+    );
   }
 
   addItem(type: string): void {
