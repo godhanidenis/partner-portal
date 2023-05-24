@@ -6,7 +6,7 @@ import { HandlingTimeConflictComponent } from './home-section/handling-time-conf
 const routes: Routes = [
   { path: '', component: HomeSectionComponent },
   {
-    path: 'handling-time-conflict',
+    path: 'dashboard/handling-time-conflict',
     component: HandlingTimeConflictComponent,
   },
 ];
