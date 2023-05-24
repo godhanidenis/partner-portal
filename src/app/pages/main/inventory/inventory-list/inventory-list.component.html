@@ -8,7 +8,7 @@
     <div class="button-group">
       <div class="filter">
         <b>Filter : </b>
-        <nz-range-picker [nzShowTime]="true"></nz-range-picker>
+        <nz-range-picker></nz-range-picker>
       </div>
       <div>
         <button
@@ -84,17 +84,19 @@
 <nz-modal
   [(nzVisible)]="isUploadVisible"
   nzTitle="Upload"
-  (nzOnCancel)="handleCancel('Upload')"
+  (nzOnCancel)="handleCancel('download')"
 >
   <ng-container *nzModalContent>
-    <app-upload-model (closeModel)="handleCancel('Upload')"></app-upload-model>
+    <app-upload-model
+      (closeModel)="handleCancel('download')"
+    ></app-upload-model>
   </ng-container>
 </nz-modal>
 
 <nz-modal
   [(nzVisible)]="isDownloadVisible"
   nzTitle="Which item do you want to export?"
-  (nzOnCancel)="handleCancel('download')"
+  (nzOnCancel)="handleCancel('Upload')"
 >
   <ng-container *nzModalContent>
     <div style="padding: 15px">
@@ -121,7 +123,7 @@
           nz-button
           nzType="default"
           style="color: black; margin-right: 5px"
-          (click)="handleCancel('download')"
+          (click)="handleCancel('Upload')"
         >
           Cancel
         </button>

@@ -59,17 +59,17 @@ export class InventoryListComponent implements OnInit {
 
   openModal(type: string) {
     if (type === 'download') {
-      this.isDownloadVisible = true;
-    } else if (type === 'Upload') {
       this.isUploadVisible = true;
+    } else if (type === 'Upload') {
+      this.isDownloadVisible = true;
     }
   }
 
   handleCancel(type: string) {
     if (type === 'download') {
-      this.isDownloadVisible = false;
-    } else if (type === 'Upload') {
       this.isUploadVisible = false;
+    } else if (type === 'Upload') {
+      this.isDownloadVisible = false;
     }
   }
 }

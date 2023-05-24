@@ -31,11 +31,14 @@
 
     <div class="view-edit-products-section-content">
       <div class="action">
-        <nz-badge [nzShowZero]="false" [nzCount]="beagetotal">
+        <nz-badge
+          style="margin-right: 10px"
+          [nzShowZero]="false"
+          [nzCount]="beagetotal"
+        >
           <button
             (click)="openNav()"
             nz-button
-            style="margin-right: 10px"
             nzType="primary"
             nzShape="round"
           >

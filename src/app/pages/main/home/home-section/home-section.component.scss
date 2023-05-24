@@ -1,0 +1,148 @@
+ @import'../../../../../assets/variable/variable.scss';
+
+ .home-section {
+     padding-bottom: 10px;
+
+     .tab-header {
+         border-bottom: none;
+     }
+
+
+
+     .section {
+         .user-content {
+             margin-top: 10px;
+
+             .table-layout {
+                 padding: 15px;
+             }
+         }
+
+         .card {
+             padding: 15px;
+             padding-top: 0;
+
+             .body {
+                 margin: 10px 0;
+             }
+
+             .content {
+                 p {
+                     display: flex;
+                     justify-content: space-between;
+                 }
+             }
+         }
+
+         .title {
+             font-size: 16px;
+             font-weight: 700;
+             padding-bottom: 15px;
+             margin-bottom: 5px;
+         }
+
+         ::ng-deep .ant-card-body {
+             padding: 15px;
+         }
+
+         .chart-section {
+             margin: 10px 0;
+
+             nz-card {
+                 min-height: 100%;
+             }
+
+             .chart-content {
+
+                 .canvas {
+                     display: flex;
+                     justify-content: center;
+                 }
+
+                 canvas {
+                     width: 50% !important;
+                     height: 50% !important;
+                 }
+
+                 @media screen and (max-width: 600px) {
+                     canvas {
+                         margin-top: 30px;
+                     }
+                 }
+
+                 .chart-specs {
+                     display: flex;
+                     justify-content: center;
+
+                     .legend {
+                         margin-top: 5px;
+
+                         .color-wrapper {
+                             display: flex;
+                             margin-right: 10px;
+
+                             .color-ref {
+                                 width: 12px;
+                                 height: 12px;
+                                 border-radius: 50%;
+                                 transform: translateY(4px);
+                                 margin-right: 5px;
+                             }
+                         }
+
+                         .percent {
+                             padding-left: 16px;
+                         }
+                     }
+                 }
+             }
+         }
+
+         .performance-issues-section {
+             padding: 15px;
+             padding-top: 0;
+
+             a {
+                 color: $darkBlue;
+             }
+         }
+     }
+
+     .pendingActions {
+         ::ng-deep .ant-card-body {
+             padding: 24px 15px;
+         }
+
+         .body {
+             margin: 10px 0;
+             padding: 15px;
+             padding-top: 0;
+
+             .title {
+                 font-size: 16px;
+                 font-weight: 700;
+
+             }
+
+             .card {
+                 display: flex;
+
+                 .icon {
+                     padding-right: 20px;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+
+                     span {
+                         font-size: xx-large;
+                     }
+                 }
+
+                 .content {
+                     display: flex;
+                     flex-direction: column;
+                 }
+             }
+         }
+     }
+ }

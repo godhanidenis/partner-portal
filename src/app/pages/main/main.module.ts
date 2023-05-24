@@ -6,13 +6,14 @@ import { CommonModule } from '@angular/common';
 import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainRoutingModule } from './main-routing.module';
-import { HomeComponent } from './home/home.component';
+
 import { ProfileModule } from './profile/profile.module';
 import { ProductModule } from './product/product.module';
 import { ComponentModule } from 'src/app/components/component.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [],
   imports: [
     MainRoutingModule,
     NzLayoutModule,
@@ -24,6 +25,7 @@ import { ComponentModule } from 'src/app/components/component.module';
     ProfileModule,
     ProductModule,
     ComponentModule,
+    HomeModule,
   ],
   exports: [],
 })
