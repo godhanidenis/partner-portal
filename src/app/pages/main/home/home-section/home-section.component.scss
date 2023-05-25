@@ -7,8 +7,6 @@
          border-bottom: none;
      }
 
-
-
      .section {
          .user-content {
              margin-top: 10px;
@@ -16,6 +14,10 @@
              .table-layout {
                  padding: 15px;
              }
+         }
+
+         .overview-section {
+             min-height: 100%;
          }
 
          .card {
@@ -43,6 +45,15 @@
 
          ::ng-deep .ant-card-body {
              padding: 15px;
+         }
+
+         .first-card {
+             margin: 10px 0;
+             height: 200px;
+
+             nz-card {
+                 height: 100%;
+             }
          }
 
          .chart-section {
@@ -114,7 +125,6 @@
          }
 
          .body {
-             margin: 10px 0;
              padding: 15px;
              padding-top: 0;
 
@@ -128,7 +138,8 @@
                  display: flex;
 
                  .icon {
-                     padding-right: 20px;
+                     width: 15%;
+                     padding-right: 10px;
                      display: flex;
                      align-items: center;
                      justify-content: center;
@@ -139,8 +150,27 @@
                  }
 
                  .content {
+                     width: 70%;
                      display: flex;
                      flex-direction: column;
+                 }
+
+                 .count {
+                     width: 15%;
+                     display: flex;
+                     align-items: center;
+
+                     span {
+                         width: 33px;
+                         border-radius: 50%;
+                         background-color: $darkBlue;
+                         color: $white;
+                         font-size: 20px;
+                         font-weight: 600;
+                         display: flex;
+                         justify-content: center;
+                         align-items: center;
+                     }
                  }
              }
          }

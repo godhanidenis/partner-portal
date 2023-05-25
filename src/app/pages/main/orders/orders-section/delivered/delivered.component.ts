@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { endOfMonth } from 'date-fns';
+import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-delivered',
@@ -24,7 +25,8 @@ export class DeliveredComponent implements OnInit {
       id: 1,
       poNumber: 'CLP 4031',
       customerName: 'AB Kajaria Miami',
-      products: '89932 Qty- 1',
+      products: '89932',
+      qty: 1,
       poTotal: '125.05',
       shippingDetails: {
         name: 'Ekart Logistics',
@@ -36,7 +38,8 @@ export class DeliveredComponent implements OnInit {
       id: 2,
       poNumber: 'CLP 4035',
       customerName: 'Nidhi Miami',
-      products: '89932 Qty- 2',
+      products: '89932',
+      qty: 2,
       poTotal: '80.50',
       shippingDetails: {
         name: 'Ekart Logistics',
@@ -53,6 +56,7 @@ export class DeliveredComponent implements OnInit {
 
   selectSku: string = '';
   selectCarrier: string = '';
+  statusEnum: typeof StatusEnum = StatusEnum;
 
   constructor() {}
 

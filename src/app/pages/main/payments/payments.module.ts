@@ -10,9 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RemittanceComponent } from './payment-section/remittance/remittance.component';
 import { ScheduledPaymentsComponent } from './payment-section/scheduled-payments/scheduled-payments.component';
 import { InvoicePaymentStatusComponent } from './payment-section/invoice-payment-status/invoice-payment-status.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [PaymentSectionComponent, RemittanceComponent, ScheduledPaymentsComponent, InvoicePaymentStatusComponent],
+  declarations: [
+    PaymentSectionComponent,
+    RemittanceComponent,
+    ScheduledPaymentsComponent,
+    InvoicePaymentStatusComponent,
+  ],
   imports: [
     CommonModule,
     PaymentsRoutingModule,
@@ -21,6 +27,7 @@ import { InvoicePaymentStatusComponent } from './payment-section/invoice-payment
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentModule,
   ],
 })
 export class PaymentsModule {}

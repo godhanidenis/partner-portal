@@ -8,11 +8,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CatalogFeedRoutingModule } from './catalog-feed-routing.module';
 import { CatalogrefernacesComponent } from './catalog-prefernaces/catalog-prefernaces.component';
 import { FeedPrefernacesComponent } from './feed-prefernaces/feed-prefernaces.component';
-
-
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [CatalogrefernacesComponent,FeedPrefernacesComponent],
+  declarations: [CatalogrefernacesComponent, FeedPrefernacesComponent],
   imports: [
     CatalogFeedRoutingModule,
     NzLayoutModule,
@@ -21,6 +20,7 @@ import { FeedPrefernacesComponent } from './feed-prefernaces/feed-prefernaces.co
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentModule,
   ],
   exports: [],
 })

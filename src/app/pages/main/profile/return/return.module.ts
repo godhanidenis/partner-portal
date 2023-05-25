@@ -9,6 +9,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderProcessingModule } from '../order-processing/order-processing.module';
 import { ReturnSettingComponent } from './return-setting/return-setting.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
   declarations: [ReturnLocationComponent, ReturnSettingComponent],
@@ -21,6 +22,7 @@ import { ReturnSettingComponent } from './return-setting/return-setting.componen
     ReactiveFormsModule,
     FormsModule,
     OrderProcessingModule,
+    ComponentModule,
   ],
 })
 export class ReturnModule {}

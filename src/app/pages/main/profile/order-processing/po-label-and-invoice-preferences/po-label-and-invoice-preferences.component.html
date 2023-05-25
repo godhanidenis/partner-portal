@@ -10,11 +10,10 @@
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 <div class="po-label-and-invoice-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>PO, Label and Invoice Preferences</span>
-    </div>
-  </div>
+  <app-section-header
+    [header]="'PO, Label and Invoice Preferences'"
+  ></app-section-header>
+
   <div class="body-section">
     <div class="po-label-preferences-section">
       <form nz-form [formGroup]="poForm">

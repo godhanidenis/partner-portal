@@ -8,12 +8,10 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RebateComponent } from './rebate/rebate.component';
 import { CoOpComponent } from './co-op/co-op.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [
-    RebateComponent,
-    CoOpComponent
-  ],
+  declarations: [RebateComponent, CoOpComponent],
   imports: [
     CommonModule,
     AllowancesRoutingModule,
@@ -22,6 +20,7 @@ import { CoOpComponent } from './co-op/co-op.component';
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentModule,
   ],
 })
 export class AllowancesModule {}

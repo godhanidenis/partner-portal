@@ -11,11 +11,8 @@
 </nz-breadcrumb>
 
 <div class="view-inventory-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>View Inventory</span>
-    </div>
-  </div>
+  <app-section-header [header]="'View Inventory'"></app-section-header>
+
   <div class="body-section">
     <div nz-row [nzGutter]="16" class="header-section">
       <div
@@ -54,7 +51,6 @@
         #nzTable
         nzOuterBordered
         [nzData]="inStockProduct"
-        
         [nzFrontPagination]="false"
         [nzShowPagination]="false"
         nz-col
@@ -83,7 +79,6 @@
         #nzTable
         nzOuterBordered
         [nzData]="outOfStockProduct"
-        
         [nzFrontPagination]="false"
         [nzShowPagination]="false"
         nz-col

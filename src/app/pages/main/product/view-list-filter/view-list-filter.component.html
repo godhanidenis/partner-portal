@@ -1,10 +1,6 @@
 <div #section class="view-edit-products-section">
   <div class="content-section">
-    <div class="user-content">
-      <div class="tab-header">
-        <span>View Products</span>
-      </div>
-    </div>
+    <app-section-header [header]="'View Products'"></app-section-header>
 
     <div class="header-action-button">
       <button
@@ -179,7 +175,7 @@
                 ><u>{{ data.productName }}</u></a
               >
             </td>
-            <td>{{ data.unitPrice }}</td>
+            <td>{{ data.unitPrice | currency }}</td>
             <td>{{ data.brand }}</td>
             <td>{{ data.productStatus }}</td>
             <td>{{ data.asinStatus }}</td>
@@ -404,7 +400,7 @@
 
   <nz-modal
     [(nzVisible)]="isImportVisible"
-    nzTitle="Import  product to your store"
+    nzTitle="Import product to your store"
     (nzOnCancel)="handleCancel('import')"
   >
     <ng-container *nzModalContent>

@@ -10,11 +10,8 @@
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 <div class="rebate-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Rebate</span>
-    </div>
-  </div>
+  <app-section-header [header]="'Rebate'"></app-section-header>
+
   <div class="body-section">
     <nz-divider nzText="Rebate Info" nzOrientation="left"></nz-divider>
     <nz-descriptions>
@@ -33,7 +30,6 @@
       #nzTable
       nzOuterBordered
       [nzData]="rebateList"
-      
       [nzFrontPagination]="false"
       [nzShowPagination]="false"
     >
