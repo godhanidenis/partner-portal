@@ -9,9 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactPreferencesComponent } from './contact-preferences/contact-preferences.component';
 import { AddContactPreferenceComponent } from './contact-preferences/add-contact-preference/add-contact-preference.component';
 import { NotificationPreferencesComponent } from './notification-preferences/notification-preferences.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [ContactPreferencesComponent, AddContactPreferenceComponent, NotificationPreferencesComponent],
+  declarations: [
+    ContactPreferencesComponent,
+    AddContactPreferenceComponent,
+    NotificationPreferencesComponent,
+  ],
   imports: [
     CommonModule,
     CommunicationsRoutingModule,
@@ -20,6 +25,7 @@ import { NotificationPreferencesComponent } from './notification-preferences/not
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentModule,
   ],
 })
 export class CommunicationsModule {}

@@ -11,11 +11,10 @@
 </nz-breadcrumb>
 
 <div class="notification-preferences-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Notification Preferences</span>
-    </div>
-  </div>
+  <app-section-header
+    [header]="'Notification Preferences'"
+  ></app-section-header>
+
   <div class="body-section">
     <form [formGroup]="notificationForm">
       <div

@@ -10,6 +10,7 @@ import { AchSetUpComponent } from './ach-set-up/ach-set-up.component';
 import { AchVerificationComponent } from './ach-verification/ach-verification.component';
 import { AchSectionComponent } from './ach-section/ach-section.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
+    ComponentModule,
   ],
   exports: [],
 })

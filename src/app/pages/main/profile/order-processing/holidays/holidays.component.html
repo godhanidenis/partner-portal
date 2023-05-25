@@ -10,11 +10,8 @@
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 <div class="holiday-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Holiday</span>
-    </div>
-  </div>
+  <app-section-header [header]="'Holiday'"></app-section-header>
+
   <div class="body-section">
     <form nz-form [formGroup]="holidayForm">
       <div style="padding-left: 8px" nz-row [nzGutter]="16">

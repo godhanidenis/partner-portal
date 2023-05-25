@@ -14,6 +14,7 @@ import { AllowancesModule } from './allowances/allowances.module';
 import { ReturnModule } from './return/return.module';
 import { CatalogFeedModule } from './catalog-feed/catalog-feed.module';
 import { CommunicationsModule } from './communications/communications.module';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -32,6 +33,7 @@ import { CommunicationsModule } from './communications/communications.module';
     ReturnModule,
     CatalogFeedModule,
     CommunicationsModule,
+    ComponentModule,
   ],
   exports: [],
 })

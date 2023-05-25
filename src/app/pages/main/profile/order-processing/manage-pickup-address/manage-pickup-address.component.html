@@ -6,109 +6,112 @@
     <a (click)="backButton('profile')">Order processing</a>
   </nz-breadcrumb-item>
   <nz-breadcrumb-item>
-    <a>shipout location</a>
+    <a>Shipout location</a>
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 
 <div class="manage-pickup-address">
-  <div class="button-group">
-    <button
-      (click)="addPickupAddress('Add', '')"
-      nz-button
-      nzType="primary"
-      class="action-button"
-      style="line-height: 0.5; margin-top: 0"
+  <app-section-header [header]="'Shipout location'"></app-section-header>
+  <div class="body-section">
+    <div class="button-group">
+      <button
+        (click)="addPickupAddress('Add', '')"
+        nz-button
+        nzType="primary"
+        class="action-button"
+        style="line-height: 0.5; margin-top: 0"
+      >
+        <span nz-icon nzType="plus"></span> Add Pickup Address
+      </button>
+    </div>
+
+    <nz-table
+      #nzTable
+      nzOuterBordered
+      [nzData]="shipOut"
+      nzShowSizeChanger
+      [nzPageSizeOptions]="pageSizeOptions"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzLoading]="isLoading"
+      [nzScroll]="{ x: '100%' }"
     >
-      <span nz-icon nzType="plus"></span> Add Pickup Address
-    </button>
-  </div>
-
-  <nz-table
-    #nzTable
-    nzOuterBordered
-    [nzData]="shipOut"
-    nzShowSizeChanger
-    [nzPageSizeOptions]="pageSizeOptions"
-    [nzFrontPagination]="false"
-    [nzTotal]="total"
-    [nzPageSize]="pageSize"
-    [nzPageIndex]="pageIndex"
-    [nzLoading]="isLoading"
-    [nzScroll]="{ x: '100%' }"
-  >
-    <thead>
-      <tr>
-        <th>Address Nickname</th>
-        <th>Location Id</th>
-        <th>Active/Inactive</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-template ngFor let-data [ngForOf]="shipOut">
+      <thead>
         <tr>
-          <td>{{ data?.address_nickname }}</td>
-          <td>{{ data?.location_id }}</td>
-          <td>
-            <nz-switch
-              nzSize="small"
-              [ngModel]="data.activeStatus"
-              (ngModelChange)="switchChange()"
-            ></nz-switch>
-          </td>
-          <td>
-            <a
-              style="margin: 0 5px; color: #2121c3"
-              (click)="addPickupAddress('Edit', data)"
-              ><span nz-icon nzType="edit" nzTheme="outline"></span
-            ></a>
-            <a
-              style="margin: 0 5px; color: #2121c3"
-              (click)="addPickupAddress('View', data)"
-              ><span nz-icon nzType="eye" nzTheme="outline"></span
-            ></a>
-          </td>
+          <th>Address Nickname</th>
+          <th>Location Id</th>
+          <th>Active/Inactive</th>
+          <th>Action</th>
         </tr>
-      </ng-template>
-    </tbody>
-  </nz-table>
-</div>
-
-<nz-modal
-  [nzStyle]="{ top: '20px' }"
-  [(nzVisible)]="addAddressVisible"
-  [nzTitle]="modelHeader + ' Pickup Address'"
-  (nzOnCancel)="handleCancel()"
-  nzWidth="70%"
->
-  <div *nzModalContent>
-    <app-add-pickup-address
-      [editData]="editData"
-      [modelHeader]="modelHeader"
-      (closeModel)="handleCancel()"
-    ></app-add-pickup-address>
+      </thead>
+      <tbody>
+        <ng-template ngFor let-data [ngForOf]="shipOut">
+          <tr>
+            <td>{{ data?.address_nickname }}</td>
+            <td>{{ data?.location_id }}</td>
+            <td>
+              <nz-switch
+                nzSize="small"
+                [ngModel]="data.activeStatus"
+                (ngModelChange)="switchChange()"
+              ></nz-switch>
+            </td>
+            <td>
+              <a
+                style="margin: 0 5px; color: #2121c3"
+                (click)="addPickupAddress('Edit', data)"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
+              <a
+                style="margin: 0 5px; color: #2121c3"
+                (click)="addPickupAddress('View', data)"
+                ><span nz-icon nzType="eye" nzTheme="outline"></span
+              ></a>
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </nz-table>
   </div>
-</nz-modal>
 
-<nz-modal
-  [(nzVisible)]="uploadModelVisible"
-  nzTitle="The first Modal"
-  (nzOnCancel)="handleCancel()"
->
-  <ng-container *nzModalContent>
-    <app-upload-model (closeModel)="handleCancel()"></app-upload-model>
-  </ng-container>
-</nz-modal>
+  <nz-modal
+    [nzStyle]="{ top: '20px' }"
+    [(nzVisible)]="addAddressVisible"
+    [nzTitle]="modelHeader + ' Pickup Address'"
+    (nzOnCancel)="handleCancel()"
+    nzWidth="70%"
+  >
+    <div *nzModalContent>
+      <app-add-pickup-address
+        [editData]="editData"
+        [modelHeader]="modelHeader"
+        (closeModel)="handleCancel()"
+      ></app-add-pickup-address>
+    </div>
+  </nz-modal>
 
-<nz-modal
-  [(nzVisible)]="viewAddressVisible"
-  nzTitle="View Pickup Address"
-  (nzOnCancel)="handleCancel()"
->
-  <ng-container *nzModalContent>
-    <app-view-pickup-address
-      [viewData]="viewData"
-      (closeModel)="handleCancel()"
-    ></app-view-pickup-address>
-  </ng-container>
-</nz-modal>
+  <nz-modal
+    [(nzVisible)]="uploadModelVisible"
+    nzTitle="The first Modal"
+    (nzOnCancel)="handleCancel()"
+  >
+    <ng-container *nzModalContent>
+      <app-upload-model (closeModel)="handleCancel()"></app-upload-model>
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal
+    [(nzVisible)]="viewAddressVisible"
+    nzTitle="View Pickup Address"
+    (nzOnCancel)="handleCancel()"
+  >
+    <ng-container *nzModalContent>
+      <app-view-pickup-address
+        [viewData]="viewData"
+        (closeModel)="handleCancel()"
+      ></app-view-pickup-address>
+    </ng-container>
+  </nz-modal>
+</div>

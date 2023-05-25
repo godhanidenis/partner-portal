@@ -11,55 +11,53 @@
 </nz-breadcrumb>
 
 <div class="certi-of-insurance-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Certificate of Insurance</span>
-    </div>
-  </div>
+  <app-section-header
+    [header]="'Certificate of Insurance'"
+  ></app-section-header>
 
   <div class="body-section">
     <div nz-row [nzGutter]="16">
       <div nz-col nz-col class="gutter-row" [nzSpan]="12">
         <nz-descriptions class="vertical-sec">
-        <nz-descriptions-item nzTitle="Provider"
-        ><b>{{
-          certiOfInsuranceDate.producerNameAddress
-        }}</b></nz-descriptions-item
-      >
-        <nz-descriptions-item nzTitle="Insured Identification Number"
-          ><b>{{
-            certiOfInsuranceDate.insuredNameAddress
-          }}</b></nz-descriptions-item
-        >
-        <nz-descriptions-item nzTitle="Date insured"
-          ><b>{{ certiOfInsuranceDate.dateInsured }}</b></nz-descriptions-item
-        >
-        <nz-descriptions-item nzTitle="Classification"
-          ><b>{{
-            certiOfInsuranceDate.classification
-          }}</b></nz-descriptions-item
-        >
+          <nz-descriptions-item nzTitle="Provider"
+            ><b>{{
+              certiOfInsuranceDate.producerNameAddress
+            }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="Insured Identification Number"
+            ><b>{{
+              certiOfInsuranceDate.insuredNameAddress
+            }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="Date insured"
+            ><b>{{ certiOfInsuranceDate.dateInsured }}</b></nz-descriptions-item
+          >
+          <nz-descriptions-item nzTitle="Classification"
+            ><b>{{
+              certiOfInsuranceDate.classification
+            }}</b></nz-descriptions-item
+          >
         </nz-descriptions>
       </div>
 
-      <div style="margin-left: 100px;" nz-col class="gutter-row" [nzSpan]="10">
-        <nz-descriptions> 
-            <nz-descriptions-item nzTitle="Document Type" class="ab"
+      <div style="margin-left: 100px" nz-col class="gutter-row" [nzSpan]="10">
+        <nz-descriptions>
+          <nz-descriptions-item nzTitle="Document Type" class="ab"
             ><b
               >{{ certiOfInsuranceDate.documentType }}
 
               <a> download</a>
-            </b></nz-descriptions-item>
+            </b></nz-descriptions-item
+          >
         </nz-descriptions>
       </div>
     </div>
-    <div nz-row style="margin-top: 30px;">
+    <div nz-row style="margin-top: 30px">
       <div>
-        <span style="color:red">For any changes in COI&nbsp;<a>click here</a></span>
+        <span style="color: red"
+          >For any changes in COI&nbsp;<a>click here</a></span
+        >
       </div>
     </div>
-    
-
-      
   </div>
 </div>

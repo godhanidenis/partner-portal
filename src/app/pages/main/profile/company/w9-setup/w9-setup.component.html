@@ -10,11 +10,8 @@
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 <div class="co-op-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>W9 Set up</span>
-    </div>
-  </div>
+  <app-section-header [header]="'W9 Set up'"></app-section-header>
+
   <div class="body-section">
     <div nz-row [nzGutter]="16">
       <div nz-col nz-col class="gutter-row" [nzSpan]="12">
@@ -35,7 +32,7 @@
           >
           <nz-descriptions-item nzTitle="Classification" class="tax-add-ticket"
             ><b>{{ w9SetUpDate.classification }}</b></nz-descriptions-item
-          > 
+          >
         </nz-descriptions>
       </div>
 
@@ -50,11 +47,12 @@
           >
         </nz-descriptions>
       </div>
-
     </div>
-    <div nz-row style="margin-top: 30px;">
+    <div nz-row style="margin-top: 30px">
       <div>
-        <span style="color:red">For any changes in W8/W9&nbsp;<a>click here</a></span>
+        <span style="color: red"
+          >For any changes in W8/W9&nbsp;<a>click here</a></span
+        >
       </div>
     </div>
   </div>

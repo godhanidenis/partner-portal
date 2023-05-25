@@ -8,11 +8,8 @@
 </nz-breadcrumb>
 
 <div class="map-conflict-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>MAP Conflict</span>
-    </div>
-  </div>
+  <app-section-header [header]="'MAP Conflict'"></app-section-header>
+
   <div class="body-section">
     <div class="button-group">
       <button
@@ -81,8 +78,12 @@
           <td>{{ data?.upc }}</td>
           <td>{{ data?.productName }}</td>
           <td>{{ data?.amazonASIN }}</td>
-          <td>{{ data?.partnerMAPProvidedTo123Stores }}</td>
-          <td>{{ data?.retailPriceOnAmazonOfferedByConflictingProvider }}</td>
+          <td>{{ data?.partnerMAPProvidedTo123Stores | currency }}</td>
+          <td>
+            {{
+              data?.retailPriceOnAmazonOfferedByConflictingProvider | currency
+            }}
+          </td>
           <td>{{ data?.noOfConflictingProviders }}</td>
           <td>{{ data?.conflictingProviders }}</td>
         </tr>
