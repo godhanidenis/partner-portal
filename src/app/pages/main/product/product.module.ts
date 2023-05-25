@@ -31,6 +31,6 @@ import { AddEditMultipleProductsComponent } from './view-list-filter/add-edit-mu
     OrderProcessingModule,
     SharedModule,
   ],
-  exports: [],
+  exports: [AddEditMultipleProductsComponent],
 })
 export class ProductModule {}

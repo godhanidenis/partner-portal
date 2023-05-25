@@ -24,13 +24,13 @@ export class HomeSectionComponent implements OnInit {
       id: 2,
       name: 'Unit Price Conflict',
       count: 34,
-      url: '',
+      url: 'dashboard/unit-price-conflict',
     },
     {
       id: 3,
       name: 'MAP Conflict',
       count: 51,
-      url: '',
+      url: 'dashboard/map-conflict',
     },
     {
       id: 4,
@@ -42,7 +42,7 @@ export class HomeSectionComponent implements OnInit {
       id: 5,
       name: '123Stores Restricted (Discontinued via Order Cancellation)',
       count: 14,
-      url: '',
+      url: 'dashboard/restricted-discontinued',
     },
     {
       id: 6,
@@ -54,37 +54,37 @@ export class HomeSectionComponent implements OnInit {
       id: 7,
       name: '123Stores Restricted (Cannot Ship Ground via Order Cancellation)',
       count: 24,
-      url: '',
+      url: 'dashboard/restricted-cannot-ship-ground',
     },
     {
       id: 8,
       name: '123Stores Restricted via Returns',
       count: 13,
-      url: '',
+      url: 'dashboard/restricted-via-returns',
     },
     {
       id: 9,
       name: 'Incomplete Offer',
       count: 12,
-      url: '',
+      url: 'dashboard/incomplete-offer',
     },
     {
       id: 10,
       name: 'Products for which Data is incomplete Stranded (In-Feed)',
       count: 43,
-      url: '',
+      url: 'dashboard/stranded-in-feed',
     },
     {
       id: 11,
       name: 'Products for which Data is incomplete Stranded (In-Catalog)',
       count: 34,
-      url: '',
+      url: 'dashboard/stranded-in-catalog',
     },
     {
       id: 12,
       name: 'Discontinued Update',
       count: 42,
-      url: '',
+      url: 'dashboard/discontinued-update',
     },
   ];
 

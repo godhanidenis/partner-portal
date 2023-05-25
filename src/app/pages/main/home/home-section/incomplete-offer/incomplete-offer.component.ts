@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'app-handling-time-conflict',
-  templateUrl: './handling-time-conflict.component.html',
-  styleUrls: ['./handling-time-conflict.component.scss'],
+  selector: 'app-incomplete-offer',
+  templateUrl: './incomplete-offer.component.html',
+  styleUrls: ['./incomplete-offer.component.scss'],
 })
-export class HandlingTimeConflictComponent implements OnInit {
+export class IncompleteOfferComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
@@ -20,61 +20,27 @@ export class HandlingTimeConflictComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  returnLocationList = [
+  incompleteOfferList = [
     {
       id: 1,
-      mpn: 'SLLD006A',
-      upc: '789313418718',
-      product_Name: '6 OZ LADDON PLASTIC I PC HANDLE, BLACK',
-      amazonASIN: 'B0002LI630',
-      partnerHandlingTimeProvided: '5',
-      conflictingHandlingTime: '2',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'McDonald Paper Restaurant Supplies',
+      mpn: '19001BK',
+      upc: '789313037049',
+      product_Name:
+        '2 OZ, 3 3/4 In X 2 1/2 In SAUCE DISH, BLACK, DOZEN 19001BK',
+      amazonASIN: 'B07YZPY8C6',
+      amazonMPN: '19001BK',
+      amazonPageTitle:
+        'Thunder Group 2 OZ, 3 3/4" X 2 1/2" Sauce Dish, Black - Set of 12',
     },
     {
       id: 2,
-      mpn: 'STPA3144',
-      upc: '789313308415',
-      product_Name: 'QUARTER SIZE 4 DEEP 24 GAUGE ANTI JAM PANS',
-      amazonASIN: 'B000KI7SM0',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'MVTRADINGONLINE(USA)',
-    },
-    {
-      id: 3,
-      mpn: 'SLSS009',
-      upc: '789313286010',
-      product_Name: 'SEA SHELL DINNER KNIFE',
-      amazonASIN: 'B000KI8DQA',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '2',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'AI1OVA136FLJU',
-    },
-    {
-      id: 4,
-      mpn: 'ALPMA012',
-      upc: '789313157310',
-      product_Name: 'SLICE PIE MAKER, 12 CUT',
-      amazonASIN: 'B000KIAJQW',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '2',
-      conflictingProviders: 'MVTRADINGONLINE(USA),9Grace',
-    },
-    {
-      id: 5,
-      mpn: 'ALTWSC024',
-      upc: '789313171910',
-      product_Name: '24 OZ ALUMINUM SCOOP',
-      amazonASIN: 'B000KIDRP2',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '2',
-      conflictingProviders: 'MVTRADINGONLINE(USA),9Grace',
+      mpn: '19002BK',
+      upc: '789313037148',
+      product_Name: '4 OZ, 6 In X 3 In TWIN SAUCE DISH, BLACK, DOZEN 19002BK',
+      amazonASIN: 'B07YZPG3V1',
+      amazonMPN: '19002BK',
+      amazonPageTitle:
+        'Thunder Group 4 OZ, 6" X 3" Twin Sauce Dish, Black - Set of 12',
     },
   ];
   editData: any;
@@ -106,26 +72,6 @@ export class HandlingTimeConflictComponent implements OnInit {
 
   constructor(private router: Router, private modal: NzModalService) {}
   ngOnInit(): void {}
-
-  editValue(event: any, id: number) {
-    if (event.keyCode === 13) {
-      this.returnLocationList = this.returnLocationList.map((res: any) => {
-        if (res.id === id) {
-          res.partnerHandlingTimeProvided = event.target.value;
-        }
-        return res;
-      });
-    }
-  }
-
-  matchValue(matchData: string, id: number) {
-    this.returnLocationList = this.returnLocationList.map((res: any) => {
-      if (res.id === id) {
-        res.partnerHandlingTimeProvided = matchData;
-      }
-      return res;
-    });
-  }
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-  selector: 'app-handling-time-conflict',
-  templateUrl: './handling-time-conflict.component.html',
-  styleUrls: ['./handling-time-conflict.component.scss'],
+  selector: 'app-restricted-discontinued',
+  templateUrl: './restricted-discontinued.component.html',
+  styleUrls: ['./restricted-discontinued.component.scss'],
 })
-export class HandlingTimeConflictComponent implements OnInit {
+export class RestrictedDiscontinuedComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
@@ -20,61 +20,15 @@ export class HandlingTimeConflictComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  returnLocationList = [
+  restrictedDiscontinuedList = [
     {
       id: 1,
-      mpn: 'SLLD006A',
-      upc: '789313418718',
-      product_Name: '6 OZ LADDON PLASTIC I PC HANDLE, BLACK',
-      amazonASIN: 'B0002LI630',
-      partnerHandlingTimeProvided: '5',
-      conflictingHandlingTime: '2',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'McDonald Paper Restaurant Supplies',
-    },
-    {
-      id: 2,
-      mpn: 'STPA3144',
-      upc: '789313308415',
-      product_Name: 'QUARTER SIZE 4 DEEP 24 GAUGE ANTI JAM PANS',
-      amazonASIN: 'B000KI7SM0',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'MVTRADINGONLINE(USA)',
-    },
-    {
-      id: 3,
-      mpn: 'SLSS009',
-      upc: '789313286010',
-      product_Name: 'SEA SHELL DINNER KNIFE',
-      amazonASIN: 'B000KI8DQA',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '2',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'AI1OVA136FLJU',
-    },
-    {
-      id: 4,
-      mpn: 'ALPMA012',
-      upc: '789313157310',
-      product_Name: 'SLICE PIE MAKER, 12 CUT',
-      amazonASIN: 'B000KIAJQW',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '2',
-      conflictingProviders: 'MVTRADINGONLINE(USA),9Grace',
-    },
-    {
-      id: 5,
-      mpn: 'ALTWSC024',
-      upc: '789313171910',
-      product_Name: '24 OZ ALUMINUM SCOOP',
-      amazonASIN: 'B000KIDRP2',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '2',
-      conflictingProviders: 'MVTRADINGONLINE(USA),9Grace',
+      mpn: '5317',
+      upc: '027061215563',
+      product_Name: 'Genuine Teak Wood Bench Seat Hamper',
+      amazonASIN: 'B0187L63CC',
+      reasonForRestriction: 'Discontinued via Order Cancellation',
+      dateOfRestriction: '',
     },
   ];
   editData: any;
@@ -106,26 +60,6 @@ export class HandlingTimeConflictComponent implements OnInit {
 
   constructor(private router: Router, private modal: NzModalService) {}
   ngOnInit(): void {}
-
-  editValue(event: any, id: number) {
-    if (event.keyCode === 13) {
-      this.returnLocationList = this.returnLocationList.map((res: any) => {
-        if (res.id === id) {
-          res.partnerHandlingTimeProvided = event.target.value;
-        }
-        return res;
-      });
-    }
-  }
-
-  matchValue(matchData: string, id: number) {
-    this.returnLocationList = this.returnLocationList.map((res: any) => {
-      if (res.id === id) {
-        res.partnerHandlingTimeProvided = matchData;
-      }
-      return res;
-    });
-  }
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';

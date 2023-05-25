@@ -1,0 +1,68 @@
+<div class="home-filter-tag">
+  <nz-tag
+    *ngIf="selectInventory"
+    nzMode="closeable"
+    (nzOnClose)="close('inventory')"
+    >{{ selectInventory }}</nz-tag
+  >
+
+  <nz-tag *ngIf="selectAsin" nzMode="closeable" (nzOnClose)="close('asin')">{{
+    selectAsin
+  }}</nz-tag>
+
+  <nz-tag
+    *ngIf="selectStatus"
+    nzMode="closeable"
+    (nzOnClose)="close('Selectstatus')"
+  >
+    {{ selectStatus }}
+  </nz-tag>
+
+  <nz-tag *ngIf="selectMap" nzMode="closeable" (nzOnClose)="close('map')">{{
+    selectMap === "true" ? "MAP-Yes" : "MAP-No"
+  }}</nz-tag>
+
+  <nz-tag
+    *ngIf="selectBrand"
+    nzMode="closeable"
+    (nzOnClose)="close('selectBrand')"
+    >{{ selectBrand }}</nz-tag
+  >
+
+  <nz-tag
+    *ngIf="selectCollection"
+    nzMode="closeable"
+    (nzOnClose)="close('selectCollection')"
+    >{{ selectCollection }}</nz-tag
+  >
+
+  <nz-tag
+    *ngIf="selectCategory"
+    nzMode="closeable"
+    (nzOnClose)="close('selectCategory')"
+    >{{ selectCategory }}</nz-tag
+  >
+
+  <nz-tag
+    *ngIf="selectSalesTire"
+    nzMode="closeable"
+    (nzOnClose)="close('selectSales')"
+    >{{ selectSalesTire }}</nz-tag
+  >
+
+  <button
+    *ngIf="badgeTotal >= 1"
+    nz-button
+    nzType="default"
+    (click)="tagDelete()"
+    style="
+      float: none;
+      background-color: white;
+      color: #1221c3;
+      border: 1px solid #1221c3;
+    "
+    class="action-button clear-btn"
+  >
+    clear
+  </button>
+</div>

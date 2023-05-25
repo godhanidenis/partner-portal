@@ -3,14 +3,14 @@
     <a (click)="backButton('dashboard')">Dashboard</a>
   </nz-breadcrumb-item>
   <nz-breadcrumb-item>
-    <a>Handling Time Conflict</a>
+    <a>Stranded In Feed</a>
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 
-<div class="handling-time-conflict-section">
+<div class="stranded-in-feed-section">
   <div class="user-content">
     <div class="tab-header">
-      <span>Handling Time Conflict</span>
+      <span>Stranded In Feed</span>
     </div>
   </div>
   <div class="body-section">
@@ -51,7 +51,7 @@
     <nz-table
       #nzTable
       nzOuterBordered
-      [nzData]="returnLocationList"
+      [nzData]="strandedInFeedList"
       nzShowSizeChanger
       [nzPageSizeOptions]="pageSizeOptions"
       [nzFrontPagination]="false"
@@ -65,55 +65,14 @@
         <tr>
           <th>Serial No.</th>
           <th>MPN</th>
-          <th>UPC</th>
-          <th>Product_Name</th>
-          <th>Amazon ASIN</th>
-          <th>Partner Handling Time provided to 123Stores (Days)</th>
-          <th>
-            Conflicting Handling Time on Amazon offered by Conflicting Provider
-            (Days)
-          </th>
-          <th>No. of Conflicting Providers</th>
-          <th>Conflicting Providers</th>
-          <th>Actions</th>
+          <th>Stock</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data; let no = index">
           <td>{{ no + 1 }}</td>
           <td>{{ data?.mpn }}</td>
-          <td>{{ data?.upc }}</td>
-          <td>{{ data?.product_Name }}</td>
-          <td>{{ data?.amazonASIN }}</td>
-          <td>
-            <nz-form-item>
-              <nz-form-control>
-                <nz-input-group>
-                  <input
-                    [ngModel]="data?.partnerHandlingTimeProvided"
-                    type="number"
-                    nz-input
-                    placeholder="Enter No"
-                    (keypress)="editValue($event, data.id)"
-                  />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
-          </td>
-          <td>{{ data?.conflictingHandlingTime }}</td>
-          <td>{{ data?.noOfConflictingProviders }}</td>
-          <td>{{ data?.conflictingProviders }}</td>
-          <td>
-            <button
-              nz-button
-              nzType="primary"
-              class="action-button"
-              style="margin-top: 0; height: 35px"
-              (click)="matchValue(data.conflictingHandlingTime, data.id)"
-            >
-              Match
-            </button>
-          </td>
+          <td>{{ data?.stock }}</td>
         </tr>
       </tbody>
     </nz-table>
