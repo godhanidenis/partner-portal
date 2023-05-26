@@ -4,6 +4,63 @@
   <app-section-header
     [header]="'Notification Preferences'"
   ></app-section-header>
+  <div nz-row style="margin-top: 10px;margin-left: 20px;padding-left: 1%;">
+    <div nz-col [nzXl]="4">
+      <nz-form-item nz-col class="gutter-row" style="margin:0;margin-right: 20px;">
+        <nz-form-control>
+          <nz-input-group>
+            <nz-select
+              nzAllowClear
+              formControlName="quick_action"
+              nzPlaceHolder="Select Quick Action"
+            >
+            <nz-option nzLabel="Add TO All" nzValue="add_all"></nz-option>
+            <nz-option nzLabel="Remove From All" nzValue="remove_all"></nz-option>
+            <nz-option nzLabel="Find & Replace" nzValue="find_replace"></nz-option>
+            </nz-select>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXl]="5">
+      <nz-form-item style="margin:0;">
+        <nz-form-control nzErrorTip="Email is required!">
+          <nz-input-group>
+            <input
+              type="text"
+              nz-input
+              placeholder="Enter email to repalce"
+              formControlName="email"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXl]="5">
+      <nz-form-item style="margin:0;margin-left: 5px;">
+        <nz-form-control nzErrorTip="Email is required!">
+          <nz-input-group>
+            <input
+              type="text"
+              nz-input
+              placeholder="Enter email to be replaced with"
+              formControlName="email"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXl]="4">
+      <button
+        nz-button
+        class="action-button"
+        style="height: 32px;margin-top: 0px;margin-left: 5px;"
+        [nzType]="'primary'"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
 
   <div class="body-section">
     <form [formGroup]="notificationForm">
@@ -15,7 +72,7 @@
         <div
           nz-col
           class="gutter-row notification-label"
-          [nzXl]="10"
+          [nzXl]="8"
           [nzXs]="24"
         >
           {{ i + 1 + ". " + data?.label }}
@@ -24,18 +81,14 @@
           style="padding-left: 1%"
           nz-col
           class="gutter-row"
-          [nzXl]="12"
+          [nzXl]="8"
           [nzXs]="24"
           [formArrayName]="formArrayName[i]"
         >
-          <nz-form-label [nzFor]="formArrayName[i]">Email List</nz-form-label>
-          <div *ngFor="let email of data.formArray.controls; let no = index">
-            <div [formGroupName]="no">
+          <div *ngFor="let email of data.formArray.controls; let no = index" style="display: flex;">
+            <div [formGroupName]="no" style="width: 100%;">
               <nz-form-item>
-                <nz-form-control
-                  nzErrorTip="Email is required!"
-                  style="width: 80%"
-                >
+                <nz-form-control nzErrorTip="Email is required!">
                   <nz-input-group>
                     <input
                       type="text"
@@ -45,37 +98,55 @@
                     />
                   </nz-input-group>
                 </nz-form-control>
-                <a
-                  *ngIf="no === data.formArray.controls.length - 1"
-                  style="background: #00c13b"
-                  (click)="addNotification(i + 1)"
+                <!-- <a
+                  
                 >
                   +
                 </a>
                 <a
-                  *ngIf="no !== data.formArray.controls.length - 1"
-                  style="background: #f41e2c"
-                  (click)="removeNotification(no, i + 1)"
+                 
                 >
                   -
-                </a>
+                </a> -->
               </nz-form-item>
             </div>
+            <button
+                nz-button
+                nzType="primary"
+                nzShape="circle"
+                *ngIf="no === data.formArray.controls.length - 1"
+                style="background: #00c13b;margin-top: 8px;margin-left: 8px;"
+                (click)="addNotification(i + 1)"
+                nzSize="small"
+              >
+                <span nz-icon nzType="plus"></span>
+              </button>
+              <button
+                nz-button
+                nzType="primary"
+                nzShape="circle"
+                *ngIf="no !== data.formArray.controls.length - 1"
+                style="background: #f41e2c;margin-top: 8px;margin-left: 8px;"
+                (click)="removeNotification(no, i + 1)"
+                nzSize="small"
+              >
+                <span nz-icon nzType="plus"></span>
+              </button>
           </div>
         </div>
       </div>
-      <div nz-row>
-        <div nz-col [nzXs]="24">
-          <button
-            nz-button
-            class="action-button"
-            style="height: 35px"
-            [nzType]="'primary'"
-          >
-            <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
-          </button>
-        </div>
-      </div>
     </form>
+  </div>
+  <div nz-row style="padding-left:20px;">
+    <div nz-col [nzXs]="24">
+      <button
+        nz-button
+        class="action-button"
+        style="height: 35px;margin-left: 1%;margin-bottom: 1%;"
+        [nzType]="'primary'"
+      >
+        <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
+      </button>
+    </div>
   </div>
 </div>
