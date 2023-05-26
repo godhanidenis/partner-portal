@@ -16,8 +16,17 @@
             margin-bottom: 10px;
 
             .description {
-                max-width: 40%;
+                max-width: 50%;
+
+                @media screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+                    max-width: 45%;
+                }
+
+                @media screen and (min-device-width: 1440px) {
+                    max-width: 40%;
+                }
             }
+
 
             button {
                 border-radius: 5px;

@@ -34,7 +34,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   backButton(path: string, index: number) {
-    if (index === 0) {
+    if (this.breadcrumbList.length - 1 !== index) {
       this.router.navigate([`/main/${path}`]);
     }
   }
