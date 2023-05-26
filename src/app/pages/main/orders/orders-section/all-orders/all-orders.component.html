@@ -43,15 +43,31 @@
       <tbody>
         <tr *ngFor="let data of nzTable.data">
           <td>
-            <a style="color: #1221c3"
-              ><u
-                ><b>{{ data.poNumber }}</b></u
-              ></a
-            >
+            <div style="display: flex; flex-direction: column">
+              <span>
+                <a style="color: #1221c3"
+                  ><u
+                    ><b>{{ data.poNumber }}</b></u
+                  ></a
+                >
+              </span>
+              <span class="sub-date"> 05-11-2023 | 04:52 PM </span>
+              <span class="sub-date"> EDI </span>
+            </div>
           </td>
-          <td>{{ data.customerName }}</td>
-          <td>{{ data.products }}</td>
-          <td>$ {{ data.poTotal }}</td>
+          <td><div style="display: flex; flex-direction: column">
+            <div>{{ data.customerName }}</div>
+            <div>{{ data.address }}</div>
+          </div></td>
+          <td>{{ data.products }}<ul class="sub-section">
+            <li class="no-wrap">
+              <div class="sub-val">
+                <span class="title">Qty&nbsp;&nbsp;-&nbsp;</span
+                >{{ data?.quantity }}
+              </div>
+            </li>
+          </ul></td>
+          <td>{{ data.poTotal | currency}}</td>
           <td>
             <div>
               <b>{{ data.shippingDetails.name }}</b>

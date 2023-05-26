@@ -23,8 +23,10 @@ export class DeliveredComponent implements OnInit {
     {
       id: 1,
       poNumber: 'CLP 4031',
-      customerName: 'AB Kajaria Miami',
-      products: '89932 Qty- 1',
+      customerName: 'AB Kajaria',
+      address:'Miami, Florida',
+      products: '89932',
+      quantity:2,
       poTotal: '125.05',
       shippingDetails: {
         name: 'Ekart Logistics',
@@ -35,8 +37,10 @@ export class DeliveredComponent implements OnInit {
     {
       id: 2,
       poNumber: 'CLP 4035',
-      customerName: 'Nidhi Miami',
-      products: '89932 Qty- 2',
+      customerName: 'Nidhi',
+      address:'Miami, Florida',
+      products: '89932',
+      quantity:2,
       poTotal: '80.50',
       shippingDetails: {
         name: 'Ekart Logistics',
