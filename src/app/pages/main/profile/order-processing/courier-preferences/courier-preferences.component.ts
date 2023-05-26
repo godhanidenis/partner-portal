@@ -33,8 +33,4 @@ export class CourierPreferencesComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-
-  backButton(path: string) {
-    this.router.navigate([`/main/${path}`]);
-  }
 }

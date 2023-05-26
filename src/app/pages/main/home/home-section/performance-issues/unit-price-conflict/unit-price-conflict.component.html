@@ -1,0 +1,126 @@
+<app-breadcrumb></app-breadcrumb>
+
+<div class="unit-price-conflict-section">
+  <app-section-header [header]="'Unit Price Conflict'"></app-section-header>
+
+  <div class="body-section">
+    <div class="button-group">
+      <div class="description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita
+        aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.
+        Quae dolores error nemo tenetur assumenda similique molestias beatae
+        dicta.
+      </div>
+      <button
+        nz-button
+        nzType="primary"
+        class="action-button"
+        style="margin-top: 0"
+        (click)="isMultipleProductsVisible = true"
+      >
+        <span nz-icon nzType="plus"></span> Add Multi Product Edit
+      </button>
+    </div>
+
+    <app-home-filter-action
+      [badgeTotal]="badgeTotal"
+      (showFilter)="openNav()"
+      [issueName]="'Handling Time Conflict'"
+    ></app-home-filter-action>
+
+    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+      <app-home-filter-tag
+        (closeTag)="close($event)"
+        (tagRemove)="removeAll()"
+        [badgeTotal]="badgeTotal"
+        [selectInventory]="selectInventory"
+        [selectAsin]="selectAsin"
+        [selectStatus]="selectStatus"
+        [selectMap]="selectMap"
+        [selectBrand]="selectBrand"
+        [selectCollection]="selectCollection"
+        [selectCategory]="selectCategory"
+        [selectSalesTire]="selectSalesTire"
+      ></app-home-filter-tag>
+    </div>
+
+    <nz-table
+      #nzTable
+      nzOuterBordered
+      [nzData]="unitPriceConflictList"
+      nzShowSizeChanger
+      [nzPageSizeOptions]="pageSizeOptions"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzLoading]="isLoading"
+      [nzScroll]="{ x: '100%' }"
+    >
+      <thead>
+        <tr>
+          <th>Amazon ASIN</th>
+          <th>Unit Price provided to 123Stores</th>
+          <th>Allowance provided to 123Stores</th>
+          <th>Net Unit Price provided to 123Stores</th>
+          <th>Retail Price on Amazon offered by Conflicting Provider</th>
+          <th>No. of Conflicting Providers</th>
+          <th>Conflicting Providers</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data">
+          <td>{{ data?.amazonASIN }}</td>
+          <td>{{ data?.unitPriceProvidedTo123Stores | currency }}</td>
+          <td>{{ data?.allowanceProvidedTo123Stores }}</td>
+          <td>{{ data?.netUnitPriceProvidedTo123Stores | currency }}</td>
+          <td>
+            {{
+              data?.retailPriceOnAmazonOfferedByConflictingProvider | currency
+            }}
+          </td>
+          <td>{{ data?.noOfConflictingProviders }}</td>
+          <td>{{ data?.conflictingProviders }}</td>
+          <td>
+            <button
+              nz-button
+              nzType="primary"
+              class="action-button"
+              style="margin-top: 0; height: 35px"
+            >
+              Match
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <div #mySidenav class="filter-section">
+      <app-home-filter-section
+        (toggleFilter)="closeNav()"
+        (changeData)="change($event)"
+        [inventory]="selectInventory"
+        [asin]="selectAsin"
+        [status]="selectStatus"
+        [map]="selectMap"
+        [brand]="selectBrand"
+        [collection]="selectCollection"
+        [category]="selectCategory"
+        [salesTire]="selectSalesTire"
+        [issueName]="'Handling Time Conflict'"
+      ></app-home-filter-section>
+    </div>
+  </div>
+  <nz-modal
+    [(nzVisible)]="isMultipleProductsVisible"
+    nzTitle="Add / Edit Multi Product"
+    (nzOnCancel)="isMultipleProductsVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-add-edit-multiple-products
+        (closeModel)="isMultipleProductsVisible = false"
+      ></app-add-edit-multiple-products>
+    </ng-container>
+  </nz-modal>
+</div>

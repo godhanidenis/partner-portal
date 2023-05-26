@@ -1,0 +1,126 @@
+<app-breadcrumb></app-breadcrumb>
+
+<div class="lack-of-sales-demand-section">
+  <app-section-header [header]="'Lack Of Sales Demand'"></app-section-header>
+
+  <div class="body-section">
+    <div class="button-group">
+      <button
+        nz-button
+        nzType="primary"
+        class="action-button"
+        style="margin-top: 0"
+        (click)="isMultipleProductsVisible = true"
+      >
+        <span nz-icon nzType="plus"></span> Add Multi Product Edit
+      </button>
+    </div>
+
+    <app-home-filter-action
+      [badgeTotal]="badgeTotal"
+      (showFilter)="openNav()"
+      [issueName]="'Price Correction'"
+    ></app-home-filter-action>
+
+    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+      <app-home-filter-tag
+        (closeTag)="close($event)"
+        (tagRemove)="removeAll()"
+        [badgeTotal]="badgeTotal"
+        [selectInventory]="selectInventory"
+        [selectAsin]="selectAsin"
+        [selectStatus]="selectStatus"
+        [selectMap]="selectMap"
+        [selectBrand]="selectBrand"
+        [selectCollection]="selectCollection"
+        [selectCategory]="selectCategory"
+        [selectSalesTire]="selectSalesTire"
+      ></app-home-filter-tag>
+    </div>
+
+    <nz-table
+      #nzTable
+      nzOuterBordered
+      [nzData]="lackOfSalesDemandList"
+      nzShowSizeChanger
+      [nzPageSizeOptions]="pageSizeOptions"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      [nzLoading]="isLoading"
+      [nzScroll]="{ x: '100%' }"
+    >
+      <thead>
+        <tr>
+          <th>Serial No.</th>
+          <th>MPN</th>
+          <th>UPC</th>
+          <th>ASIN</th>
+          <th>Product Name</th>
+          <th>Partner Unit Price provided to 123Stores</th>
+          <th>Allowances</th>
+          <th>Shipping Price</th>
+          <th>Amazon Market Place Fees</th>
+          <th>123Stores Listed Price</th>
+          <th>Retail Price on Amazon offered by Conflicting Provider</th>
+          <th>Discount or Promotion Required</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of nzTable.data; let no = index">
+          <td>{{ no + 1 }}</td>
+          <td>{{ data?.mpn }}</td>
+          <td>{{ data?.upc }}</td>
+          <td>{{ data?.asin }}</td>
+          <td>{{ data?.product_Name }}</td>
+          <td>{{ data?.partnerUnitPrice | currency }}</td>
+          <td>{{ data?.allowances }}</td>
+          <td>{{ data?.shippingPrice | currency }}</td>
+          <td>{{ data?.amazonMarketPlaceFees | currency }}</td>
+          <td>{{ data?.listedPrice | currency }}</td>
+          <td>{{ data?.retailPrice | currency }}</td>
+          <td>{{ data?.discount }}%</td>
+          <td>
+            <button
+              nz-button
+              nzType="primary"
+              class="action-button"
+              style="margin-top: 0; height: 35px"
+            >
+              Match
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <div #mySidenav class="filter-section">
+      <app-home-filter-section
+        (toggleFilter)="closeNav()"
+        (changeData)="change($event)"
+        [inventory]="selectInventory"
+        [asin]="selectAsin"
+        [status]="selectStatus"
+        [map]="selectMap"
+        [brand]="selectBrand"
+        [collection]="selectCollection"
+        [category]="selectCategory"
+        [salesTire]="selectSalesTire"
+        [issueName]="'Handling Time Conflict'"
+      ></app-home-filter-section>
+    </div>
+  </div>
+  <nz-modal
+    [(nzVisible)]="isMultipleProductsVisible"
+    nzTitle="Add / Edit Multi Product"
+    (nzOnCancel)="isMultipleProductsVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-add-edit-multiple-products
+        (closeModel)="isMultipleProductsVisible = false"
+      ></app-add-edit-multiple-products>
+    </ng-container>
+  </nz-modal>
+</div>

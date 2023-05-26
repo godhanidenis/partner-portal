@@ -172,10 +172,6 @@ export class ManagePickupAddressComponent implements OnInit {
     }
   }
 
-  backButton(path: string) {
-    this.router.navigate([`/main/${path}`]);
-  }
-
   handleCancel(): void {
     this.addAddressVisible = false;
     this.viewAddressVisible = false;
