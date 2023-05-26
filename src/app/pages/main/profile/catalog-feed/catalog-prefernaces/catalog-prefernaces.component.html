@@ -1,21 +1,7 @@
-<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Profile</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Catalog & Feed</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a>Catalog Prefernaces</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+<app-breadcrumb></app-breadcrumb>
 
 <div class="catalog-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Catalog Prefernaces</span>
-    </div>
-  </div>
+  <app-section-header [header]="'Catalog Preferences'"></app-section-header>
 
   <div class="catalog-content">
     <form nz-form [formGroup]="catalogForm">

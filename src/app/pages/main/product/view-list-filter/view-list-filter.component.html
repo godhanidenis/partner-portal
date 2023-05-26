@@ -1,10 +1,6 @@
 <div #section class="view-edit-products-section">
   <div class="content-section">
-    <div class="user-content">
-      <div class="tab-header">
-        <span>View Products</span>
-      </div>
-    </div>
+    <app-section-header [header]="'View Products'"></app-section-header>
 
     <div class="header-action-button">
       <button
@@ -22,7 +18,7 @@
         nzType="primary"
         nzShape="round"
         style="display: block"
-        (click)="navigatePage('product/view-list-filter/add-product')"
+        (click)="navigatePage('view-product/add-product')"
       >
         <span nz-icon nzType="plus" nzTheme="outline"></span>
         Add new Product
@@ -172,14 +168,12 @@
               <a
                 style="color: #2121c3"
                 (click)="
-                  navigatePage(
-                    'product/view-list-filter/view-single-product/' + data.id
-                  )
+                  navigatePage('view-product/view-single-product/' + data.id)
                 "
                 ><u>{{ data.productName }}</u></a
               >
             </td>
-            <td>{{ data.unitPrice }}</td>
+            <td>{{ data.unitPrice | currency }}</td>
             <td>{{ data.brand }}</td>
             <td>{{ data.productStatus }}</td>
             <td>{{ data.asinStatus }}</td>
@@ -404,7 +398,7 @@
 
   <nz-modal
     [(nzVisible)]="isImportVisible"
-    nzTitle="Import  product to your store"
+    nzTitle="Add / Edit multi product"
     (nzOnCancel)="handleCancel('import')"
   >
     <ng-container *nzModalContent>

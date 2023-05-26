@@ -5,10 +5,10 @@ import { AddEditProductComponent } from './view-list-filter/add-edit-product/add
 import { ViewSingleProductComponent } from './view-list-filter/view-single-product/view-single-product.component';
 
 const routes: Routes = [
-  { path: 'view-list-filter', component: ViewListFilterComponent },
-  { path: 'view-list-filter/add-product', component: AddEditProductComponent },
+  { path: '', component: ViewListFilterComponent },
+  { path: 'add-product', component: AddEditProductComponent },
   {
-    path: 'view-list-filter/view-single-product/:id',
+    path: 'view-single-product/:id',
     component: ViewSingleProductComponent,
   },
 ];

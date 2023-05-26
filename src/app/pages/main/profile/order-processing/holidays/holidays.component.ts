@@ -37,8 +37,4 @@ export class HolidaysComponent implements OnInit {
   removeHoliday(i: number) {
     this.holidayDetail.removeAt(i);
   }
-
-  backButton(path: string) {
-    this.router.navigate([`/main/${path}`]);
-  }
 }

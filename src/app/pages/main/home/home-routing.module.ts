@@ -1,13 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeSectionComponent } from './home-section/home-section.component';
-import { HandlingTimeConflictComponent } from './home-section/handling-time-conflict/handling-time-conflict.component';
 
 const routes: Routes = [
   { path: '', component: HomeSectionComponent },
   {
-    path: 'dashboard/handling-time-conflict',
-    component: HandlingTimeConflictComponent,
+    path: 'performance-issues',
+    loadChildren: () =>
+      import(
+        '../home/home-section/performance-issues/performance-issues.module'
+      ).then((m) => m.PerformanceIssuesModule),
+  },
+  {
+    path: 'recommendation-issues',
+    loadChildren: () =>
+      import(
+        './home-section/recommendation-issues/recommendation-issues.module'
+      ).then((m) => m.RecommendationIssuesModule),
   },
 ];
 

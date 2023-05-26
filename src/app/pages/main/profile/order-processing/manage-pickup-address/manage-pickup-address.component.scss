@@ -6,54 +6,58 @@
     background-clip: border-box;
     border-radius: 5px;
     // min-height: 95%;
-    padding: 10px 20px 0px 20px;
 
     ::ng-deep .anticon {
         line-height: 1;
         font-size: 19px;
     }
 
-    .button-group {
-        display: flex;
-        justify-content: end;
-        margin-bottom: 10px;
+    .body-section {
+        padding: 24px;
+        padding-top: 10px;
 
-        button {
-            border-radius: 5px;
-            border: 0;
-            margin-left: 5px;
-            height: 35px;
-        }
+        .button-group {
+            display: flex;
+            justify-content: end;
+            margin-bottom: 10px;
 
-        .pull-push-btn {
-            background: #2a3036f0;
-            color: $white;
-            width: 52px;
-        }
-    }
+            button {
+                border-radius: 5px;
+                border: 0;
+                margin-left: 5px;
+                height: 35px;
+            }
 
-    nz-table {
-        .radio {
-            color: $black;
-
-            &-selected {
-                color: $darkBlue;
-                line-height: 0;
-                font-size: 24px;
-                width: 22px;
-                height: 5px;
+            .pull-push-btn {
+                background: #2a3036f0;
+                color: $white;
+                width: 52px;
             }
         }
-    }
 
-    .badge {
-        border-radius: 8px;
-        color: $white;
-        padding: 1px;
-        font-weight: 600;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 70px;
+        nz-table {
+            .radio {
+                color: $black;
+
+                &-selected {
+                    color: $darkBlue;
+                    line-height: 0;
+                    font-size: 24px;
+                    width: 22px;
+                    height: 5px;
+                }
+            }
+        }
+
+        .badge {
+            border-radius: 8px;
+            color: $white;
+            padding: 1px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+        }
     }
 }

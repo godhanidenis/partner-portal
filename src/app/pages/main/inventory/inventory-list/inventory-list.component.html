@@ -1,9 +1,6 @@
 <div class="inventory-list-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Inventory List</span>
-    </div>
-  </div>
+  <app-section-header [header]="'Inventory List'"></app-section-header>
+
   <div class="body-section">
     <div class="button-group">
       <div class="filter">
@@ -66,9 +63,7 @@
             <td>
               <a
                 (click)="
-                  navigatePage(
-                    'inventory/inventory-list/view-inventory/' + data?.id
-                  )
+                  navigatePage('inventory-list/view-inventory/' + data?.id)
                 "
                 style="margin: 0 5px; color: #2121c3; font-size: 20px"
                 ><span nz-icon nzType="eye" nzTheme="outline"></span

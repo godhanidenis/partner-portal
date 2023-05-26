@@ -1,17 +1,4 @@
-<nz-breadcrumb
-  *ngIf="!editSection"
-  style="margin-bottom: 16px; margin-left: 8px"
->
-  <nz-breadcrumb-item>
-    <a (click)="backButton('product/view-list-filter')">Product</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('product/view-list-filter')">View List Filter</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a>Add Product</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+<app-breadcrumb *ngIf="!editSection"></app-breadcrumb>
 
 <div class="add-product-section">
   <div *ngIf="!editSection" class="user-content">

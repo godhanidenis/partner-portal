@@ -1,21 +1,10 @@
-<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Profile</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Payment</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a>Ach Section</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+<app-breadcrumb></app-breadcrumb>
 
 <div class="asc-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>ACH Set Up / Verification</span>
-    </div>
-  </div>
+  <app-section-header
+    [header]="'ACH Set Up / Verification'"
+  ></app-section-header>
+
   <div class="body-section">
     <nz-tabset nzType="card">
       <nz-tab nzTitle="Set Up">

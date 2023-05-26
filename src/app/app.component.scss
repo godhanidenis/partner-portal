@@ -106,6 +106,10 @@
     box-shadow: 0 0 0 2px rgb(24 42 255 / 20%) !important;
 }
 
+::ng-deep .ant-modal {
+    top: 45px;
+}
+
 ::ng-deep .ant-modal-footer {
     display: none;
 }
@@ -157,10 +161,10 @@
     color: $black !important;
 }
 
-::ng-deep .ant-table table{
+::ng-deep .ant-table table {
     table-layout: auto !important;
 }
 
-::ng-deep .no-wrap{
+::ng-deep .no-wrap {
     white-space: nowrap !important;
 }

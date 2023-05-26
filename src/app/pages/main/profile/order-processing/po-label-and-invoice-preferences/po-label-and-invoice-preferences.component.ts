@@ -50,8 +50,4 @@ export class PoLabelAndInvoicePreferencesComponent implements OnInit {
       this.showLabelSection = false;
     }
   }
-
-  backButton(path: string) {
-    this.router.navigate([`/main/${path}`]);
-  }
 }

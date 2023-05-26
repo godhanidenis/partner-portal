@@ -1,20 +1,9 @@
-<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Profile</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Order Processing</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a>PO, Label and Invoice Preferences</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+<app-breadcrumb></app-breadcrumb>
 <div class="po-label-and-invoice-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>PO, Label and Invoice Preferences</span>
-    </div>
-  </div>
+  <app-section-header
+    [header]="'PO, Label and Invoice Preferences'"
+  ></app-section-header>
+
   <div class="body-section">
     <div class="po-label-preferences-section">
       <form nz-form [formGroup]="poForm">

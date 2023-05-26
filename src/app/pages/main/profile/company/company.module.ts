@@ -9,10 +9,14 @@ import { CompanyRoutingModule } from './company-routing.module';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { W9SetupComponent } from './w9-setup/w9-setup.component';
 import { CertiOfInsuComponent } from './certi-of-insurance/certi-of-insurance.component';
-
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [CompanyProfileComponent, W9SetupComponent, CertiOfInsuComponent ],
+  declarations: [
+    CompanyProfileComponent,
+    W9SetupComponent,
+    CertiOfInsuComponent,
+  ],
   imports: [
     CompanyRoutingModule,
     NzLayoutModule,
@@ -21,6 +25,7 @@ import { CertiOfInsuComponent } from './certi-of-insurance/certi-of-insurance.co
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentModule,
   ],
   exports: [],
 })

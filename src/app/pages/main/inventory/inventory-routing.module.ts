@@ -5,11 +5,11 @@ import { ViewInventoryComponent } from './inventory-list/view-inventory/view-inv
 
 const routes: Routes = [
   {
-    path: 'inventory-list',
+    path: '',
     component: InventoryListComponent,
   },
   {
-    path: 'inventory-list/view-inventory/:id',
+    path: 'view-inventory/:id',
     component: ViewInventoryComponent,
   },
 ];

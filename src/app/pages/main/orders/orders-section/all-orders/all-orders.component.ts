@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { endOfMonth } from 'date-fns';
+import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-all-orders',
@@ -63,6 +64,7 @@ export class AllOrdersComponent implements OnInit {
   selectCarrier: string = '';
   selectStatus = '';
   selectDate: string = '';
+  statusEnum: typeof StatusEnum = StatusEnum;
 
   constructor() {}
 

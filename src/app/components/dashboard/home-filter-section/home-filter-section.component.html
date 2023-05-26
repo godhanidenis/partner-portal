@@ -1,0 +1,136 @@
+<div class="home-filter-section">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeFilter()"
+    >&times;</a
+  >
+
+  <div class="filter-content">
+    <nz-divider nzText="Inventory" nzOrientation="left"></nz-divider>
+    <nz-radio-group
+      (ngModelChange)="changeValue($event, 'inventory')"
+      [(ngModel)]="inventory"
+    >
+      <label nz-radio nzValue="inStock">In Stock</label>
+      <label nz-radio nzValue="outOfStock">Out Of Stock</label>
+    </nz-radio-group>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="Asin Status"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-radio-group
+      [(ngModel)]="asin"
+      (ngModelChange)="changeValue($event, 'asin')"
+    >
+      <label nz-radio nzValue="approved">Approved</label>
+      <label nz-radio nzValue="notapproved">Not Approved</label>
+    </nz-radio-group>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="Product Status"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-select
+      nzAllowClear
+      nzPlaceHolder="Select A Status"
+      [(ngModel)]="status"
+      (ngModelChange)="changeValue(status ? $event : '', 'status')"
+    >
+      <nz-option nzLabel="Discontented" nzValue="discontented"></nz-option>
+      <nz-option nzLabel="Active" nzValue="active"></nz-option>
+      <nz-option nzLabel="Restricted" nzValue="restricted"></nz-option>
+      <nz-option nzLabel="Suppressed" nzValue="suppressed"></nz-option>
+      <nz-option nzLabel="LTL" nzValue="ltl"></nz-option>
+    </nz-select>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="MAP"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-radio-group
+      [(ngModel)]="map"
+      (ngModelChange)="changeValue($event, 'map')"
+    >
+      <label nz-radio nzValue="true">Yes</label>
+      <label nz-radio nzValue="false">No</label>
+    </nz-radio-group>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="Brand"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-select
+      nzShowSearch
+      nzAllowClear
+      [(ngModel)]="brand"
+      (ngModelChange)="changeValue(brand ? $event : '', 'brand')"
+      nzPlaceHolder="Select A Brand"
+    >
+      <nz-option
+        *ngFor="let item of listOfBrand"
+        [nzLabel]="item"
+        [nzValue]="item"
+      ></nz-option>
+    </nz-select>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="Collection"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-select
+      nzShowSearch
+      nzAllowClear
+      nzPlaceHolder="Select A Collection"
+      [(ngModel)]="collection"
+      (ngModelChange)="changeValue(collection ? $event : '', 'collection')"
+    >
+      <nz-option
+        *ngFor="let item of listOfCollection"
+        [nzLabel]="item"
+        [nzValue]="item"
+      ></nz-option>
+    </nz-select>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="Category"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-select
+      nzShowSearch
+      nzAllowClear
+      nzPlaceHolder="Select A Category"
+      [(ngModel)]="category"
+      (ngModelChange)="changeValue(category ? $event : '', 'category')"
+    >
+      <nz-option
+        *ngFor="let item of listOfProductCategory"
+        [nzLabel]="item"
+        [nzValue]="item"
+      ></nz-option>
+    </nz-select>
+
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="Sales Tier"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-select
+      nzShowSearch
+      nzAllowClear
+      nzPlaceHolder="Select A Sales Tire"
+      [(ngModel)]="salesTire"
+      (ngModelChange)="changeValue(salesTire ? $event : '', 'salesTire')"
+    >
+      <nz-option
+        *ngFor="let item of listOfSalesTier"
+        [nzLabel]="item"
+        [nzValue]="item"
+      ></nz-option>
+    </nz-select>
+  </div>
+</div>

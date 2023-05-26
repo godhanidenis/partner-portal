@@ -1,21 +1,8 @@
-<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Profile</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Return</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a>Return Location</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+<app-breadcrumb></app-breadcrumb>
 
 <div class="return-location-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Return Location</span>
-    </div>
-  </div>
+  <app-section-header [header]="'Return Location'"></app-section-header>
+
   <div class="body-section">
     <div class="button-group">
       <button

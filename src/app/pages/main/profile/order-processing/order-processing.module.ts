@@ -13,6 +13,7 @@ import { PoLabelAndInvoicePreferencesComponent } from './po-label-and-invoice-pr
 import { HolidaysComponent } from './holidays/holidays.component';
 import { CourierPreferencesComponent } from './courier-preferences/courier-preferences.component';
 import { ViewPickupAddressComponent } from './manage-pickup-address/view-pickup-address/view-pickup-address.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ViewPickupAddressComponent } from './manage-pickup-address/view-pickup-
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    ComponentModule,
   ],
   exports: [
     AddPickupAddressComponent,

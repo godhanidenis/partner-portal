@@ -1,27 +1,13 @@
-<nz-breadcrumb style="margin-bottom: 16px; margin-left: 8px">
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Profile</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a (click)="backButton('profile')">Order Processing</a>
-  </nz-breadcrumb-item>
-  <nz-breadcrumb-item>
-    <a>Courier Preferences</a>
-  </nz-breadcrumb-item>
-</nz-breadcrumb>
+<app-breadcrumb></app-breadcrumb>
 <div class="courier-preferences-section">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Courier Preferences</span>
-    </div>
-  </div>
+  <app-section-header [header]="'Courier Preferences'"></app-section-header>
+
   <div class="body-section">
     <div nz-row>
       <nz-table
         #nzTable
         nzOuterBordered
         [nzData]="courierPreferenceList"
-        
         [nzFrontPagination]="false"
         [nzShowPagination]="false"
         nz-col

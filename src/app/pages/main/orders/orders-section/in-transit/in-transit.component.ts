@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { endOfMonth } from 'date-fns';
+import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-in-transit',
@@ -58,6 +59,7 @@ export class InTransitComponent implements OnInit {
   selectStatus: string = '';
   selectSku: string = '';
   selectCarrier: string = '';
+  statusEnum: typeof StatusEnum = StatusEnum;
 
   constructor() {}
 

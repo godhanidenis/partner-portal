@@ -69,11 +69,36 @@
           <td>{{ data.poTotal | currency}}</td>
           <td>
             <div>
-              <b>{{ data.shippingDetails.name }}</b>
+              <b class="no-wrap">{{ data?.products }}</b>
             </div>
-            <div>{{ data.shippingDetails.number }}</div>
+            <ul class="sub-section">
+              <li class="no-wrap">
+                <div class="sub-val">
+                  <span class="title">Qty&nbsp;&nbsp;-&nbsp;</span
+                  >{{ data?.qty }}
+                </div>
+              </li>
+            </ul>
           </td>
-          <td>{{ data.status }}</td>
+          <td>{{ data.poTotal | currency }}</td>
+          <td>
+            <div>
+              <b class="no-wrap">{{ data.shippingDetails.name }}</b>
+            </div>
+            <ul class="sub-section">
+              <li class="no-wrap">
+                <div class="sub-val">
+                  {{ data.shippingDetails.number }}
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <app-status-badge
+              [type]="statusEnum.Success"
+              [text]="data?.status"
+            ></app-status-badge>
+          </td>
         </tr>
       </tbody>
     </nz-table>
