@@ -11,7 +11,11 @@
         <nz-form-item>
           <nz-form-control nzErrorTip="shipping_Method">
             <nz-input-group>
-              <nz-select nzAllowClear nzPlaceHolder="Select Choose Type">
+              <nz-select
+                [(ngModel)]="selectType"
+                nzAllowClear
+                nzPlaceHolder="Select Choose Type"
+              >
                 <nz-option
                   *ngFor="let data of chooseType"
                   [nzLabel]="data"

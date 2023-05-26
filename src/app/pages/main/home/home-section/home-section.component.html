@@ -155,47 +155,86 @@
       </div>
     </div>
   </div>
-  <div class="section">
-    <div class="user-content">
-      <div class="tab-header">
-        <span>Performance Issues </span>
+  <div class="section" nz-row [nzGutter]="16">
+    <div nz-col [nzXl]="12" [nzSm]="24">
+      <div class="user-content">
+        <div class="tab-header" style="padding-right: 0">
+          <span>Performance Issues</span>
+        </div>
+      </div>
+      <div class="performance-issues-section" style="padding-right: 0">
+        <nz-table
+          style="margin-top: 10px"
+          #nzTable
+          nzOuterBordered
+          [nzData]="performanceIssuesList"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+        >
+          <thead>
+            <tr>
+              <th>NO.</th>
+              <th style="width: 80%">PERFORMANCE ISSUES</th>
+              <th>COUNT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-data [ngForOf]="performanceIssuesList">
+              <tr>
+                <td>{{ data?.id }}</td>
+                <td>
+                  <a (click)="shoeIssuesPage(data.url)"
+                    ><u>{{ data?.name }}</u></a
+                  >
+                </td>
+                <td>
+                  <b>{{ data?.count }}</b>
+                </td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </nz-table>
       </div>
     </div>
-    <div class="performance-issues-section" nz-row [nzGutter]="16">
-      <nz-table
-        style="margin-top: 10px"
-        #nzTable
-        nzOuterBordered
-        [nzData]="performanceIssuesList"
-        [nzFrontPagination]="false"
-        [nzShowPagination]="false"
-        nz-col
-        [nzXl]="14"
-        [nzSm]="24"
-      >
-        <thead>
-          <tr>
-            <th>NO.</th>
-            <th style="width: 80%">PERFORMANCE ISSUES</th>
-            <th>COUNT</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-template ngFor let-data [ngForOf]="performanceIssuesList">
+    <div nz-col [nzXl]="12" [nzSm]="24">
+      <div class="user-content">
+        <div style="padding-left: 0" class="tab-header">
+          <span>Recommendation Issues</span>
+        </div>
+      </div>
+      <div class="performance-issues-section" style="padding-left: 0">
+        <nz-table
+          style="margin-top: 10px"
+          #nzTable
+          nzOuterBordered
+          [nzData]="performanceIssuesList"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+        >
+          <thead>
             <tr>
-              <td>{{ data?.id }}</td>
-              <td>
-                <a (click)="shoeIssuesPage(data.url)"
-                  ><u>{{ data?.name }}</u></a
-                >
-              </td>
-              <td>
-                <b>{{ data?.count }}</b>
-              </td>
+              <th>NO.</th>
+              <th style="width: 80%">RECOMMENDATION ISSUES</th>
+              <th>COUNT</th>
             </tr>
-          </ng-template>
-        </tbody>
-      </nz-table>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-data [ngForOf]="recommendationIssuesList">
+              <tr>
+                <td>{{ data?.id }}</td>
+                <td>
+                  <a (click)="shoeIssuesPage(data.url)"
+                    ><u>{{ data?.name }}</u></a
+                  >
+                </td>
+                <td>
+                  <b>{{ data?.count }}</b>
+                </td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </nz-table>
+      </div>
     </div>
   </div>
 </div>

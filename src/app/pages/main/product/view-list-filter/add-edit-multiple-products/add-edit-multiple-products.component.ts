@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormControl } from '@angular/forms';
 })
 export class AddEditMultipleProductsComponent implements OnInit {
   @Output() closeModel = new EventEmitter();
+  @Input() templateType: string = '';
+  selectType: string = '';
   isUploadVisible: boolean = false;
   chooseType = [
     'Add Product',
@@ -27,7 +29,11 @@ export class AddEditMultipleProductsComponent implements OnInit {
   name = new FormControl('');
 
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.templateType) {
+      this.selectType = this.templateType;
+    }
+  }
 
   actionFile(type: string) {
     if (type === 'upload') {

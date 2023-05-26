@@ -13,6 +13,7 @@ import { HomeFilterActionComponent } from './dashboard/home-filter-action/home-f
 import { HomeFilterTagComponent } from './dashboard/home-filter-tag/home-filter-tag.component';
 import { HomeFilterSectionComponent } from './dashboard/home-filter-section/home-filter-section.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
     HomeFilterTagComponent,
     HomeFilterSectionComponent,
     SectionHeaderComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
     HomeFilterTagComponent,
     HomeFilterSectionComponent,
     SectionHeaderComponent,
+    BreadcrumbComponent,
   ],
 })
 export class ComponentModule {}
