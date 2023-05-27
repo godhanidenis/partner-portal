@@ -1,0 +1,84 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.history-section {
+    padding: 10px 24px;
+
+    .user-content {
+
+        .table-layout {
+            padding: 15px;
+        }
+
+        .tab-header {
+            border-bottom: none;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
+    }
+
+    ::ng-deep .ant-divider-horizontal {
+        margin: 15px 0;
+    }
+
+    a {
+        color: $darkBlue;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .time-line {
+        padding-top: 15px;
+
+        .sub-section {
+            padding-left: 20px;
+
+            .sub-val {
+                font-size: 12px;
+            }
+        }
+
+        .sub-date {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        ::ng-deep .ant-collapse>.ant-collapse-item>.ant-collapse-header,
+        .ant-collapse>.ant-collapse-item:last-child,
+        .ant-collapse>.ant-collapse-item:last-child>.ant-collapse-header {
+            border-radius: 5px;
+        }
+
+        ::ng-deep .ant-collapse {
+            border-radius: 5px;
+        }
+
+        ::ng-deep .ant-timeline.ant-timeline-label .ant-timeline-item-label {
+            width: calc(6% - 12px);
+        }
+
+        ::ng-deep .ant-timeline.ant-timeline-label .ant-timeline-item-tail {
+            left: 7%;
+        }
+
+        ::ng-deep .ant-collapse>.ant-collapse-item>.ant-collapse-header {
+            padding: 8px 16px;
+        }
+
+        ::ng-deep .ant-timeline-item-head-blue {
+            color: $darkBlue;
+            border-color: $darkBlue;
+        }
+
+        ::ng-deep .ant-timeline.ant-timeline-label .ant-timeline-item-head {
+            left: 7%;
+        }
+
+        ::ng-deep .ant-timeline.ant-timeline-label .ant-timeline-item-left .ant-timeline-item-content {
+            left: 7%;
+            width: calc(300px - 14px);
+        }
+    }
+}
