@@ -14,6 +14,8 @@ import { HomeFilterTagComponent } from './dashboard/home-filter-tag/home-filter-
 import { HomeFilterSectionComponent } from './dashboard/home-filter-section/home-filter-section.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { PoDetailPageComponent } from './po-detail-page/po-detail-page.component';
+import { ComponentRoutingModule } from './component-routing.module';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,11 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     HomeFilterSectionComponent,
     SectionHeaderComponent,
     BreadcrumbComponent,
+    PoDetailPageComponent,
   ],
   imports: [
     CommonModule,
+    ComponentRoutingModule,
     NzLayoutModule,
     ListNgZorroModule,
     NzMenuModule,

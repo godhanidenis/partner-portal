@@ -130,14 +130,16 @@
       </div>
     </div>
     <div class="body" nz-row [nzGutter]="16">
+      
       <div
         nz-col
         [nzXl]="6"
         [nzSm]="12"
         [nzXs]="24"
         style="margin: 10px 0"
-        *ngFor="let data of pendingActions"
+        *ngFor="let data of pendingActions;let i = index;"
       >
+    <a  (click)="redirectPendingActions(data.url, i)">
         <nz-card>
           <div class="card">
             <div class="icon">
@@ -152,7 +154,10 @@
             </div>
           </div>
         </nz-card>
+      </a>
       </div>
+    
+      
     </div>
   </div>
   <div class="section" nz-row [nzGutter]="16">

@@ -46,7 +46,9 @@
           <td>
             <div style="display: flex; flex-direction: column">
               <span>
-                <a style="color: #1221c3"
+                <a
+                  [routerLink]="'po-details/' + data?.poNumber"
+                  style="color: #1221c3"
                   ><u
                     ><b>{{ data.poNumber }}</b></u
                   ></a
@@ -73,7 +75,7 @@
               </li>
             </ul>
           </td>
-          <td>{{ data.poTotal | currency}}</td>
+          <td>{{ data.poTotal | currency }}</td>
           <td>{{ data.committedShip }}</td>
           <td>{{ data.afterDate }}</td>
           <td>
