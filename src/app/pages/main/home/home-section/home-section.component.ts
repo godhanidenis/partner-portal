@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
@@ -117,19 +117,19 @@ export class HomeSectionComponent implements OnInit {
       id: 5,
       name: 'Co-Op Allowance',
       count: 14,
-      url: '',
+      url: 'profile/allowances/co-op',
     },
     {
       id: 6,
       name: 'Rebate',
       count: 53,
-      url: '',
+      url: 'profile/allowances/rebate',
     },
     {
       id: 7,
       name: 'Add New Products',
       count: 24,
-      url: '',
+      url: 'view-product/add-product',
     },
   ];
 
@@ -183,21 +183,25 @@ export class HomeSectionComponent implements OnInit {
       icon: 'border-inner',
       name: 'New',
       content: 'New Contact',
+      url:'orders/order-section'
     },
     {
       icon: 'shopping-cart',
       name: 'Pending Shipment',
       content: 'Pending Shipment Contact',
+       url:'orders/order-section'
     },
     {
       icon: 'close-circle',
       name: 'Cancellation Requested',
       content: 'Cancellation Requested Contact',
+       url:'orders/order-section'
     },
     {
       icon: 'transaction',
       name: 'In Transit',
       content: 'In Transit Contact',
+       url:'orders/order-section'
     },
   ];
 
@@ -263,6 +267,16 @@ export class HomeSectionComponent implements OnInit {
         },
       },
     });
+  }
+
+  redirectPendingActions(path: string,number:number
+    ) {
+    
+      
+    if (path) {
+      const navigationExtras: NavigationExtras = {state: {index: number}}
+      this.router.navigate([`/main/${path}`],navigationExtras);
+    }
   }
 
   shoeIssuesPage(path: string) {
