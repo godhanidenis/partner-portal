@@ -11,7 +11,9 @@
           <nz-input-group>
             <nz-select
               nzAllowClear
-              formControlName="quick_action"
+              [(ngModel)]="selectedQuickAction"
+              [ngModelOptions]="{standalone: true}"
+              (ngModelChange)="onQuickActionChanged()"
               nzPlaceHolder="Select Quick Action"
             >
             <nz-option nzLabel="Add TO All" nzValue="add_all"></nz-option>
@@ -22,40 +24,43 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col [nzXl]="5">
+    <div nz-col [nzXl]="5" *ngIf="selectedQuickAction">
       <nz-form-item style="margin:0;">
         <nz-form-control nzErrorTip="Email is required!">
           <nz-input-group>
             <input
               type="text"
               nz-input
-              placeholder="Enter email to repalce"
-              formControlName="email"
+              [(ngModel)]="actionEmail1"
+              [ngModelOptions]="{standalone: true}"
+              [placeholder]="selectedQuickAction === 'add_all' ? 'Enter an email to be added' : selectedQuickAction === 'remove_all' ? 'Enter an email to be removed' : 'Enter an email to be replaced'"
             />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col [nzXl]="5">
+    <div nz-col [nzXl]="5" *ngIf="selectedQuickAction === 'find_replace'">
       <nz-form-item style="margin:0;margin-left: 5px;">
         <nz-form-control nzErrorTip="Email is required!">
           <nz-input-group>
             <input
               type="text"
               nz-input
-              placeholder="Enter email to be replaced with"
-              formControlName="email"
+              [(ngModel)]="actionEmail2"
+              [ngModelOptions]="{standalone: true}"
+              placeholder="Enter an email to be replaced with"
             />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     </div>
-    <div nz-col [nzXl]="4">
+    <div nz-col [nzXl]="4" *ngIf="selectedQuickAction">
       <button
         nz-button
         class="action-button"
         style="height: 32px;margin-top: 0px;margin-left: 5px;"
         [nzType]="'primary'"
+        (click)="submitQuickAction()"
       >
         Submit
       </button>
@@ -86,14 +91,14 @@
           [formArrayName]="formArrayName[i]"
         >
           <div *ngFor="let email of data.formArray.controls; let no = index" style="display: flex;">
-            <div [formGroupName]="no" style="width: 100%;">
+            <div [formGroupName]="no" style="width: 100%;margin-bottom: 10px;">
               <nz-form-item>
                 <nz-form-control nzErrorTip="Email is required!">
                   <nz-input-group>
                     <input
                       type="text"
                       nz-input
-                      placeholder="Enter Email"
+                      placeholder="Enter an email"
                       formControlName="email"
                     />
                   </nz-input-group>
@@ -115,7 +120,7 @@
                 nzType="primary"
                 nzShape="circle"
                 *ngIf="no === data.formArray.controls.length - 1"
-                style="background: #00c13b;margin-top: 8px;margin-left: 8px;"
+                style="background: #00c13b !important;margin-top: 8px;margin-left: 8px;border:0;"
                 (click)="addNotification(i + 1)"
                 nzSize="small"
               >
@@ -126,11 +131,11 @@
                 nzType="primary"
                 nzShape="circle"
                 *ngIf="no !== data.formArray.controls.length - 1"
-                style="background: #f41e2c;margin-top: 8px;margin-left: 8px;"
+                style="background: #f41e2c !important;margin-top: 8px;margin-left: 8px;border:0;"
                 (click)="removeNotification(no, i + 1)"
                 nzSize="small"
               >
-                <span nz-icon nzType="plus"></span>
+                <span nz-icon nzType="minus"></span>
               </button>
           </div>
         </div>

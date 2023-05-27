@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 })
 export class NotificationPreferencesComponent implements OnInit {
   notificationForm!: FormGroup;
+  selectedQuickAction = "";
+  actionEmail1 = "";
+  actionEmail2 = "";
   formArrayName = [
     'catalog_amazon_offer_overview_report',
     'product_promotion_price_changes',
@@ -138,6 +141,26 @@ export class NotificationPreferencesComponent implements OnInit {
     ];
   }
 
+  onQuickActionChanged = () => {
+    console.log('Selected Value :', this.selectedQuickAction);
+  }
+
+  submitQuickAction(){
+    switch(this.selectedQuickAction){
+      case 'add_all':
+        this.addToAllNotification();
+        break;
+      case 'remove_all':
+        this.removeNotificationAll();
+        break;
+      case 'find_replace':
+        this.findAndReplaceFromAll();
+        break;
+      default:
+        break;
+    }
+  }
+
   get catalog_amazon_offer_overview_report(): FormArray {
     return this.notificationForm.controls[
       'catalog_amazon_offer_overview_report'
@@ -201,63 +224,90 @@ export class NotificationPreferencesComponent implements OnInit {
     return this.notificationForm.controls['profile_change'] as FormArray;
   }
 
-  newNotification(): FormGroup {
+  newNotification = (value: string): FormGroup =>{
     return this.formBuilder.group({
-      email: '',
+      email: value,
     });
   }
 
-  addNotification(numberOfType: number) {
+  findEmailIndexFromList = (emailList:any[], email:string) => {
+    let indexTobeReturned = -1;
+    emailList.forEach((val, index)=>{
+      if(val['email'] === email){
+        indexTobeReturned = index;
+        return false;
+      }
+      return true;
+    });
+    return indexTobeReturned;
+  }
+
+  addToAllNotification = () => {
+    Object.values(this.notificationForm.value).forEach((val:any, index:number)=>{
+      this.addNotification(index + 1, this.actionEmail1);
+    });
+  }
+
+  addNotification(numberOfType: number, value='') {
     switch (numberOfType) {
       case 1:
-        this.catalog_amazon_offer_overview_report.push(this.newNotification());
+        this.catalog_amazon_offer_overview_report.push(this.newNotification(value));
         break;
       case 2:
-        this.product_promotion_price_changes.push(this.newNotification());
+        this.product_promotion_price_changes.push(this.newNotification(value));
         break;
       case 3:
-        this.pricing_performance_report.push(this.newNotification());
+        this.pricing_performance_report.push(this.newNotification(value));
         break;
       case 4:
-        this.inventory_feed_errors_warnings.push(this.newNotification());
+        this.inventory_feed_errors_warnings.push(this.newNotification(value));
         break;
       case 5:
-        this.order_processing_overview_report.push(this.newNotification());
+        this.order_processing_overview_report.push(this.newNotification(value));
         break;
       case 6:
-        this.order_operations.push(this.newNotification());
+        this.order_operations.push(this.newNotification(value));
         break;
       case 7:
-        this.payment_emails.push(this.newNotification());
+        this.payment_emails.push(this.newNotification(value));
         break;
       case 8:
-        this.purchase_order.push(this.newNotification());
+        this.purchase_order.push(this.newNotification(value));
         break;
       case 9:
-        this.return_requests.push(this.newNotification());
+        this.return_requests.push(this.newNotification(value));
         break;
       case 10:
-        this.returns_overview_report.push(this.newNotification());
+        this.returns_overview_report.push(this.newNotification(value));
         break;
       case 11:
-        this.order_invoicing.push(this.newNotification());
+        this.order_invoicing.push(this.newNotification(value));
         break;
       case 12:
-        this.selling_coach.push(this.newNotification());
+        this.selling_coach.push(this.newNotification(value));
         break;
       case 13:
-        this.carrier_invoice_reco.push(this.newNotification());
+        this.carrier_invoice_reco.push(this.newNotification(value));
         break;
       case 14:
-        this.map_overview_report.push(this.newNotification());
+        this.map_overview_report.push(this.newNotification(value));
         break;
       case 15:
-        this.calendar_meeting_invites.push(this.newNotification());
+        this.calendar_meeting_invites.push(this.newNotification(value));
         break;
       default:
-        this.profile_change.push(this.newNotification());
+        this.profile_change.push(this.newNotification(value));
         break;
     }
+  }
+
+  removeNotificationAll = () => {
+    Object.values(this.notificationForm.value).forEach((val:any, index:number)=>{
+      let indexToBeRemoved = this.findEmailIndexFromList(val, this.actionEmail1);
+      if(indexToBeRemoved > -1){
+        this.removeNotification(indexToBeRemoved, index + 1);
+      }
+    })
   }
 
   removeNotification(i: number, numberOfType: number) {
@@ -311,6 +361,101 @@ export class NotificationPreferencesComponent implements OnInit {
         this.profile_change.removeAt(i);
         break;
     }
+  }
+
+
+  replaceNotification(i: number, numberOfType: number, email: string) {
+    switch (numberOfType) {
+      case 1:
+        this.catalog_amazon_offer_overview_report.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 2:
+        this.product_promotion_price_changes.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 3:
+        this.pricing_performance_report.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 4:
+        this.inventory_feed_errors_warnings.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 5:
+        this.order_processing_overview_report.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 6:
+        this.order_operations.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 7:
+        this.payment_emails.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 8:
+        this.purchase_order.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 9:
+        this.return_requests.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 10:
+        this.returns_overview_report.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 11:
+        this.order_invoicing.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 12:
+        this.selling_coach.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 13:
+        this.carrier_invoice_reco.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 14:
+        this.map_overview_report.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      case 15:
+        this.calendar_meeting_invites.at(i).patchValue({
+          email: email, 
+        });
+        break;
+      default:
+        this.profile_change.at(i).patchValue({
+          email: email, 
+        });
+        break;
+    }
+  }
+
+  findAndReplaceFromAll = () => {
+    Object.values(this.notificationForm.value).forEach((val:any, index:number)=>{
+      let indexToBeReplaced = this.findEmailIndexFromList(val, this.actionEmail1);
+      if(indexToBeReplaced > -1){
+        this.replaceNotification(indexToBeReplaced, index + 1, this.actionEmail2);
+      }
+    })
   }
 
   backButton(path: string) {
