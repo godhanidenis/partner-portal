@@ -1,0 +1,23 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.insights-and-analytics {
+
+    .user-content {
+
+        .table-layout {
+            padding: 15px;
+        }
+
+        .tab-header {
+            border-bottom: none;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    nz-table {
+        padding: 0.5rem 1rem;
+    }
+}

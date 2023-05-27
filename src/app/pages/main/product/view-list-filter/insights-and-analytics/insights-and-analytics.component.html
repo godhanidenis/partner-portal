@@ -1,0 +1,65 @@
+<div class="insights-and-analytics">
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzXl]="12" [nzSm]="24">
+      <div class="user-content">
+        <div class="tab-header">
+          <span>Repricing Insight</span>
+        </div>
+      </div>
+      <nz-table
+        #nzTable
+        nzBordered
+        [nzData]="repricingInsightList"
+        [nzFrontPagination]="false"
+        [nzShowPagination]="false"
+      >
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="repricingInsightList">
+            <tr>
+              <td style="width: 60%">{{ data?.name }}</td>
+              <td>
+                {{
+                  data?.name === "Min Price" ||
+                  data?.name === "Max Price" ||
+                  data?.name === "Map Price" ||
+                  data?.name === "Shipping"
+                    ? (data?.value | currency)
+                    : data?.value
+                }}
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+    </div>
+    <div nz-col [nzXl]="12" [nzSm]="24">
+      <div class="user-content">
+        <div class="tab-header">
+          <span>Competition Insight</span>
+        </div>
+      </div>
+      <nz-table
+        #nzTable
+        nzBordered
+        [nzData]="repricingInsightList"
+        [nzFrontPagination]="false"
+        [nzShowPagination]="false"
+      >
+        <tbody>
+          <ng-template ngFor let-data [ngForOf]="competitionInsightList">
+            <tr>
+              <td style="width: 60%">{{ data?.name }}</td>
+              <td>
+                {{
+                  data?.name === "seller" || data?.name === "Price"
+                    ? (data?.value | currency)
+                    : data?.value
+                }}
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</div>

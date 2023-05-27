@@ -43,7 +43,9 @@
           <td>
             <div style="display: flex; flex-direction: column">
               <span>
-                <a style="color: #1221c3"
+                <a
+                  [routerLink]="'po-details/' + data?.poNumber"
+                  style="color: #1221c3"
                   ><u
                     ><b>{{ data.poNumber }}</b></u
                   ></a
@@ -53,19 +55,24 @@
               <span class="sub-date"> EDI </span>
             </div>
           </td>
-          <td><div style="display: flex; flex-direction: column">
-            <div>{{ data.customerName }}</div>
-            <div>{{ data.address }}</div>
-          </div></td>
-          <td>{{ data.products }}<ul class="sub-section">
-            <li class="no-wrap">
-              <div class="sub-val">
-                <span class="title">Qty&nbsp;&nbsp;-&nbsp;</span
-                >{{ data?.quantity }}
-              </div>
-            </li>
-          </ul></td>
-          <td>{{ data.poTotal | currency}}</td>
+          <td>
+            <div style="display: flex; flex-direction: column">
+              <div>{{ data.customerName }}</div>
+              <div>{{ data.address }}</div>
+            </div>
+          </td>
+          <td>
+            {{ data.products }}
+            <ul class="sub-section">
+              <li class="no-wrap">
+                <div class="sub-val">
+                  <span class="title">Qty&nbsp;&nbsp;-&nbsp;</span
+                  >{{ data?.quantity }}
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>{{ data.poTotal | currency }}</td>
           <td>{{ data.committedShip }}</td>
           <td>{{ data.afterDate }}</td>
           <td style="display: flex">

@@ -13,6 +13,8 @@ import { OrderProcessingModule } from '../profile/order-processing/order-process
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddEditMultipleProductsComponent } from './view-list-filter/add-edit-multiple-products/add-edit-multiple-products.component';
 import { ComponentModule } from 'src/app/components/component.module';
+import { InsightsAndAnalyticsComponent } from './view-list-filter/insights-and-analytics/insights-and-analytics.component';
+import { HistoryComponent } from './view-list-filter/history/history.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ComponentModule } from 'src/app/components/component.module';
     AddEditProductComponent,
     ViewSingleProductComponent,
     AddEditMultipleProductsComponent,
+    InsightsAndAnalyticsComponent,
+    HistoryComponent,
   ],
   imports: [
     ProductRoutingModule,
