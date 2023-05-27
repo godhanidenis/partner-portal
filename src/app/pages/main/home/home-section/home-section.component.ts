@@ -36,7 +36,7 @@ export class HomeSectionComponent implements OnInit {
       id: 4,
       name: '123Stores Restricted (Restricted via Order Cancellation)',
       count: 11,
-      url: '',
+      url: 'dashboard/performance-issues/restricted-via-order',
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ export class HomeSectionComponent implements OnInit {
       id: 6,
       name: '123Stores Restricted (Product Price Error via Order Cancellation)',
       count: 53,
-      url: '',
+      url: 'dashboard/performance-issues/restricted-product-price-error',
     },
     {
       id: 7,
