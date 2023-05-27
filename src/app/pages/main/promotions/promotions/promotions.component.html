@@ -2,6 +2,16 @@
   <app-section-header [header]="'Promotions Section'"></app-section-header>
 
   <div class="body-section">
+    <div class="add-promotion-btn">
+      <button
+        nz-button
+        nzType="primary"
+        style="border-radius: 20px"
+        (click)="showModal()"
+      >
+        Add Promotion
+      </button>
+    </div>
     <nz-tabset nzType="card">
       <nz-tab nzTitle="Running / Scheduled Promotions">
         <app-scheduled-promotions></app-scheduled-promotions>
@@ -12,3 +22,114 @@
     </nz-tabset>
   </div>
 </div>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="The first Modal"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <div style="padding: 15px 15px 10px 15px;">
+      <form [formGroup]="add_promotion">
+        <nz-form-item>
+          <nz-form-label 
+              [nzXl]="6"
+              [nzXs]="6" nzRequired nzFor="Start Date">Start Date</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24" >
+            <nz-date-picker formControlName="startDate"  style="width: 100%;"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label 
+              [nzXl]="6"
+              [nzXs]="6" nzRequired nzFor="End Date">End Date</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24"  >
+            <nz-date-picker formControlName="endDate" style="width: 100%;"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label 
+            [nzXl]="6"
+            [nzXs]="6" nzRequired nzFor="Promotion Type">Promotion Type</nz-form-label>
+          <nz-form-control   [nzXl]="16" [nzXs]="16">
+            <nz-select
+              nzAllowClear
+              formControlName="promotionType"
+              nzPlaceHolder="Select Promotion Type"
+            >
+              <nz-option
+                *ngFor="let option of listOfOption"
+                [nzLabel]="option"
+                [nzValue]="option"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label 
+          [nzXl]="6"
+          [nzXs]="6" nzRequired nzFor="Promotion Type">Select SKUs</nz-form-label>
+          <nz-form-control >
+            <nz-input-group>
+              <nz-radio-group
+                (ngModelChange)="selectPrepaidLabel($event)"
+                formControlName="skuType"
+              >
+                <label nz-radio nzValue="yes">All SKUs</label>
+                <label nz-radio nzValue="no">Specific SKUs </label>
+              </nz-radio-group>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div *ngIf="allSku">
+ 
+          <nz-form-item >
+            <nz-form-label 
+          [nzXl]="6"
+          [nzXs]="6" nzRequired nzFor="Promotion Type">Promo %</nz-form-label>
+            <nz-form-control  [nzXl]="6" [nzXs]="6" >
+              <nz-input-group nzSuffix="%" >
+                <input
+                  formControlName="promotion_percent"
+                  type="number"
+                  nz-input
+                
+                />
+              
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        
+      
+        </div>
+      </form>
+      <div *ngIf="specificSku">
+        <b><a> download</a></b>
+      </div>
+    </div>
+    <div class="model-footer">
+      <div class="model-action">
+        <button
+          nz-button
+          nzType="default"
+          style="color: black; margin-right: 5px"
+          (click)="handleCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          nz-button
+          class="action-btn"
+          [nzType]="'primary'"
+          style="width: 100px"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

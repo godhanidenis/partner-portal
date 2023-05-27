@@ -9,6 +9,8 @@ import { find, get, pull } from 'lodash';
 })
 export class ScheduledPaymentsComponent implements OnInit {
   filterForm!: FormGroup;
+  uploadModal!: FormGroup;
+  
   isLoading: boolean = false;
   total = 1;
   pageSize = 10;
@@ -53,11 +55,16 @@ export class ScheduledPaymentsComponent implements OnInit {
 
   tagInputRef!: ElementRef;
   tags: string[] = [];
+  isUploadVisible: boolean = false;
+  
 
   constructor() {}
   ngOnInit(): void {
     this.filterForm = new FormGroup({
       filter: new FormControl(''),
+    });
+    this.uploadModal = new FormGroup({
+      export: new FormControl(''),
     });
   }
 
@@ -95,5 +102,15 @@ export class ScheduledPaymentsComponent implements OnInit {
     } else {
       this.tags.splice(-1);
     }
+  }
+
+  openModal() {
+    this.isUploadVisible = true;
+  }
+
+  handleCancel() {
+  
+      this.isUploadVisible = false;
+ 
   }
 }

@@ -1,9 +1,9 @@
 <div class="scheduled-payment-section">
   <div style="display: flex;justify-content: end;margin-bottom: 10px;">
-    <button style="margin: 0 10px" nz-button nzType="primary" nzShape="round">
+    <button style="margin: 0 10px" nz-button nzType="primary" nzShape="round"  (click)="openModal()">
       <div style="display: flex;align-items: center;">
         <span nz-icon nzType="upload" nzTheme="outline"></span>
-        <span style="margin-left:5px;margin-top:-3px">Export</span>
+        <span style="margin-left:5px;margin-top:-3px" >Export</span>
       </div>
     </button>
   </div>
@@ -54,3 +54,58 @@
     </tbody>
   </nz-table>
 </div>
+
+
+
+<nz-modal
+  [(nzVisible)]="isUploadVisible"
+  nzTitle="Which item do you want to export?"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <div style="padding: 15px">
+      <form nz-form [formGroup]="uploadModal">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group>
+              <nz-radio-group style="display: grid" formControlName="export">
+                <label nz-radio nzValue="A">All</label>
+                <label nz-radio nzValue="B">Filtered(0)</label>
+              </nz-radio-group>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+
+      <h4 style="margin-top: 12px">
+        Your items and all their data will be downloaded as a CSV file
+      </h4>
+    </div>
+    <div class="model-footer">
+      <div class="model-action" style="padding: 15px; padding-bottom: 0">
+        <button
+          nz-button
+          nzType="default"
+          style="color: black; margin-right: 5px"
+          (click)="handleCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          nz-button
+          class="upload-btn"
+          [nzType]="'primary'"
+          style="
+            width: 100px;
+            margin-right: 24px;
+            background-color: #2121c3;
+            border: none;
+          "
+        >
+          Download
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>
+
