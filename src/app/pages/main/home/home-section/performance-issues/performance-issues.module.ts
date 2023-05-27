@@ -18,6 +18,8 @@ import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.mo
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductModule } from '../../../product/product.module';
+import { RestrictedViaOrderComponent } from './restricted-via-order/restricted-via-order.component';
+import { RestrictedProductPriceErrorComponent } from './restricted-product-price-error/restricted-product-price-error.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { ProductModule } from '../../../product/product.module';
     StrandedInFeedComponent,
     StrandedInCatalogComponent,
     DiscontinuedUpdateComponent,
+    RestrictedViaOrderComponent,
+    RestrictedProductPriceErrorComponent,
   ],
   imports: [
     CommonModule,

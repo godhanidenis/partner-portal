@@ -10,6 +10,8 @@ import { IncompleteOfferComponent } from './incomplete-offer/incomplete-offer.co
 import { StrandedInFeedComponent } from './stranded-in-feed/stranded-in-feed.component';
 import { StrandedInCatalogComponent } from './stranded-in-catalog/stranded-in-catalog.component';
 import { DiscontinuedUpdateComponent } from './discontinued-update/discontinued-update.component';
+import { RestrictedViaOrderComponent } from './restricted-via-order/restricted-via-order.component';
+import { RestrictedProductPriceErrorComponent } from './restricted-product-price-error/restricted-product-price-error.component';
 
 const routes: Routes = [
   {
@@ -25,8 +27,16 @@ const routes: Routes = [
     component: MapConflictComponent,
   },
   {
+    path: 'restricted-via-order',
+    component: RestrictedViaOrderComponent,
+  },
+  {
     path: 'restricted-discontinued',
     component: RestrictedDiscontinuedComponent,
+  },
+  {
+    path: 'restricted-product-price-error',
+    component: RestrictedProductPriceErrorComponent,
   },
   {
     path: 'restricted-cannot-ship-ground',
