@@ -8,22 +8,21 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class PromotionsComponent implements OnInit {
   isVisible: boolean = false;
-  add_promotion! : FormGroup;
-  listOfOption = ['Only Price', 'Only MAP','Price & MAP'];
+  add_promotion!: FormGroup;
+  listOfOption = ['Only Price', 'Only MAP', 'Price & MAP'];
   specificSku: boolean = false;
   allSku: boolean = false;
   constructor() {}
   ngOnInit(): void {
-     this.add_promotion = new FormGroup({
-    startDate: new FormControl(''),
-    endDate: new FormControl(''),
-    promotionType: new FormControl(''),
-    skuType: new FormControl(''),
-    promotion_percent: new FormControl(''),
-  });
+    this.add_promotion = new FormGroup({
+      startDate: new FormControl(''),
+      endDate: new FormControl(''),
+      promotionType: new FormControl(''),
+      skuType: new FormControl(''),
+      promotion_percent: new FormControl(''),
+    });
   }
- 
-  
+
   showModal(): void {
     this.isVisible = true;
   }
@@ -52,6 +51,5 @@ export class PromotionsComponent implements OnInit {
       this.specificSku = true;
       this.allSku = false;
     }
-    
   }
 }

@@ -1,0 +1,50 @@
+<div class="payment-table">
+  <nz-table
+    #nzTable
+    nzOuterBordered
+    [nzData]="listOfData"
+    nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
+  >
+    <thead>
+      <tr>
+        <th>Invoice #</th>
+        <th>Invoice Date</th>
+        <th>Invoice Amount</th>
+        <th>PO #</th>
+        <th>Payment Due Date</th>
+        <th>Chargeback Amount</th>
+        <th>To Be Paid Amount</th>
+        <th>Remarks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-data [ngForOf]="listOfData">
+        <tr>
+          <td>{{ data?.invoiceNo }}</td>
+          <td>{{ data?.invoiceDate }}</td>
+          <td>{{ data?.invoiceAmount | currency }}</td>
+          <td>
+            <a
+              style="color: #1221c3"
+              [routerLink]="'po-details/' + data?.poNumber"
+              ><u
+                ><b>{{ data.poNumber }}</b></u
+              ></a
+            >
+          </td>
+          <td>{{ data?.paymentDueDate }}</td>
+          <td>{{ data?.chargebackAmount | currency }}</td>
+          <td>{{ data?.toBePaidAmount | currency }}</td>
+          <td>{{ data?.remarks }}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </nz-table>
+</div>

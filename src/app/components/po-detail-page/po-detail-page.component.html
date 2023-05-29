@@ -21,39 +21,39 @@
           <div class="sub-section-one">
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Ship By Date"
-                ><b>{{ orderSummary?.shipByDate }}</b>
+                ><b>{{ orderSummary.shipByDate }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Shipping Carrier"
-                ><b>{{ orderSummary?.shippingCarrier }}</b>
+                ><b>{{ orderSummary.shippingCarrier }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Shipping Service"
-                ><b>{{ orderSummary?.shippingService }}</b>
+                ><b>{{ orderSummary.shippingService }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Shipping Terms"
-                ><b>{{ orderSummary?.shippingTerms }}</b>
+                ><b>{{ orderSummary.shippingTerms }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
           </div>
           <div class="sub-section-two">
             <nz-descriptions>
               <nz-descriptions-item nzTitle="PO Date"
-                ><b>{{ orderSummary?.poDate }}</b>
+                ><b>{{ orderSummary.poDate }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Committed Ship Date"
-                ><b>{{ orderSummary?.committedShipDate }}</b>
+                ><b>{{ orderSummary.committedShipDate }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Cancel After Date"
-                ><b>{{ orderSummary?.cancelAfterDate }}</b>
+                ><b>{{ orderSummary.cancelAfterDate }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
           </div>
@@ -71,40 +71,34 @@
           <div class="sub-section-one">
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Status"
-                ><b>{{ orderStatus?.status }}</b>
+                ><b>{{ orderStatus.status }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Action"
-                ><b>{{ orderStatus?.action }}</b>
+                ><b>{{ orderStatus.action }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Action"
-                ><b>{{ orderStatus?.actions }}</b>
+                ><b>{{ orderStatus.actions }}</b>
               </nz-descriptions-item>
             </nz-descriptions>
           </div>
           <div class="sub-section-two">
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Download PO Copy"
-                ><a href="#"
-                  ><b><u>Click Hear</u></b></a
-                >
+                ><a href="#" class="link">Click Hear</a>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="Download Shipping Labels"
-                ><a href="#"
-                  ><b><u>Click Hear</u></b></a
-                >
+                ><a href="#" class="link">Click Hear</a>
               </nz-descriptions-item>
             </nz-descriptions>
             <nz-descriptions>
               <nz-descriptions-item nzTitle="PO Clarification"
-                ><a href="#"
-                  ><b><u>Click Hear</u></b></a
-                >
+                ><a href="#" class="link">Click Hear</a>
               </nz-descriptions-item>
             </nz-descriptions>
           </div>
@@ -196,11 +190,11 @@
           <td style="text-align: center">{{ i + 1 }}</td>
           <td>
             <div>
-              <b>MPN : {{ data?.productDescription?.mpn }}</b>
+              <b>MPN : {{ data.productDescription.mpn }}</b>
             </div>
-            <div>Description : {{ data?.productDescription?.description }}</div>
-            <div>UPC : {{ data?.productDescription?.upc }}</div>
-            <div>Brand : {{ data?.productDescription?.brand }}</div>
+            <div>Description : {{ data.productDescription.description }}</div>
+            <div>UPC : {{ data.productDescription.upc }}</div>
+            <div>Brand : {{ data.productDescription.brand }}</div>
             <div>ASIN : {{ data?.productDescription?.asin }}</div>
             <div>
               Total No Of Box : {{ data?.productDescription?.totalNoOfBox }}

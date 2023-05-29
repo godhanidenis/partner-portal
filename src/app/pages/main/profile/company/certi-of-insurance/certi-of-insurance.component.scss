@@ -13,12 +13,6 @@
     display: flex;
     flex-direction: column;
 
-    a {
-      text-decoration: underline;
-      font-weight: 500;
-      color: $darkBlue;
-    }
-
     .vertical-sec {
       ::ng-deep .ant-descriptions-row>td {
         padding-bottom: 16px;

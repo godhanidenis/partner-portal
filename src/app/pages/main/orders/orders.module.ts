@@ -16,6 +16,7 @@ import { RtoOrdersComponent } from './orders-section/rto-orders/rto-orders.compo
 import { AllOrdersComponent } from './orders-section/all-orders/all-orders.component';
 import { CancelOrderComponent } from './orders-section/cancel-order/cancel-order.component';
 import { ComponentModule } from 'src/app/components/component.module';
+import { OrderTableComponent } from './orders-section/order-table/order-table.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ComponentModule } from 'src/app/components/component.module';
     RtoOrdersComponent,
     AllOrdersComponent,
     CancelOrderComponent,
+    OrderTableComponent,
   ],
   imports: [
     CommonModule,

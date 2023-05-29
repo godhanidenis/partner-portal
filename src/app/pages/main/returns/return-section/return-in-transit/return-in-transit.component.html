@@ -5,103 +5,12 @@
   ></app-date-range>
   <!-- (filterChange)="openNav()" -->
 
-  <nz-table
-    #nzTable
-    nzOuterBordered
-    [nzData]="returnInitiatedList"
-    nzShowSizeChanger
-    [nzPageSizeOptions]="pageSizeOptions"
-    [nzFrontPagination]="false"
-    [nzTotal]="total"
-    [nzPageSize]="pageSize"
-    [nzPageIndex]="pageIndex"
-    [nzLoading]="isLoading"
-    [nzScroll]="{ x: '100%' }"
-  >
-    <thead>
-      <tr>
-        <th>PO</th>
-        <th>Invoice</th>
-        <th>Customer Name</th>
-        <th>Return Classification</th>
-        <th>MPN</th>
-        <th>RA Number</th>
-        <th>Tracking No.</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-template ngFor let-data [ngForOf]="returnInitiatedList">
-        <tr>
-          <td>
-            <a [routerLink]="'po-details/' + data?.po" style="color: #1221c3"
-              ><u
-                ><b class="no-wrap">{{ data?.po }}</b></u
-              ></a
-            >
-          </td>
-          <td class="no-wrap">{{ data?.invoice }}</td>
-          <td nzBreakWord>{{ data?.customerName }}</td>
-          <td class="no-wrap">{{ data?.returnClassification }}</td>
-          <td>
-            <div>
-              <b class="no-wrap">{{ data?.mpn }}</b>
-            </div>
-            <ul class="sub-section">
-              <li class="no-wrap">
-                <div class="sub-val">
-                  <span class="title">Order Qty&nbsp;&nbsp;-&nbsp;</span
-                  >{{ data?.orderQty }}
-                </div>
-              </li>
-              <li class="no-wrap">
-                <div class="sub-val">
-                  <span class="title"
-                    >Return Qty&nbsp;-&nbsp;{{ data?.returnQty }}</span
-                  >
-                </div>
-              </li>
-            </ul>
-          </td>
-          <td>
-            <span *ngFor="let ra of data?.raNumber">
-              <div>
-                <b class="no-wrap">{{ ra?.name }}</b>
-              </div>
-              <ul class="sub-section">
-                <li class="no-wrap">
-                  <div class="sub-val">
-                    <span class="title">RA #:&nbsp;</span>{{ ra?.number }}
-                  </div>
-                </li>
-              </ul>
-            </span>
-          </td>
-          <td>
-            <div>
-              <b class="no-wrap">{{ data?.trackingNo?.name }}</b>
-            </div>
-            <ul class="sub-section">
-              <li>
-                <div class="sub-val no-wrap">
-                  <span class="title">AWB:&nbsp;</span
-                  >{{ data?.trackingNo?.number }}
-                </div>
-              </li>
-            </ul>
-          </td>
-          <td>
-            <button
-              style="height: 35px"
-              nz-button
-              class="action-button"
-              [nzType]="'primary'"
-            >
-              Mark as Received
-            </button>
-          </td>
-        </tr>
-      </ng-template>
-    </tbody>
-  </nz-table>
+  <app-return-table
+    [listOfData]="returnInitiatedList"
+    [total]="total"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [isLoading]="isLoading"
+    [tabName]="'Return In-Transit'"
+  ></app-return-table>
 </div>

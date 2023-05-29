@@ -1,6 +1,6 @@
 @import '../../../../../../assets/variable/variable.scss';
 
-.all-return-section{
+.all-return-section {
     .header-section {
         display: flex;
         border: 1px solid $border;
@@ -14,17 +14,6 @@
         .filter {
             display: flex;
             align-items: center;
-        }
-    }
-
-    .sub-section{
-        margin-bottom: 4px;
-        padding-left:15px;
-        .sub-val{
-            font-size: 12px;
-            .title{
-                font-weight: 500;
-            }
         }
     }
 }

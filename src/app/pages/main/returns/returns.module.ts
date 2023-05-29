@@ -13,6 +13,8 @@ import { ReturnReceivedComponent } from './return-section/return-received/return
 import { InCarrierClaimsComponent } from './return-section/in-carrier-claims/in-carrier-claims.component';
 import { AllReturnComponent } from './return-section/all-return/all-return.component';
 import { ComponentModule } from 'src/app/components/component.module';
+import { ReturnApproveComponent } from './return-section/return-approve/return-approve.component';
+import { ReturnTableComponent } from './return-section/return-table/return-table.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ComponentModule } from 'src/app/components/component.module';
     ReturnReceivedComponent,
     InCarrierClaimsComponent,
     AllReturnComponent,
+    ReturnApproveComponent,
+    ReturnTableComponent,
   ],
   imports: [
     CommonModule,

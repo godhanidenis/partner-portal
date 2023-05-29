@@ -1,0 +1,207 @@
+<div class="order-table">
+  <nz-table
+    #nzTable
+    nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
+    [nzData]="listOfData"
+    [nzScroll]="{ x: '100%' }"
+  >
+    <thead>
+      <tr>
+        <th>PO #</th>
+        <th>Customer Name</th>
+        <th>Products</th>
+        <th>PO Total</th>
+
+        <th
+          *ngIf="
+            tabName === 'new' ||
+            tabName === 'pending-shipment' ||
+            tabName === 'Cancellation Requested'
+          "
+        >
+          Committed Ship Date
+        </th>
+        <th
+          *ngIf="
+            tabName === 'new' ||
+            tabName === 'pending-shipment' ||
+            tabName === 'Cancellation Requested'
+          "
+        >
+          Cancel After Date
+        </th>
+        <th
+          style="width: 200px"
+          *ngIf="
+            tabName === 'new' ||
+            tabName === 'pending-shipment' ||
+            tabName === 'Cancellation Requested'
+          "
+        >
+          Action
+        </th>
+
+        <th
+          *ngIf="
+            tabName === 'In Transit' ||
+            tabName === 'Delivered' ||
+            tabName === 'All'
+          "
+        >
+          Shipping Details
+        </th>
+        <th
+          *ngIf="
+            tabName === 'In Transit' ||
+            tabName === 'Delivered' ||
+            tabName === 'All'
+          "
+        >
+          Status
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data">
+        <td>
+          <div style="display: flex; flex-direction: column">
+            <span>
+              <a [routerLink]="'po-details/' + data?.poNumber" class="link">{{
+                data.poNumber
+              }}</a>
+            </span>
+            <span class="sub-date"> 05-11-2023 | 04:52 PM </span>
+            <span class="sub-date"> EDI </span>
+          </div>
+        </td>
+        <td>
+          <div style="display: flex; flex-direction: column">
+            <div>{{ data.customerName }}</div>
+            <div>{{ data.address }}</div>
+          </div>
+        </td>
+        <td>
+          {{ data.products }}
+          <ul class="sub-section">
+            <li class="no-wrap">
+              <div class="sub-val">
+                <span class="title">Qty&nbsp;&nbsp;-&nbsp;</span
+                >{{ data?.quantity }}
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td>{{ data.poTotal | currency }}</td>
+        <td
+          *ngIf="
+            tabName === 'new' ||
+            tabName === 'pending-shipment' ||
+            tabName === 'Cancellation Requested'
+          "
+        >
+          {{ data.committedShip }}
+        </td>
+        <td
+          *ngIf="
+            tabName === 'new' ||
+            tabName === 'pending-shipment' ||
+            tabName === 'Cancellation Requested'
+          "
+        >
+          {{ data.afterDate }}
+        </td>
+        <td
+          *ngIf="
+            tabName === 'new' ||
+            tabName === 'pending-shipment' ||
+            tabName === 'Cancellation Requested'
+          "
+        >
+          <div
+            *ngIf="tabName === 'new' || tabName === 'pending-shipment'"
+            style="display: flex; align-items: center"
+          >
+            <button
+              *ngIf="tabName === 'pending-shipment'"
+              class="action-button"
+              nz-button
+              nzType="primary"
+            >
+              Mark as shipped
+            </button>
+            <button
+              *ngIf="tabName === 'new'"
+              class="action-button"
+              nz-button
+              nzType="primary"
+            >
+              Acknowledge
+            </button>
+            <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li (click)="selectAction('Download PO')" nz-menu-item>
+                  Download PO
+                </li>
+                <li (click)="selectAction('Download Label')" nz-menu-item>
+                  Download Label
+                </li>
+                <li (click)="selectAction('Cancel Order')" nz-menu-item>
+                  Cancel Order
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+          <div
+            *ngIf="tabName === 'Cancellation Requested'"
+            style="display: flex; align-items: center"
+          >
+            <button class="action-button" nz-button nzType="primary">
+              Accept
+            </button>
+            <button class="action-button" nz-button nzType="primary">
+              Already Shipped
+            </button>
+          </div>
+        </td>
+
+        <td
+          *ngIf="
+            tabName === 'In Transit' ||
+            tabName === 'Delivered' ||
+            tabName === 'All'
+          "
+        >
+          <div>
+            <b class="no-wrap">{{ data.shippingDetails.name }}</b>
+          </div>
+          <ul class="sub-section">
+            <li class="no-wrap">
+              <div class="sub-val">
+                {{ data.shippingDetails.number }}
+              </div>
+            </li>
+          </ul>
+        </td>
+        <td
+          *ngIf="
+            tabName === 'In Transit' ||
+            tabName === 'Delivered' ||
+            tabName === 'All'
+          "
+        >
+          <app-status-badge
+            [type]="statusEnum.Success"
+            [text]="data?.status"
+          ></app-status-badge>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

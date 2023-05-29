@@ -1,61 +1,28 @@
 <div class="scheduled-payment-section">
-  <div style="display: flex;justify-content: end;margin-bottom: 10px;">
-    <button style="margin: 0 10px" nz-button nzType="primary" nzShape="round"  (click)="openModal()">
-      <div style="display: flex;align-items: center;">
+  <div style="display: flex; justify-content: end; margin-bottom: 10px">
+    <button
+      style="margin: 0 10px"
+      nz-button
+      nzType="primary"
+      nzShape="round"
+      (click)="openModal()"
+    >
+      <div style="display: flex; align-items: center">
         <span nz-icon nzType="upload" nzTheme="outline"></span>
-        <span style="margin-left:5px;margin-top:-3px" >Export</span>
+        <span style="margin-left: 5px; margin-top: -3px">Export</span>
       </div>
     </button>
   </div>
-  <nz-table
-    #nzTable
-    nzOuterBordered
-    [nzData]="scheduledPaymentsList"
-    nzShowSizeChanger
-    [nzPageSizeOptions]="pageSizeOptions"
-    [nzFrontPagination]="false"
-    [nzTotal]="total"
-    [nzPageSize]="pageSize"
-    [nzPageIndex]="pageIndex"
-    [nzLoading]="isLoading"
-    [nzScroll]="{ x: '100%' }"
-  >
-    <thead>
-      <tr>
-        <th>Invoice #</th>
-        <th>Invoice Date</th>
-        <th>Invoice Amount</th>
-        <th>PO #</th>
-        <th>Payment Due Date</th>
-        <th>Chargeback Amount</th>
-        <th>To Be Paid Amount</th>
-        <th>Remarks</th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-template ngFor let-data [ngForOf]="scheduledPaymentsList">
-        <tr>
-          <td>{{ data?.invoiceNo }}</td>
-          <td>{{ data?.invoiceDate }}</td>
-          <td>{{ data?.invoiceAmount | currency }}</td>
-          <td>
-            <a style="color: #1221c3"
-              ><u
-                ><b>{{ data.poNumber }}</b></u
-              ></a
-            >
-          </td>
-          <td>{{ data?.paymentDueDate }}</td>
-          <td>{{ data?.chargebackAmount | currency }}</td>
-          <td>{{ data?.toBePaidAmount | currency }}</td>
-          <td>{{ data?.remarks }}</td>
-        </tr>
-      </ng-template>
-    </tbody>
-  </nz-table>
+
+  <app-payment-table
+    [listOfData]="scheduledPaymentsList"
+    [total]="total"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [isLoading]="isLoading"
+    [tabName]="'Scheduled Payments'"
+  ></app-payment-table>
 </div>
-
-
 
 <nz-modal
   [(nzVisible)]="isUploadVisible"
@@ -102,10 +69,9 @@
             border: none;
           "
         >
-          Download
+          Export
         </button>
       </div>
     </div>
   </ng-container>
 </nz-modal>
-
