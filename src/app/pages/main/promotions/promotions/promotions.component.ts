@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./promotions.component.scss'],
 })
 export class PromotionsComponent implements OnInit {
-  isVisible: boolean = true;
+  isVisible: boolean = false;
   add_promotion! : FormGroup;
   listOfOption = ['Only Price', 'Only MAP','Price & MAP'];
   specificSku: boolean = false;
