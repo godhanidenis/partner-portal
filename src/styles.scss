@@ -72,6 +72,13 @@
     margin-top: 10px;
 }
 
+.link,
+.link:hover {
+    text-decoration: underline;
+    font-weight: 700;
+    color: $darkBlue;
+}
+
 .sub-section {
     margin-bottom: 4px;
     padding-left: 15px;

@@ -25,35 +25,41 @@
 
 <nz-modal
   [(nzVisible)]="isVisible"
-  nzTitle="The first Modal"
+  nzTitle="Add Promotions"
   (nzOnCancel)="handleCancel()"
   (nzOnOk)="handleOk()"
 >
   <ng-container *nzModalContent>
-    <div style="padding: 15px 15px 10px 15px;">
+    <div style="padding: 15px 15px 10px 15px">
       <form [formGroup]="add_promotion">
         <nz-form-item>
-          <nz-form-label 
-              [nzXl]="6"
-              [nzXs]="6" nzRequired nzFor="Start Date">Start Date</nz-form-label>
-          <nz-form-control [nzSm]="16" [nzXs]="24" >
-            <nz-date-picker formControlName="startDate"  style="width: 100%;"></nz-date-picker>
+          <nz-form-label [nzXl]="6" [nzXs]="6" nzRequired nzFor="Start Date"
+            >Start Date</nz-form-label
+          >
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker
+              formControlName="startDate"
+              style="width: 100%"
+            ></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-label 
-              [nzXl]="6"
-              [nzXs]="6" nzRequired nzFor="End Date">End Date</nz-form-label>
-          <nz-form-control [nzSm]="16" [nzXs]="24"  >
-            <nz-date-picker formControlName="endDate" style="width: 100%;"></nz-date-picker>
+          <nz-form-label [nzXl]="6" [nzXs]="6" nzRequired nzFor="End Date"
+            >End Date</nz-form-label
+          >
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker
+              formControlName="endDate"
+              style="width: 100%"
+            ></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label 
-            [nzXl]="6"
-            [nzXs]="6" nzRequired nzFor="Promotion Type">Promotion Type</nz-form-label>
-          <nz-form-control   [nzXl]="16" [nzXs]="16">
+          <nz-form-label [nzXl]="6" [nzXs]="6" nzRequired nzFor="Promotion Type"
+            >Promotion Type</nz-form-label
+          >
+          <nz-form-control [nzXl]="16" [nzXs]="16">
             <nz-select
               nzAllowClear
               formControlName="promotionType"
@@ -69,10 +75,10 @@
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label 
-          [nzXl]="6"
-          [nzXs]="6" nzRequired nzFor="Promotion Type">Select SKUs</nz-form-label>
-          <nz-form-control >
+          <nz-form-label [nzXl]="6" [nzXs]="6" nzRequired nzFor="Promotion Type"
+            >Select SKUs</nz-form-label
+          >
+          <nz-form-control>
             <nz-input-group>
               <nz-radio-group
                 (ngModelChange)="selectPrepaidLabel($event)"
@@ -86,25 +92,24 @@
         </nz-form-item>
 
         <div *ngIf="allSku">
- 
-          <nz-form-item >
-            <nz-form-label 
-          [nzXl]="6"
-          [nzXs]="6" nzRequired nzFor="Promotion Type">Promo %</nz-form-label>
-            <nz-form-control  [nzXl]="6" [nzXs]="6" >
-              <nz-input-group nzSuffix="%" >
+          <nz-form-item>
+            <nz-form-label
+              [nzXl]="6"
+              [nzXs]="6"
+              nzRequired
+              nzFor="Promotion Type"
+              >Promo %</nz-form-label
+            >
+            <nz-form-control [nzXl]="6" [nzXs]="6">
+              <nz-input-group nzSuffix="%">
                 <input
                   formControlName="promotion_percent"
                   type="number"
                   nz-input
-                
                 />
-              
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
-        
-      
         </div>
       </form>
       <div *ngIf="specificSku">

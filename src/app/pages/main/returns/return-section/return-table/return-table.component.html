@@ -56,11 +56,9 @@
       <ng-template ngFor let-data [ngForOf]="listOfData">
         <tr>
           <td>
-            <a [routerLink]="'po-details/' + data?.po" style="color: #1221c3"
-              ><u
-                ><b class="no-wrap">{{ data?.po }}</b></u
-              ></a
-            >
+            <a [routerLink]="'po-details/' + data?.po" class="link no-wrap">{{
+              data?.po
+            }}</a>
           </td>
           <td class="no-wrap">{{ data?.invoice }}</td>
           <td nzBreakWord>{{ data?.customerName }}</td>

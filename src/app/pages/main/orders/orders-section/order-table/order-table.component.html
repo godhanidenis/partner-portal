@@ -72,13 +72,9 @@
         <td>
           <div style="display: flex; flex-direction: column">
             <span>
-              <a
-                [routerLink]="'po-details/' + data?.poNumber"
-                style="color: #1221c3"
-                ><u
-                  ><b>{{ data.poNumber }}</b></u
-                ></a
-              >
+              <a [routerLink]="'po-details/' + data?.poNumber" class="link">{{
+                data.poNumber
+              }}</a>
             </span>
             <span class="sub-date"> 05-11-2023 | 04:52 PM </span>
             <span class="sub-date"> EDI </span>
