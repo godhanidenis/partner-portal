@@ -9,12 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScheduledPromotionsComponent } from './promotions/scheduled-promotions/scheduled-promotions.component';
 import { CompletedPromotionsComponent } from './promotions/completed-promotions/completed-promotions.component';
 import { ComponentModule } from 'src/app/components/component.module';
+import { PromotionTableComponent } from './promotions/promotion-table/promotion-table.component';
 
 @NgModule({
   declarations: [
     PromotionsComponent,
     ScheduledPromotionsComponent,
     CompletedPromotionsComponent,
+    PromotionTableComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,15 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.order-table {
+    td {
+        button {
+            height: 35px;
+            margin: 5px;
+            border: 1px solid $darkBlue;
+        }
+
+        ::ng-deep .ant-btn-round {
+            padding: 4px 10px !important;
+        }
+    }
+}

@@ -4,39 +4,11 @@
     .body-section {
         transition: margin-left .5s;
 
-        td {
-            button {
-                height: 35px;
-                margin: 5px;
-                border: 1px solid $darkBlue;
-            }
-
-            ::ng-deep .ant-btn-round {
-                padding: 4px 10px !important;
-            }
-        }
-
         .tag-section {
             border-left: 1px solid $border;
             border-right: 1px solid $border;
             padding-bottom: 13px;
             padding-left: 10px;
-        }
-
-        .sub-section {
-            margin-bottom: 4px;
-            padding-left: 15px;
-            .sub-val {
-              font-size: 12px;
-              .title {
-                font-weight: 500;
-              }
-            }
-          }
-    
-        .sub-date {
-            font-size: 12px;
-            font-weight: 500;
         }
     }
 

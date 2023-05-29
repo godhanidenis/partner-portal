@@ -11,6 +11,7 @@ import { RemittanceComponent } from './payment-section/remittance/remittance.com
 import { ScheduledPaymentsComponent } from './payment-section/scheduled-payments/scheduled-payments.component';
 import { InvoicePaymentStatusComponent } from './payment-section/invoice-payment-status/invoice-payment-status.component';
 import { ComponentModule } from 'src/app/components/component.module';
+import { PaymentTableComponent } from './payment-section/payment-table/payment-table.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ComponentModule } from 'src/app/components/component.module';
     RemittanceComponent,
     ScheduledPaymentsComponent,
     InvoicePaymentStatusComponent,
+    PaymentTableComponent,
   ],
   imports: [
     CommonModule,

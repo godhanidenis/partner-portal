@@ -24,9 +24,9 @@ export class PendingShipmentComponent implements OnInit {
       id: 1,
       poNumber: 'CLP 4031',
       customerName: 'AB Kajaria',
-      address:'Miami, Florida',
+      address: 'Miami, Florida',
       products: '89932',
-      quantity:2,
+      quantity: 2,
       poTotal: '125.05',
       committedShip: '05-15-2023',
       afterDate: '05-22-2023',
@@ -35,9 +35,9 @@ export class PendingShipmentComponent implements OnInit {
       id: 2,
       poNumber: 'CLP 4035',
       customerName: 'Nidhi',
-      address:'Miami, Florida',
+      address: 'Miami, Florida',
       products: '89932',
-      quantity:2,
+      quantity: 2,
       poTotal: '80.50',
       committedShip: '08-13-2023',
       afterDate: '08-29-2023',
@@ -57,6 +57,15 @@ export class PendingShipmentComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  selectAction(event: string) {
+    console.log(event);
+    if (event === 'Download PO') {
+    } else if (event === 'Download Label') {
+    } else {
+      this.isCancelOrderVisible = true;
+    }
+  }
 
   onChange(result: Date[]): void {
     console.log('From: ', result[0], ', to: ', result[1]);

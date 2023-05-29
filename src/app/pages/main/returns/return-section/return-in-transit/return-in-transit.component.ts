@@ -19,8 +19,7 @@ export class ReturnInTransitComponent implements OnInit {
       id: 1,
       po: 'NOU-183',
       invoice: '2 - 8528363',
-      customerName:
-        'maynard j megginson jr megginson jr megginson jr megginson jr megginson jr megginson jr',
+      customerName: 'maynard j ',
       returnClassification: 'Mis-Ship',
       mpn: '99446823823',
       orderQty: '1',

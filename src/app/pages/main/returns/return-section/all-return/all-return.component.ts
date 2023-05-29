@@ -16,7 +16,7 @@ export class AllReturnComponent implements OnInit {
   statusEnum: typeof StatusEnum = StatusEnum;
   badgeTotal: number = 0;
 
-  returnInitiatedList = [
+  allReturnList = [
     {
       id: 1,
       po: 'NOU-183',

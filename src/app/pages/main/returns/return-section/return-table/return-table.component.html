@@ -1,0 +1,199 @@
+<div class="return-table">
+  <nz-table
+    #nzTable
+    nzOuterBordered
+    [nzData]="listOfData"
+    nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
+  >
+    <thead>
+      <tr>
+        <th>PO</th>
+        <th>Invoice</th>
+        <th>Customer Name</th>
+        <th
+          *ngIf="
+            tabName === 'Return In-Transit' ||
+            tabName === 'Return Received' ||
+            tabName === 'In Carrier Claims' ||
+            tabName === 'All'
+          "
+        >
+          Return Classification
+        </th>
+        <th>MPN</th>
+        <th *ngIf="tabName === 'Return Initiated'">Return Classification</th>
+        <th
+          *ngIf="
+            tabName === 'Return In-Transit' ||
+            tabName === 'Return Received' ||
+            tabName === 'In Carrier Claims' ||
+            tabName === 'All'
+          "
+        >
+          RA Number
+        </th>
+        <th
+          *ngIf="
+            tabName === 'Return In-Transit' ||
+            tabName === 'Return Received' ||
+            tabName === 'In Carrier Claims' ||
+            tabName === 'All'
+          "
+        >
+          Tracking No.
+        </th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-data [ngForOf]="listOfData">
+        <tr>
+          <td>
+            <a [routerLink]="'po-details/' + data?.po" style="color: #1221c3"
+              ><u
+                ><b class="no-wrap">{{ data?.po }}</b></u
+              ></a
+            >
+          </td>
+          <td class="no-wrap">{{ data?.invoice }}</td>
+          <td nzBreakWord>{{ data?.customerName }}</td>
+          <td
+            *ngIf="
+              tabName === 'Return In-Transit' ||
+              tabName === 'Return Received' ||
+              tabName === 'In Carrier Claims' ||
+              tabName === 'All'
+            "
+            class="no-wrap"
+          >
+            {{ data?.returnClassification }}
+          </td>
+          <td>
+            <div>
+              <b class="no-wrap">{{ data?.mpn }}</b>
+            </div>
+            <ul class="sub-section">
+              <li class="no-wrap">
+                <div class="sub-val">
+                  <span class="title">Order Qty&nbsp;&nbsp;-&nbsp;</span
+                  >{{ data?.orderQty }}
+                </div>
+              </li>
+              <li class="no-wrap">
+                <div class="sub-val">
+                  <span class="title"
+                    >Return Qty&nbsp;-&nbsp;{{ data?.returnQty }}</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td class="no-wrap" *ngIf="tabName === 'Return Initiated'">
+            {{ data?.returnClassification }}
+          </td>
+          <td
+            *ngIf="
+              tabName === 'Return In-Transit' ||
+              tabName === 'Return Received' ||
+              tabName === 'In Carrier Claims' ||
+              tabName === 'All'
+            "
+          >
+            <span *ngFor="let ra of data?.raNumber">
+              <div>
+                <b class="no-wrap">{{ ra?.name }}</b>
+              </div>
+              <ul class="sub-section">
+                <li class="no-wrap">
+                  <div class="sub-val">
+                    <span class="title">RA #:&nbsp;</span>{{ ra?.number }}
+                  </div>
+                </li>
+              </ul>
+            </span>
+          </td>
+          <td
+            *ngIf="
+              tabName === 'Return In-Transit' ||
+              tabName === 'Return Received' ||
+              tabName === 'In Carrier Claims' ||
+              tabName === 'All'
+            "
+          >
+            <div>
+              <b class="no-wrap">{{ data?.trackingNo?.name }}</b>
+            </div>
+            <ul class="sub-section">
+              <li>
+                <div class="sub-val no-wrap">
+                  <span class="title">AWB:&nbsp;</span
+                  >{{ data?.trackingNo?.number }}
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button
+              *ngIf="tabName === 'Return In-Transit'"
+              style="height: 35px"
+              nz-button
+              class="action-button"
+              [nzType]="'primary'"
+            >
+              Mark as Received
+            </button>
+            <div
+              class="action"
+              *ngIf="
+                tabName === 'Return Received' || tabName === 'In Carrier Claims'
+              "
+            >
+              <button
+                style="height: 35px"
+                nz-button
+                class="action-button"
+                [nzType]="'primary'"
+                (click)="selectAction('Return Received')"
+              >
+                Approve Credit
+              </button>
+              <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li (click)="selectAction('Return Received')" nz-menu-item>
+                    Reclassify Customer Reason to Buyers Remorse
+                  </li>
+                  <li nz-menu-item>Report ‘Carrier Damage’</li>
+                  <li nz-menu-item>Return Not Received - Mark as Lost</li>
+                </ul>
+              </nz-dropdown-menu>
+            </div>
+            <app-status-badge
+              *ngIf="tabName === 'All'"
+              [type]="statusEnum.Success"
+              [text]="data?.status"
+            ></app-status-badge>
+
+            <button
+              *ngIf="tabName === 'Return Initiated'"
+              style="height: 35px"
+              nz-button
+              class="action-button"
+              [nzType]="'primary'"
+              (click)="selectAction('Return Initiated')"
+            >
+              Add RA#
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </nz-table>
+</div>

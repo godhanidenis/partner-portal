@@ -183,25 +183,25 @@ export class HomeSectionComponent implements OnInit {
       icon: 'border-inner',
       name: 'New',
       content: 'New Contact',
-      url:'orders/order-section'
+      url: 'orders/order-section',
     },
     {
       icon: 'shopping-cart',
       name: 'Pending Shipment',
       content: 'Pending Shipment Contact',
-       url:'orders/order-section'
+      url: 'orders/order-section',
     },
     {
       icon: 'close-circle',
       name: 'Cancellation Requested',
       content: 'Cancellation Requested Contact',
-       url:'orders/order-section'
+      url: 'orders/order-section',
     },
     {
       icon: 'transaction',
       name: 'In Transit',
       content: 'In Transit Contact',
-       url:'orders/order-section'
+      url: 'orders/order-section',
     },
   ];
 
@@ -223,37 +223,35 @@ export class HomeSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chart = new Chart(this.doughnutChart1.nativeElement, {
+    this.createChart(
+      this.chartOneLabel,
+      this.chartOneData,
+      this.chartOneColor,
+      this.doughnutChart1.nativeElement
+    );
+    this.createChart(
+      this.chartTwoLabel,
+      this.chartTwoData,
+      this.chartTwoColor,
+      this.doughnutChart2.nativeElement
+    );
+  }
+
+  createChart(
+    label: string[],
+    data: number[],
+    color: string[],
+    reference: ElementRef | any
+  ) {
+    this.chart = new Chart(reference, {
       type: 'doughnut',
       data: {
-        labels: this.chartOneLabel,
+        labels: label,
         datasets: [
           {
             label: 'Chart One',
-            data: this.chartOneData,
-            backgroundColor: this.chartOneColor,
-            hoverOffset: 4,
-          },
-        ],
-      },
-      options: {
-        cutout: 60,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-      },
-    });
-    this.chart = new Chart(this.doughnutChart2.nativeElement, {
-      type: 'doughnut',
-      data: {
-        labels: this.chartTwoLabel,
-        datasets: [
-          {
-            label: 'Chart Two',
-            data: this.chartTwoData,
-            backgroundColor: this.chartTwoColor,
+            data: data,
+            backgroundColor: color,
             hoverOffset: 4,
           },
         ],
@@ -269,13 +267,10 @@ export class HomeSectionComponent implements OnInit {
     });
   }
 
-  redirectPendingActions(path: string,number:number
-    ) {
-    
-      
+  redirectPendingActions(path: string, number: number) {
     if (path) {
-      const navigationExtras: NavigationExtras = {state: {index: number}}
-      this.router.navigate([`/main/${path}`],navigationExtras);
+      const navigationExtras: NavigationExtras = { state: { index: number } };
+      this.router.navigate([`/main/${path}`], navigationExtras);
     }
   }
 

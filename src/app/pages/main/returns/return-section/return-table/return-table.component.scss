@@ -1,0 +1,12 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.return-table {
+    .action {
+        display: flex;
+        align-items: center;
+
+        button {
+            margin: 5px;
+        }
+    }
+}

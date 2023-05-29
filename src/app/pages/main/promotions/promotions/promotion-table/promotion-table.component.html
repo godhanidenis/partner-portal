@@ -1,0 +1,83 @@
+<div class="promotion-table">
+  <nz-table
+    #nzTable
+    nzOuterBordered
+    [nzData]="listOfData"
+    nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
+  >
+    <thead>
+      <tr>
+        <th>Promo Code</th>
+        <th>Added On</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Promotion Type</th>
+        <!-- <th></th> -->
+        <th>SKU Count</th>
+        <th>Promotion Avg</th>
+        <th>Status</th>
+        <th>Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-data [ngForOf]="listOfData">
+        <tr>
+          <td>{{ data?.promoCode }}</td>
+          <td>{{ data?.addedOn }}</td>
+          <td>{{ data?.startDate }}</td>
+          <td>{{ data?.endDate }}</td>
+          <td>{{ data?.promotionType }}</td>
+          <!-- <td>{{ data?.sku }}</td> -->
+          <td>{{ data?.count }}</td>
+          <td>{{ data?.promotionAvg }} %</td>
+          <td>{{ data?.status }}</td>
+          <td>
+            <button
+              *ngIf="tabName === 'Completed Promotions'"
+              style="height: 35px"
+              nz-button
+              class="action-button"
+              [nzType]="'primary'"
+            >
+              Download
+            </button>
+            <div
+              style="display: flex; align-items: center"
+              *ngIf="tabName === 'Scheduled Promotions'"
+            >
+              <button
+                style="height: 35px; margin-top: 0; margin-right: 10px"
+                nz-button
+                class="action-button"
+                [nzType]="'primary'"
+              >
+                Download
+              </button>
+              <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
+              <nz-dropdown-menu #menu="nzDropdownMenu">
+                <ul nz-menu>
+                  <li nz-menu-item>Cancel Promotion request</li>
+                  <li nz-menu-item>Stop Promotion EOD</li>
+                  <li nz-menu-item>Stop Promotion Now</li>
+                  <li nz-menu-item (click)="selectAction()">
+                    Shorten Promotion
+                  </li>
+                  <li nz-menu-item (click)="selectAction()">
+                    Extend Promotion
+                  </li>
+                </ul>
+              </nz-dropdown-menu>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </nz-table>
+</div>
