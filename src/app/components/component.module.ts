@@ -16,6 +16,8 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { PoDetailPageComponent } from './po-detail-page/po-detail-page.component';
 import { ComponentRoutingModule } from './component-routing.module';
+import { UploadModelComponent } from './upload-model/upload-model.component';
+import { ExportModelComponent } from './export-model/export-model.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ComponentRoutingModule } from './component-routing.module';
     SectionHeaderComponent,
     BreadcrumbComponent,
     PoDetailPageComponent,
+    UploadModelComponent,
+    ExportModelComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +55,8 @@ import { ComponentRoutingModule } from './component-routing.module';
     HomeFilterSectionComponent,
     SectionHeaderComponent,
     BreadcrumbComponent,
+    UploadModelComponent,
+    ExportModelComponent,
   ],
 })
 export class ComponentModule {}

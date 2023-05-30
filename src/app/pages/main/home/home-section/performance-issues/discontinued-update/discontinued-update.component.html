@@ -4,28 +4,15 @@
   <app-section-header [header]="'Discontinued Update'"></app-section-header>
 
   <div class="body-section">
-    <div class="button-group">
-      <div class="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita
-        aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.
-        Quae dolores error nemo tenetur assumenda similique molestias beatae
-        dicta.
-      </div>
-      <button
-        nz-button
-        nzType="primary"
-        class="action-button"
-        style="margin-top: 0"
-        (click)="isMultipleProductsVisible = true"
-      >
-        <span nz-icon nzType="plus"></span> Add Multi Product Edit
-      </button>
-    </div>
+    <app-home-header
+      [description]="description"
+      [tabName]="'Discontinued Update'"
+    ></app-home-header>
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
       (showFilter)="openNav()"
-      [issueName]="'Handling Time Conflict'"
+      [issueName]="'Discontinued Update'"
     ></app-home-filter-action>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
@@ -106,15 +93,4 @@
       ></app-home-filter-section>
     </div>
   </div>
-  <nz-modal
-    [(nzVisible)]="isMultipleProductsVisible"
-    nzTitle="Add / Edit Multi Product"
-    (nzOnCancel)="isMultipleProductsVisible = false"
-  >
-    <ng-container *nzModalContent>
-      <app-add-edit-multiple-products
-        (closeModel)="isMultipleProductsVisible = false"
-      ></app-add-edit-multiple-products>
-    </ng-container>
-  </nz-modal>
 </div>

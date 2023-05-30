@@ -1,4 +1,4 @@
-@import "../../../../../../../assets/variable/variable.scss";
+@import "../../../assets/variable/variable.scss";
 
 .upload-model {
   .body-section {
@@ -50,8 +50,8 @@
     }
 
     .Neon-input-choose-btn.blue {
-      color: #008bff;
-      border: 1px solid #008bff;
+      color: $darkBlue;
+      border: 1px solid $darkBlue;
     }
 
     .Neon-input-choose-btn {

@@ -10,30 +10,6 @@
     .body-section {
         padding: 10px 20px 0px 20px;
 
-        .button-group {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-
-            .description {
-                max-width: 40%;
-            }
-
-            button {
-                border-radius: 5px;
-                border: 0;
-                margin-left: 5px;
-                height: 35px !important;
-                font-size: 15px;
-            }
-
-            .pull-push-btn {
-                background: #2a3036f0;
-                color: $white;
-                width: 52px;
-            }
-        }
-
         .tag-section {
             border-left: 1px solid $border;
             border-right: 1px solid $border;
@@ -41,31 +17,6 @@
             padding-left: 10px;
         }
 
-        nz-table {
-            input {
-                height: 35px;
-                font-size: 16px;
-                border-radius: 5px;
-            }
-
-            ::ng-deep .ant-input {
-                border-radius: 5px !important;
-            }
-
-            ::ng-deep .ant-form-item {
-                margin-bottom: 0px;
-                // padding: 5px;
-            }
-
-            nz-input-group {
-                border-radius: 5px;
-
-                input {
-                    height: 40px;
-                    font-size: 16px;
-                }
-            }
-        }
 
         .badge {
             border-radius: 8px;

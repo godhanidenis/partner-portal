@@ -8,14 +8,11 @@ import { endOfMonth } from 'date-fns';
   styleUrls: ['./new-orders.component.scss'],
 })
 export class NewOrdersComponent implements OnInit {
-  @ViewChild('content', { static: false }) contentSection!: ElementRef;
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
-  @ViewChild('section', { static: false }) section!: ElementRef;
 
   total = 1;
   pageSize = 50;
   pageIndex = 1;
-  pageSizeOptions = [50, 100, 250, 500];
   isLoading: boolean = false;
   isCancelOrderVisible: boolean = false;
   mode = 'date';
@@ -75,14 +72,10 @@ export class NewOrdersComponent implements OnInit {
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
-    // this.contentSection.nativeElement.style.marginRight = '280px';
-    this.section.nativeElement.style.minHeight = '88%';
   }
 
   closeNav() {
     this.sidenavSection.nativeElement.style.width = '0';
-    // this.contentSection.nativeElement.style.marginRight = '0';
-    this.section.nativeElement.style.minHeight = 'auto';
   }
 
   change(data: any) {

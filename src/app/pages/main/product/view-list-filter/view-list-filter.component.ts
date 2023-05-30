@@ -31,9 +31,9 @@ export class ViewListFilterComponent implements OnInit {
   isImportVisible: boolean = false;
 
   viewEditProducts!: FormGroup;
-  uploadmodal!: FormGroup;
   filter!: FormGroup;
   isLoading: boolean = false;
+  exportType: string = '';
 
   stock: number = 0;
   aprove: number = 0;
@@ -111,9 +111,6 @@ export class ViewListFilterComponent implements OnInit {
   ngOnInit(): void {
     this.viewEditProducts = new FormGroup({
       search: new FormControl(''),
-    });
-    this.uploadmodal = new FormGroup({
-      export: new FormControl(''),
     });
     this.filter = new FormGroup({
       inventory: new FormControl(''),

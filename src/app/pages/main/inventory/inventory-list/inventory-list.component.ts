@@ -43,15 +43,11 @@ export class InventoryListComponent implements OnInit {
       outOfStock: true,
     },
   ];
-  uploadModal!: FormGroup;
+  exportType: string = '';
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    this.uploadModal = new FormGroup({
-      export: new FormControl(''),
-    });
-  }
+  ngOnInit(): void {}
 
   navigatePage(path: string) {
     this.router.navigate([`/main/${path}`]);

@@ -1,0 +1,29 @@
+<div class="home-header">
+  <div class="button-group">
+    <div class="description">
+      {{ description }}
+    </div>
+    <button
+      nz-button
+      nzType="primary"
+      class="action-button"
+      style="margin-top: 0"
+      (click)="isMultipleProductsVisible = true"
+    >
+      <span nz-icon nzType="plus"></span> Add Multi Product Edit
+    </button>
+  </div>
+</div>
+
+<nz-modal
+  [(nzVisible)]="isMultipleProductsVisible"
+  nzTitle="Add / Edit Multi Product"
+  (nzOnCancel)="isMultipleProductsVisible = false"
+>
+  <ng-container *nzModalContent>
+    <app-add-edit-multiple-products
+      [templateType]="templateType"
+      (closeModel)="isMultipleProductsVisible = false"
+    ></app-add-edit-multiple-products>
+  </ng-container>
+</nz-modal>

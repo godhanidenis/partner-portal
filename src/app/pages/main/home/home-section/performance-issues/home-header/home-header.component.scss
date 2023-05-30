@@ -1,0 +1,30 @@
+@import '../../../../../../../assets/variable/variable.scss';
+
+.home-header {
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .description {
+            max-width: 50%;
+
+            @media screen and (min-device-width: 1024px) and (max-device-width: 1440px) {
+                max-width: 45%;
+            }
+
+            @media screen and (min-device-width: 1440px) {
+                max-width: 40%;
+            }
+        }
+
+
+        button {
+            border-radius: 5px;
+            border: 0;
+            margin-left: 5px;
+            height: 35px !important;
+            font-size: 15px;
+        }
+    }
+}

@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderProcessingRoutingModule } from './order-processing-routing.module';
 import { AddPickupAddressComponent } from './manage-pickup-address/add-pickup-address/add-pickup-address.component';
 import { ManagePickupAddressComponent } from './manage-pickup-address/manage-pickup-address.component';
-import { UploadModelComponent } from './manage-pickup-address/upload-model/upload-model.component';
 import { PoLabelAndInvoicePreferencesComponent } from './po-label-and-invoice-preferences/po-label-and-invoice-preferences.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { CourierPreferencesComponent } from './courier-preferences/courier-preferences.component';
@@ -19,7 +18,6 @@ import { ComponentModule } from 'src/app/components/component.module';
   declarations: [
     AddPickupAddressComponent,
     ManagePickupAddressComponent,
-    UploadModelComponent,
     PoLabelAndInvoicePreferencesComponent,
     HolidaysComponent,
     CourierPreferencesComponent,
@@ -35,10 +33,6 @@ import { ComponentModule } from 'src/app/components/component.module';
     FormsModule,
     ComponentModule,
   ],
-  exports: [
-    AddPickupAddressComponent,
-    ViewPickupAddressComponent,
-    UploadModelComponent,
-  ],
+  exports: [AddPickupAddressComponent, ViewPickupAddressComponent],
 })
 export class OrderProcessingModule {}

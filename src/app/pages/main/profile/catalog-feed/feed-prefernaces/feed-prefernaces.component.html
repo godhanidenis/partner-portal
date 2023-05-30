@@ -157,21 +157,38 @@
                         />
                       </nz-input-group>
                     </nz-form-control>
-                    <a
+                    <button
+                      nz-button
+                      nzType="primary"
+                      nzShape="circle"
                       *ngIf="i === emailList.controls.length - 1"
-                      style="background: #00c13b"
+                      style="
+                        background: #00c13b !important;
+                        margin-top: 8px;
+                        margin-left: 8px;
+                        border: 0;
+                      "
                       (click)="addEmails()"
+                      nzSize="small"
                     >
-                      <!-- [disabled]="emailList.controls.length > 9" -->
-                      +
-                    </a>
-                    <a
+                      <span nz-icon nzType="plus"></span>
+                    </button>
+                    <button
+                      nz-button
+                      nzType="primary"
+                      nzShape="circle"
                       *ngIf="i !== emailList.controls.length - 1"
-                      style="background: #f41e2c"
+                      style="
+                        background: #f41e2c !important;
+                        margin-top: 8px;
+                        margin-left: 8px;
+                        border: 0;
+                      "
                       (click)="removeEmail(i)"
+                      nzSize="small"
                     >
-                      -
-                    </a>
+                      <span nz-icon nzType="minus"></span>
+                    </button>
                   </nz-form-item>
                 </div>
               </div>

@@ -6,28 +6,15 @@
   ></app-section-header>
 
   <div class="body-section">
-    <div class="button-group">
-      <div class="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita
-        aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.
-        Quae dolores error nemo tenetur assumenda similique molestias beatae
-        dicta.
-      </div>
-      <button
-        nz-button
-        nzType="primary"
-        class="action-button"
-        style="margin-top: 0"
-        (click)="isMultipleProductsVisible = true"
-      >
-        <span nz-icon nzType="plus"></span> Add Multi Product Edit
-      </button>
-    </div>
+    <app-home-header
+      [description]="description"
+      [tabName]="'Products Losing Importance On Amazon'"
+    ></app-home-header>
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
       (showFilter)="openNav()"
-      [issueName]="'Price Correction'"
+      [issueName]="'Products Losing Importance On Amazon'"
     ></app-home-filter-action>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
@@ -46,63 +33,14 @@
       ></app-home-filter-tag>
     </div>
 
-    <nz-table
-      #nzTable
-      nzOuterBordered
-      [nzData]="productsLosingImportanceOnAmazonList"
-      nzShowSizeChanger
-      [nzPageSizeOptions]="pageSizeOptions"
-      [nzFrontPagination]="false"
-      [nzTotal]="total"
-      [nzPageSize]="pageSize"
-      [nzPageIndex]="pageIndex"
-      [nzLoading]="isLoading"
-      [nzScroll]="{ x: '100%' }"
-    >
-      <thead>
-        <tr>
-          <th>Serial No.</th>
-          <th>MPN</th>
-          <th>UPC</th>
-          <th>ASIN</th>
-          <th>Product Name</th>
-          <th>Partner Unit Price provided to 123Stores</th>
-          <th>Allowances</th>
-          <th>Shipping Price</th>
-          <th>Amazon Market Place Fees</th>
-          <th>123Stores Listed Price</th>
-          <th>Required Unit Price to match Retail Price on Amazon</th>
-          <th>Discount or Promotion Required</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of nzTable.data; let no = index">
-          <td>{{ no + 1 }}</td>
-          <td>{{ data?.mpn }}</td>
-          <td>{{ data?.upc }}</td>
-          <td>{{ data?.asin }}</td>
-          <td>{{ data?.product_Name }}</td>
-          <td>{{ data?.partnerUnitPrice | currency }}</td>
-          <td>{{ data?.allowances }}</td>
-          <td>{{ data?.shippingPrice | currency }}</td>
-          <td>{{ data?.amazonMarketPlaceFees | currency }}</td>
-          <td>{{ data?.listedPrice | currency }}</td>
-          <td>{{ data?.requiredUnitPrice | currency }}</td>
-          <td>{{ data?.discount }}%</td>
-          <td>
-            <button
-              nz-button
-              nzType="primary"
-              class="action-button"
-              style="margin-top: 0; height: 35px"
-            >
-              Match
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </nz-table>
+    <app-recommendation-issue-table
+      [listOfData]="productsLosingImportanceOnAmazonList"
+      [total]="total"
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [isLoading]="isLoading"
+      [tabName]="'Products Losing Importance On Amazon'"
+    ></app-recommendation-issue-table>
 
     <div #mySidenav class="filter-section">
       <app-home-filter-section
@@ -116,19 +54,8 @@
         [collection]="selectCollection"
         [category]="selectCategory"
         [salesTire]="selectSalesTire"
-        [issueName]="'Handling Time Conflict'"
+        [issueName]="'Products Losing Importance On Amazon'"
       ></app-home-filter-section>
     </div>
   </div>
-  <nz-modal
-    [(nzVisible)]="isMultipleProductsVisible"
-    nzTitle="Add / Edit Multi Product"
-    (nzOnCancel)="isMultipleProductsVisible = false"
-  >
-    <ng-container *nzModalContent>
-      <app-add-edit-multiple-products
-        (closeModel)="isMultipleProductsVisible = false"
-      ></app-add-edit-multiple-products>
-    </ng-container>
-  </nz-modal>
 </div>

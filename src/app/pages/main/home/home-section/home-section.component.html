@@ -130,44 +130,41 @@
       </div>
     </div>
     <div class="body" nz-row [nzGutter]="16">
-      
       <div
         nz-col
         [nzXl]="6"
         [nzSm]="12"
         [nzXs]="24"
         style="margin: 10px 0"
-        *ngFor="let data of pendingActions;let i = index;"
+        *ngFor="let data of pendingActions; let i = index"
       >
-    <a  (click)="redirectPendingActions(data.url, i)">
-        <nz-card>
-          <div class="card">
-            <div class="icon">
-              <span nz-icon [nzType]="data.icon" nzTheme="outline"></span>
+        <a (click)="redirectPendingActions(data.url, i)">
+          <nz-card>
+            <div class="card">
+              <div class="icon">
+                <span nz-icon [nzType]="data.icon" nzTheme="outline"></span>
+              </div>
+              <div class="content">
+                <span class="title">{{ data.name }}</span>
+                <span>{{ data.content }}</span>
+              </div>
+              <div class="count">
+                <span>1</span>
+              </div>
             </div>
-            <div class="content">
-              <span class="title">{{ data.name }}</span>
-              <span>{{ data.content }}</span>
-            </div>
-            <div class="count">
-              <span>1</span>
-            </div>
-          </div>
-        </nz-card>
-      </a>
+          </nz-card>
+        </a>
       </div>
-    
-      
     </div>
   </div>
   <div class="section" nz-row [nzGutter]="16">
     <div nz-col [nzXl]="12" [nzSm]="24">
       <div class="user-content">
-        <div class="tab-header" style="padding-right: 0">
+        <div class="tab-header">
           <span>Performance Issues</span>
         </div>
       </div>
-      <div class="performance-issues-section" style="padding-right: 0">
+      <div class="performance-issues-section">
         <nz-table
           style="margin-top: 10px"
           #nzTable
@@ -188,9 +185,9 @@
               <tr>
                 <td>{{ data?.id }}</td>
                 <td>
-                  <a (click)="shoeIssuesPage(data.url)"
-                    ><u>{{ data?.name }}</u></a
-                  >
+                  <a (click)="shoeIssuesPage(data.url)" class="link">{{
+                    data?.name
+                  }}</a>
                 </td>
                 <td>
                   <b>{{ data?.count }}</b>
@@ -203,11 +200,11 @@
     </div>
     <div nz-col [nzXl]="12" [nzSm]="24">
       <div class="user-content">
-        <div style="padding-left: 0" class="tab-header">
+        <div class="tab-header">
           <span>Recommendation Issues</span>
         </div>
       </div>
-      <div class="performance-issues-section" style="padding-left: 0">
+      <div class="performance-issues-section">
         <nz-table
           style="margin-top: 10px"
           #nzTable
@@ -228,9 +225,9 @@
               <tr>
                 <td>{{ data?.id }}</td>
                 <td>
-                  <a (click)="shoeIssuesPage(data.url)"
-                    ><u>{{ data?.name }}</u></a
-                  >
+                  <a (click)="shoeIssuesPage(data.url)" class="link">{{
+                    data?.name
+                  }}</a>
                 </td>
                 <td>
                   <b>{{ data?.count }}</b>
