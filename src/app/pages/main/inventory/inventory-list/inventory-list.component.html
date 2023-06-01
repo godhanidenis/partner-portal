@@ -46,10 +46,10 @@
         <tr>
           <th>Feed Code</th>
           <!-- <th>Time</th> -->
-          <th>Method</th>
-          <th>In Stock</th>
-          <th>Out Of Stock</th>
-          <th>Action</th>
+          <th class="text-center">Method</th>
+          <th class="text-center">In Stock</th>
+          <th class="text-center">Out Of Stock</th>
+          <th class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -57,10 +57,36 @@
           <tr>
             <td>{{ data?.feedCode }}</td>
             <!-- <td>{{ data?.time }}</td> -->
-            <td>{{ data?.method }}</td>
-            <td>{{ data?.inStock }}</td>
-            <td>{{ data?.outOfStock }}</td>
-            <td>
+            <td class="text-center">{{ data?.method }}</td>
+            <td class="text-center">
+              <span
+                *ngIf="data.inStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="check"
+              ></span>
+              <span
+                *ngIf="!data.inStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="close"
+              ></span>
+            </td>
+            <td class="text-center">
+              <span
+                *ngIf="data.outOfStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="check"
+              ></span>
+              <span
+                *ngIf="!data.outOfStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="close"
+              ></span>
+            </td>
+            <td class="text-center">
               <a
                 (click)="
                   navigatePage('inventory-list/view-inventory/' + data?.id)

@@ -6,8 +6,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { ProductService } from 'src/app/shared/service/product.service';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -31,44 +32,18 @@ export class AddEditProductComponent implements OnInit {
   productCategoryIndex = 0;
   listOfSalesTier = ['Medium Seller', 'Low Seller', 'Slow Seller'];
   salesTierIndex = 0;
-  editData = {
-    mpn: 'powershell',
-    upc: '1234212342342',
-    amazon_asin: 'AS123',
-    product_name: 'Demo',
-    brand: 'Sony',
-    collection: 'Floral Collection',
-    product_category: 'Rugs',
-    sales_tier: 'Slow Seller',
-    unit_price: '123.21',
-    map: '6.2',
-    msrp: '5.21',
-    handling_time: '25',
-    shipping_Method: 'smallParcel',
-    number_of_boxes: 2,
-    product_status: 'active',
-    shipping_dimensions_of_box: [
-      {
-        length: 2.6,
-        width: 4,
-        height: 6,
-        gross_weight: 8,
-      },
-      {
-        length: 1.6,
-        width: 2,
-        height: 3,
-        gross_weight: 4,
-      },
-    ],
-  };
+  editData: any = '';
   setDropDownValue: string = '';
   searchList: string[] = [];
+  editId: number = 0;
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -109,7 +84,6 @@ export class AddEditProductComponent implements OnInit {
         Validators.max(30),
       ]),
       shipping_Method: new FormControl('', [Validators.required]),
-
       number_of_boxes: new FormControl(1, [
         Validators.required,
         Validators.min(1),
@@ -120,63 +94,82 @@ export class AddEditProductComponent implements OnInit {
     });
 
     if (this.editSection) {
-      this.addEditProductForm.controls['mpn'].setValue(this.editData?.mpn);
-      this.addEditProductForm.controls['upc'].setValue(this.editData?.upc);
-      this.addEditProductForm.controls['amazon_asin'].setValue(
-        this.editData?.amazon_asin
-      );
-      this.addEditProductForm.controls['product_name'].setValue(
-        this.editData?.product_name
-      );
-      this.addEditProductForm.controls['brand'].setValue(this.editData?.brand);
-      this.addEditProductForm.controls['collection'].setValue(
-        this.editData?.collection
-      );
-      this.addEditProductForm.controls['product_category'].setValue(
-        this.editData?.product_category
-      );
-      this.addEditProductForm.controls['sales_tier'].setValue(
-        this.editData?.sales_tier
-      );
-      this.addEditProductForm.controls['unit_price'].setValue(
-        this.editData?.unit_price
-      );
-      this.addEditProductForm.controls['map'].setValue(this.editData?.map);
-      this.addEditProductForm.controls['msrp'].setValue(this.editData?.msrp);
-      this.addEditProductForm.controls['handling_time'].setValue(
-        this.editData?.handling_time
-      );
-      this.addEditProductForm.controls['shipping_Method'].setValue(
-        this.editData?.shipping_Method
-      );
-      this.addEditProductForm.controls['number_of_boxes'].setValue(
-        this.editData?.number_of_boxes
-      );
-      this.addEditProductForm.controls['product_status'].setValue(
-        this.editData?.product_status
-      );
-      this.editData?.shipping_dimensions_of_box.map(
-        (res: {
-          length: number;
-          width: number;
-          height: number;
-          gross_weight: number;
-        }) => {
-          this.shippingDimensionsOfBoxes.push(
-            this.formBuilder.group({
-              length: res?.length,
-              width: res?.width,
-              height: res?.height,
-              gross_weight: res?.gross_weight,
-            })
-          );
-        }
-      );
+      const id = this.activatedRoute.snapshot.paramMap.get('id');
+      if (id) {
+        this.editId = id ? +id : 0;
+        this.productService.getProduct(id ? +id : 1).subscribe((res: any) => {
+          this.editData = res;
+          if (this.editData) {
+            this.addEditProductForm.controls['mpn'].setValue(
+              this.editData?.mpn
+            );
+            this.addEditProductForm.controls['upc'].setValue(
+              this.editData?.upc
+            );
+            this.addEditProductForm.controls['amazon_asin'].setValue(
+              this.editData?.amazon_asin
+            );
+            this.addEditProductForm.controls['product_name'].setValue(
+              this.editData?.product_name
+            );
+            this.addEditProductForm.controls['brand'].setValue(
+              this.editData?.brand
+            );
+            this.addEditProductForm.controls['collection'].setValue(
+              this.editData?.collection
+            );
+            this.addEditProductForm.controls['product_category'].setValue(
+              this.editData?.category
+            );
+            this.addEditProductForm.controls['sales_tier'].setValue(
+              this.editData?.sales_tier
+            );
+            this.addEditProductForm.controls['unit_price'].setValue(
+              this.editData?.unit_price
+            );
+            this.addEditProductForm.controls['map'].setValue(
+              this.editData?.map
+            );
+            this.addEditProductForm.controls['msrp'].setValue(
+              this.editData?.msrp
+            );
+            this.addEditProductForm.controls['handling_time'].setValue(
+              this.editData?.handling_time
+            );
+            this.addEditProductForm.controls['shipping_Method'].setValue(
+              this.editData?.shipping_method
+            );
+            this.addEditProductForm.controls['number_of_boxes'].setValue(
+              this.editData?.number_of_boxes
+            );
+            this.addEditProductForm.controls['product_status'].setValue(
+              this.editData?.product_status
+            );
+            this.editData?.shipping_dimensions_of_box.map(
+              (res: {
+                length: number;
+                width: number;
+                height: number;
+                gross_weight: number;
+              }) => {
+                this.shippingDimensionsOfBoxes.push(
+                  this.formBuilder.group({
+                    length: res?.length,
+                    width: res?.width,
+                    height: res?.height,
+                    gross_weight: res?.gross_weight,
+                  })
+                );
+              }
+            );
+          }
+        });
+      }
     } else {
       this.addShippingDimensionsOfBoxes();
     }
 
-    this.addEditProductForm.controls['number_of_boxes'].disable();
+    // this.addEditProductForm.controls['number_of_boxes'].disable();
   }
 
   searchValue(event: string, type: string) {
@@ -291,6 +284,50 @@ export class AddEditProductComponent implements OnInit {
           break;
       }
     }
+  }
+
+  submit() {
+    this.isLoading = true;
+
+    let data: any = {
+      amazon_asin: this.addEditProductForm.value.amazon_asin,
+      brand: this.addEditProductForm.value.brand,
+      collection: this.addEditProductForm.value.collection,
+      handling_time: this.addEditProductForm.value.handling_time,
+      map: this.addEditProductForm.value.map,
+      mpn: this.addEditProductForm.value.mpn,
+      msrp: this.addEditProductForm.value.msrp,
+      product_category: this.addEditProductForm.value.product_category,
+      product_name: this.addEditProductForm.value.product_name,
+      product_status: this.addEditProductForm.value.product_status,
+      sales_tier: this.addEditProductForm.value.sales_tier,
+      shipping_Method: this.addEditProductForm.value.shipping_Method,
+      number_of_boxes: this.addEditProductForm.value.number_of_boxes
+        ? this.addEditProductForm.value.number_of_boxes
+        : 1,
+      shipping_dimensions_of_box:
+        this.addEditProductForm.value.shipping_dimensions_of_box,
+      unit_price: this.addEditProductForm.value.unit_price,
+      upc: this.addEditProductForm.value.upc,
+    };
+
+    // if (this.editData && this.editId !== 0) {
+    //   this.productService.editProduct(data, this.editId).subscribe(
+    //     (res: any) => {
+    //       console.log(res);
+    //       this.isLoading = false;
+    //     },
+    //     (err) => (this.isLoading = false)
+    //   );
+    // } else {
+    //   this.productService.createProduct(data).subscribe(
+    //     (res: any) => {
+    //       console.log(res);
+    //       this.isLoading = false;
+    //     },
+    //     (err) => (this.isLoading = false)
+    //   );
+    // }
   }
 
   backButton(path: string) {

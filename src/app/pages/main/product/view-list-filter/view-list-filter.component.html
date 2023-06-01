@@ -146,7 +146,7 @@
         [nzPageSize]="pageSize"
         [nzPageIndex]="pageIndex"
         [nzLoading]="isLoading"
-        [nzData]="data"
+        [nzData]="productList"
         [nzScroll]="{ x: '100%' }"
       >
         <thead>
@@ -155,7 +155,7 @@
             <th>Product Name</th>
             <th>Unit Price</th>
             <th>Brand</th>
-            <th>Product Status</th>
+            <th class="text-center">Product Status</th>
             <th>ASIN Status</th>
             <th>Inventory</th>
             <th>MAP</th>
@@ -170,14 +170,23 @@
                 (click)="
                   navigatePage('view-product/view-single-product/' + data.id)
                 "
-                >{{ data.productName }}</a
+                >{{ data.product_name }}</a
               >
             </td>
-            <td>{{ data.unitPrice | currency }}</td>
+            <td>{{ data.unit_price | currency }}</td>
             <td>{{ data.brand }}</td>
-            <td>{{ data.productStatus }}</td>
-            <td>{{ data.asinStatus }}</td>
-            <td>{{ data.inventory }}</td>
+            <td class="text-center">
+              <app-status-badge
+                [type]="
+                  data.product_status === 'Active'
+                    ? statusEnum.Success
+                    : statusEnum.Failure
+                "
+                [text]="data.product_status"
+              ></app-status-badge>
+            </td>
+            <td>{{ data.asin }}</td>
+            <td>{{ data.inventory_status }}</td>
             <td>{{ data.map }}</td>
           </tr>
         </tbody>

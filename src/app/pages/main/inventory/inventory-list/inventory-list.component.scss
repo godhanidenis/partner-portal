@@ -10,6 +10,18 @@
     .body-section {
         padding: 10px 20px 0px 20px;
 
+        ::ng-deep .ant-btn-icon-only.ant-btn-sm {
+            width: 13px;
+            height: 18px;
+            padding: 0px 0;
+            font-size: 14px;
+        }
+
+        ::ng-deep .ant-btn-circle.ant-btn-sm {
+            min-width: 18px;
+            border-radius: 50%;
+        }
+
         .button-group {
             display: flex;
             justify-content: space-between;

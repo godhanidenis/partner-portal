@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
+import { ProductService } from 'src/app/shared/service/product.service';
 
 @Component({
   selector: 'app-view-list-filter',
@@ -69,44 +71,19 @@ export class ViewListFilterComponent implements OnInit {
   salesTireFilter: string[] = [];
 
   listOfOption = ['Option 01', 'Option 02'];
+  statusEnum: typeof StatusEnum = StatusEnum;
+  productList: any[] = [];
 
-  data = [
-    {
-      id: 1,
-      mpn: 'powershell',
-      productName: 'sunglass',
-      unitPrice: '1200',
-      brand: 'Aviator',
-      productStatus: 'yes',
-      asinStatus: 'deep Copy',
-      inventory: 'yes',
-      map: 'New York',
-    },
-    {
-      id: 2,
-      mpn: 'circle',
-      productName: 'keyboard',
-      unitPrice: '1340',
-      brand: 'cruse',
-      productStatus: 'yes',
-      asinStatus: 'First Copy',
-      inventory: 'no',
-      map: 'paris',
-    },
-    {
-      id: 3,
-      mpn: 'build',
-      productName: 'bottle',
-      unitPrice: '1780',
-      brand: 'denim',
-      productStatus: 'yes',
-      asinStatus: 'deep Copy',
-      inventory: 'yes',
-      map: 'dubai',
-    },
-  ];
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private productService: ProductService) {
+    this.isLoading = true;
+    this.productService.getAllProduct().subscribe(
+      (res: any) => {
+        this.productList = res.products;
+        this.isLoading = false;
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
 
   ngOnInit(): void {
     this.viewEditProducts = new FormGroup({
