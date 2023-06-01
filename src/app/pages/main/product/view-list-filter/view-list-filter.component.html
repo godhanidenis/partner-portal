@@ -21,7 +21,7 @@
         (click)="navigatePage('view-product/add-product')"
       >
         <span nz-icon nzType="plus" nzTheme="outline"></span>
-        Add new Product
+        Add Product
       </button>
     </div>
 
@@ -203,36 +203,10 @@
     >
     <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
       <div class="filter-content">
-        <nz-divider nzText="Inventory" nzOrientation="left"></nz-divider>
-        <nz-radio-group
-          (ngModelChange)="change($event, 'inventory')"
-          formControlName="inventory"
-        >
-          <label nz-radio nzValue="inStock">In Stock</label>
-          <label nz-radio nzValue="outOfStock">Out Of Stock</label>
-        </nz-radio-group>
-
-        <nz-divider
-          style="margin-top: 20px"
-          nzText="Asin Status"
-          nzOrientation="left"
-        ></nz-divider>
-        <nz-radio-group
-          (ngModelChange)="change($event, 'asin')"
-          formControlName="asin"
-        >
-          <label nz-radio nzValue="approved">Approved</label>
-          <label nz-radio nzValue="notapproved">Not Approved</label>
-        </nz-radio-group>
-
-        <nz-divider
-          style="margin-top: 20px"
-          nzText="Product Status"
-          nzOrientation="left"
-        ></nz-divider>
+        <nz-divider nzText="Product Status" nzOrientation="left"></nz-divider>
         <nz-select
           nzAllowClear
-          nzPlaceHolder="Select A Status"
+          nzPlaceHolder="Select A Product Status"
           (ngModelChange)="
             change(filter.value.productStatus ? $event : '', 'status')
           "
@@ -247,15 +221,28 @@
 
         <nz-divider
           style="margin-top: 20px"
-          nzText="MAP"
+          nzText="Inventory Status"
           nzOrientation="left"
         ></nz-divider>
         <nz-radio-group
-          (ngModelChange)="change($event, 'map')"
-          formControlName="map"
+          (ngModelChange)="change($event, 'inventory')"
+          formControlName="inventory"
         >
-          <label nz-radio nzValue="true">Yes</label>
-          <label nz-radio nzValue="false">No</label>
+          <label nz-radio nzValue="inStock">In Stock</label>
+          <label nz-radio nzValue="outOfStock">Out Of Stock</label>
+        </nz-radio-group>
+
+        <nz-divider
+          style="margin-top: 20px"
+          nzText="ASIN Status"
+          nzOrientation="left"
+        ></nz-divider>
+        <nz-radio-group
+          (ngModelChange)="change($event, 'asin')"
+          formControlName="asin"
+        >
+          <label nz-radio nzValue="approved">Approved</label>
+          <label nz-radio nzValue="notapproved">Not Approved</label>
         </nz-radio-group>
 
         <nz-divider
@@ -276,6 +263,19 @@
             [nzValue]="item"
           ></nz-option>
         </nz-select>
+
+        <!-- <nz-divider
+          style="margin-top: 20px"
+          nzText="MAP"
+          nzOrientation="left"
+        ></nz-divider>
+        <nz-radio-group
+          (ngModelChange)="change($event, 'map')"
+          formControlName="map"
+        >
+          <label nz-radio nzValue="true">Yes</label>
+          <label nz-radio nzValue="false">No</label>
+        </nz-radio-group> -->
 
         <nz-divider
           style="margin-top: 20px"
@@ -300,13 +300,13 @@
 
         <nz-divider
           style="margin-top: 20px"
-          nzText="Category"
+          nzText="Product Category"
           nzOrientation="left"
         ></nz-divider>
         <nz-select
           nzShowSearch
           nzAllowClear
-          nzPlaceHolder="Select A Category"
+          nzPlaceHolder="Select A Product Category"
           (ngModelChange)="
             change(filter.value.category ? $event : '', 'category')
           "
@@ -327,7 +327,7 @@
         <nz-select
           nzShowSearch
           nzAllowClear
-          nzPlaceHolder="Select A Sales Tire"
+          nzPlaceHolder="Select A Sales Tier"
           (ngModelChange)="
             change(filter.value.salesTire ? $event : '', 'salesTire')
           "
@@ -345,7 +345,7 @@
 
   <nz-modal
     [(nzVisible)]="isDownloadVisible"
-    nzTitle="Which items do you want to export?"
+    nzTitle="Which Products would you like to export?"
     (nzOnCancel)="handleCancel('download')"
     (nzOnOk)="handleOk('download')"
   >

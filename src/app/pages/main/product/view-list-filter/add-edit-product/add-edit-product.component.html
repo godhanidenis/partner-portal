@@ -268,7 +268,13 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzXl]="12"
+          *ngIf="userPermissions.partner_map"
+        >
           <nz-form-control [nzErrorTip]="map">
             <nz-form-label nzFor="map">MAP </nz-form-label>
             <nz-input-group nzPrefix="$">
@@ -306,10 +312,18 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+        <nz-form-item
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzXl]="12"
+          *ngIf="userPermissions.partner_sku_level_handling"
+        >
           <nz-form-control [nzErrorTip]="handling_time">
             <nz-form-label nzFor="handling_time"
-              >Handling Time<span style="color: red; font-weight: 500">*</span>
+              >Handling Time (In Days)<span style="color: red; font-weight: 500"
+                >*</span
+              >
             </nz-form-label>
             <nz-input-group>
               <input
@@ -421,7 +435,7 @@
       <nz-card
         style="margin-top: 10px"
         nzType="inner"
-        nzTitle="Shipping Dimensions of Boxes"
+        nzTitle="Shipping Box Dimensions"
       >
         <div nz-row [nzGutter]="16" formArrayName="shipping_dimensions_of_box">
           <div
@@ -439,7 +453,9 @@
               </h3>
               <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
                 <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Length<span style="color: red; font-weight: 500">*</span>
+                  >Length (inches)<span style="color: red; font-weight: 500"
+                    >*</span
+                  >
                 </nz-form-label>
                 <nz-form-control [nzErrorTip]="length">
                   <nz-input-group>
@@ -463,7 +479,9 @@
               </nz-form-item>
               <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
                 <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Width<span style="color: red; font-weight: 500">*</span>
+                  >Width (inches)<span style="color: red; font-weight: 500"
+                    >*</span
+                  >
                 </nz-form-label>
                 <nz-form-control [nzErrorTip]="width">
                   <nz-input-group>
@@ -487,7 +505,9 @@
               </nz-form-item>
               <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
                 <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Height<span style="color: red; font-weight: 500">*</span>
+                  >Height (inches)<span style="color: red; font-weight: 500"
+                    >*</span
+                  >
                 </nz-form-label>
                 <nz-form-control [nzErrorTip]="height">
                   <nz-input-group>
@@ -511,7 +531,7 @@
               </nz-form-item>
               <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
                 <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Gross Weight<span style="color: red; font-weight: 500"
+                  >Gross Weight (lbs)<span style="color: red; font-weight: 500"
                     >*</span
                   >
                 </nz-form-label>

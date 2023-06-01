@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   getBrand() {
-    let params = new HttpParams().set('pc', 'AAA');
+    let params = new HttpParams().set('pc', 'NPS');
     return this.httpClient.get(this.url + '/products/brands', {
       params: params,
     });
