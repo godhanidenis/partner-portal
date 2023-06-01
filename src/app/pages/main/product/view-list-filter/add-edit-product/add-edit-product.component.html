@@ -347,9 +347,9 @@
               >
                 <nz-option
                   nzLabel="Small Parcel"
-                  nzValue="smallParcel"
+                  nzValue="Small Parcel"
                 ></nz-option>
-                <nz-option nzLabel="LTL" nzValue="ltl"></nz-option>
+                <nz-option nzLabel="LTL" nzValue="LTR"></nz-option>
               </nz-select>
               <ng-template #shipping_Method let-control>
                 <ng-container *ngIf="control.hasError('required')"
@@ -376,8 +376,8 @@
                 formControlName="product_status"
                 nzPlaceHolder="Select Product Status"
               >
-                <nz-option nzLabel="Active" nzValue="active"></nz-option>
-                <nz-option nzLabel="Inactive" nzValue="inactive"></nz-option>
+                <nz-option nzLabel="Active" nzValue="Active"></nz-option>
+                <nz-option nzLabel="Inactive" nzValue="Inactive"></nz-option>
               </nz-select>
               <ng-template #product_status let-control>
                 <ng-container *ngIf="control.hasError('required')"

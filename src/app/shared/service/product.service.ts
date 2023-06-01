@@ -9,13 +9,37 @@ export class ProductService {
   url = environment.baseUrl;
   constructor(private httpClient: HttpClient) {}
 
-  getAllProduct() {
-    return this.httpClient.get(this.url + '/products');
+  getAllProduct(page: number) {
+    let params = new HttpParams().set('page', page);
+    return this.httpClient.get(this.url + '/products/products', {
+      params: params,
+    });
   }
 
-  getProduct(sku: number) {
+  getProduct(sku: string) {
     let params = new HttpParams().set('sku', sku);
-    return this.httpClient.get(this.url + 'products/single-product/', {
+    return this.httpClient.get(this.url + '/products/single-product', {
+      params: params,
+    });
+  }
+
+  getBrand() {
+    let params = new HttpParams().set('pc', 'AAA');
+    return this.httpClient.get(this.url + '/products/brands', {
+      params: params,
+    });
+  }
+
+  getCategories() {
+    let params = new HttpParams().set('pc', 'AAA');
+    return this.httpClient.get(this.url + '/products/categories', {
+      params: params,
+    });
+  }
+
+  getCollections() {
+    let params = new HttpParams().set('pc', 'AAA');
+    return this.httpClient.get(this.url + '/products/collections', {
       params: params,
     });
   }

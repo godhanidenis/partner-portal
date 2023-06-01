@@ -1,6 +1,6 @@
 <div #section class="view-edit-products-section">
   <div class="content-section">
-    <app-section-header [header]="'View Products'"></app-section-header>
+    <app-section-header [header]="'Products'"></app-section-header>
 
     <div class="header-action-button">
       <button
@@ -148,7 +148,9 @@
         [nzLoading]="isLoading"
         [nzData]="productList"
         [nzScroll]="{ x: '100%' }"
+        (nzPageIndexChange)="pageIndexChange($event)"
       >
+        <!-- (nzPageSizeChange)="pageSizeChange($event)" -->
         <thead>
           <tr>
             <th>MPN</th>
@@ -168,26 +170,27 @@
               <a
                 class="link"
                 (click)="
-                  navigatePage('view-product/view-single-product/' + data.id)
+                  navigatePage('view-product/view-single-product/' + data.sku)
                 "
-                >{{ data.product_name }}</a
+                >{{ data.name }}</a
               >
             </td>
             <td>{{ data.unit_price | currency }}</td>
             <td>{{ data.brand }}</td>
             <td class="text-center">
-              <app-status-badge
+              {{ data.catalog_status }}
+              <!-- <app-status-badge
                 [type]="
-                  data.product_status === 'Active'
+                  data.catalog_status === 'Active'
                     ? statusEnum.Success
                     : statusEnum.Failure
                 "
-                [text]="data.product_status"
-              ></app-status-badge>
+                [text]="data.catalog_status"
+              ></app-status-badge> -->
             </td>
             <td>{{ data.asin }}</td>
             <td>{{ data.inventory_status }}</td>
-            <td>{{ data.map }}</td>
+            <td>{{ data.unit_price }}</td>
           </tr>
         </tbody>
       </nz-table>
