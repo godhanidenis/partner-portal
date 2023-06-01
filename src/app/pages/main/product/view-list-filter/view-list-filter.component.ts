@@ -10,9 +10,7 @@ import { ProductService } from 'src/app/shared/service/product.service';
   styleUrls: ['./view-list-filter.component.scss'],
 })
 export class ViewListFilterComponent implements OnInit {
-  // @ViewChild('content', { static: false }) contentSection!: ElementRef;
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
-  // @ViewChild('section', { static: false }) section!: ElementRef;
 
   listOfBrand = ['Sony', 'Dell', 'Samsung'];
   listOfCollection = [
@@ -74,16 +72,7 @@ export class ViewListFilterComponent implements OnInit {
   statusEnum: typeof StatusEnum = StatusEnum;
   productList: any[] = [];
 
-  constructor(private router: Router, private productService: ProductService) {
-    this.isLoading = true;
-    this.productService.getAllProduct().subscribe(
-      (res: any) => {
-        this.productList = res.products;
-        this.isLoading = false;
-      },
-      (err) => (this.isLoading = false)
-    );
-  }
+  constructor(private router: Router, private productService: ProductService) {}
 
   ngOnInit(): void {
     this.viewEditProducts = new FormGroup({
@@ -100,6 +89,23 @@ export class ViewListFilterComponent implements OnInit {
       collection: new FormControl(''),
       salesTire: new FormControl(''),
     });
+    this.getProductList(this.pageIndex);
+  }
+
+  getProductList(page: number) {
+    this.isLoading = true;
+    this.productService.getAllProduct(page).subscribe(
+      (res: any) => {
+        this.total = res.products_total;
+        this.productList = res.products;
+        this.isLoading = false;
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
+
+  pageIndexChange(page: number) {
+    this.getProductList(page);
   }
 
   navigatePage(path: string) {
@@ -108,14 +114,10 @@ export class ViewListFilterComponent implements OnInit {
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
-    // this.contentSection.nativeElement.style.marginRight = '280px';
-    // this.section.nativeElement.style.minHeight = '88%';
   }
 
   closeNav() {
     this.sidenavSection.nativeElement.style.width = '0';
-    // this.contentSection.nativeElement.style.marginRight = '0';
-    // this.section.nativeElement.style.minHeight = 'auto';
   }
 
   showUploadModal(type: string): void {

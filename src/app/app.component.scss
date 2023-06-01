@@ -53,6 +53,10 @@
     color: $darkBlue !important;
 }
 
+::ng-deep.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon {
+    color: $darkBlue;
+}
+
 ::ng-deep .ant-pagination-item:hover {
     a {
         color: $darkBlue !important;

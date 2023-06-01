@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ProductService } from 'src/app/shared/service/product.service';
 
@@ -35,7 +36,7 @@ export class AddEditProductComponent implements OnInit {
   editData: any = '';
   setDropDownValue: string = '';
   searchList: string[] = [];
-  editId: number = 0;
+  editSku: string = '';
   isLoading: boolean = false;
 
   constructor(
@@ -43,8 +44,58 @@ export class AddEditProductComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modal: NzModalService,
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private message: NzMessageService
+  ) {
+    this.productService.getBrand().subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.listOfBrand = res.brands;
+        } else {
+          if (res.error_message === 'PC param missing') {
+            this.message.create('warning', res.error_message);
+          } else {
+            this.message.create('error', res.error_message);
+          }
+        }
+      },
+      (err) => {
+        console.log('error', err);
+      }
+    );
+    this.productService.getCategories().subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.listOfProductCategory = res.categories;
+        } else {
+          if (res.error_message === 'PC param missing') {
+            this.message.create('warning', res.error_message);
+          } else {
+            this.message.create('error', res.error_message);
+          }
+        }
+      },
+      (err) => {
+        console.log('error', err);
+      }
+    );
+    this.productService.getCollections().subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.listOfCollection = res.collections;
+        } else {
+          if (res.error_message === 'PC param missing') {
+            this.message.create('warning', res.error_message);
+          } else {
+            this.message.create('error', res.error_message);
+          }
+        }
+      },
+      (err) => {
+        console.log('error', err);
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.addEditProductForm = new FormGroup({
@@ -94,76 +145,91 @@ export class AddEditProductComponent implements OnInit {
     });
 
     if (this.editSection) {
-      const id = this.activatedRoute.snapshot.paramMap.get('id');
-      if (id) {
-        this.editId = id ? +id : 0;
-        this.productService.getProduct(id ? +id : 1).subscribe((res: any) => {
-          this.editData = res;
-          if (this.editData) {
-            this.addEditProductForm.controls['mpn'].setValue(
-              this.editData?.mpn
-            );
-            this.addEditProductForm.controls['upc'].setValue(
-              this.editData?.upc
-            );
-            this.addEditProductForm.controls['amazon_asin'].setValue(
-              this.editData?.amazon_asin
-            );
-            this.addEditProductForm.controls['product_name'].setValue(
-              this.editData?.product_name
-            );
-            this.addEditProductForm.controls['brand'].setValue(
-              this.editData?.brand
-            );
-            this.addEditProductForm.controls['collection'].setValue(
-              this.editData?.collection
-            );
-            this.addEditProductForm.controls['product_category'].setValue(
-              this.editData?.category
-            );
-            this.addEditProductForm.controls['sales_tier'].setValue(
-              this.editData?.sales_tier
-            );
-            this.addEditProductForm.controls['unit_price'].setValue(
-              this.editData?.unit_price
-            );
-            this.addEditProductForm.controls['map'].setValue(
-              this.editData?.map
-            );
-            this.addEditProductForm.controls['msrp'].setValue(
-              this.editData?.msrp
-            );
-            this.addEditProductForm.controls['handling_time'].setValue(
-              this.editData?.handling_time
-            );
-            this.addEditProductForm.controls['shipping_Method'].setValue(
-              this.editData?.shipping_method
-            );
-            this.addEditProductForm.controls['number_of_boxes'].setValue(
-              this.editData?.number_of_boxes
-            );
-            this.addEditProductForm.controls['product_status'].setValue(
-              this.editData?.product_status
-            );
-            this.editData?.shipping_dimensions_of_box.map(
-              (res: {
-                length: number;
-                width: number;
-                height: number;
-                gross_weight: number;
-              }) => {
-                this.shippingDimensionsOfBoxes.push(
-                  this.formBuilder.group({
-                    length: res?.length,
-                    width: res?.width,
-                    height: res?.height,
-                    gross_weight: res?.gross_weight,
-                  })
+      const sku = this.activatedRoute.snapshot.paramMap.get('sku');
+      if (sku) {
+        this.editSku = sku;
+        this.productService.getProduct(sku).subscribe(
+          (res: any) => {
+            if (res.success) {
+              this.editData = res.product;
+
+              if (this.editData) {
+                this.addEditProductForm.controls['mpn'].setValue(
+                  this.editData?.mpn
+                );
+                this.addEditProductForm.controls['upc'].setValue(
+                  this.editData?.upc
+                );
+                this.addEditProductForm.controls['amazon_asin'].setValue(
+                  this.editData?.asin
+                );
+                this.addEditProductForm.controls['product_name'].setValue(
+                  this.editData?.product_name
+                );
+                this.addEditProductForm.controls['brand'].setValue(
+                  this.editData?.brand
+                );
+                this.addEditProductForm.controls['collection'].setValue(
+                  this.editData?.collection
+                );
+                this.addEditProductForm.controls['product_category'].setValue(
+                  this.editData?.category
+                );
+                this.addEditProductForm.controls['sales_tier'].setValue(
+                  this.editData?.sales_tier
+                );
+                this.addEditProductForm.controls['unit_price'].setValue(
+                  this.editData?.unit_price
+                );
+                this.addEditProductForm.controls['map'].setValue(
+                  this.editData?.map
+                );
+                this.addEditProductForm.controls['msrp'].setValue(
+                  this.editData?.msrp
+                );
+                this.addEditProductForm.controls['handling_time'].setValue(
+                  this.editData?.handling_time
+                );
+                this.addEditProductForm.controls['shipping_Method'].setValue(
+                  this.editData?.shipping_method
+                );
+                this.addEditProductForm.controls['number_of_boxes'].setValue(
+                  this.editData?.number_of_boxes
+                );
+                this.addEditProductForm.controls['product_status'].setValue(
+                  this.editData?.product_status
+                );
+                this.editData?.shipping_dimensions.map(
+                  (res: {
+                    weight: any;
+                    length: number;
+                    width: number;
+                    height: number;
+                    gross_weight: number;
+                  }) => {
+                    this.shippingDimensionsOfBoxes.push(
+                      this.formBuilder.group({
+                        length: res?.length,
+                        width: res?.width,
+                        height: res?.height,
+                        gross_weight: res?.weight,
+                      })
+                    );
+                  }
                 );
               }
-            );
+            } else {
+              if (res.error_message === 'SKU param missing') {
+                this.message.create('warning', res.error_message);
+              } else {
+                this.message.create('error', res.error_message);
+              }
+            }
+          },
+          (err) => {
+            console.log('error', err);
           }
-        });
+        );
       }
     } else {
       this.addShippingDimensionsOfBoxes();
@@ -199,24 +265,6 @@ export class AddEditProductComponent implements OnInit {
       }
     }
   }
-
-  // createBoxes() {
-  //   if (
-  //     this.addEditProductForm.value.number_of_boxes >= 1 &&
-  //     this.addEditProductForm.value.number_of_boxes <= 10
-  //   ) {
-  //     if (this.shippingDimensionsOfBoxes.controls.length >= 1) {
-  //       this.shippingDimensionsOfBoxes.controls = [];
-  //     }
-  //     for (
-  //       let index = 1;
-  //       index < this.addEditProductForm.value.number_of_boxes + 1;
-  //       index++
-  //     ) {
-  //       this.addShippingDimensionsOfBoxes();
-  //     }
-  //   }
-  // }
 
   get shippingDimensionsOfBoxes(): FormArray {
     return this.addEditProductForm.controls[

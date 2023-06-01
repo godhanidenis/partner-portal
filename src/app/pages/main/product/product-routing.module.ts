@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: ViewListFilterComponent },
   { path: 'add-product', component: AddEditProductComponent },
   {
-    path: 'view-single-product/:id',
+    path: 'view-single-product/:sku',
     component: ViewSingleProductComponent,
   },
 ];
