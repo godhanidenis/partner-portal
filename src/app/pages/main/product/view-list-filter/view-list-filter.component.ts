@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 import { ProductService } from 'src/app/shared/service/product.service';
 
@@ -12,13 +13,9 @@ import { ProductService } from 'src/app/shared/service/product.service';
 export class ViewListFilterComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  listOfBrand = ['Sony', 'Dell', 'Samsung'];
-  listOfCollection = [
-    'Floral Collection',
-    'White Collection',
-    'Kids Collection',
-  ];
-  listOfProductCategory = ['Kid’s Furniture', 'Rugs', 'Tables'];
+  listOfBrand: string[] = [];
+  listOfCollection: string[] = [];
+  listOfProductCategory: string[] = [];
   listOfSalesTier = [
     'Top Seller',
     'Medium Seller',
@@ -72,7 +69,60 @@ export class ViewListFilterComponent implements OnInit {
   statusEnum: typeof StatusEnum = StatusEnum;
   productList: any[] = [];
 
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private message: NzMessageService
+  ) {
+    this.productService.getBrand().subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.listOfBrand = res.brands;
+        } else {
+          if (res.error_message === 'PC param missing') {
+            this.message.create('warning', res.error_message);
+          } else {
+            this.message.create('error', res.error_message);
+          }
+        }
+      },
+      (err) => {
+        console.log('error', err);
+      }
+    );
+    this.productService.getCategories().subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.listOfProductCategory = res.categories;
+        } else {
+          if (res.error_message === 'PC param missing') {
+            this.message.create('warning', res.error_message);
+          } else {
+            this.message.create('error', res.error_message);
+          }
+        }
+      },
+      (err) => {
+        console.log('error', err);
+      }
+    );
+    this.productService.getCollections().subscribe(
+      (res: any) => {
+        if (res.success) {
+          this.listOfCollection = res.collections;
+        } else {
+          if (res.error_message === 'PC param missing') {
+            this.message.create('warning', res.error_message);
+          } else {
+            this.message.create('error', res.error_message);
+          }
+        }
+      },
+      (err) => {
+        console.log('error', err);
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.viewEditProducts = new FormGroup({

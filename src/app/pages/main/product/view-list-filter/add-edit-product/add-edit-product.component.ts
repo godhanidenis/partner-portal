@@ -1,3 +1,4 @@
+import { UserPermissionService } from './../../../../../shared/service/user-permission.service';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {
   FormArray,
@@ -21,15 +22,11 @@ export class AddEditProductComponent implements OnInit {
   @ViewChild('addInput', { static: false }) addInput!: ElementRef;
 
   addEditProductForm!: FormGroup;
-  listOfBrand = ['Sony', 'Dell', 'Samsung'];
+  listOfBrand: string[] = [];
   brandIndex = 0;
-  listOfCollection = [
-    'Floral Collection',
-    'White Collection',
-    'Kids Collection',
-  ];
+  listOfCollection: string[] = [];
   collectionIndex = 0;
-  listOfProductCategory = ['Kid’s Furniture', 'Rugs', 'Tables'];
+  listOfProductCategory: string[] = [];
   productCategoryIndex = 0;
   listOfSalesTier = ['Medium Seller', 'Low Seller', 'Slow Seller'];
   salesTierIndex = 0;
@@ -38,6 +35,7 @@ export class AddEditProductComponent implements OnInit {
   searchList: string[] = [];
   editSku: string = '';
   isLoading: boolean = false;
+  userPermissions: any = '';
 
   constructor(
     private router: Router,
@@ -45,8 +43,17 @@ export class AddEditProductComponent implements OnInit {
     private modal: NzModalService,
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private userPermissionService: UserPermissionService
   ) {
+    userPermissionService.userPermission.subscribe((permission: any) => {
+      this.userPermissions = permission;
+      if (this.userPermissions.partner_sku_level_handling) {
+        this.addEditProductForm.controls['handling_time'].setValidators([
+          Validators.required,
+        ]);
+      }
+    });
     this.productService.getBrand().subscribe(
       (res: any) => {
         if (res.success) {
@@ -111,7 +118,6 @@ export class AddEditProductComponent implements OnInit {
         Validators.pattern('^[0-9_.]+$'),
       ]),
       amazon_asin: new FormControl('', [
-        Validators.required,
         Validators.maxLength(10),
         Validators.pattern('^[A-Z0-9_.]+$'),
       ]),
@@ -130,7 +136,6 @@ export class AddEditProductComponent implements OnInit {
       map: new FormControl(''),
       msrp: new FormControl(''),
       handling_time: new FormControl('', [
-        Validators.required,
         Validators.min(1),
         Validators.max(30),
       ]),
