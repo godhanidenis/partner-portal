@@ -535,21 +535,37 @@
                   </nz-input-group>
                 </nz-form-control>
               </nz-form-item>
-              <div style="display: flex; align-items: end; margin-bottom: 5px">
-                <a
+              <div style="display: flex; align-items: end; margin-bottom: 10px">
+                <button
+                  nz-button
+                  nzType="primary"
+                  nzShape="circle"
                   *ngIf="i === shippingDimensionsOfBoxes.controls.length - 1"
-                  style="background: #00c13b"
+                  style="
+                    background: #00c13b !important;
+                    margin-left: 8px;
+                    border: 0;
+                  "
                   (click)="addShippingDimensionsOfBoxes()"
+                  nzSize="small"
                 >
-                  +
-                </a>
-                <a
+                  <span nz-icon nzType="plus"></span>
+                </button>
+                <button
+                  nz-button
+                  nzType="primary"
+                  nzShape="circle"
                   *ngIf="i !== shippingDimensionsOfBoxes.controls.length - 1"
-                  style="background: #f41e2c"
+                  style="
+                    background: #f41e2c !important;
+                    margin-left: 8px;
+                    border: 0;
+                  "
                   (click)="removeShippingDimensionsOfBoxes(i)"
+                  nzSize="small"
                 >
-                  -
-                </a>
+                  <span nz-icon nzType="minus"></span>
+                </button>
               </div>
             </div>
           </div>
@@ -563,8 +579,25 @@
             class="action-button"
             style="height: 35px"
             [nzType]="'primary'"
+            [disabled]="addEditProductForm.invalid"
+            [ngClass]="{
+              'button-disabled': addEditProductForm.invalid || isLoading
+            }"
+            (click)="submit()"
           >
-            <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
+            <span
+              *ngIf="isLoading"
+              style="color: white; font-size: 16px"
+              nz-icon
+              nzType="loading"
+            ></span>
+            <span
+              *ngIf="!isLoading"
+              nz-icon
+              nzType="file-text"
+              nzTheme="outline"
+            ></span>
+            Save
           </button>
         </div>
       </div>

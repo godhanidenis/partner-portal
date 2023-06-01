@@ -62,7 +62,7 @@
         </button>
 
         <form nz-form [formGroup]="viewEditProducts">
-          <nz-form-item style="margin-bottom: 0">
+          <nz-form-item style="margin-bottom: 0 !important">
             <nz-form-control nzErrorTip="Please input your valid code!">
               <nz-input-group nzPrefixIcon="search" class="search">
                 <input
@@ -146,7 +146,7 @@
         [nzPageSize]="pageSize"
         [nzPageIndex]="pageIndex"
         [nzLoading]="isLoading"
-        [nzData]="data"
+        [nzData]="productList"
         [nzScroll]="{ x: '100%' }"
       >
         <thead>
@@ -155,7 +155,7 @@
             <th>Product Name</th>
             <th>Unit Price</th>
             <th>Brand</th>
-            <th>Product Status</th>
+            <th class="text-center">Product Status</th>
             <th>ASIN Status</th>
             <th>Inventory</th>
             <th>MAP</th>
@@ -170,14 +170,23 @@
                 (click)="
                   navigatePage('view-product/view-single-product/' + data.id)
                 "
-                >{{ data.productName }}</a
+                >{{ data.product_name }}</a
               >
             </td>
-            <td>{{ data.unitPrice | currency }}</td>
+            <td>{{ data.unit_price | currency }}</td>
             <td>{{ data.brand }}</td>
-            <td>{{ data.productStatus }}</td>
-            <td>{{ data.asinStatus }}</td>
-            <td>{{ data.inventory }}</td>
+            <td class="text-center">
+              <app-status-badge
+                [type]="
+                  data.product_status === 'Active'
+                    ? statusEnum.Success
+                    : statusEnum.Failure
+                "
+                [text]="data.product_status"
+              ></app-status-badge>
+            </td>
+            <td>{{ data.asin }}</td>
+            <td>{{ data.inventory_status }}</td>
             <td>{{ data.map }}</td>
           </tr>
         </tbody>
@@ -333,54 +342,15 @@
 
   <nz-modal
     [(nzVisible)]="isDownloadVisible"
-    nzTitle="Which item do you want to export?"
+    nzTitle="Which items do you want to export?"
     (nzOnCancel)="handleCancel('download')"
     (nzOnOk)="handleOk('download')"
   >
     <ng-container *nzModalContent>
-      <div style="padding: 15px">
-        <form nz-form [formGroup]="uploadmodal">
-          <nz-form-item>
-            <nz-form-control>
-              <nz-input-group>
-                <nz-radio-group style="display: grid" formControlName="export">
-                  <label nz-radio nzValue="A">All</label>
-                  <label nz-radio nzValue="B">Filtered(0)</label>
-                </nz-radio-group>
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-        </form>
-
-        <h4 style="margin-top: 12px">
-          Your items and all their data will be downloaded as a CSV file
-        </h4>
-      </div>
-      <div class="model-footer">
-        <div class="model-action" style="padding: 15px; padding-bottom: 0">
-          <button
-            nz-button
-            nzType="default"
-            style="color: black; margin-right: 5px"
-            (click)="handleCancel('download')"
-          >
-            Cancel
-          </button>
-          <button
-            nz-button
-            class="upload-btn"
-            [nzType]="'primary'"
-            style="
-              width: 100px;
-              margin-right: 24px;
-              background-color: #2121c3;
-              border: none;
-            "
-          >
-            Export
-          </button>
-        </div>
-      </div>
+      <app-export-model
+        [exportType]="exportType"
+        (close)="handleCancel('download')"
+      ></app-export-model>
     </ng-container>
   </nz-modal>
 

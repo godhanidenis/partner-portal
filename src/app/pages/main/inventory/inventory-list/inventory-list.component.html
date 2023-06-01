@@ -46,10 +46,10 @@
         <tr>
           <th>Feed Code</th>
           <!-- <th>Time</th> -->
-          <th>Method</th>
-          <th>In Stock</th>
-          <th>Out Of Stock</th>
-          <th>Action</th>
+          <th class="text-center">Method</th>
+          <th class="text-center">In Stock</th>
+          <th class="text-center">Out Of Stock</th>
+          <th class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -57,10 +57,36 @@
           <tr>
             <td>{{ data?.feedCode }}</td>
             <!-- <td>{{ data?.time }}</td> -->
-            <td>{{ data?.method }}</td>
-            <td>{{ data?.inStock }}</td>
-            <td>{{ data?.outOfStock }}</td>
-            <td>
+            <td class="text-center">{{ data?.method }}</td>
+            <td class="text-center">
+              <span
+                *ngIf="data.inStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="check"
+              ></span>
+              <span
+                *ngIf="!data.inStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="close"
+              ></span>
+            </td>
+            <td class="text-center">
+              <span
+                *ngIf="data.outOfStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="check"
+              ></span>
+              <span
+                *ngIf="!data.outOfStock"
+                style="font-size: 16px; width: 10px; margin: 0 auto"
+                nz-icon
+                nzType="close"
+              ></span>
+            </td>
+            <td class="text-center">
               <a
                 (click)="
                   navigatePage('inventory-list/view-inventory/' + data?.id)
@@ -90,52 +116,13 @@
 
 <nz-modal
   [(nzVisible)]="isDownloadVisible"
-  nzTitle="Which item do you want to export?"
+  nzTitle="Which items do you want to export?"
   (nzOnCancel)="handleCancel('Upload')"
 >
   <ng-container *nzModalContent>
-    <div style="padding: 15px">
-      <form nz-form [formGroup]="uploadModal">
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group>
-              <nz-radio-group style="display: grid" formControlName="export">
-                <label nz-radio nzValue="A">All</label>
-                <label nz-radio nzValue="B">Filtered(0)</label>
-              </nz-radio-group>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-      </form>
-
-      <h4 style="margin-top: 12px">
-        Your items and all their data will be downloaded as a CSV file
-      </h4>
-    </div>
-    <div class="model-footer">
-      <div class="model-action" style="padding: 15px">
-        <button
-          nz-button
-          nzType="default"
-          style="color: black; margin-right: 5px"
-          (click)="handleCancel('Upload')"
-        >
-          Cancel
-        </button>
-        <button
-          nz-button
-          class="upload-btn"
-          [nzType]="'primary'"
-          style="
-            width: 100px;
-            margin-right: 24px;
-            background-color: #2121c3;
-            border: none;
-          "
-        >
-          Export
-        </button>
-      </div>
-    </div>
+    <app-export-model
+      [exportType]="exportType"
+      (close)="handleCancel('Upload')"
+    ></app-export-model>
   </ng-container>
 </nz-modal>

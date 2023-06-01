@@ -54,7 +54,15 @@
     }
 }
 
+.button-disabled {
+    color: $white !important;
+    background: $header-of-tab !important;
+    opacity: 0.8;
+}
 
+.text-center {
+    text-align: center !important;
+}
 
 .action-button,
 .action-button:hover {

@@ -8,14 +8,11 @@ import { endOfMonth } from 'date-fns';
   styleUrls: ['./cancellation-requested.component.scss'],
 })
 export class CancellationRequestedComponent implements OnInit {
-  // @ViewChild('content', { static: false }) contentSection!: ElementRef;
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
-  @ViewChild('section', { static: false }) section!: ElementRef;
 
   total = 1;
   pageSize = 50;
   pageIndex = 1;
-  pageSizeOptions = [50, 100, 250, 500];
   isLoading: boolean = false;
   mode = 'date';
   cancellationRequestedData = [
@@ -23,9 +20,9 @@ export class CancellationRequestedComponent implements OnInit {
       id: 1,
       poNumber: 'CLP 4031',
       customerName: 'AB Kajaria',
-      address:'Miami, Florida',
+      address: 'Miami, Florida',
       products: '89932',
-      quantity:2,
+      quantity: 2,
       poTotal: '125.05',
       committedShip: '05-15-2023',
       afterDate: '05-22-2023',
@@ -34,9 +31,9 @@ export class CancellationRequestedComponent implements OnInit {
       id: 2,
       poNumber: 'CLP 4035',
       customerName: 'Nidhi',
-      address:'Miami, Florida',
+      address: 'Miami, Florida',
       products: '89932',
-      quantity:2,
+      quantity: 2,
       poTotal: '80.50',
       committedShip: '08-13-2023',
       afterDate: '08-29-2023',
@@ -59,14 +56,10 @@ export class CancellationRequestedComponent implements OnInit {
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
-    // this.contentSection.nativeElement.style.marginRight = '280px';
-    this.section.nativeElement.style.minHeight = '88%';
   }
 
   closeNav() {
     this.sidenavSection.nativeElement.style.width = '0';
-    // this.contentSection.nativeElement.style.marginRight = '0';
-    this.section.nativeElement.style.minHeight = 'auto';
   }
 
   change(data: any) {

@@ -10,6 +10,9 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class RestrictedViaOrderComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
+  description: string =
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
+
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

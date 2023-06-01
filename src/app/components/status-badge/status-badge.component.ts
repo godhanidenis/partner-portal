@@ -15,8 +15,24 @@ export enum StatusEnum {
 export class StatusBadgeComponent implements OnInit {
   @Input() type: StatusEnum = StatusEnum.Pending;
   @Input() text: string | undefined = '';
+  bgColor: string = '#3abe25';
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    switch (this.type) {
+      case 0:
+        this.bgColor = '#3abe25';
+        break;
+      case 1:
+        this.bgColor = '#1890ff';
+        break;
+      case 2:
+        this.bgColor = '#ec7211';
+        break;
+      default:
+        this.bgColor = 'red';
+        break;
+    }
+  }
 }

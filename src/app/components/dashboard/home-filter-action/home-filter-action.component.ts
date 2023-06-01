@@ -12,15 +12,11 @@ export class HomeFilterActionComponent implements OnInit {
   @Output() showFilter = new EventEmitter();
 
   searchValue: string = '';
-  exportForm!: FormGroup;
+  exportType: string = '';
   isDownloadVisible: boolean = false;
 
   constructor() {}
-  ngOnInit(): void {
-    this.exportForm = new FormGroup({
-      export: new FormControl(''),
-    });
-  }
+  ngOnInit(): void {}
 
   openFilterSection() {
     this.showFilter.emit();

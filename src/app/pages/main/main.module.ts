@@ -9,7 +9,6 @@ import { MainRoutingModule } from './main-routing.module';
 
 import { ProfileModule } from './profile/profile.module';
 import { ProductModule } from './product/product.module';
-import { ComponentModule } from 'src/app/components/component.module';
 import { HomeModule } from './home/home.module';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { HomeModule } from './home/home.module';
     FormsModule,
     ProfileModule,
     ProductModule,
-    ComponentModule,
     HomeModule,
   ],
   exports: [],

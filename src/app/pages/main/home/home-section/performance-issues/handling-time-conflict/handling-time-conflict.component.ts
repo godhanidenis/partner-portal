@@ -21,7 +21,7 @@ export class HandlingTimeConflictComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  returnLocationList = [
+  handlingTimeConflictList = [
     {
       id: 1,
       mpn: 'SLLD006A',
@@ -104,28 +104,34 @@ export class HandlingTimeConflictComponent implements OnInit {
 
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
+  description: string =
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
 
   constructor(private router: Router, private modal: NzModalService) {}
   ngOnInit(): void {}
 
   editValue(event: any, id: number) {
     if (event.keyCode === 13) {
-      this.returnLocationList = this.returnLocationList.map((res: any) => {
-        if (res.id === id) {
-          res.partnerHandlingTimeProvided = event.target.value;
+      this.handlingTimeConflictList = this.handlingTimeConflictList.map(
+        (res: any) => {
+          if (res.id === id) {
+            res.partnerHandlingTimeProvided = event.target.value;
+          }
+          return res;
         }
-        return res;
-      });
+      );
     }
   }
 
   matchValue(matchData: string, id: number) {
-    this.returnLocationList = this.returnLocationList.map((res: any) => {
-      if (res.id === id) {
-        res.partnerHandlingTimeProvided = matchData;
+    this.handlingTimeConflictList = this.handlingTimeConflictList.map(
+      (res: any) => {
+        if (res.id === id) {
+          res.partnerHandlingTimeProvided = matchData;
+        }
+        return res;
       }
-      return res;
-    });
+    );
   }
 
   openNav() {

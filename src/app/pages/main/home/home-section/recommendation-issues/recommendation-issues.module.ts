@@ -12,6 +12,8 @@ import { PriceCorrectionComponent } from './price-correction/price-correction.co
 import { LackOfSalesDemandComponent } from './lack-of-sales-demand/lack-of-sales-demand.component';
 import { ProductsLosingImportanceOnAmazonComponent } from './products-losing-importance-on-amazon/products-losing-importance-on-amazon.component';
 import { ShippingLabelComponent } from './shipping-label/shipping-label.component';
+import { RecommendationIssueTableComponent } from './recommendation-issue-table/recommendation-issue-table.component';
+import { PerformanceIssuesModule } from '../performance-issues/performance-issues.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { ShippingLabelComponent } from './shipping-label/shipping-label.componen
     LackOfSalesDemandComponent,
     ProductsLosingImportanceOnAmazonComponent,
     ShippingLabelComponent,
+    RecommendationIssueTableComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +33,7 @@ import { ShippingLabelComponent } from './shipping-label/shipping-label.componen
     ReactiveFormsModule,
     FormsModule,
     ProductModule,
+    PerformanceIssuesModule,
   ],
   exports: [
     PriceCorrectionComponent,
