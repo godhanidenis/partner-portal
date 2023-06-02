@@ -12,12 +12,12 @@ const routes: Routes = [
       import('./profile/profile.module').then((m) => m.ProfileModule),
   },
   {
-    path: 'view-product',
+    path: 'product',
     loadChildren: () =>
       import('./product/product.module').then((m) => m.ProductModule),
   },
   {
-    path: 'inventory-list',
+    path: 'inventory-feeds',
     loadChildren: () =>
       import('./inventory/inventory.module').then((m) => m.InventoryModule),
   },

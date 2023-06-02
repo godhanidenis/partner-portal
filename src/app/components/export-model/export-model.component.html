@@ -12,7 +12,11 @@
     </nz-form-item>
 
     <h4 style="margin-top: 12px">
-      Your Products will be exported as a CSV file and sent to your email.
+      {{
+        description
+          ? description
+          : "Your Products will be exported as a CSV file and sent to your email."
+      }}
     </h4>
   </div>
   <div class="model-footer">

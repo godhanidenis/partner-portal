@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 export class ExportModelComponent implements OnInit {
   @Output() close = new EventEmitter();
   @Input() exportType: string = 'A';
+  @Input() description: string = '';
 
   constructor() {}
   ngOnInit(): void {}

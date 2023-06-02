@@ -437,7 +437,12 @@
         nzType="inner"
         nzTitle="Shipping Box Dimensions"
       >
-        <div nz-row [nzGutter]="16" formArrayName="shipping_dimensions_of_box">
+        <div
+          nz-row
+          [nzGutter]="16"
+          formArrayName="shipping_dimensions_of_box"
+          [ngClass]="{ isDisable: disabledFiled }"
+        >
           <div
             nz-col
             class="gutter-row"

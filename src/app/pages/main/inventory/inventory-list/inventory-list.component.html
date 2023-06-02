@@ -1,12 +1,18 @@
 <div class="inventory-list-section">
-  <app-section-header [header]="'Inventory List'"></app-section-header>
+  <app-section-header [header]="'Inventory Feeds'"></app-section-header>
 
   <div class="body-section">
     <div class="button-group">
-      <div class="filter">
-        <b>Filter : </b>
-        <nz-range-picker></nz-range-picker>
-      </div>
+      <nz-badge
+        style="margin-right: 10px"
+        [nzShowZero]="false"
+        [nzCount]="badgeTotal"
+      >
+        <button (click)="openNav()" nz-button nzType="primary" nzShape="round">
+          <span nz-icon nzType="filter" nzTheme="outline"></span>
+          Filter
+        </button>
+      </nz-badge>
       <div>
         <button
           style="margin-right: 10px"
@@ -15,7 +21,8 @@
           nzType="primary"
           nzShape="round"
         >
-          <span nz-icon nzType="download" nzTheme="outline"></span> Import
+          <span nz-icon nzType="download" nzTheme="outline"></span> Upload
+          Inventory Feed
         </button>
         <button
           (click)="openModal('Upload')"
@@ -27,6 +34,56 @@
           <span nz-icon nzType="upload" nzTheme="outline"></span> Export
         </button>
       </div>
+      <form nz-form [formGroup]="searchInventory">
+        <nz-form-item style="margin-bottom: 0 !important">
+          <nz-form-control nzErrorTip="Please input your valid code!">
+            <nz-input-group nzPrefixIcon="search" class="search">
+              <input
+                (keyup)="accountSearch.next($event)"
+                formControlName="search"
+                nz-input
+                placeholder="Search..."
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+
+    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+      <nz-tag
+        *ngIf="selectDate"
+        nzMode="closeable"
+        (nzOnClose)="close('Date')"
+        >{{ selectDate }}</nz-tag
+      >
+      <nz-tag
+        *ngIf="selectMethod"
+        nzMode="closeable"
+        (nzOnClose)="close('Method')"
+        >{{ selectMethod }}</nz-tag
+      >
+      <nz-tag
+        *ngIf="selectStatus"
+        nzMode="closeable"
+        (nzOnClose)="close('Status')"
+        >{{ selectStatus }}</nz-tag
+      >
+      <button
+        *ngIf="badgeTotal >= 1"
+        nz-button
+        nzType="default"
+        (click)="tagFunction()"
+        style="
+          float: none;
+          background-color: white;
+          color: #1221c3;
+          border: 1px solid #1221c3;
+        "
+        class="action-button clear-btn"
+      >
+        clear
+      </button>
     </div>
 
     <nz-table
@@ -89,7 +146,7 @@
             <td class="text-center">
               <a
                 (click)="
-                  navigatePage('inventory-list/view-inventory/' + data?.id)
+                  navigatePage('inventory-feeds/view-inventory/' + data?.id)
                 "
                 style="margin: 0 5px; color: #2121c3; font-size: 20px"
                 ><span nz-icon nzType="eye" nzTheme="outline"></span
@@ -100,6 +157,48 @@
       </tbody>
     </nz-table>
   </div>
+</div>
+
+<div #mySidenav class="filter-section">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
+    <div class="filter-content">
+      <nz-divider nzText="Date" nzOrientation="left"></nz-divider>
+      <nz-range-picker
+        formControlName="date"
+        (ngModelChange)="change(filter.value.date ? $event : '', 'Date')"
+      ></nz-range-picker>
+
+      <nz-divider
+        style="margin-top: 20px"
+        nzText="Method"
+        nzOrientation="left"
+      ></nz-divider>
+      <nz-radio-group
+        (ngModelChange)="change($event, 'Method')"
+        formControlName="method"
+      >
+        <label nz-radio nzValue="EDI">EDI</label>
+        <label nz-radio nzValue="Email">Email</label>
+      </nz-radio-group>
+
+      <nz-divider
+        style="margin-top: 20px"
+        nzText="Status"
+        nzOrientation="left"
+      ></nz-divider>
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        (ngModelChange)="change(filter.value.status ? $event : '', 'Status')"
+        formControlName="status"
+        nzPlaceHolder="Select a Status"
+      >
+        <nz-option nzLabel="In Stock" nzValue="In Stock"></nz-option>
+        <nz-option nzLabel="Out of Stock" nzValue="Out of Stock"></nz-option>
+      </nz-select>
+    </div>
+  </form>
 </div>
 
 <nz-modal
@@ -116,12 +215,15 @@
 
 <nz-modal
   [(nzVisible)]="isDownloadVisible"
-  nzTitle="Which Products would you like to export?"
+  nzTitle="Inventory Feed History Export?"
   (nzOnCancel)="handleCancel('Upload')"
 >
   <ng-container *nzModalContent>
     <app-export-model
       [exportType]="exportType"
+      [description]="
+        'Your Inventory Feed History will be exported as a CSV file and sent to your email'
+      "
       (close)="handleCancel('Upload')"
     ></app-export-model>
   </ng-container>

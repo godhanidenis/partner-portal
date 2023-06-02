@@ -36,6 +36,7 @@ export class AddEditProductComponent implements OnInit {
   editSku: string = '';
   isLoading: boolean = false;
   userPermissions: any = '';
+  disabledFiled: boolean = false;
 
   constructor(
     private router: Router,
@@ -150,6 +151,8 @@ export class AddEditProductComponent implements OnInit {
     });
 
     if (this.editSection) {
+      this.addEditProductForm.disable();
+      this.disabledFiled = true;
       const sku = this.activatedRoute.snapshot.paramMap.get('sku');
       if (sku) {
         this.editSku = sku;

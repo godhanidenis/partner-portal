@@ -15,9 +15,8 @@ export class BreadcrumbComponent implements OnInit {
     this.path = this.router.url.replace(/\//g, ' ').substring(1).split(' ');
     this.path.shift();
     if (
-      (this.path[0] === 'view-product' &&
-        this.path[1] === 'view-single-product') ||
-      this.path[0] === 'inventory-list'
+      (this.path[0] === 'product' && this.path[1] === 'single-product') ||
+      this.path[0] === 'inventory-feeds'
     ) {
       this.path.pop();
     }

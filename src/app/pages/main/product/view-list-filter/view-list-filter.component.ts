@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 import { ProductService } from 'src/app/shared/service/product.service';
-
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 @Component({
   selector: 'app-view-list-filter',
   templateUrl: './view-list-filter.component.html',
@@ -53,6 +53,7 @@ export class ViewListFilterComponent implements OnInit {
   selectCategory: string = '';
   selectSales: string = '';
   selectStatus: string = '';
+  product_search: string = '';
 
   total = 1;
   pageSize = 50;
@@ -68,12 +69,29 @@ export class ViewListFilterComponent implements OnInit {
   listOfOption = ['Option 01', 'Option 02'];
   statusEnum: typeof StatusEnum = StatusEnum;
   productList: any[] = [];
+  accountSearch = new Subject<any>();
 
   constructor(
     private router: Router,
     private productService: ProductService,
     private message: NzMessageService
   ) {
+    this.accountSearch
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe((value: any) => {
+        this.product_search = value.target.value;
+        this.getProductList(
+          this.pageIndex,
+          this.selectStatus,
+          this.inventory,
+          this.selectBrand,
+          this.selectCollection,
+          this.selectCategory,
+          this.selectSales,
+          this.product_search
+        );
+      });
+
     this.productService.getBrand().subscribe(
       (res: any) => {
         if (res.success) {
@@ -139,23 +157,76 @@ export class ViewListFilterComponent implements OnInit {
       collection: new FormControl(''),
       salesTire: new FormControl(''),
     });
-    this.getProductList(this.pageIndex);
-  }
-
-  getProductList(page: number) {
-    this.isLoading = true;
-    this.productService.getAllProduct(page).subscribe(
-      (res: any) => {
-        this.total = res.products_total;
-        this.productList = res.products;
-        this.isLoading = false;
-      },
-      (err) => (this.isLoading = false)
+    this.getProductList(
+      this.pageIndex,
+      this.selectStatus,
+      this.inventory,
+      this.selectBrand,
+      this.selectCollection,
+      this.selectCategory,
+      this.selectSales,
+      this.product_search
     );
   }
 
+  searchProduct(event: any) {
+    this.product_search = event?.target.value;
+    this.getProductList(
+      this.pageIndex,
+      this.selectStatus,
+      this.inventory,
+      this.selectBrand,
+      this.selectCollection,
+      this.selectCategory,
+      this.selectSales,
+      this.product_search
+    );
+  }
+
+  getProductList(
+    page: number,
+    filter_product_status: string,
+    filter_inventory_status: string,
+    filter_brand: string,
+    filter_collection: string,
+    filter_product_category: string,
+    filter_sales_tier: string,
+    product_search: string
+  ) {
+    this.isLoading = true;
+    this.productService
+      .getAllProduct({
+        page: page,
+        filter_product_status: filter_product_status,
+        filter_inventory_status: filter_inventory_status,
+        filter_brand: filter_brand,
+        filter_collection: filter_collection,
+        filter_product_category: filter_product_category,
+        filter_sales_tier: filter_sales_tier,
+        product_search: product_search,
+      })
+      .subscribe(
+        (res: any) => {
+          this.total = res.products_total;
+          this.productList = res.products;
+          this.isLoading = false;
+        },
+        (err) => (this.isLoading = false)
+      );
+  }
+
   pageIndexChange(page: number) {
-    this.getProductList(page);
+    this.pageIndex = page;
+    this.getProductList(
+      this.pageIndex,
+      this.selectStatus,
+      this.inventory,
+      this.selectBrand,
+      this.selectCollection,
+      this.selectCategory,
+      this.selectSales,
+      this.product_search
+    );
   }
 
   navigatePage(path: string) {
@@ -288,6 +359,8 @@ export class ViewListFilterComponent implements OnInit {
           if (value == 'Sony' || value == 'Dell' || value == 'Samsung') {
             this.clear_btn = true;
             this.selectBrand = value;
+            console.log(this.selectBrand);
+
             if (this.brand == 0) {
               this.brand++;
               this.beagetotal++;
@@ -311,7 +384,7 @@ export class ViewListFilterComponent implements OnInit {
           break;
 
         case 'inventory':
-          if (value == 'inStock' || value == 'outOfStock') {
+          if (value == 'In Stock' || value == 'Out of Stock') {
             this.clear_btn = true;
             this.inventory = value;
             if (this.stock == 0) {
@@ -337,11 +410,11 @@ export class ViewListFilterComponent implements OnInit {
 
         case 'status':
           if (
-            value == 'discontented' ||
-            value == 'active' ||
-            value == 'restricted' ||
-            value == 'suppressed' ||
-            value == 'ltl'
+            value == 'Active' ||
+            value == 'Discontented' ||
+            value == 'LTL' ||
+            value == 'Partner Restricted' ||
+            value == 'Suppressed'
           ) {
             this.clear_btn = true;
             this.selectStatus = value;
@@ -428,5 +501,16 @@ export class ViewListFilterComponent implements OnInit {
         }
       }
     }
+
+    this.getProductList(
+      this.pageIndex,
+      this.selectStatus,
+      this.inventory,
+      this.selectBrand,
+      this.selectCollection,
+      this.selectCategory,
+      this.selectSales,
+      this.product_search
+    );
   }
 }
