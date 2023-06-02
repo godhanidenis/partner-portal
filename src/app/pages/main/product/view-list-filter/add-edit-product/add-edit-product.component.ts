@@ -48,14 +48,6 @@ export class AddEditProductComponent implements OnInit {
     private message: NzMessageService,
     private userPermissionService: UserPermissionService
   ) {
-    userPermissionService.userPermission.subscribe((permission: any) => {
-      this.userPermissions = permission;
-      if (this.userPermissions.partner_sku_level_handling) {
-        this.addEditProductForm.controls['handling_time'].setValidators([
-          Validators.required,
-        ]);
-      }
-    });
     this.productService.getBrand().subscribe(
       (res: any) => {
         if (res.success) {
@@ -149,6 +141,14 @@ export class AddEditProductComponent implements OnInit {
       ]),
       product_status: new FormControl('active'),
       shipping_dimensions_of_box: this.formBuilder.array([]),
+    });
+    this.userPermissionService.userPermission.subscribe((permission: any) => {
+      this.userPermissions = permission;
+      if (this.userPermissions.partner_sku_level_handling) {
+        this.addEditProductForm.controls['handling_time'].setValidators([
+          Validators.required,
+        ]);
+      }
     });
 
     if (this.editSection) {
@@ -257,6 +257,21 @@ export class AddEditProductComponent implements OnInit {
       nzOnOk: () => {
         this.addEditProductForm.enable();
         this.disabledFiled = false;
+      },
+      nzCancelText: 'No',
+      nzOnCancel: () => console.log('Cancel'),
+    });
+  }
+
+  addMultiProduct() {
+    this.modal.confirm({
+      nzTitle: 'Are you sure! You want to add multiple product?',
+      nzContent: '',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => {
+        this.isImportVisible = true;
       },
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel'),

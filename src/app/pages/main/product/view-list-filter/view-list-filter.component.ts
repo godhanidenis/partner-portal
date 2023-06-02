@@ -57,9 +57,9 @@ export class ViewListFilterComponent implements OnInit {
   product_search: string = '';
 
   total = 1;
-  pageSize = 50;
+  pageSize = 100;
   pageIndex = 1;
-  pageSizeOptions = [50, 100, 250, 500];
+  pageSizeOptions = [100];
   inputValue?: string;
   dropdown?: string;
   brandFilter: string[] = [];
@@ -296,6 +296,16 @@ export class ViewListFilterComponent implements OnInit {
     this.beagetotal = 0;
     this.clear_btn = false;
     this.filter.reset();
+    this.getProductList(
+      this.pageIndex,
+      this.selectStatus,
+      this.inventory,
+      this.selectBrand,
+      this.selectCollection,
+      this.selectCategory,
+      this.selectSales,
+      this.product_search
+    );
   }
 
   close(type: string) {
@@ -305,12 +315,6 @@ export class ViewListFilterComponent implements OnInit {
           this.filter.controls['inventory'].reset();
           this.inventory = '';
           this.stock = 0;
-          this.beagetotal--;
-          break;
-        case 'asin':
-          this.filter.controls['asin'].reset();
-          this.asin = '';
-          this.aprove = 0;
           this.beagetotal--;
           break;
         case 'Selectstatus':
@@ -342,7 +346,6 @@ export class ViewListFilterComponent implements OnInit {
           this.selectCategory = '';
           this.category = 0;
           this.beagetotal--;
-
           break;
 
         case 'selectSales':
@@ -355,6 +358,16 @@ export class ViewListFilterComponent implements OnInit {
         default:
           break;
       }
+      this.getProductList(
+        this.pageIndex,
+        this.selectStatus,
+        this.inventory,
+        this.selectBrand,
+        this.selectCollection,
+        this.selectCategory,
+        this.selectSales,
+        this.product_search
+      );
     }
   }
 
@@ -390,7 +403,11 @@ export class ViewListFilterComponent implements OnInit {
           break;
 
         case 'inventory':
-          if (value == 'In Stock' || value == 'Out of Stock') {
+          if (
+            value == 'In Stock' ||
+            value == 'Low Stock' ||
+            value == 'Out of Stock'
+          ) {
             this.clear_btn = true;
             this.inventory = value;
             if (this.stock == 0) {
@@ -475,6 +492,16 @@ export class ViewListFilterComponent implements OnInit {
           }
           break;
       }
+      this.getProductList(
+        this.pageIndex,
+        this.selectStatus,
+        this.inventory,
+        this.selectBrand,
+        this.selectCollection,
+        this.selectCategory,
+        this.selectSales,
+        this.product_search
+      );
     } else {
       if (this.beagetotal > 0 && value !== null) {
         switch (type) {
@@ -505,18 +532,17 @@ export class ViewListFilterComponent implements OnInit {
             this.beagetotal--;
             break;
         }
+        this.getProductList(
+          this.pageIndex,
+          this.selectStatus,
+          this.inventory,
+          this.selectBrand,
+          this.selectCollection,
+          this.selectCategory,
+          this.selectSales,
+          this.product_search
+        );
       }
     }
-
-    this.getProductList(
-      this.pageIndex,
-      this.selectStatus,
-      this.inventory,
-      this.selectBrand,
-      this.selectCollection,
-      this.selectCategory,
-      this.selectSales,
-      this.product_search
-    );
   }
 }

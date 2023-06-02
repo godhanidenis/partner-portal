@@ -20,7 +20,7 @@
       nzType="primary"
       class="action-button"
       style="height: 35px"
-      (click)="isImportVisible = true"
+      (click)="addMultiProduct()"
     >
       <span nz-icon nzType="plus" nzTheme="outline"></span>
       Add Multiple Products
@@ -627,14 +627,14 @@
         </div>
       </nz-card>
 
-      <div nz-row>
+      <div nz-row *ngIf="!disabledFiled">
         <div nz-col [nzXs]="24">
           <button
             nz-button
             class="action-button"
             style="height: 35px"
             [nzType]="'primary'"
-            [disabled]="addEditProductForm.invalid || disabledFiled"
+            [disabled]="addEditProductForm.invalid"
             [ngClass]="{
               'button-disabled':
                 addEditProductForm.invalid || isLoading || disabledFiled

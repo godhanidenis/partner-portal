@@ -102,6 +102,14 @@
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
+              <li nz-menu-item (click)="changePermission('NPS')">
+                <!-- <span nz-icon nzType="user" nzTheme="outline"></span> -->
+                <span>NPS</span>
+              </li>
+              <li nz-menu-item (click)="changePermission('WEF')">
+                <!-- <span nz-icon nzType="user" nzTheme="outline"></span> -->
+                <span>WEF</span>
+              </li>
               <li nz-menu-item>
                 <span nz-icon nzType="user" nzTheme="outline"></span>
                 <span>Change Password</span>

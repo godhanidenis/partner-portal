@@ -11,8 +11,8 @@ export class UserPermissionService {
   userPermission = new BehaviorSubject('');
   constructor(private httpClient: HttpClient) {}
 
-  getPartnerPermission() {
-    let params = new HttpParams().set('pc', 'NPS');
+  getPartnerPermission(type: string) {
+    let params = new HttpParams().set('pc', type);
     return this.httpClient.get(this.url + '/partner', {
       params: params,
     });
