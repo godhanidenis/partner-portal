@@ -246,6 +246,22 @@ export class AddEditProductComponent implements OnInit {
     // this.addEditProductForm.controls['number_of_boxes'].disable();
   }
 
+  editProduct() {
+    this.modal.confirm({
+      nzTitle: 'Are you sure edit this product?',
+      nzContent: '',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => {
+        this.addEditProductForm.enable();
+        this.disabledFiled = false;
+      },
+      nzCancelText: 'No',
+      nzOnCancel: () => console.log('Cancel'),
+    });
+  }
+
   searchValue(event: string, type: string) {
     this.setDropDownValue = event;
     if (event) {

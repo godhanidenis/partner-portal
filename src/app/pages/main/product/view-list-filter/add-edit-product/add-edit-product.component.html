@@ -6,6 +6,25 @@
       <span>Add Product</span>
     </div>
   </div>
+  <div
+    *ngIf="editSection"
+    style="
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      padding-right: 24px;
+    "
+  >
+    <button
+      nz-button
+      class="action-button"
+      style="height: 35px"
+      [nzType]="'primary'"
+      (click)="editProduct()"
+    >
+      Edit
+    </button>
+  </div>
   <div [ngClass]="{ display: !editSection }" class="body-section">
     <form nz-form [formGroup]="addEditProductForm">
       <div nz-row [nzGutter]="16">
@@ -604,9 +623,10 @@
             class="action-button"
             style="height: 35px"
             [nzType]="'primary'"
-            [disabled]="addEditProductForm.invalid"
+            [disabled]="addEditProductForm.invalid || disabledFiled"
             [ngClass]="{
-              'button-disabled': addEditProductForm.invalid || isLoading
+              'button-disabled':
+                addEditProductForm.invalid || isLoading || disabledFiled
             }"
             (click)="submit()"
           >

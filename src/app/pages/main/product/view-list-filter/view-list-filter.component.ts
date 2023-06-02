@@ -5,6 +5,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 import { ProductService } from 'src/app/shared/service/product.service';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
 @Component({
   selector: 'app-view-list-filter',
   templateUrl: './view-list-filter.component.html',
@@ -70,12 +71,17 @@ export class ViewListFilterComponent implements OnInit {
   statusEnum: typeof StatusEnum = StatusEnum;
   productList: any[] = [];
   accountSearch = new Subject<any>();
+  userPermissions: any = '';
 
   constructor(
     private router: Router,
     private productService: ProductService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private userPermissionService: UserPermissionService
   ) {
+    userPermissionService.userPermission.subscribe((permission: any) => {
+      this.userPermissions = permission;
+    });
     this.accountSearch
       .pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((value: any) => {
@@ -426,17 +432,17 @@ export class ViewListFilterComponent implements OnInit {
           }
           break;
 
-        case 'map':
-          if (value == 'true' || value == 'false') {
-            this.clear_btn = true;
-            this.map = value;
+        // case 'map':
+        //   if (value == 'true' || value == 'false') {
+        //     this.clear_btn = true;
+        //     this.map = value;
 
-            if (this.mapradio == 0) {
-              this.mapradio++;
-              this.beagetotal++;
-            }
-          }
-          break;
+        //     if (this.mapradio == 0) {
+        //       this.mapradio++;
+        //       this.beagetotal++;
+        //     }
+        //   }
+        //   break;
 
         case 'collection':
           // if (

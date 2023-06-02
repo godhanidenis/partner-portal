@@ -11,7 +11,7 @@
         (click)="showUploadModal('import')"
       >
         <span nz-icon nzType="plus" nzTheme="outline"></span>
-        Add/Edit multiple products
+        Edit Multiple Products
       </button>
       <button
         nz-button
@@ -155,18 +155,22 @@
         <thead>
           <tr>
             <th>MPN</th>
+            <th>UPC</th>
+            <th>Amazon ASIN</th>
             <th>Product Name</th>
-            <th>Unit Price</th>
             <th>Brand</th>
+            <th>Unit Price</th>
+            <th *ngIf="userPermissions.partner_map">MAP</th>
             <th class="text-center">Product Status</th>
-            <th>ASIN Status</th>
-            <th>Inventory</th>
-            <th>MAP</th>
+            <th>Inventory Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of nzTable.data">
             <td>{{ data.mpn }}</td>
+            <td>{{ data?.upc }}</td>
+            <td>{{ data.asin }}</td>
             <td>
               <a
                 class="link"
@@ -174,10 +178,11 @@
                 >{{ data.name }}</a
               >
             </td>
-            <td>{{ data.unit_price | currency }}</td>
             <td>{{ data.brand }}</td>
+            <td>{{ data.unit_price | currency }}</td>
+            <td *ngIf="userPermissions.partner_map">{{ data.map_type }}</td>
             <td class="text-center">
-              {{ data.catalog_status }}
+              {{ data.product_status }}
               <!-- <app-status-badge
                 [type]="
                   data.catalog_status === 'Active'
@@ -187,9 +192,15 @@
                 [text]="data.catalog_status"
               ></app-status-badge> -->
             </td>
-            <td>{{ data.asin }}</td>
             <td>{{ data.inventory_status }}</td>
-            <td>{{ data.unit_price }}</td>
+            <td>
+              <a style="margin: 0 5px; color: #2121c3"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
+              <a style="margin: 0 5px; color: #2121c3"
+                ><span nz-icon nzType="eye" nzTheme="outline"></span
+              ></a>
+            </td>
           </tr>
         </tbody>
       </nz-table>
