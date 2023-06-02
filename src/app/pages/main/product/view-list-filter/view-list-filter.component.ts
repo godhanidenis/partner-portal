@@ -356,31 +356,31 @@ export class ViewListFilterComponent implements OnInit {
     if (value) {
       switch (type) {
         case 'brand':
-          if (value == 'Sony' || value == 'Dell' || value == 'Samsung') {
-            this.clear_btn = true;
-            this.selectBrand = value;
-            console.log(this.selectBrand);
+          // if (value == 'Sony' || value == 'Dell' || value == 'Samsung') {
+          this.clear_btn = true;
+          this.selectBrand = value;
+          console.log(this.selectBrand);
 
-            if (this.brand == 0) {
-              this.brand++;
-              this.beagetotal++;
-            }
+          if (this.brand == 0) {
+            this.brand++;
+            this.beagetotal++;
           }
+          // }
           break;
 
         case 'category':
-          if (
-            value == 'Kid’s Furniture' ||
-            value == 'Rugs' ||
-            value == 'Tables'
-          ) {
-            this.clear_btn = true;
-            this.selectCategory = value;
-            if (this.category == 0) {
-              this.category++;
-              this.beagetotal++;
-            }
+          // if (
+          //   value == 'Kid’s Furniture' ||
+          //   value == 'Rugs' ||
+          //   value == 'Tables'
+          // ) {
+          this.clear_btn = true;
+          this.selectCategory = value;
+          if (this.category == 0) {
+            this.category++;
+            this.beagetotal++;
           }
+          // }
           break;
 
         case 'inventory':
@@ -394,27 +394,27 @@ export class ViewListFilterComponent implements OnInit {
           }
           break;
 
-        case 'asin':
-          if (value == 'approved' || value == 'notapproved') {
-            this.clear_btn = true;
-            this.asin = value;
+        // case 'asin':
+        //   if (value == 'approved' || value == 'notapproved') {
+        //     this.clear_btn = true;
+        //     this.asin = value;
 
-            if (this.aprove == 0) {
-              this.aprove++;
-              this.beagetotal++;
-              this.clear_btn = true;
-            }
-          }
+        //     if (this.aprove == 0) {
+        //       this.aprove++;
+        //       this.beagetotal++;
+        //       this.clear_btn = true;
+        //     }
+        //   }
 
-          break;
+        //   break;
 
         case 'status':
           if (
             value == 'Active' ||
-            value == 'Discontented' ||
+            value == 'Discontinued' ||
             value == 'LTL' ||
             value == 'Partner Restricted' ||
-            value == 'Suppressed'
+            value == 'Supressed'
           ) {
             this.clear_btn = true;
             this.selectStatus = value;
@@ -439,18 +439,18 @@ export class ViewListFilterComponent implements OnInit {
           break;
 
         case 'collection':
-          if (
-            value == 'Floral Collection' ||
-            value == 'White Collection' ||
-            value == 'Kids Collection'
-          ) {
-            this.clear_btn = true;
-            this.selectCollection = value;
-            if (this.collection == 0) {
-              this.collection++;
-              this.beagetotal++;
-            }
+          // if (
+          //   value == 'Floral Collection' ||
+          //   value == 'White Collection' ||
+          //   value == 'Kids Collection'
+          // ) {
+          this.clear_btn = true;
+          this.selectCollection = value;
+          if (this.collection == 0) {
+            this.collection++;
+            this.beagetotal++;
           }
+          // }
           break;
 
         case 'salesTire':
