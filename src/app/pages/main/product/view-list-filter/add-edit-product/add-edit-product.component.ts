@@ -248,34 +248,8 @@ export class AddEditProductComponent implements OnInit {
   }
 
   editProduct() {
-    this.modal.confirm({
-      nzTitle: 'Are you sure edit this product?',
-      nzContent: '',
-      nzOkText: 'Yes',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => {
-        this.addEditProductForm.enable();
-        this.disabledFiled = false;
-      },
-      nzCancelText: 'No',
-      nzOnCancel: () => console.log('Cancel'),
-    });
-  }
-
-  addMultiProduct() {
-    this.modal.confirm({
-      nzTitle: 'Are you sure! You want to add multiple product?',
-      nzContent: '',
-      nzOkText: 'Yes',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => {
-        this.isImportVisible = true;
-      },
-      nzCancelText: 'No',
-      nzOnCancel: () => console.log('Cancel'),
-    });
+    this.addEditProductForm.enable();
+    this.disabledFiled = false;
   }
 
   searchValue(event: string, type: string) {

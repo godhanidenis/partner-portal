@@ -147,6 +147,7 @@
         <!-- (nzPageSizeChange)="pageSizeChange($event)" -->
         <thead>
           <tr>
+            <th>No.</th>
             <th>MPN</th>
             <th>UPC</th>
             <th>Amazon ASIN</th>
@@ -160,14 +161,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of nzTable.data">
+          <tr *ngFor="let data of nzTable.data; let no = index">
+            <td>{{ no + 1 }}</td>
             <td>{{ data.mpn }}</td>
             <td>{{ data?.upc }}</td>
             <td>{{ data.asin }}</td>
             <td>{{ data.name }}</td>
             <td>{{ data.brand }}</td>
             <td>{{ data.unit_price | currency }}</td>
-            <td *ngIf="userPermissions.partner_map">{{ data.map_type }}</td>
+            <td *ngIf="userPermissions.partner_map">
+              {{ data.map_price | currency }}
+            </td>
             <td class="text-center">
               <app-status-badge
                 *ngIf="data.product_status === 'Active'"
@@ -176,9 +180,9 @@
               ></app-status-badge>
               <app-status-badge
                 *ngIf="
-                  data.product_status === 'Partner Discontinued' ||
+                  data.product_status === 'Discontinued' ||
                   data.product_status === 'LTL' ||
-                  data.product_status === 'Partner Restricted'
+                  data.product_status === 'Restricted'
                 "
                 [type]="statusEnum.Hold"
                 [text]="data.product_status"
@@ -195,7 +199,7 @@
                 ><span nz-icon nzType="edit" nzTheme="outline"></span
               ></a> -->
               <a
-                (click)="navigatePage('products/single-product/' + data.sku)"
+                (click)="navigatePage('products/details/' + data.sku)"
                 style="margin: 0 5px; color: #2121c3; font-size: large"
                 ><span nz-icon nzType="eye" nzTheme="outline"></span
               ></a>
