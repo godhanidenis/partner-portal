@@ -7,21 +7,33 @@
     </div>
   </div>
   <div
-    *ngIf="editSection"
     style="
       width: 100%;
       display: flex;
       justify-content: end;
-      padding-right: 24px;
+      padding-right: 28px;
     "
   >
     <button
+      *ngIf="!editSection"
+      nz-button
+      nzType="primary"
+      class="action-button"
+      style="height: 35px"
+      (click)="isImportVisible = true"
+    >
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+      Add Multiple Products
+    </button>
+    <button
+      *ngIf="editSection"
       nz-button
       class="action-button"
       style="height: 35px"
       [nzType]="'primary'"
       (click)="editProduct()"
     >
+      <span nz-icon nzType="edit" nzTheme="outline"></span>
       Edit
     </button>
   </div>
@@ -647,4 +659,17 @@
       </div>
     </form>
   </div>
+
+  <nz-modal
+    [(nzVisible)]="isImportVisible"
+    nzTitle="Add Multiple products"
+    (nzOnCancel)="isImportVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-edit-multiple-products
+        [actionType]="'Add'"
+        (closeModel)="isImportVisible = false"
+      ></app-edit-multiple-products>
+    </ng-container>
+  </nz-modal>
 </div>

@@ -18,6 +18,7 @@ import { PoDetailPageComponent } from './po-detail-page/po-detail-page.component
 import { ComponentRoutingModule } from './component-routing.module';
 import { UploadModelComponent } from './upload-model/upload-model.component';
 import { ExportModelComponent } from './export-model/export-model.component';
+import { AddEditMultipleProductsComponent } from './add-edit-multiple-products/add-edit-multiple-products.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ExportModelComponent } from './export-model/export-model.component';
     PoDetailPageComponent,
     UploadModelComponent,
     ExportModelComponent,
+    AddEditMultipleProductsComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { ExportModelComponent } from './export-model/export-model.component';
     BreadcrumbComponent,
     UploadModelComponent,
     ExportModelComponent,
+    AddEditMultipleProductsComponent,
   ],
 })
 export class ComponentModule {}

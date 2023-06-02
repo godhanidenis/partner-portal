@@ -358,13 +358,14 @@
 
   <nz-modal
     [(nzVisible)]="isImportVisible"
-    nzTitle="Add / Edit multi product"
+    nzTitle="Edit Multiple products"
     (nzOnCancel)="handleCancel('import')"
   >
     <ng-container *nzModalContent>
-      <app-add-edit-multiple-products
+      <app-edit-multiple-products
+        [actionType]="'Edit'"
         (closeModel)="handleCancel('import')"
-      ></app-add-edit-multiple-products>
+      ></app-edit-multiple-products>
     </ng-container>
   </nz-modal>
 </div>

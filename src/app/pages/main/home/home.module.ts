@@ -8,7 +8,6 @@ import { ListNgZorroModule } from 'src/app/shared/list-ng-zorro/list-ng-zorro.mo
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentModule } from 'src/app/components/component.module';
-import { ProductModule } from '../product/product.module';
 import { PerformanceIssuesModule } from './home-section/performance-issues/performance-issues.module';
 import { RecommendationIssuesModule } from './home-section/recommendation-issues/recommendation-issues.module';
 
@@ -23,7 +22,6 @@ import { RecommendationIssuesModule } from './home-section/recommendation-issues
     ReactiveFormsModule,
     FormsModule,
     ComponentModule,
-    ProductModule,
     PerformanceIssuesModule,
     RecommendationIssuesModule,
   ],

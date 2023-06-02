@@ -7,10 +7,10 @@ import { UserPermissionService } from './shared/service/user-permission.service'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private userPermissionService: UserPermissionService) {}
-  ngOnInit(): void {
+  constructor(private userPermissionService: UserPermissionService) {
     this.userPermissionService.getPartnerPermission().subscribe((res: any) => {
       this.userPermissionService.userPermission.next(res);
     });
   }
+  ngOnInit(): void {}
 }

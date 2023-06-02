@@ -21,6 +21,7 @@ export class AddEditProductComponent implements OnInit {
   @Input() editSection: boolean = false;
   @ViewChild('addInput', { static: false }) addInput!: ElementRef;
 
+  isImportVisible: boolean = false;
   addEditProductForm!: FormGroup;
   listOfBrand: string[] = [];
   brandIndex = 0;

@@ -11,7 +11,7 @@ import { AddEditProductComponent } from './view-list-filter/add-edit-product/add
 import { ViewSingleProductComponent } from './view-list-filter/view-single-product/view-single-product.component';
 import { OrderProcessingModule } from '../profile/order-processing/order-processing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AddEditMultipleProductsComponent } from './view-list-filter/add-edit-multiple-products/add-edit-multiple-products.component';
+import { EditMultipleProductsComponent } from './view-list-filter/edit-multiple-products/edit-multiple-products.component';
 import { ComponentModule } from 'src/app/components/component.module';
 import { InsightsAndAnalyticsComponent } from './view-list-filter/insights-and-analytics/insights-and-analytics.component';
 import { HistoryComponent } from './view-list-filter/history/history.component';
@@ -21,7 +21,7 @@ import { HistoryComponent } from './view-list-filter/history/history.component';
     ViewListFilterComponent,
     AddEditProductComponent,
     ViewSingleProductComponent,
-    AddEditMultipleProductsComponent,
+    EditMultipleProductsComponent,
     InsightsAndAnalyticsComponent,
     HistoryComponent,
   ],
@@ -37,6 +37,6 @@ import { HistoryComponent } from './view-list-filter/history/history.component';
     SharedModule,
     ComponentModule,
   ],
-  exports: [AddEditMultipleProductsComponent],
+  exports: [EditMultipleProductsComponent],
 })
 export class ProductModule {}
