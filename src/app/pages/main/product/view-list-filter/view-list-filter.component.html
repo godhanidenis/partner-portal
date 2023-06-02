@@ -18,7 +18,7 @@
         nzType="primary"
         nzShape="round"
         style="display: block"
-        (click)="navigatePage('product/add-product')"
+        (click)="navigatePage('products/add-product')"
       >
         <span nz-icon nzType="plus" nzTheme="outline"></span>
         Add Product
@@ -174,7 +174,7 @@
             <td>
               <a
                 class="link"
-                (click)="navigatePage('product/single-product/' + data.sku)"
+                (click)="navigatePage('products/single-product/' + data.sku)"
                 >{{ data.name }}</a
               >
             </td>

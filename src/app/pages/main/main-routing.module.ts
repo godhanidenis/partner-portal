@@ -12,7 +12,7 @@ const routes: Routes = [
       import('./profile/profile.module').then((m) => m.ProfileModule),
   },
   {
-    path: 'product',
+    path: 'products',
     loadChildren: () =>
       import('./product/product.module').then((m) => m.ProductModule),
   },
