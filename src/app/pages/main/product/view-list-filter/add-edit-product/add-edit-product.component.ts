@@ -152,8 +152,8 @@ export class AddEditProductComponent implements OnInit {
     });
 
     if (this.editSection) {
-      this.addEditProductForm.disable();
-      this.disabledFiled = true;
+      // this.addEditProductForm.disable();
+      // this.disabledFiled = true;
       const sku = this.activatedRoute.snapshot.paramMap.get('sku');
       if (sku) {
         this.editSku = sku;
@@ -233,6 +233,7 @@ export class AddEditProductComponent implements OnInit {
               } else {
                 this.message.create('error', res.error_message);
               }
+              this.addShippingDimensionsOfBoxes();
             }
           },
           (err) => {

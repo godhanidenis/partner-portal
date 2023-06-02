@@ -147,7 +147,6 @@
         <!-- (nzPageSizeChange)="pageSizeChange($event)" -->
         <thead>
           <tr>
-            <th>No.</th>
             <th>MPN</th>
             <th>UPC</th>
             <th>Amazon ASIN</th>
@@ -162,7 +161,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let data of nzTable.data; let no = index">
-            <td>{{ no + 1 }}</td>
             <td>{{ data.mpn }}</td>
             <td>{{ data?.upc }}</td>
             <td>{{ data.asin }}</td>

@@ -25,7 +25,7 @@
       <span nz-icon nzType="plus" nzTheme="outline"></span>
       Add Multiple Products
     </button>
-    <button
+    <!-- <button
       *ngIf="editSection"
       nz-button
       class="action-button"
@@ -35,7 +35,7 @@
     >
       <span nz-icon nzType="edit" nzTheme="outline"></span>
       Edit
-    </button>
+    </button> -->
   </div>
   <div [ngClass]="{ display: !editSection }" class="body-section">
     <form nz-form [formGroup]="addEditProductForm">
@@ -636,8 +636,7 @@
             [nzType]="'primary'"
             [disabled]="addEditProductForm.invalid"
             [ngClass]="{
-              'button-disabled':
-                addEditProductForm.invalid || isLoading || disabledFiled
+              'button-disabled': addEditProductForm.invalid || isLoading
             }"
             (click)="submit()"
           >
