@@ -1,0 +1,26 @@
+<div class="export-mail-boxes">
+  <div style="padding: 15px">
+    <h4 style="margin-top: 12px">
+      We will notify you once the export of <b>125</b> mailboxes on
+      <b>123stores.com</b> has been completed.
+    </h4>
+    <h4 style="margin-top: 15px">
+      <b>Your Email : </b> {{ email }} <a class="link">Change</a>
+    </h4>
+  </div>
+  <div class="model-footer">
+    <div class="model-action" style="padding: 15px">
+      <button
+        nz-button
+        nzType="default"
+        style="color: black; margin-right: 5px"
+        (click)="handleCancel()"
+      >
+        Cancel
+      </button>
+      <button nz-button class="action-button" [nzType]="'primary'">
+        Export Mailboxes
+      </button>
+    </div>
+  </div>
+</div>

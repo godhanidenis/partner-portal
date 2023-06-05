@@ -34,4 +34,16 @@
       </button>
     </div>
   </div>
+  <nz-modal
+    [(nzVisible)]="isDownloadVisible"
+    nzTitle="Export Mailboxes"
+    (nzOnCancel)="isDownloadVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-export-mail-boxes
+        [email]="userEmail"
+        (close)="isDownloadVisible = false"
+      ></app-export-mail-boxes>
+    </ng-container>
+  </nz-modal>
 </div>

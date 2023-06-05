@@ -19,6 +19,7 @@ import { ComponentRoutingModule } from './component-routing.module';
 import { UploadModelComponent } from './upload-model/upload-model.component';
 import { ExportModelComponent } from './export-model/export-model.component';
 import { AddEditMultipleProductsComponent } from './add-edit-multiple-products/add-edit-multiple-products.component';
+import { ExportMailBoxesComponent } from './export-mail-boxes/export-mail-boxes.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddEditMultipleProductsComponent } from './add-edit-multiple-products/a
     UploadModelComponent,
     ExportModelComponent,
     AddEditMultipleProductsComponent,
+    ExportMailBoxesComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import { AddEditMultipleProductsComponent } from './add-edit-multiple-products/a
     UploadModelComponent,
     ExportModelComponent,
     AddEditMultipleProductsComponent,
+    ExportMailBoxesComponent,
   ],
 })
 export class ComponentModule {}

@@ -10,6 +10,8 @@ export class ExportModelComponent implements OnInit {
   @Input() exportType: string = 'A';
   @Input() description: string = '';
   @Input() noOfFilter: number = 0;
+  userEmail: string = 'service@123stores.com';
+  isDownloadVisible: boolean = false;
 
   constructor() {}
   ngOnInit(): void {}
