@@ -52,8 +52,8 @@
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <nz-tag *ngIf="selectDate" nzMode="closeable" (nzOnClose)="close('Date')"
-        >{{ selectDate[0] | date : "dd-MM-yyyy a" }} To
-        {{ selectDate[1] | date : "dd-MM-yyyy a" }}</nz-tag
+        >{{ selectDate[0] | date : "dd/MM/yyyy" }} To
+        {{ selectDate[1] | date : "dd/MM/yyyy" }}</nz-tag
       >
       <nz-tag
         *ngIf="selectMethod"
@@ -167,7 +167,6 @@
         formControlName="date"
         (ngModelChange)="change(filter.value.date ? $event : '', 'Date')"
       ></nz-range-picker>
-
       <nz-divider
         style="margin-top: 20px"
         nzText="Method"
