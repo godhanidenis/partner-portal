@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
 
 @Component({
@@ -28,7 +29,10 @@ export class EditMultipleProductsComponent implements OnInit {
   ];
   multiProduct!: FormGroup;
 
-  constructor(private userPermissionService: UserPermissionService) {
+  constructor(
+    private userPermissionService: UserPermissionService,
+    private message: NzMessageService
+  ) {
     userPermissionService.userPermission.subscribe((permission: any) => {
       this.userPermissions = permission;
       if (this.userPermissions.partner_map) {
@@ -45,12 +49,25 @@ export class EditMultipleProductsComponent implements OnInit {
     }
     this.multiProduct = new FormGroup({
       selectType: new FormControl(''),
+      downloadTemplate: new FormControl(''),
       uploadFile: new FormControl('', [Validators.required]),
     });
     if (this.actionType === 'Edit') {
       this.multiProduct.controls['selectType'].setValidators([
         Validators.required,
       ]);
+    }
+  }
+
+  selectDownloadTemplate(event: string) {
+    if (this.multiProduct.controls['selectType'].value) {
+    } else {
+      if (this.multiProduct.controls['downloadTemplate'].value) {
+        this.message.create('warning', 'Please first choose edit type!!');
+        setTimeout(() => {
+          this.multiProduct.controls['downloadTemplate'].setValue('');
+        }, 100);
+      }
     }
   }
 

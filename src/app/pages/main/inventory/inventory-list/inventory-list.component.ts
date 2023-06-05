@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { InventoryService } from 'src/app/shared/service/inventory.service';
 
 @Component({
   selector: 'app-inventory-list',
@@ -12,9 +13,9 @@ export class InventoryListComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   isLoading: boolean = false;
   total = 1;
-  pageSize = 10;
+  pageSize = 100;
   pageIndex = 1;
-  pageSizeOptions = [5, 10, 15, 20];
+  pageSizeOptions = [100];
 
   isUploadVisible: boolean = false;
   isDownloadVisible: boolean = false;
@@ -57,12 +58,21 @@ export class InventoryListComponent implements OnInit {
   dateCount: number = 0;
   methodCount: number = 0;
   statusCount: number = 0;
+  inventory_search: string = '';
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private inventoryService: InventoryService
+  ) {
     this.accountSearch
       .pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((value: any) => {
-        console.log(value);
+        this.inventory_search = value.target.value;
+        this.getInventoryList(
+          this.pageIndex,
+          this.selectStatus,
+          this.inventory_search
+        );
       });
   }
 
@@ -75,6 +85,43 @@ export class InventoryListComponent implements OnInit {
       method: new FormControl(''),
       status: new FormControl(''),
     });
+    this.getInventoryList(
+      this.pageIndex,
+      this.selectStatus,
+      this.inventory_search
+    );
+  }
+
+  getInventoryList(
+    page: number,
+    filter_status: string,
+    inventory_search: string
+  ) {
+    this.isLoading = true;
+    this.inventoryService
+      .getAllInventory({
+        page: page,
+        filter_status: filter_status,
+        inventory_search: inventory_search,
+      })
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+          this.total = res.products_total;
+          // this.inventoryList = res.products;
+          this.isLoading = false;
+        },
+        (err) => (this.isLoading = false)
+      );
+  }
+
+  pageIndexChange(page: number) {
+    this.pageIndex = page;
+    this.getInventoryList(
+      this.pageIndex,
+      this.selectStatus,
+      this.inventory_search
+    );
   }
 
   navigatePage(path: string) {
@@ -195,17 +242,6 @@ export class InventoryListComponent implements OnInit {
         }
       }
     }
-
-    // this.getProductList(
-    //   this.pageIndex,
-    //   this.selectStatus,
-    //   this.inventory,
-    //   this.selectBrand,
-    //   this.selectCollection,
-    //   this.selectCategory,
-    //   this.selectSales,
-    //   this.product_search
-    // );
   }
 
   handleCancel(type: string) {

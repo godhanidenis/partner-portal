@@ -51,11 +51,9 @@
     </div>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
-      <nz-tag
-        *ngIf="selectDate"
-        nzMode="closeable"
-        (nzOnClose)="close('Date')"
-        >{{ selectDate }}</nz-tag
+      <nz-tag *ngIf="selectDate" nzMode="closeable" (nzOnClose)="close('Date')"
+        >{{ selectDate[0] | date : "dd-MM-yyyy a" }} To
+        {{ selectDate[1] | date : "dd-MM-yyyy a" }}</nz-tag
       >
       <nz-tag
         *ngIf="selectMethod"
@@ -98,6 +96,7 @@
       [nzPageIndex]="pageIndex"
       [nzLoading]="isLoading"
       [nzScroll]="{ x: '100%' }"
+      (nzPageIndexChange)="pageIndexChange($event)"
     >
       <thead>
         <tr>
@@ -203,7 +202,7 @@
 
 <nz-modal
   [(nzVisible)]="isUploadVisible"
-  nzTitle="Upload"
+  nzTitle="Upload Inventory Feed"
   (nzOnCancel)="handleCancel('download')"
 >
   <ng-container *nzModalContent>
@@ -221,6 +220,7 @@
   <ng-container *nzModalContent>
     <app-export-model
       [exportType]="exportType"
+      [noOfFilter]="badgeTotal"
       [description]="
         'Your Inventory Feed History will be exported as a CSV file and sent to your email'
       "

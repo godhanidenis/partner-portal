@@ -1,6 +1,9 @@
 <div class="add-edit-multiple-products-model">
   <div class="body-section">
-    <h4>Use this tool to import or edit multiple in one go.</h4>
+    <h4>
+      Use this tool to {{ actionType === "Edit" ? "edit" : "add" }} multiple
+      products with a single upload.
+    </h4>
     <form [formGroup]="multiProduct">
       <nz-divider *ngIf="actionType === 'Edit'"></nz-divider>
       <div *ngIf="actionType === 'Edit'" class="download">
@@ -43,7 +46,11 @@
             >Click <a class="link">hear</a> to download template</span
           >
 
-          <nz-radio-group *ngIf="actionType === 'Edit'">
+          <nz-radio-group
+            *ngIf="actionType === 'Edit'"
+            formControlName="downloadTemplate"
+            (ngModelChange)="selectDownloadTemplate($event)"
+          >
             <label nz-radio nzValue="A"
               >Download Template with your exiting products
             </label>

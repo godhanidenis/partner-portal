@@ -9,6 +9,7 @@ export class ExportModelComponent implements OnInit {
   @Output() close = new EventEmitter();
   @Input() exportType: string = 'A';
   @Input() description: string = '';
+  @Input() noOfFilter: number = 0;
 
   constructor() {}
   ngOnInit(): void {}

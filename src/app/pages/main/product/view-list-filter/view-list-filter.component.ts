@@ -41,7 +41,7 @@ export class ViewListFilterComponent implements OnInit {
   category: number = 0;
   sales: number = 0;
   collection: number = 0;
-  beagetotal: number = 0;
+  badgeTotal: number = 0;
 
   clear_btn: boolean = false;
 
@@ -293,7 +293,7 @@ export class ViewListFilterComponent implements OnInit {
     this.collection = 0;
     this.sales = 0;
 
-    this.beagetotal = 0;
+    this.badgeTotal = 0;
     this.clear_btn = false;
     this.filter.reset();
     this.getProductList(
@@ -315,44 +315,44 @@ export class ViewListFilterComponent implements OnInit {
           this.filter.controls['inventory'].reset();
           this.inventory = '';
           this.stock = 0;
-          this.beagetotal--;
+          this.badgeTotal--;
           break;
         case 'Selectstatus':
           this.filter.controls['productStatus'].reset();
           this.selectStatus = '';
           this.productStatus = 0;
-          this.beagetotal--;
+          this.badgeTotal--;
           break;
         case 'map':
           this.filter.controls['map'].reset();
           this.map = '';
           this.mapradio = 0;
-          this.beagetotal--;
+          this.badgeTotal--;
           break;
         case 'selectBrand':
           this.filter.controls['brand'].reset();
           this.selectBrand = '';
           this.brand = 0;
-          this.beagetotal--;
+          this.badgeTotal--;
           break;
         case 'selectCollection':
           this.filter.controls['collection'].reset();
           this.selectCollection = '';
           this.collection = 0;
-          this.beagetotal--;
+          this.badgeTotal--;
           break;
         case 'selectCategory':
           this.filter.controls['category'].reset();
           this.selectCategory = '';
           this.category = 0;
-          this.beagetotal--;
+          this.badgeTotal--;
           break;
 
         case 'selectSales':
           this.filter.controls['salesTire'].reset();
           this.selectSales = '';
           this.sales = 0;
-          this.beagetotal--;
+          this.badgeTotal--;
           break;
 
         default:
@@ -378,11 +378,9 @@ export class ViewListFilterComponent implements OnInit {
           // if (value == 'Sony' || value == 'Dell' || value == 'Samsung') {
           this.clear_btn = true;
           this.selectBrand = value;
-          console.log(this.selectBrand);
-
           if (this.brand == 0) {
             this.brand++;
-            this.beagetotal++;
+            this.badgeTotal++;
           }
           // }
           break;
@@ -397,7 +395,7 @@ export class ViewListFilterComponent implements OnInit {
           this.selectCategory = value;
           if (this.category == 0) {
             this.category++;
-            this.beagetotal++;
+            this.badgeTotal++;
           }
           // }
           break;
@@ -412,7 +410,7 @@ export class ViewListFilterComponent implements OnInit {
             this.inventory = value;
             if (this.stock == 0) {
               this.stock++;
-              this.beagetotal++;
+              this.badgeTotal++;
             }
           }
           break;
@@ -424,7 +422,7 @@ export class ViewListFilterComponent implements OnInit {
 
         //     if (this.aprove == 0) {
         //       this.aprove++;
-        //       this.beagetotal++;
+        //       this.badgeTotal++;
         //       this.clear_btn = true;
         //     }
         //   }
@@ -444,7 +442,7 @@ export class ViewListFilterComponent implements OnInit {
 
             if (this.productStatus == 0) {
               this.productStatus++;
-              this.beagetotal++;
+              this.badgeTotal++;
             }
           }
           break;
@@ -456,7 +454,7 @@ export class ViewListFilterComponent implements OnInit {
 
         //     if (this.mapradio == 0) {
         //       this.mapradio++;
-        //       this.beagetotal++;
+        //       this.badgeTotal++;
         //     }
         //   }
         //   break;
@@ -471,7 +469,7 @@ export class ViewListFilterComponent implements OnInit {
           this.selectCollection = value;
           if (this.collection == 0) {
             this.collection++;
-            this.beagetotal++;
+            this.badgeTotal++;
           }
           // }
           break;
@@ -487,7 +485,7 @@ export class ViewListFilterComponent implements OnInit {
             this.selectSales = value;
             if (this.sales == 0) {
               this.sales++;
-              this.beagetotal++;
+              this.badgeTotal++;
             }
           }
           break;
@@ -503,33 +501,33 @@ export class ViewListFilterComponent implements OnInit {
         this.product_search
       );
     } else {
-      if (this.beagetotal > 0 && value !== null) {
+      if (this.badgeTotal > 0 && value !== null) {
         switch (type) {
           case 'status':
             this.selectStatus = '';
             this.productStatus--;
-            this.beagetotal--;
+            this.badgeTotal--;
             break;
           case 'brand':
             this.selectBrand = '';
             this.brand--;
-            this.beagetotal--;
+            this.badgeTotal--;
             break;
           case 'category':
             this.selectCategory = '';
             this.brand--;
-            this.beagetotal--;
+            this.badgeTotal--;
             break;
           case 'collection':
             this.selectCollection = '';
             this.collection--;
-            this.beagetotal--;
+            this.badgeTotal--;
             break;
 
           case 'salesTire':
             this.selectSales = '';
             this.sales--;
-            this.beagetotal--;
+            this.badgeTotal--;
             break;
         }
         this.getProductList(

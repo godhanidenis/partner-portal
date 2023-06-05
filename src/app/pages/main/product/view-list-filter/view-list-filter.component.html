@@ -30,7 +30,7 @@
         <nz-badge
           style="margin-right: 10px"
           [nzShowZero]="false"
-          [nzCount]="beagetotal"
+          [nzCount]="badgeTotal"
         >
           <button
             (click)="openNav()"
@@ -77,7 +77,7 @@
         </form>
       </div>
 
-      <div *ngIf="clear_btn && beagetotal !== 0" class="tag-section">
+      <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
         <nz-tag
           *ngIf="selectStatus"
           nzMode="closeable"
@@ -115,7 +115,7 @@
           >{{ selectSales }}</nz-tag
         >
         <button
-          *ngIf="beagetotal >= 1"
+          *ngIf="badgeTotal >= 1"
           nz-button
           nzType="default"
           (click)="tagfunc()"
@@ -342,6 +342,7 @@
     <ng-container *nzModalContent>
       <app-export-model
         [exportType]="exportType"
+        [noOfFilter]="badgeTotal"
         (close)="handleCancel('download')"
       ></app-export-model>
     </ng-container>
