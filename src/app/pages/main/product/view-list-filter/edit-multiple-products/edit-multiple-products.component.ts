@@ -63,7 +63,7 @@ export class EditMultipleProductsComponent implements OnInit {
     if (this.multiProduct.controls['selectType'].value) {
     } else {
       if (this.multiProduct.controls['downloadTemplate'].value) {
-        this.message.create('warning', 'Please first choose edit type!!');
+        this.message.create('warning', 'Please select edit type first!');
         setTimeout(() => {
           this.multiProduct.controls['downloadTemplate'].setValue('');
         }, 100);
