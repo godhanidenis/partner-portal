@@ -162,6 +162,16 @@
     }
   }
 
+  .action-column {
+    width: 50px;
+    background-color: $white !important;
+    padding: 0;
+
+    div {
+      padding: 16px;
+      background-color: rgba(33, 33, 195, 0.08) !important;
+    }
+  }
 
 
 }
