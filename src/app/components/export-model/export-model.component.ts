@@ -12,6 +12,7 @@ export class ExportModelComponent implements OnInit {
   @Input() noOfFilter: number = 0;
   userEmail: string = 'service@123stores.com';
   isDownloadVisible: boolean = false;
+  isLoading: boolean = false;
 
   constructor() {}
   ngOnInit(): void {}

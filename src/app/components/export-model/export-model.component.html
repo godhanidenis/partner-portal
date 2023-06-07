@@ -30,6 +30,12 @@
         Cancel
       </button>
       <button nz-button class="action-button" [nzType]="'primary'">
+        <span
+          *ngIf="isLoading"
+          style="color: white; font-size: 16px"
+          nz-icon
+          nzType="loading"
+        ></span>
         Export
       </button>
     </div>

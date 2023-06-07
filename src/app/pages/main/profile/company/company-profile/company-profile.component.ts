@@ -12,6 +12,7 @@ export class CompanyProfileComponent implements OnInit {
   disableInput = true;
   companyProfile!: FormGroup;
   breadcrumb: any;
+  isLoading: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,

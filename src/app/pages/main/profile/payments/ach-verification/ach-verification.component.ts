@@ -11,6 +11,7 @@ export class AchVerificationComponent implements OnInit {
   ascVerificationForm!: FormGroup;
   reTypeAccountNumber: boolean = false;
   breadcrumb: any;
+  isLoading: boolean = false;
 
   achVerificationData = {
     deposit_value_one: '11.11',

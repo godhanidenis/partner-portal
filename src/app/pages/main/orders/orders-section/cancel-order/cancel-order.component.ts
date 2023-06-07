@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class CancelOrderComponent implements OnInit {
   @Output() closeModel = new EventEmitter();
   cancelOrderForm!: FormGroup;
+  isLoading: boolean = false;
 
   constructor() {}
 

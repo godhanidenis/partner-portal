@@ -445,16 +445,13 @@
         [nzType]="'primary'"
         style="width: 150px; margin-top: 0px; margin-right: 10px"
       >
-        <div *ngIf="isLoading">
-          <ng-template #indicatorTemplate
-            ><span style="font-size: 16px" nz-icon nzType="loading"></span>
-          </ng-template>
-          <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
-        </div>
-        <span *ngIf="!isLoading"
-          ><span nz-icon nzType="file-text" nzTheme="outline"></span> Save
-          Address</span
-        >
+        <span
+          *ngIf="isLoading"
+          style="color: white; font-size: 16px"
+          nz-icon
+          nzType="loading"
+        ></span>
+        Save Address
       </button>
     </div>
   </div>

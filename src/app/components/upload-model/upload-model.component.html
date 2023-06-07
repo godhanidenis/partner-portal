@@ -64,6 +64,12 @@
         [nzType]="'primary'"
         style="width: 100px"
       >
+        <span
+          *ngIf="isLoading"
+          style="color: white; font-size: 16px"
+          nz-icon
+          nzType="loading"
+        ></span>
         Upload
       </button>
     </div>

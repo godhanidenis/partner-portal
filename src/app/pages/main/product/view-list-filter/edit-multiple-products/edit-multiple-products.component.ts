@@ -28,6 +28,7 @@ export class EditMultipleProductsComponent implements OnInit {
     'Edit Product Status',
   ];
   multiProduct!: FormGroup;
+  isLoading: boolean = false;
 
   constructor(
     private userPermissionService: UserPermissionService,

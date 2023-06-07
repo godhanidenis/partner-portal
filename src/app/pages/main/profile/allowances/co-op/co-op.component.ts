@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CoOpComponent implements OnInit {
   addCoOpVisible: boolean = false;
+  isLoading: boolean = false;
   addCoOpForm!: FormGroup;
   rebateDate = {
     code: 123,

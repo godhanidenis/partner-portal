@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./courier-preferences.component.scss'],
 })
 export class CourierPreferencesComponent implements OnInit {
+  isLoading: boolean = false;
   courierPreferenceList = [
     {
       id: 1,

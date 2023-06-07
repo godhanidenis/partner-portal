@@ -11,6 +11,7 @@ export class FeedPrefernacesComponent implements OnInit {
   feedForm!: FormGroup;
 
   showEmailSection: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder) {}
 

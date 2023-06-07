@@ -12,6 +12,8 @@ export class PromotionsComponent implements OnInit {
   listOfOption = ['Only Price', 'Only MAP', 'Price & MAP'];
   specificSku: boolean = false;
   allSku: boolean = false;
+  isLoading: boolean = false;
+
   constructor() {}
   ngOnInit(): void {
     this.add_promotion = new FormGroup({

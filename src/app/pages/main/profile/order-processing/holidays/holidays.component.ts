@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HolidaysComponent implements OnInit {
   holidayForm!: FormGroup;
+  isLoading: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder) {}
 

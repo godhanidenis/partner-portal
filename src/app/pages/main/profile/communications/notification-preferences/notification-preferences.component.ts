@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 })
 export class NotificationPreferencesComponent implements OnInit {
   notificationForm!: FormGroup;
-  selectedQuickAction = "";
-  actionEmail1 = "";
-  actionEmail2 = "";
+  isLoading: boolean = false;
+  selectedQuickAction = '';
+  actionEmail1 = '';
+  actionEmail2 = '';
   formArrayName = [
     'catalog_amazon_offer_overview_report',
     'product_promotion_price_changes',
@@ -143,10 +144,10 @@ export class NotificationPreferencesComponent implements OnInit {
 
   onQuickActionChanged = () => {
     console.log('Selected Value :', this.selectedQuickAction);
-  }
+  };
 
-  submitQuickAction(){
-    switch(this.selectedQuickAction){
+  submitQuickAction() {
+    switch (this.selectedQuickAction) {
       case 'add_all':
         this.addToAllNotification();
         break;
@@ -224,34 +225,38 @@ export class NotificationPreferencesComponent implements OnInit {
     return this.notificationForm.controls['profile_change'] as FormArray;
   }
 
-  newNotification = (value: string): FormGroup =>{
+  newNotification = (value: string): FormGroup => {
     return this.formBuilder.group({
       email: value,
     });
-  }
+  };
 
-  findEmailIndexFromList = (emailList:any[], email:string) => {
+  findEmailIndexFromList = (emailList: any[], email: string) => {
     let indexTobeReturned = -1;
-    emailList.forEach((val, index)=>{
-      if(val['email'] === email){
+    emailList.forEach((val, index) => {
+      if (val['email'] === email) {
         indexTobeReturned = index;
         return false;
       }
       return true;
     });
     return indexTobeReturned;
-  }
+  };
 
   addToAllNotification = () => {
-    Object.values(this.notificationForm.value).forEach((val:any, index:number)=>{
-      this.addNotification(index + 1, this.actionEmail1);
-    });
-  }
+    Object.values(this.notificationForm.value).forEach(
+      (val: any, index: number) => {
+        this.addNotification(index + 1, this.actionEmail1);
+      }
+    );
+  };
 
-  addNotification(numberOfType: number, value='') {
+  addNotification(numberOfType: number, value = '') {
     switch (numberOfType) {
       case 1:
-        this.catalog_amazon_offer_overview_report.push(this.newNotification(value));
+        this.catalog_amazon_offer_overview_report.push(
+          this.newNotification(value)
+        );
         break;
       case 2:
         this.product_promotion_price_changes.push(this.newNotification(value));
@@ -302,13 +307,18 @@ export class NotificationPreferencesComponent implements OnInit {
   }
 
   removeNotificationAll = () => {
-    Object.values(this.notificationForm.value).forEach((val:any, index:number)=>{
-      let indexToBeRemoved = this.findEmailIndexFromList(val, this.actionEmail1);
-      if(indexToBeRemoved > -1){
-        this.removeNotification(indexToBeRemoved, index + 1);
+    Object.values(this.notificationForm.value).forEach(
+      (val: any, index: number) => {
+        let indexToBeRemoved = this.findEmailIndexFromList(
+          val,
+          this.actionEmail1
+        );
+        if (indexToBeRemoved > -1) {
+          this.removeNotification(indexToBeRemoved, index + 1);
+        }
       }
-    })
-  }
+    );
+  };
 
   removeNotification(i: number, numberOfType: number) {
     switch (numberOfType) {
@@ -363,100 +373,108 @@ export class NotificationPreferencesComponent implements OnInit {
     }
   }
 
-
   replaceNotification(i: number, numberOfType: number, email: string) {
     switch (numberOfType) {
       case 1:
         this.catalog_amazon_offer_overview_report.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 2:
         this.product_promotion_price_changes.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 3:
         this.pricing_performance_report.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 4:
         this.inventory_feed_errors_warnings.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 5:
         this.order_processing_overview_report.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 6:
         this.order_operations.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 7:
         this.payment_emails.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 8:
         this.purchase_order.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 9:
         this.return_requests.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 10:
         this.returns_overview_report.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 11:
         this.order_invoicing.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 12:
         this.selling_coach.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 13:
         this.carrier_invoice_reco.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 14:
         this.map_overview_report.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       case 15:
         this.calendar_meeting_invites.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
       default:
         this.profile_change.at(i).patchValue({
-          email: email, 
+          email: email,
         });
         break;
     }
   }
 
   findAndReplaceFromAll = () => {
-    Object.values(this.notificationForm.value).forEach((val:any, index:number)=>{
-      let indexToBeReplaced = this.findEmailIndexFromList(val, this.actionEmail1);
-      if(indexToBeReplaced > -1){
-        this.replaceNotification(indexToBeReplaced, index + 1, this.actionEmail2);
+    Object.values(this.notificationForm.value).forEach(
+      (val: any, index: number) => {
+        let indexToBeReplaced = this.findEmailIndexFromList(
+          val,
+          this.actionEmail1
+        );
+        if (indexToBeReplaced > -1) {
+          this.replaceNotification(
+            indexToBeReplaced,
+            index + 1,
+            this.actionEmail2
+          );
+        }
       }
-    })
-  }
+    );
+  };
 
   backButton(path: string) {
     this.router.navigate([`/main/${path}`]);

@@ -11,6 +11,7 @@ export class PoLabelAndInvoicePreferencesComponent implements OnInit {
   poForm!: FormGroup;
   showEmailSection: boolean = false;
   showLabelSection: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder) {}
 

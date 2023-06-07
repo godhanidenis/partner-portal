@@ -92,7 +92,19 @@
         <div nz-col [nzXl]="4" [nzSm]="7" [nzXs]="24"></div>
         <div nz-col [nzXl]="10" [nzSm]="12" [nzXs]="24">
           <button nz-button class="action-button">
-            <span nz-icon nzType="file-text" nzTheme="outline"></span> Save
+            <span
+              *ngIf="isLoading"
+              style="color: white; font-size: 16px"
+              nz-icon
+              nzType="loading"
+            ></span>
+            <span
+              *ngIf="!isLoading"
+              nz-icon
+              nzType="file-text"
+              nzTheme="outline"
+            ></span>
+            Save
           </button>
         </div>
       </div>
