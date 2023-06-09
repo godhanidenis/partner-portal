@@ -29,7 +29,13 @@ export class AddEditProductComponent implements OnInit {
   collectionIndex = 0;
   listOfProductCategory: string[] = [];
   productCategoryIndex = 0;
-  listOfSalesTier = ['Medium Seller', 'Low Seller', 'Slow Seller'];
+  listOfSalesTier = [
+    'Bronze - Low Performer',
+    'Silver - Moderate Performer',
+    'Gold - Solid Performer',
+    'Platinum - High Performer',
+    'Diamond - Top Performer',
+  ];
   salesTierIndex = 0;
   editData: any = '';
   setDropDownValue: string = '';

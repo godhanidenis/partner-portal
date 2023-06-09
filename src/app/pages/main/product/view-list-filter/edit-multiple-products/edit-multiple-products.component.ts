@@ -16,7 +16,6 @@ export class EditMultipleProductsComponent implements OnInit {
   isUploadVisible: boolean = false;
   userPermissions: any = '';
   chooseType = [
-    'Edit Full Catalog',
     'Edit MPN',
     'Add/Edit Amazon ASIN',
     'Remove Amazon ASIN',

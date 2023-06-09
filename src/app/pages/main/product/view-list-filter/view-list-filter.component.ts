@@ -18,10 +18,11 @@ export class ViewListFilterComponent implements OnInit {
   listOfCollection: string[] = [];
   listOfProductCategory: string[] = [];
   listOfSalesTier = [
-    'Top Seller',
-    'Medium Seller',
-    'Low Seller',
-    'Slow Seller',
+    'Bronze - Low Performer',
+    'Silver - Moderate Performer',
+    'Gold - Solid Performer',
+    'Platinum - High Performer',
+    'Diamond - Top Performer',
   ];
 
   isDownloadVisible: boolean = false;
@@ -197,7 +198,7 @@ export class ViewListFilterComponent implements OnInit {
     filter_collection: string,
     filter_product_category: string,
     filter_sales_tier: string,
-    product_search: string
+    search_term: string
   ) {
     this.isLoading = true;
     this.productService
@@ -209,7 +210,7 @@ export class ViewListFilterComponent implements OnInit {
         filter_collection: filter_collection,
         filter_product_category: filter_product_category,
         filter_sales_tier: filter_sales_tier,
-        product_search: product_search,
+        search_term: search_term,
       })
       .subscribe(
         (res: any) => {
@@ -415,20 +416,6 @@ export class ViewListFilterComponent implements OnInit {
           }
           break;
 
-        // case 'asin':
-        //   if (value == 'approved' || value == 'notapproved') {
-        //     this.clear_btn = true;
-        //     this.asin = value;
-
-        //     if (this.aprove == 0) {
-        //       this.aprove++;
-        //       this.badgeTotal++;
-        //       this.clear_btn = true;
-        //     }
-        //   }
-
-        //   break;
-
         case 'status':
           if (
             value == 'Active' ||
@@ -447,18 +434,6 @@ export class ViewListFilterComponent implements OnInit {
           }
           break;
 
-        // case 'map':
-        //   if (value == 'true' || value == 'false') {
-        //     this.clear_btn = true;
-        //     this.map = value;
-
-        //     if (this.mapradio == 0) {
-        //       this.mapradio++;
-        //       this.badgeTotal++;
-        //     }
-        //   }
-        //   break;
-
         case 'collection':
           // if (
           //   value == 'Floral Collection' ||
@@ -476,10 +451,11 @@ export class ViewListFilterComponent implements OnInit {
 
         case 'salesTire':
           if (
-            value == 'Top Seller' ||
-            value == 'Medium Seller' ||
-            value == 'Low Seller' ||
-            value == 'Slow Seller'
+            value == 'Bronze - Low Performer' ||
+            value == 'Silver - Moderate Performer' ||
+            value == 'Gold - Solid Performer' ||
+            value == 'Platinum - High Performer' ||
+            value == 'Diamond - Top Performer'
           ) {
             this.clear_btn = true;
             this.selectSales = value;

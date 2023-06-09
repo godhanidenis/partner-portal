@@ -10,7 +10,7 @@ interface Action {
   filter_collection?: string;
   filter_product_category?: string;
   filter_sales_tier?: string;
-  product_search: string;
+  search_term: string;
 }
 @Injectable({
   providedIn: 'root',
@@ -48,8 +48,8 @@ export class ProductService {
     if (action.filter_sales_tier) {
       params = params.append('filter_sales_tier', action.filter_sales_tier);
     }
-    if (action.product_search) {
-      params = params.append('product_search', action.product_search);
+    if (action.search_term) {
+      params = params.append('search_term', action.search_term);
     }
 
     return this.httpClient.get(this.url + '/products/products', {
