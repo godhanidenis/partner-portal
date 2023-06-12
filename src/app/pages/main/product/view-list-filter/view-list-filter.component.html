@@ -344,7 +344,8 @@
     <ng-container *nzModalContent>
       <app-export-model
         [exportType]="exportType"
-        [noOfFilter]="badgeTotal"
+        [listOfFilter]="listOfFilter"
+        [noOfFilter]="total"
         (close)="handleCancel('download')"
       ></app-export-model>
     </ng-container>

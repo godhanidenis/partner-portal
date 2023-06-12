@@ -51,10 +51,10 @@
             formControlName="downloadTemplate"
             (ngModelChange)="selectDownloadTemplate($event)"
           >
-            <label nz-radio nzValue="A"
+            <label nz-radio [nzValue]="true"
               >Download Template with your existing products
             </label>
-            <label nz-radio nzValue="B"
+            <label nz-radio [nzValue]="false"
               >Download Template without your existing products
             </label>
           </nz-radio-group>
@@ -90,6 +90,7 @@
               multiple="multiple"
               type="file"
               formControlName="uploadFile"
+              (change)="selectFiles($event)"
               #modelvel
             />
             <div class="Neon-input-dragDrop">
@@ -138,7 +139,7 @@
         nz-button
         nzType="default"
         style="color: black; margin-right: 5px"
-        (click)="handleCancel('close')"
+        (click)="handleCancel()"
       >
         Cancel
       </button>
@@ -151,6 +152,7 @@
         [ngClass]="{
           'button-disabled': multiProduct.invalid || isLoading
         }"
+        (click)="submit()"
       >
         <span
           *ngIf="isLoading"

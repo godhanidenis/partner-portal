@@ -44,6 +44,7 @@ export class AddEditProductComponent implements OnInit {
   isLoading: boolean = false;
   userPermissions: any = '';
   disabledFiled: boolean = false;
+  sku: string = '';
 
   constructor(
     private router: Router,
@@ -54,54 +55,18 @@ export class AddEditProductComponent implements OnInit {
     private message: NzMessageService,
     private userPermissionService: UserPermissionService
   ) {
-    this.productService.getBrand().subscribe(
-      (res: any) => {
-        if (res.success) {
-          this.listOfBrand = res.brands;
-        } else {
-          if (res.error_message === 'PC param missing') {
-            this.message.create('warning', res.error_message);
-          } else {
-            this.message.create('error', res.error_message);
-          }
+    this.sku = this.activatedRoute.snapshot.paramMap.get('sku') ?? '';
+    this.userPermissionService.userPermission.subscribe((result: any) => {
+      if (result.success) {
+        this.listOfBrand = result.brands;
+        this.listOfProductCategory = result.categories;
+        this.listOfCollection = result.collections;
+      } else {
+        if (result.error_message === 'PC param missing') {
+          this.message.create('warning', result.error_message);
         }
-      },
-      (err) => {
-        console.log('error', err);
       }
-    );
-    this.productService.getCategories().subscribe(
-      (res: any) => {
-        if (res.success) {
-          this.listOfProductCategory = res.categories;
-        } else {
-          if (res.error_message === 'PC param missing') {
-            this.message.create('warning', res.error_message);
-          } else {
-            this.message.create('error', res.error_message);
-          }
-        }
-      },
-      (err) => {
-        console.log('error', err);
-      }
-    );
-    this.productService.getCollections().subscribe(
-      (res: any) => {
-        if (res.success) {
-          this.listOfCollection = res.collections;
-        } else {
-          if (res.error_message === 'PC param missing') {
-            this.message.create('warning', res.error_message);
-          } else {
-            this.message.create('error', res.error_message);
-          }
-        }
-      },
-      (err) => {
-        console.log('error', err);
-      }
-    );
+    });
   }
 
   ngOnInit(): void {
@@ -160,13 +125,13 @@ export class AddEditProductComponent implements OnInit {
     if (this.editSection) {
       // this.addEditProductForm.disable();
       // this.disabledFiled = true;
-      const sku = this.activatedRoute.snapshot.paramMap.get('sku');
-      if (sku) {
-        this.editSku = sku;
-        this.productService.getProduct(sku).subscribe(
+
+      if (this.sku) {
+        this.editSku = this.sku;
+        this.productService.getProduct(this.sku).subscribe(
           (res: any) => {
             if (res.success) {
-              this.editData = res.product;
+              this.editData = res.products;
 
               if (this.editData) {
                 this.addEditProductForm.controls['mpn'].setValue(
@@ -179,7 +144,7 @@ export class AddEditProductComponent implements OnInit {
                   this.editData?.asin
                 );
                 this.addEditProductForm.controls['product_name'].setValue(
-                  this.editData?.product_name
+                  this.editData?.name
                 );
                 this.addEditProductForm.controls['brand'].setValue(
                   this.editData?.brand
@@ -359,44 +324,57 @@ export class AddEditProductComponent implements OnInit {
     this.isLoading = true;
 
     let data: any = {
-      amazon_asin: this.addEditProductForm.value.amazon_asin,
-      brand: this.addEditProductForm.value.brand,
-      collection: this.addEditProductForm.value.collection,
-      handling_time: this.addEditProductForm.value.handling_time,
-      map: this.addEditProductForm.value.map,
-      mpn: this.addEditProductForm.value.mpn,
-      msrp: this.addEditProductForm.value.msrp,
-      product_category: this.addEditProductForm.value.product_category,
-      product_name: this.addEditProductForm.value.product_name,
-      product_status: this.addEditProductForm.value.product_status,
-      sales_tier: this.addEditProductForm.value.sales_tier,
-      shipping_Method: this.addEditProductForm.value.shipping_Method,
-      number_of_boxes: this.addEditProductForm.value.number_of_boxes
-        ? this.addEditProductForm.value.number_of_boxes
-        : 1,
-      shipping_dimensions_of_box:
-        this.addEditProductForm.value.shipping_dimensions_of_box,
-      unit_price: this.addEditProductForm.value.unit_price,
-      upc: this.addEditProductForm.value.upc,
+      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+      product: {
+        mpn: this.addEditProductForm.value.mpn,
+        upc: this.addEditProductForm.value.upc,
+        asin: this.addEditProductForm.value.amazon_asin,
+        name: this.addEditProductForm.value.product_name,
+        brand: this.addEditProductForm.value.brand,
+        collection: this.addEditProductForm.value.collection,
+        product_category: this.addEditProductForm.value.product_category,
+        sales_tier: this.addEditProductForm.value.sales_tier,
+        unit_price: this.addEditProductForm.value.unit_price,
+        map: this.addEditProductForm.value.map,
+        msrp: this.addEditProductForm.value.msrp,
+        handling_time: this.addEditProductForm.value.handling_time,
+        shipping_method: this.addEditProductForm.value.shipping_Method,
+        product_status: this.addEditProductForm.value.product_status,
+        number_of_boxes: this.addEditProductForm.value.number_of_boxes ?? 1,
+      },
     };
+    let dimensions: any[] = [];
+    this.shippingDimensionsOfBoxes.value.map((res: any, index: number) => {
+      dimensions.push({
+        box_no: index + 1,
+        length: +res.length,
+        width: +res.width,
+        height: +res.height,
+        weight: +res.gross_weight,
+      });
+    });
+    data.product['shipping_dimensions'] = dimensions;
 
-    // if (this.editData && this.editId !== 0) {
-    //   this.productService.editProduct(data, this.editId).subscribe(
-    //     (res: any) => {
-    //       console.log(res);
-    //       this.isLoading = false;
-    //     },
-    //     (err) => (this.isLoading = false)
-    //   );
-    // } else {
-    //   this.productService.createProduct(data).subscribe(
-    //     (res: any) => {
-    //       console.log(res);
-    //       this.isLoading = false;
-    //     },
-    //     (err) => (this.isLoading = false)
-    //   );
-    // }
+    if (this.editSection) {
+      data['sku'] = this.sku;
+      data.product['sku'] = this.sku;
+      this.productService.editProduct(data).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.isLoading = false;
+        },
+        (err) => (this.isLoading = false)
+      );
+    } else {
+      this.productService.createProduct(data).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.isLoading = false;
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
   }
 
   backButton(path: string) {

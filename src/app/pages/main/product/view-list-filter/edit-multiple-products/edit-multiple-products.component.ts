@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import {
+  DownloadTemplates,
+  ProductService,
+} from 'src/app/shared/service/product.service';
 import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
 
 @Component({
@@ -28,10 +32,12 @@ export class EditMultipleProductsComponent implements OnInit {
   ];
   multiProduct!: FormGroup;
   isLoading: boolean = false;
+  selectFile: any;
 
   constructor(
     private userPermissionService: UserPermissionService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private productService: ProductService
   ) {
     userPermissionService.userPermission.subscribe((permission: any) => {
       this.userPermissions = permission;
@@ -59,8 +65,19 @@ export class EditMultipleProductsComponent implements OnInit {
     }
   }
 
-  selectDownloadTemplate(event: string) {
+  selectFiles(event: any) {
+    this.selectFile = event?.target?.files[0];
+  }
+
+  selectDownloadTemplate(event: boolean) {
     if (this.multiProduct.controls['selectType'].value) {
+      const data: DownloadTemplates = {
+        template_type: this.multiProduct.controls['selectType'].value,
+        include_data: event,
+      };
+      this.productService.downloadTemplates(data).subscribe((res: any) => {
+        console.log(res);
+      });
     } else {
       if (this.multiProduct.controls['downloadTemplate'].value) {
         this.message.create('warning', 'Please select edit type first!');
@@ -78,11 +95,30 @@ export class EditMultipleProductsComponent implements OnInit {
     }
   }
 
-  handleCancel(type: string) {
-    if (type === 'upload') {
-      this.isUploadVisible = false;
-    } else {
-      this.closeModel.emit();
-    }
+  submit() {
+    this.isLoading = true;
+    const data = new FormData();
+    data.append('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d');
+    data.append('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
+    data.append(
+      'template_type',
+      this.multiProduct.controls['selectType'].value ?? 'ADD_PRODUCT'
+    );
+    data.append('uploaded_file_url', this.selectFile);
+
+    this.productService.productAddEditUpload(data).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.isLoading = false;
+        if (result.success) {
+          this.handleCancel();
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
+
+  handleCancel() {
+    this.closeModel.emit();
   }
 }

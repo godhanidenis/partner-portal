@@ -646,12 +646,12 @@
             class="action-button"
             style="height: 35px"
             [nzType]="'primary'"
-            [disabled]="addEditProductForm.invalid"
-            [ngClass]="{
-              'button-disabled': addEditProductForm.invalid || isLoading
-            }"
             (click)="submit()"
           >
+            <!-- [disabled]="!addEditProductForm.valid"
+            [ngClass]="{
+              'button-disabled': !addEditProductForm.valid || isLoading
+            }" -->
             <span
               *ngIf="isLoading"
               style="color: white; font-size: 16px"

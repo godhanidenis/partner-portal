@@ -29,7 +29,12 @@
       >
         Cancel
       </button>
-      <button nz-button class="action-button" [nzType]="'primary'">
+      <button
+        nz-button
+        class="action-button"
+        [nzType]="'primary'"
+        (click)="submit()"
+      >
         <span
           *ngIf="isLoading"
           style="color: white; font-size: 16px"

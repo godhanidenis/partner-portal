@@ -6,6 +6,21 @@ import { StatusEnum } from 'src/app/components/status-badge/status-badge.compone
 import { ProductService } from 'src/app/shared/service/product.service';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
+import {
+  GetAllProducts,
+  SingleProduct,
+} from 'src/app/shared/model/product.model';
+
+export interface Filters {
+  partner_id?: string;
+  user_id?: string;
+  filter_product_status?: string;
+  filter_inventory_status?: string;
+  filter_brand?: string;
+  filter_collection?: string;
+  filter_product_category?: string;
+  filter_sales_tier?: string;
+}
 @Component({
   selector: 'app-view-list-filter',
   templateUrl: './view-list-filter.component.html',
@@ -46,15 +61,12 @@ export class ViewListFilterComponent implements OnInit {
 
   clear_btn: boolean = false;
 
+  selectStatus: string = '';
   inventory: string = '';
-  asin: string = '';
-
-  map: string = '';
   selectBrand: string = '';
   selectCollection: string = '';
   selectCategory: string = '';
   selectSales: string = '';
-  selectStatus: string = '';
   product_search: string = '';
 
   total = 1;
@@ -73,6 +85,7 @@ export class ViewListFilterComponent implements OnInit {
   productList: any[] = [];
   accountSearch = new Subject<any>();
   userPermissions: any = '';
+  listOfFilter!: Filters;
 
   constructor(
     private router: Router,
@@ -99,54 +112,17 @@ export class ViewListFilterComponent implements OnInit {
         );
       });
 
-    this.productService.getBrand().subscribe(
-      (res: any) => {
-        if (res.success) {
-          this.listOfBrand = res.brands;
-        } else {
-          if (res.error_message === 'PC param missing') {
-            this.message.create('warning', res.error_message);
-          } else {
-            this.message.create('error', res.error_message);
-          }
+    this.userPermissionService.userPermission.subscribe((result: any) => {
+      if (result.success) {
+        this.listOfBrand = result.brands;
+        this.listOfProductCategory = result.categories;
+        this.listOfCollection = result.collections;
+      } else {
+        if (result.error_message === 'PC param missing') {
+          this.message.create('warning', result.error_message);
         }
-      },
-      (err) => {
-        console.log('error', err);
       }
-    );
-    this.productService.getCategories().subscribe(
-      (res: any) => {
-        if (res.success) {
-          this.listOfProductCategory = res.categories;
-        } else {
-          if (res.error_message === 'PC param missing') {
-            this.message.create('warning', res.error_message);
-          } else {
-            this.message.create('error', res.error_message);
-          }
-        }
-      },
-      (err) => {
-        console.log('error', err);
-      }
-    );
-    this.productService.getCollections().subscribe(
-      (res: any) => {
-        if (res.success) {
-          this.listOfCollection = res.collections;
-        } else {
-          if (res.error_message === 'PC param missing') {
-            this.message.create('warning', res.error_message);
-          } else {
-            this.message.create('error', res.error_message);
-          }
-        }
-      },
-      (err) => {
-        console.log('error', err);
-      }
-    );
+    });
   }
 
   ngOnInit(): void {
@@ -213,9 +189,9 @@ export class ViewListFilterComponent implements OnInit {
         search_term: search_term,
       })
       .subscribe(
-        (res: any) => {
-          this.total = res.products_total;
-          this.productList = res.products;
+        (res: GetAllProducts): void => {
+          this.total = res.pagination?.total_rows ?? 0;
+          this.productList = res.products ?? [];
           this.isLoading = false;
         },
         (err) => (this.isLoading = false)
@@ -277,9 +253,7 @@ export class ViewListFilterComponent implements OnInit {
   }
   tagfunc() {
     this.inventory = '';
-    this.asin = '';
     this.selectStatus = '';
-    this.map = '';
     this.selectBrand = '';
     this.selectCollection = '';
     this.selectCategory = '';
@@ -307,6 +281,14 @@ export class ViewListFilterComponent implements OnInit {
       this.selectSales,
       this.product_search
     );
+    this.listOfFilter = {
+      filter_product_status: this.selectStatus,
+      filter_inventory_status: this.inventory,
+      filter_brand: this.selectBrand,
+      filter_collection: this.selectCollection,
+      filter_product_category: this.selectCategory,
+      filter_sales_tier: this.selectSales,
+    };
   }
 
   close(type: string) {
@@ -322,12 +304,6 @@ export class ViewListFilterComponent implements OnInit {
           this.filter.controls['productStatus'].reset();
           this.selectStatus = '';
           this.productStatus = 0;
-          this.badgeTotal--;
-          break;
-        case 'map':
-          this.filter.controls['map'].reset();
-          this.map = '';
-          this.mapradio = 0;
           this.badgeTotal--;
           break;
         case 'selectBrand':
@@ -369,6 +345,14 @@ export class ViewListFilterComponent implements OnInit {
         this.selectSales,
         this.product_search
       );
+      this.listOfFilter = {
+        filter_product_status: this.selectStatus,
+        filter_inventory_status: this.inventory,
+        filter_brand: this.selectBrand,
+        filter_collection: this.selectCollection,
+        filter_product_category: this.selectCategory,
+        filter_sales_tier: this.selectSales,
+      };
     }
   }
 
@@ -476,12 +460,25 @@ export class ViewListFilterComponent implements OnInit {
         this.selectSales,
         this.product_search
       );
+      this.listOfFilter = {
+        filter_product_status: this.selectStatus,
+        filter_inventory_status: this.inventory,
+        filter_brand: this.selectBrand,
+        filter_collection: this.selectCollection,
+        filter_product_category: this.selectCategory,
+        filter_sales_tier: this.selectSales,
+      };
     } else {
       if (this.badgeTotal > 0 && value !== null) {
         switch (type) {
           case 'status':
             this.selectStatus = '';
             this.productStatus--;
+            this.badgeTotal--;
+            break;
+          case 'inventory':
+            this.inventory = '';
+            this.stock--;
             this.badgeTotal--;
             break;
           case 'brand':
@@ -516,6 +513,14 @@ export class ViewListFilterComponent implements OnInit {
           this.selectSales,
           this.product_search
         );
+        this.listOfFilter = {
+          filter_product_status: this.selectStatus,
+          filter_inventory_status: this.inventory,
+          filter_brand: this.selectBrand,
+          filter_collection: this.selectCollection,
+          filter_product_category: this.selectCategory,
+          filter_sales_tier: this.selectSales,
+        };
       }
     }
   }

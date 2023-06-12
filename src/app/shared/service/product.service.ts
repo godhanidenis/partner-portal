@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Filters } from 'src/app/pages/main/product/view-list-filter/view-list-filter.component';
 import { environment } from 'src/environments/environment';
 
 interface Action {
@@ -12,6 +13,11 @@ interface Action {
   filter_sales_tier?: string;
   search_term: string;
 }
+
+export interface DownloadTemplates {
+  template_type: string;
+  include_data?: boolean;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +26,11 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
   getAllProduct(action: Action) {
-    let params = new HttpParams().set('page', action.page);
+    let params = new HttpParams()
+      .set('page', action.page)
+      .set('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d')
+      .set('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
+
     if (action.filter_product_status) {
       params = params.append(
         'filter_product_status',
@@ -52,44 +62,52 @@ export class ProductService {
       params = params.append('search_term', action.search_term);
     }
 
-    return this.httpClient.get(this.url + '/products/products', {
+    return this.httpClient.get(this.url + '/products/', {
       params: params,
     });
   }
 
   getProduct(sku: string) {
-    let params = new HttpParams().set('sku', sku);
-    return this.httpClient.get(this.url + '/products/single-product', {
-      params: params,
-    });
-  }
-
-  getBrand() {
-    let params = new HttpParams().set('pc', 'NPS');
-    return this.httpClient.get(this.url + '/products/brands', {
-      params: params,
-    });
-  }
-
-  getCategories() {
-    let params = new HttpParams().set('pc', 'AAA');
-    return this.httpClient.get(this.url + '/products/categories', {
-      params: params,
-    });
-  }
-
-  getCollections() {
-    let params = new HttpParams().set('pc', 'AAA');
-    return this.httpClient.get(this.url + '/products/collections', {
+    let params = new HttpParams()
+      .set('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d')
+      .set('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036')
+      .set('sku', sku);
+    return this.httpClient.get(this.url + '/product', {
       params: params,
     });
   }
 
   createProduct(data: any) {
-    return this.httpClient.post(this.url + '/product', data);
+    return this.httpClient.post(this.url + '/add-product', data);
   }
 
-  editProduct(data: any, id: number) {
-    return this.httpClient.put(this.url + '/product/' + id, data);
+  editProduct(data: any) {
+    return this.httpClient.post(this.url + '/update-product', data);
+  }
+
+  // Add Edit multiple Product
+
+  exportProducts(action: Filters) {
+    return this.httpClient.post(this.url + '/export-products', action);
+  }
+
+  downloadTemplates(action: DownloadTemplates) {
+    let params = new HttpParams()
+      .set('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d')
+      .set('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
+    if (action.template_type) {
+      params = params.append('template_type', action.template_type);
+    }
+    if (action.include_data === true || action.include_data === false) {
+      params = params.append('include_data', action.include_data);
+    }
+
+    return this.httpClient.get(this.url + '/templates', {
+      params: params,
+    });
+  }
+
+  productAddEditUpload(payload: any) {
+    return this.httpClient.post(this.url + '/product-add-edit-upload', payload);
   }
 }
