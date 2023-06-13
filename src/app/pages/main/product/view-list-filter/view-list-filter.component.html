@@ -344,6 +344,7 @@
     <ng-container *nzModalContent>
       <app-export-model
         [exportType]="exportType"
+        [sectionName]="'product'"
         [listOfFilter]="listOfFilter"
         [noOfFilter]="total"
         (close)="handleCancel('download')"

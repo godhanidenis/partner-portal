@@ -9,7 +9,7 @@ const routes: Routes = [
     component: InventoryListComponent,
   },
   {
-    path: 'view-inventory/:id',
+    path: 'inventory-feed-details/:feedResult/:feedCode',
     component: ViewInventoryComponent,
   },
 ];

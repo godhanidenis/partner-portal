@@ -9,7 +9,7 @@ import { find, get, pull } from 'lodash';
 })
 export class ScheduledPaymentsComponent implements OnInit {
   filterForm!: FormGroup;
-  exportType: string = '';
+  exportType: boolean = false;
 
   isLoading: boolean = false;
   total = 1;

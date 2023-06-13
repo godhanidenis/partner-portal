@@ -1,89 +1,99 @@
 <app-breadcrumb></app-breadcrumb>
 
 <div class="view-inventory-section">
-  <app-section-header [header]="'View Inventory'"></app-section-header>
+  <app-section-header [header]="'Inventory Feed Details'"></app-section-header>
 
-  <div class="body-section">
-    <div nz-row [nzGutter]="16" class="header-section">
-      <div
-        nz-col
-        class="gutter-row"
-        [nzSm]="24"
-        [nzXl]="12"
-        class="left-section"
-      >
-        <span><b>Feed Code : </b>{{ editData.feedCode }}</span>
-        <span><b>Time : </b>{{ editData.time }}</span>
-        <span><b>Method : </b>{{ editData.method }}</span>
+  <nz-spin [nzSpinning]="isLoading" nzTip="Loading...">
+    <div class="body-section">
+      <div nz-row [nzGutter]="16" class="header-section">
+        <div
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzXl]="12"
+          class="left-section"
+        >
+          <span *ngIf="feedResult.toLocaleLowerCase() === 'processed'"
+            ><b>Feed Code : </b>{{ editData.requested_feed_code }}</span
+          >
+          <span
+            ><b>Date (EST) : </b
+            >{{
+              editData.feed_process_time | date : "dd-MM-yyyy HH:MM a"
+            }}</span
+          >
+          <span><b>Feed Method : </b>{{ editData.feed_method }}</span>
+          <span><b>Feed Status : </b>{{ editData.feed_method }}</span>
+          <span *ngIf="feedResult.toLocaleLowerCase() === 'processed'"
+            ><b>Total Products : </b>{{ total }}</span
+          >
+        </div>
+        <div
+          nz-col
+          class="gutter-row"
+          [nzSm]="24"
+          [nzXl]="12"
+          class="right-section"
+        >
+          <span
+            ><a [href]="editData.raw_file_url" class="link"
+              >download raw file</a
+            ></span
+          >
+          <span
+            ><a [href]="editData.processed_file_url" class="link"
+              >download processed file</a
+            ></span
+          >
+        </div>
       </div>
-      <div
-        nz-col
-        class="gutter-row"
-        [nzSm]="24"
-        [nzXl]="12"
-        class="right-section"
-      >
-        <span><a href="#" class="link">download raw file</a></span>
-        <span><a href="#" class="link">download processed file</a></span>
-      </div>
-    </div>
-    <div nz-row [nzGutter]="16">
-      <nz-table
-        style="margin-top: 20px"
-        #nzTable
-        nzOuterBordered
-        [nzData]="inStockProduct"
-        [nzFrontPagination]="false"
-        [nzShowPagination]="false"
-        nz-col
-        [nzXl]="12"
-        [nzSm]="24"
-      >
-        <thead>
-          <tr>
-            <th style="width: 80%">IN-STOCK PRODUCTS</th>
-            <th>COUNT</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-template ngFor let-data [ngForOf]="inStockProduct">
+      <div *ngIf="feedResult.toLocaleLowerCase() === 'processed'">
+        <nz-table
+          style="margin-top: 20px"
+          #nzTable
+          nzOuterBordered
+          [nzData]="inventoryFeedUpdate"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+        >
+          <thead>
             <tr>
-              <td>{{ data?.name }}</td>
+              <th style="width: 60%">Active</th>
+              <th>In Stock</th>
+              <th>Out of Stock</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-data [ngForOf]="inventoryFeedUpdate">
+              <tr>
+                <td>{{ data?.name }}</td>
+                <td>
+                  <b>{{ data?.in_stock ? data?.in_stock : 0 }}</b>
+                </td>
+                <td>
+                  <b>{{ data?.out_stock ? data?.out_stock : 0 }}</b>
+                </td>
+                <td>
+                  <b>{{ data.total }}</b>
+                </td>
+              </tr>
+            </ng-template>
+            <tr>
+              <td><b>Total</b></td>
               <td>
-                <b>{{ data?.count }}</b>
+                <b>{{ totalInStock }}</b>
+              </td>
+              <td>
+                <b>{{ totalOutStock }}</b>
+              </td>
+              <td>
+                <b>{{ total }}</b>
               </td>
             </tr>
-          </ng-template>
-        </tbody>
-      </nz-table>
-      <nz-table
-        style="margin-top: 20px"
-        #nzTable
-        nzOuterBordered
-        [nzData]="outOfStockProduct"
-        [nzFrontPagination]="false"
-        [nzShowPagination]="false"
-        nz-col
-        [nzXl]="12"
-        [nzSm]="24"
-      >
-        <thead>
-          <tr>
-            <th style="width: 80%">OUT OF STOCK PRODUCTS</th>
-            <th>COUNT</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-template ngFor let-data [ngForOf]="outOfStockProduct">
-            <tr>
-              <td>{{ data?.name }}</td>
-              <td>
-                <b>{{ data?.count }}</b>
-              </td>
-            </tr>
-          </ng-template>
-        </tbody>
-      </nz-table>
+          </tbody>
+        </nz-table>
+      </div>
     </div>
-  </div>
+  </nz-spin>
 </div>

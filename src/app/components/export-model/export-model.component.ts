@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Filters } from 'src/app/pages/main/product/view-list-filter/view-list-filter.component';
+import { InventoryService } from 'src/app/shared/service/inventory.service';
 import { ProductService } from 'src/app/shared/service/product.service';
 
 @Component({
@@ -9,53 +11,85 @@ import { ProductService } from 'src/app/shared/service/product.service';
 })
 export class ExportModelComponent implements OnInit {
   @Output() close = new EventEmitter();
-  @Input() exportType: string = 'A';
+  @Input() exportType: boolean = false;
   @Input() description: string = '';
   @Input() listOfFilter: any = '';
   @Input() noOfFilter: number = 0;
+  @Input() sectionName: string = '';
   userEmail: string = 'service@123stores.com';
   isDownloadVisible: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private message: NzMessageService,
+    private inventoryService: InventoryService
+  ) {}
   ngOnInit(): void {}
 
   submit() {
     this.isLoading = true;
-    let filters: any = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-    };
-    if (this.listOfFilter.filter_product_status) {
-      filters['filter_product_status'] =
-        this.listOfFilter.filter_product_status;
-    }
-    if (this.listOfFilter.filter_inventory_status) {
-      filters['filter_inventory_status'] =
-        this.listOfFilter.filter_inventory_status;
-    }
-    if (this.listOfFilter.filter_brand) {
-      filters['filter_brand'] = this.listOfFilter.filter_brand;
-    }
-    if (this.listOfFilter.filter_collection) {
-      filters['filter_collection'] = this.listOfFilter.filter_collection;
-    }
-    if (this.listOfFilter.filter_product_category) {
-      filters['filter_product_category'] =
-        this.listOfFilter.filter_product_category;
-    }
-    if (this.listOfFilter.filter_sales_tier) {
-      filters['filter_sales_tier'] = this.listOfFilter.filter_sales_tier;
-    }
+    if (this.sectionName === 'product') {
+      let filters: any = {
+        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+      };
 
-    this.productService.exportProducts(filters).subscribe(
-      (response) => {
-        console.log(response);
-        this.handleCancel();
-        this.isLoading = false;
-      },
-      (err) => (this.isLoading = false)
-    );
+      filters['filter_product_status'] =
+        this.listOfFilter?.filter_product_status ?? '';
+
+      filters['filter_inventory_status'] =
+        this.listOfFilter?.filter_inventory_status ?? '';
+
+      filters['filter_brand'] = this.listOfFilter?.filter_brand ?? '';
+
+      filters['filter_collection'] = this.listOfFilter?.filter_collection ?? '';
+
+      filters['filter_product_category'] =
+        this.listOfFilter?.filter_product_category ?? '';
+
+      filters['filter_sales_tier'] = this.listOfFilter?.filter_sales_tier ?? '';
+
+      this.productService.exportProducts(filters).subscribe(
+        (response: any) => {
+          console.log(response);
+          if (response.success) {
+            this.message.create('success', 'Product export successfully!');
+            let blob: Blob = response.temlate_url as Blob;
+            var objectUrl = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.download = 'document';
+            a.href = objectUrl;
+            a.click();
+          }
+          this.handleCancel();
+          this.isLoading = false;
+        },
+        (err) => (this.isLoading = false)
+      );
+    } else if (this.sectionName === 'inventory') {
+      let filters: any = {
+        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+        filter_start_date: this.listOfFilter.filter_start_date ?? '',
+        filter_end_date: this.listOfFilter.filter_end_date ?? '',
+        filter_inventory_method:
+          this.listOfFilter.filter_inventory_method ?? '',
+        filter_inventory_result:
+          this.listOfFilter.filter_inventory_result ?? '',
+      };
+      this.inventoryService.inventoryFeedHistory(filters).subscribe(
+        (response: any) => {
+          console.log(response);
+          if (response.success) {
+            this.message.create('success', 'Inventory export successfully!');
+          }
+          this.handleCancel();
+          this.isLoading = false;
+        },
+        (err: any) => (this.isLoading = false)
+      );
+    }
   }
 
   handleCancel() {

@@ -4,8 +4,8 @@
       <nz-form-control>
         <nz-input-group>
           <nz-radio-group style="display: grid" [(ngModel)]="exportType">
-            <label nz-radio nzValue="A">All</label>
-            <label nz-radio nzValue="B">Filtered ({{ noOfFilter }})</label>
+            <label nz-radio [nzValue]="false">All</label>
+            <label nz-radio [nzValue]="true">Filtered ({{ noOfFilter }})</label>
           </nz-radio-group>
         </nz-input-group>
       </nz-form-control>

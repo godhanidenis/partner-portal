@@ -77,6 +77,9 @@ export class EditMultipleProductsComponent implements OnInit {
       };
       this.productService.downloadTemplates(data).subscribe((res: any) => {
         console.log(res);
+        if (res.success) {
+          this.message.create('success', 'download product successfully!');
+        }
       });
     } else {
       if (this.multiProduct.controls['downloadTemplate'].value) {
@@ -111,6 +114,10 @@ export class EditMultipleProductsComponent implements OnInit {
         console.log(result);
         this.isLoading = false;
         if (result.success) {
+          this.message.create(
+            'success',
+            `${this.actionType} multiple product successfully!`
+          );
           this.handleCancel();
         }
       },

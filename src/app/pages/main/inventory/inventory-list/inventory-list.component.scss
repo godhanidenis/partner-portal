@@ -7,8 +7,19 @@
     border-radius: 5px;
     // min-height: 95%;
 
+    .header-action-button {
+        display: flex;
+        justify-content: end;
+        padding: 10px 20px;
+        padding-bottom: 0;
+
+        button {
+            margin-left: 10px;
+        }
+    }
+
     .body-section {
-        padding: 10px 20px 0px 20px;
+        padding: 0px 20px 0px 20px;
 
         ::ng-deep .ant-btn-icon-only.ant-btn-sm {
             width: 13px;
@@ -22,10 +33,24 @@
             border-radius: 50%;
         }
 
+        .action-column {
+            width: 50px;
+            background-color: $white !important;
+            padding: 0;
+
+            div {
+                padding: 16px;
+                background-color: rgba(33, 33, 195, 0.08) !important;
+            }
+        }
+
         .button-group {
             display: flex;
             justify-content: end;
-            margin-bottom: 10px;
+            align-items: center;
+            border: 1px solid $border;
+            padding: 10px;
+            margin-top: 10px;
 
             button {
                 border-radius: 20px;

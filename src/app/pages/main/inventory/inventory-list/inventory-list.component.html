@@ -1,6 +1,22 @@
 <div class="inventory-list-section">
   <app-section-header [header]="'Inventory Feeds'"></app-section-header>
 
+  <div
+    class="header-action-button"
+    *ngIf="userPermissions.inventory_method_email"
+  >
+    <button
+      style="margin-right: 10px"
+      nz-button
+      (click)="openModal('download')"
+      nzType="primary"
+      nzShape="round"
+    >
+      <span nz-icon nzType="download" nzTheme="outline"></span> Upload Inventory
+      Feed
+    </button>
+  </div>
+
   <div class="body-section">
     <div class="button-group">
       <nz-badge
@@ -14,16 +30,6 @@
         </button>
       </nz-badge>
       <div>
-        <button
-          style="margin-right: 10px"
-          nz-button
-          (click)="openModal('download')"
-          nzType="primary"
-          nzShape="round"
-        >
-          <span nz-icon nzType="download" nzTheme="outline"></span> Upload
-          Inventory Feed
-        </button>
         <button
           (click)="openModal('Upload')"
           style="margin-right: 10px"
@@ -100,52 +106,41 @@
     >
       <thead>
         <tr>
+          <th>Date (EST)</th>
           <th>Feed Code</th>
-          <!-- <th>Time</th> -->
-          <th class="text-center">Method</th>
+          <th class="text-center">Feed Method</th>
+          <th>Feed Status</th>
           <th class="text-center">In Stock</th>
           <th class="text-center">Out Of Stock</th>
-          <th class="text-center">Action</th>
+          <th class="text-center">Total</th>
+          <th class="action-column" nzRight><div>Action</div></th>
         </tr>
       </thead>
       <tbody>
         <ng-template ngFor let-data [ngForOf]="inventoryList">
           <tr>
-            <td>{{ data?.feedCode }}</td>
-            <!-- <td>{{ data?.time }}</td> -->
+            <td>{{ data?.feed_time | date : "dd-MM-yyyy hh:MM" }}</td>
+            <td>{{ data?.feed_code }}</td>
             <td class="text-center">{{ data?.method }}</td>
+            <td class="text-center">{{ data?.feed_status }}</td>
             <td class="text-center">
-              <span
-                *ngIf="data.inStock"
-                style="font-size: 16px; width: 10px; margin: 0 auto"
-                nz-icon
-                nzType="check"
-              ></span>
-              <span
-                *ngIf="!data.inStock"
-                style="font-size: 16px; width: 10px; margin: 0 auto"
-                nz-icon
-                nzType="close"
-              ></span>
+              {{ data?.total_in_stock }}
             </td>
             <td class="text-center">
-              <span
-                *ngIf="data.outOfStock"
-                style="font-size: 16px; width: 10px; margin: 0 auto"
-                nz-icon
-                nzType="check"
-              ></span>
-              <span
-                *ngIf="!data.outOfStock"
-                style="font-size: 16px; width: 10px; margin: 0 auto"
-                nz-icon
-                nzType="close"
-              ></span>
+              {{ data?.total_out_of_stock }}
             </td>
             <td class="text-center">
+              {{ data?.total_mpn }}
+            </td>
+            <td class="text-center" nzRight>
               <a
                 (click)="
-                  navigatePage('inventory-feeds/view-inventory/' + data?.id)
+                  navigatePage(
+                    'inventory-feeds/inventory-feed-details/' +
+                      data?.feed_result +
+                      '/' +
+                      data?.feed_code
+                  )
                 "
                 style="margin: 0 5px; color: #2121c3; font-size: 20px"
                 ><span nz-icon nzType="eye" nzTheme="outline"></span
@@ -192,8 +187,11 @@
         formControlName="status"
         nzPlaceHolder="Select a Status"
       >
-        <nz-option nzLabel="In Stock" nzValue="In Stock"></nz-option>
-        <nz-option nzLabel="Out of Stock" nzValue="Out of Stock"></nz-option>
+        <nz-option
+          *ngFor="let data of statusDropdown"
+          [nzLabel]="data"
+          [nzValue]="data"
+        ></nz-option>
       </nz-select>
     </div>
   </form>
@@ -206,6 +204,7 @@
 >
   <ng-container *nzModalContent>
     <app-upload-model
+      [sectionType]="'inventory'"
       (closeModel)="handleCancel('download')"
     ></app-upload-model>
   </ng-container>
@@ -219,7 +218,9 @@
   <ng-container *nzModalContent>
     <app-export-model
       [exportType]="exportType"
-      [noOfFilter]="badgeTotal"
+      [noOfFilter]="total"
+      [listOfFilter]="listOfFilter"
+      [sectionName]="'inventory'"
       [description]="
         'Your Inventory Feed History will be exported as a CSV file and sent to your email'
       "

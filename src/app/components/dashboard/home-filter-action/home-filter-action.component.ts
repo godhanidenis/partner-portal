@@ -12,7 +12,7 @@ export class HomeFilterActionComponent implements OnInit {
   @Output() showFilter = new EventEmitter();
 
   searchValue: string = '';
-  exportType: string = '';
+  exportType: boolean = false;
   isDownloadVisible: boolean = false;
 
   constructor() {}

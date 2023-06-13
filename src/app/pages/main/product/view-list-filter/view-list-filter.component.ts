@@ -47,7 +47,7 @@ export class ViewListFilterComponent implements OnInit {
   viewEditProducts!: FormGroup;
   filter!: FormGroup;
   isLoading: boolean = false;
-  exportType: string = '';
+  exportType: boolean = false;
 
   stock: number = 0;
   aprove: number = 0;
@@ -115,7 +115,7 @@ export class ViewListFilterComponent implements OnInit {
     this.userPermissionService.userPermission.subscribe((result: any) => {
       if (result.success) {
         this.listOfBrand = result.brands;
-        this.listOfProductCategory = result.categories;
+        this.listOfProductCategory = result.product_categories;
         this.listOfCollection = result.collections;
       } else {
         if (result.error_message === 'PC param missing') {

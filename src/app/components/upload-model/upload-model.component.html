@@ -19,6 +19,7 @@
           multiple="multiple"
           type="file"
           [formControl]="name"
+          (change)="selectFiles($event)"
           #modelvel
         />
         <div class="Neon-input-dragDrop">
@@ -63,6 +64,7 @@
         class="action-btn"
         [nzType]="'primary'"
         style="width: 100px"
+        (click)="submit()"
       >
         <span
           *ngIf="isLoading"

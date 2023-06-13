@@ -3,7 +3,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { InventoryService } from 'src/app/shared/service/inventory.service';
+import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
 
+export interface Filters {
+  filter_start_date?: string;
+  filter_end_date?: string;
+  filter_inventory_method?: string;
+  filter_inventory_result?: string;
+}
 @Component({
   selector: 'app-inventory-list',
   templateUrl: './inventory-list.component.html',
@@ -20,33 +27,8 @@ export class InventoryListComponent implements OnInit {
   isUploadVisible: boolean = false;
   isDownloadVisible: boolean = false;
 
-  inventoryList = [
-    {
-      id: 1,
-      feedCode: 'ASL-FEED-PROCESS-001',
-      time: '2:30',
-      method: 'Email',
-      inStock: true,
-      outOfStock: false,
-    },
-    {
-      id: 2,
-      feedCode: 'ASL-FEED-PROCESS-002',
-      time: '3:30',
-      method: 'EDI',
-      inStock: false,
-      outOfStock: true,
-    },
-    {
-      id: 3,
-      feedCode: 'ASL-FEED-PROCESS-003',
-      time: '4:20',
-      method: 'EDI',
-      inStock: false,
-      outOfStock: true,
-    },
-  ];
-  exportType: string = '';
+  inventoryList: any[] = [];
+  exportType: boolean = false;
   searchInventory!: FormGroup;
   filter!: FormGroup;
   accountSearch = new Subject<any>();
@@ -59,19 +41,48 @@ export class InventoryListComponent implements OnInit {
   methodCount: number = 0;
   statusCount: number = 0;
   inventory_search: string = '';
+  listOfFilter!: Filters;
+  userPermissions: any = '';
+  statusDropdown = [
+    'Inventory Updated - Partner Name (XXX-FEED-PROCESS-001)',
+    'Email Rejected – P01 (No Attachment found)',
+    'Email Rejected – P02 (Multiple Attachments found)',
+    'Email Rejected – P03 (Partner inventory method is EDI)',
+    'EDI Feed Rejected – P04 (Partner inventory method is Email)',
+    'Email Rejected – P05 (Partner Not Identified)',
+    'Email Rejected – P06 (Unable to read file)',
+    'Inventory Update Failed – R01 (Incorrect Column Headers)',
+    'Inventory Update Failed – R02 (Incorrect Column Headers)',
+    'Inventory Update Failed – R03 (Incorrect Column Headers)',
+    'Inventory Update Failed – R04 (Incorrect Column Headers)',
+    'Inventory Update Failed – R05 (Incorrect Column Headers)',
+    'Inventory Update Failed – R06 (Incorrect Column Headers)',
+    'Inventory Update Failed – R07 (Incorrect Header Positions)',
+    'Inventory Update Failed – R09 (No Data Found)',
+    'Inventory Update Failed – R10 (Incorrect Location provided)',
+    'Inventory update failed – R11 (Inventory Feeds Received at a higher rate) – Partner Name (XXX)',
+  ];
 
   constructor(
     private router: Router,
-    private inventoryService: InventoryService
+    private inventoryService: InventoryService,
+    private userPermissionService: UserPermissionService
   ) {
+    userPermissionService.userPermission.subscribe((permission: any) => {
+      this.userPermissions = permission;
+    });
     this.accountSearch
       .pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((value: any) => {
         this.inventory_search = value.target.value;
         this.getInventoryList(
           this.pageIndex,
-          this.selectStatus,
-          this.inventory_search
+          this.inventory_search,
+          this.selectDate[0],
+          this.selectDate[1],
+          this.selectMethod,
+          '',
+          this.selectStatus
         );
       });
   }
@@ -87,28 +98,41 @@ export class InventoryListComponent implements OnInit {
     });
     this.getInventoryList(
       this.pageIndex,
-      this.selectStatus,
-      this.inventory_search
+      this.inventory_search,
+      this.selectDate[0],
+      this.selectDate[1],
+      this.selectMethod,
+      '',
+      this.selectStatus
     );
   }
 
   getInventoryList(
     page: number,
-    filter_status: string,
-    inventory_search: string
+    search_term: string,
+    filter_start_date: string,
+    filter_end_date: string,
+    filter_inventory_method: string,
+    filter_feed_result: string,
+    filter_feed_status: string
   ) {
     this.isLoading = true;
     this.inventoryService
       .getAllInventory({
         page: page,
-        filter_status: filter_status,
-        inventory_search: inventory_search,
+        filter_start_date: filter_start_date,
+        filter_end_date: filter_end_date,
+        filter_inventory_method: filter_inventory_method,
+        filter_feed_result: filter_feed_result,
+        filter_feed_status: filter_feed_status,
+        search_term: search_term,
       })
       .subscribe(
         (res: any) => {
           console.log(res);
-          this.total = res.products_total;
-          // this.inventoryList = res.products;
+
+          this.total = res.pagination?.total_rows;
+          this.inventoryList = res.inventory_feeds;
           this.isLoading = false;
         },
         (err) => (this.isLoading = false)
@@ -119,8 +143,12 @@ export class InventoryListComponent implements OnInit {
     this.pageIndex = page;
     this.getInventoryList(
       this.pageIndex,
-      this.selectStatus,
-      this.inventory_search
+      this.inventory_search,
+      this.selectDate[0],
+      this.selectDate[1],
+      this.selectMethod,
+      '',
+      this.selectStatus
     );
   }
 
@@ -143,6 +171,7 @@ export class InventoryListComponent implements OnInit {
   closeNav() {
     this.sidenavSection.nativeElement.style.width = '0';
   }
+
   tagFunction() {
     this.selectDate = '';
     this.selectMethod = '';
@@ -155,6 +184,21 @@ export class InventoryListComponent implements OnInit {
     this.badgeTotal = 0;
     this.clear_btn = false;
     this.filter.reset();
+    this.getInventoryList(
+      this.pageIndex,
+      this.inventory_search,
+      this.selectDate[0],
+      this.selectDate[1],
+      this.selectMethod,
+      '',
+      this.selectStatus
+    );
+    this.listOfFilter = {
+      filter_start_date: this.selectDate[0],
+      filter_end_date: this.selectDate[1],
+      filter_inventory_method: this.selectMethod,
+      filter_inventory_result: this.selectStatus,
+    };
   }
 
   close(type: string) {
@@ -181,6 +225,21 @@ export class InventoryListComponent implements OnInit {
         default:
           break;
       }
+      this.getInventoryList(
+        this.pageIndex,
+        this.inventory_search,
+        this.selectDate[0],
+        this.selectDate[1],
+        this.selectMethod,
+        '',
+        this.selectStatus
+      );
+      this.listOfFilter = {
+        filter_start_date: this.selectDate[0],
+        filter_end_date: this.selectDate[1],
+        filter_inventory_method: this.selectMethod,
+        filter_inventory_result: this.selectStatus,
+      };
     }
   }
 
@@ -211,16 +270,29 @@ export class InventoryListComponent implements OnInit {
           break;
 
         case 'Status':
-          if (value == 'In Stock' || value == 'Out of Stock') {
-            this.clear_btn = true;
-            this.selectStatus = value;
-            if (this.statusCount == 0) {
-              this.statusCount++;
-              this.badgeTotal++;
-            }
+          this.clear_btn = true;
+          this.selectStatus = value;
+          if (this.statusCount == 0) {
+            this.statusCount++;
+            this.badgeTotal++;
           }
           break;
       }
+      this.getInventoryList(
+        this.pageIndex,
+        this.inventory_search,
+        this.selectDate[0],
+        this.selectDate[1],
+        this.selectMethod,
+        '',
+        this.selectStatus
+      );
+      this.listOfFilter = {
+        filter_start_date: this.selectDate[0],
+        filter_end_date: this.selectDate[1],
+        filter_inventory_method: this.selectMethod,
+        filter_inventory_result: this.selectStatus,
+      };
     } else {
       if (this.badgeTotal > 0 && value !== null) {
         switch (type) {
@@ -241,6 +313,21 @@ export class InventoryListComponent implements OnInit {
             break;
         }
       }
+      this.getInventoryList(
+        this.pageIndex,
+        this.inventory_search,
+        this.selectDate[0],
+        this.selectDate[1],
+        this.selectMethod,
+        '',
+        this.selectStatus
+      );
+      this.listOfFilter = {
+        filter_start_date: this.selectDate[0],
+        filter_end_date: this.selectDate[1],
+        filter_inventory_method: this.selectMethod,
+        filter_inventory_result: this.selectStatus,
+      };
     }
   }
 

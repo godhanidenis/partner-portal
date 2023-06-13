@@ -59,7 +59,7 @@ export class AddEditProductComponent implements OnInit {
     this.userPermissionService.userPermission.subscribe((result: any) => {
       if (result.success) {
         this.listOfBrand = result.brands;
-        this.listOfProductCategory = result.categories;
+        this.listOfProductCategory = result.product_categories;
         this.listOfCollection = result.collections;
       } else {
         if (result.error_message === 'PC param missing') {
@@ -362,6 +362,9 @@ export class AddEditProductComponent implements OnInit {
       this.productService.editProduct(data).subscribe(
         (res: any) => {
           console.log(res);
+          if (res.success) {
+            this.message.create('success', 'Edit product successfully!');
+          }
           this.isLoading = false;
         },
         (err) => (this.isLoading = false)
@@ -370,6 +373,9 @@ export class AddEditProductComponent implements OnInit {
       this.productService.createProduct(data).subscribe(
         (res: any) => {
           console.log(res);
+          if (res.success) {
+            this.message.create('success', 'Add product successfully!');
+          }
           this.isLoading = false;
         },
         (err) => (this.isLoading = false)

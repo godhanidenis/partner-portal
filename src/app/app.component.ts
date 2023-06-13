@@ -10,8 +10,6 @@ export class AppComponent implements OnInit {
   constructor(private userPermissionService: UserPermissionService) {
     this.userPermissionService.getPartnerPermission('NPS').subscribe(
       (res: any) => {
-        console.log(res);
-
         this.userPermissionService.userPermission.next(res);
       },
       (err) => console.log(err)
