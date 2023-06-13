@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  Promotions,
+  PromotionsService,
+} from 'src/app/shared/service/promotions.service';
 
 @Component({
   selector: 'app-completed-promotions',
@@ -8,24 +12,36 @@ import { Component, OnInit } from '@angular/core';
 export class CompletedPromotionsComponent implements OnInit {
   isLoading: boolean = false;
   total = 1;
-  pageSize = 10;
+  pageSize = 100;
   pageIndex = 1;
-  pageSizeOptions = [5, 10, 15, 20];
+  pageSizeOptions = [100];
 
-  completedPromotionsList = [
-    {
-      id: 1,
-      promoCode: 'SLL-SPECIAL-PRICE-MAP-PROMO-38',
-      addedOn: '4/15/23',
-      startDate: '5/1/23',
-      endDate: '5/16/23',
-      promotionType: 'Create Price only Promo',
-      sku: 'ALL',
-      count: '114',
-      promotionAvg: '7',
-      status: 'Canceled',
-    },
-  ];
-  constructor() {}
+  completedPromotionsList = [];
+  constructor(private promotionsService: PromotionsService) {
+    this.getAllCompletedPromotions(1);
+  }
+
   ngOnInit(): void {}
+
+  getAllCompletedPromotions(page: number) {
+    this.isLoading = true;
+    const data: Promotions = {
+      page: page,
+      live: false,
+    };
+    this.promotionsService.getAllPromotions(data).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.total = res.pagination?.total_rows ?? 0;
+        this.completedPromotionsList = res.promos ?? [];
+        this.isLoading = false;
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
+
+  pageIndexChange(page: number) {
+    this.pageIndex = page;
+    this.getAllCompletedPromotions(this.pageIndex);
+  }
 }

@@ -7,18 +7,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PromotionTableComponent implements OnInit {
   @Input() total: number = 1;
-  @Input() pageSize: number = 50;
+  @Input() pageSize: number = 100;
   @Input() pageIndex: number = 1;
   @Input() isLoading: boolean = false;
   @Input() listOfData: any[] = [];
   @Input() tabName: string = '';
 
   @Output() action = new EventEmitter();
+  @Output() pageChange = new EventEmitter();
 
-  pageSizeOptions = [50, 100, 250, 500];
+  pageSizeOptions = [100];
 
   constructor() {}
   ngOnInit(): void {}
+
+  pageIndexChange(page: number) {
+    this.pageChange.emit(page);
+  }
 
   selectAction() {
     this.action.emit();

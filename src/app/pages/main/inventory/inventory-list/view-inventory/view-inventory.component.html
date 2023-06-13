@@ -48,8 +48,10 @@
         </div>
       </div>
       <div *ngIf="feedResult.toLocaleLowerCase() === 'processed'">
+        <div style="display: flex; justify-content: center; margin: 10px 0">
+          <h3 style="margin-bottom: 0">Inventory Feed Update</h3>
+        </div>
         <nz-table
-          style="margin-top: 20px"
           #nzTable
           nzOuterBordered
           [nzData]="inventoryFeedUpdate"
@@ -58,36 +60,48 @@
         >
           <thead>
             <tr>
-              <th style="width: 60%">Active</th>
-              <th>In Stock</th>
-              <th>Out of Stock</th>
-              <th>Total</th>
+              <th style="width: 60%"></th>
+              <th class="text-end">In Stock</th>
+              <th class="text-end">Out of Stock</th>
+              <th class="text-end">Total</th>
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><b>Active</b></td>
+              <td class="text-end">
+                <b>300</b>
+              </td>
+              <td class="text-end">
+                <b>2</b>
+              </td>
+              <td class="text-end">
+                <b>302</b>
+              </td>
+            </tr>
             <ng-template ngFor let-data [ngForOf]="inventoryFeedUpdate">
               <tr>
                 <td>{{ data?.name }}</td>
-                <td>
+                <td class="text-end">
                   <b>{{ data?.in_stock ? data?.in_stock : 0 }}</b>
                 </td>
-                <td>
+                <td class="text-end">
                   <b>{{ data?.out_stock ? data?.out_stock : 0 }}</b>
                 </td>
-                <td>
+                <td class="text-end">
                   <b>{{ data.total }}</b>
                 </td>
               </tr>
             </ng-template>
             <tr>
               <td><b>Total</b></td>
-              <td>
+              <td class="text-end">
                 <b>{{ totalInStock }}</b>
               </td>
-              <td>
+              <td class="text-end">
                 <b>{{ totalOutStock }}</b>
               </td>
-              <td>
+              <td class="text-end">
                 <b>{{ total }}</b>
               </td>
             </tr>

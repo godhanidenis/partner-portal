@@ -10,6 +10,7 @@ import { ScheduledPromotionsComponent } from './promotions/scheduled-promotions/
 import { CompletedPromotionsComponent } from './promotions/completed-promotions/completed-promotions.component';
 import { ComponentModule } from 'src/app/components/component.module';
 import { PromotionTableComponent } from './promotions/promotion-table/promotion-table.component';
+import { AddPromotionsComponent } from './promotions/add-promotions/add-promotions.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PromotionTableComponent } from './promotions/promotion-table/promotion-
     ScheduledPromotionsComponent,
     CompletedPromotionsComponent,
     PromotionTableComponent,
+    AddPromotionsComponent,
   ],
   imports: [
     CommonModule,

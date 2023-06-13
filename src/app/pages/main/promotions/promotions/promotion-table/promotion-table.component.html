@@ -11,6 +11,7 @@
     [nzPageIndex]="pageIndex"
     [nzLoading]="isLoading"
     [nzScroll]="{ x: '100%' }"
+    (nzPageIndexChange)="pageIndexChange($event)"
   >
     <thead>
       <tr>
@@ -29,15 +30,17 @@
     <tbody>
       <ng-template ngFor let-data [ngForOf]="listOfData">
         <tr>
-          <td>{{ data?.promoCode }}</td>
-          <td>{{ data?.addedOn }}</td>
-          <td>{{ data?.startDate }}</td>
-          <td>{{ data?.endDate }}</td>
-          <td>{{ data?.promotionType }}</td>
+          <td>{{ data?.promo_code }}</td>
+          <td>{{ data?.added_on }}</td>
+          <td>{{ data?.start_date }}</td>
+          <td>{{ data?.end_date }}</td>
+          <td>{{ data?.promo_type }}</td>
           <!-- <td>{{ data?.sku }}</td> -->
-          <td>{{ data?.count }}</td>
-          <td>{{ data?.promotionAvg }} %</td>
-          <td>{{ data?.status }}</td>
+          <td>{{ data?.total_mpn }}</td>
+          <td>
+            {{ data?.promo_average }} {{ data?.promo_average ? "%" : "" }}
+          </td>
+          <td>{{ data?.promo_status }}</td>
           <td>
             <button
               *ngIf="tabName === 'Completed Promotions'"

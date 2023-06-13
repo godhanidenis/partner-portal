@@ -76,9 +76,13 @@ export class EditMultipleProductsComponent implements OnInit {
         include_data: event,
       };
       this.productService.downloadTemplates(data).subscribe((res: any) => {
-        console.log(res);
         if (res.success) {
           this.message.create('success', 'download product successfully!');
+          var objectUrl = res.temlate_url;
+          var a = document.createElement('a');
+          a.download = 'document';
+          a.href = objectUrl;
+          a.click();
         }
       });
     } else {
@@ -111,7 +115,6 @@ export class EditMultipleProductsComponent implements OnInit {
 
     this.productService.productAddEditUpload(data).subscribe(
       (result: any) => {
-        console.log(result);
         this.isLoading = false;
         if (result.success) {
           this.message.create(

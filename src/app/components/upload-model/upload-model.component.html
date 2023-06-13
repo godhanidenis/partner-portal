@@ -14,12 +14,11 @@
             margin-right: auto;
             margin-left: auto;
           "
-          name="files[]"
+          name="files"
           id="filer_input2"
-          multiple="multiple"
           type="file"
           [formControl]="name"
-          (change)="selectFiles($event)"
+          (input)="selectFiles($event)"
           #modelvel
         />
         <div class="Neon-input-dragDrop">

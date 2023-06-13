@@ -82,10 +82,10 @@ export class InventoryService {
   }
 
   inventoryFeedUpload(payload: any) {
-    return this.http.post(this.url + '/post-inventory-feed', payload);
+    return this.http.post(this.url + '/inventory-feed-upload', payload);
   }
 
   inventoryFeedHistory(payload: any) {
-    return this.http.post(this.url + '/inventory-feed-history', payload);
+    return this.http.post(this.url + '/export-inventory-feed', payload);
   }
 }

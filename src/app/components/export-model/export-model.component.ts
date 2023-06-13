@@ -35,32 +35,35 @@ export class ExportModelComponent implements OnInit {
         user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       };
 
-      filters['filter_product_status'] =
-        this.listOfFilter?.filter_product_status ?? '';
+      filters['filter_product_status'] = this.exportType
+        ? this.listOfFilter?.filter_product_status
+        : '';
 
-      filters['filter_inventory_status'] =
-        this.listOfFilter?.filter_inventory_status ?? '';
+      filters['filter_inventory_status'] = this.exportType
+        ? this.listOfFilter?.filter_inventory_status
+        : '';
 
-      filters['filter_brand'] = this.listOfFilter?.filter_brand ?? '';
+      filters['filter_brand'] = this.exportType
+        ? this.listOfFilter?.filter_brand
+        : '';
 
-      filters['filter_collection'] = this.listOfFilter?.filter_collection ?? '';
+      filters['filter_collection'] = this.exportType
+        ? this.listOfFilter?.filter_collection
+        : '';
 
-      filters['filter_product_category'] =
-        this.listOfFilter?.filter_product_category ?? '';
+      filters['filter_product_category'] = this.exportType
+        ? this.listOfFilter?.filter_product_category
+        : '';
 
-      filters['filter_sales_tier'] = this.listOfFilter?.filter_sales_tier ?? '';
+      filters['filter_sales_tier'] = this.exportType
+        ? this.listOfFilter?.filter_sales_tier
+        : '';
 
       this.productService.exportProducts(filters).subscribe(
         (response: any) => {
           console.log(response);
           if (response.success) {
             this.message.create('success', 'Product export successfully!');
-            let blob: Blob = response.temlate_url as Blob;
-            var objectUrl = URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.download = 'document';
-            a.href = objectUrl;
-            a.click();
           }
           this.handleCancel();
           this.isLoading = false;
@@ -71,12 +74,18 @@ export class ExportModelComponent implements OnInit {
       let filters: any = {
         partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
         user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-        filter_start_date: this.listOfFilter.filter_start_date ?? '',
-        filter_end_date: this.listOfFilter.filter_end_date ?? '',
-        filter_inventory_method:
-          this.listOfFilter.filter_inventory_method ?? '',
-        filter_inventory_result:
-          this.listOfFilter.filter_inventory_result ?? '',
+        filter_start_date: this.exportType
+          ? this.listOfFilter.filter_start_date
+          : '',
+        filter_end_date: this.exportType
+          ? this.listOfFilter.filter_end_date
+          : '',
+        filter_inventory_method: this.exportType
+          ? this.listOfFilter.filter_inventory_method
+          : '',
+        filter_inventory_result: this.exportType
+          ? this.listOfFilter.filter_inventory_result
+          : '',
       };
       this.inventoryService.inventoryFeedHistory(filters).subscribe(
         (response: any) => {
