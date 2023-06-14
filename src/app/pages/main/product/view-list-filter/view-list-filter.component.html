@@ -372,8 +372,24 @@
     <ng-container *nzModalContent>
       <app-edit-multiple-products
         [actionType]="'Edit'"
-        (closeModel)="handleCancel('import')"
+        (closeModel)="closeMultiProduct($event)"
       ></app-edit-multiple-products>
+    </ng-container>
+  </nz-modal>
+
+  <nz-modal [(nzVisible)]="isVisible">
+    <ng-container *nzModalContent>
+      <nz-result
+        nzStatus="success"
+        [nzTitle]="'Reference Code : ' + referenceCode"
+        [nzSubTitle]="'Edit multiple product successfully'"
+      >
+        <div nz-result-extra>
+          <button nz-button nzType="primary" (click)="isVisible = false">
+            OK
+          </button>
+        </div>
+      </nz-result>
     </ng-container>
   </nz-modal>
 </div>

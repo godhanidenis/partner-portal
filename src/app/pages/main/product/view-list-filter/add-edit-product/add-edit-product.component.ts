@@ -45,6 +45,8 @@ export class AddEditProductComponent implements OnInit {
   userPermissions: any = '';
   disabledFiled: boolean = false;
   sku: string = '';
+  isVisible: boolean = false;
+  referenceCode: string = '';
 
   constructor(
     private router: Router,
@@ -380,6 +382,14 @@ export class AddEditProductComponent implements OnInit {
         },
         (err) => (this.isLoading = false)
       );
+    }
+  }
+
+  closeMultiProduct(event: string) {
+    this.isImportVisible = false;
+    if (event) {
+      this.referenceCode = event;
+      this.isVisible = true;
     }
   }
 

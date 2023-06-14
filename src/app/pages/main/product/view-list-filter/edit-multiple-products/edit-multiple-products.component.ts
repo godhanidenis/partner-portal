@@ -18,7 +18,7 @@ export class EditMultipleProductsComponent implements OnInit {
   @Input() actionType: string = '';
   selectType: string = '';
   isUploadVisible: boolean = false;
-  isVisible: boolean = false;
+
   userPermissions: any = '';
   chooseType = [
     'Edit MPN',
@@ -139,12 +139,12 @@ export class EditMultipleProductsComponent implements OnInit {
         this.isLoading = false;
         if (result.success) {
           this.referenceCode = result?.reference_code;
-          this.isVisible = true;
+
           // this.message.create(
           //   'success',
           //   `${this.actionType} multiple product successfully!`
           // );
-          // this.handleCancel();
+          this.handleCancel();
         }
       },
       (err) => (this.isLoading = false)
@@ -152,6 +152,6 @@ export class EditMultipleProductsComponent implements OnInit {
   }
 
   handleCancel() {
-    this.closeModel.emit();
+    this.closeModel.emit(this.referenceCode);
   }
 }

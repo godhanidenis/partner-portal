@@ -86,6 +86,8 @@ export class ViewListFilterComponent implements OnInit {
   accountSearch = new Subject<any>();
   userPermissions: any = '';
   listOfFilter!: Filters;
+  isVisible: boolean = false;
+  referenceCode: string = '';
 
   constructor(
     private router: Router,
@@ -231,6 +233,14 @@ export class ViewListFilterComponent implements OnInit {
       this.isUploadVisible = true;
     } else {
       this.isImportVisible = true;
+    }
+  }
+
+  closeMultiProduct(event: string) {
+    this.handleCancel('import');
+    if (event) {
+      this.referenceCode = event;
+      this.isVisible = true;
     }
   }
 

@@ -155,20 +155,4 @@
       </button>
     </div>
   </div>
-
-  <nz-modal [(nzVisible)]="isVisible">
-    <ng-container *nzModalContent>
-      <nz-result
-        nzStatus="success"
-        [nzTitle]="actionType + ' multiple product successfully'"
-        [nzSubTitle]="'Reference Code : ' + referenceCode"
-      >
-        <div nz-result-extra>
-          <button nz-button nzType="primary" (click)="handleCancel()">
-            OK
-          </button>
-        </div>
-      </nz-result>
-    </ng-container>
-  </nz-modal>
 </div>
