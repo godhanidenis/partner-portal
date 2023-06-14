@@ -97,43 +97,13 @@
                   >
                 </td>
                 <td class="text-end">
-                  <span
-                    [ngClass]="{
-                      bold: !(
-                        inventoryFeedUpdate[0].name === data?.name ||
-                        inventoryFeedUpdate[1].name === data?.name ||
-                        inventoryFeedUpdate[2].name === data?.name ||
-                        inventoryFeedUpdate[3].name === data?.name
-                      )
-                    }"
-                    >{{ data?.in_stock ? data?.in_stock : 0 }}</span
-                  >
+                  <b>{{ data?.in_stock ? data?.in_stock : 0 }}</b>
                 </td>
                 <td class="text-end">
-                  <span
-                    [ngClass]="{
-                      bold: !(
-                        inventoryFeedUpdate[0].name === data?.name ||
-                        inventoryFeedUpdate[1].name === data?.name ||
-                        inventoryFeedUpdate[2].name === data?.name ||
-                        inventoryFeedUpdate[3].name === data?.name
-                      )
-                    }"
-                    >{{ data?.out_stock ? data?.out_stock : 0 }}</span
-                  >
+                  <b>{{ data?.out_stock ? data?.out_stock : 0 }}</b>
                 </td>
                 <td class="text-end">
-                  <span
-                    [ngClass]="{
-                      bold: !(
-                        inventoryFeedUpdate[0].name === data?.name ||
-                        inventoryFeedUpdate[1].name === data?.name ||
-                        inventoryFeedUpdate[2].name === data?.name ||
-                        inventoryFeedUpdate[3].name === data?.name
-                      )
-                    }"
-                    >{{ data.total }}</span
-                  >
+                  <b>{{ data.total }}</b>
                 </td>
               </tr>
             </ng-template>
