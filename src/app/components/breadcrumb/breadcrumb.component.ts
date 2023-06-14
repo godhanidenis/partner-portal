@@ -16,7 +16,8 @@ export class BreadcrumbComponent implements OnInit {
     this.path.shift();
     if (
       (this.path[0] === 'products' && this.path[1] === 'details') ||
-      this.path[0] === 'inventory-feeds'
+      this.path[0] === 'inventory-feeds' ||
+      this.path[0] === 'promotions'
     ) {
       this.path.pop();
     }

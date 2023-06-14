@@ -21,15 +21,16 @@ export class EditMultipleProductsComponent implements OnInit {
 
   userPermissions: any = '';
   chooseType = [
-    'Edit MPN',
-    'Add/Edit Amazon ASIN',
-    'Remove Amazon ASIN',
-    'Add/Edit UPC',
-    'Remove UPC',
-    'Edit Product Details',
-    'Edit Unit Price',
-    'Edit Shipping Dimensions',
-    'Edit Product Status',
+    // 'ADD_PRODUCT',
+    'EDIT_MPN',
+    'ADD_EDIT_ASIN',
+    'ADD_EDIT_UPC',
+    'EDIT_PRICE',
+    'EDIT_SHIPPING_DIMENSIONS',
+    'CHANGE_PRODUCT_STATUS',
+    'REMOVE_ASIN',
+    'REMOVE_UPC',
+    'EDIT_PRODUCT_DETAILS',
   ];
   multiProduct!: FormGroup;
   isLoading: boolean = false;
@@ -44,10 +45,10 @@ export class EditMultipleProductsComponent implements OnInit {
     userPermissionService.userPermission.subscribe((permission: any) => {
       this.userPermissions = permission;
       if (this.userPermissions.partner_map) {
-        this.chooseType.push('Add/Edit MAP');
+        this.chooseType.push('ADD_EDIT_MAP');
       }
       if (this.userPermissions.partner_sku_level_handling) {
-        this.chooseType.push('Edit SKU specific Handling time');
+        this.chooseType.push('EDIT_SKU_SPECIFIC_HANDLING_TIME');
       }
     });
   }

@@ -1,16 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   PromotionsService,
   StopPromotions,
 } from 'src/app/shared/service/promotions.service';
-
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 @Component({
   selector: 'app-promotion-table',
   templateUrl: './promotion-table.component.html',
   styleUrls: ['./promotion-table.component.scss'],
 })
 export class PromotionTableComponent implements OnInit {
+  @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   @Input() total: number = 1;
   @Input() pageSize: number = 100;
   @Input() pageIndex: number = 1;
@@ -22,15 +33,43 @@ export class PromotionTableComponent implements OnInit {
   @Output() pageChange = new EventEmitter();
 
   pageSizeOptions = [100];
+  filter!: FormGroup;
+  accountSearch = new Subject<any>();
+  selectStatus: string = '';
+  statusCount: number = 0;
+  selectDate: string = '';
+  dateCount: number = 0;
+  clear_btn: boolean = false;
+  badgeTotal: number = 0;
+  searchForm!: FormGroup;
 
   constructor(
     private promotionsService: PromotionsService,
-    private message: NzMessageService
-  ) {}
-  ngOnInit(): void {}
+    private message: NzMessageService,
+    private router: Router
+  ) {
+    this.accountSearch
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe((value: any) => {
+        console.log(value);
+      });
+  }
+  ngOnInit(): void {
+    this.filter = new FormGroup({
+      date: new FormControl(''),
+      status: new FormControl(''),
+    });
+    this.searchForm = new FormGroup({
+      search: new FormControl(''),
+    });
+  }
 
   pageIndexChange(page: number) {
     this.pageChange.emit(page);
+  }
+
+  navigatePage(path: string) {
+    this.router.navigate([`/main/${path}`]);
   }
 
   selectAction(type: string, promo_code: string) {
@@ -67,6 +106,83 @@ export class PromotionTableComponent implements OnInit {
 
       default:
         break;
+    }
+  }
+
+  openNav() {
+    this.sidenavSection.nativeElement.style.width = '280px';
+  }
+
+  closeNav() {
+    this.sidenavSection.nativeElement.style.width = '0';
+  }
+
+  tagFunction() {
+    this.selectDate = '';
+    this.selectStatus = '';
+
+    this.dateCount = 0;
+    this.statusCount = 0;
+
+    this.badgeTotal = 0;
+    this.clear_btn = false;
+    this.filter.reset();
+  }
+
+  close(type: string) {
+    if (type) {
+      switch (type) {
+        case 'date':
+          this.filter.controls['date'].reset();
+          this.selectDate = '';
+          this.dateCount = 0;
+          this.badgeTotal--;
+          break;
+        case 'status':
+          this.filter.controls['status'].reset();
+          this.selectStatus = '';
+          this.statusCount = 0;
+          this.badgeTotal--;
+          break;
+      }
+    }
+  }
+
+  change(value: string, type: string) {
+    if (value && value.length !== 0) {
+      switch (type) {
+        case 'date':
+          this.clear_btn = true;
+          this.selectDate = value;
+          if (this.dateCount == 0) {
+            this.dateCount++;
+            this.badgeTotal++;
+          }
+          break;
+        case 'status':
+          this.clear_btn = true;
+          this.selectStatus = value;
+          if (this.statusCount == 0) {
+            this.statusCount++;
+            this.badgeTotal++;
+          }
+          break;
+      }
+    } else {
+      if (this.badgeTotal > 0 && value !== null) {
+        switch (type) {
+          case 'date':
+            this.selectDate = '';
+            this.dateCount--;
+            this.badgeTotal--;
+            break;
+          case 'status':
+            this.selectStatus = '';
+            this.statusCount--;
+            this.badgeTotal--;
+            break;
+        }
+      }
     }
   }
 }
