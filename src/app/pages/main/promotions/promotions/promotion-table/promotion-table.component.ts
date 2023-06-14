@@ -77,17 +77,19 @@ export class PromotionTableComponent implements OnInit {
       case 'end date':
         this.action.emit(promo_code);
         break;
-      case 'EOD':
+      case 'cancel':
         const data: StopPromotions = {
           partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
           user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
           promo_code: promo_code,
-          stop_eod: 'True',
         };
 
-        this.promotionsService.stopPromotions(data).subscribe((res: any) => {
+        this.promotionsService.cancelPromotions(data).subscribe((res: any) => {
           console.log(res);
-          this.message.create('success', `Stop this promotion : ${promo_code}`);
+          this.message.create(
+            'success',
+            `Cancel this promotion : ${promo_code}`
+          );
         });
         break;
       case 'Now':
@@ -95,7 +97,6 @@ export class PromotionTableComponent implements OnInit {
           partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
           user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
           promo_code: promo_code,
-          stop_eod: 'False',
         };
 
         this.promotionsService.stopPromotions(dataNow).subscribe((res: any) => {

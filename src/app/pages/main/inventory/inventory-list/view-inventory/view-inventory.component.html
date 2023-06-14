@@ -23,7 +23,14 @@
             }}</span
           >
           <span><b>Feed Method : </b>{{ editData.feed_method }}</span>
-          <span><b>Feed Status : </b>{{ editData.feed_status }}</span>
+          <span
+            ><b>Feed Status : </b
+            >{{
+              editData.feed_status
+                ? editData.feed_status
+                : editData?.rejection_details?.rejection_reason
+            }}</span
+          >
           <span *ngIf="feedResult.toLocaleLowerCase() === 'processed'"
             ><b>Total Products : </b>{{ total }}</span
           >

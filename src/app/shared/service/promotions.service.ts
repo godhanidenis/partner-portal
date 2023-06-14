@@ -17,7 +17,6 @@ export interface StopPromotions {
   partner_id: string;
   user_id: string;
   promo_code: string;
-  stop_eod: string | boolean;
 }
 
 export interface EditEndDatePromotions {
@@ -48,6 +47,10 @@ export class PromotionsService {
 
   stopPromotions(payload: StopPromotions) {
     return this.http.post(this.url + '/stop-promo', payload);
+  }
+
+  cancelPromotions(payload: StopPromotions) {
+    return this.http.post(this.url + '/cancel-promo', payload);
   }
 
   editEndDatePromo(payload: EditEndDatePromotions) {

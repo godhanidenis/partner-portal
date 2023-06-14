@@ -124,30 +124,26 @@
               </button>
               <nz-dropdown-menu #menu="nzDropdownMenu">
                 <ul nz-menu>
-                  <li nz-menu-item>Cancel Promotion request</li>
                   <li
+                    *ngIf="data?.promo_status === 'Scheduled'"
                     nz-menu-item
-                    (click)="selectAction('EOD', data?.promo_code)"
+                    (click)="selectAction('cancel', data?.promo_code)"
                   >
-                    Stop Promotion EOD
+                    Cancel Promotion request
                   </li>
                   <li
+                    *ngIf="data?.promo_status === 'Running'"
                     nz-menu-item
                     (click)="selectAction('Now', data?.promo_code)"
                   >
                     Stop Promotion Now
                   </li>
                   <li
+                    *ngIf="data?.promo_status === 'Running'"
                     nz-menu-item
                     (click)="selectAction('end date', data?.promo_code)"
                   >
-                    Shorten Promotion
-                  </li>
-                  <li
-                    nz-menu-item
-                    (click)="selectAction('end date', data?.promo_code)"
-                  >
-                    Extend Promotion
+                    Edit End Date
                   </li>
                 </ul>
               </nz-dropdown-menu>
