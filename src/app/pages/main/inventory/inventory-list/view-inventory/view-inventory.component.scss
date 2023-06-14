@@ -21,6 +21,19 @@
      .body-section {
          padding: 24px;
 
+         .table-header {
+             display: flex;
+             align-items: center;
+             border: 1px solid $border;
+             padding: 8px;
+             margin-top: 30px;
+
+             span {
+                 font-size: 16px;
+                 font-weight: 700;
+             }
+         }
+
          .header-section {
              .left-section {
                  display: flex;

@@ -9,7 +9,7 @@ const routes: Routes = [
     component: PromotionsComponent,
   },
   {
-    path: 'promotion-details',
+    path: 'promotion-details/:promo_code',
     component: PromotionDetailsComponent,
   },
 ];

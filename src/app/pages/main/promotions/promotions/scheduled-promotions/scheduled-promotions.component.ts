@@ -25,7 +25,6 @@ export class ScheduledPromotionsComponent implements OnInit {
   addEndDateVisible: boolean = false;
   badgeTotal: number = 0;
   promoCode: string = '';
-
   constructor(
     private promotionsService: PromotionsService,
     private message: NzMessageService
@@ -35,9 +34,6 @@ export class ScheduledPromotionsComponent implements OnInit {
   ngOnInit(): void {
     this.addDateForm = new FormGroup({
       endDate: new FormControl(''),
-    });
-    this.searchForm = new FormGroup({
-      search: new FormControl(''),
     });
   }
 

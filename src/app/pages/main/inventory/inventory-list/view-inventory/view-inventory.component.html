@@ -10,7 +10,7 @@
           nz-col
           class="gutter-row"
           [nzSm]="24"
-          [nzXl]="12"
+          [nzXl]="16"
           class="left-section"
         >
           <span *ngIf="feedResult.toLocaleLowerCase() === 'processed'"
@@ -23,7 +23,7 @@
             }}</span
           >
           <span><b>Feed Method : </b>{{ editData.feed_method }}</span>
-          <span><b>Feed Status : </b>{{ editData.feed_method }}</span>
+          <span><b>Feed Status : </b>{{ editData.feed_status }}</span>
           <span *ngIf="feedResult.toLocaleLowerCase() === 'processed'"
             ><b>Total Products : </b>{{ total }}</span
           >
@@ -32,7 +32,7 @@
           nz-col
           class="gutter-row"
           [nzSm]="24"
-          [nzXl]="12"
+          [nzXl]="8"
           class="right-section"
         >
           <span
@@ -42,19 +42,25 @@
           >
           <span
             ><a [href]="editData.processed_file_url" class="link"
-              >Download Processed File</a
+              >Download
+              {{
+                feedResult.toLocaleLowerCase() === "processed"
+                  ? "Processed"
+                  : "Error"
+              }}
+              File</a
             ></span
           >
         </div>
       </div>
       <div *ngIf="feedResult.toLocaleLowerCase() === 'processed'">
-        <div style="display: flex; justify-content: center; margin: 10px 0">
-          <h3 style="margin-bottom: 0">Inventory Feed Update</h3>
+        <div class="table-header">
+          <span>Inventory Feed Update</span>
         </div>
         <nz-table
           #nzTable
           nzOuterBordered
-          [nzData]="inventoryFeedUpdate"
+          [nzData]="editData"
           [nzFrontPagination]="false"
           [nzShowPagination]="false"
         >
@@ -68,55 +74,140 @@
           </thead>
           <tbody>
             <tr>
-              <td><b>Active</b></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <ng-template ngFor let-data [ngForOf]="inventoryFeedUpdate">
-              <tr>
-                <td
-                  [ngClass]="{
-                    'padding-left':
-                      inventoryFeedUpdate[0].name === data?.name ||
-                      inventoryFeedUpdate[1].name === data?.name ||
-                      inventoryFeedUpdate[2].name === data?.name ||
-                      inventoryFeedUpdate[3].name === data?.name
-                  }"
+              <td>
+                <b>Active</b><br />
+                <span
+                  >"Out of Stock" products that have now come back "In Stock". (
+                  {{ editData?.active_out_of_stock_to_in_stock }}
+                  )</span
                 >
-                  <span
-                    [ngClass]="{
-                      bold: !(
-                        inventoryFeedUpdate[0].name === data?.name ||
-                        inventoryFeedUpdate[1].name === data?.name ||
-                        inventoryFeedUpdate[2].name === data?.name ||
-                        inventoryFeedUpdate[3].name === data?.name
-                      )
-                    }"
-                    >{{ data?.name }}</span
-                  >
-                </td>
-                <td class="text-end">
-                  <b>{{ data?.in_stock ? data?.in_stock : 0 }}</b>
-                </td>
-                <td class="text-end">
-                  <b>{{ data?.out_stock ? data?.out_stock : 0 }}</b>
-                </td>
-                <td class="text-end">
-                  <b>{{ data.total }}</b>
-                </td>
-              </tr>
-            </ng-template>
+                <br />
+                "In Stock" products that continue to remain "In Stock". ({{
+                  editData?.active_in_stock_to_in_stock
+                }})<br />
+                "In Stock" products that have gone "Out of Stock". ({{
+                  editData?.active_in_stock_to_out_of_stock
+                }})<br />
+                "Out of Stock" products that continue to remain "Out of Stock.
+                ({{ editData?.active_out_of_stock_to_out_of_stock }})
+              </td>
+              <td class="text-end">
+                {{ editData?.active_in_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.active_out_of_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.active_in_stock + editData?.active_out_of_stock }}
+              </td>
+            </tr>
+            <tr>
+              <td>LTL</td>
+              <td class="text-end">
+                {{ editData?.ltl_in_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.ltl_out_of_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.ltl_in_stock + editData?.ltl_out_of_stock }}
+              </td>
+            </tr>
+            <tr>
+              <td>Discontinued</td>
+              <td class="text-end">
+                {{ editData?.discontinued_in_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.discontinued_out_of_stock }}
+              </td>
+              <td class="text-end">
+                {{
+                  editData?.discontinued_in_stock +
+                    editData?.discontinued_out_of_stock
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td>Partner Restricted</td>
+              <td class="text-end">
+                {{ editData?.restricted_in_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.restricted_out_of_stock }}
+              </td>
+              <td class="text-end">
+                {{
+                  editData?.restricted_in_stock +
+                    editData?.restricted_out_of_stock
+                }}
+              </td>
+            </tr>
+
+            <tr>
+              <td>Stranded (In-Feed)</td>
+              <td class="text-end">
+                {{ editData?.stranded_in_feed_in_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.stranded_in_feed_out_of_stock }}
+              </td>
+              <td class="text-end">
+                {{
+                  editData?.stranded_in_feed_in_stock +
+                    editData?.stranded_in_feed_out_of_stock
+                }}
+              </td>
+            </tr>
             <tr>
               <td><b>Total</b></td>
               <td class="text-end">
-                <b>{{ totalInStock }}</b>
+                <b>{{
+                  editData?.active_in_stock +
+                    editData?.discontinued_in_stock +
+                    editData?.restricted_in_stock +
+                    editData?.ltl_in_stock +
+                    editData?.stranded_in_feed_in_stock
+                }}</b>
               </td>
               <td class="text-end">
-                <b>{{ totalOutStock }}</b>
+                <b>{{
+                  editData?.active_out_of_stock +
+                    editData?.discontinued_out_of_stock +
+                    editData?.restricted_out_of_stock +
+                    editData?.ltl_out_of_stock +
+                    editData?.stranded_in_feed_out_of_stock
+                }}</b>
               </td>
               <td class="text-end">
-                <b>{{ total }}</b>
+                <b>{{
+                  editData?.active_in_stock +
+                    editData?.active_out_of_stock +
+                    editData?.discontinued_in_stock +
+                    editData?.discontinued_out_of_stock +
+                    editData?.restricted_in_stock +
+                    editData?.restricted_out_of_stock +
+                    editData?.ltl_in_stock +
+                    editData?.ltl_out_of_stock +
+                    editData?.stranded_in_feed_in_stock +
+                    editData?.stranded_in_feed_out_of_stock
+                }}</b>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 26px"></td>
+              <td style="padding: 26px"></td>
+              <td style="padding: 26px"></td>
+              <td style="padding: 26px"></td>
+            </tr>
+            <tr>
+              <td>Stranded (In Catalog)</td>
+              <td class="text-end">0</td>
+              <td class="text-end">
+                {{ editData?.stranded_in_catalog_out_of_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.stranded_in_catalog_out_of_stock }}
               </td>
             </tr>
           </tbody>

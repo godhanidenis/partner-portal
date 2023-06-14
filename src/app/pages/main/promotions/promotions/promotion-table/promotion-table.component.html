@@ -1,4 +1,66 @@
 <div class="promotion-table">
+  <div class="action">
+    <nz-badge
+      style="margin-right: 10px"
+      [nzShowZero]="false"
+      [nzCount]="badgeTotal"
+    >
+      <button (click)="openNav()" nz-button nzType="primary" nzShape="round">
+        <span nz-icon nzType="filter" nzTheme="outline"></span>
+        Filter
+      </button>
+    </nz-badge>
+    <button
+      style="margin-right: 10px"
+      nz-button
+      nzType="primary"
+      nzShape="round"
+    >
+      <span nz-icon nzType="upload" nzTheme="outline"></span> Export
+    </button>
+    <form nz-form [formGroup]="searchForm">
+      <nz-form-item style="margin-bottom: 0 !important">
+        <nz-form-control nzErrorTip="Please input your valid code!">
+          <nz-input-group nzPrefixIcon="search" class="search">
+            <input
+              (keyup)="accountSearch.next($event)"
+              formControlName="search"
+              nz-input
+              placeholder="Search..."
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+
+  <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <nz-tag *ngIf="selectDate" nzMode="closeable" (nzOnClose)="close('date')"
+      >{{ selectDate[0] | date : "dd/MM/yyyy" }} To
+      {{ selectDate[1] | date : "dd/MM/yyyy" }}</nz-tag
+    >
+    <nz-tag
+      *ngIf="selectStatus"
+      nzMode="closeable"
+      (nzOnClose)="close('status')"
+      >{{ selectStatus }}</nz-tag
+    >
+    <button
+      *ngIf="badgeTotal >= 1"
+      nz-button
+      nzType="default"
+      (click)="tagFunction()"
+      style="
+        float: none;
+        background-color: white;
+        color: #1221c3;
+        border: 1px solid #1221c3;
+      "
+      class="action-button clear-btn"
+    >
+      clear
+    </button>
+  </div>
   <nz-table
     #nzTable
     nzOuterBordered
@@ -19,10 +81,10 @@
         <th>Start Date</th>
         <th>End Date</th>
         <!-- <th>Promotion Type</th> -->
-        <th>SKU Count</th>
+        <th>Number of SKUs</th>
         <!-- <th>Promotion Avg</th> -->
         <th>Status</th>
-        <th>Download</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -39,28 +101,27 @@
           </td> -->
           <td>{{ data?.promo_status }}</td>
           <td>
-            <button
-              *ngIf="tabName === 'Completed Promotions'"
-              style="height: 35px"
-              nz-button
-              class="action-button"
-              [nzType]="'primary'"
-            >
-              Download
-            </button>
-            <div
-              style="display: flex; align-items: center"
-              *ngIf="tabName === 'Scheduled Promotions'"
-            >
+            <div style="display: flex; align-items: center">
+              <a
+                (click)="
+                  navigatePage(
+                    'promotions/promotion-details/' + data?.promo_code
+                  )
+                "
+                style="margin: 0 10px; color: #2121c3; font-size: large"
+                ><span nz-icon nzType="eye" nzTheme="outline"></span
+              ></a>
               <button
-                style="height: 35px; margin-top: 0; margin-right: 10px"
+                style="border-radius: 4px; height: 30px; padding: 3px 15px"
+                nz-dropdown
+                nzTrigger="click"
+                [nzDropdownMenu]="menu"
                 nz-button
-                class="action-button"
                 [nzType]="'primary'"
+                *ngIf="tabName === 'Scheduled Promotions'"
               >
-                Download
+                Edit
               </button>
-              <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
               <nz-dropdown-menu #menu="nzDropdownMenu">
                 <ul nz-menu>
                   <li nz-menu-item>Cancel Promotion request</li>
@@ -96,4 +157,36 @@
       </ng-template>
     </tbody>
   </nz-table>
+  <div #mySidenav class="filter-section">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
+      >&times;</a
+    >
+    <form nz-form [formGroup]="filter" style="padding-bottom: 10px">
+      <div class="filter-content">
+        <nz-divider nzText="Date" nzOrientation="left"></nz-divider>
+        <nz-range-picker
+          formControlName="date"
+          (ngModelChange)="change(filter.value.date ? $event : '', 'date')"
+        ></nz-range-picker>
+
+        <nz-divider
+          style="margin-top: 20px"
+          nzText="Status"
+          nzOrientation="left"
+        ></nz-divider>
+        <nz-select
+          nzAllowClear
+          nzPlaceHolder="Select A Status"
+          (ngModelChange)="change(filter.value.status ? $event : '', 'status')"
+          formControlName="status"
+        >
+          <nz-option nzLabel="Scheduled" nzValue="Scheduled"></nz-option>
+          <nz-option nzLabel="Started" nzValue="Started"></nz-option>
+          <nz-option nzLabel="Completed" nzValue="Completed"></nz-option>
+          <nz-option nzLabel="Canceled" nzValue="Canceled"></nz-option>
+          <nz-option nzLabel="Stopped" nzValue="Stopped"></nz-option>
+        </nz-select>
+      </div>
+    </form>
+  </div>
 </div>
