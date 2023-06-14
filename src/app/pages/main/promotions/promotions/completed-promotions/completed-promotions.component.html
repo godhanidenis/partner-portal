@@ -1,12 +1,11 @@
 <div class="completed-promotions-section">
-  <div class="action">
+  <!-- <div class="action">
     <nz-badge
       style="margin-right: 10px"
       [nzShowZero]="false"
       [nzCount]="badgeTotal"
     >
-      <!-- (click)="openNav()" -->
-      <button nz-button nzType="primary" nzShape="round">
+      <button (click)="openNav()" nz-button nzType="primary" nzShape="round">
         <span nz-icon nzType="filter" nzTheme="outline"></span>
         Filter
       </button>
@@ -19,17 +18,16 @@
     >
       <span nz-icon nzType="upload" nzTheme="outline"></span> Export
     </button>
-    <!--  (keyup)="accountSearch.next($event)" -->
     <form nz-form [formGroup]="searchForm">
       <nz-form-item style="margin-bottom: 0 !important">
         <nz-form-control nzErrorTip="Please input your valid code!">
           <nz-input-group nzPrefixIcon="search" class="search">
-            <input formControlName="search" nz-input placeholder="Search..." />
+            <input (keyup)="accountSearch.next($event)" formControlName="search" nz-input placeholder="Search..." />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     </form>
-  </div>
+  </div> -->
   <app-promotion-table
     [listOfData]="completedPromotionsList"
     [total]="total"

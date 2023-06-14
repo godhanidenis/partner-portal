@@ -1,0 +1,43 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.promotion-details-section {
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    background-color: $white;
+    background-clip: border-box;
+    border-radius: 5px;
+
+    .text-end {
+        text-align: end;
+    }
+
+    .body-section {
+        padding: 24px;
+
+        .header-section {
+            .left-section {
+                display: flex;
+                flex-direction: column;
+                font-size: 16px;
+
+                b {
+                    font-size: 16px;
+                }
+
+                span {
+                    font-size: 14px;
+                }
+            }
+
+            .right-section {
+                display: flex;
+                flex-direction: column;
+                font-size: 16px;
+
+                a,
+                u {
+                    color: $darkBlue;
+                }
+            }
+        }
+    }
+}

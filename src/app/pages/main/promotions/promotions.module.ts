@@ -11,6 +11,7 @@ import { CompletedPromotionsComponent } from './promotions/completed-promotions/
 import { ComponentModule } from 'src/app/components/component.module';
 import { PromotionTableComponent } from './promotions/promotion-table/promotion-table.component';
 import { AddPromotionsComponent } from './promotions/add-promotions/add-promotions.component';
+import { PromotionDetailsComponent } from './promotions/promotion-details/promotion-details.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AddPromotionsComponent } from './promotions/add-promotions/add-promotio
     CompletedPromotionsComponent,
     PromotionTableComponent,
     AddPromotionsComponent,
+    PromotionDetailsComponent,
   ],
   imports: [
     CommonModule,

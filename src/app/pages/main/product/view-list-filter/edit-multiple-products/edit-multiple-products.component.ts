@@ -18,6 +18,7 @@ export class EditMultipleProductsComponent implements OnInit {
   @Input() actionType: string = '';
   selectType: string = '';
   isUploadVisible: boolean = false;
+  isVisible: boolean = false;
   userPermissions: any = '';
   chooseType = [
     'Edit MPN',
@@ -33,6 +34,7 @@ export class EditMultipleProductsComponent implements OnInit {
   multiProduct!: FormGroup;
   isLoading: boolean = false;
   selectFile: any;
+  referenceCode: string = '';
 
   constructor(
     private userPermissionService: UserPermissionService,
@@ -136,11 +138,13 @@ export class EditMultipleProductsComponent implements OnInit {
       (result: any) => {
         this.isLoading = false;
         if (result.success) {
-          this.message.create(
-            'success',
-            `${this.actionType} multiple product successfully!`
-          );
-          this.handleCancel();
+          this.referenceCode = result?.reference_code;
+          this.isVisible = true;
+          // this.message.create(
+          //   'success',
+          //   `${this.actionType} multiple product successfully!`
+          // );
+          // this.handleCancel();
         }
       },
       (err) => (this.isLoading = false)

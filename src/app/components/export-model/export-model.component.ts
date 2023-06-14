@@ -17,7 +17,7 @@ export class ExportModelComponent implements OnInit {
   @Input() noOfFilter: number = 0;
   @Input() sectionName: string = '';
   userEmail: string = 'service@123stores.com';
-  isDownloadVisible: boolean = true;
+  isDownloadVisible: boolean = false;
   isLoading: boolean = false;
 
   constructor(

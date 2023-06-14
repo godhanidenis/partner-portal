@@ -36,7 +36,7 @@ export class PromotionTableComponent implements OnInit {
   selectAction(type: string, promo_code: string) {
     switch (type) {
       case 'end date':
-        this.action.emit();
+        this.action.emit(promo_code);
         break;
       case 'EOD':
         const data: StopPromotions = {

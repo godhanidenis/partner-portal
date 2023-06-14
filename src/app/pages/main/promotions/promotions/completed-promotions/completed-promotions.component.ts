@@ -35,7 +35,7 @@ export class CompletedPromotionsComponent implements OnInit {
     this.isLoading = true;
     const data: Promotions = {
       page: page,
-      live: false,
+      open: false,
     };
     this.promotionsService.getAllPromotions(data).subscribe(
       (res: any) => {
