@@ -43,7 +43,8 @@
         <div class="contact">
           <h3>Step {{ actionType === "Edit" ? 2 : 1 }}: Download Template</h3>
           <span *ngIf="actionType === 'Add'"
-            >Click <a class="link">here</a> to download template</span
+            >Click <a class="link" (click)="downloadTemplate()">here</a> to
+            download template</span
           >
 
           <nz-radio-group

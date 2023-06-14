@@ -17,7 +17,7 @@ export class ExportModelComponent implements OnInit {
   @Input() noOfFilter: number = 0;
   @Input() sectionName: string = '';
   userEmail: string = 'service@123stores.com';
-  isDownloadVisible: boolean = false;
+  isDownloadVisible: boolean = true;
   isLoading: boolean = false;
 
   constructor(
@@ -74,19 +74,21 @@ export class ExportModelComponent implements OnInit {
       let filters: any = {
         partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
         user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-        filter_start_date: this.exportType
-          ? this.listOfFilter.filter_start_date
-          : '',
-        filter_end_date: this.exportType
-          ? this.listOfFilter.filter_end_date
-          : '',
-        filter_inventory_method: this.exportType
-          ? this.listOfFilter.filter_inventory_method
-          : '',
-        filter_inventory_result: this.exportType
-          ? this.listOfFilter.filter_inventory_result
-          : '',
       };
+      console.log(this.exportType);
+
+      filters['filter_start_date'] = this.exportType
+        ? this.listOfFilter?.filter_start_date
+        : '';
+      filters['filter_end_date'] = this.exportType
+        ? this.listOfFilter?.filter_end_date
+        : '';
+      filters['filter_inventory_method'] = this.exportType
+        ? this.listOfFilter?.filter_inventory_method
+        : '';
+      filters['filter_inventory_result'] = this.exportType
+        ? this.listOfFilter?.filter_inventory_result
+        : '';
       this.inventoryService.inventoryFeedHistory(filters).subscribe(
         (response: any) => {
           console.log(response);

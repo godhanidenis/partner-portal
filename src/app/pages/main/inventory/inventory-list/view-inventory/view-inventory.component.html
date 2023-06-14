@@ -69,27 +69,71 @@
           <tbody>
             <tr>
               <td><b>Active</b></td>
-              <td class="text-end">
-                <b>300</b>
-              </td>
-              <td class="text-end">
-                <b>2</b>
-              </td>
-              <td class="text-end">
-                <b>302</b>
-              </td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
             <ng-template ngFor let-data [ngForOf]="inventoryFeedUpdate">
               <tr>
-                <td>{{ data?.name }}</td>
-                <td class="text-end">
-                  <b>{{ data?.in_stock ? data?.in_stock : 0 }}</b>
+                <td
+                  [ngClass]="{
+                    'padding-left':
+                      inventoryFeedUpdate[0].name === data?.name ||
+                      inventoryFeedUpdate[1].name === data?.name ||
+                      inventoryFeedUpdate[2].name === data?.name ||
+                      inventoryFeedUpdate[3].name === data?.name
+                  }"
+                >
+                  <span
+                    [ngClass]="{
+                      bold: !(
+                        inventoryFeedUpdate[0].name === data?.name ||
+                        inventoryFeedUpdate[1].name === data?.name ||
+                        inventoryFeedUpdate[2].name === data?.name ||
+                        inventoryFeedUpdate[3].name === data?.name
+                      )
+                    }"
+                    >{{ data?.name }}</span
+                  >
                 </td>
                 <td class="text-end">
-                  <b>{{ data?.out_stock ? data?.out_stock : 0 }}</b>
+                  <span
+                    [ngClass]="{
+                      bold: !(
+                        inventoryFeedUpdate[0].name === data?.name ||
+                        inventoryFeedUpdate[1].name === data?.name ||
+                        inventoryFeedUpdate[2].name === data?.name ||
+                        inventoryFeedUpdate[3].name === data?.name
+                      )
+                    }"
+                    >{{ data?.in_stock ? data?.in_stock : 0 }}</span
+                  >
                 </td>
                 <td class="text-end">
-                  <b>{{ data.total }}</b>
+                  <span
+                    [ngClass]="{
+                      bold: !(
+                        inventoryFeedUpdate[0].name === data?.name ||
+                        inventoryFeedUpdate[1].name === data?.name ||
+                        inventoryFeedUpdate[2].name === data?.name ||
+                        inventoryFeedUpdate[3].name === data?.name
+                      )
+                    }"
+                    >{{ data?.out_stock ? data?.out_stock : 0 }}</span
+                  >
+                </td>
+                <td class="text-end">
+                  <span
+                    [ngClass]="{
+                      bold: !(
+                        inventoryFeedUpdate[0].name === data?.name ||
+                        inventoryFeedUpdate[1].name === data?.name ||
+                        inventoryFeedUpdate[2].name === data?.name ||
+                        inventoryFeedUpdate[3].name === data?.name
+                      )
+                    }"
+                    >{{ data.total }}</span
+                  >
                 </td>
               </tr>
             </ng-template>

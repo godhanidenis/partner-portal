@@ -95,6 +95,23 @@ export class EditMultipleProductsComponent implements OnInit {
     }
   }
 
+  downloadTemplate() {
+    const data: DownloadTemplates = {
+      template_type: 'ADD_PRODUCT',
+      include_data: false,
+    };
+    this.productService.downloadTemplates(data).subscribe((res: any) => {
+      if (res.success) {
+        this.message.create('success', 'download product successfully!');
+        var objectUrl = res.temlate_url;
+        var a = document.createElement('a');
+        a.download = 'document';
+        a.href = objectUrl;
+        a.click();
+      }
+    });
+  }
+
   actionFile(type: string) {
     if (type === 'upload') {
       this.isUploadVisible = true;
@@ -109,7 +126,9 @@ export class EditMultipleProductsComponent implements OnInit {
     data.append('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
     data.append(
       'template_type',
-      this.multiProduct.controls['selectType'].value ?? 'ADD_PRODUCT'
+      this.multiProduct.controls['selectType'].value
+        ? this.multiProduct.controls['selectType'].value
+        : 'ADD_PRODUCT'
     );
     data.append('uploaded_file_url', this.selectFile);
 

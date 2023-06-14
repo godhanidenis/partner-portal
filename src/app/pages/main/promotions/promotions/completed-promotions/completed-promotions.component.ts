@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import {
   Promotions,
   PromotionsService,
@@ -15,13 +16,20 @@ export class CompletedPromotionsComponent implements OnInit {
   pageSize = 100;
   pageIndex = 1;
   pageSizeOptions = [100];
+  badgeTotal: number = 0;
 
   completedPromotionsList = [];
+  searchForm!: FormGroup;
+
   constructor(private promotionsService: PromotionsService) {
     this.getAllCompletedPromotions(1);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      search: new FormControl(''),
+    });
+  }
 
   getAllCompletedPromotions(page: number) {
     this.isLoading = true;

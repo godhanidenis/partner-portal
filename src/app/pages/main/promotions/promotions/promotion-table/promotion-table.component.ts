@@ -1,4 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import {
+  PromotionsService,
+  StopPromotions,
+} from 'src/app/shared/service/promotions.service';
 
 @Component({
   selector: 'app-promotion-table',
@@ -18,14 +23,50 @@ export class PromotionTableComponent implements OnInit {
 
   pageSizeOptions = [100];
 
-  constructor() {}
+  constructor(
+    private promotionsService: PromotionsService,
+    private message: NzMessageService
+  ) {}
   ngOnInit(): void {}
 
   pageIndexChange(page: number) {
     this.pageChange.emit(page);
   }
 
-  selectAction() {
-    this.action.emit();
+  selectAction(type: string, promo_code: string) {
+    switch (type) {
+      case 'end date':
+        this.action.emit();
+        break;
+      case 'EOD':
+        const data: StopPromotions = {
+          partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+          user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+          promo_code: promo_code,
+          stop_eod: 'True',
+        };
+
+        this.promotionsService.stopPromotions(data).subscribe((res: any) => {
+          console.log(res);
+          this.message.create('success', `Stop this promotion : ${promo_code}`);
+        });
+        break;
+      case 'Now':
+        const dataNow: StopPromotions = {
+          partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+          user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+          promo_code: promo_code,
+          stop_eod: 'False',
+        };
+
+        this.promotionsService.stopPromotions(dataNow).subscribe((res: any) => {
+          console.log(res);
+          this.message.create('success', `Stop this promotion : ${promo_code}`);
+        });
+        break;
+
+      default:
+        break;
+    }
   }
 }

@@ -16,10 +16,12 @@ export class ScheduledPromotionsComponent implements OnInit {
   pageSize = 100;
   pageIndex = 1;
   pageSizeOptions = [100];
+  searchForm!: FormGroup;
 
   scheduledPromotionsList = [];
   addDateForm!: FormGroup;
   addEndDateVisible: boolean = false;
+  badgeTotal: number = 0;
 
   constructor(private promotionsService: PromotionsService) {
     this.getAllScheduledPromotions(1);
@@ -27,6 +29,9 @@ export class ScheduledPromotionsComponent implements OnInit {
   ngOnInit(): void {
     this.addDateForm = new FormGroup({
       endDate: new FormControl(''),
+    });
+    this.searchForm = new FormGroup({
+      search: new FormControl(''),
     });
   }
 

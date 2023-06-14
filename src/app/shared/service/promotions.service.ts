@@ -7,6 +7,20 @@ export interface Promotions {
   live: boolean;
 }
 
+export interface StopPromotions {
+  partner_id: string;
+  user_id: string;
+  promo_code: string;
+  stop_eod: string | boolean;
+}
+
+export interface EditEndDatePromotions {
+  partner_id: string;
+  user_id: string;
+  promo_code: string;
+  end_date: string | Date;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -24,5 +38,13 @@ export class PromotionsService {
     return this.http.get(this.url + '/promos', {
       params: params,
     });
+  }
+
+  stopPromotions(payload: StopPromotions) {
+    return this.http.post(this.url + '/stop-promo', payload);
+  }
+
+  editEndDatePromo(payload: EditEndDatePromotions) {
+    return this.http.post(this.url + '/edit-end-date-promo', payload);
   }
 }

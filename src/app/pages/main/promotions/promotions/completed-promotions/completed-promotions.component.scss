@@ -1,0 +1,28 @@
+@import'../../../../../../assets/variable/variable.scss';
+
+.completed-promotions-section {
+    .action {
+        display: flex;
+        justify-content: end;
+        border: 1px solid $border;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    form {
+        .search {
+            // width: 12%;
+            border-radius: 17px;
+            float: right;
+        }
+
+
+        ::ng-deep .ant-form-item {
+            display: inline-block;
+            float: right;
+            margin-left: 4px;
+        }
+
+
+    }
+}
