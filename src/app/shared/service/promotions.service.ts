@@ -1,31 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-
-export interface Promotions {
-  page: number;
-  open: boolean;
-}
-
-export interface Promotion {
-  partner_id: string;
-  user_id: string;
-  promo_code: string;
-}
-
-export interface StopPromotions {
-  partner_id: string;
-  user_id: string;
-  promo_code: string;
-}
-
-export interface EditEndDatePromotions {
-  partner_id: string;
-  user_id: string;
-  promo_code: string;
-  start_date?: string | Date;
-  end_date?: string | Date;
-}
+import {
+  EditEndDatePromotions,
+  Promotion,
+  Promotions,
+  StopPromotions,
+} from '../model/promotion.model';
 
 @Injectable({
   providedIn: 'root',
@@ -58,7 +39,7 @@ export class PromotionsService {
     return this.http.post(this.url + '/edit-end-date-promo', payload);
   }
 
-  getPromotion(action: Promotion) {
+  getPromotion(action: StopPromotions) {
     let params = new HttpParams()
       .set('partner_id', action.partner_id)
       .set('user_id', action.user_id)

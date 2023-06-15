@@ -10,11 +10,9 @@ import {
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import {
-  PromotionsService,
-  StopPromotions,
-} from 'src/app/shared/service/promotions.service';
+import { PromotionsService } from 'src/app/shared/service/promotions.service';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { StopPromotions } from 'src/app/shared/model/promotion.model';
 @Component({
   selector: 'app-promotion-table',
   templateUrl: './promotion-table.component.html',

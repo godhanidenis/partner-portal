@@ -16,11 +16,12 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { ListNgZorroModule } from './shared/list-ng-zorro/list-ng-zorro.module';
 import { MainModule } from './pages/main/main.module';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, MainLayoutComponent],
+  declarations: [AppComponent, MainLayoutComponent, AuthLayoutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

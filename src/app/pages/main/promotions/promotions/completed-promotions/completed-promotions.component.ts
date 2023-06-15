@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {
-  Promotions,
-  PromotionsService,
-} from 'src/app/shared/service/promotions.service';
+import { Promotions } from 'src/app/shared/model/promotion.model';
+import { PromotionsService } from 'src/app/shared/service/promotions.service';
 
 @Component({
   selector: 'app-completed-promotions',

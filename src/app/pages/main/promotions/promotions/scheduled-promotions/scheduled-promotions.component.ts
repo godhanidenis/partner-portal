@@ -4,8 +4,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   EditEndDatePromotions,
   Promotions,
-  PromotionsService,
-} from 'src/app/shared/service/promotions.service';
+} from 'src/app/shared/model/promotion.model';
+import { PromotionsService } from 'src/app/shared/service/promotions.service';
 
 @Component({
   selector: 'app-scheduled-promotions',

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   Promotion,
-  PromotionsService,
-} from 'src/app/shared/service/promotions.service';
+  StopPromotions,
+} from 'src/app/shared/model/promotion.model';
+import { PromotionsService } from 'src/app/shared/service/promotions.service';
 
 @Component({
   selector: 'app-promotion-details',
@@ -23,7 +24,7 @@ export class PromotionDetailsComponent implements OnInit {
     this.isLoading = true;
     this.promoCode =
       this.activatedRoute.snapshot.paramMap.get('promo_code') ?? '';
-    const data: Promotion = {
+    const data: StopPromotions = {
       partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
       user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       promo_code: this.promoCode,

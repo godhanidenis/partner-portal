@@ -72,6 +72,7 @@
     [nzPageSize]="pageSize"
     [nzPageIndex]="pageIndex"
     [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
     (nzPageIndexChange)="pageIndexChange($event)"
   >
     <thead>
@@ -84,7 +85,7 @@
         <th>Number of SKUs</th>
         <!-- <th>Promotion Avg</th> -->
         <th>Status</th>
-        <th>Action</th>
+        <th nzRight class="action-column"><div>Action</div></th>
       </tr>
     </thead>
     <tbody>
@@ -100,7 +101,7 @@
             {{ data?.promo_average }} {{ data?.promo_average ? "%" : "" }}
           </td> -->
           <td>{{ data?.promo_status }}</td>
-          <td>
+          <td nzRight>
             <div style="display: flex; align-items: center">
               <a
                 (click)="

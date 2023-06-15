@@ -22,40 +22,40 @@ export class EditMultipleProductsComponent implements OnInit {
   userPermissions: any = '';
   chooseType = [
     {
-      label: 'EDIT_MPN',
-      value: 'Edit MPN',
+      label: 'Edit MPN',
+      value: 'EDIT_MPN',
     },
     {
-      label: 'ADD_EDIT_ASIN',
-      value: 'Add/Edit ASIN',
+      label: 'Add/Edit ASIN',
+      value: 'ADD_EDIT_ASIN',
     },
     {
-      label: 'ADD_EDIT_UPC',
-      value: 'Add/Edit UPC',
+      label: 'Add/Edit UPC',
+      value: 'ADD_EDIT_UPC',
     },
     {
-      label: 'EDIT_PRICE',
-      value: 'Edit Price',
+      label: 'Edit Price',
+      value: 'EDIT_PRICE',
     },
     {
-      label: 'EDIT_SHIPPING_DIMENSIONS',
-      value: 'Edit Shipping Dimensions',
+      label: 'Edit Shipping Dimensions',
+      value: 'EDIT_SHIPPING_DIMENSIONS',
     },
     {
-      label: 'CHANGE_PRODUCT_STATUS',
-      value: 'Change Product Status',
+      label: 'Change Product Status',
+      value: 'CHANGE_PRODUCT_STATUS',
     },
     {
-      label: 'REMOVE_ASIN',
-      value: 'Remove ASIN',
+      label: 'Remove ASIN',
+      value: 'REMOVE_ASIN',
     },
     {
-      label: 'REMOVE_UPC',
-      value: 'Remove UPC',
+      label: 'Remove UPC',
+      value: 'REMOVE_UPC',
     },
     {
-      label: 'EDIT_PRODUCT_DETAILS',
-      value: 'Edit Product Details',
+      label: 'Edit Product Details',
+      value: 'EDIT_PRODUCT_DETAILS',
     },
     // 'ADD_PRODUCT',
   ];
@@ -73,14 +73,14 @@ export class EditMultipleProductsComponent implements OnInit {
       this.userPermissions = permission;
       if (this.userPermissions.partner_map) {
         this.chooseType.push({
-          label: 'ADD_EDIT_MAP',
-          value: 'Add/Edit MAP',
+          label: 'Add/Edit MAP',
+          value: 'ADD_EDIT_MAP ',
         });
       }
       if (this.userPermissions.partner_sku_level_handling) {
         this.chooseType.push({
-          label: 'EDIT_SKU_SPECIFIC_HANDLING_TIME',
-          value: 'SKU specific Handling Time',
+          label: 'SKU specific Handling Time ',
+          value: 'EDIT_SKU_SPECIFIC_HANDLING_TIME',
         });
       }
     });

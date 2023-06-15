@@ -1,0 +1,197 @@
+<div class="login-form-layout" nz-row>
+  <div class="side-image gutter-row" nz-col [nzXs]="24" [nzMd]="12"></div>
+  <div
+    class="card gutter-row"
+    nz-col
+    [nzXs]="24"
+    [nzMd]="12"
+    *ngIf="!isLoginFirst"
+  >
+    <div class="logo">
+      <img nz-image height="60px" nzSrc="assets/img/logo.png" alt="" />
+    </div>
+    <h3>Sign In</h3>
+    <form nz-form [formGroup]="loginForm">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your user name!">
+          <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="userName"
+            >User Name
+          </nz-form-label>
+          <nz-input-group>
+            <input
+              formControlName="userName"
+              type="text"
+              nz-input
+              placeholder="Enter Your User Name"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your password!">
+          <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="password"
+            >Password
+          </nz-form-label>
+          <nz-input-group>
+            <input
+              formControlName="password"
+              type="password"
+              nz-input
+              [type]="passwordShow ? 'password' : 'text'"
+              placeholder="Enter password"
+            />
+            <a (click)="passwordShow = !passwordShow"
+              ><span
+                *ngIf="!passwordShow"
+                nz-icon
+                nzType="eye"
+                nzTheme="outline"
+              ></span
+              ><span
+                *ngIf="passwordShow"
+                nz-icon
+                nzType="eye-invisible"
+                nzTheme="outline"
+              ></span
+            ></a>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <h4>
+        <a (click)="forgotPassword()">Forgot Password?</a>
+      </h4>
+      <div class="action-btn">
+        <button
+          nz-button
+          nzType="primary"
+          (click)="submitForm()"
+          [disabled]="!loginForm.valid || isLoading"
+          [ngClass]="{
+            'button-disabled': !loginForm.valid || isLoading
+          }"
+        >
+          <span
+            *ngIf="isLoading"
+            style="color: white; font-size: 16px"
+            nz-icon
+            nzType="loading"
+          ></span>
+          Log In
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div
+    class="card gutter-row"
+    nz-col
+    [nzXs]="24"
+    [nzMd]="12"
+    *ngIf="isLoginFirst"
+  >
+    <div class="logo">
+      <img nz-image height="60px" nzSrc="assets/img/logo.png" alt="" />
+    </div>
+    <h3>Reset Password</h3>
+    <form nz-form [formGroup]="resetForm">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your old password!">
+          <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="oldPassword"
+            >Old Password
+          </nz-form-label>
+          <nz-input-group>
+            <input
+              formControlName="oldPassword"
+              type="text"
+              nz-input
+              placeholder="Enter Old Password"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your new password!">
+          <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="newPassword"
+            >New Password
+          </nz-form-label>
+          <nz-input-group>
+            <input
+              formControlName="newPassword"
+              type="password"
+              nz-input
+              [type]="newPasswordShow ? 'password' : 'text'"
+              placeholder="Enter New Password"
+            />
+            <a (click)="newPasswordShow = !newPasswordShow"
+              ><span
+                *ngIf="!newPasswordShow"
+                nz-icon
+                nzType="eye"
+                nzTheme="outline"
+              ></span
+              ><span
+                *ngIf="newPasswordShow"
+                nz-icon
+                nzType="eye-invisible"
+                nzTheme="outline"
+              ></span
+            ></a>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your confirm password!">
+          <nz-form-label [nzSm]="24" [nzXs]="24" nzFor="confirmPassword"
+            >Confirm Password
+          </nz-form-label>
+          <nz-input-group>
+            <input
+              formControlName="confirmPassword"
+              type="password"
+              nz-input
+              [type]="passwordShow ? 'password' : 'text'"
+              placeholder="Enter Confirm Password"
+            />
+            <a (click)="passwordShow = !passwordShow"
+              ><span
+                *ngIf="!passwordShow"
+                nz-icon
+                nzType="eye"
+                nzTheme="outline"
+              ></span
+              ><span
+                *ngIf="passwordShow"
+                nz-icon
+                nzType="eye-invisible"
+                nzTheme="outline"
+              ></span
+            ></a>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="action-btn">
+        <button
+          nz-button
+          nzType="primary"
+          (click)="submitForm()"
+          [disabled]="!resetForm.valid || isLoading"
+          [ngClass]="{
+            'button-disabled': !resetForm.valid || isLoading
+          }"
+        >
+          <div *ngIf="isLoading">
+            <ng-template #indicatorTemplate
+              ><span
+                style="color: white; font-size: 16px"
+                nz-icon
+                nzType="loading"
+              ></span>
+            </ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate"></nz-spin>
+          </div>
+          <span *ngIf="!isLoading">Reset Password</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
