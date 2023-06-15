@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { PromotionsService } from 'src/app/shared/service/promotions.service';
 
 @Component({
   selector: 'app-add-promotions',
@@ -10,18 +12,49 @@ export class AddPromotionsComponent implements OnInit {
   @Output() close = new EventEmitter();
   add_promotion!: FormGroup;
   isLoading: boolean = false;
+  selectFile: any = '';
 
-  constructor() {}
+  constructor(
+    private promotionsService: PromotionsService,
+    private message: NzMessageService
+  ) {}
   ngOnInit(): void {
     this.add_promotion = new FormGroup({
-      startDate: new FormControl('', [Validators.required]),
-      endDate: new FormControl('', [Validators.required]),
+      startAndEndDate: new FormControl('', [Validators.required]),
       downloadTemplate: new FormControl(''),
-      uploadFile: new FormControl(''),
+      uploadFile: new FormControl('', [Validators.required]),
     });
   }
 
-  submit() {}
+  selectFiles(event: any) {
+    this.selectFile = event?.target?.files[0];
+  }
+
+  submit() {
+    this.isLoading = true;
+    if (this.add_promotion?.valid) {
+      let formData = new FormData();
+      formData.append('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d');
+      formData.append('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
+      formData.append(
+        'start_date',
+        this.add_promotion.value.startAndEndDate[0]
+      );
+      formData.append('end_date', this.add_promotion.value.startAndEndDate[1]);
+      formData.append('uploaded_file', this.selectFile);
+
+      this.promotionsService.createPromotion(formData).subscribe(
+        (res: any) => {
+          this.isLoading = false;
+          if (res.success) {
+            this.message.create('success', 'Add promotion successfully!');
+            this.handleCancel();
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
+  }
 
   handleCancel() {
     this.close.emit();

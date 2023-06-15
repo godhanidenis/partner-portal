@@ -2,35 +2,43 @@
   <div class="body-section">
     <h4>Use this tool to create a promotion with a single upload.</h4>
     <form [formGroup]="add_promotion">
-      <nz-form-item>
-        <nz-form-label [nzXl]="24" nzRequired nzFor="Start Date"
-          >Start Date</nz-form-label
-        >
-        <nz-form-control [nzXl]="22" nzErrorTip="Please select start date.">
-          <nz-date-picker
-            formControlName="startDate"
-            style="width: 100%"
-          ></nz-date-picker>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzXl]="24" nzRequired nzFor="End Date"
-          >End Date</nz-form-label
-        >
-        <nz-form-control [nzXl]="22" nzErrorTip="Please select end date.">
-          <nz-date-picker
-            formControlName="endDate"
-            style="width: 100%"
-          ></nz-date-picker>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzXl]="24" nzFor="End Date"
-          >Download Template File</nz-form-label
-        >
-        <nz-form-control [nzXl]="22">
+      <nz-divider></nz-divider>
+      <div class="download">
+        <div class="icon">
+          <img
+            src="assets/img/file_list.png"
+            width="50"
+            height="50"
+            style="margin-right: 10px"
+          />
+        </div>
+        <div class="contact">
+          <h3>
+            Step 1: Start & End Date<span style="color: red; font-weight: 500"
+              >*</span
+            >
+          </h3>
+          <nz-form-item>
+            <nz-form-control nzErrorTip="Please select start and end date.">
+              <nz-input-group>
+                <nz-range-picker
+                  formControlName="startAndEndDate"
+                  style="width: 100%"
+                ></nz-range-picker>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <nz-divider></nz-divider>
+      <div class="download">
+        <div class="icon">
+          <img src="assets/img/download_file.png" width="50" height="50" />
+        </div>
+        <div class="contact">
+          <h3>Step 2: Download Template File</h3>
           <nz-radio-group formControlName="downloadTemplate">
+            <!-- (ngModelChange)="selectDownloadTemplate($event)" -->
             <label nz-radio [nzValue]="true"
               >Download Template with your existing products
             </label>
@@ -38,14 +46,20 @@
               >Download Template without your existing products
             </label>
           </nz-radio-group>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzXl]="24" nzFor="End Date"
-          >Upload Template File</nz-form-label
-        >
-        <nz-form-control [nzXl]="22">
+        </div>
+      </div>
+      <nz-divider></nz-divider>
+      <div class="download">
+        <div class="icon">
+          <img src="assets/img/upload_file.png" width="50" height="50" />
+        </div>
+        <div class="contact">
+          <h3>
+            Step 3: Upload Template File<span
+              style="color: red; font-weight: 500"
+              >*</span
+            >
+          </h3>
           <div class="Neon Neon-theme-dragdropbox">
             <input
               style="
@@ -64,6 +78,7 @@
               multiple="multiple"
               type="file"
               formControlName="uploadFile"
+              (input)="selectFiles($event)"
               #modelvel
             />
             <div class="Neon-input-dragDrop">
@@ -86,8 +101,8 @@
               >
             </div>
           </div>
-        </nz-form-control>
-      </nz-form-item>
+        </div>
+      </div>
     </form>
   </div>
   <div class="model-footer">

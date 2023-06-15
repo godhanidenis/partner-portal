@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   EditEndDatePromotions,
@@ -25,6 +25,8 @@ export class ScheduledPromotionsComponent implements OnInit {
   addEndDateVisible: boolean = false;
   badgeTotal: number = 0;
   promoCode: string = '';
+  startDate: string = '';
+
   constructor(
     private promotionsService: PromotionsService,
     private message: NzMessageService
@@ -33,9 +35,17 @@ export class ScheduledPromotionsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.addDateForm = new FormGroup({
+      startAndEndDate: new FormControl(''),
       endDate: new FormControl(''),
     });
   }
+
+  disabledEndDate = (endValue: Date): boolean => {
+    if (!endValue || !this.startDate) {
+      return false;
+    }
+    return endValue.getTime() <= new Date(this.startDate).getTime();
+  };
 
   getAllScheduledPromotions(page: number) {
     this.isLoading = true;
@@ -45,7 +55,6 @@ export class ScheduledPromotionsComponent implements OnInit {
     };
     this.promotionsService.getAllPromotions(data).subscribe(
       (res: any) => {
-        console.log(res);
         this.total = res.pagination?.total_rows ?? 0;
         this.scheduledPromotionsList = res.promos ?? [];
         this.isLoading = false;
@@ -59,9 +68,23 @@ export class ScheduledPromotionsComponent implements OnInit {
     this.getAllScheduledPromotions(this.pageIndex);
   }
 
-  editEndDate(promo_code: string) {
+  editEndDate(event: { code: string; date: string }) {
     this.addEndDateVisible = true;
-    this.promoCode = promo_code;
+    this.promoCode = event.code;
+    this.startDate = event.date ? event.date : '';
+    if (!this.startDate) {
+      this.addDateForm.controls['startAndEndDate'].setValidators([
+        Validators.required,
+      ]);
+      this.addDateForm.controls['startAndEndDate'].updateValueAndValidity();
+      this.addDateForm.controls['endDate'].clearValidators();
+      this.addDateForm.controls['endDate'].updateValueAndValidity();
+    } else {
+      this.addDateForm.controls['endDate'].setValidators([Validators.required]);
+      this.addDateForm.controls['endDate'].updateValueAndValidity();
+      this.addDateForm.controls['startAndEndDate'].clearValidators();
+      this.addDateForm.controls['startAndEndDate'].updateValueAndValidity();
+    }
   }
 
   submitForm() {
@@ -70,11 +93,16 @@ export class ScheduledPromotionsComponent implements OnInit {
       partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
       user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       promo_code: this.promoCode,
-      end_date: this.addDateForm.value.endDate,
     };
+    if (this.startDate) {
+      data['start_date'] = new Date(this.startDate);
+      data['end_date'] = this.addDateForm.value.endDate;
+    } else {
+      data['start_date'] = this.addDateForm.value.startAndEndDate[0];
+      data['end_date'] = this.addDateForm.value.startAndEndDate[1];
+    }
     this.promotionsService.editEndDatePromo(data).subscribe(
       (res: any) => {
-        console.log(res);
         if (res.success) {
           this.message.create('success', 'End date edit successfully!');
         }

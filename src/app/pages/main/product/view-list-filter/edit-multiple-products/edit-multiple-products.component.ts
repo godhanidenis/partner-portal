@@ -21,16 +21,43 @@ export class EditMultipleProductsComponent implements OnInit {
 
   userPermissions: any = '';
   chooseType = [
+    {
+      label: 'EDIT_MPN',
+      value: 'Edit MPN',
+    },
+    {
+      label: 'ADD_EDIT_ASIN',
+      value: 'Add/Edit ASIN',
+    },
+    {
+      label: 'ADD_EDIT_UPC',
+      value: 'Add/Edit UPC',
+    },
+    {
+      label: 'EDIT_PRICE',
+      value: 'Edit Price',
+    },
+    {
+      label: 'EDIT_SHIPPING_DIMENSIONS',
+      value: 'Edit Shipping Dimensions',
+    },
+    {
+      label: 'CHANGE_PRODUCT_STATUS',
+      value: 'Change Product Status',
+    },
+    {
+      label: 'REMOVE_ASIN',
+      value: 'Remove ASIN',
+    },
+    {
+      label: 'REMOVE_UPC',
+      value: 'Remove UPC',
+    },
+    {
+      label: 'EDIT_PRODUCT_DETAILS',
+      value: 'Edit Product Details',
+    },
     // 'ADD_PRODUCT',
-    'EDIT_MPN',
-    'ADD_EDIT_ASIN',
-    'ADD_EDIT_UPC',
-    'EDIT_PRICE',
-    'EDIT_SHIPPING_DIMENSIONS',
-    'CHANGE_PRODUCT_STATUS',
-    'REMOVE_ASIN',
-    'REMOVE_UPC',
-    'EDIT_PRODUCT_DETAILS',
   ];
   multiProduct!: FormGroup;
   isLoading: boolean = false;
@@ -45,10 +72,16 @@ export class EditMultipleProductsComponent implements OnInit {
     userPermissionService.userPermission.subscribe((permission: any) => {
       this.userPermissions = permission;
       if (this.userPermissions.partner_map) {
-        this.chooseType.push('ADD_EDIT_MAP');
+        this.chooseType.push({
+          label: 'ADD_EDIT_MAP',
+          value: 'Add/Edit MAP',
+        });
       }
       if (this.userPermissions.partner_sku_level_handling) {
-        this.chooseType.push('EDIT_SKU_SPECIFIC_HANDLING_TIME');
+        this.chooseType.push({
+          label: 'EDIT_SKU_SPECIFIC_HANDLING_TIME',
+          value: 'SKU specific Handling Time',
+        });
       }
     });
   }

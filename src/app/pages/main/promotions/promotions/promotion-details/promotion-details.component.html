@@ -24,12 +24,17 @@
         >
           <span
             ><b>Start Date : </b
-            >{{ viewData?.start_date | date : "dd-MM-yyyy" }}</span
+            >{{ viewData?.start_date | date : "MM-dd-yyyy" }}</span
           >
           <span
             ><b>End Date : </b
-            >{{ viewData?.end_date | date : "dd-MM-yyyy" }}</span
+            >{{ viewData?.end_date | date : "MM-dd-yyyy" }}</span
           >
+          <span style="display: flex; justify-content: end; margin-right: 3px">
+            <button nz-button nzType="primary" style="border-radius: 20px">
+              Download Promotion Details
+            </button>
+          </span>
         </div>
       </div>
       <div>
@@ -48,7 +53,7 @@
               <th class="text-end">Promotion Unit Price ($)</th>
               <th class="text-end">Discount ($)</th>
               <th class="text-end">Discount (%)</th>
-              <th class="text-end">Unit Sold</th>
+              <th class="text-end">Units Sold</th>
               <th class="text-end">Sales ($)</th>
             </tr>
           </thead>

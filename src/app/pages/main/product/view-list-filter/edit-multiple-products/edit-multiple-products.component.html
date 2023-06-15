@@ -8,7 +8,12 @@
       <nz-divider *ngIf="actionType === 'Edit'"></nz-divider>
       <div *ngIf="actionType === 'Edit'" class="download">
         <div class="icon">
-          <img src="../../../../.././../assets/img/file_list.png" width="50" height="50" style="margin-right: 10px;"/>
+          <img
+            src="../../../../.././../assets/img/file_list.png"
+            width="50"
+            height="50"
+            style="margin-right: 10px"
+          />
         </div>
         <div class="contact">
           <h3>
@@ -26,8 +31,8 @@
                 >
                   <nz-option
                     *ngFor="let data of chooseType"
-                    [nzLabel]="data"
-                    [nzValue]="data"
+                    [nzLabel]="data.label"
+                    [nzValue]="data.value"
                   ></nz-option>
                 </nz-select>
               </nz-input-group>
@@ -38,7 +43,11 @@
       <nz-divider></nz-divider>
       <div class="download">
         <div class="icon">
-          <img src="../../../../.././../assets/img/download_file.png" width="50" height="50"/>
+          <img
+            src="../../../../.././../assets/img/download_file.png"
+            width="50"
+            height="50"
+          />
         </div>
         <div class="contact">
           <h3>Step {{ actionType === "Edit" ? 2 : 1 }}: Download Template</h3>
@@ -64,7 +73,11 @@
       <nz-divider></nz-divider>
       <div class="download">
         <div class="icon">
-          <img src="../../../../.././../assets/img/upload_file.png" width="50" height="50"/>
+          <img
+            src="../../../../.././../assets/img/upload_file.png"
+            width="50"
+            height="50"
+          />
         </div>
         <div class="contact">
           <h3>

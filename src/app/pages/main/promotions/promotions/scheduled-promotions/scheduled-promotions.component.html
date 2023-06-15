@@ -12,15 +12,26 @@
 
   <nz-modal
     [(nzVisible)]="addEndDateVisible"
-    nzTitle="Add End Date"
+    [nzTitle]="'Edit' + (startDate ? '' : ' Start &') + ' End Date'"
     (nzOnCancel)="addEndDateVisible = false"
   >
     <ng-container *nzModalContent>
       <div class="model-section">
         <form nz-form [formGroup]="addDateForm">
-          <nz-form-item>
+          <nz-form-item *ngIf="!startDate">
+            <nz-form-label [nzXs]="7" nzRequired
+              >Start & End Date</nz-form-label
+            >
+            <nz-range-picker
+              formControlName="startAndEndDate"
+            ></nz-range-picker>
+          </nz-form-item>
+          <nz-form-item *ngIf="startDate">
             <nz-form-label [nzXs]="5" nzRequired>End Date</nz-form-label>
-            <nz-date-picker formControlName="endDate"></nz-date-picker>
+            <nz-date-picker
+              [nzDisabledDate]="disabledEndDate"
+              formControlName="endDate"
+            ></nz-date-picker>
           </nz-form-item>
         </form>
       </div>
@@ -40,6 +51,10 @@
             (click)="submitForm()"
             [nzType]="'primary'"
             style="height: 35px; margin-top: 0px; margin-right: 10px"
+            [disabled]="addDateForm.invalid || isLoading"
+            [ngClass]="{
+              'button-disabled': addDateForm.invalid
+            }"
           >
             <span
               *ngIf="isLoading"

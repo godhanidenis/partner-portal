@@ -72,10 +72,13 @@ export class PromotionTableComponent implements OnInit {
     this.router.navigate([`/main/${path}`]);
   }
 
-  selectAction(type: string, promo_code: string) {
+  selectAction(type: string, start_date: string, promo_code: string) {
     switch (type) {
       case 'end date':
-        this.action.emit(promo_code);
+        this.action.emit({ code: promo_code, date: start_date });
+        break;
+      case 'start end date':
+        this.action.emit({ code: promo_code, date: '' });
         break;
       case 'cancel':
         const data: StopPromotions = {

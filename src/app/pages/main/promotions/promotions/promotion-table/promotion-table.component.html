@@ -76,8 +76,8 @@
   >
     <thead>
       <tr>
-        <th>Promo Code</th>
-        <th>Added On</th>
+        <th>Promotion Code</th>
+        <th>Created Date</th>
         <th>Start Date</th>
         <th>End Date</th>
         <!-- <th>Promotion Type</th> -->
@@ -91,9 +91,9 @@
       <ng-template ngFor let-data [ngForOf]="listOfData">
         <tr>
           <td>{{ data?.promo_code }}</td>
-          <td>{{ data?.added_on | date : "dd-MM-yyyy" }}</td>
-          <td>{{ data?.start_date | date : "dd-MM-yyyy" }}</td>
-          <td>{{ data?.end_date | date : "dd-MM-yyyy" }}</td>
+          <td>{{ data?.added_on | date : "MM-dd-yyyy" }}</td>
+          <td>{{ data?.start_date | date : "MM-dd-yyyy" }}</td>
+          <td>{{ data?.end_date | date : "MM-dd-yyyy" }}</td>
           <!-- <td>{{ data?.promo_type }}</td> -->
           <td>{{ data?.total_mpn }}</td>
           <!-- <td>
@@ -108,40 +108,52 @@
                     'promotions/promotion-details/' + data?.promo_code
                   )
                 "
-                style="margin: 0 10px; color: #2121c3; font-size: large"
+                style="margin: 0 5px; color: #2121c3; font-size: large"
                 ><span nz-icon nzType="eye" nzTheme="outline"></span
               ></a>
-              <button
-                style="border-radius: 4px; height: 30px; padding: 3px 15px"
+              <a
                 nz-dropdown
                 nzTrigger="click"
                 [nzDropdownMenu]="menu"
-                nz-button
-                [nzType]="'primary'"
                 *ngIf="tabName === 'Scheduled Promotions'"
-              >
-                Edit
-              </button>
+                style="margin: 0 5px; color: #2121c3; font-size: large"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
               <nz-dropdown-menu #menu="nzDropdownMenu">
                 <ul nz-menu>
                   <li
                     *ngIf="data?.promo_status === 'Scheduled'"
                     nz-menu-item
-                    (click)="selectAction('cancel', data?.promo_code)"
+                    (click)="selectAction('cancel', '', data?.promo_code)"
                   >
                     Cancel Promotion request
                   </li>
                   <li
+                    *ngIf="data?.promo_status === 'Scheduled'"
+                    nz-menu-item
+                    (click)="
+                      selectAction('start end date', '', data?.promo_code)
+                    "
+                  >
+                    Edit Start & End Date
+                  </li>
+                  <li
                     *ngIf="data?.promo_status === 'Running'"
                     nz-menu-item
-                    (click)="selectAction('Now', data?.promo_code)"
+                    (click)="selectAction('Now', '', data?.promo_code)"
                   >
                     Stop Promotion Now
                   </li>
                   <li
                     *ngIf="data?.promo_status === 'Running'"
                     nz-menu-item
-                    (click)="selectAction('end date', data?.promo_code)"
+                    (click)="
+                      selectAction(
+                        'end date',
+                        data?.start_date,
+                        data?.promo_code
+                      )
+                    "
                   >
                     Edit End Date
                   </li>

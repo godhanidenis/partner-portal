@@ -39,7 +39,6 @@ export class CompletedPromotionsComponent implements OnInit {
     };
     this.promotionsService.getAllPromotions(data).subscribe(
       (res: any) => {
-        console.log(res);
         this.total = res.pagination?.total_rows ?? 0;
         this.completedPromotionsList = res.promos ?? [];
         this.isLoading = false;

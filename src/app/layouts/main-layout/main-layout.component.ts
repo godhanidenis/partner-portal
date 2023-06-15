@@ -10,18 +10,26 @@ import { UserPermissionService } from 'src/app/shared/service/user-permission.se
 })
 export class MainLayoutComponent implements OnInit {
   isCollapsed = false;
+  avatarCharacters: string = '';
+  userName: string = '';
 
   constructor(
     private router: Router,
     private userPermissionService: UserPermissionService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.changePermission('NPS');
+  }
 
   changePermission(type: string) {
     this.userPermissionService
       .getPartnerPermission(type)
       .subscribe((res: any) => {
+        var str = res?.partner_display_name;
+        var matches = str?.match(/\b(\w)/g);
+        this.avatarCharacters = matches?.join('');
+        this.userName = res?.partner_display_name;
         this.userPermissionService.userPermission.next(res);
       });
   }

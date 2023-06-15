@@ -23,7 +23,8 @@ export interface EditEndDatePromotions {
   partner_id: string;
   user_id: string;
   promo_code: string;
-  end_date: string | Date;
+  start_date?: string | Date;
+  end_date?: string | Date;
 }
 
 @Injectable({
@@ -66,5 +67,9 @@ export class PromotionsService {
     return this.http.get(this.url + '/promo', {
       params: params,
     });
+  }
+
+  createPromotion(payload: any) {
+    return this.http.post(this.url + '/add-promo', payload);
   }
 }

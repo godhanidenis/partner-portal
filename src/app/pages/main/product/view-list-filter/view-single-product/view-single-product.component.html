@@ -4,7 +4,8 @@
   <app-section-header [header]="'Product Details'"></app-section-header>
 
   <div class="body-section">
-    <nz-tabset nzType="card">
+    <app-add-edit-product [editSection]="true"></app-add-edit-product>
+    <!-- <nz-tabset nzType="card">
       <nz-tab nzTitle="Details">
         <app-add-edit-product [editSection]="true"></app-add-edit-product>
       </nz-tab>
@@ -12,6 +13,6 @@
         <app-insights-and-analytics></app-insights-and-analytics>
       </nz-tab>
       <nz-tab nzTitle="History"> <app-history></app-history></nz-tab>
-    </nz-tabset>
+    </nz-tabset> -->
   </div>
 </div>
