@@ -10,9 +10,11 @@ import { MainRoutingModule } from './main-routing.module';
 import { ProfileModule } from './profile/profile.module';
 import { ProductModule } from './product/product.module';
 import { HomeModule } from './home/home.module';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ComponentModule } from 'src/app/components/component.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [ChangePasswordComponent],
   imports: [
     MainRoutingModule,
     NzLayoutModule,
@@ -24,6 +26,7 @@ import { HomeModule } from './home/home.module';
     ProfileModule,
     ProductModule,
     HomeModule,
+    ComponentModule,
   ],
   exports: [],
 })

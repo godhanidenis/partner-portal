@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 Chart.register(...registerables);
 
 @Component({
@@ -13,7 +14,7 @@ export class HomeSectionComponent implements OnInit {
   @ViewChild('dChart2', { static: true }) doughnutChart2!: ElementRef;
   chart: any;
   cutOut: number = 75;
-  performanceIssuesList = [
+  performanceIssuesList: any[] = [
     {
       id: 1,
       name: 'Handling Time Conflict',
@@ -88,6 +89,22 @@ export class HomeSectionComponent implements OnInit {
     },
   ];
 
+  performanceUrlList = [
+    'dashboard/performance-issues/handling-time-conflict',
+    'dashboard/performance-issues/unit-price-conflict',
+    'dashboard/performance-issues/map-conflict',
+    'dashboard/performance-issues/restricted-via-order',
+    'dashboard/performance-issues/restricted-discontinued',
+    'dashboard/performance-issues/restricted-product-price-error',
+    'dashboard/performance-issues/restricted-cannot-ship-ground',
+    ,
+    'dashboard/performance-issues/restricted-via-returns',
+    'dashboard/performance-issues/incomplete-offer',
+    'dashboard/performance-issues/stranded-in-feed',
+    'dashboard/performance-issues/stranded-in-catalog',
+    'dashboard/performance-issues/discontinued-update',
+  ];
+
   recommendationIssuesList = [
     {
       id: 1,
@@ -133,6 +150,16 @@ export class HomeSectionComponent implements OnInit {
     },
   ];
 
+  recommendationUrlList = [
+    'products/add-product',
+    'dashboard/recommendation-issues/price-correction',
+    'dashboard/recommendation-issues/lack-of-sales-demand',
+    'dashboard/recommendation-issues/products-losing-importance-on-amazon',
+    'dashboard/recommendation-issues/shipping-label',
+    'profile/allowances/co-op',
+    'profile/allowances/rebate',
+  ];
+
   chartOneLabel: string[] = [
     'Active',
     'Discontinued',
@@ -148,35 +175,7 @@ export class HomeSectionComponent implements OnInit {
   chartTwoColor: string[] = ['green', 'red', '#DFCFBE'];
   chartTwoData: number[] = [53, 34, 18];
   chartTwoLegend: any[] = [];
-
-  // plugin = {
-  //   id: 'customCanvasBackgroundColor',
-  //   beforeDraw: (
-  //     chart: { width?: any; height?: any; ctx?: any },
-  //     args: any,
-  //     options: { color: string }
-  //   ) => {
-  //     var width = this.chart.chartArea.width,
-  //       height = this.chart.chartArea.height,
-  //       ctx = chart.ctx;
-
-  //     ctx.restore();
-  //     var fontSize = (height / 114).toFixed(2);
-  //     ctx.font = fontSize + 'em sans-serif';
-  //     ctx.textBaseline = 'middle';
-
-  //     var text = this.chart.data.datasets[0].data.reduce(
-  //         (partialSum: any, a: any) => partialSum + a,
-  //         0
-  //       ),
-  //       textX = Math.round((width - ctx.measureText(text).width) / 2),
-  //       textY =
-  //         height / 2 + this.chart.legend.height + this.chart.titleBlock.height;
-
-  //     ctx.fillText(123, textX, textY);
-  //     ctx.save();
-  //   },
-  // };
+  isLoading: boolean = false;
 
   pendingActions = [
     {
@@ -205,7 +204,33 @@ export class HomeSectionComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    const data = {
+      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+    };
+    dashboardService.getIssues(data).subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.performanceIssuesList = [];
+          res.performance.map((result: any, index: number) => {
+            result['url'] = this.performanceUrlList[index];
+            this.performanceIssuesList.push(result);
+          });
+          this.recommendationIssuesList = [];
+          res.recommendation.map((result: any, index: number) => {
+            result['url'] = this.recommendationUrlList[index];
+            this.recommendationIssuesList.push(result);
+          });
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
     this.chartOneLabel.map((res: string, index) => {
       this.chartOneLegend.push({
         label: res,
