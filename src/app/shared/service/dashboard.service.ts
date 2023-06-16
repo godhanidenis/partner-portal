@@ -24,4 +24,14 @@ export class DashboardService {
       params: params,
     });
   }
+
+  handlingTimeConflict(action: Promotion) {
+    let params = new HttpParams()
+      .set('partner_id', action.partner_id)
+      .set('user_id', action.user_id);
+
+    return this.http.get(this.url + '/handling-time-conflict', {
+      params: params,
+    });
+  }
 }

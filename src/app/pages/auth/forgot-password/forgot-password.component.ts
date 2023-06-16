@@ -23,10 +23,6 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  logIn() {
-    this.router.navigate(['/auth/login']);
-  }
-
   submitForm(): void {
     this.submitError = true;
   }
