@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
   EditEndDatePromotions,
-  Promotion,
+  ExportPromo,
+  PromoTemplate,
   Promotions,
   StopPromotions,
 } from '../model/promotion.model';
@@ -36,7 +37,7 @@ export class PromotionsService {
   }
 
   editEndDatePromo(payload: EditEndDatePromotions) {
-    return this.http.post(this.url + '/edit-end-date-promo', payload);
+    return this.http.post(this.url + '/edit-promo', payload);
   }
 
   getPromotion(action: StopPromotions) {
@@ -52,5 +53,31 @@ export class PromotionsService {
 
   createPromotion(payload: any) {
     return this.http.post(this.url + '/add-promo', payload);
+  }
+
+  downloadPromotionDetails(action: StopPromotions) {
+    let params = new HttpParams()
+      .set('partner_id', action.partner_id)
+      .set('user_id', action.user_id)
+      .set('promo_code', action.promo_code);
+
+    return this.http.get(this.url + '/download-promotion-details', {
+      params: params,
+    });
+  }
+
+  promoTemplate(action: PromoTemplate) {
+    let params = new HttpParams()
+      .set('partner_id', action.partner_id)
+      .set('user_id', action.user_id)
+      .set('include_data', action.include_data);
+
+    return this.http.get(this.url + '/promo-template', {
+      params: params,
+    });
+  }
+
+  exportPromo(payload: ExportPromo) {
+    return this.http.post(this.url + '/export-promo', payload);
   }
 }

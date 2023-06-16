@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { PromoTemplate } from 'src/app/shared/model/promotion.model';
 import { PromotionsService } from 'src/app/shared/service/promotions.service';
 
 @Component({
@@ -28,6 +29,27 @@ export class AddPromotionsComponent implements OnInit {
 
   selectFiles(event: any) {
     this.selectFile = event?.target?.files[0];
+  }
+
+  selectDownloadTemplate(event: boolean) {
+    const data: PromoTemplate = {
+      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+      include_data: event,
+    };
+    this.promotionsService.promoTemplate(data).subscribe((res: any) => {
+      if (res.success) {
+        this.message.create(
+          'success',
+          'Download promotion template successfully!'
+        );
+        var objectUrl = res.temlate_url;
+        var a = document.createElement('a');
+        a.download = 'document';
+        a.href = objectUrl;
+        a.click();
+      }
+    });
   }
 
   submit() {
