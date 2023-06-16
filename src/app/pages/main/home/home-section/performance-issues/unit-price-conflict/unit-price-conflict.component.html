@@ -46,6 +46,7 @@
     >
       <thead>
         <tr>
+          <th style="max-width: 50px">Sr. No.</th>
           <th>Amazon ASIN</th>
           <th>Unit Price provided to 123Stores</th>
           <th>Allowance provided to 123Stores</th>
@@ -57,18 +58,28 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of nzTable.data">
-          <td>{{ data?.amazonASIN }}</td>
-          <td>{{ data?.unitPriceProvidedTo123Stores | currency }}</td>
+        <tr *ngFor="let data of nzTable.data; let no = index">
+          <td>{{ no + 1 }}</td>
+          <td>{{ data?.asin }}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <!-- <td>{{ data?.unitPriceProvidedTo123Stores | currency }}</td>
           <td>{{ data?.allowanceProvidedTo123Stores }}</td>
           <td>{{ data?.netUnitPriceProvidedTo123Stores | currency }}</td>
           <td>
             {{
               data?.retailPriceOnAmazonOfferedByConflictingProvider | currency
             }}
+          </td> -->
+          <td>{{ data?.no_of_other_sellers }}</td>
+          <td>
+            <span *ngFor="let value of data.other_sellers; let sr = index"
+              >{{ value
+              }}{{ data.other_sellers.length - 1 !== sr ? "," : "" }}</span
+            >
           </td>
-          <td>{{ data?.noOfConflictingProviders }}</td>
-          <td>{{ data?.conflictingProviders }}</td>
           <td>
             <button
               nz-button

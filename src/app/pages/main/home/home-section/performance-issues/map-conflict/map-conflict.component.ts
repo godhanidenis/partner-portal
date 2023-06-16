@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-map-conflict',
@@ -24,30 +25,7 @@ export class MapConflictComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  mapConflictList = [
-    {
-      id: 1,
-      mpn: 'FL-6720-6719-PW',
-      upc: '816110020025',
-      productName: 'FLOOR LAMP',
-      amazonASIN: 'B00FKEKHSQ',
-      partnerMAPProvidedTo123Stores: '459.8',
-      retailPriceOnAmazonOfferedByConflictingProvider: '454.8',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'Lighting World Online',
-    },
-    {
-      id: 2,
-      mpn: 'TL-N8055-BB',
-      upc: '816110020100',
-      productName: 'Table Lamp',
-      amazonASIN: 'B00FKEL1VI',
-      partnerMAPProvidedTo123Stores: '334.4',
-      retailPriceOnAmazonOfferedByConflictingProvider: '329.4',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'Lighting World Online',
-    },
-  ];
+  mapConflictList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -75,7 +53,24 @@ export class MapConflictComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.mapConflict().subscribe(
+      (res: any) => {
+        console.log(res);
+
+        this.isLoading = false;
+        if (res.success) {
+          this.mapConflictList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

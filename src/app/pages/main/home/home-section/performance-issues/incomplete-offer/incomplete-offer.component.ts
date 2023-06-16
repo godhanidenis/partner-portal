@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-incomplete-offer',
@@ -24,29 +25,7 @@ export class IncompleteOfferComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  incompleteOfferList = [
-    {
-      id: 1,
-      mpn: '19001BK',
-      upc: '789313037049',
-      product_Name:
-        '2 OZ, 3 3/4 In X 2 1/2 In SAUCE DISH, BLACK, DOZEN 19001BK',
-      amazonASIN: 'B07YZPY8C6',
-      amazonMPN: '19001BK',
-      amazonPageTitle:
-        'Thunder Group 2 OZ, 3 3/4" X 2 1/2" Sauce Dish, Black - Set of 12',
-    },
-    {
-      id: 2,
-      mpn: '19002BK',
-      upc: '789313037148',
-      product_Name: '4 OZ, 6 In X 3 In TWIN SAUCE DISH, BLACK, DOZEN 19002BK',
-      amazonASIN: 'B07YZPG3V1',
-      amazonMPN: '19002BK',
-      amazonPageTitle:
-        'Thunder Group 4 OZ, 6" X 3" Twin Sauce Dish, Black - Set of 12',
-    },
-  ];
+  incompleteOfferList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -74,7 +53,22 @@ export class IncompleteOfferComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.offerIncomplete().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.incompleteOfferList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

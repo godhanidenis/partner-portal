@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-restricted-product-price-error',
@@ -24,28 +25,7 @@ export class RestrictedProductPriceErrorComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  restrictedProductPriceErrorList = [
-    {
-      id: 1,
-      mpn: '4030FL Black',
-      upc: '644472017175',
-      productName: '40"x30" Extra Large Flight Cage',
-      amazonASIN: 'B00495AHD2',
-      unitPrice: '355.5',
-      reasonForRestriction: 'Order cancelled due to Product Price Error',
-      dateOfRestriction: '',
-    },
-    {
-      id: 2,
-      mpn: 'AE1814F BLACK SP',
-      upc: '644472011951',
-      productName: '18"x14" Flat Top Cage in Retail Box (single pack)',
-      amazonASIN: 'B089QV9TQK',
-      unitPrice: '43.65',
-      reasonForRestriction: 'Order cancelled due to Product Price Error',
-      dateOfRestriction: '',
-    },
-  ];
+  restrictedProductPriceErrorList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -73,7 +53,22 @@ export class RestrictedProductPriceErrorComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.productPriceErrorViaOrderCancellation().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.restrictedProductPriceErrorList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

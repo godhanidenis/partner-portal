@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-unit-price-conflict',
@@ -24,7 +25,7 @@ export class UnitPriceConflictComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  unitPriceConflictList = [
+  unitPriceConflictList: any[] = [
     {
       id: 1,
       amazonASIN: 'B001PZ7KE8',
@@ -35,16 +36,16 @@ export class UnitPriceConflictComponent implements OnInit {
       noOfConflictingProviders: '3',
       conflictingProviders: 'KIKURA, Ichiban-Japan, JapanSuperMall',
     },
-    {
-      id: 2,
-      amazonASIN: 'B001PZF2IY',
-      unitPriceProvidedTo123Stores: '20.4',
-      allowanceProvidedTo123Stores: '0',
-      netUnitPriceProvidedTo123Stores: '20.4',
-      retailPriceOnAmazonOfferedByConflictingProvider: '18.95',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'MVTRADINGONLINE(USA)',
-    },
+    // {
+    //   id: 2,
+    //   amazonASIN: 'B001PZF2IY',
+    //   unitPriceProvidedTo123Stores: '20.4',
+    //   allowanceProvidedTo123Stores: '0',
+    //   netUnitPriceProvidedTo123Stores: '20.4',
+    //   retailPriceOnAmazonOfferedByConflictingProvider: '18.95',
+    //   noOfConflictingProviders: '1',
+    //   conflictingProviders: 'MVTRADINGONLINE(USA)',
+    // },
   ];
 
   editData: any;
@@ -74,7 +75,23 @@ export class UnitPriceConflictComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.handlingTimeConflict().subscribe(
+      (res: any) => {
+        console.log(res);
+        this.isLoading = false;
+        if (res.success) {
+          this.unitPriceConflictList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

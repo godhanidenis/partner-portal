@@ -46,14 +46,16 @@
     >
       <thead>
         <tr>
-          <th>Serial No</th>
+          <th style="max-width: 100px">Sr. No.</th>
           <th>MPN</th>
           <th>UPC</th>
-          <th>Product_Name</th>
+          <th>Product Name</th>
           <th>Amazon ASIN</th>
-          <th>Partner MAP provided to 123Stores</th>
-          <th>Retail Price on Amazon offered by Conflicting Provider</th>
-          <th>No. of Conflicting Providers</th>
+          <th style="max-width: 150px">Partner MAP provided to 123Stores</th>
+          <th style="max-width: 150px">
+            Retail Price on Amazon offered by Conflicting Provider
+          </th>
+          <th style="max-width: 150px">No. of Conflicting Providers</th>
           <th>Conflicting Providers</th>
           <th>Actions</th>
         </tr>
@@ -63,16 +65,17 @@
           <td>{{ no + 1 }}</td>
           <td>{{ data?.mpn }}</td>
           <td>{{ data?.upc }}</td>
-          <td>{{ data?.productName }}</td>
-          <td>{{ data?.amazonASIN }}</td>
-          <td>{{ data?.partnerMAPProvidedTo123Stores | currency }}</td>
+          <td>{{ data?.name }}</td>
+          <td>{{ data?.asin }}</td>
+          <td>{{ data?.map | currency }}</td>
+          <td>{{ data?.other_seller_retail_price | currency }}</td>
+          <td>{{ data?.no_of_other_sellers }}</td>
           <td>
-            {{
-              data?.retailPriceOnAmazonOfferedByConflictingProvider | currency
-            }}
+            <span *ngFor="let value of data?.other_sellers; let sr = index"
+              >{{ value
+              }}{{ data.other_sellers.length - 1 !== sr ? "," : "" }}</span
+            >
           </td>
-          <td>{{ data?.noOfConflictingProviders }}</td>
-          <td>{{ data?.conflictingProviders }}</td>
           <td>
             <button
               nz-button

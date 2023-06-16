@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-price-correction',
@@ -24,38 +25,7 @@ export class PriceCorrectionComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  priceCorrectionList = [
-    {
-      id: 1,
-      mpn: '49136WT',
-      upc: '789313078448',
-      asin: 'B07YZPRSVC',
-      product_Name: '13 In X 6 1/2 In TRAY, 1 In DEEP, DOZEN 49136WT',
-      partnerUnitPrice: '116.48',
-      allowances: '0',
-      shippingPrice: '11',
-      amazonMarketPlaceFees: '22.5',
-      listedPrice: '149.98',
-      retailPrice: '149.94',
-      requiredUnitPrice: '110.66',
-      discount: '5',
-    },
-    {
-      id: 2,
-      mpn: 'ALMH002',
-      upc: '789313156214',
-      asin: 'B004083KRI',
-      product_Name: 'ALUMINUM MEAT TENDERIZER (XL)',
-      partnerUnitPrice: '12.9',
-      allowances: '0',
-      shippingPrice: '11.75',
-      amazonMarketPlaceFees: '4.35',
-      listedPrice: '29',
-      retailPrice: '28.98',
-      requiredUnitPrice: '12.26',
-      discount: '5',
-    },
-  ];
+  priceCorrectionList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -83,7 +53,22 @@ export class PriceCorrectionComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.priceCorrection().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.priceCorrectionList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

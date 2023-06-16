@@ -237,7 +237,7 @@
             <tbody>
               <ng-template ngFor let-data [ngForOf]="recommendationIssuesList">
                 <tr>
-                  <td>{{ data?.id }}</td>
+                  <td>{{ data.priority }}</td>
                   <td>
                     <a (click)="shoeIssuesPage(data.url)" class="link">{{
                       data?.name

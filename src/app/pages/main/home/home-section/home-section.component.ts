@@ -14,80 +14,7 @@ export class HomeSectionComponent implements OnInit {
   @ViewChild('dChart2', { static: true }) doughnutChart2!: ElementRef;
   chart: any;
   cutOut: number = 75;
-  performanceIssuesList: any[] = [
-    {
-      id: 1,
-      name: 'Handling Time Conflict',
-      count: 5,
-      url: 'dashboard/performance-issues/handling-time-conflict',
-    },
-    {
-      id: 2,
-      name: 'Unit Price Conflict',
-      count: 34,
-      url: 'dashboard/performance-issues/unit-price-conflict',
-    },
-    {
-      id: 3,
-      name: 'MAP Conflict',
-      count: 51,
-      url: 'dashboard/performance-issues/map-conflict',
-    },
-    {
-      id: 4,
-      name: '123Stores Restricted (Restricted via Order Cancellation)',
-      count: 11,
-      url: 'dashboard/performance-issues/restricted-via-order',
-    },
-    {
-      id: 5,
-      name: '123Stores Restricted (Discontinued via Order Cancellation)',
-      count: 14,
-      url: 'dashboard/performance-issues/restricted-discontinued',
-    },
-    {
-      id: 6,
-      name: '123Stores Restricted (Product Price Error via Order Cancellation)',
-      count: 53,
-      url: 'dashboard/performance-issues/restricted-product-price-error',
-    },
-    {
-      id: 7,
-      name: '123Stores Restricted (Cannot Ship Ground via Order Cancellation)',
-      count: 24,
-      url: 'dashboard/performance-issues/restricted-cannot-ship-ground',
-    },
-    {
-      id: 8,
-      name: '123Stores Restricted via Returns',
-      count: 13,
-      url: 'dashboard/performance-issues/restricted-via-returns',
-    },
-    {
-      id: 9,
-      name: 'Incomplete Offer',
-      count: 12,
-      url: 'dashboard/performance-issues/incomplete-offer',
-    },
-    {
-      id: 10,
-      name: 'Products for which Data is incomplete Stranded (In-Feed)',
-      count: 43,
-      url: 'dashboard/performance-issues/stranded-in-feed',
-    },
-    {
-      id: 11,
-      name: 'Products for which Data is incomplete Stranded (In-Catalog)',
-      count: 34,
-      url: 'dashboard/performance-issues/stranded-in-catalog',
-    },
-    {
-      id: 12,
-      name: 'Discontinued Update',
-      count: 42,
-      url: 'dashboard/performance-issues/discontinued-update',
-    },
-  ];
+  performanceIssuesList: any[] = [];
 
   performanceUrlList = [
     'dashboard/performance-issues/handling-time-conflict',
@@ -97,7 +24,6 @@ export class HomeSectionComponent implements OnInit {
     'dashboard/performance-issues/restricted-discontinued',
     'dashboard/performance-issues/restricted-product-price-error',
     'dashboard/performance-issues/restricted-cannot-ship-ground',
-    ,
     'dashboard/performance-issues/restricted-via-returns',
     'dashboard/performance-issues/incomplete-offer',
     'dashboard/performance-issues/stranded-in-feed',
@@ -105,50 +31,7 @@ export class HomeSectionComponent implements OnInit {
     'dashboard/performance-issues/discontinued-update',
   ];
 
-  recommendationIssuesList = [
-    {
-      id: 1,
-      name: 'Price Correction',
-      count: 5,
-      url: 'dashboard/recommendation-issues/price-correction',
-    },
-    {
-      id: 2,
-      name: 'Lack of Sales Demand / Similar Products available at better price',
-      count: 34,
-      url: 'dashboard/recommendation-issues/lack-of-sales-demand',
-    },
-    {
-      id: 3,
-      name: 'Products losing importance on Amazon / Lower Retail Price Outside of Amazon',
-      count: 51,
-      url: 'dashboard/recommendation-issues/products-losing-importance-on-amazon',
-    },
-    {
-      id: 4,
-      name: 'Using the 123Stores Shipping Label rather than the 123Stores 3rd Party UPS Account.',
-      count: 11,
-      url: 'dashboard/recommendation-issues/shipping-label',
-    },
-    {
-      id: 5,
-      name: 'Co-Op Allowance',
-      count: 14,
-      url: 'profile/allowances/co-op',
-    },
-    {
-      id: 6,
-      name: 'Rebate',
-      count: 53,
-      url: 'profile/allowances/rebate',
-    },
-    {
-      id: 7,
-      name: 'Add New Products',
-      count: 24,
-      url: 'view-product/add-product',
-    },
-  ];
+  recommendationIssuesList: any[] = [];
 
   recommendationUrlList = [
     'products/add-product',
@@ -223,9 +106,9 @@ export class HomeSectionComponent implements OnInit {
             this.performanceIssuesList.push(result);
           });
           this.recommendationIssuesList = [];
-          res.recommendation.map((result: any, index: number) => {
-            result['url'] = this.recommendationUrlList[index];
-            this.recommendationIssuesList.push(result);
+          res.recommendation.map((response: any, index: number) => {
+            response['url'] = this.recommendationUrlList[index];
+            this.recommendationIssuesList.push(response);
           });
         }
       },

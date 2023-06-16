@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-lack-of-sales-demand',
@@ -24,36 +25,7 @@ export class LackOfSalesDemandComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  lackOfSalesDemandList = [
-    {
-      id: 1,
-      mpn: '1012BB',
-      upc: '789313482016',
-      asin: 'B007XTSER2',
-      product_Name: '11 3/4 PLATE, BLUE BAMBOO',
-      partnerUnitPrice: '119.7',
-      allowances: '0',
-      shippingPrice: '11',
-      amazonMarketPlaceFees: '23.06',
-      listedPrice: '153.76',
-      retailPrice: '101.75',
-      discount: '15',
-    },
-    {
-      id: 2,
-      mpn: '1012TB',
-      upc: '789313106516',
-      asin: 'B007XTSW9M',
-      product_Name: '11 3/4 PLATE, LOTUS',
-      partnerUnitPrice: '116.24',
-      allowances: '0',
-      shippingPrice: '11',
-      amazonMarketPlaceFees: '22.45',
-      listedPrice: '149.69',
-      retailPrice: '98.8',
-      discount: '15',
-    },
-  ];
+  lackOfSalesDemandList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -81,7 +53,22 @@ export class LackOfSalesDemandComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.lackOfSalesDemand().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.lackOfSalesDemandList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-stranded-in-feed',
@@ -24,18 +25,7 @@ export class StrandedInFeedComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  strandedInFeedList = [
-    {
-      id: 1,
-      mpn: '3106TL',
-      stock: '0',
-    },
-    {
-      id: 2,
-      mpn: '5208',
-      stock: '20',
-    },
-  ];
+  strandedInFeedList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -63,7 +53,22 @@ export class StrandedInFeedComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.strandedInFeed().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.strandedInFeedList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

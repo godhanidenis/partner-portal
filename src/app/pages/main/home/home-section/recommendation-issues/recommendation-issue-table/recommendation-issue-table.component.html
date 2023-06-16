@@ -67,18 +67,18 @@
         <td>{{ data?.mpn }}</td>
         <td>{{ data?.upc }}</td>
         <td>{{ data?.asin }}</td>
-        <td>{{ data?.product_Name }}</td>
-        <td>{{ data?.partnerUnitPrice | currency }}</td>
-        <td>{{ data?.allowances }}</td>
-        <td>{{ data?.shippingPrice | currency }}</td>
-        <td>{{ data?.amazonMarketPlaceFees | currency }}</td>
-        <td>{{ data?.listedPrice | currency }}</td>
+        <td>{{ data?.name }}</td>
+        <td>{{ data?.unit_price | currency }}</td>
+        <td>{{ data?.allowance_price | currency }}</td>
+        <td>{{ data?.shipping_price | currency }}</td>
+        <td>{{ data?.market_commission | currency }}</td>
+        <td>{{ data?.listed_price | currency }}</td>
         <td
           *ngIf="
             tabName === 'Lack Of Sales Demand' || tabName === 'Price Correction'
           "
         >
-          {{ data?.retailPrice | currency }}
+          {{ data?.other_seller_retail_price | currency }}
         </td>
         <td
           *ngIf="
@@ -86,7 +86,7 @@
             tabName === 'Products Losing Importance On Amazon'
           "
         >
-          {{ data?.requiredUnitPrice | currency }}
+          {{ data?.required_unit_price | currency }}
         </td>
         <td
           *ngIf="
@@ -95,19 +95,19 @@
             tabName === 'Products Losing Importance On Amazon'
           "
         >
-          {{ data?.discount }}%
+          {{ data?.discount_required }}
         </td>
         <td *ngIf="tabName === 'Shipping Label'">
-          {{ data?.potentialShippingPrice | currency }}
+          {{ data?.potential_shipping_price | currency }}
         </td>
         <td *ngIf="tabName === 'Shipping Label'">
-          {{ data?.potential123StoresListedPrice | currency }}
+          {{ data?.potential_listed_price | currency }}
         </td>
         <td *ngIf="tabName === 'Shipping Label'">
-          {{ data?.potentialRetailPrice | currency }}
+          {{ data?.potential_retail_price_reduction | currency }}
         </td>
         <td *ngIf="tabName === 'Shipping Label'">
-          {{ data?.potentialRetailPricePer }}%
+          {{ data?.potential_retail_price_reduction_percentage }}
         </td>
         <td>
           <button

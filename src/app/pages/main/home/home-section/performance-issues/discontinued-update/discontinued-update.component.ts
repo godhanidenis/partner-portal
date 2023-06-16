@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-discontinued-update',
@@ -24,25 +25,7 @@ export class DiscontinuedUpdateComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  discontinuedUpdateList = [
-    {
-      id: 1,
-      mpn: 'AL338-44',
-      upc: '789313342914',
-      product_Name: '12 inch PLASTIC SUSHI BASIN SKU AL338-44',
-      amazonASIN: 'B001PZ9HP8',
-      stock: '58',
-    },
-    {
-      id: 2,
-      mpn: 'ALRP9604',
-      upc: '789313157617',
-      product_Name:
-        '18 inch X 24 inch X 4 1/2 inch W/STRAP & LUG DOUBLE ROASTER ALRP9604',
-      amazonASIN: 'B001PZF7U2',
-      stock: '95',
-    },
-  ];
+  discontinuedUpdateList: any = [];
 
   editData: any;
   modelHeader: string = 'Add';
@@ -71,7 +54,22 @@ export class DiscontinuedUpdateComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.discontinuedUpdate().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.discontinuedUpdateList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

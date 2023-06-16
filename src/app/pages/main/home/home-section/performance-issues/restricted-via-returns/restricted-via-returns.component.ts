@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-restricted-via-returns',
@@ -24,32 +25,7 @@ export class RestrictedViaReturnsComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  restrictedViaReturnsList = [
-    {
-      id: 1,
-      mpn: 'PLTHTB010B',
-      upc: '789313229710',
-      productName: '9 1/2 OZ TUMBLERS, BLUE',
-      amazonASIN: 'B00B7LARYK',
-      reasonForRestriction: 'Wrong Item Sent',
-      dateOfRestriction: '',
-      noOfUnitsSold: '8',
-      noOfUnitsReturned: '0',
-      return: '0',
-    },
-    {
-      id: 2,
-      mpn: 'PLTHTB012B',
-      upc: '789313230112',
-      productName: '12 OZ TUMBLER, BLUE, DOZEN PLTHTB012B',
-      amazonASIN: 'B00IT4AJ82',
-      reasonForRestriction: 'Wrong Item Sent',
-      dateOfRestriction: '',
-      noOfUnitsSold: '2',
-      noOfUnitsReturned: '0',
-      return: '0',
-    },
-  ];
+  restrictedViaReturnsList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -77,7 +53,22 @@ export class RestrictedViaReturnsComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.restrictedViaReturns().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.restrictedViaReturnsList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

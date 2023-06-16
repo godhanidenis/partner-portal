@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-shipping-label',
@@ -24,40 +25,7 @@ export class ShippingLabelComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  shippingLabelList = [
-    {
-      id: 1,
-      mpn: '1501',
-      upc: '027061217581',
-      asin: 'B07KKDG8GZ',
-      product_Name: 'VISTO PANTRY Cube 1.21 QT',
-      partnerUnitPrice: '5.45',
-      allowances: '0',
-      shippingPrice: '14',
-      amazonMarketPlaceFees: '3.43',
-      listedPrice: '22.88',
-      potentialShippingPrice: '8',
-      potential123StoresListedPrice: '15.82',
-      potentialRetailPrice: '7.06',
-      potentialRetailPricePer: '31',
-    },
-    {
-      id: 2,
-      mpn: '1505',
-      upc: '027061217611',
-      asin: 'B07KKD6BRN',
-      product_Name: 'VISTO PANTRY Cube 5.71 QT',
-      partnerUnitPrice: '12.05',
-      allowances: '0',
-      shippingPrice: '14',
-      amazonMarketPlaceFees: '4.6',
-      listedPrice: '30.65',
-      potentialShippingPrice: '8.5',
-      potential123StoresListedPrice: '24.18',
-      potentialRetailPrice: '6.47',
-      potentialRetailPricePer: '21',
-    },
-  ];
+  shippingLabelList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -85,7 +53,22 @@ export class ShippingLabelComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.usingThe123storesShippingLabel().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.shippingLabelList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

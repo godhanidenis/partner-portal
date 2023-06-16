@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-stranded-in-catalog',
@@ -24,22 +25,7 @@ export class StrandedInCatalogComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  strandedInCatalogList = [
-    {
-      id: 1,
-      mpn: 'ALSP1826H',
-      upc: '789313099016',
-      product_Name: 'Excellanté 18" x 26" Full Size Aluminum Sheet Pan',
-      amazonASIN: 'B006TAIMM8',
-    },
-    {
-      id: 2,
-      mpn: 'SLCB010F',
-      upc: '789313546510',
-      product_Name: 'Excellanté 10-Inch Round Nickel Plated Culinary Ba',
-      amazonASIN: 'B007XTSG8E',
-    },
-  ];
+  strandedInCatalogList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -67,7 +53,22 @@ export class StrandedInCatalogComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.restrictedViaOrderCancellation().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.strandedInCatalogList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

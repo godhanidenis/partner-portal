@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-restricted-via-order',
@@ -24,28 +25,7 @@ export class RestrictedViaOrderComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  restrictedViaOrderList = [
-    {
-      id: 1,
-      mpn: '12113',
-      upc: '842989021139',
-      productName:
-        'University of California - Los Angeles (UCLA),California,Grill Mat,UCLA Block Wordmark',
-      amazonASIN: 'B00AUKFG04',
-      reasonForRestriction: 'Restricted via Order Cancellation',
-      dateOfRestriction: '',
-    },
-    {
-      id: 2,
-      mpn: '18671',
-      upc: '842989086718',
-      productName:
-        'Ferris State University,Michigan,2 Utility Mats,Bulldog Logo',
-      amazonASIN: 'B013NE8KSI',
-      reasonForRestriction: 'Restricted via Order Cancellation',
-      dateOfRestriction: '',
-    },
-  ];
+  restrictedViaOrderList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -73,7 +53,24 @@ export class RestrictedViaOrderComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.restrictedViaOrderCancellation().subscribe(
+      (res: any) => {
+        console.log(res);
+
+        this.isLoading = false;
+        if (res.success) {
+          this.restrictedViaOrderList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

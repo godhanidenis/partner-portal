@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-restricted-discontinued',
@@ -24,17 +25,7 @@ export class RestrictedDiscontinuedComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  restrictedDiscontinuedList = [
-    {
-      id: 1,
-      mpn: '5317',
-      upc: '027061215563',
-      product_Name: 'Genuine Teak Wood Bench Seat Hamper',
-      amazonASIN: 'B0187L63CC',
-      reasonForRestriction: 'Discontinued via Order Cancellation',
-      dateOfRestriction: '',
-    },
-  ];
+  restrictedDiscontinuedList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -62,7 +53,22 @@ export class RestrictedDiscontinuedComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.discontinuedViaOrderCancellation().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.restrictedDiscontinuedList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

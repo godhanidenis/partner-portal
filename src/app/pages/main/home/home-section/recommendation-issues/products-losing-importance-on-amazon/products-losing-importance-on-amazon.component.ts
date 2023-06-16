@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-products-losing-importance-on-amazon',
@@ -24,36 +25,7 @@ export class ProductsLosingImportanceOnAmazonComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  productsLosingImportanceOnAmazonList = [
-    {
-      id: 1,
-      mpn: '1012J',
-      upc: '789313482115',
-      asin: 'B008L31BB0',
-      product_Name: '11 3/4 PLATE, WEI',
-      partnerUnitPrice: '119.7',
-      allowances: '0',
-      shippingPrice: '11',
-      amazonMarketPlaceFees: '23.06',
-      listedPrice: '153.76',
-      requiredUnitPrice: '101.745',
-      discount: '15',
-    },
-    {
-      id: 2,
-      mpn: 'AD222WS',
-      upc: '789313324514',
-      asin: 'B007XTSGEI',
-      product_Name: '24 OZ, 12 X 9 PLATTER, SAN MARINO',
-      partnerUnitPrice: '96.33',
-      allowances: '0',
-      shippingPrice: '11',
-      amazonMarketPlaceFees: '18.94',
-      listedPrice: '126.27',
-      requiredUnitPrice: '81.8805',
-      discount: '15',
-    },
-  ];
+  productsLosingImportanceOnAmazonList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -81,7 +53,22 @@ export class ProductsLosingImportanceOnAmazonComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.productsLosingImportance().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.productsLosingImportanceOnAmazonList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

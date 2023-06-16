@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-restricted-cannot-ship-ground',
@@ -24,39 +25,7 @@ export class RestrictedCannotShipGroundComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  restrictedCannotShipGroundList = [
-    {
-      id: 1,
-      mpn: 'CVSCB2917T',
-      upc: '814108015558',
-      product_Name: 'VISM® by NcSTAR® TACTICAL SHOTGUN SCABBARD/TAN',
-      amazonASIN: 'B004693H3S',
-      reasonForRestriction: 'Cannot Ship Ground via Order Cancellation',
-      dateOfRestriction: '',
-      shippingMethod: 'GROUND',
-      expand: false,
-      boxes: [
-        {
-          length: 2,
-          width: 5,
-          height: 5,
-          weight: 4,
-        },
-        {
-          length: 3,
-          width: 6,
-          height: 6,
-          weight: 7,
-        },
-        {
-          length: 1,
-          width: 2,
-          height: 2,
-          weight: 3,
-        },
-      ],
-    },
-  ];
+  restrictedCannotShipGroundList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -84,7 +53,22 @@ export class RestrictedCannotShipGroundComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.restrictedViaOrderCancellation().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.restrictedCannotShipGroundList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   openNav() {

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-handling-time-conflict',
@@ -21,63 +22,7 @@ export class HandlingTimeConflictComponent implements OnInit {
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;
 
-  handlingTimeConflictList = [
-    {
-      id: 1,
-      mpn: 'SLLD006A',
-      upc: '789313418718',
-      product_Name: '6 OZ LADDON PLASTIC I PC HANDLE, BLACK',
-      amazonASIN: 'B0002LI630',
-      partnerHandlingTimeProvided: '5',
-      conflictingHandlingTime: '2',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'McDonald Paper Restaurant Supplies',
-    },
-    {
-      id: 2,
-      mpn: 'STPA3144',
-      upc: '789313308415',
-      product_Name: 'QUARTER SIZE 4 DEEP 24 GAUGE ANTI JAM PANS',
-      amazonASIN: 'B000KI7SM0',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'MVTRADINGONLINE(USA)',
-    },
-    {
-      id: 3,
-      mpn: 'SLSS009',
-      upc: '789313286010',
-      product_Name: 'SEA SHELL DINNER KNIFE',
-      amazonASIN: 'B000KI8DQA',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '2',
-      noOfConflictingProviders: '1',
-      conflictingProviders: 'AI1OVA136FLJU',
-    },
-    {
-      id: 4,
-      mpn: 'ALPMA012',
-      upc: '789313157310',
-      product_Name: 'SLICE PIE MAKER, 12 CUT',
-      amazonASIN: 'B000KIAJQW',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '2',
-      conflictingProviders: 'MVTRADINGONLINE(USA),9Grace',
-    },
-    {
-      id: 5,
-      mpn: 'ALTWSC024',
-      upc: '789313171910',
-      product_Name: '24 OZ ALUMINUM SCOOP',
-      amazonASIN: 'B000KIDRP2',
-      partnerHandlingTimeProvided: '3',
-      conflictingHandlingTime: '1',
-      noOfConflictingProviders: '2',
-      conflictingProviders: 'MVTRADINGONLINE(USA),9Grace',
-    },
-  ];
+  handlingTimeConflictList: any[] = [];
   editData: any;
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -107,7 +52,22 @@ export class HandlingTimeConflictComponent implements OnInit {
   description: string =
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
 
-  constructor(private router: Router, private modal: NzModalService) {}
+  constructor(
+    private router: Router,
+    private modal: NzModalService,
+    private dashboardService: DashboardService
+  ) {
+    this.isLoading = true;
+    dashboardService.handlingTimeConflict().subscribe(
+      (res: any) => {
+        this.isLoading = false;
+        if (res.success) {
+          this.handlingTimeConflictList = res.data;
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
   ngOnInit(): void {}
 
   editValue(event: any, id: number) {

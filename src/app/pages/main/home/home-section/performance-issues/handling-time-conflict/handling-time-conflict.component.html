@@ -46,19 +46,21 @@
     >
       <thead>
         <tr>
-          <th>Serial No.</th>
+          <th style="max-width: 50px">Sr. No.</th>
           <th>MPN</th>
           <th>UPC</th>
-          <th>Product_Name</th>
+          <th>Product Name</th>
           <th>Amazon ASIN</th>
-          <th>Partner Handling Time provided to 123Stores (Days)</th>
-          <th>
+          <th style="max-width: 100px">
+            Partner Handling Time provided to 123Stores (Days)
+          </th>
+          <th style="max-width: 100px">
             Conflicting Handling Time on Amazon offered by Conflicting Provider
             (Days)
           </th>
-          <th>No. of Conflicting Providers</th>
+          <th style="max-width: 100px">No. of Conflicting Providers</th>
           <th>Conflicting Providers</th>
-          <th>Actions</th>
+          <th style="max-width: 50px">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -66,14 +68,14 @@
           <td>{{ no + 1 }}</td>
           <td>{{ data?.mpn }}</td>
           <td>{{ data?.upc }}</td>
-          <td>{{ data?.product_Name }}</td>
-          <td>{{ data?.amazonASIN }}</td>
+          <td>{{ data?.name }}</td>
+          <td>{{ data?.asin }}</td>
           <td>
             <nz-form-item>
               <nz-form-control>
                 <nz-input-group>
                   <input
-                    [ngModel]="data?.partnerHandlingTimeProvided"
+                    [ngModel]="data?.handling_time"
                     type="number"
                     nz-input
                     placeholder="Enter No"
@@ -83,16 +85,21 @@
               </nz-form-control>
             </nz-form-item>
           </td>
-          <td>{{ data?.conflictingHandlingTime }}</td>
-          <td>{{ data?.noOfConflictingProviders }}</td>
-          <td>{{ data?.conflictingProviders }}</td>
+          <td>{{ data?.other_sellers_minimum_handling }}</td>
+          <td>{{ data?.no_of_other_sellers }}</td>
+          <td>
+            <span *ngFor="let value of data?.other_sellers; let sr = index"
+              >{{ value
+              }}{{ data.other_sellers.length - 1 !== sr ? "," : "" }}</span
+            >
+          </td>
           <td>
             <button
               nz-button
               nzType="primary"
               class="action-button"
               style="margin-top: 0; height: 35px"
-              (click)="matchValue(data.conflictingHandlingTime, data.id)"
+              (click)="matchValue(data.other_sellers_minimum_handling, data.id)"
             >
               Match
             </button>
