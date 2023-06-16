@@ -31,7 +31,11 @@
             >{{ viewData?.end_date | date : "MM-dd-yyyy" }}</span
           >
           <span style="display: flex; justify-content: end; margin-right: 3px">
-            <a class="link" style="border-radius: 20px">
+            <a
+              class="link"
+              style="border-radius: 20px"
+              (click)="downloadDetails(viewData?.promo_code)"
+            >
               Download Promotion Details
             </a>
           </span>

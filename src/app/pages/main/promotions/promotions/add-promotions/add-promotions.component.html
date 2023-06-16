@@ -37,8 +37,10 @@
         </div>
         <div class="contact">
           <h3>Step 2: Download Template File</h3>
-          <nz-radio-group formControlName="downloadTemplate">
-            <!-- (ngModelChange)="selectDownloadTemplate($event)" -->
+          <nz-radio-group
+            formControlName="downloadTemplate"
+            (ngModelChange)="selectDownloadTemplate($event)"
+          >
             <label nz-radio [nzValue]="true"
               >Download Template with your existing products
             </label>

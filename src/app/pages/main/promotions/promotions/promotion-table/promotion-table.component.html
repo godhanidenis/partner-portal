@@ -15,6 +15,7 @@
       nz-button
       nzType="primary"
       nzShape="round"
+      (click)="isExportVisible = true"
     >
       <span nz-icon nzType="upload" nzTheme="outline"></span> Export
     </button>
@@ -190,7 +191,7 @@
           formControlName="status"
         >
           <nz-option nzLabel="Scheduled" nzValue="Scheduled"></nz-option>
-          <nz-option nzLabel="Started" nzValue="Started"></nz-option>
+          <nz-option nzLabel="Running" nzValue="running"></nz-option>
           <nz-option nzLabel="Completed" nzValue="Completed"></nz-option>
           <nz-option nzLabel="Canceled" nzValue="Canceled"></nz-option>
           <nz-option nzLabel="Stopped" nzValue="Stopped"></nz-option>
@@ -199,3 +200,22 @@
     </form>
   </div>
 </div>
+
+<nz-modal
+  [(nzVisible)]="isExportVisible"
+  nzTitle="Which Promotion would you like to export?"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <app-export-model
+      [exportType]="false"
+      [sectionName]="'promotion'"
+      [description]="
+        'Your Promotion will be exported as a CSV file and sent to your email.'
+      "
+      [listOfFilter]="listOfFilter"
+      [noOfFilter]="total"
+      (close)="handleCancel()"
+    ></app-export-model>
+  </ng-container>
+</nz-modal>

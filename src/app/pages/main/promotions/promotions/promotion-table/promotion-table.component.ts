@@ -40,6 +40,8 @@ export class PromotionTableComponent implements OnInit {
   clear_btn: boolean = false;
   badgeTotal: number = 0;
   searchForm!: FormGroup;
+  isExportVisible: boolean = false;
+  listOfFilter: any = '';
 
   constructor(
     private promotionsService: PromotionsService,
@@ -129,6 +131,11 @@ export class PromotionTableComponent implements OnInit {
     this.badgeTotal = 0;
     this.clear_btn = false;
     this.filter.reset();
+    this.listOfFilter = {
+      promo_status: this.selectStatus,
+      start_date: this.selectDate[0],
+      end_date: this.selectDate[1],
+    };
   }
 
   close(type: string) {
@@ -147,6 +154,11 @@ export class PromotionTableComponent implements OnInit {
           this.badgeTotal--;
           break;
       }
+      this.listOfFilter = {
+        promo_status: this.selectStatus,
+        start_date: this.selectDate[0],
+        end_date: this.selectDate[1],
+      };
     }
   }
 
@@ -170,6 +182,11 @@ export class PromotionTableComponent implements OnInit {
           }
           break;
       }
+      this.listOfFilter = {
+        promo_status: this.selectStatus,
+        start_date: this.selectDate[0],
+        end_date: this.selectDate[1],
+      };
     } else {
       if (this.badgeTotal > 0 && value !== null) {
         switch (type) {
@@ -184,7 +201,16 @@ export class PromotionTableComponent implements OnInit {
             this.badgeTotal--;
             break;
         }
+        this.listOfFilter = {
+          promo_status: this.selectStatus,
+          start_date: this.selectDate[0],
+          end_date: this.selectDate[1],
+        };
       }
     }
+  }
+
+  handleCancel() {
+    this.isExportVisible = false;
   }
 }

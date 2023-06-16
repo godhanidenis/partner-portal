@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   Promotion,
   StopPromotions,
@@ -19,7 +20,8 @@ export class PromotionDetailsComponent implements OnInit {
 
   constructor(
     private promotionsService: PromotionsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private message: NzMessageService
   ) {
     this.isLoading = true;
     this.promoCode =
@@ -41,4 +43,28 @@ export class PromotionDetailsComponent implements OnInit {
     );
   }
   ngOnInit(): void {}
+
+  downloadDetails(promo_code: string) {
+    const data: StopPromotions = {
+      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+      promo_code: promo_code,
+    };
+    this.promotionsService
+      .downloadPromotionDetails(data)
+      .subscribe((res: any) => {
+        console.log(res);
+        if (res.success) {
+          this.message.create(
+            'success',
+            'Download promotion details successfully!'
+          );
+          var objectUrl = res.promotion_details;
+          var a = document.createElement('a');
+          a.download = 'document';
+          a.href = objectUrl;
+          a.click();
+        }
+      });
+  }
 }

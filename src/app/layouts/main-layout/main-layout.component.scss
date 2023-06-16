@@ -20,6 +20,13 @@
     display: flex;
     align-items: center;
 
+    .name {
+      font-size: 16px;
+      font-weight: 600;
+      color: $gray;
+      margin-right: 15px;
+    }
+
     a {
       color: $black;
 
