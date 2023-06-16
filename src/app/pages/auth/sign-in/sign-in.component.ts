@@ -17,13 +17,7 @@ export class SignInComponent implements OnInit {
   loginForm!: FormGroup;
   isLoading: boolean = false;
   passwordShow: boolean = true;
-  userType: any;
-  userRole: string = 'SPA';
-  residenceList: any[] = [];
-  residenceArea: any[] = [];
-  newPasswordShow: boolean = true;
-  resetForm!: FormGroup;
-  isLoginFirst: boolean = false;
+  submitError: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -36,17 +30,13 @@ export class SignInComponent implements OnInit {
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
-
-    this.resetForm = new FormGroup({
-      oldPassword: new FormControl(''),
-      newPassword: new FormControl(''),
-      confirmPassword: new FormControl(''),
-    });
   }
 
   forgotPassword() {
     this.router.navigate(['/auth/forgot-password']);
   }
 
-  submitForm(): void {}
+  submitForm(): void {
+    this.submitError = true;
+  }
 }

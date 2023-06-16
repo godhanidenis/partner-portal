@@ -4,7 +4,12 @@
     <nz-divider></nz-divider>
     <div class="download">
       <div class="icon">
-        <span nz-icon nzType="download" nzTheme="outline"></span>
+        <img
+          src="assets/img/file_list.png"
+          width="50"
+          height="50"
+          style="margin-right: 10px"
+        />
       </div>
       <div class="contact">
         <h3>Step 1: Choose Add/Edit Type</h3>
@@ -18,8 +23,8 @@
               >
                 <nz-option
                   *ngFor="let data of chooseType"
-                  [nzLabel]="data"
-                  [nzValue]="data"
+                  [nzLabel]="data.label"
+                  [nzValue]="data.value"
                 ></nz-option>
               </nz-select>
             </nz-input-group>
@@ -30,7 +35,7 @@
     <nz-divider></nz-divider>
     <div class="download">
       <div class="icon">
-        <span nz-icon nzType="download" nzTheme="outline"></span>
+        <img src="assets/img/download_file.png" width="50" height="50" />
       </div>
       <div class="contact">
         <h3>Step 2: Download Template</h3>
@@ -47,7 +52,7 @@
     <nz-divider></nz-divider>
     <div class="download">
       <div class="icon">
-        <span nz-icon nzType="upload" nzTheme="outline"></span>
+        <img src="assets/img/upload_file.png" width="50" height="50" />
       </div>
       <div class="contact">
         <h3>Step 3: Upload</h3>

@@ -13,6 +13,7 @@ export class ForgotPasswordComponent implements OnInit {
   newPasswordShow: boolean = true;
   passwordShow: boolean = true;
   forgotForm!: FormGroup;
+  submitError: boolean = false;
 
   constructor(private router: Router, private message: NzMessageService) {}
 
@@ -26,5 +27,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.router.navigate(['/auth/login']);
   }
 
-  submitForm(): void {}
+  submitForm(): void {
+    this.submitError = true;
+  }
 }
