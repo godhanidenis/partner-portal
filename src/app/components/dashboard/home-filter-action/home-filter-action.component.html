@@ -1,10 +1,11 @@
 <div class="filter-action">
-  <!-- <nz-badge
+  <nz-badge
     style="margin-right: 10px"
     [nzShowZero]="false"
     [nzCount]="badgeTotal"
   >
     <button
+      *ngIf="issueName !== '1'"
       (click)="openFilterSection()"
       nz-button
       nzType="primary"
@@ -13,7 +14,7 @@
       <span nz-icon nzType="filter" nzTheme="outline"></span>
       Filter
     </button>
-  </nz-badge> -->
+  </nz-badge>
   <button
     style="margin-right: 10px"
     nz-button

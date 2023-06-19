@@ -16,7 +16,9 @@ export class HomeFilterActionComponent implements OnInit {
   isDownloadVisible: boolean = false;
 
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.issueName);
+  }
 
   openFilterSection() {
     this.showFilter.emit();

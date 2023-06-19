@@ -11,12 +11,7 @@
             <nz-form-label [nzSm]="8" [nzXs]="24">MPN</nz-form-label>
             <nz-form-control [nzSm]="15" [nzXs]="24">
               <nz-input-group>
-                <input
-                  formControlName="mpn"
-                  type="text"
-                  nz-input
-                  [readonly]="true"
-                />
+                <b style="padding-left: 10px">{{ editData.mpn }}</b>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -26,12 +21,7 @@
             </nz-form-label>
             <nz-form-control [nzSm]="15" [nzXs]="24">
               <nz-input-group>
-                <input
-                  formControlName="current_handling_time"
-                  type="text"
-                  nz-input
-                  [readonly]="true"
-                />
+                <b style="padding-left: 10px">{{ editData.handling_time }}</b>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>

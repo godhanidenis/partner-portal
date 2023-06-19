@@ -20,8 +20,8 @@ export class EditTimeComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     this.editTimeForm = new FormGroup({
-      mpn: new FormControl(this.editData?.mpn),
-      current_handling_time: new FormControl(this.editData?.handling_time),
+      // mpn: new FormControl(this.editData?.mpn),
+      // current_handling_time: new FormControl(this.editData?.handling_time),
       new_handling_time: new FormControl(''),
     });
   }
