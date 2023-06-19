@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
 @Component({
   selector: 'app-manage-pickup-address',
@@ -115,17 +114,9 @@ export class ManagePickupAddressComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService,
     private router: Router,
     private modal: NzModalService
-  ) {
-    this.breadcrumbService.breadcrumbs.next(this.activatedRoute.snapshot.url);
-    console.log(this.activatedRoute.snapshot.url);
-    // this.shipOut = this.shipOut.map((ele: any) => {
-    //   return { ...ele, expand: false };
-    // });
-    this.breadcrumb = this.activatedRoute.snapshot.url;
-  }
+  ) {}
 
   ngOnInit(): void {}
 

@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,7 +16,8 @@ export class MainLayoutComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userPermissionService: UserPermissionService
+    private userPermissionService: UserPermissionService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +34,9 @@ export class MainLayoutComponent implements OnInit {
         this.userName = res?.partner_display_name;
         this.userPermissionService.userPermission.next(res);
       });
+  }
+
+  logOutUser() {
+    this.authService.logOutUser();
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
 
 @Component({
   selector: 'app-certi-of-insurance',
@@ -8,7 +7,7 @@ import { BreadcrumbService } from 'src/app/shared/service/breadcrumb.service';
   styleUrls: ['./certi-of-insurance.component.scss'],
 })
 export class CertiOfInsuComponent implements OnInit {
-  certiOfInsuranceDate = { 
+  certiOfInsuranceDate = {
     producerNameAddress: 'Insurance Pvt Ltd, New York, New York 10001 ',
     insuredNameAddress: 'XYZ Stores, Livingston, Montana 59101',
     dateInsured: 'Aug 24, 2022',

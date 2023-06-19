@@ -7,6 +7,11 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import {
+  ChangePasswordToken,
+  ResetPasswordReq,
+} from 'src/app/shared/model/auth.model';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -26,7 +31,8 @@ export class ResetPasswordComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private message: NzMessageService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.token = this.activatedRoute.snapshot.paramMap.get('token') ?? '';
   }
@@ -52,6 +58,48 @@ export class ResetPasswordComponent implements OnInit {
   submitForm(): void {
     this.submitError = true;
     if (this.resetForm.valid) {
+      this.isLoading = true;
+      if (!this.token) {
+        const req: ResetPasswordReq = {
+          password: this.resetForm.controls['newPassword'].value,
+        };
+        this.authService.resetPassword(req).subscribe(
+          (result: any) => {
+            this.isLoading = false;
+            if (result.success) {
+              this.message.success('Reset password successfully!!');
+              this.authService.setAccessToken(result.access_token);
+              localStorage.setItem('refresh_token', result.refresh_token);
+              localStorage.setItem(
+                'user_profile',
+                JSON.stringify(result.user_profile)
+              );
+
+              if (result.user_profile.is_first) {
+                this.router.navigate(['/auth/reset-password']);
+              } else {
+                this.router.navigate(['/main/dashboard']);
+              }
+            }
+          },
+          (err) => (this.isLoading = false)
+        );
+      } else {
+        const req: ChangePasswordToken = {
+          token: this.token,
+          password: this.resetForm.controls['newPassword'].value,
+        };
+        this.authService.changePasswordToken(req).subscribe(
+          (result: any) => {
+            this.isLoading = false;
+            if (result.success) {
+              this.message.success('Forgot password successfully!!');
+              this.router.navigate(['/auth/login']);
+            }
+          },
+          (err) => (this.isLoading = false)
+        );
+      }
     }
   }
 }

@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { LoginReq, LoginRes } from 'src/app/shared/model/auth.model';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,12 +24,13 @@ export class SignInComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      userName: [null, [Validators.required]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
   }
@@ -38,5 +41,34 @@ export class SignInComponent implements OnInit {
 
   submitForm(): void {
     this.submitError = true;
+    if (this.loginForm.valid) {
+      this.isLoading = true;
+      const dataReq: LoginReq = {
+        email: this.loginForm.controls['email'].value,
+        password: this.loginForm.controls['password'].value,
+      };
+      this.authService.login(dataReq).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.isLoading = false;
+          if (result.success) {
+            this.message.success('User login successfully!!');
+            this.authService.setAccessToken(result.access_token);
+            localStorage.setItem('refresh_token', result.refresh_token);
+            localStorage.setItem(
+              'user_profile',
+              JSON.stringify(result.user_profile)
+            );
+
+            if (result.user_profile.is_first) {
+              this.router.navigate(['/auth/reset-password']);
+            } else {
+              this.router.navigate(['/main/dashboard']);
+            }
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
   }
 }

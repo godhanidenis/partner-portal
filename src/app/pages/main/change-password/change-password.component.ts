@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { ChangePassword } from 'src/app/shared/model/auth.model';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
   selector: 'app-change-password',
@@ -21,7 +23,11 @@ export class ChangePasswordComponent implements OnInit {
   sameAsPassword: boolean = true;
   submitError: boolean = false;
 
-  constructor(private message: NzMessageService) {}
+  constructor(
+    private message: NzMessageService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.changePasswordForm = new FormGroup({
@@ -44,7 +50,22 @@ export class ChangePasswordComponent implements OnInit {
 
   submitForm(): void {
     this.submitError = true;
+    this.isLoading = true;
     if (this.changePasswordForm.valid) {
+      const req: ChangePassword = {
+        old_password: this.changePasswordForm.controls['oldPassword'].value,
+        new_password: this.changePasswordForm.controls['newPassword'].value,
+      };
+      this.authService.changePassword(req).subscribe(
+        (res: any) => {
+          this.isLoading = false;
+          if (res.success) {
+            this.message.success('User password changed!!');
+            this.router.navigate(['/main/dashboard']);
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
     }
   }
 }

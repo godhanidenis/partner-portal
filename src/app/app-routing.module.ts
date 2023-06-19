@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'main/dashboard',
+    redirectTo: 'auth/login',
+    // main/dashboard
   },
   {
     path: 'auth',
