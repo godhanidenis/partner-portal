@@ -10,7 +10,7 @@
       style="margin-top: 0"
       (click)="isMultipleProductsVisible = true"
     >
-      <span nz-icon nzType="plus"></span> Add Multi Product Edit
+      <span nz-icon nzType="plus"></span> Edit Products
     </button>
   </div>
 </div>
@@ -23,7 +23,14 @@
   <ng-container *nzModalContent>
     <app-add-edit-multiple-products
       [templateType]="templateType"
-      (closeModel)="isMultipleProductsVisible = false"
+      (closeModel)="closeMultiProduct($event)"
     ></app-add-edit-multiple-products>
   </ng-container>
 </nz-modal>
+
+<div *ngIf="isVisible">
+  <app-show-reference-code
+    [isVisible]="isVisible"
+    [referenceCode]="referenceCode"
+  ></app-show-reference-code>
+</div>

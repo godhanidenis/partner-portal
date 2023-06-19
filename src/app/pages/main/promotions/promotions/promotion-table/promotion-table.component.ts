@@ -13,6 +13,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { PromotionsService } from 'src/app/shared/service/promotions.service';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { StopPromotions } from 'src/app/shared/model/promotion.model';
+import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
 @Component({
   selector: 'app-promotion-table',
   templateUrl: './promotion-table.component.html',
@@ -42,6 +43,7 @@ export class PromotionTableComponent implements OnInit {
   searchForm!: FormGroup;
   isExportVisible: boolean = false;
   listOfFilter: any = '';
+  statusEnum: typeof StatusEnum = StatusEnum;
 
   constructor(
     private promotionsService: PromotionsService,

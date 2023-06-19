@@ -14,6 +14,24 @@ export class HomeSectionComponent implements OnInit {
   @ViewChild('dChart2', { static: true }) doughnutChart2!: ElementRef;
   chart: any;
   cutOut: number = 75;
+  todaySales: {
+    amount_sold: number;
+    product_sold: number;
+    unit_sold: number;
+  } = {
+    amount_sold: 0,
+    product_sold: 0,
+    unit_sold: 0,
+  };
+  salesWTD: {
+    amount_sold: number;
+    product_sold: number;
+    unit_sold: number;
+  } = {
+    amount_sold: 0,
+    product_sold: 0,
+    unit_sold: 0,
+  };
   performanceIssuesList: any[] = [];
 
   performanceUrlList = [
@@ -46,17 +64,17 @@ export class HomeSectionComponent implements OnInit {
   chartOneLabel: string[] = [
     'Active',
     'Discontinued',
+    'LTL',
     'Restricted',
     'Suppressed',
-    'LTL',
   ];
   chartOneColor: string[] = ['green', 'red', '#DFCFBE', '#9B2335', '#5B5EA6'];
-  chartOneData: number[] = [30, 50, 3, 5, 19];
+  chartOneData: number[] = [];
   chartOneLegend: any[] = [];
 
-  chartTwoLabel: string[] = ['123Stores', 'Others', 'No BB'];
+  chartTwoLabel: string[] = ['123Stores', 'No BB', 'Others'];
   chartTwoColor: string[] = ['green', 'red', '#DFCFBE'];
-  chartTwoData: number[] = [53, 34, 18];
+  chartTwoData: number[] = [];
   chartTwoLegend: any[] = [];
   isLoading: boolean = false;
 
@@ -92,11 +110,71 @@ export class HomeSectionComponent implements OnInit {
     private dashboardService: DashboardService
   ) {
     this.isLoading = true;
+    this.loadAPIs();
+  }
+
+  ngOnInit(): void {}
+
+  loadAPIs() {
     const data = {
       partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
       user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
     };
-    dashboardService.getIssues(data).subscribe(
+    this.dashboardService.dashboardSales().subscribe((result: any) => {
+      if (result.success) {
+        this.todaySales = result.sales_today;
+        this.salesWTD = result.sales_wtd;
+      }
+    });
+    this.dashboardService.dashboardCatalog().subscribe(async (res: any) => {
+      if (res.success) {
+        this.chartOneData = [
+          res.catalog.Active,
+          res.catalog.Discontinued,
+          res.catalog.LTL,
+          res.catalog.Restricted,
+          res.catalog.Suppressed,
+        ];
+        await this.chartOneLabel.map((res: string, index) => {
+          this.chartOneLegend.push({
+            label: res,
+            color: this.chartOneColor[index],
+            data: this.chartOneData[index],
+          });
+        });
+        await this.createChart(
+          this.chartOneLabel,
+          this.chartOneData,
+          this.chartOneColor,
+          this.doughnutChart1.nativeElement
+        );
+      }
+    });
+    this.dashboardService
+      .dashboardDropshipBB()
+      .subscribe(async (response: any) => {
+        if (response.success) {
+          this.chartTwoData = [
+            response.dropship_products_bb.stores,
+            response.dropship_products_bb.No_BB,
+            response.dropship_products_bb.Others,
+          ];
+          await this.chartTwoLabel.map((res: string, index) => {
+            this.chartTwoLegend.push({
+              label: res,
+              color: this.chartTwoColor[index],
+              data: this.chartTwoData[index],
+            });
+          });
+          await this.createChart(
+            this.chartTwoLabel,
+            this.chartTwoData,
+            this.chartTwoColor,
+            this.doughnutChart2.nativeElement
+          );
+        }
+      });
+    this.dashboardService.getIssues(data).subscribe(
       (res: any) => {
         this.isLoading = false;
         if (res.success) {
@@ -113,35 +191,6 @@ export class HomeSectionComponent implements OnInit {
         }
       },
       (err) => (this.isLoading = false)
-    );
-    this.chartOneLabel.map((res: string, index) => {
-      this.chartOneLegend.push({
-        label: res,
-        color: this.chartOneColor[index],
-        data: this.chartOneData[index],
-      });
-    });
-    this.chartTwoLabel.map((res: string, index) => {
-      this.chartTwoLegend.push({
-        label: res,
-        color: this.chartTwoColor[index],
-        data: this.chartTwoData[index],
-      });
-    });
-  }
-
-  ngOnInit(): void {
-    this.createChart(
-      this.chartOneLabel,
-      this.chartOneData,
-      this.chartOneColor,
-      this.doughnutChart1.nativeElement
-    );
-    this.createChart(
-      this.chartTwoLabel,
-      this.chartTwoData,
-      this.chartTwoColor,
-      this.doughnutChart2.nativeElement
     );
   }
 

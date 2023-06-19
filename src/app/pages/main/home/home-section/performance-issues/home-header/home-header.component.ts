@@ -10,10 +10,20 @@ export class HomeHeaderComponent implements OnInit {
   @Input() tabName: string = '';
   templateType: string = '';
   isMultipleProductsVisible: boolean = false;
+  isVisible: boolean = false;
+  referenceCode: string = '';
   constructor() {}
   ngOnInit(): void {
     if (this.tabName === 'Handling Time Conflict') {
-      this.templateType = 'Edit SKU specific Handling time';
+      this.templateType = 'EDIT_SKU_SPECIFIC_HANDLING_TIME';
     }
+  }
+
+  closeMultiProduct(event: string) {
+    if (event) {
+      this.referenceCode = event;
+      this.isVisible = true;
+    }
+    this.isMultipleProductsVisible = false;
   }
 }

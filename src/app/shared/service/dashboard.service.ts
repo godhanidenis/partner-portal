@@ -19,6 +19,36 @@ export class DashboardService {
   };
   constructor(private http: HttpClient) {}
 
+  dashboardSales() {
+    let params = new HttpParams()
+      .set('partner_id', this.payload.partner_id)
+      .set('user_id', this.payload.user_id);
+
+    return this.http.get(this.url + '/dashboard-sales', {
+      params: params,
+    });
+  }
+
+  dashboardCatalog() {
+    let params = new HttpParams()
+      .set('partner_id', this.payload.partner_id)
+      .set('user_id', this.payload.user_id);
+
+    return this.http.get(this.url + '/dashboard-catalog', {
+      params: params,
+    });
+  }
+
+  dashboardDropshipBB() {
+    let params = new HttpParams()
+      .set('partner_id', this.payload.partner_id)
+      .set('user_id', this.payload.user_id);
+
+    return this.http.get(this.url + '/dashboard-dropship-bb', {
+      params: params,
+    });
+  }
+
   getIssues(action: Promotion) {
     let params = new HttpParams()
       .set('partner_id', action.partner_id)

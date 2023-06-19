@@ -20,6 +20,8 @@ import { UploadModelComponent } from './upload-model/upload-model.component';
 import { ExportModelComponent } from './export-model/export-model.component';
 import { AddEditMultipleProductsComponent } from './add-edit-multiple-products/add-edit-multiple-products.component';
 import { ExportMailBoxesComponent } from './export-mail-boxes/export-mail-boxes.component';
+import { ShowReferenceCodeComponent } from './show-reference-code/show-reference-code.component';
+import { EditTimeComponent } from './edit-time/edit-time.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ExportMailBoxesComponent } from './export-mail-boxes/export-mail-boxes.
     ExportModelComponent,
     AddEditMultipleProductsComponent,
     ExportMailBoxesComponent,
+    ShowReferenceCodeComponent,
+    EditTimeComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +67,8 @@ import { ExportMailBoxesComponent } from './export-mail-boxes/export-mail-boxes.
     ExportModelComponent,
     AddEditMultipleProductsComponent,
     ExportMailBoxesComponent,
+    ShowReferenceCodeComponent,
+    EditTimeComponent,
   ],
 })
 export class ComponentModule {}

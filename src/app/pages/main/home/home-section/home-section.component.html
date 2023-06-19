@@ -20,13 +20,17 @@
                 <nz-card>
                   <div class="title">Today's Sales</div>
                   <div class="content">
-                    <p><span>Units Sold Today</span><span>70</span></p>
+                    <p>
+                      <span>Units Sold Today</span
+                      ><span>{{ todaySales.unit_sold }}</span>
+                    </p>
                     <p>
                       <span>$ Sold Today</span
-                      ><span>{{ 500 | currency }} </span>
+                      ><span>{{ todaySales.amount_sold | currency }} </span>
                     </p>
                     <p style="margin-bottom: 0">
-                      <span>Products Sold Today</span><span>5</span>
+                      <span>Products Sold Today</span
+                      ><span>{{ todaySales.product_sold }}</span>
                     </p>
                   </div>
                 </nz-card>
@@ -41,12 +45,17 @@
                 <nz-card>
                   <div class="title">WTD Sales</div>
                   <div class="content">
-                    <p><span>Units Sold WTD</span><span>150</span></p>
                     <p>
-                      <span>$ Sold WTD</span><span>{{ 1000 | currency }} </span>
+                      <span>Units Sold WTD</span
+                      ><span>{{ salesWTD.unit_sold }}</span>
+                    </p>
+                    <p>
+                      <span>$ Sold WTD</span
+                      ><span>{{ salesWTD.amount_sold | currency }} </span>
                     </p>
                     <p style="margin-bottom: 0">
-                      <span>Products Sold WTD</span><span>14</span>
+                      <span>Products Sold WTD</span
+                      ><span>{{ salesWTD.product_sold }}</span>
                     </p>
                   </div>
                 </nz-card>

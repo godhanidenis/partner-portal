@@ -23,7 +23,10 @@ export class HandlingTimeConflictComponent implements OnInit {
   badgeTotal: number = 0;
 
   handlingTimeConflictList: any[] = [];
-  editData: any;
+  editData: { mpn: string; handling_time: number } = {
+    mpn: 'string',
+    handling_time: 0,
+  };
   modelHeader: string = 'Add';
   primaryContact: number = 1;
   viewData: any;
@@ -46,6 +49,7 @@ export class HandlingTimeConflictComponent implements OnInit {
   collectionCount: number = 0;
   categoryCount: number = 0;
   salesTireCount: number = 0;
+  isVisible: boolean = false;
 
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
@@ -83,15 +87,12 @@ export class HandlingTimeConflictComponent implements OnInit {
     }
   }
 
-  matchValue(matchData: string, id: number) {
-    this.handlingTimeConflictList = this.handlingTimeConflictList.map(
-      (res: any) => {
-        if (res.id === id) {
-          res.partnerHandlingTimeProvided = matchData;
-        }
-        return res;
-      }
-    );
+  matchValue(mpn: string, handling_time: number) {
+    this.editData = {
+      mpn: mpn,
+      handling_time: handling_time,
+    };
+    this.isVisible = true;
   }
 
   openNav() {
@@ -319,5 +320,9 @@ export class HandlingTimeConflictComponent implements OnInit {
 
   backButton(path: string) {
     this.router.navigate([`/main/${path}`]);
+  }
+
+  navigateAsin(asin: string) {
+    window.open(`https://www.amazon.com/dp/${asin}`);
   }
 }

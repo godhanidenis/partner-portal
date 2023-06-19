@@ -1,0 +1,42 @@
+@import '../../../assets/variable/variable.scss';
+
+
+.body-section {
+    form {
+        padding: 15px !important;
+        width: 100%;
+        padding: 0 2px;
+
+        nz-form-label {
+            font-size: 16px !important;
+            //  font-weight: 700 !important;
+            padding-bottom: 2px;
+        }
+
+        ::ng-deep .ant-input-prefix {
+            font-size: x-large;
+            margin-right: 10px;
+        }
+
+        ::ng-deep .ant-input {
+            border-radius: 5px !important;
+        }
+
+        ::ng-deep .ant-form-item {
+            margin-bottom: 10px;
+        }
+
+        nz-input-group {
+            border-radius: 5px;
+
+            input {
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+
+        button {
+            height: 35px !important;
+        }
+    }
+}

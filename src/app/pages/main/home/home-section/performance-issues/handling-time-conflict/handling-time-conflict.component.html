@@ -15,7 +15,7 @@
       [issueName]="'Handling Time Conflict'"
     ></app-home-filter-action>
 
-    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-home-filter-tag
         (closeTag)="close($event)"
         (tagRemove)="removeAll()"
@@ -29,7 +29,7 @@
         [selectCategory]="selectCategory"
         [selectSalesTire]="selectSalesTire"
       ></app-home-filter-tag>
-    </div>
+    </div> -->
 
     <nz-table
       #nzTable
@@ -66,24 +66,22 @@
       <tbody>
         <tr *ngFor="let data of nzTable.data; let no = index">
           <td>{{ no + 1 }}</td>
-          <td>{{ data?.mpn }}</td>
+          <td>
+            <a
+              class="link"
+              [routerLink]="'/main/products/details/' + data?.mpn"
+              >{{ data?.mpn }}</a
+            >
+          </td>
           <td>{{ data?.upc }}</td>
           <td>{{ data?.name }}</td>
-          <td>{{ data?.asin }}</td>
           <td>
-            <nz-form-item>
-              <nz-form-control>
-                <nz-input-group>
-                  <input
-                    [ngModel]="data?.handling_time"
-                    type="number"
-                    nz-input
-                    placeholder="Enter No"
-                    (keypress)="editValue($event, data.id)"
-                  />
-                </nz-input-group>
-              </nz-form-control>
-            </nz-form-item>
+            <a class="link" (click)="navigateAsin(data?.asin)">{{
+              data?.asin
+            }}</a>
+          </td>
+          <td>
+            {{ data?.handling_time }}
           </td>
           <td>{{ data?.other_sellers_minimum_handling }}</td>
           <td>{{ data?.no_of_other_sellers }}</td>
@@ -99,16 +97,16 @@
               nzType="primary"
               class="action-button"
               style="margin-top: 0; height: 35px"
-              (click)="matchValue(data.other_sellers_minimum_handling, data.id)"
+              (click)="matchValue(data.mpn, data.handling_time)"
             >
-              Match
+              Edit Handling Time
             </button>
           </td>
         </tr>
       </tbody>
     </nz-table>
 
-    <div #mySidenav class="filter-section">
+    <!-- <div #mySidenav class="filter-section">
       <app-home-filter-section
         (toggleFilter)="closeNav()"
         (changeData)="change($event)"
@@ -122,6 +120,14 @@
         [salesTire]="selectSalesTire"
         [issueName]="'Handling Time Conflict'"
       ></app-home-filter-section>
-    </div>
+    </div> -->
+  </div>
+
+  <div *ngIf="isVisible">
+    <app-edit-time
+      [isVisible]="isVisible"
+      [editData]="editData"
+      (close)="isVisible = false"
+    ></app-edit-time>
   </div>
 </div>

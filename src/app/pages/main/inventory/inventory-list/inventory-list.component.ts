@@ -111,8 +111,6 @@ export class InventoryListComponent implements OnInit {
       })
       .subscribe(
         (res: any) => {
-          console.log(res);
-
           this.total = res.pagination?.total_rows;
           this.inventoryList = res.inventory_feeds;
           this.isLoading = false;
