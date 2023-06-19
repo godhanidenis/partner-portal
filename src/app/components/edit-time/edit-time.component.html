@@ -1,14 +1,16 @@
 <div class="edit-time">
   <nz-modal
     [(nzVisible)]="isVisible"
-    nzTitle="Edit Time"
+    [nzTitle]="'Edit ' + section"
     (nzOnCancel)="handleCancel()"
   >
     <ng-container *nzModalContent>
       <div class="body-section">
         <form [formGroup]="editTimeForm">
           <nz-form-item>
-            <nz-form-label [nzSm]="8" [nzXs]="24">MPN</nz-form-label>
+            <nz-form-label [nzSm]="8" [nzXs]="24">{{
+              editLabel[0]
+            }}</nz-form-label>
             <nz-form-control [nzSm]="15" [nzXs]="24">
               <nz-input-group>
                 <b style="padding-left: 10px">{{ editData.mpn }}</b>
@@ -17,25 +19,27 @@
           </nz-form-item>
           <nz-form-item>
             <nz-form-label [nzSm]="8" [nzXs]="24"
-              >Current Handling Time
+              >{{ editLabel[1] }}
             </nz-form-label>
             <nz-form-control [nzSm]="15" [nzXs]="24">
               <nz-input-group>
-                <b style="padding-left: 10px">{{ editData.handling_time }}</b>
+                <b style="padding-left: 10px">{{ editData.current }}</b>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-label [nzSm]="8" [nzXs]="24"
-              >New Handling Time</nz-form-label
-            >
+            <nz-form-label [nzSm]="8" [nzXs]="24">{{
+              editLabel[2]
+            }}</nz-form-label>
             <nz-form-control [nzSm]="15" [nzXs]="24">
-              <nz-input-group>
+              <nz-input-group
+                [nzPrefix]="section === 'Handling Time' ? 'Day' : '$'"
+              >
                 <input
-                  formControlName="new_handling_time"
+                  formControlName="new"
                   type="text"
                   nz-input
-                  placeholder="Enter new Time"
+                  placeholder="Enter new"
                 />
               </nz-input-group>
             </nz-form-control>

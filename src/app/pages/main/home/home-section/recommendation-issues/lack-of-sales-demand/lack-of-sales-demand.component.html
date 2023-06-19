@@ -11,11 +11,11 @@
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
-      (showFilter)="openNav()"
-      [issueName]="'Lack Of Sales Demand'"
+      [issueName]="'14'"
     ></app-home-filter-action>
+    <!-- (showFilter)="openNav()" -->
 
-    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-home-filter-tag
         (closeTag)="close($event)"
         (tagRemove)="removeAll()"
@@ -29,7 +29,7 @@
         [selectCategory]="selectCategory"
         [selectSalesTire]="selectSalesTire"
       ></app-home-filter-tag>
-    </div>
+    </div> -->
 
     <app-recommendation-issue-table
       [listOfData]="lackOfSalesDemandList"
@@ -40,7 +40,7 @@
       [tabName]="'Lack Of Sales Demand'"
     ></app-recommendation-issue-table>
 
-    <div #mySidenav class="filter-section">
+    <!-- <div #mySidenav class="filter-section">
       <app-home-filter-section
         (toggleFilter)="closeNav()"
         (changeData)="change($event)"
@@ -54,6 +54,6 @@
         [salesTire]="selectSalesTire"
         [issueName]="'Lack Of Sales Demand'"
       ></app-home-filter-section>
-    </div>
+    </div> -->
   </div>
 </div>

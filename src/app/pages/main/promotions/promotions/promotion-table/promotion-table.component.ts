@@ -14,6 +14,7 @@ import { PromotionsService } from 'src/app/shared/service/promotions.service';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { StopPromotions } from 'src/app/shared/model/promotion.model';
 import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
+import { NzModalService } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'app-promotion-table',
   templateUrl: './promotion-table.component.html',
@@ -48,7 +49,8 @@ export class PromotionTableComponent implements OnInit {
   constructor(
     private promotionsService: PromotionsService,
     private message: NzMessageService,
-    private router: Router
+    private router: Router,
+    private modal: NzModalService
   ) {
     this.accountSearch
       .pipe(debounceTime(400), distinctUntilChanged())
@@ -83,30 +85,49 @@ export class PromotionTableComponent implements OnInit {
         this.action.emit({ code: promo_code, date: '' });
         break;
       case 'cancel':
-        const data: StopPromotions = {
-          partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-          user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-          promo_code: promo_code,
-        };
+        this.modal.confirm({
+          nzTitle: 'Are you sure cancel this promotion?',
+          nzContent: `Promo Code : <b>${promo_code}</b> `,
+          nzOnOk: () => {
+            const data: StopPromotions = {
+              partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+              user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+              promo_code: promo_code,
+            };
 
-        this.promotionsService.cancelPromotions(data).subscribe((res: any) => {
-          console.log(res);
-          this.message.create(
-            'success',
-            `Cancel this promotion : ${promo_code}`
-          );
+            this.promotionsService
+              .cancelPromotions(data)
+              .subscribe((res: any) => {
+                console.log(res);
+                this.message.create(
+                  'success',
+                  `Cancel this promotion : ${promo_code}`
+                );
+              });
+          },
         });
         break;
       case 'Now':
-        const dataNow: StopPromotions = {
-          partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-          user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-          promo_code: promo_code,
-        };
+        this.modal.confirm({
+          nzTitle: 'Are you sure stop this promotion?',
+          nzContent: `Promo Code : <b>${promo_code}</b> `,
+          nzOnOk: () => {
+            const dataNow: StopPromotions = {
+              partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+              user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+              promo_code: promo_code,
+            };
 
-        this.promotionsService.stopPromotions(dataNow).subscribe((res: any) => {
-          console.log(res);
-          this.message.create('success', `Stop this promotion : ${promo_code}`);
+            this.promotionsService
+              .stopPromotions(dataNow)
+              .subscribe((res: any) => {
+                console.log(res);
+                this.message.create(
+                  'success',
+                  `Stop this promotion : ${promo_code}`
+                );
+              });
+          },
         });
         break;
 

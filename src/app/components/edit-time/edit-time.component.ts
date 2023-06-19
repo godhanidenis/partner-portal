@@ -11,8 +11,10 @@ export class EditTimeComponent implements OnInit {
   @Input()
   editData!: {
     mpn: string;
-    handling_time: number;
+    current: number;
   };
+  @Input() editLabel: string[] = [];
+  @Input() section: string = '';
   @Output() close = new EventEmitter();
   editTimeForm!: FormGroup;
   isLoading: boolean = false;
@@ -20,9 +22,7 @@ export class EditTimeComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     this.editTimeForm = new FormGroup({
-      // mpn: new FormControl(this.editData?.mpn),
-      // current_handling_time: new FormControl(this.editData?.handling_time),
-      new_handling_time: new FormControl(''),
+      new: new FormControl(''),
     });
   }
 

@@ -17,7 +17,7 @@ export class HomeFilterActionComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {
-    console.log(this.issueName);
+    // console.log(this.issueName);
   }
 
   openFilterSection() {

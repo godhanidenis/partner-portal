@@ -11,9 +11,9 @@
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
-      (showFilter)="openNav()"
       [issueName]="'1'"
     ></app-home-filter-action>
+    <!-- (showFilter)="openNav()" -->
 
     <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-home-filter-tag
@@ -127,6 +127,8 @@
     <app-edit-time
       [isVisible]="isVisible"
       [editData]="editData"
+      [editLabel]="editLabel"
+      [section]="'Handling Time'"
       (close)="isVisible = false"
     ></app-edit-time>
   </div>

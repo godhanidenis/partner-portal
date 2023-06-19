@@ -11,11 +11,11 @@
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
-      (showFilter)="openNav()"
       [issueName]="'2'"
     ></app-home-filter-action>
+    <!-- (showFilter)="openNav()" -->
 
-    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-home-filter-tag
         (closeTag)="close($event)"
         (tagRemove)="removeAll()"
@@ -29,7 +29,7 @@
         [selectCategory]="selectCategory"
         [selectSalesTire]="selectSalesTire"
       ></app-home-filter-tag>
-    </div>
+    </div> -->
 
     <nz-table
       #nzTable
@@ -47,6 +47,9 @@
       <thead>
         <tr>
           <th style="max-width: 50px">Sr. No.</th>
+          <th>MPN</th>
+          <th>UPC</th>
+          <th>Product Name</th>
           <th>Amazon ASIN</th>
           <th>Unit Price provided to 123Stores</th>
           <th>Allowance provided to 123Stores</th>
@@ -60,19 +63,24 @@
       <tbody>
         <tr *ngFor="let data of nzTable.data; let no = index">
           <td>{{ no + 1 }}</td>
-          <td>{{ data?.asin }}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <!-- <td>{{ data?.unitPriceProvidedTo123Stores | currency }}</td>
-          <td>{{ data?.allowanceProvidedTo123Stores }}</td>
-          <td>{{ data?.netUnitPriceProvidedTo123Stores | currency }}</td>
           <td>
-            {{
-              data?.retailPriceOnAmazonOfferedByConflictingProvider | currency
-            }}
-          </td> -->
+            <a
+              class="link"
+              [routerLink]="'/main/products/details/' + data?.mpn"
+              >{{ data?.mpn }}</a
+            >
+          </td>
+          <td>{{ data?.upc }}</td>
+          <td>{{ data?.name }}</td>
+          <td>
+            <a class="link" (click)="navigateAsin(data?.asin)">{{
+              data?.asin
+            }}</a>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>{{ data?.no_of_other_sellers }}</td>
           <td>
             <span *ngFor="let value of data.other_sellers; let sr = index"
@@ -86,15 +94,16 @@
               nzType="primary"
               class="action-button"
               style="margin-top: 0; height: 35px"
+              (click)="matchValue(data.mpn, data.handling_time)"
             >
-              Match
+              Edit Unit Price
             </button>
           </td>
         </tr>
       </tbody>
     </nz-table>
 
-    <div #mySidenav class="filter-section">
+    <!-- <div #mySidenav class="filter-section">
       <app-home-filter-section
         (toggleFilter)="closeNav()"
         (changeData)="change($event)"
@@ -108,6 +117,16 @@
         [salesTire]="selectSalesTire"
         [issueName]="'Handling Time Conflict'"
       ></app-home-filter-section>
-    </div>
+    </div> -->
+  </div>
+
+  <div *ngIf="isVisible">
+    <app-edit-time
+      [isVisible]="isVisible"
+      [editData]="editData"
+      [editLabel]="editLabel"
+      [section]="'Unit Price'"
+      (close)="isVisible = false"
+    ></app-edit-time>
   </div>
 </div>

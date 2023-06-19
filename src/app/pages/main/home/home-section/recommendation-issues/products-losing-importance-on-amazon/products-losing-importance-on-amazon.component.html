@@ -13,11 +13,11 @@
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
-      (showFilter)="openNav()"
-      [issueName]="'Products Losing Importance On Amazon'"
+      [issueName]="'15'"
     ></app-home-filter-action>
+    <!-- (showFilter)="openNav()" -->
 
-    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-home-filter-tag
         (closeTag)="close($event)"
         (tagRemove)="removeAll()"
@@ -31,7 +31,7 @@
         [selectCategory]="selectCategory"
         [selectSalesTire]="selectSalesTire"
       ></app-home-filter-tag>
-    </div>
+    </div> -->
 
     <app-recommendation-issue-table
       [listOfData]="productsLosingImportanceOnAmazonList"
@@ -42,7 +42,7 @@
       [tabName]="'Products Losing Importance On Amazon'"
     ></app-recommendation-issue-table>
 
-    <div #mySidenav class="filter-section">
+    <!-- <div #mySidenav class="filter-section">
       <app-home-filter-section
         (toggleFilter)="closeNav()"
         (changeData)="change($event)"
@@ -56,6 +56,6 @@
         [salesTire]="selectSalesTire"
         [issueName]="'Products Losing Importance On Amazon'"
       ></app-home-filter-section>
-    </div>
+    </div> -->
   </div>
 </div>

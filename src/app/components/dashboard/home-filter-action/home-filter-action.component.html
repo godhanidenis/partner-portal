@@ -1,11 +1,18 @@
 <div class="filter-action">
   <nz-badge
+    *ngIf="
+      issueName !== '1' &&
+      issueName !== '2' &&
+      issueName !== '3' &&
+      issueName !== '13' &&
+      issueName !== '14' &&
+      issueName !== '15'
+    "
     style="margin-right: 10px"
     [nzShowZero]="false"
     [nzCount]="badgeTotal"
   >
     <button
-      *ngIf="issueName !== '1'"
       (click)="openFilterSection()"
       nz-button
       nzType="primary"

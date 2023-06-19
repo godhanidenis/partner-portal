@@ -16,9 +16,30 @@ export class RecommendationIssueTableComponent implements OnInit {
   @Output() changeModel = new EventEmitter();
 
   pageSizeOptions = [50, 100, 250, 500];
+  editData: { mpn: string; current: number } = {
+    mpn: 'string',
+    current: 0,
+  };
+  editLabel: string[] = [];
+  isVisible: boolean = false;
 
   constructor() {}
   ngOnInit(): void {}
+
+  navigateAsin(asin: string) {
+    window.open(`https://www.amazon.com/dp/${asin}`);
+  }
+
+  matchValue(mpn: string, unit_price: number) {
+    if (this.tabName !== 'Shipping Label') {
+      this.editData = {
+        mpn: mpn,
+        current: unit_price,
+      };
+      this.editLabel = ['MPN', 'Current Unit Price', 'New Unit Price'];
+      this.isVisible = true;
+    }
+  }
 
   selectAction(data: string) {
     this.changeModel.emit(data);
