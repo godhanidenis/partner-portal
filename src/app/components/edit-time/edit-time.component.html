@@ -33,7 +33,20 @@
             }}</nz-form-label>
             <nz-form-control [nzSm]="15" [nzXs]="24">
               <nz-input-group
-                [nzPrefix]="section === 'Handling Time' ? 'Day' : '$'"
+                [nzPrefix]="
+                  section === 'Amazon ASIN'
+                    ? ''
+                    : section === 'Handling Time'
+                    ? ''
+                    : '$'
+                "
+                [nzSuffix]="
+                  section === 'Amazon ASIN'
+                    ? ''
+                    : section === 'Handling Time'
+                    ? 'Day'
+                    : ''
+                "
               >
                 <input
                   formControlName="new"
@@ -44,6 +57,51 @@
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
+          <div *ngIf="section === 'Amazon ASIN'">
+            <nz-card nzSize="small" nzTitle="Recommendations">
+              <div *ngFor="let recom of editData?.extraData; let i = index">
+                <div [style.padding-top]="i > 0 ? '8px' : ''" nzRow>
+                  <span style="font-weight: 600">#{{ i + 1 }}</span>
+                  <div style="display: flex; flex-wrap: nowrap">
+                    <span
+                      style="
+                        font-weight: 600;
+                        display: flex;
+                        white-space: nowrap;
+                      "
+                      >Amazon MPN : </span
+                    ><span style="padding-left: 4px">{{ recom?.mpn }}</span>
+                  </div>
+                  <div style="display: flex; flex-wrap: nowrap">
+                    <span
+                      style="
+                        font-weight: 600;
+                        display: flex;
+                        white-space: nowrap;
+                      "
+                      >Amazon ASIN : </span
+                    ><span style="padding-left: 4px"
+                      ><a class="link" (click)="navigateAsin(recom?.asin)">{{
+                        recom?.asin
+                      }}</a></span
+                    >
+                  </div>
+                  <div style="display: flex; flex-wrap: nowrap">
+                    <span
+                      style="
+                        font-weight: 600;
+                        display: flex;
+                        white-space: nowrap;
+                      "
+                      >Amazon Page Title : </span
+                    ><span style="padding-left: 4px">{{
+                      recom?.amazon_page_title
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </nz-card>
+          </div>
         </form>
       </div>
       <div class="model-footer">

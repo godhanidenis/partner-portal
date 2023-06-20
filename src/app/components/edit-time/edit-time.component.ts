@@ -12,9 +12,11 @@ export class EditTimeComponent implements OnInit {
   editData!: {
     mpn: string;
     current: number;
+    extraData?: any;
   };
   @Input() editLabel: string[] = [];
   @Input() section: string = '';
+  @Input() extraData: any;
   @Output() close = new EventEmitter();
   editTimeForm!: FormGroup;
   isLoading: boolean = false;
@@ -31,5 +33,9 @@ export class EditTimeComponent implements OnInit {
   handleCancel() {
     this.isVisible = false;
     this.close.emit();
+  }
+
+  navigateAsin(asin: string) {
+    window.open(`https://www.amazon.com/dp/${asin}`);
   }
 }

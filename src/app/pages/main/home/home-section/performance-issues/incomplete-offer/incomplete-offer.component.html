@@ -11,7 +11,6 @@
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
-      (showFilter)="openNav()"
       [issueName]="'9'"
     ></app-home-filter-action>
 
@@ -46,40 +45,111 @@
     >
       <thead>
         <tr>
-          <th>Sr. No.</th>
           <th>MPN</th>
           <th>UPC</th>
           <th>Product Name</th>
           <th>Amazon ASIN</th>
-          <th>Amazon MPN</th>
-          <th>Amazon Page Title</th>
-          <th>Actions</th>
+          <th>Recommendation</th>
+          <!-- <th>Amazon Page Title</th> -->
+          <th nzRight class="action-column"><div>Actions</div></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data; let no = index">
-          <td>{{ no + 1 }}</td>
-          <td>{{ data?.mpn }}</td>
+          <td>
+            <a
+              class="link"
+              [routerLink]="'/main/products/details/' + data?.mpn"
+              >{{ data?.mpn }}</a
+            >
+          </td>
           <td>{{ data?.upc }}</td>
           <td>{{ data?.name }}</td>
-          <td>{{ data?.asin }}</td>
-          <td>{{ data?.amazon_mpn }}</td>
-          <td>{{ data?.amazon_page_title }}</td>
           <td>
-            <button
-              nz-button
-              nzType="primary"
-              class="action-button"
-              style="margin-top: 0; height: 35px"
-            >
-              Match
-            </button>
+            <a class="link" (click)="navigateAsin(data?.asin)">{{
+              data?.asin
+            }}</a>
+          </td>
+          <td>
+            <div *ngFor="let recom of data?.recommendation; let i = index">
+              <div nzRow *ngIf="i < 1">
+                <span style="font-weight: 600">#{{ i + 1 }}</span>
+                <div style="display: flex; flex-wrap: nowrap">
+                  <span
+                    style="font-weight: 600; display: flex; white-space: nowrap"
+                    >Amazon MPN : </span
+                  ><span style="padding-left: 4px">{{ recom?.mpn }}</span>
+                </div>
+                <div style="display: flex; flex-wrap: nowrap">
+                  <span
+                    style="font-weight: 600; display: flex; white-space: nowrap"
+                    >Amazon ASIN : </span
+                  ><span style="padding-left: 4px"
+                    ><a class="link" (click)="navigateAsin(recom?.asin)">{{
+                      recom?.asin
+                    }}</a></span
+                  >
+                </div>
+                <div style="display: flex; flex-wrap: nowrap">
+                  <span
+                    style="font-weight: 600; display: flex; white-space: nowrap"
+                    >Amazon Page Title : </span
+                  ><span style="padding-left: 4px">{{
+                    recom?.amazon_page_title
+                  }}</span>
+                </div>
+              </div>
+              <div
+                style="padding-top: 8px"
+                nzRow
+                *ngIf="i > 0 && data?.showMore"
+              >
+                <span style="font-weight: 600">#{{ i + 1 }}</span>
+                <div style="display: flex; flex-wrap: nowrap">
+                  <span
+                    style="font-weight: 600; display: flex; white-space: nowrap"
+                    >Amazon MPN : </span
+                  ><span style="padding-left: 4px">{{ recom?.mpn }}</span>
+                </div>
+                <div style="display: flex; flex-wrap: nowrap">
+                  <span
+                    style="font-weight: 600; display: flex; white-space: nowrap"
+                    >Amazon ASIN : </span
+                  ><span style="padding-left: 4px"
+                    ><a class="link" (click)="navigateAsin(recom?.asin)">{{
+                      recom?.asin
+                    }}</a></span
+                  >
+                </div>
+                <div style="display: flex; flex-wrap: nowrap">
+                  <span
+                    style="font-weight: 600; display: flex; white-space: nowrap"
+                    >Amazon Page Title : </span
+                  ><span style="padding-left: 4px">{{
+                    recom?.amazon_page_title
+                  }}</span>
+                </div>
+              </div>
+              <a *ngIf="i > 0" (click)="toggleShowMore(data)">{{
+                data?.showMore ? "Show less" : "Show more"
+              }}</a>
+            </div>
+          </td>
+          <!-- <td>{{ data?.amazon_page_title }}</td> -->
+          <td nzRight>
+            <div style="display: flex; align-items: center">
+              <a
+                (click)="matchValue(data.mpn, data?.asin, data?.recommendation)"
+                style="margin: 0 5px; color: #2121c3; font-size: large"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
+            </div>
           </td>
         </tr>
       </tbody>
     </nz-table>
 
-    <div #mySidenav class="filter-section">
+    <!-- <div #mySidenav class="filter-section">
       <app-home-filter-section
         (toggleFilter)="closeNav()"
         (changeData)="change($event)"
@@ -93,6 +163,16 @@
         [salesTire]="selectSalesTire"
         [issueName]="'Handling Time Conflict'"
       ></app-home-filter-section>
-    </div>
+    </div> -->
   </div>
+</div>
+
+<div *ngIf="isVisible">
+  <app-edit-time
+    [isVisible]="isVisible"
+    [editData]="editData"
+    [editLabel]="editLabel"
+    [section]="'Amazon ASIN'"
+    (close)="isVisible = false"
+  ></app-edit-time>
 </div>
