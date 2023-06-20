@@ -14,7 +14,6 @@
   >
     <thead>
       <tr>
-        <th>Serial No.</th>
         <th>MPN</th>
         <th>UPC</th>
         <th>ASIN</th>
@@ -58,12 +57,11 @@
         <th *ngIf="tabName === 'Shipping Label'">
           Potential Retail Price Reduction %
         </th>
-        <th>Action</th>
+        <th nzRight class="action-column"><div>Action</div></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let data of nzTable.data; let no = index">
-        <td>{{ no + 1 }}</td>
         <td>
           <a
             class="link"
@@ -119,8 +117,15 @@
         <td *ngIf="tabName === 'Shipping Label'">
           {{ data?.potential_retail_price_reduction_percentage }}
         </td>
-        <td>
-          <button
+        <td nzRight>
+          <div style="display: flex; align-items: center">
+            <a
+              (click)="matchValue(data.mpn, data.unit_price)"
+              style="margin: 0 5px; color: #2121c3; font-size: large"
+              ><span nz-icon nzType="edit" nzTheme="outline"></span
+            ></a>
+          </div>
+          <!-- <button
             nz-button
             nzType="primary"
             class="action-button"
@@ -128,7 +133,7 @@
             (click)="matchValue(data.mpn, data.unit_price)"
           >
             {{ tabName === "Shipping Label" ? "Match" : "Edit Unit Price" }}
-          </button>
+          </button> -->
         </td>
       </tr>
     </tbody>

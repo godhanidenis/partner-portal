@@ -46,7 +46,6 @@
     >
       <thead>
         <tr>
-          <th style="max-width: 50px">Sr. No.</th>
           <th>MPN</th>
           <th>UPC</th>
           <th>Product Name</th>
@@ -60,12 +59,11 @@
           </th>
           <th style="max-width: 100px">No. of Conflicting Providers</th>
           <th>Conflicting Providers</th>
-          <th style="max-width: 50px">Actions</th>
+          <th nzRight class="action-column"><div>Actions</div></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of nzTable.data; let no = index">
-          <td>{{ no + 1 }}</td>
           <td>
             <a
               class="link"
@@ -91,8 +89,15 @@
               }}{{ data.other_sellers.length - 1 !== sr ? "," : "" }}</span
             >
           </td>
-          <td>
-            <button
+          <td nzRight>
+            <div style="display: flex; align-items: center">
+              <a
+                (click)="matchValue(data.mpn, data.handling_time)"
+                style="margin: 0 5px; color: #2121c3; font-size: large"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
+            </div>
+            <!-- <button
               nz-button
               nzType="primary"
               class="action-button"
@@ -100,7 +105,7 @@
               (click)="matchValue(data.mpn, data.handling_time)"
             >
               Edit Handling Time
-            </button>
+            </button> -->
           </td>
         </tr>
       </tbody>
