@@ -21,6 +21,7 @@
                   formControlName="selectType"
                   nzAllowClear
                   nzPlaceHolder="Select Choose Type"
+                  [nzDisabled]="true"
                 >
                   <nz-option
                     *ngFor="let data of chooseType"

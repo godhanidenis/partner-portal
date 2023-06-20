@@ -1,0 +1,13 @@
+.recommendation-issue-table {
+  nz-table {
+    .action-column {
+      width: 50px;
+      padding: 0;
+      background-color: rgba(239, 239, 250) !important;
+
+      div {
+        padding: 16px;
+      }
+    }
+  }
+}
