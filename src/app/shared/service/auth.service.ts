@@ -12,6 +12,10 @@ import {
 } from '../model/auth.model';
 import { Route, Router } from '@angular/router';
 
+const TOKEN_KEY = 'access_token';
+const REFRESHTOKEN_KEY = 'refresh_token';
+const USER_KEY = 'user_profile';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -24,15 +28,30 @@ export class AuthService {
   }
 
   setAccessToken(token: string) {
-    localStorage.setItem('access_token', token);
+    localStorage.setItem(TOKEN_KEY, token);
   }
 
   getAccessToken() {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem(TOKEN_KEY);
+  }
+
+  setRefreshToken(token: string) {
+    localStorage.setItem(REFRESHTOKEN_KEY, token);
   }
 
   getRefreshToken() {
-    return localStorage.getItem('refresh_token');
+    return localStorage.getItem(REFRESHTOKEN_KEY);
+  }
+
+  saveUser(user: any) {
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  getUser() {
+    const user = localStorage.getItem(USER_KEY)
+      ? JSON.parse(localStorage.getItem(USER_KEY)!)
+      : null;
+    return user;
   }
 
   resetPassword(payload: ResetPasswordReq) {
