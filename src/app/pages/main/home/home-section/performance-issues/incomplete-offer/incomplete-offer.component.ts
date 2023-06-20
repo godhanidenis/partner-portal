@@ -52,6 +52,8 @@ export class IncompleteOfferComponent implements OnInit {
 
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
+  isVisible: boolean = false;
+  editLabel: string[] = [];
 
   constructor(
     private router: Router,
@@ -63,6 +65,19 @@ export class IncompleteOfferComponent implements OnInit {
       (res: any) => {
         this.isLoading = false;
         if (res.success) {
+          const dummyData = {
+            mpn: 'ACDED',
+            asin: 'A1-232-BDDE',
+            amazon_page_title: 'Amazon is the best thing that has happened',
+          };
+          res.data.forEach((x: any, index: number) => {
+            const data = [dummyData];
+            if (index % 2 === 0) {
+              data.push(dummyData);
+            }
+            x['recommendation'] = data;
+            x['showMore'] = false;
+          });
           this.incompleteOfferList = res.data;
         }
       },
@@ -70,6 +85,10 @@ export class IncompleteOfferComponent implements OnInit {
     );
   }
   ngOnInit(): void {}
+
+  toggleShowMore(data: any) {
+    data.showMore = !data.showMore;
+  }
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
@@ -292,6 +311,20 @@ export class IncompleteOfferComponent implements OnInit {
         }
       }
     }
+  }
+
+  matchValue(mpn: string, asin: number, recommandations: any) {
+    this.editData = {
+      mpn: mpn,
+      current: asin,
+      extraData: recommandations
+    };
+    this.editLabel = ['MPN', 'Current Amazon ASIN', 'New Amazon ASIN'];
+    this.isVisible = true;
+  }
+
+  navigateAsin(asin: string) {
+    window.open(`https://www.amazon.com/dp/${asin}`);
   }
 
   backButton(path: string) {

@@ -24,6 +24,9 @@ export class HomeHeaderComponent implements OnInit {
       case 'MAP Conflict':
         this.templateType = 'EDIT_MPN';
         break;
+      case 'Incomplete Offer':
+        this.templateType = 'ADD_EDIT_ASIN';
+        break;
       case 'Price Correction':
         this.templateType = 'EDIT_PRICE';
         break;
