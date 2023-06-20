@@ -34,32 +34,32 @@ export class HomeSectionComponent implements OnInit {
   };
   performanceIssuesList: any[] = [];
 
-  performanceUrlList = [
-    'dashboard/performance-issues/handling-time-conflict',
-    'dashboard/performance-issues/unit-price-conflict',
-    'dashboard/performance-issues/map-conflict',
-    'dashboard/performance-issues/restricted-via-order',
-    'dashboard/performance-issues/restricted-discontinued',
-    'dashboard/performance-issues/restricted-product-price-error',
-    'dashboard/performance-issues/restricted-cannot-ship-ground',
-    'dashboard/performance-issues/restricted-via-returns',
-    'dashboard/performance-issues/incomplete-offer',
-    'dashboard/performance-issues/stranded-in-feed',
-    'dashboard/performance-issues/stranded-in-catalog',
-    'dashboard/performance-issues/discontinued-update',
-  ];
+  urlsMap = new Map([
+    ['A04', 'dashboard/performance-issues/handling-time-conflict'],
+    ['A05', 'dashboard/performance-issues/unit-price-conflict'],
+    ['A06', 'dashboard/performance-issues/map-conflict'],
+    ['A07', 'dashboard/performance-issues/restricted-via-order'],
+    ['A08', 'dashboard/performance-issues/restricted-discontinued'],
+    ['A09', 'dashboard/performance-issues/restricted-product-price-error'],
+    ['A10', 'dashboard/performance-issues/restricted-cannot-ship-ground'],
+    ['A11', 'dashboard/performance-issues/restricted-via-returns'],
+    ['A13', 'dashboard/performance-issues/incomplete-offer'],
+    ['A16', 'dashboard/performance-issues/stranded-in-feed'],
+    ['A17', 'dashboard/performance-issues/stranded-in-catalog'],
+    ['A18', 'dashboard/performance-issues/discontinued-update'],
+    ['A19', 'products/add-product'],
+    ['A20', 'dashboard/recommendation-issues/price-correction'],
+    ['A21', 'dashboard/recommendation-issues/lack-of-sales-demand'],
+    [
+      'A22',
+      'dashboard/recommendation-issues/products-losing-importance-on-amazon',
+    ],
+    ['A23', 'dashboard/recommendation-issues/shipping-label'],
+    ['A24', 'profile/allowances/co-op'],
+    ['A25', 'profile/allowances/rebate'],
+  ]);
 
   recommendationIssuesList: any[] = [];
-
-  recommendationUrlList = [
-    'products/add-product',
-    'dashboard/recommendation-issues/price-correction',
-    'dashboard/recommendation-issues/lack-of-sales-demand',
-    'dashboard/recommendation-issues/products-losing-importance-on-amazon',
-    'dashboard/recommendation-issues/shipping-label',
-    'profile/allowances/co-op',
-    'profile/allowances/rebate',
-  ];
 
   chartOneLabel: string[] = [
     'Active',
@@ -180,13 +180,17 @@ export class HomeSectionComponent implements OnInit {
         if (res.success) {
           this.performanceIssuesList = [];
           res.performance.map((result: any, index: number) => {
-            result['url'] = this.performanceUrlList[index];
-            this.performanceIssuesList.push(result);
+            if (this.urlsMap.get(result?.code)) {
+              result['url'] = this.urlsMap.get(result?.code);
+              this.performanceIssuesList.push(result);
+            }
           });
           this.recommendationIssuesList = [];
           res.recommendation.map((response: any, index: number) => {
-            response['url'] = this.recommendationUrlList[index];
-            this.recommendationIssuesList.push(response);
+            if (this.urlsMap.get(response?.code)) {
+              response['url'] = this.urlsMap.get(response?.code);
+              this.recommendationIssuesList.push(response);
+            }
           });
         }
       },
