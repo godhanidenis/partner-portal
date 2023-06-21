@@ -8,12 +8,12 @@ import { UserPermissionService } from './shared/service/user-permission.service'
 })
 export class AppComponent implements OnInit {
   constructor(private userPermissionService: UserPermissionService) {
-    this.userPermissionService.getPartnerPermission('NPS').subscribe(
-      (res: any) => {
-        this.userPermissionService.userPermission.next(res);
-      },
-      (err) => console.log(err)
-    );
+    // this.userPermissionService.getPartnerPermission('NPS').subscribe(
+    //   (res: any) => {
+    //     this.userPermissionService.userPermission.next(res);
+    //   },
+    //   (err) => console.log(err)
+    // );
   }
   ngOnInit(): void {}
 }

@@ -89,7 +89,7 @@
         (click)="isCollapsed = !isCollapsed"
       ></span>
       <div class="profile-menu">
-        <span class="name">{{ userName }}</span>
+        <span class="name">{{ userPartnerName }}</span>
         <a style="color: #2121c3" href="#">Help</a>
         <div class="profile-menu">
           <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
@@ -100,9 +100,9 @@
             <span nz-icon nzType="caret-down" nzTheme="fill"></span>
           </a>
           <nz-dropdown-menu #menu="nzDropdownMenu">
-            <span style="margin: 10px; font-size: 12px; font-weight: 600"
-              >Account</span
-            >
+            <div style="padding: 10px 16px; font-size: 12px; font-weight: 600">
+              Account
+            </div>
             <div class="profile">
               <nz-avatar
                 [nzText]="avatarCharacters | uppercase"
@@ -110,22 +110,27 @@
               ></nz-avatar>
               <div>
                 <div class="user-type">
-                  <span>{{ userName }}</span>
+                  <span>{{
+                    loggedinUser?.first_name + " " + loggedinUser?.last_name
+                  }}</span>
                 </div>
-                <div class="user-email">
-                  <span>walkeredisonfurniture@gmail.com</span>
+                <div *ngIf="loggedinUser?.email" class="user-email">
+                  <span>{{ loggedinUser?.email }}</span>
                 </div>
               </div>
             </div>
 
             <ul nz-menu>
-              <li nz-menu-item (click)="changePermission('NPS')">
+              <!-- <li nz-menu-item (click)="changePermission('NPS')">
                 <span>NPS</span>
               </li>
               <li nz-menu-item (click)="changePermission('WEF')">
                 <span>WEF</span>
-              </li>
-              <li nz-menu-item routerLink="/main/change-password">
+              </li> -->
+              <li
+                nz-menu-item
+                routerLink="/main/change-password"
+              >
                 <span
                   nz-icon
                   nzType="user"
@@ -134,7 +139,10 @@
                 ></span>
                 <span>Change Password</span>
               </li>
-              <li nz-menu-item (click)="logOutUser()">
+              <li
+                nz-menu-item
+                (click)="logOutUser()"
+              >
                 <span
                   nz-icon
                   nzType="logout"

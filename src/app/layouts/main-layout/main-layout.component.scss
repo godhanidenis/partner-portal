@@ -34,8 +34,6 @@
         margin-right: 5px;
       }
     }
-
-
   }
 
   .logo {
@@ -71,7 +69,6 @@
     }
   }
 
-
   ::ng-deep .ant-dropdown-menu {
     box-shadow: none;
   }
@@ -84,8 +81,6 @@
       margin-right: 10px;
     }
   }
-
-
 
   // ::ng-deep .ant-layout-header {
   //   height: 55px;
@@ -141,7 +136,6 @@
 
   ::ng-deep .ant-menu-sub.ant-menu-inline {
     background-color: $darkBlue;
-
   }
 
   ::ng-deep .ant-menu-submenu-arrow {
@@ -162,10 +156,9 @@
   ::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: $white;
     color: $darkBlue;
-
   }
 
-  ::ng-deep .ant-menu-inline>.ant-menu-submenu>.ant-menu-submenu-title {
+  ::ng-deep .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
     color: $white;
   }
 
@@ -176,7 +169,6 @@
     border-right: none;
     background-color: rgb(33 33 195 / 8%) !important;
   }
-
 
   ::ng-deep .ant-menu-item:active,
   .ant-menu-submenu-title:active {
@@ -240,6 +232,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  li {
+    padding: 10px 16px;
+  }
 }
 
 ::ng-deep .ant-avatar-string {
@@ -251,17 +247,21 @@
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
     0 9px 28px 8px rgb(0 0 0 / 5%);
 
+  ::ng-deep .ant-dropdown-menu-item {
+    padding: 10px 16px !important;
+  }
   .profile {
     display: flex;
     align-items: center;
     border-bottom: 1px solid $border;
+    padding: 0px 16px 10px;
 
-    nz-avatar {
-      margin-left: 10px;
-    }
+    // nz-avatar {
+    //   margin-left: 10px;
+    // }
 
     .user-type {
-      padding: 5px 20px 0px 20px;
+      padding: 5px 20px 0px 8px;
 
       span {
         font-weight: 700;
@@ -278,7 +278,7 @@
       width: 100%;
       flex-direction: column !important;
       background-color: $white;
-      padding: 0px 20px 10px 20px;
+      padding: 0px 20px 0px 20px;
       display: flex;
 
       span {
