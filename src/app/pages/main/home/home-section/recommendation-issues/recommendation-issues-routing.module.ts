@@ -7,19 +7,19 @@ import { ShippingLabelComponent } from './shipping-label/shipping-label.componen
 
 const routes: Routes = [
   {
-    path: 'price-correction',
+    path: 'price-correction/:code',
     component: PriceCorrectionComponent,
   },
   {
-    path: 'lack-of-sales-demand',
+    path: 'lack-of-sales-demand/:code',
     component: LackOfSalesDemandComponent,
   },
   {
-    path: 'products-losing-importance-on-amazon',
+    path: 'products-losing-importance-on-amazon/:code',
     component: ProductsLosingImportanceOnAmazonComponent,
   },
   {
-    path: 'shipping-label',
+    path: 'shipping-label/:code',
     component: ShippingLabelComponent,
   },
 ];

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
@@ -52,22 +52,36 @@ export class PriceCorrectionComponent implements OnInit {
 
   // clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
+  code: any = '';
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private modal: NzModalService,
     private dashboardService: DashboardService
   ) {
     this.isLoading = true;
-    dashboardService.priceCorrection().subscribe(
-      (res: any) => {
-        this.isLoading = false;
-        if (res.success) {
-          this.priceCorrectionList = res.data;
-        }
-      },
-      (err) => (this.isLoading = false)
-    );
+    this.code = this.route.snapshot.paramMap.get('code');
+    if (this.code) {
+      dashboardService.getAgendasDataByCode(this.code).subscribe(
+        (res: any) => {
+          this.isLoading = false;
+          if (res.success) {
+            this.priceCorrectionList = res.data;
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
+    // dashboardService.priceCorrection().subscribe(
+    //   (res: any) => {
+    //     this.isLoading = false;
+    //     if (res.success) {
+    //       this.priceCorrectionList = res.data;
+    //     }
+    //   },
+    //   (err) => (this.isLoading = false)
+    // );
   }
   ngOnInit(): void {}
 

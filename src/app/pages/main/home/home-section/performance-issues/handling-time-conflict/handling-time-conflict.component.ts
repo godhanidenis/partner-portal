@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
@@ -56,22 +56,36 @@ export class HandlingTimeConflictComponent implements OnInit {
   description: string =
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
   editLabel: string[] = [];
+  code: any = '';
 
   constructor(
     private router: Router,
-    private modal: NzModalService,
+    private route: ActivatedRoute,
     private dashboardService: DashboardService
   ) {
     this.isLoading = true;
-    dashboardService.handlingTimeConflict().subscribe(
-      (res: any) => {
-        this.isLoading = false;
-        if (res.success) {
-          this.handlingTimeConflictList = res.data;
-        }
-      },
-      (err) => (this.isLoading = false)
-    );
+    this.code = this.route.snapshot.paramMap.get('code');
+    if (this.code) {
+      dashboardService.getAgendasDataByCode(this.code).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.isLoading = false;
+          if (res.success) {
+            this.handlingTimeConflictList = res.data;
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
+    // dashboardService.handlingTimeConflict().subscribe(
+    //   (res: any) => {
+    //     this.isLoading = false;
+    //     if (res.success) {
+    //       this.handlingTimeConflictList = res.data;
+    //     }
+    //   },
+    //   (err) => (this.isLoading = false)
+    // );
   }
   ngOnInit(): void {}
 

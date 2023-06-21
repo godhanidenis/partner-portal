@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
@@ -54,35 +54,40 @@ export class IncompleteOfferComponent implements OnInit {
   isMultipleProductsVisible: boolean = false;
   isVisible: boolean = false;
   editLabel: string[] = [];
+  code: any = '';
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private modal: NzModalService,
     private dashboardService: DashboardService
   ) {
     this.isLoading = true;
-    dashboardService.offerIncomplete().subscribe(
-      (res: any) => {
-        this.isLoading = false;
-        if (res.success) {
-          const dummyData = {
-            mpn: 'ACDED',
-            asin: 'A1-232-BDDE',
-            amazon_page_title: 'Amazon is the best thing that has happened',
-          };
-          res.data.forEach((x: any, index: number) => {
-            const data = [dummyData];
-            if (index % 2 === 0) {
-              data.push(dummyData);
-            }
-            x['recommendation'] = data;
-            x['showMore'] = false;
-          });
-          this.incompleteOfferList = res.data;
-        }
-      },
-      (err) => (this.isLoading = false)
-    );
+    this.code = this.route.snapshot.paramMap.get('code');
+    if (this.code) {
+      dashboardService.getAgendasDataByCode(this.code).subscribe(
+        (res: any) => {
+          this.isLoading = false;
+          if (res.success) {
+            const dummyData = {
+              mpn: 'ACDED',
+              asin: 'A1-232-BDDE',
+              amazon_page_title: 'Amazon is the best thing that has happened',
+            };
+            res.data.forEach((x: any, index: number) => {
+              const data = [dummyData];
+              if (index % 2 === 0) {
+                data.push(dummyData);
+              }
+              x['recommendation'] = data;
+              x['showMore'] = false;
+            });
+            this.incompleteOfferList = res.data;
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
   }
   ngOnInit(): void {}
 
@@ -317,7 +322,7 @@ export class IncompleteOfferComponent implements OnInit {
     this.editData = {
       mpn: mpn,
       current: asin,
-      extraData: recommandations
+      extraData: recommandations,
     };
     this.editLabel = ['MPN', 'Current Amazon ASIN', 'New Amazon ASIN'];
     this.isVisible = true;
