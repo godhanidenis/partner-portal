@@ -1,180 +1,189 @@
- @import'../../../../../assets/variable/variable.scss';
+@import "../../../../../assets/variable/variable.scss";
 
- .home-section {
-     padding-bottom: 10px;
+.home-section {
+  padding-bottom: 10px;
 
-     .tab-header {
-         border-bottom: none;
-     }
+  .flex-direction {
+    flex-direction: column;
+  }
 
-     .section {
-         .user-content {
-             margin-top: 10px;
+  .tab-header {
+    border-bottom: none;
+  }
 
-             .table-layout {
-                 padding: 15px;
-             }
-         }
+  .section {
+    .user-content {
+      margin-top: 10px;
 
-         .overview-section {
-             min-height: 100%;
-         }
+      .table-layout {
+        padding: 15px;
+      }
+    }
 
-         .card {
-             padding: 15px;
-             padding-top: 0;
+    .overview-section {
+      min-height: 100%;
+    }
 
-             .body {
-                 margin: 10px 0;
-             }
+    .card {
+      padding: 15px;
+      padding-top: 0;
 
-             .content {
-                 p {
-                     display: flex;
-                     justify-content: space-between;
-                 }
-             }
-         }
+      @media only screen and (max-width: 1199px) {
+        ::ng-deep .flex-direction {
+          flex-direction: row;
+          padding-bottom: 16px;
+        }
+      }
 
-         .title {
-             font-size: 16px;
-             font-weight: 700;
-             padding-bottom: 15px;
-             margin-bottom: 5px;
-         }
+      .body {
+        margin: 10px 0;
+      }
 
-         ::ng-deep .ant-card-body {
-             padding: 15px;
-         }
+      .content {
+        p {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
 
-         .first-card {
-             margin: 10px 0;
-             height: 200px;
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      padding-bottom: 15px;
+      margin-bottom: 5px;
+    }
 
-             nz-card {
-                 height: 100%;
-             }
-         }
+    ::ng-deep .ant-card-body {
+      padding: 15px;
+    }
 
-         .chart-section {
-             margin: 10px 0;
+    .first-card {
+      //  margin: 10px 0;
+      height: 200px;
 
-             nz-card {
-                 min-height: 100%;
-             }
+      nz-card {
+        height: 100%;
+      }
+    }
 
-             .chart-content {
+    .chart-section {
+      //  margin: 10px 0;
 
-                 .canvas {
-                     display: flex;
-                     justify-content: center;
-                 }
+      nz-card {
+        min-height: 100%;
+      }
 
-                 canvas {
-                     width: 50% !important;
-                     height: 50% !important;
-                 }
+      .chart-content {
+        .canvas {
+          display: flex;
+          justify-content: center;
+        }
 
-                 @media screen and (max-width: 600px) {
-                     canvas {
-                         margin-top: 30px;
-                     }
-                 }
+        canvas {
+          width: 50% !important;
+          height: 50% !important;
+        }
 
-                 .chart-specs {
-                     display: flex;
-                     justify-content: center;
+        @media screen and (max-width: 600px) {
+          canvas {
+            margin-top: 30px;
+          }
+        }
 
-                     .legend {
-                         margin-top: 5px;
-                         display: flex;
-                         flex-direction: column;
-                         justify-content: center;
+        .chart-specs {
+          display: flex;
+          justify-content: center;
 
-                         .color-wrapper {
-                             display: flex;
-                             justify-content: center;
-                             //  margin-right: 10px;
+          .legend {
+            margin-top: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
 
-                             .color-ref {
-                                 width: 12px;
-                                 height: 12px;
-                                 border-radius: 50%;
-                                 transform: translateY(4px);
-                                 margin-right: 5px;
-                             }
-                         }
+            .color-wrapper {
+              display: flex;
+              justify-content: center;
+              //  margin-right: 10px;
 
-                         .percent {
-                             padding-left: 16px;
-                             display: flex;
-                             justify-content: center;
-                         }
-                     }
-                 }
-             }
-         }
+              .color-ref {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                transform: translateY(4px);
+                margin-right: 5px;
+              }
+            }
 
-         .performance-issues-section {
-             padding: 15px;
-             padding-top: 0;
-         }
-     }
+            .percent {
+              padding-left: 16px;
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
 
-     .pendingActions {
-         ::ng-deep .ant-card-body {
-             padding: 24px 15px;
-         }
+    .performance-issues-section {
+      padding: 15px;
+      padding-top: 0;
+    }
+  }
 
-         .body {
-             padding: 15px;
-             padding-top: 0;
+  .pendingActions {
+    ::ng-deep .ant-card-body {
+      padding: 24px 15px;
+    }
 
-             .title {
-                 font-size: 16px;
-                 font-weight: 700;
+    .body {
+      padding: 15px;
+      padding-top: 0;
 
-             }
+      .title {
+        font-size: 16px;
+        font-weight: 700;
+      }
 
-             .card {
-                 display: flex;
+      .card {
+        display: flex;
 
-                 .icon {
-                     width: 15%;
-                     padding-right: 10px;
-                     display: flex;
-                     align-items: center;
-                     justify-content: center;
+        .icon {
+          width: 15%;
+          padding-right: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-                     span {
-                         font-size: xx-large;
-                     }
-                 }
+          span {
+            font-size: xx-large;
+          }
+        }
 
-                 .content {
-                     width: 70%;
-                     display: flex;
-                     flex-direction: column;
-                 }
+        .content {
+          width: 70%;
+          display: flex;
+          flex-direction: column;
+        }
 
-                 .count {
-                     width: 15%;
-                     display: flex;
-                     align-items: center;
+        .count {
+          width: 15%;
+          display: flex;
+          align-items: center;
 
-                     span {
-                         width: 33px;
-                         border-radius: 50%;
-                         background-color: $darkBlue;
-                         color: $white;
-                         font-size: 20px;
-                         font-weight: 600;
-                         display: flex;
-                         justify-content: center;
-                         align-items: center;
-                     }
-                 }
-             }
-         }
-     }
- }
+          span {
+            width: 33px;
+            border-radius: 50%;
+            background-color: $darkBlue;
+            color: $white;
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}

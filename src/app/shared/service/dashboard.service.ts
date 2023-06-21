@@ -54,7 +54,7 @@ export class DashboardService {
       .set('partner_id', action.partner_id)
       .set('user_id', action.user_id);
 
-    return this.http.get(this.url + '/dashboard', {
+    return this.http.get(this.url + '/agendas-list', {
       params: params,
     });
   }
