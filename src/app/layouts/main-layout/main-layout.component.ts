@@ -13,6 +13,8 @@ export class MainLayoutComponent implements OnInit {
   isCollapsed = false;
   avatarCharacters: string = '';
   userName: string = '';
+  loggedinUser: any;
+  userPartnerName = '';
 
   constructor(
     private router: Router,
@@ -21,20 +23,47 @@ export class MainLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.changePermission('NPS');
+    this.getLoggedInUser();
+
+    //this.changePermission('NPS');
+
+    this.getPartnerDetails();
   }
 
-  changePermission(type: string) {
-    this.userPermissionService
-      .getPartnerPermission(type)
-      .subscribe((res: any) => {
-        var str = res?.partner_display_name;
-        var matches = str?.match(/\b(\w)/g);
-        this.avatarCharacters = matches?.join('');
-        this.userName = res?.partner_display_name;
-        this.userPermissionService.userPermission.next(res);
-      });
+  getLoggedInUser() {
+    this.loggedinUser = this.authService.getUser();
+    if (this.loggedinUser) {
+      this.loggedinUser.fullName =
+        (this.loggedinUser?.first_name ?? '') +
+        ' ' +
+        (this.loggedinUser?.last_name ?? '');
+      var matches = this.loggedinUser.fullName?.match(/\b(\w)/g);
+      this.avatarCharacters = matches?.join('');
+    }
   }
+
+  getPartnerDetails() {
+    if (this.loggedinUser) {
+      this.userPermissionService
+        .getPartnerPermission(this.loggedinUser.partner_id)
+        .subscribe((res: any) => {
+          this.userPartnerName = res?.partner_display_name;
+          this.userPermissionService.userPermission.next(res);
+        });
+    }
+  }
+
+  // changePermission(type: string) {
+  //   this.userPermissionService
+  //     .getPartnerPermission(type)
+  //     .subscribe((res: any) => {
+  //       var str = res?.partner_display_name;
+  //       var matches = str?.match(/\b(\w)/g);
+  //       this.avatarCharacters = matches?.join('');
+  //       this.userName = res?.partner_display_name;
+  //       this.userPermissionService.userPermission.next(res);
+  //     });
+  // }
 
   logOutUser() {
     this.authService.logOutUser();

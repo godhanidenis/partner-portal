@@ -14,10 +14,18 @@ export class HomeFilterActionComponent implements OnInit {
   searchValue: string = '';
   exportType: boolean = false;
   isDownloadVisible: boolean = false;
+  isFiltersVisible: boolean = true;
 
   constructor() {}
   ngOnInit(): void {
-    // console.log(this.issueName);
+    this.isFiltersVisible =
+      this.issueName !== '1' &&
+      this.issueName !== '2' &&
+      this.issueName !== '3' &&
+      this.issueName !== '13' &&
+      this.issueName !== '14' &&
+      this.issueName !== '15' &&
+      this.issueName !== '9';
   }
 
   openFilterSection() {

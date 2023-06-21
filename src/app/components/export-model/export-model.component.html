@@ -1,6 +1,6 @@
 <div class="export-model">
   <div style="padding: 15px">
-    <nz-form-item>
+    <nz-form-item *ngIf="showFilterOptions">
       <nz-form-control>
         <nz-input-group>
           <nz-radio-group style="display: grid" [(ngModel)]="exportType">
@@ -10,7 +10,6 @@
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-
     <h4 style="margin-top: 12px">
       {{
         description

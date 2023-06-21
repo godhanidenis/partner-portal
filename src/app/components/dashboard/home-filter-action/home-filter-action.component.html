@@ -1,14 +1,6 @@
 <div class="filter-action">
   <nz-badge
-    *ngIf="
-      issueName !== '1' &&
-      issueName !== '2' &&
-      issueName !== '3' &&
-      issueName !== '13' &&
-      issueName !== '14' &&
-      issueName !== '15' &&
-      issueName !== '9'
-    "
+    *ngIf="isFiltersVisible"
     style="margin-right: 10px"
     [nzShowZero]="false"
     [nzCount]="badgeTotal"
@@ -44,12 +36,20 @@
 
 <nz-modal
   [(nzVisible)]="isDownloadVisible"
-  nzTitle="Which Products would you like to export?"
+  [nzTitle]="
+    isFiltersVisible ? 'Which Products would you like to export?' : 'Export'
+  "
   (nzOnCancel)="isDownloadVisible = false"
 >
   <ng-container *nzModalContent>
     <app-export-model
+      [description]="
+        isFiltersVisible
+          ? ''
+          : 'Your Data will be exported as a CSV file and sent to your email.'
+      "
       [exportType]="exportType"
+      [showFilterOptions]="isFiltersVisible"
       (close)="isDownloadVisible = false"
     ></app-export-model>
   </ng-container>
