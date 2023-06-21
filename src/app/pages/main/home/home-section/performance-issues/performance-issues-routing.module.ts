@@ -15,51 +15,51 @@ import { RestrictedProductPriceErrorComponent } from './restricted-product-price
 
 const routes: Routes = [
   {
-    path: 'handling-time-conflict',
+    path: 'handling-time-conflict/:code',
     component: HandlingTimeConflictComponent,
   },
   {
-    path: 'unit-price-conflict',
+    path: 'unit-price-conflict/:code',
     component: UnitPriceConflictComponent,
   },
   {
-    path: 'map-conflict',
+    path: 'map-conflict/:code',
     component: MapConflictComponent,
   },
   {
-    path: 'restricted-via-order',
+    path: 'restricted-via-order/:code',
     component: RestrictedViaOrderComponent,
   },
   {
-    path: 'restricted-discontinued',
+    path: 'restricted-discontinued/:code',
     component: RestrictedDiscontinuedComponent,
   },
   {
-    path: 'restricted-product-price-error',
+    path: 'restricted-product-price-error/:code',
     component: RestrictedProductPriceErrorComponent,
   },
   {
-    path: 'restricted-cannot-ship-ground',
+    path: 'restricted-cannot-ship-ground/:code',
     component: RestrictedCannotShipGroundComponent,
   },
   {
-    path: 'restricted-via-returns',
+    path: 'restricted-via-returns/:code',
     component: RestrictedViaReturnsComponent,
   },
   {
-    path: 'incomplete-offer',
+    path: 'incomplete-offer/:code',
     component: IncompleteOfferComponent,
   },
   {
-    path: 'stranded-in-feed',
+    path: 'stranded-in-feed/:code',
     component: StrandedInFeedComponent,
   },
   {
-    path: 'stranded-in-catalog',
+    path: 'stranded-in-catalog/:code',
     component: StrandedInCatalogComponent,
   },
   {
-    path: 'discontinued-update',
+    path: 'discontinued-update/:code',
     component: DiscontinuedUpdateComponent,
   },
 ];
