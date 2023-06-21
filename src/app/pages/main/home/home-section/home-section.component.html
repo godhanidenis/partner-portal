@@ -25,11 +25,11 @@
                       ><span>{{ todaySales.unit_sold }}</span>
                     </p>
                     <p>
-                      <span>$ Sold Today</span
+                      <span>Sales ($)</span
                       ><span>{{ todaySales.amount_sold | currency }} </span>
                     </p>
                     <p style="margin-bottom: 0">
-                      <span>Products Sold Today</span
+                      <span>Unique Products Sold</span
                       ><span>{{ todaySales.product_sold }}</span>
                     </p>
                   </div>
@@ -43,18 +43,18 @@
                 [nzXs]="24"
               >
                 <nz-card>
-                  <div class="title">WTD Sales</div>
+                  <div class="title">Week to Date (WTD) Sales</div>
                   <div class="content">
                     <p>
-                      <span>Units Sold WTD</span
+                      <span>Sales (Units)</span
                       ><span>{{ salesWTD.unit_sold }}</span>
                     </p>
                     <p>
-                      <span>$ Sold WTD</span
+                      <span>Sales ($)</span
                       ><span>{{ salesWTD.amount_sold | currency }} </span>
                     </p>
                     <p style="margin-bottom: 0">
-                      <span>Products Sold WTD</span
+                      <span>Unique Products Sold</span
                       ><span>{{ salesWTD.product_sold }}</span>
                     </p>
                   </div>
@@ -68,19 +68,19 @@
                 [nzXs]="24"
               >
                 <nz-card>
-                  <div class="title">Today's Sales</div>
+                  <div class="title">Month to Date (MTD) Sales</div>
                   <div class="content">
                     <p>
-                      <span>Units Sold Today</span
-                      ><span>{{ todaySales.unit_sold }}</span>
+                      <span>Sales (Units)</span
+                      ><span>{{ salesMTD.unit_sold }}</span>
                     </p>
                     <p>
-                      <span>$ Sold Today</span
-                      ><span>{{ todaySales.amount_sold | currency }} </span>
+                      <span>Sales ($)</span
+                      ><span>{{ salesMTD.amount_sold | currency }} </span>
                     </p>
                     <p style="margin-bottom: 0">
-                      <span>Products Sold Today</span
-                      ><span>{{ todaySales.product_sold }}</span>
+                      <span>Unique Products Sold</span
+                      ><span>{{ salesMTD.product_sold }}</span>
                     </p>
                   </div>
                 </nz-card>
