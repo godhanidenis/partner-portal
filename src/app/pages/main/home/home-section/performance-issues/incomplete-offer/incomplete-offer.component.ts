@@ -80,7 +80,6 @@ export class IncompleteOfferComponent implements OnInit {
                 data.push(dummyData);
               }
               x['recommendation'] = data;
-              x['showMore'] = false;
             });
             this.incompleteOfferList = res.data;
           }
@@ -90,10 +89,6 @@ export class IncompleteOfferComponent implements OnInit {
     }
   }
   ngOnInit(): void {}
-
-  toggleShowMore(data: any) {
-    data.showMore = !data.showMore;
-  }
 
   openNav() {
     this.sidenavSection.nativeElement.style.width = '280px';
