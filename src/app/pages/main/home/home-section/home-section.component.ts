@@ -4,6 +4,12 @@ import { Chart, registerables } from 'chart.js';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 Chart.register(...registerables);
 
+interface SalesStats {
+  amount_sold: number;
+  product_sold: number;
+  unit_sold: number;
+}
+
 @Component({
   selector: 'app-home-section',
   templateUrl: './home-section.component.html',
@@ -14,20 +20,17 @@ export class HomeSectionComponent implements OnInit {
   @ViewChild('dChart2', { static: true }) doughnutChart2!: ElementRef;
   chart: any;
   cutOut: number = 75;
-  todaySales: {
-    amount_sold: number;
-    product_sold: number;
-    unit_sold: number;
-  } = {
+  todaySales: SalesStats = {
     amount_sold: 0,
     product_sold: 0,
     unit_sold: 0,
   };
-  salesWTD: {
-    amount_sold: number;
-    product_sold: number;
-    unit_sold: number;
-  } = {
+  salesWTD: SalesStats = {
+    amount_sold: 0,
+    product_sold: 0,
+    unit_sold: 0,
+  };
+  salesMTD: SalesStats = {
     amount_sold: 0,
     product_sold: 0,
     unit_sold: 0,
@@ -120,20 +123,18 @@ export class HomeSectionComponent implements OnInit {
       partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
       user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
     };
-    this.dashboardService.dashboardSales().subscribe((result: any) => {
+    this.dashboardService.dashboardSales().subscribe(async (result: any) => {
       if (result.success) {
-        this.todaySales = result.sales_today;
-        this.salesWTD = result.sales_wtd;
-      }
-    });
-    this.dashboardService.dashboardCatalog().subscribe(async (res: any) => {
-      if (res.success) {
+        this.todaySales = result?.sales_overview?.sales_today;
+        this.salesWTD = result?.sales_overview?.sales_wtd;
+        this.salesMTD = result?.sales_overview?.sales_mtd;
+
         this.chartOneData = [
-          res.catalog.Active,
-          res.catalog.Discontinued,
-          res.catalog.LTL,
-          res.catalog.Restricted,
-          res.catalog.Suppressed,
+          result?.catalog_overview?.Active,
+          result?.catalog_overview?.Discontinued,
+          result?.catalog_overview?.LTL,
+          result?.catalog_overview?.Restricted,
+          result?.catalog_overview?.Suppressed,
         ];
         await this.chartOneLabel.map((res: string, index) => {
           this.chartOneLegend.push({
@@ -148,32 +149,75 @@ export class HomeSectionComponent implements OnInit {
           this.chartOneColor,
           this.doughnutChart1.nativeElement
         );
+
+        this.chartTwoData = [
+          result?.buybox_overview?.stores123,
+          result?.buybox_overview?.no_bb,
+          result?.buybox_overview?.others,
+        ];
+        await this.chartTwoLabel.map((res: string, index) => {
+          this.chartTwoLegend.push({
+            label: res,
+            color: this.chartTwoColor[index],
+            data: this.chartTwoData[index],
+          });
+        });
+        await this.createChart(
+          this.chartTwoLabel,
+          this.chartTwoData,
+          this.chartTwoColor,
+          this.doughnutChart2.nativeElement
+        );
       }
     });
-    this.dashboardService
-      .dashboardDropshipBB()
-      .subscribe(async (response: any) => {
-        if (response.success) {
-          this.chartTwoData = [
-            response.dropship_products_bb.stores,
-            response.dropship_products_bb.No_BB,
-            response.dropship_products_bb.Others,
-          ];
-          await this.chartTwoLabel.map((res: string, index) => {
-            this.chartTwoLegend.push({
-              label: res,
-              color: this.chartTwoColor[index],
-              data: this.chartTwoData[index],
-            });
-          });
-          await this.createChart(
-            this.chartTwoLabel,
-            this.chartTwoData,
-            this.chartTwoColor,
-            this.doughnutChart2.nativeElement
-          );
-        }
-      });
+    // this.dashboardService.dashboardCatalog().subscribe(async (res: any) => {
+    //   if (res.success) {
+    //     this.chartOneData = [
+    //       res.catalog.Active,
+    //       res.catalog.Discontinued,
+    //       res.catalog.LTL,
+    //       res.catalog.Restricted,
+    //       res.catalog.Suppressed,
+    //     ];
+    //     await this.chartOneLabel.map((res: string, index) => {
+    //       this.chartOneLegend.push({
+    //         label: res,
+    //         color: this.chartOneColor[index],
+    //         data: this.chartOneData[index],
+    //       });
+    //     });
+    //     await this.createChart(
+    //       this.chartOneLabel,
+    //       this.chartOneData,
+    //       this.chartOneColor,
+    //       this.doughnutChart1.nativeElement
+    //     );
+    //   }
+    // });
+    // this.dashboardService
+    //   .dashboardDropshipBB()
+    //   .subscribe(async (response: any) => {
+    //     if (response.success) {
+    //       this.chartTwoData = [
+    //         response.dropship_products_bb.stores,
+    //         response.dropship_products_bb.No_BB,
+    //         response.dropship_products_bb.Others,
+    //       ];
+    //       await this.chartTwoLabel.map((res: string, index) => {
+    //         this.chartTwoLegend.push({
+    //           label: res,
+    //           color: this.chartTwoColor[index],
+    //           data: this.chartTwoData[index],
+    //         });
+    //       });
+    //       await this.createChart(
+    //         this.chartTwoLabel,
+    //         this.chartTwoData,
+    //         this.chartTwoColor,
+    //         this.doughnutChart2.nativeElement
+    //       );
+    //     }
+    // });
     this.dashboardService.getIssues(data).subscribe(
       (res: any) => {
         this.isLoading = false;

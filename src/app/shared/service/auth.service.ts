@@ -81,4 +81,8 @@ export class AuthService {
     localStorage.clear();
     this.router.navigate(['']);
   }
+
+  logout() {
+    return this.httpClient.post(this.url + '/logout', {});
+  }
 }
