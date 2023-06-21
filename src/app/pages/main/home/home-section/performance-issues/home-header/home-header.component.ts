@@ -21,7 +21,7 @@ export class HomeHeaderComponent implements OnInit {
       case 'Unit Price Conflict':
         this.templateType = 'EDIT_PRICE';
         break;
-      case 'MAP Conflict':
+      case 'Edit MPN':
         this.templateType = 'EDIT_MPN';
         break;
       case 'Incomplete Offer':
@@ -35,6 +35,9 @@ export class HomeHeaderComponent implements OnInit {
         break;
       case 'Products Losing Importance On Amazon':
         this.templateType = 'EDIT_PRICE';
+        break;
+      case 'MAP Conflict':
+        this.templateType = 'ADD_EDIT_MAP';
         break;
       default:
         break;
