@@ -47,6 +47,7 @@ export class HomeSectionComponent implements OnInit {
     ['A10', 'dashboard/performance-issues/restricted-cannot-ship-ground/A10'],
     ['A11', 'dashboard/performance-issues/restricted-via-returns/A11'],
     ['A13', 'dashboard/performance-issues/incomplete-offer/A13'],
+    ['A26', 'dashboard/performance-issues/incomplete-offer/A26'],
     ['A16', 'dashboard/performance-issues/stranded-in-feed/A16'],
     ['A17', 'dashboard/performance-issues/stranded-in-catalog/A17'],
     ['A18', 'dashboard/performance-issues/discontinued-update/A18'],
