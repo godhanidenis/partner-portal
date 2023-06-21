@@ -68,12 +68,10 @@ export class ResetPasswordComponent implements OnInit {
             this.isLoading = false;
             if (result.success) {
               this.message.success('Reset password successfully!!');
+
               this.authService.setAccessToken(result.access_token);
-              localStorage.setItem('refresh_token', result.refresh_token);
-              localStorage.setItem(
-                'user_profile',
-                JSON.stringify(result.user_profile)
-              );
+              this.authService.setRefreshToken(result.refresh_token);
+              this.authService.saveUser(result.user_profile);
 
               if (result.user_profile.is_first) {
                 this.router.navigate(['/auth/reset-password']);
