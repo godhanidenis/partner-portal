@@ -74,7 +74,7 @@ export class AddEditMultipleProductsComponent implements OnInit {
       if (this.userPermissions.partner_map) {
         this.chooseType.push({
           label: 'Add/Edit MAP',
-          value: 'ADD_EDIT_MAP ',
+          value: 'ADD_EDIT_MAP',
         });
       }
       if (this.userPermissions.partner_sku_level_handling) {
