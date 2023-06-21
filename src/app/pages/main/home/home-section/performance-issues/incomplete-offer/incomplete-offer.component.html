@@ -72,7 +72,7 @@
           </td>
           <td>
             <div *ngFor="let recom of data?.recommendation; let i = index">
-              <div nzRow *ngIf="i < 1">
+              <div nzRow [style.padding-top]="i > 0 ? '8px' : ''">
                 <span style="font-weight: 600">#{{ i + 1 }}</span>
                 <div style="display: flex; flex-wrap: nowrap">
                   <span
@@ -99,40 +99,6 @@
                   }}</span>
                 </div>
               </div>
-              <div
-                style="padding-top: 8px"
-                nzRow
-                *ngIf="i > 0 && data?.showMore"
-              >
-                <span style="font-weight: 600">#{{ i + 1 }}</span>
-                <div style="display: flex; flex-wrap: nowrap">
-                  <span
-                    style="font-weight: 600; display: flex; white-space: nowrap"
-                    >Amazon MPN : </span
-                  ><span style="padding-left: 4px">{{ recom?.mpn }}</span>
-                </div>
-                <div style="display: flex; flex-wrap: nowrap">
-                  <span
-                    style="font-weight: 600; display: flex; white-space: nowrap"
-                    >Amazon ASIN : </span
-                  ><span style="padding-left: 4px"
-                    ><a class="link" (click)="navigateAsin(recom?.asin)">{{
-                      recom?.asin
-                    }}</a></span
-                  >
-                </div>
-                <div style="display: flex; flex-wrap: nowrap">
-                  <span
-                    style="font-weight: 600; display: flex; white-space: nowrap"
-                    >Amazon Page Title : </span
-                  ><span style="padding-left: 4px">{{
-                    recom?.amazon_page_title
-                  }}</span>
-                </div>
-              </div>
-              <a *ngIf="i > 0" (click)="toggleShowMore(data)">{{
-                data?.showMore ? "Show less" : "Show more"
-              }}</a>
             </div>
           </td>
           <!-- <td>{{ data?.amazon_page_title }}</td> -->
