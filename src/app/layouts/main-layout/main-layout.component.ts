@@ -66,6 +66,10 @@ export class MainLayoutComponent implements OnInit {
   // }
 
   logOutUser() {
-    this.authService.logOutUser();
+    this.authService.logout().subscribe((res: any) => {
+      if (res.success) {
+        this.authService.logOutUser();
+      }
+    });
   }
 }
