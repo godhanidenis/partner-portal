@@ -29,7 +29,7 @@ export class BreadcrumbComponent implements OnInit {
     if (this.path[0] === 'dashboard') {
       let newPath: any = [];
       this.path?.map((x) => {
-        newPath.push(this.formatTitle(x, 1));
+        newPath.push(this.formatTitle(x));
       });
       this.breadcrumbList = newPath;
 
@@ -50,22 +50,20 @@ export class BreadcrumbComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  formatTitle(title: string, index: number) {
+  formatTitle(title: string) {
     var sentence = title.replace(/-/g, ' ').replace(/\w\S*/g, function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
-    if (index === 2) {
-      switch (sentence) {
-        case 'Sales_today':
-          sentence = `Today's Sales`;
-          break;
-        case 'Sales_wtd':
-          sentence = `Week to Date (WTD) Sales`;
-          break;
-        case 'Sales_mtd':
-          sentence = `Month to Date (MTD) Sales`;
-          break;
-      }
+    switch (sentence) {
+      case 'Sales_today':
+        sentence = `Today's Sales`;
+        break;
+      case 'Sales_wtd':
+        sentence = `Week to Date (WTD) Sales`;
+        break;
+      case 'Sales_mtd':
+        sentence = `Month to Date (MTD) Sales`;
+        break;
     }
     return sentence;
   }
