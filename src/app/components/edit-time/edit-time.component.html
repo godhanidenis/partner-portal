@@ -8,25 +8,26 @@
       <div class="body-section">
         <form [formGroup]="editTimeForm">
           <nz-form-item>
-            <nz-form-label [nzSm]="8" [nzXs]="24">{{
+            <nz-form-label [nzSm]="10" [nzXs]="24">{{
               editLabel[0]
             }}</nz-form-label>
-            <nz-form-control [nzSm]="15" [nzXs]="24">
+            <nz-form-control [nzSm]="14" [nzXs]="24">
               <nz-input-group>
-                <b style="padding-left: 10px">{{ editData.mpn }}</b>
+                <b>{{ editData.mpn }}</b>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
-            <nz-form-label [nzSm]="8" [nzXs]="24"
+            <nz-form-label [nzSm]="10" [nzXs]="24"
               >{{ editLabel[1] }}
             </nz-form-label>
-            <nz-form-control [nzSm]="15" [nzXs]="24">
+            <nz-form-control [nzSm]="14" [nzXs]="24">
               <nz-input-group>
-                <b style="padding-left: 10px">{{
+                <b>{{
                   section === "Handling Time" ||
                   section === "Stranded In Catalog" ||
-                  section === "Discontinued Update"
+                  section === "Discontinued Update" ||
+                  section === "Amazon ASIN"
                     ? editData.current
                     : "$" + editData.current
                 }}</b>
@@ -39,10 +40,10 @@
               section !== 'Discontinued Update'
             "
           >
-            <nz-form-label [nzSm]="8" [nzXs]="24">{{
+            <nz-form-label [nzSm]="10" [nzXs]="24">{{
               editLabel[2]
             }}</nz-form-label>
-            <nz-form-control [nzSm]="15" [nzXs]="24">
+            <nz-form-control [nzSm]="14" [nzXs]="24">
               <nz-input-group
                 [nzPrefix]="
                   section === 'Amazon ASIN'
@@ -82,10 +83,10 @@
             "
           >
             <nz-form-item>
-              <nz-form-label [nzSm]="8" [nzXs]="24">{{
+              <nz-form-label [nzSm]="10" [nzXs]="24">{{
                 editLabel[2]
               }}</nz-form-label>
-              <nz-form-control [nzSm]="15" [nzXs]="24">
+              <nz-form-control [nzSm]="14" [nzXs]="24">
                 <nz-input-group>
                   <nz-select
                     nzAllowClear

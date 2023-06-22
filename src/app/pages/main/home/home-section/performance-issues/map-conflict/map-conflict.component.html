@@ -6,7 +6,7 @@
   <div class="body-section">
     <app-home-header
       [description]="description"
-      [tabName]="'MAP Conflict'"
+      [tabName]="'A06'"
     ></app-home-header>
 
     <app-home-filter-action
@@ -72,7 +72,7 @@
           <td>{{ data?.upc }}</td>
           <td>{{ data?.name }}</td>
           <td>
-            <a class="link" (click)="navigateAsin(data?.asin)">{{
+            <a class="link" [href]="'https://www.amazon.com/dp/' + data?.asin">{{
               data?.asin
             }}</a>
           </td>

@@ -15,34 +15,34 @@ export class HomeHeaderComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     switch (this.tabName) {
-      case 'Handling Time Conflict':
+      case 'A04':
         this.templateType = 'EDIT_SKU_SPECIFIC_HANDLING_TIME';
         break;
-      case 'Unit Price Conflict':
+      case 'A05':
         this.templateType = 'EDIT_PRICE';
         break;
-      case 'Edit MPN':
+      case 'A55':
         this.templateType = 'EDIT_MPN';
         break;
-      case 'Incomplete Offer':
+      case 'A26':
         this.templateType = 'ADD_EDIT_ASIN';
         break;
-      case 'Price Correction':
+      case 'A20':
         this.templateType = 'EDIT_PRICE';
         break;
-      case 'Lack Of Sales Demand':
+      case 'A21':
         this.templateType = 'EDIT_PRICE';
         break;
-      case 'Products Losing Importance On Amazon':
+      case 'A22':
         this.templateType = 'EDIT_PRICE';
         break;
-      case 'MAP Conflict':
+      case 'A06':
         this.templateType = 'ADD_EDIT_MAP';
         break;
-      case 'Stranded In Catalog':
+      case 'A17':
         this.templateType = 'CHANGE_PRODUCT_STATUS';
         break;
-      case 'Discontinued Update':
+      case 'A18':
         this.templateType = 'CHANGE_PRODUCT_STATUS';
         break;
       default:

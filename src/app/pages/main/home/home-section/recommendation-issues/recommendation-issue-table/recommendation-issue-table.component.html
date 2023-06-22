@@ -16,7 +16,7 @@
       <tr>
         <th>MPN</th>
         <th>UPC</th>
-        <th>ASIN</th>
+        <th>Amazon ASIN</th>
         <th>Product Name</th>
         <th>Partner Unit Price provided to 123Stores</th>
         <th>Allowances</th>
@@ -68,7 +68,7 @@
         </td>
         <td>{{ data?.upc }}</td>
         <td>
-          <a class="link" (click)="navigateAsin(data?.asin)">{{
+          <a class="link" [href]="'https://www.amazon.com/dp/' + data?.asin">{{
             data?.asin
           }}</a>
         </td>
