@@ -36,7 +36,7 @@ export class DashboardService {
       .set('partner_id', this.payload.partner_id)
       .set('user_id', this.payload.user_id);
 
-    return this.http.get(this.url + '/dashboard-sales', {
+    return this.http.get(this.url + '/dashboard-overview', {
       params: params,
     });
   }
