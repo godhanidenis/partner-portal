@@ -112,7 +112,7 @@
             </nz-form-item>
           </div>
           <div *ngIf="section === 'Amazon ASIN'">
-            <nz-card nzSize="small" nzTitle="Recommendations">
+            <nz-card *ngIf="editData?.extraData" nzSize="small" nzTitle="Recommendations">
               <div *ngFor="let recom of editData?.extraData; let i = index">
                 <div [style.padding-top]="i > 0 ? '8px' : ''" nzRow>
                   <span style="font-weight: 600">#{{ i + 1 }}</span>
@@ -124,7 +124,7 @@
                         white-space: nowrap;
                       "
                       >Amazon MPN : </span
-                    ><span style="padding-left: 4px">{{ recom?.mpn }}</span>
+                    ><span style="padding-left: 4px">{{ recom?.amazon_mpn }}</span>
                   </div>
                   <div style="display: flex; flex-wrap: nowrap">
                     <span
@@ -135,8 +135,8 @@
                       "
                       >Amazon ASIN : </span
                     ><span style="padding-left: 4px"
-                      ><a class="link" (click)="navigateAsin(recom?.asin)">{{
-                        recom?.asin
+                      ><a class="link" [href]="'https://www.amazon.com/dp/' + recom?.amazon_asin">{{
+                        recom?.amazon_asin
                       }}</a></span
                     >
                   </div>
