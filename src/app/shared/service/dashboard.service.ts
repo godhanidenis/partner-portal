@@ -8,6 +8,11 @@ import {
   StopPromotions,
 } from '../model/promotion.model';
 
+export interface ExportDash {
+  partner_id: string;
+  user_id: string;
+  code: string;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -29,24 +34,8 @@ export class DashboardService {
     });
   }
 
-  dashboardCatalog() {
-    let params = new HttpParams()
-      .set('partner_id', this.payload.partner_id)
-      .set('user_id', this.payload.user_id);
-
-    return this.http.get(this.url + '/dashboard-catalog', {
-      params: params,
-    });
-  }
-
-  dashboardDropshipBB() {
-    let params = new HttpParams()
-      .set('partner_id', this.payload.partner_id)
-      .set('user_id', this.payload.user_id);
-
-    return this.http.get(this.url + '/dashboard-dropship-bb', {
-      params: params,
-    });
+  exportData(payload: ExportDash) {
+    return this.http.post(this.url + '/agendas-export', payload);
   }
 
   getIssues(action: Promotion) {
@@ -62,182 +51,12 @@ export class DashboardService {
   // Start Performance Issues APIs
 
   getAgendasDataByCode(code: any) {
-        let params = new HttpParams()
-          .set('partner_id', this.payload.partner_id)
-          .set('user_id', this.payload.user_id)
-          .set('code', code);
-
-        return this.http.get(this.url + '/agendas-data', {
-          params: params,
-        });
-  }
-
-  // handlingTimeConflict() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/handling-time-conflict', {
-  //     params: params,
-  //   });
-  // }
-
-  // unitPriceConflict() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/unit-price-conflict', {
-  //     params: params,
-  //   });
-  // }
-
-  // mapConflict() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/map-conflict', {
-  //     params: params,
-  //   });
-  // }
-
-  // restrictedViaOrderCancellation() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/restricted_via_order_cancellation', {
-  //     params: params,
-  //   });
-  // }
-
-  // discontinuedViaOrderCancellation() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/discontinued_via_order_cancellation', {
-  //     params: params,
-  //   });
-  // }
-
-  // productPriceErrorViaOrderCancellation() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(
-  //     this.url + '/product_price_error_via_order_cancellation',
-  //     {
-  //       params: params,
-  //     }
-  //   );
-  // }
-
-  // cannotShipGroundViaOrderCancellation() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(
-  //     this.url + '/cannot_ship_ground_via_order_cancellation',
-  //     {
-  //       params: params,
-  //     }
-  //   );
-  // }
-
-  // restrictedViaReturns() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/restricted_via_returns', {
-  //     params: params,
-  //   });
-  // }
-
-  // offerIncomplete() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/offer_incomplete', {
-  //     params: params,
-  //   });
-  // }
-
-  // strandedInFeed() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/stranded_in_feed', {
-  //     params: params,
-  //   });
-  // }
-
-  // strandedInCatalog() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/stranded_in_catalog', {
-  //     params: params,
-  //   });
-  // }
-
-  // discontinuedUpdate() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/discontinued_update', {
-  //     params: params,
-  //   });
-  // }
-
-  // End Performance Issues APIs
-
-  // Start Recommendation Issues APIs
-
-  // priceCorrection() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/price_correction', {
-  //     params: params,
-  //   });
-  // }
-
-  // lackOfSalesDemand() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/lack_of_sales_demand', {
-  //     params: params,
-  //   });
-  // }
-
-  // productsLosingImportance() {
-  //   let params = new HttpParams()
-  //     .set('partner_id', this.payload.partner_id)
-  //     .set('user_id', this.payload.user_id);
-
-  //   return this.http.get(this.url + '/products_losing_importance', {
-  //     params: params,
-  //   });
-  // }
-
-  usingThe123storesShippingLabel() {
     let params = new HttpParams()
       .set('partner_id', this.payload.partner_id)
-      .set('user_id', this.payload.user_id);
+      .set('user_id', this.payload.user_id)
+      .set('code', code);
 
-    return this.http.get(this.url + '/using_the_123stores_shipping_label', {
+    return this.http.get(this.url + '/agendas-data', {
       params: params,
     });
   }

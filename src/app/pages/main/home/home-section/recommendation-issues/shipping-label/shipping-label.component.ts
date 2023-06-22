@@ -73,16 +73,6 @@ export class ShippingLabelComponent implements OnInit {
         (err) => (this.isLoading = false)
       );
     }
-
-    // dashboardService.usingThe123storesShippingLabel().subscribe(
-    //   (res: any) => {
-    //     this.isLoading = false;
-    //     if (res.success) {
-    //       this.shippingLabelList = res.data;
-    //     }
-    //   },
-    //   (err) => (this.isLoading = false)
-    // );
   }
   ngOnInit(): void {}
 

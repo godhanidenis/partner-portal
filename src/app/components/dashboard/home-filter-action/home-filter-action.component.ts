@@ -25,7 +25,9 @@ export class HomeFilterActionComponent implements OnInit {
       this.issueName !== '13' &&
       this.issueName !== '14' &&
       this.issueName !== '15' &&
-      this.issueName !== '9';
+      this.issueName !== '9' &&
+      this.issueName !== '11' &&
+      this.issueName !== '12';
   }
 
   openFilterSection() {

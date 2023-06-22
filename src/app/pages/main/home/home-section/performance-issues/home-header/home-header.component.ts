@@ -39,6 +39,12 @@ export class HomeHeaderComponent implements OnInit {
       case 'MAP Conflict':
         this.templateType = 'ADD_EDIT_MAP';
         break;
+      case 'Stranded In Catalog':
+        this.templateType = 'EDIT_PRODUCT_DETAILS';
+        break;
+      case 'Discontinued Update':
+        this.templateType = 'EDIT_PRODUCT_DETAILS';
+        break;
       default:
         break;
     }

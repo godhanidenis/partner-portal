@@ -1,6 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Filters } from 'src/app/pages/main/product/view-list-filter/view-list-filter.component';
+import {
+  DashboardService,
+  ExportDash,
+} from 'src/app/shared/service/dashboard.service';
 import { InventoryService } from 'src/app/shared/service/inventory.service';
 import { ProductService } from 'src/app/shared/service/product.service';
 import { PromotionsService } from 'src/app/shared/service/promotions.service';
@@ -26,7 +30,8 @@ export class ExportModelComponent implements OnInit {
     private productService: ProductService,
     private message: NzMessageService,
     private inventoryService: InventoryService,
-    private promotionsService: PromotionsService
+    private promotionsService: PromotionsService,
+    private dashboardService: DashboardService
   ) {}
   ngOnInit(): void {}
 
@@ -126,6 +131,13 @@ export class ExportModelComponent implements OnInit {
         },
         (err: any) => (this.isLoading = false)
       );
+    } else if (!this.showFilterOptions) {
+      const data: ExportDash = {
+        partner_id: '',
+        user_id: '',
+        code: '',
+      };
+      // this.dashboardService.exportData();
     }
   }
 

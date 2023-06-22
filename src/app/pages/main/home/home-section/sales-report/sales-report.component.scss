@@ -1,0 +1,16 @@
+@import '../../../../../../assets/variable/variable.scss';
+
+.sales-report-section {
+    background-color: $white;
+
+    .download-link {
+        display: flex;
+        width: 100%;
+        justify-content: end;
+        padding: 10px 20px;
+    }
+
+    nz-table {
+        padding: 10px 20px;
+    }
+}

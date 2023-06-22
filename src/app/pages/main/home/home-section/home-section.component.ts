@@ -171,54 +171,6 @@ export class HomeSectionComponent implements OnInit {
         );
       }
     });
-    // this.dashboardService.dashboardCatalog().subscribe(async (res: any) => {
-    //   if (res.success) {
-    //     this.chartOneData = [
-    //       res.catalog.Active,
-    //       res.catalog.Discontinued,
-    //       res.catalog.LTL,
-    //       res.catalog.Restricted,
-    //       res.catalog.Suppressed,
-    //     ];
-    //     await this.chartOneLabel.map((res: string, index) => {
-    //       this.chartOneLegend.push({
-    //         label: res,
-    //         color: this.chartOneColor[index],
-    //         data: this.chartOneData[index],
-    //       });
-    //     });
-    //     await this.createChart(
-    //       this.chartOneLabel,
-    //       this.chartOneData,
-    //       this.chartOneColor,
-    //       this.doughnutChart1.nativeElement
-    //     );
-    //   }
-    // });
-    // this.dashboardService
-    //   .dashboardDropshipBB()
-    //   .subscribe(async (response: any) => {
-    //     if (response.success) {
-    //       this.chartTwoData = [
-    //         response.dropship_products_bb.stores,
-    //         response.dropship_products_bb.No_BB,
-    //         response.dropship_products_bb.Others,
-    //       ];
-    //       await this.chartTwoLabel.map((res: string, index) => {
-    //         this.chartTwoLegend.push({
-    //           label: res,
-    //           color: this.chartTwoColor[index],
-    //           data: this.chartTwoData[index],
-    //         });
-    //       });
-    //       await this.createChart(
-    //         this.chartTwoLabel,
-    //         this.chartTwoData,
-    //         this.chartTwoColor,
-    //         this.doughnutChart2.nativeElement
-    //       );
-    //     }
-    // });
     this.dashboardService.getIssues(data).subscribe(
       (res: any) => {
         this.isLoading = false;

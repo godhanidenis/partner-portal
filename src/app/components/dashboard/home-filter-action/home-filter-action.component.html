@@ -36,20 +36,16 @@
 
 <nz-modal
   [(nzVisible)]="isDownloadVisible"
-  [nzTitle]="
-    isFiltersVisible ? 'Which Products would you like to export?' : 'Export'
-  "
+  [nzTitle]="'Which Products would you like to export?'"
   (nzOnCancel)="isDownloadVisible = false"
 >
   <ng-container *nzModalContent>
     <app-export-model
       [description]="
-        isFiltersVisible
-          ? ''
-          : 'Your Data will be exported as a CSV file and sent to your email.'
+        'Your Data will be exported as a CSV file and sent to your email.'
       "
       [exportType]="exportType"
-      [showFilterOptions]="isFiltersVisible"
+      [showFilterOptions]="false"
       (close)="isDownloadVisible = false"
     ></app-export-model>
   </ng-container>

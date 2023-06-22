@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeSectionComponent } from './home-section/home-section.component';
+import { SalesReportComponent } from './home-section/sales-report/sales-report.component';
 
 const routes: Routes = [
   { path: '', component: HomeSectionComponent },
@@ -17,6 +18,11 @@ const routes: Routes = [
       import(
         './home-section/recommendation-issues/recommendation-issues.module'
       ).then((m) => m.RecommendationIssuesModule),
+  },
+
+  {
+    path: 'sales-report',
+    component: SalesReportComponent,
   },
 ];
 

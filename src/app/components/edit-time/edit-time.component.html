@@ -27,7 +27,12 @@
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
-          <nz-form-item>
+          <nz-form-item
+            *ngIf="
+              section !== 'Stranded In Catalog' &&
+              section !== 'Discontinued Update'
+            "
+          >
             <nz-form-label [nzSm]="8" [nzXs]="24">{{
               editLabel[2]
             }}</nz-form-label>
@@ -57,6 +62,42 @@
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
+          <div
+            *ngIf="
+              section === 'Stranded In Catalog' ||
+              section === 'Discontinued Update'
+            "
+          >
+            <nz-form-item>
+              <nz-form-label [nzSm]="8" [nzXs]="24">{{
+                editLabel[2]
+              }}</nz-form-label>
+              <nz-form-control [nzSm]="15" [nzXs]="24">
+                <nz-input-group>
+                  <nz-select
+                    nzAllowClear
+                    nzPlaceHolder="Select a status"
+                    formControlName="new"
+                  >
+                    <nz-option nzLabel="Active" nzValue="Active"></nz-option>
+                    <nz-option
+                      nzLabel="Discontinued"
+                      nzValue="Discontinued"
+                    ></nz-option>
+                    <nz-option nzLabel="LTL" nzValue="LTL"></nz-option>
+                    <nz-option
+                      nzLabel="Restricted"
+                      nzValue="Restricted"
+                    ></nz-option>
+                    <nz-option
+                      nzLabel="Supressed"
+                      nzValue="Supressed"
+                    ></nz-option>
+                  </nz-select>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
           <div *ngIf="section === 'Amazon ASIN'">
             <nz-card nzSize="small" nzTitle="Recommendations">
               <div *ngFor="let recom of editData?.extraData; let i = index">

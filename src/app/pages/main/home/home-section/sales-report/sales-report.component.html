@@ -1,0 +1,46 @@
+<app-breadcrumb></app-breadcrumb>
+
+<div class="sales-report-section">
+  <app-section-header [header]="'Sales Report'"></app-section-header>
+
+  <div class="download-link">
+    <a class="link">Download Sales Report</a>
+  </div>
+
+  <nz-table
+    #nzTable
+    nzOuterBordered
+    [nzData]="reportList"
+    nzShowSizeChanger
+    [nzPageSizeOptions]="pageSizeOptions"
+    [nzFrontPagination]="false"
+    [nzTotal]="total"
+    [nzPageSize]="pageSize"
+    [nzPageIndex]="pageIndex"
+    [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
+  >
+    <thead>
+      <tr>
+        <th>Sr. No.</th>
+        <th>MPN</th>
+        <th>UPC</th>
+        <th>Product Name</th>
+        <th>Amazon ASIN</th>
+        <th>Units Sold</th>
+        <th>Sales ($)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of nzTable.data; let no = index">
+        <td>{{ no + 1 }}</td>
+        <td>{{ data?.mpn }}</td>
+        <td>{{ data?.upc }}</td>
+        <td>{{ data?.name }}</td>
+        <td></td>
+        <td>{{ data?.stock }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

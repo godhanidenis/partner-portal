@@ -10,9 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentModule } from 'src/app/components/component.module';
 import { PerformanceIssuesModule } from './home-section/performance-issues/performance-issues.module';
 import { RecommendationIssuesModule } from './home-section/recommendation-issues/recommendation-issues.module';
+import { SalesReportComponent } from './home-section/sales-report/sales-report.component';
 
 @NgModule({
-  declarations: [HomeSectionComponent],
+  declarations: [HomeSectionComponent, SalesReportComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
