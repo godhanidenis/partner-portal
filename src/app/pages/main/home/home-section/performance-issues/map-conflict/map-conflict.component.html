@@ -1,7 +1,10 @@
 <app-breadcrumb></app-breadcrumb>
 
 <div class="map-conflict-section">
-  <app-section-header [header]="'MAP Conflict'"></app-section-header>
+  <app-section-header
+    [modifyLable]="true"
+    [header]="'A06'"
+  ></app-section-header>
 
   <div class="body-section">
     <app-home-header
@@ -72,9 +75,11 @@
           <td>{{ data?.upc }}</td>
           <td>{{ data?.name }}</td>
           <td>
-            <a class="link" [href]="'https://www.amazon.com/dp/' + data?.asin">{{
-              data?.asin
-            }}</a>
+            <a
+              class="link"
+              [href]="'https://www.amazon.com/dp/' + data?.asin"
+              >{{ data?.asin }}</a
+            >
           </td>
           <td>{{ data?.map | currency }}</td>
           <td>{{ data?.other_seller_retail_price | currency }}</td>
