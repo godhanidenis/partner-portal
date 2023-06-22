@@ -19,7 +19,7 @@ export class MainLayoutComponent implements OnInit {
   userPartnerCode = '';
 
   constructor(
-    private router: Router,
+    public router: Router,
     private userPermissionService: UserPermissionService,
     private authService: AuthService,
     private dashboardService: DashboardService
