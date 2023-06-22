@@ -12,55 +12,68 @@ import { StrandedInCatalogComponent } from './stranded-in-catalog/stranded-in-ca
 import { DiscontinuedUpdateComponent } from './discontinued-update/discontinued-update.component';
 import { RestrictedViaOrderComponent } from './restricted-via-order/restricted-via-order.component';
 import { RestrictedProductPriceErrorComponent } from './restricted-product-price-error/restricted-product-price-error.component';
+// import { CanActivateRoute } from './../../../../../shared/guard/canActivateRoute.guard';
 
 const routes: Routes = [
   {
-    path: 'handling-time-conflict/:code',
+    path: 'A04',
     component: HandlingTimeConflictComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'unit-price-conflict/:code',
+    path: 'A05',
     component: UnitPriceConflictComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'map-conflict/:code',
+    path: 'A06',
     component: MapConflictComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'restricted-via-order/:code',
+    path: 'A07',
     component: RestrictedViaOrderComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'restricted-discontinued/:code',
+    path: 'A08',
     component: RestrictedDiscontinuedComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'restricted-product-price-error/:code',
+    path: 'A09',
     component: RestrictedProductPriceErrorComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'restricted-cannot-ship-ground/:code',
+    path: 'A10',
     component: RestrictedCannotShipGroundComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'restricted-via-returns/:code',
+    path: 'A11',
     component: RestrictedViaReturnsComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'incomplete-offer/:code',
+    path: 'A26',
     component: IncompleteOfferComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'stranded-in-feed/:code',
+    path: 'A16',
     component: StrandedInFeedComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'stranded-in-catalog/:code',
+    path: 'A17',
     component: StrandedInCatalogComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'discontinued-update/:code',
+    path: 'A18',
     component: DiscontinuedUpdateComponent,
+    // canActivate: [CanActivateRoute],
   },
 ];
 

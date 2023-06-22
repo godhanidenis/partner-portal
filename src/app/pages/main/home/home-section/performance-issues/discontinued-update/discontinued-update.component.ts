@@ -64,7 +64,7 @@ export class DiscontinuedUpdateComponent implements OnInit {
     private dashboardService: DashboardService
   ) {
     this.isLoading = true;
-    this.code = this.route.snapshot.paramMap.get('code');
+    this.code = this.dashboardService.getLastSectionOfUrl(router.url);
     if (this.code) {
       dashboardService.getAgendasDataByCode(this.code).subscribe(
         (res: any) => {
