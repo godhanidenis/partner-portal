@@ -15,6 +15,7 @@ export class MainLayoutComponent implements OnInit {
   userName: string = '';
   loggedinUser: any;
   userPartnerName = '';
+  userPartnerCode = '';
 
   constructor(
     private router: Router,
@@ -48,6 +49,7 @@ export class MainLayoutComponent implements OnInit {
         .getPartnerPermission(this.loggedinUser.partner_id)
         .subscribe((res: any) => {
           this.userPartnerName = res?.partner_display_name;
+          this.userPartnerCode = res?.partner_code;
           this.userPermissionService.userPermission.next(res);
         });
     }

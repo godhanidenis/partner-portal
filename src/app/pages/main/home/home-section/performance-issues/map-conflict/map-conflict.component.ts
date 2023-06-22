@@ -92,7 +92,7 @@ export class MapConflictComponent implements OnInit {
       mpn: mpn,
       current: time,
     };
-    this.editLabel = ['MPN', 'Current MPN', 'New MPN'];
+    this.editLabel = ['MPN', 'Current MAP', 'New MAP'];
     this.isVisible = true;
   }
 

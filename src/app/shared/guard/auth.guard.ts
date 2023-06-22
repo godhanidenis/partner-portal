@@ -8,10 +8,10 @@ export const authGuard = () => {
 
   const user = authService.getUser();
   if (authService.getAccessToken()) {
-    if (user && user?.is_first) {
-      authService.logOutUser();
-      router.parseUrl('/auth/login');
-    }
+    // if (user && user?.is_first) {
+    //   authService.logOutUser();
+    //   router.parseUrl('/auth/login');
+    // }
     return true;
   }
   // Redirect to the login page

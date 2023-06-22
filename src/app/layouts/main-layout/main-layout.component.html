@@ -5,24 +5,22 @@
     [(nzCollapsed)]="isCollapsed"
     [nzTrigger]="null"
   >
-    <div class="logo">
+    <a class="logo" href="/main/dashboard">
       <img
         *ngIf="isCollapsed"
-        nz-image
         width="50px"
         height="40px"
-        nzSrc="assets\img\small-logo.png"
+        src="assets\img\small-logo.png"
         alt=""
       />
       <img
         *ngIf="!isCollapsed"
-        nz-image
         width="150px"
         height="40px"
-        nzSrc="assets\img\logo.png"
+        src="assets\img\logo.png"
         alt=""
       />
-    </div>
+    </a>
     <ul nz-menu nzMode="inline" class="sider-menu">
       <li nz-menu-item routerLinkActive="active" routerLink="/main/dashboard">
         <span nz-icon nzType="dashboard"></span>
@@ -89,7 +87,7 @@
         (click)="isCollapsed = !isCollapsed"
       ></span>
       <div class="profile-menu">
-        <span class="name">{{ userPartnerName }}</span>
+        <span class="name">{{ userPartnerName }} ({{ userPartnerCode }})</span>
         <a style="color: #2121c3" href="#">Help</a>
         <div class="profile-menu">
           <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
@@ -127,10 +125,7 @@
               <li nz-menu-item (click)="changePermission('WEF')">
                 <span>WEF</span>
               </li> -->
-              <li
-                nz-menu-item
-                routerLink="/main/change-password"
-              >
+              <li nz-menu-item routerLink="/main/change-password">
                 <span
                   nz-icon
                   nzType="user"
@@ -139,10 +134,7 @@
                 ></span>
                 <span>Change Password</span>
               </li>
-              <li
-                nz-menu-item
-                (click)="logOutUser()"
-              >
+              <li nz-menu-item (click)="logOutUser()">
                 <span
                   nz-icon
                   nzType="logout"

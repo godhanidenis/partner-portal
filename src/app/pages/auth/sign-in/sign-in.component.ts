@@ -57,12 +57,7 @@ export class SignInComponent implements OnInit {
             this.authService.setAccessToken(result.access_token);
             this.authService.setRefreshToken(result.refresh_token);
             this.authService.saveUser(result.user_profile);
-
-            if (result.user_profile.is_first) {
-              this.router.navigate(['/auth/reset-password']);
-            } else {
-              this.router.navigate(['/main/dashboard']);
-            }
+            this.router.navigate(['/main/dashboard']);
           }
         },
         (err) => (this.isLoading = false)

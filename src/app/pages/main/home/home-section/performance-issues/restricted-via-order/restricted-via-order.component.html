@@ -11,11 +11,11 @@
 
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
-      (showFilter)="openNav()"
       [issueName]="'4'"
     ></app-home-filter-action>
+    <!-- (showFilter)="openNav()" -->
 
-    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-home-filter-tag
         (closeTag)="close($event)"
         (tagRemove)="removeAll()"
@@ -29,7 +29,7 @@
         [selectCategory]="selectCategory"
         [selectSalesTire]="selectSalesTire"
       ></app-home-filter-tag>
-    </div>
+    </div> -->
 
     <nz-table
       #nzTable
@@ -42,7 +42,6 @@
       [nzPageSize]="pageSize"
       [nzPageIndex]="pageIndex"
       [nzLoading]="isLoading"
-      [nzScroll]="{ x: '100%' }"
     >
       <thead>
         <tr>
@@ -79,7 +78,7 @@
       </tbody>
     </nz-table>
 
-    <div #mySidenav class="filter-section">
+    <!-- <div #mySidenav class="filter-section">
       <app-home-filter-section
         (toggleFilter)="closeNav()"
         (changeData)="change($event)"
@@ -93,6 +92,6 @@
         [salesTire]="selectSalesTire"
         [issueName]="'Handling Time Conflict'"
       ></app-home-filter-section>
-    </div>
+    </div> -->
   </div>
 </div>

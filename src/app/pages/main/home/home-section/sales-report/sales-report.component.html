@@ -4,19 +4,15 @@
   <app-section-header [header]="'Sales Report'"></app-section-header>
 
   <div class="download-link">
-    <a class="link">Download Sales Report</a>
+    <a class="link" (click)="downloadReport()">Download Sales Report</a>
   </div>
 
   <nz-table
     #nzTable
     nzOuterBordered
-    [nzData]="reportList"
-    nzShowSizeChanger
-    [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
-    [nzTotal]="total"
-    [nzPageSize]="pageSize"
-    [nzPageIndex]="pageIndex"
+    [nzShowPagination]="false"
+    [nzData]="reportList"
     [nzLoading]="isLoading"
     [nzScroll]="{ x: '100%' }"
   >
@@ -40,15 +36,6 @@
         <td>{{ data?.asin }}</td>
         <td>{{ data?.unit_sold }}</td>
         <td>{{ data?.amount_sold | currency }}</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><b>Total</b></td>
-        <td>{{ totalSum | currency }}</td>
       </tr>
     </tbody>
   </nz-table>

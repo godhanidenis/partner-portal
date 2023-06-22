@@ -234,7 +234,8 @@ export class HomeSectionComponent implements OnInit {
 
   shoeIssuesPage(path: string) {
     if (path) {
-      this.router.navigate([`/main/${path}`]);
+      window.open(`/main/${path}`);
+      // this.router.navigate([`/main/${path}`]);
     }
   }
 }

@@ -60,6 +60,17 @@ export class DashboardService {
     });
   }
 
+  downloadSalesReport(action: SalesReport) {
+    let params = new HttpParams()
+      .set('partner_id', action.partner_id)
+      .set('user_id', action.user_id)
+      .set('type', action.type);
+
+    return this.http.get(this.url + '/download-sales-report', {
+      params: params,
+    });
+  }
+
   // Start Performance Issues APIs
 
   getAgendasDataByCode(code: any) {
