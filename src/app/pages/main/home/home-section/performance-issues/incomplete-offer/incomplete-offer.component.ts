@@ -18,9 +18,9 @@ export class IncompleteOfferComponent implements OnInit {
   editAddressVisible: boolean = false;
   isLoading: boolean = false;
   total = 1;
-  pageSize = 10;
+  pageSize = 100;
   pageIndex = 1;
-  pageSizeOptions = [5, 10, 15, 20];
+  pageSizeOptions = [100];
 
   uploadModelVisible: boolean = false;
   badgeTotal: number = 0;

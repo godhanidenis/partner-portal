@@ -12,6 +12,7 @@
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
       [issueName]="'2'"
+      [code]="code"
     ></app-home-filter-action>
     <!-- (showFilter)="openNav()" -->
 
@@ -75,11 +76,11 @@
               data?.asin
             }}</a>
           </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>{{ data?.no_of_other_sellers }}</td>
+          <td>{{ data?.unit_price }}</td>
+          <td>{{ data?.allowance_price }}</td>
+          <td>{{ data?.net_unit_price }}</td>
+          <td>{{ data?.other_sellers_minimum_price }}</td>
+          <td>{{ data?.other_seller_count_with_better_price }}</td>
           <td>
             <span *ngFor="let value of data.other_sellers; let sr = index"
               >{{ value

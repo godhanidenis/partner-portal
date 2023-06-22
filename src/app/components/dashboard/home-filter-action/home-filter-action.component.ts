@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class HomeFilterActionComponent implements OnInit {
   @Input() badgeTotal: number = 0;
   @Input() issueName: string = '';
+  @Input() code: string = '';
   @Output() showFilter = new EventEmitter();
 
   searchValue: string = '';

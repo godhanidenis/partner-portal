@@ -21,6 +21,7 @@ export class ExportModelComponent implements OnInit {
   @Input() listOfFilter: any = '';
   @Input() noOfFilter: number = 0;
   @Input() sectionName: string = '';
+  @Input() code: string = '';
   @Input() showFilterOptions: boolean = true;
   userEmail: string = 'service@123stores.com';
   isDownloadVisible: boolean = false;
@@ -133,11 +134,16 @@ export class ExportModelComponent implements OnInit {
       );
     } else if (!this.showFilterOptions) {
       const data: ExportDash = {
-        partner_id: '',
-        user_id: '',
-        code: '',
+        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+        code: this.code,
       };
-      // this.dashboardService.exportData();
+      this.dashboardService.exportData(data).subscribe((res: any) => {
+        console.log(res);
+        if (res.success) {
+          this.handleCancel();
+        }
+      });
     }
   }
 
