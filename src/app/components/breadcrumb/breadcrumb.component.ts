@@ -29,7 +29,7 @@ export class BreadcrumbComponent implements OnInit {
     if (this.path[0] === 'dashboard') {
       let newPath: any = [];
       this.path?.map((x) => {
-        newPath.push(this.formatTitle(x));
+        newPath.push(this.formatTitle(x, 1));
       });
       this.breadcrumbList = newPath;
 
