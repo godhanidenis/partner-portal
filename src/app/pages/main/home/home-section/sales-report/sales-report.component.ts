@@ -13,6 +13,8 @@ import {
 export class SalesReportComponent implements OnInit {
   isLoading: boolean = false;
   reportList: any[] = [];
+  totalSales: number = 0;
+  totalUnitsSold: number = 0;
   type: string = '';
 
   constructor(
@@ -32,6 +34,11 @@ export class SalesReportComponent implements OnInit {
         this.isLoading = false;
         if (res.success) {
           this.reportList = res.data;
+          this.reportList.map((res: any) => {
+            this.totalSales += res.amount_sold;
+            this.totalUnitsSold += res.unit_sold;
+          });
+          console.log(this.totalSales);
         }
       },
       (err) => (this.isLoading = false)

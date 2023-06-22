@@ -10,6 +10,7 @@
     [nzPageSize]="pageSize"
     [nzPageIndex]="pageIndex"
     [nzLoading]="isLoading"
+    [nzScroll]="{ x: '100%' }"
   >
     <thead>
       <tr>
@@ -22,13 +23,10 @@
         <th>Shipping Price</th>
         <th>Amazon Market Place Fees</th>
         <th>123Stores Listed Price</th>
-        <th
-          *ngIf="
-            tabName === 'Lack Of Sales Demand' || tabName === 'Price Correction'
-          "
-        >
+        <th *ngIf="tabName === 'Price Correction'">
           Retail Price on Amazon offered by Conflicting Provider
         </th>
+        <th *ngIf="tabName === 'Lack Of Sales Demand'">Required Unit Price</th>
         <th
           *ngIf="
             tabName === 'Price Correction' ||
@@ -80,12 +78,11 @@
         <td>{{ data?.shipping_price | currency }}</td>
         <td>{{ data?.market_commission | currency }}</td>
         <td>{{ data?.listed_price | currency }}</td>
-        <td
-          *ngIf="
-            tabName === 'Lack Of Sales Demand' || tabName === 'Price Correction'
-          "
-        >
+        <td *ngIf="tabName === 'Price Correction'">
           {{ data?.other_seller_retail_price | currency }}
+        </td>
+        <td *ngIf="tabName === 'Lack Of Sales Demand'">
+          {{ data?.required_unit_price | currency }}
         </td>
         <td
           *ngIf="

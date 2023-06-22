@@ -57,10 +57,6 @@
     color: $darkBlue;
 }
 
-::ng-deep .nz-table-out-bordered>.ant-table-container {
-    overflow-y: scroll;
-}
-
 ::ng-deep .ant-pagination-item:hover {
     a {
         color: $darkBlue !important;

@@ -18,12 +18,12 @@
                 [nzXs]="24"
               >
                 <nz-card class="card-hover">
-                  <div
+                  <a
                     class="title link"
                     routerLink="/main/dashboard/sales-report/sales_today"
                   >
                     Today's Sales
-                  </div>
+                  </a>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -48,12 +48,12 @@
                 [nzXs]="24"
               >
                 <nz-card class="card-hover">
-                  <div
+                  <a
                     class="title link"
                     routerLink="/main/dashboard/sales-report/sales_wtd"
                   >
                     Week to Date (WTD) Sales
-                  </div>
+                  </a>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -78,12 +78,12 @@
                 [nzXs]="24"
               >
                 <nz-card class="card-hover">
-                  <div
+                  <a
                     class="title link"
                     routerLink="/main/dashboard/sales-report/sales_mtd"
                   >
                     Month to Date (MTD) Sales
-                  </div>
+                  </a>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -245,9 +245,12 @@
               <ng-template ngFor let-data [ngForOf]="performanceIssuesList">
                 <tr>
                   <td>
-                    <a (click)="shoeIssuesPage(data.url)" class="link">{{
-                      data?.name
-                    }}</a>
+                    <a
+                      [routerLink]="'/main/' + data.url"
+                      class="link"
+                      style="white-space: normal !important"
+                      >{{ data?.name }}</a
+                    >
                   </td>
                   <td>
                     <b>{{ data?.count }}</b>
@@ -282,9 +285,12 @@
               <ng-template ngFor let-data [ngForOf]="recommendationIssuesList">
                 <tr>
                   <td>
-                    <a (click)="shoeIssuesPage(data.url)" class="link">{{
-                      data?.name
-                    }}</a>
+                    <a
+                      [routerLink]="'/main/' + data.url"
+                      class="link"
+                      style="white-space: normal !important"
+                      >{{ data?.name }}</a
+                    >
                   </td>
                   <td>
                     <b>{{ data?.count }}</b>

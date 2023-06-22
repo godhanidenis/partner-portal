@@ -14,11 +14,10 @@
     [nzShowPagination]="false"
     [nzData]="reportList"
     [nzLoading]="isLoading"
-    [nzScroll]="{ x: '100%' }"
   >
+    <!-- [nzScroll]="{ x: '100%' }" -->
     <thead>
       <tr>
-        <th>Srl No.</th>
         <th>MPN</th>
         <th>UPC</th>
         <th>Product Name</th>
@@ -28,14 +27,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of nzTable.data; let no = index">
-        <td>{{ no + 1 }}</td>
+      <tr *ngFor="let data of nzTable.data">
         <td>{{ data?.mpn }}</td>
         <td>{{ data?.upc }}</td>
         <td>{{ data?.name }}</td>
         <td>{{ data?.asin }}</td>
         <td>{{ data?.unit_sold }}</td>
         <td>{{ data?.amount_sold | currency }}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><b>Total</b></td>
+        <td>
+          <b>{{ totalUnitsSold }}</b>
+        </td>
+        <td>
+          <b>{{ totalSales | currency }}</b>
+        </td>
       </tr>
     </tbody>
   </nz-table>

@@ -13,4 +13,8 @@
     nz-table {
         padding: 10px 20px;
     }
+
+    ::ng-deep .nz-table-out-bordered>.ant-table-container {
+        overflow-y: scroll;
+    }
 }

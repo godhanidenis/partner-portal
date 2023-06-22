@@ -92,19 +92,19 @@
                     nzPlaceHolder="Select a status"
                     formControlName="new"
                   >
-                    <nz-option nzLabel="Active" nzValue="Active"></nz-option>
                     <nz-option
+                      *ngIf="section === 'Discontinued Update'"
+                      nzLabel="Active"
+                      nzValue="Active"
+                    ></nz-option>
+                    <nz-option
+                      *ngIf="section === 'Stranded In Catalog'"
                       nzLabel="Discontinued"
                       nzValue="Discontinued"
                     ></nz-option>
-                    <nz-option nzLabel="LTL" nzValue="LTL"></nz-option>
                     <nz-option
                       nzLabel="Restricted"
                       nzValue="Restricted"
-                    ></nz-option>
-                    <nz-option
-                      nzLabel="Supressed"
-                      nzValue="Supressed"
                     ></nz-option>
                   </nz-select>
                 </nz-input-group>
