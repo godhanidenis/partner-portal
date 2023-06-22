@@ -3,6 +3,7 @@ import { filter } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -19,15 +20,17 @@ export class MainLayoutComponent implements OnInit {
   constructor(
     private router: Router,
     private userPermissionService: UserPermissionService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dashboardService: DashboardService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getLoggedInUser();
 
     //this.changePermission('NPS');
 
     this.getPartnerDetails();
+    this.dashboardService.getAllIssues();
   }
 
   getLoggedInUser() {

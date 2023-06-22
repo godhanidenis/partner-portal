@@ -4,6 +4,11 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
     path: 'change-password',
     component: ChangePasswordComponent,
   },
@@ -11,11 +16,11 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
-  {
-    path: 'profile',
-    loadChildren: () =>
-      import('./profile/profile.module').then((m) => m.ProfileModule),
-  },
+  // {
+  //   path: 'profile',
+  //   loadChildren: () =>
+  //     import('./profile/profile.module').then((m) => m.ProfileModule),
+  // },
   {
     path: 'products',
     loadChildren: () =>

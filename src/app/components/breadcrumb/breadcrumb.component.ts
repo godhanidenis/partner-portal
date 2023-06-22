@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -11,7 +12,10 @@ export class BreadcrumbComponent implements OnInit {
   breadcrumbList: string[] = [];
   path: string[] = [];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    public dashboardService: DashboardService
+  ) {
     this.path = this.router.url.replace(/\//g, ' ').substring(1).split(' ');
     this.path.shift();
     if (
@@ -20,8 +24,28 @@ export class BreadcrumbComponent implements OnInit {
       this.path[0] === 'promotions'
     ) {
       this.path.pop();
+      this.breadcrumbList = this.path;
     }
-    this.breadcrumbList = this.path;
+    if (this.path[0] === 'dashboard') {
+      let newPath: any = [];
+      this.path?.map((x) => {
+        newPath.push(this.formatTitle(x));
+      });
+      this.breadcrumbList = newPath;
+
+      if (
+        newPath.includes('Performance Issues') ||
+        newPath.includes('Recommendation Issues')
+      ) {
+        const code = newPath.pop();
+        this.breadcrumbList = newPath;
+        this.dashboardService.routeConfigMap.subscribe((res: any) => {
+          if (res?.size > 0 && res?.get(code!)?.name) {
+            this.breadcrumbList.push(res?.get(code!)?.name);
+          }
+        });
+      }
+    }
   }
 
   ngOnInit(): void {}

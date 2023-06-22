@@ -4,23 +4,28 @@ import { PriceCorrectionComponent } from './price-correction/price-correction.co
 import { LackOfSalesDemandComponent } from './lack-of-sales-demand/lack-of-sales-demand.component';
 import { ProductsLosingImportanceOnAmazonComponent } from './products-losing-importance-on-amazon/products-losing-importance-on-amazon.component';
 import { ShippingLabelComponent } from './shipping-label/shipping-label.component';
+// import { CanActivateRoute } from 'src/app/shared/guard/canActivateRoute.guard';
 
 const routes: Routes = [
   {
-    path: 'price-correction/:code',
+    path: 'A20',
     component: PriceCorrectionComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'lack-of-sales-demand/:code',
+    path: 'A21',
     component: LackOfSalesDemandComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'products-losing-importance-on-amazon/:code',
+    path: 'A22',
     component: ProductsLosingImportanceOnAmazonComponent,
+    // canActivate: [CanActivateRoute],
   },
   {
-    path: 'shipping-label/:code',
+    path: 'A25',
     component: ShippingLabelComponent,
+    // canActivate: [CanActivateRoute],
   },
 ];
 

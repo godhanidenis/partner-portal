@@ -38,27 +38,27 @@ export class HomeSectionComponent implements OnInit {
   performanceIssuesList: any[] = [];
 
   urlsMap = new Map([
-    ['A04', 'dashboard/performance-issues/handling-time-conflict/A04'],
-    ['A05', 'dashboard/performance-issues/unit-price-conflict/A05'],
-    ['A06', 'dashboard/performance-issues/map-conflict/A06'],
-    ['A07', 'dashboard/performance-issues/restricted-via-order/A07'],
-    ['A08', 'dashboard/performance-issues/restricted-discontinued/A08'],
-    ['A09', 'dashboard/performance-issues/restricted-product-price-error/A09'],
-    ['A10', 'dashboard/performance-issues/restricted-cannot-ship-ground/A10'],
-    ['A11', 'dashboard/performance-issues/restricted-via-returns/A11'],
-    ['A13', 'dashboard/performance-issues/incomplete-offer/A13'],
-    ['A26', 'dashboard/performance-issues/incomplete-offer/A26'],
-    ['A16', 'dashboard/performance-issues/stranded-in-feed/A16'],
-    ['A17', 'dashboard/performance-issues/stranded-in-catalog/A17'],
-    ['A18', 'dashboard/performance-issues/discontinued-update/A18'],
+    ['A04', 'dashboard/performance-issues/A04'],
+    ['A05', 'dashboard/performance-issues/A05'],
+    ['A06', 'dashboard/performance-issues/A06'],
+    ['A07', 'dashboard/performance-issues/A07'],
+    ['A08', 'dashboard/performance-issues/A08'],
+    ['A09', 'dashboard/performance-issues/A09'],
+    ['A10', 'dashboard/performance-issues/A10'],
+    ['A11', 'dashboard/performance-issues/A11'],
+    ['A13', 'dashboard/performance-issues/A13'],
+    ['A26', 'dashboard/performance-issues/A26'],
+    ['A16', 'dashboard/performance-issues/A16'],
+    ['A17', 'dashboard/performance-issues/A17'],
+    ['A18', 'dashboard/performance-issues/A18'],
     ['A19', 'products/add-product'],
-    ['A20', 'dashboard/recommendation-issues/price-correction/A20'],
-    ['A21', 'dashboard/recommendation-issues/lack-of-sales-demand/A21'],
+    ['A20', 'dashboard/recommendation-issues/A20'],
+    ['A21', 'dashboard/recommendation-issues/A21'],
     [
       'A22',
-      'dashboard/recommendation-issues/products-losing-importance-on-amazon/A22',
+      'dashboard/recommendation-issues/A22',
     ],
-    ['A23', 'dashboard/recommendation-issues/shipping-label/A23'],
+    ['A23', 'dashboard/recommendation-issues/A23'],
     ['A24', 'profile/allowances/co-op'],
     ['A25', 'profile/allowances/rebate'],
   ]);
@@ -115,6 +115,29 @@ export class HomeSectionComponent implements OnInit {
   ) {
     this.isLoading = true;
     this.loadAPIs();
+    this.dashboardService.agendasList.subscribe((res: any) => {
+      if (res) {
+        this.isLoading = false;
+        if (res.success) {
+          this.performanceIssuesList = [];
+          res.performance.map((result: any, index: number) => {
+            if (this.urlsMap.get(result?.code)) {
+              result['url'] = this.urlsMap.get(result?.code);
+              this.performanceIssuesList.push(result);
+            }
+          });
+          this.recommendationIssuesList = [];
+          res.recommendation.map((response: any, index: number) => {
+            if (this.urlsMap.get(response?.code)) {
+              response['url'] = this.urlsMap.get(response?.code);
+              this.recommendationIssuesList.push(response);
+            }
+          });
+        } else {
+          this.isLoading = false;
+        }
+      }
+    });
   }
 
   ngOnInit(): void {}
@@ -171,28 +194,77 @@ export class HomeSectionComponent implements OnInit {
         );
       }
     });
-    this.dashboardService.getIssues(data).subscribe(
-      (res: any) => {
-        this.isLoading = false;
-        if (res.success) {
-          this.performanceIssuesList = [];
-          res.performance.map((result: any, index: number) => {
-            if (this.urlsMap.get(result?.code)) {
-              result['url'] = this.urlsMap.get(result?.code);
-              this.performanceIssuesList.push(result);
-            }
-          });
-          this.recommendationIssuesList = [];
-          res.recommendation.map((response: any, index: number) => {
-            if (this.urlsMap.get(response?.code)) {
-              response['url'] = this.urlsMap.get(response?.code);
-              this.recommendationIssuesList.push(response);
-            }
-          });
-        }
-      },
-      (err) => (this.isLoading = false)
-    );
+    // this.dashboardService.dashboardCatalog().subscribe(async (res: any) => {
+    //   if (res.success) {
+    //     this.chartOneData = [
+    //       res.catalog.Active,
+    //       res.catalog.Discontinued,
+    //       res.catalog.LTL,
+    //       res.catalog.Restricted,
+    //       res.catalog.Suppressed,
+    //     ];
+    //     await this.chartOneLabel.map((res: string, index) => {
+    //       this.chartOneLegend.push({
+    //         label: res,
+    //         color: this.chartOneColor[index],
+    //         data: this.chartOneData[index],
+    //       });
+    //     });
+    //     await this.createChart(
+    //       this.chartOneLabel,
+    //       this.chartOneData,
+    //       this.chartOneColor,
+    //       this.doughnutChart1.nativeElement
+    //     );
+    //   }
+    // });
+    // this.dashboardService
+    //   .dashboardDropshipBB()
+    //   .subscribe(async (response: any) => {
+    //     if (response.success) {
+    //       this.chartTwoData = [
+    //         response.dropship_products_bb.stores,
+    //         response.dropship_products_bb.No_BB,
+    //         response.dropship_products_bb.Others,
+    //       ];
+    //       await this.chartTwoLabel.map((res: string, index) => {
+    //         this.chartTwoLegend.push({
+    //           label: res,
+    //           color: this.chartTwoColor[index],
+    //           data: this.chartTwoData[index],
+    //         });
+    //       });
+    //       await this.createChart(
+    //         this.chartTwoLabel,
+    //         this.chartTwoData,
+    //         this.chartTwoColor,
+    //         this.doughnutChart2.nativeElement
+    //       );
+    //     }
+    // });
+
+    // this.dashboardService.getIssues(data).subscribe(
+    //   (res: any) => {
+    //     this.isLoading = false;
+    //     if (res.success) {
+    //       this.performanceIssuesList = [];
+    //       res.performance.map((result: any, index: number) => {
+    //         if (this.urlsMap.get(result?.code)) {
+    //           result['url'] = this.urlsMap.get(result?.code);
+    //           this.performanceIssuesList.push(result);
+    //         }
+    //       });
+    //       this.recommendationIssuesList = [];
+    //       res.recommendation.map((response: any, index: number) => {
+    //         if (this.urlsMap.get(response?.code)) {
+    //           response['url'] = this.urlsMap.get(response?.code);
+    //           this.recommendationIssuesList.push(response);
+    //         }
+    //       });
+    //     }
+    //   },
+    //   (err) => (this.isLoading = false)
+    // );
   }
 
   createChart(
