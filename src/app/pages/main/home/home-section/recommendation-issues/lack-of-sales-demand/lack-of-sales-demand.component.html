@@ -1,12 +1,15 @@
 <app-breadcrumb></app-breadcrumb>
 
 <div class="lack-of-sales-demand-section">
-  <app-section-header [header]="'Lack Of Sales Demand'"></app-section-header>
+  <app-section-header
+    [modifyLable]="true"
+    [header]="'A21'"
+  ></app-section-header>
 
   <div class="body-section">
     <app-home-header
       [description]="description"
-      [tabName]="'Lack Of Sales Demand'"
+      [tabName]="'A21'"
     ></app-home-header>
 
     <app-home-filter-action

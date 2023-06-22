@@ -61,7 +61,7 @@ export class HandlingTimeConflictComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private dashboardService: DashboardService
+    public dashboardService: DashboardService
   ) {
     this.isLoading = true;
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
@@ -107,7 +107,7 @@ export class HandlingTimeConflictComponent implements OnInit {
       mpn: mpn,
       current: handling_time,
     };
-    this.editLabel = ['MPN', 'Current Handling Time', 'New Handling Time'];
+    this.editLabel = ['MPN', 'Current Handling Time (Days)', 'New Handling Time (Days)'];
     this.isVisible = true;
   }
 

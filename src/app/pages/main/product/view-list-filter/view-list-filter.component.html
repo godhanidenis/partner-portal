@@ -165,7 +165,14 @@
           <tr *ngFor="let data of nzTable.data; let no = index">
             <td>{{ data.mpn }}</td>
             <td>{{ data?.upc }}</td>
-            <td style="width: 150px">{{ data.asin }}</td>
+            <td style="width: 150px">
+              <a
+                class="link"
+                [href]="'https://www.amazon.com/dp/' + data?.asin"
+                >{{ data?.asin }}</a
+              >
+            </td>
+            <!-- <td style="width: 150px">{{ data.asin }}</td> -->
             <td>{{ data.name }}</td>
             <td>{{ data.brand }}</td>
             <td style="width: 150px">{{ data.unit_price | currency }}</td>

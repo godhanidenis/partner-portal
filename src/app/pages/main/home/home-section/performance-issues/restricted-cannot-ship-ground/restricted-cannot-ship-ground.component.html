@@ -2,13 +2,14 @@
 
 <div class="restricted-cannot-ship-ground-section">
   <app-section-header
-    [header]="'Restricted Cannot Ship Ground'"
+    [modifyLable]="true"
+    [header]="'A10'"
   ></app-section-header>
 
   <div class="body-section">
     <app-home-header
       [description]="description"
-      [tabName]="'Restricted Cannot Ship Ground'"
+      [tabName]="'A10'"
     ></app-home-header>
 
     <app-home-filter-action
@@ -64,7 +65,13 @@
             <td>{{ data?.mpn }}</td>
             <td>{{ data?.upc }}</td>
             <td>{{ data?.name }}</td>
-            <td>{{ data?.asin }}</td>
+            <td>
+              <a
+                class="link"
+                [href]="'https://www.amazon.com/dp/' + data?.asin"
+                >{{ data?.asin }}</a
+              >
+            </td>
             <td>{{ data?.reason_for_restriction }}</td>
             <td>{{ data?.date_of_restriction }}</td>
             <td>{{ data?.shippingMethod }}</td>
