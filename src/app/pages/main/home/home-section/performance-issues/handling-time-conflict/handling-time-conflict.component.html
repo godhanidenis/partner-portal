@@ -51,14 +51,12 @@
           <th>UPC</th>
           <th>Product Name</th>
           <th>Amazon ASIN</th>
-          <th style="max-width: 100px">
-            Partner Handling Time provided to 123Stores (Days)
-          </th>
-          <th style="max-width: 100px">
+          <th>Partner Handling Time provided to 123Stores (Days)</th>
+          <th>
             Conflicting Handling Time on Amazon offered by Conflicting Provider
             (Days)
           </th>
-          <th style="max-width: 100px">No. of Conflicting Providers</th>
+          <th>No. of Conflicting Providers</th>
           <th>Conflicting Providers</th>
           <th nzRight class="action-column"><div>Actions</div></th>
         </tr>
@@ -83,7 +81,7 @@
             {{ data?.handling_time }}
           </td>
           <td>{{ data?.other_sellers_minimum_handling }}</td>
-          <td>{{ data?.no_of_other_sellers }}</td>
+          <td>{{ data?.other_seller_count_with_better_handling }}</td>
           <td>
             <span *ngFor="let value of data?.other_sellers; let sr = index"
               >{{ value

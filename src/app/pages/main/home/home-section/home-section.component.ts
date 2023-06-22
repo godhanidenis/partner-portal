@@ -303,10 +303,4 @@ export class HomeSectionComponent implements OnInit {
       this.router.navigate([`/main/${path}`], navigationExtras);
     }
   }
-
-  shoeIssuesPage(path: string) {
-    if (path) {
-      this.router.navigate([`/main/${path}`]);
-    }
-  }
 }

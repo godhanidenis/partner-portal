@@ -118,10 +118,10 @@ export class UnitPriceConflictComponent implements OnInit {
     window.open(`https://www.amazon.com/dp/${asin}`);
   }
 
-  matchValue(mpn: string, time: number) {
+  matchValue(mpn: string, prize: number) {
     this.editData = {
       mpn: mpn,
-      current: time,
+      current: prize,
     };
     this.editLabel = ['MPN', 'Current Unit Price', 'New Unit Price'];
     this.isVisible = true;

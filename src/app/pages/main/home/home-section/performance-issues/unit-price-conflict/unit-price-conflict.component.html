@@ -76,10 +76,10 @@
               data?.asin
             }}</a>
           </td>
-          <td>{{ data?.unit_price }}</td>
-          <td>{{ data?.allowance_price }}</td>
-          <td>{{ data?.net_unit_price }}</td>
-          <td>{{ data?.other_sellers_minimum_price }}</td>
+          <td>{{ data?.unit_price | currency }}</td>
+          <td>{{ data?.allowance_price | currency }}</td>
+          <td>{{ data?.net_unit_price | currency }}</td>
+          <td>{{ data?.other_sellers_minimum_price | currency }}</td>
           <td>{{ data?.other_seller_count_with_better_price }}</td>
           <td>
             <span *ngFor="let value of data.other_sellers; let sr = index"
@@ -90,7 +90,7 @@
           <td nzRight>
             <div style="display: flex; align-items: center">
               <a
-                (click)="matchValue(data.mpn, data.handling_time)"
+                (click)="matchValue(data.mpn, data.unit_price)"
                 style="margin: 0 5px; color: #2121c3; font-size: large"
                 ><span nz-icon nzType="edit" nzTheme="outline"></span
               ></a>

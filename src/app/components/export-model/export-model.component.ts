@@ -72,7 +72,10 @@ export class ExportModelComponent implements OnInit {
         (response: any) => {
           console.log(response);
           if (response.success) {
-            this.message.create('success', 'Product export successfully!');
+            this.message.create(
+              'success',
+              'Export mail has been sent successfully!'
+            );
           }
           this.handleCancel();
           this.isLoading = false;
@@ -102,7 +105,10 @@ export class ExportModelComponent implements OnInit {
         (response: any) => {
           console.log(response);
           if (response.success) {
-            this.message.create('success', 'Inventory export successfully!');
+            this.message.create(
+              'success',
+              'Export mail has been sent successfully!'
+            );
           }
           this.handleCancel();
           this.isLoading = false;
@@ -125,7 +131,10 @@ export class ExportModelComponent implements OnInit {
         (response: any) => {
           console.log(response);
           if (response.success) {
-            this.message.create('success', 'Promotion export successfully!');
+            this.message.create(
+              'success',
+              'Export mail has been sent successfully!'
+            );
           }
           this.handleCancel();
           this.isLoading = false;
@@ -144,7 +153,7 @@ export class ExportModelComponent implements OnInit {
           if (res.success) {
             this.message.create(
               'success',
-              'Dashboard list export successfully!'
+              'Export mail has been sent successfully!'
             );
           }
           this.handleCancel();

@@ -7,7 +7,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class RecommendationIssueTableComponent implements OnInit {
   @Input() total: number = 1;
-  @Input() pageSize: number = 50;
+  @Input() pageSize: number = 100;
   @Input() pageIndex: number = 1;
   @Input() isLoading: boolean = false;
   @Input() listOfData: any[] = [];
@@ -15,7 +15,7 @@ export class RecommendationIssueTableComponent implements OnInit {
 
   @Output() changeModel = new EventEmitter();
 
-  pageSizeOptions = [50, 100, 250, 500];
+  pageSizeOptions = [100];
   editData: { mpn: string; current: number } = {
     mpn: 'string',
     current: 0,

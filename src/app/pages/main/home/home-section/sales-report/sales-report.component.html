@@ -4,25 +4,20 @@
   <app-section-header [header]="'Sales Report'"></app-section-header>
 
   <div class="download-link">
-    <a class="link">Download Sales Report</a>
+    <a class="link" (click)="downloadReport()">Download Sales Report</a>
   </div>
 
   <nz-table
     #nzTable
     nzOuterBordered
-    [nzData]="reportList"
-    nzShowSizeChanger
-    [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
-    [nzTotal]="total"
-    [nzPageSize]="pageSize"
-    [nzPageIndex]="pageIndex"
+    [nzShowPagination]="false"
+    [nzData]="reportList"
     [nzLoading]="isLoading"
-    [nzScroll]="{ x: '100%' }"
   >
+    <!-- [nzScroll]="{ x: '100%' }" -->
     <thead>
       <tr>
-        <th>Srl No.</th>
         <th>MPN</th>
         <th>UPC</th>
         <th>Product Name</th>
@@ -32,8 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of nzTable.data; let no = index">
-        <td>{{ no + 1 }}</td>
+      <tr *ngFor="let data of nzTable.data">
         <td>{{ data?.mpn }}</td>
         <td>{{ data?.upc }}</td>
         <td>{{ data?.name }}</td>
@@ -45,10 +39,13 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
         <td><b>Total</b></td>
-        <td>{{ totalSum | currency }}</td>
+        <td>
+          <b>{{ totalUnitsSold }}</b>
+        </td>
+        <td>
+          <b>{{ totalSales | currency }}</b>
+        </td>
       </tr>
     </tbody>
   </nz-table>

@@ -18,12 +18,12 @@
                 [nzXs]="24"
               >
                 <nz-card class="card-hover">
-                  <div
+                  <a
                     class="title link"
                     routerLink="/main/dashboard/sales-report/sales_today"
                   >
                     Today's Sales
-                  </div>
+                  </a>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -48,12 +48,12 @@
                 [nzXs]="24"
               >
                 <nz-card class="card-hover">
-                  <div
+                  <a
                     class="title link"
                     routerLink="/main/dashboard/sales-report/sales_wtd"
                   >
                     Week to Date (WTD) Sales
-                  </div>
+                  </a>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -78,12 +78,12 @@
                 [nzXs]="24"
               >
                 <nz-card class="card-hover">
-                  <div
+                  <a
                     class="title link"
                     routerLink="/main/dashboard/sales-report/sales_mtd"
                   >
                     Month to Date (MTD) Sales
-                  </div>
+                  </a>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -112,7 +112,7 @@
             [nzXs]="24"
           >
             <nz-card>
-              <div class="title">Catalog</div>
+              <div class="title">Catalog Insights</div>
               <div class="chart-content">
                 <div class="canvas">
                   <canvas #dChart1></canvas>
@@ -152,7 +152,7 @@
             [nzXs]="24"
           >
             <nz-card>
-              <div class="title">Dropship products that can sell</div>
+              <div class="title">Buy Box Insights</div>
               <div class="chart-content">
                 <div class="canvas">
                   <canvas #dChart2></canvas>
@@ -237,7 +237,6 @@
           >
             <thead>
               <tr>
-                <th>NO.</th>
                 <th style="width: 80%">PERFORMANCE ISSUES</th>
                 <th>COUNT</th>
               </tr>
@@ -245,11 +244,13 @@
             <tbody>
               <ng-template ngFor let-data [ngForOf]="performanceIssuesList">
                 <tr>
-                  <td>{{ data?.priority }}</td>
                   <td>
-                    <a (click)="shoeIssuesPage(data.url)" class="link">{{
-                      data?.name
-                    }}</a>
+                    <a
+                      [routerLink]="'/main/' + data.url"
+                      class="link"
+                      style="white-space: normal !important"
+                      >{{ data?.name }}</a
+                    >
                   </td>
                   <td>
                     <b>{{ data?.count }}</b>
@@ -276,7 +277,6 @@
           >
             <thead>
               <tr>
-                <th>NO.</th>
                 <th style="width: 80%">RECOMMENDATION ISSUES</th>
                 <th>COUNT</th>
               </tr>
@@ -284,11 +284,13 @@
             <tbody>
               <ng-template ngFor let-data [ngForOf]="recommendationIssuesList">
                 <tr>
-                  <td>{{ data.priority }}</td>
                   <td>
-                    <a (click)="shoeIssuesPage(data.url)" class="link">{{
-                      data?.name
-                    }}</a>
+                    <a
+                      [routerLink]="'/main/' + data.url"
+                      class="link"
+                      style="white-space: normal !important"
+                      >{{ data?.name }}</a
+                    >
                   </td>
                   <td>
                     <b>{{ data?.count }}</b>

@@ -23,7 +23,13 @@
             </nz-form-label>
             <nz-form-control [nzSm]="15" [nzXs]="24">
               <nz-input-group>
-                <b style="padding-left: 10px">{{ editData.current }}</b>
+                <b style="padding-left: 10px">{{
+                  section === "Handling Time" ||
+                  section === "Stranded In Catalog" ||
+                  section === "Discontinued Update"
+                    ? editData.current
+                    : "$" + editData.current
+                }}</b>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -45,20 +51,27 @@
                     ? ''
                     : '$'
                 "
-                [nzSuffix]="
-                  section === 'Amazon ASIN'
-                    ? ''
-                    : section === 'Handling Time'
-                    ? 'Day'
-                    : ''
-                "
               >
                 <input
+                  *ngIf="section !== 'Handling Time'"
                   formControlName="new"
                   type="text"
                   nz-input
                   placeholder="Enter new"
                 />
+
+                <nz-select
+                  *ngIf="section === 'Handling Time'"
+                  nzAllowClear
+                  nzPlaceHolder="Select a Days"
+                  formControlName="new"
+                >
+                  <nz-option
+                    *ngFor="let no of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                    [nzLabel]="no"
+                    [nzValue]="no"
+                  ></nz-option>
+                </nz-select>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -79,19 +92,19 @@
                     nzPlaceHolder="Select a status"
                     formControlName="new"
                   >
-                    <nz-option nzLabel="Active" nzValue="Active"></nz-option>
                     <nz-option
+                      *ngIf="section === 'Discontinued Update'"
+                      nzLabel="Active"
+                      nzValue="Active"
+                    ></nz-option>
+                    <nz-option
+                      *ngIf="section === 'Stranded In Catalog'"
                       nzLabel="Discontinued"
                       nzValue="Discontinued"
                     ></nz-option>
-                    <nz-option nzLabel="LTL" nzValue="LTL"></nz-option>
                     <nz-option
                       nzLabel="Restricted"
                       nzValue="Restricted"
-                    ></nz-option>
-                    <nz-option
-                      nzLabel="Supressed"
-                      nzValue="Supressed"
                     ></nz-option>
                   </nz-select>
                 </nz-input-group>

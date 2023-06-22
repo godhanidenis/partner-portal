@@ -1,6 +1,8 @@
 <nz-breadcrumb *ngIf="path[0] !=='dashboard'" style="margin-bottom: 16px; margin-left: 8px">
   <nz-breadcrumb-item *ngFor="let data of breadcrumbList; let no = index">
-    <a (click)="backButton(breadcrumbList[0], no)">{{ formatTitle(data) }}</a>
+    <a (click)="backButton(breadcrumbList[0], no)">{{
+      formatTitle(data, no)
+    }}</a>
   </nz-breadcrumb-item>
 </nz-breadcrumb>
 

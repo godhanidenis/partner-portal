@@ -12,12 +12,9 @@ import {
 })
 export class SalesReportComponent implements OnInit {
   isLoading: boolean = false;
-  total = 1;
-  pageSize = 100;
-  pageIndex = 1;
-  pageSizeOptions = [100];
   reportList: any[] = [];
-  totalSum: number = 0;
+  totalSales: number = 0;
+  totalUnitsSold: number = 0;
   type: string = '';
 
   constructor(
@@ -37,10 +34,11 @@ export class SalesReportComponent implements OnInit {
         this.isLoading = false;
         if (res.success) {
           this.reportList = res.data;
-          this.reportList.map((res: any, index) => {
-            this.totalSum += res.amount_sold;
+          this.reportList.map((res: any) => {
+            this.totalSales += res.amount_sold;
+            this.totalUnitsSold += res.unit_sold;
           });
-          console.log(this.totalSum);
+          console.log(this.totalSales);
         }
       },
       (err) => (this.isLoading = false)
@@ -48,4 +46,26 @@ export class SalesReportComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  downloadReport() {
+    const reqData: SalesReport = {
+      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
+      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
+      type: this.type,
+    };
+    this.dashboardService.downloadSalesReport(reqData).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.isLoading = false;
+        if (res.success) {
+          var objectUrl = res.sales_report;
+          var a = document.createElement('a');
+          a.download = 'document';
+          a.href = objectUrl;
+          a.click();
+        }
+      },
+      (err) => (this.isLoading = false)
+    );
+  }
 }
