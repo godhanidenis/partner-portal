@@ -40,10 +40,10 @@ export class HomeHeaderComponent implements OnInit {
         this.templateType = 'ADD_EDIT_MAP';
         break;
       case 'Stranded In Catalog':
-        this.templateType = 'EDIT_PRODUCT_DETAILS';
+        this.templateType = 'CHANGE_PRODUCT_STATUS';
         break;
       case 'Discontinued Update':
-        this.templateType = 'EDIT_PRODUCT_DETAILS';
+        this.templateType = 'CHANGE_PRODUCT_STATUS';
         break;
       default:
         break;

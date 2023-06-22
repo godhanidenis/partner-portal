@@ -21,7 +21,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'sales-report',
+    path: 'sales-report/:type',
     component: SalesReportComponent,
   },
 ];

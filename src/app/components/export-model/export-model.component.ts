@@ -138,12 +138,20 @@ export class ExportModelComponent implements OnInit {
         user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
         code: this.code,
       };
-      this.dashboardService.exportData(data).subscribe((res: any) => {
-        console.log(res);
-        if (res.success) {
+      this.dashboardService.exportData(data).subscribe(
+        (res: any) => {
+          console.log(res);
+          if (res.success) {
+            this.message.create(
+              'success',
+              'Dashboard list export successfully!'
+            );
+          }
           this.handleCancel();
-        }
-      });
+          this.isLoading = false;
+        },
+        (err) => (this.isLoading = false)
+      );
     }
   }
 

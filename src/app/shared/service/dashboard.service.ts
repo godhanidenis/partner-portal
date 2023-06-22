@@ -1,17 +1,18 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import {
-  EditEndDatePromotions,
-  Promotion,
-  Promotions,
-  StopPromotions,
-} from '../model/promotion.model';
+import { Promotion } from '../model/promotion.model';
 
 export interface ExportDash {
   partner_id: string;
   user_id: string;
   code: string;
+}
+
+export interface SalesReport {
+  partner_id: string;
+  user_id: string;
+  type: string;
 }
 @Injectable({
   providedIn: 'root',
@@ -44,6 +45,17 @@ export class DashboardService {
       .set('user_id', action.user_id);
 
     return this.http.get(this.url + '/agendas-list', {
+      params: params,
+    });
+  }
+
+  salesReport(action: SalesReport) {
+    let params = new HttpParams()
+      .set('partner_id', action.partner_id)
+      .set('user_id', action.user_id)
+      .set('type', action.type);
+
+    return this.http.get(this.url + '/sales-report', {
       params: params,
     });
   }

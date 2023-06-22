@@ -47,7 +47,6 @@
     >
       <thead>
         <tr>
-          <th>Sr. No.</th>
           <th>MPN</th>
           <th>UPC</th>
           <th>Product_Name</th>
@@ -56,8 +55,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of nzTable.data; let no = index">
-          <td>{{ no + 1 }}</td>
+        <tr *ngFor="let data of nzTable.data">
           <td>
             <a
               class="link"

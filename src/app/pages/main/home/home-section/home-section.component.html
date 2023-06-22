@@ -11,15 +11,19 @@
           <div class="overview-section" nz-col [nzXl]="8" [nzXs]="24">
             <div class="flex-direction" nz-row [nzGutter]="16">
               <div
-                routerLink="/main/dashboard/sales-report"
                 class="first-card"
                 nz-col
                 [nzXl]="24"
                 [nzMd]="12"
                 [nzXs]="24"
               >
-                <nz-card>
-                  <div class="title">Today's Sales</div>
+                <nz-card class="card-hover">
+                  <div
+                    class="title link"
+                    routerLink="/main/dashboard/sales-report/sales_today"
+                  >
+                    Today's Sales
+                  </div>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -37,15 +41,19 @@
                 </nz-card>
               </div>
               <div
-                routerLink="/main/dashboard/sales-report"
                 class="first-card"
                 nz-col
                 [nzXl]="24"
                 [nzMd]="12"
                 [nzXs]="24"
               >
-                <nz-card>
-                  <div class="title">Week to Date (WTD) Sales</div>
+                <nz-card class="card-hover">
+                  <div
+                    class="title link"
+                    routerLink="/main/dashboard/sales-report/sales_wtd"
+                  >
+                    Week to Date (WTD) Sales
+                  </div>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -63,15 +71,19 @@
                 </nz-card>
               </div>
               <div
-                routerLink="/main/dashboard/sales-report"
                 class="first-card"
                 nz-col
                 [nzXl]="24"
                 [nzMd]="12"
                 [nzXs]="24"
               >
-                <nz-card>
-                  <div class="title">Month to Date (MTD) Sales</div>
+                <nz-card class="card-hover">
+                  <div
+                    class="title link"
+                    routerLink="/main/dashboard/sales-report/sales_mtd"
+                  >
+                    Month to Date (MTD) Sales
+                  </div>
                   <div class="content">
                     <p>
                       <span>Sales (Units)</span
@@ -217,7 +229,6 @@
         </div>
         <div class="performance-issues-section">
           <nz-table
-            style="margin-top: 10px"
             #nzTable
             nzOuterBordered
             [nzData]="performanceIssuesList"
@@ -257,7 +268,6 @@
         </div>
         <div class="performance-issues-section">
           <nz-table
-            style="margin-top: 10px"
             #nzTable
             nzOuterBordered
             [nzData]="performanceIssuesList"
