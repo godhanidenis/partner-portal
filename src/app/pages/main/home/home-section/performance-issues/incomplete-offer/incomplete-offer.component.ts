@@ -69,18 +69,6 @@ export class IncompleteOfferComponent implements OnInit {
         (res: any) => {
           this.isLoading = false;
           if (res.success) {
-            const dummyData = {
-              mpn: 'ACDED',
-              asin: 'A1-232-BDDE',
-              amazon_page_title: 'Amazon is the best thing that has happened',
-            };
-            res.data.forEach((x: any, index: number) => {
-              const data = [dummyData];
-              if (index % 2 === 0) {
-                data.push(dummyData);
-              }
-              x['recommendation'] = data;
-            });
             this.incompleteOfferList = res.data;
           }
         },

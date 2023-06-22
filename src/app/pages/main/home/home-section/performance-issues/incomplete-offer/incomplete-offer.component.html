@@ -75,15 +75,15 @@
                   <span
                     style="font-weight: 600; display: flex; white-space: nowrap"
                     >Amazon MPN : </span
-                  ><span style="padding-left: 4px">{{ recom?.mpn }}</span>
+                  ><span style="padding-left: 4px">{{ recom?.amazon_mpn }}</span>
                 </div>
                 <div style="display: flex; flex-wrap: nowrap">
                   <span
                     style="font-weight: 600; display: flex; white-space: nowrap"
                     >Amazon ASIN : </span
                   ><span style="padding-left: 4px"
-                    ><a class="link" (click)="navigateAsin(recom?.asin)">{{
-                      recom?.asin
+                    ><a class="link" [href]="'https://www.amazon.com/dp/' + recom?.amazon_asin">{{
+                      recom?.amazon_asin
                     }}</a></span
                   >
                 </div>

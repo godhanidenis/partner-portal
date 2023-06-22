@@ -122,6 +122,16 @@
     // border-right: 3px solid $darkBlue;
   }
 
+  .inactive {
+    // color: $teb-font-color;
+    // background-color: #ff8b4d14 !important;
+    // border-right: 3px solid $teb-font-color;
+    color: $white;
+    // background-color: rgb(33 33 195 / 8%) !important;
+    background-color: $darkBlue;
+    // border-right: 3px solid $darkBlue;
+  }
+
   ::ng-deep .ant-menu-light .ant-menu-item:hover,
   .ant-menu-light .ant-menu-submenu-title:hover {
     // color: $teb-font-color;
@@ -142,21 +152,21 @@
     color: $white;
   }
 
-  ::ng-deep .ant-menu-item-selected,
-  .ant-menu-submenu-selected {
-    color: $darkBlue;
-    background-color: $darkBlue;
-  }
+  // ::ng-deep .ant-menu-item-selected,
+  // .ant-menu-submenu-selected {
+  //   color: $darkBlue;
+  //   background-color: $darkBlue;
+  // }
 
   ::ng-deep .ant-menu-light .ant-menu-submenu-title:hover {
     // color: $teb-font-color;
     color: $white;
   }
 
-  ::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: $white;
-    color: $darkBlue;
-  }
+  // ::ng-deep .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  //   background-color: $white;
+  //   color: $darkBlue;
+  // }
 
   ::ng-deep .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
     color: $white;
@@ -261,12 +271,11 @@
     // }
 
     .user-type {
-      padding: 5px 20px 0px 8px;
+      padding: 0px 20px 0px 8px;
 
       span {
         font-weight: 700;
         color: #24b563;
-        display: inline-block;
         width: 180px;
         white-space: nowrap;
         overflow: hidden !important;
@@ -278,7 +287,7 @@
       width: 100%;
       flex-direction: column !important;
       background-color: $white;
-      padding: 0px 20px 0px 20px;
+      padding: 0px 20px 0px 8px;
       display: flex;
 
       span {
