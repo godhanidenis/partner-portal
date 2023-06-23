@@ -27,7 +27,11 @@ export class DiscontinuedUpdateComponent implements OnInit {
 
   discontinuedUpdateList: any = [];
 
-  editData: any;
+  editData: { mpn: string; current: number; sku: string } = {
+    mpn: 'string',
+    current: 0,
+    sku: '',
+  };
   modelHeader: string = 'Add';
   primaryContact: number = 1;
   viewData: any;
@@ -92,10 +96,11 @@ export class DiscontinuedUpdateComponent implements OnInit {
     window.open(`https://www.amazon.com/dp/${asin}`);
   }
 
-  matchValue(mpn: string, handling_time: number) {
+  matchValue(mpn: string, handling_time: number, sku: string) {
     this.editData = {
       mpn: mpn,
       current: handling_time,
+      sku: sku,
     };
     this.editLabel = ['MPN', 'Current Product Status', 'New Product Status'];
     this.isVisible = true;

@@ -26,7 +26,12 @@ export class IncompleteOfferComponent implements OnInit {
   badgeTotal: number = 0;
 
   incompleteOfferList: any[] = [];
-  editData: any;
+  editData: { mpn: string; current: number; extraData: any; sku: string } = {
+    mpn: 'string',
+    current: 0,
+    extraData: '',
+    sku: '',
+  };
   modelHeader: string = 'Add';
   primaryContact: number = 1;
   viewData: any;
@@ -301,11 +306,12 @@ export class IncompleteOfferComponent implements OnInit {
     }
   }
 
-  matchValue(mpn: string, asin: number, recommandations: any) {
+  matchValue(mpn: string, asin: number, recommendations: any, sku: string) {
     this.editData = {
       mpn: mpn,
       current: asin,
-      extraData: recommandations,
+      extraData: recommendations,
+      sku: '',
     };
     this.editLabel = ['MPN', 'Current Amazon ASIN', 'New Amazon ASIN'];
     this.isVisible = true;

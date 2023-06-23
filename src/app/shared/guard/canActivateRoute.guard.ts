@@ -1,25 +1,28 @@
-// import { Injectable } from '@angular/core';
-// import {
-//   ActivatedRouteSnapshot,
-//   CanActivate,
-//   RouterStateSnapshot,
-//   UrlTree,
-// } from '@angular/router';
-// import { Observable } from 'rxjs';
-// import { DashboardService } from '../service/dashboard.service';
+import { inject } from '@angular/core';
+import { DashboardService } from '../service/dashboard.service';
+import { Router } from '@angular/router';
 
-// @Injectable()
-// export class CanActivateRoute implements CanActivate {
-//   constructor(private dashboardService: DashboardService) {}
+export const CanActivateRoute = (route: any) => {
+  const dashboardService = inject(DashboardService);
+  const router = inject(Router);
+  let valid: boolean = false;
+  dashboardService.routeConfigMap.subscribe((res: any) => {
+    const array = Array.from(res, ([key, value]) => ({ key, value }));
+    let code: string[] = [];
+    array.map((result: any) => {
+      code.push(result.key);
+    });
+    code.filter((result: any) => {
+      if (result === route.url[0].path) {
+        console.log(result, route.url[0].path);
 
-//   canActivate(
-//     route: ActivatedRouteSnapshot,
-//     state: RouterStateSnapshot
-//   ):
-//     | boolean
-//     | UrlTree
-//     | Observable<boolean | UrlTree>
-//     | Promise<boolean | UrlTree> {
-//     return this.dashboardService.isRouteAccessible(state.url);
-//   }
-// }
+        valid = true;
+      }
+    });
+  });
+  if (valid) {
+    return valid;
+  } else {
+    return router.parseUrl('/main/dashboard');
+  }
+};

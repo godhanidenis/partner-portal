@@ -43,7 +43,20 @@
             <nz-form-label [nzSm]="10" [nzXs]="24">{{
               editLabel[2]
             }}</nz-form-label>
-            <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-form-control
+              [nzSm]="14"
+              [nzXs]="24"
+              [nzValidateStatus]="
+                submitError && !editTimeForm.controls['new'].value
+                  ? 'error'
+                  : ''
+              "
+              [nzErrorTip]="
+                section === 'Handling Time'
+                  ? 'Please select your new value!'
+                  : 'Please input your new value!'
+              "
+            >
               <nz-input-group
                 [nzPrefix]="
                   section === 'Amazon ASIN'
@@ -86,7 +99,16 @@
               <nz-form-label [nzSm]="10" [nzXs]="24">{{
                 editLabel[2]
               }}</nz-form-label>
-              <nz-form-control [nzSm]="14" [nzXs]="24">
+              <nz-form-control
+                [nzSm]="14"
+                [nzXs]="24"
+                [nzValidateStatus]="
+                  submitError && !editTimeForm.controls['new'].value
+                    ? 'error'
+                    : ''
+                "
+                nzErrorTip="Please select your new value!"
+              >
                 <nz-input-group>
                   <nz-select
                     nzAllowClear
@@ -113,7 +135,11 @@
             </nz-form-item>
           </div>
           <div *ngIf="section === 'Amazon ASIN'">
-            <nz-card *ngIf="editData?.extraData" nzSize="small" nzTitle="Recommendations">
+            <nz-card
+              *ngIf="editData?.extraData"
+              nzSize="small"
+              nzTitle="Recommendations"
+            >
               <div *ngFor="let recom of editData?.extraData; let i = index">
                 <div [style.padding-top]="i > 0 ? '8px' : ''" nzRow>
                   <span style="font-weight: 600">#{{ i + 1 }}</span>
@@ -125,7 +151,9 @@
                         white-space: nowrap;
                       "
                       >Amazon MPN : </span
-                    ><span style="padding-left: 4px">{{ recom?.amazon_mpn }}</span>
+                    ><span style="padding-left: 4px">{{
+                      recom?.amazon_mpn
+                    }}</span>
                   </div>
                   <div style="display: flex; flex-wrap: nowrap">
                     <span
@@ -136,9 +164,13 @@
                       "
                       >Amazon ASIN : </span
                     ><span style="padding-left: 4px"
-                      ><a class="link" [href]="'https://www.amazon.com/dp/' + recom?.amazon_asin">{{
-                        recom?.amazon_asin
-                      }}</a></span
+                      ><a
+                        class="link"
+                        [href]="
+                          'https://www.amazon.com/dp/' + recom?.amazon_asin
+                        "
+                        >{{ recom?.amazon_asin }}</a
+                      ></span
                     >
                   </div>
                   <div style="display: flex; flex-wrap: nowrap">

@@ -16,9 +16,10 @@ export class RecommendationIssueTableComponent implements OnInit {
   @Output() changeModel = new EventEmitter();
 
   pageSizeOptions = [100];
-  editData: { mpn: string; current: number } = {
+  editData: { mpn: string; current: number; sku: string } = {
     mpn: 'string',
     current: 0,
+    sku: '',
   };
   editLabel: string[] = [];
   isVisible: boolean = false;
@@ -30,11 +31,12 @@ export class RecommendationIssueTableComponent implements OnInit {
     window.open(`https://www.amazon.com/dp/${asin}`);
   }
 
-  matchValue(mpn: string, unit_price: number) {
+  matchValue(mpn: string, unit_price: number, sku: string) {
     if (this.tabName !== 'Shipping Label') {
       this.editData = {
         mpn: mpn,
         current: unit_price,
+        sku: sku,
       };
       this.editLabel = ['MPN', 'Current Unit Price', 'New Unit Price'];
       this.isVisible = true;

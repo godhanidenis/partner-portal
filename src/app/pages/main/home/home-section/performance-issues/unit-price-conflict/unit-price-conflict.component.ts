@@ -73,9 +73,10 @@ export class UnitPriceConflictComponent implements OnInit {
 
   // clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
-  editData: { mpn: string; current: number } = {
+  editData: { mpn: string; current: number; sku: string } = {
     mpn: 'string',
     current: 0,
+    sku: '',
   };
   editLabel: string[] = [];
   isVisible: boolean = false;
@@ -118,10 +119,11 @@ export class UnitPriceConflictComponent implements OnInit {
     window.open(`https://www.amazon.com/dp/${asin}`);
   }
 
-  matchValue(mpn: string, prize: number) {
+  matchValue(mpn: string, prize: number, sku: string) {
     this.editData = {
       mpn: mpn,
       current: prize,
+      sku: sku,
     };
     this.editLabel = ['MPN', 'Current Unit Price', 'New Unit Price'];
     this.isVisible = true;

@@ -23,9 +23,14 @@ export class HandlingTimeConflictComponent implements OnInit {
   badgeTotal: number = 0;
 
   handlingTimeConflictList: any[] = [];
-  editData: { mpn: string; current: number } = {
+  editData: {
+    mpn: string;
+    current: number;
+    sku: string;
+  } = {
     mpn: 'string',
     current: 0,
+    sku: '',
   };
   modelHeader: string = 'Add';
   primaryContact: number = 1;
@@ -102,12 +107,17 @@ export class HandlingTimeConflictComponent implements OnInit {
     }
   }
 
-  matchValue(mpn: string, handling_time: number) {
+  matchValue(mpn: string, handling_time: number, sku: string) {
     this.editData = {
       mpn: mpn,
       current: handling_time,
+      sku: sku,
     };
-    this.editLabel = ['MPN', 'Current Handling Time (Days)', 'New Handling Time (Days)'];
+    this.editLabel = [
+      'MPN',
+      'Current Handling Time (Days)',
+      'New Handling Time (Days)',
+    ];
     this.isVisible = true;
   }
 

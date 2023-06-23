@@ -51,9 +51,10 @@ export class MapConflictComponent implements OnInit {
 
   // clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
-  editData: { mpn: string; current: number } = {
+  editData: { mpn: string; current: number; sku: string } = {
     mpn: 'string',
     current: 0,
+    sku: '',
   };
   editLabel: string[] = [];
   isVisible: boolean = false;
@@ -87,10 +88,11 @@ export class MapConflictComponent implements OnInit {
     window.open(`https://www.amazon.com/dp/${asin}`);
   }
 
-  matchValue(mpn: string, time: number) {
+  matchValue(mpn: string, map: number, sku: string) {
     this.editData = {
       mpn: mpn,
-      current: time,
+      current: map,
+      sku: sku,
     };
     this.editLabel = ['MPN', 'Current MAP', 'New MAP'];
     this.isVisible = true;
