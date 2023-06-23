@@ -33,7 +33,6 @@ export class EditTimeComponent implements OnInit {
     this.editTimeForm = new FormGroup({
       new: new FormControl('', [Validators.required]),
     });
-    console.log(this.section);
   }
 
   submit() {

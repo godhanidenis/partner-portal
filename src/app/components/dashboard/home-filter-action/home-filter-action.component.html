@@ -28,7 +28,12 @@
   <nz-form-item style="margin-bottom: 0">
     <nz-form-control nzErrorTip="Please input your valid code!">
       <nz-input-group nzPrefixIcon="search" class="search">
-        <input [(ngModel)]="searchValue" nz-input placeholder="Search..." />
+        <input
+          [(ngModel)]="searchValue"
+          (keyup)="accountSearch.next($event)"
+          nz-input
+          placeholder="Search..."
+        />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>

@@ -79,11 +79,14 @@ export class DashboardService {
 
   // Start Performance Issues APIs
 
-  getAgendasDataByCode(code: any) {
+  getAgendasDataByCode(action: any) {
     let params = new HttpParams()
       .set('partner_id', this.payload.partner_id)
       .set('user_id', this.payload.user_id)
-      .set('code', code);
+      .set('code', action.code);
+    if (action.product_search) {
+      params = params.append('product_search', action.product_search);
+    }
 
     return this.http.get(this.url + '/agendas-data', {
       params: params,

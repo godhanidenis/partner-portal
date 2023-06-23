@@ -16,9 +16,10 @@
       [badgeTotal]="badgeTotal"
       [issueName]="'9'"
       [code]="code"
+      (search)="searchValue($event)"
     ></app-home-filter-action>
 
-    <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
+    <!-- <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
       <app-home-filter-tag
         (closeTag)="close($event)"
         (tagRemove)="removeAll()"
@@ -32,7 +33,7 @@
         [selectCategory]="selectCategory"
         [selectSalesTire]="selectSalesTire"
       ></app-home-filter-tag>
-    </div>
+    </div> -->
 
     <nz-table
       #nzTable

@@ -53,6 +53,7 @@ export class ProductsLosingImportanceOnAmazonComponent implements OnInit {
   clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
   code: any = '';
+  product_search: string = '';
 
   constructor(
     private router: Router,
@@ -62,17 +63,8 @@ export class ProductsLosingImportanceOnAmazonComponent implements OnInit {
   ) {
     this.isLoading = true;
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
-    if (this.code) {
-      dashboardService.getAgendasDataByCode(this.code).subscribe(
-        (res: any) => {
-          this.isLoading = false;
-          if (res.success) {
-            this.productsLosingImportanceOnAmazonList = res.data;
-          }
-        },
-        (err) => (this.isLoading = false)
-      );
-    }
+    this.getData(this.code, this.product_search);
+
     // dashboardService.productsLosingImportance().subscribe(
     //   (res: any) => {
     //     this.isLoading = false;
@@ -84,6 +76,30 @@ export class ProductsLosingImportanceOnAmazonComponent implements OnInit {
     // );
   }
   ngOnInit(): void {}
+
+  getData(code: string, search: string) {
+    this.isLoading = true;
+    if (this.code) {
+      const data = {
+        code: code,
+        product_search: search ? search : '',
+      };
+      this.dashboardService.getAgendasDataByCode(data).subscribe(
+        (res: any) => {
+          this.isLoading = false;
+          if (res.success) {
+            this.productsLosingImportanceOnAmazonList = res.data;
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
+  }
+
+  searchValue(event: string) {
+    this.product_search = event;
+    this.getData(this.code, this.product_search);
+  }
 
   // openNav() {
   //   this.sidenavSection.nativeElement.style.width = '280px';

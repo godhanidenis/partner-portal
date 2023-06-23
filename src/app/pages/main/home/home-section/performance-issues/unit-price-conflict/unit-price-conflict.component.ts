@@ -81,6 +81,7 @@ export class UnitPriceConflictComponent implements OnInit {
   editLabel: string[] = [];
   isVisible: boolean = false;
   code: any = '';
+  product_search: string = '';
 
   constructor(
     private router: Router,
@@ -88,12 +89,20 @@ export class UnitPriceConflictComponent implements OnInit {
     private modal: NzModalService,
     private dashboardService: DashboardService
   ) {
-    this.isLoading = true;
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
+    this.getData(this.code, this.product_search);
+  }
+  ngOnInit(): void {}
+
+  getData(code: string, product_search: string) {
+    this.isLoading = true;
     if (this.code) {
-      dashboardService.getAgendasDataByCode(this.code).subscribe(
+      const data = {
+        code: code,
+        product_search: product_search ? product_search : '',
+      };
+      this.dashboardService.getAgendasDataByCode(data).subscribe(
         (res: any) => {
-          console.log(res);
           this.isLoading = false;
           if (res.success) {
             this.unitPriceConflictList = res.data;
@@ -102,18 +111,12 @@ export class UnitPriceConflictComponent implements OnInit {
         (err) => (this.isLoading = false)
       );
     }
-    // dashboardService.handlingTimeConflict().subscribe(
-    //   (res: any) => {
-    //     console.log(res);
-    //     this.isLoading = false;
-    //     if (res.success) {
-    //       this.unitPriceConflictList = res.data;
-    //     }
-    //   },
-    //   (err) => (this.isLoading = false)
-    // );
   }
-  ngOnInit(): void {}
+
+  searchValue(event: string) {
+    this.product_search = event;
+    this.getData(this.code, this.product_search);
+  }
 
   navigateAsin(asin: string) {
     window.open(`https://www.amazon.com/dp/${asin}`);

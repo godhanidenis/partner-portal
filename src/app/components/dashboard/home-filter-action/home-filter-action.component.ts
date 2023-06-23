@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home-filter-action',
@@ -11,11 +11,13 @@ export class HomeFilterActionComponent implements OnInit {
   @Input() issueName: string = '';
   @Input() code: string = '';
   @Output() showFilter = new EventEmitter();
+  @Output() search = new EventEmitter();
 
   searchValue: string = '';
   exportType: boolean = false;
   isDownloadVisible: boolean = false;
   isFiltersVisible: boolean = true;
+  accountSearch = new Subject<any>();
 
   constructor() {}
   ngOnInit(): void {
@@ -29,6 +31,11 @@ export class HomeFilterActionComponent implements OnInit {
       this.issueName !== '9' &&
       this.issueName !== '11' &&
       this.issueName !== '12';
+    this.accountSearch
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe((value: any) => {
+        this.search.emit(value.target.value);
+      });
   }
 
   openFilterSection() {

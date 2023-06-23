@@ -62,26 +62,15 @@ export class HandlingTimeConflictComponent implements OnInit {
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
   editLabel: string[] = [];
   code: any = '';
+  search: string = '';
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     public dashboardService: DashboardService
   ) {
-    this.isLoading = true;
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
-    if (this.code) {
-      dashboardService.getAgendasDataByCode(this.code).subscribe(
-        (res: any) => {
-          console.log(res);
-          this.isLoading = false;
-          if (res.success) {
-            this.handlingTimeConflictList = res.data;
-          }
-        },
-        (err) => (this.isLoading = false)
-      );
-    }
+    this.getData(this.code, this.search);
     // dashboardService.handlingTimeConflict().subscribe(
     //   (res: any) => {
     //     this.isLoading = false;
@@ -93,6 +82,26 @@ export class HandlingTimeConflictComponent implements OnInit {
     // );
   }
   ngOnInit(): void {}
+
+  getData(code: string, search: string) {
+    this.isLoading = true;
+    if (this.code) {
+      const data = {
+        code: code,
+        product_search: search ? search : '',
+      };
+      this.dashboardService.getAgendasDataByCode(data).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.isLoading = false;
+          if (res.success) {
+            this.handlingTimeConflictList = res.data;
+          }
+        },
+        (err) => (this.isLoading = false)
+      );
+    }
+  }
 
   editValue(event: any, id: number) {
     if (event.keyCode === 13) {
@@ -119,6 +128,11 @@ export class HandlingTimeConflictComponent implements OnInit {
       'New Handling Time (Days)',
     ];
     this.isVisible = true;
+  }
+
+  searchValue(event: string) {
+    this.search = event;
+    this.getData(this.code, this.search);
   }
 
   // openNav() {
