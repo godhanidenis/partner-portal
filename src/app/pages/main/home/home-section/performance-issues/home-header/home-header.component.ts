@@ -12,6 +12,8 @@ export class HomeHeaderComponent implements OnInit {
   isMultipleProductsVisible: boolean = false;
   isVisible: boolean = false;
   referenceCode: string = '';
+  show = false;
+
   constructor() {}
   ngOnInit(): void {
     switch (this.tabName) {

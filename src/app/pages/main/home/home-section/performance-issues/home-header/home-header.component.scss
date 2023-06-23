@@ -14,7 +14,20 @@
             }
 
             @media screen and (min-device-width: 1440px) {
-                max-width: 40%;
+                max-width: 50%;
+            }
+
+            .container {
+                font-size: 16px;
+                line-height: 16px;
+                height: 32px;
+                overflow: hidden;
+                font-family: math;
+            }
+
+            .show {
+                overflow: visible;
+                height: auto;
             }
         }
 

@@ -1,7 +1,12 @@
 <div class="home-header">
   <div class="button-group">
     <div class="description">
-      {{ description }}
+      <div class="container" [class.show]="show">
+        <div [innerHTML]="description"></div>
+      </div>
+      <a class="link" (click)="show = !show">
+        {{ show ? "Show less" : "Show More" }}
+      </a>
     </div>
     <button
       nz-button

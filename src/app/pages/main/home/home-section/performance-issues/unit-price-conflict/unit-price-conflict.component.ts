@@ -11,9 +11,13 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class UnitPriceConflictComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
-
+  description: string = `
+  Prices will always change. But with price stability, consumers will be able to make more informed decisions about their purchases. Every product has a perceived value and if a product is available at different prices that vary too much, it could result in harming customer trust in the product. Imagine a product retailing at $100.00, and then more retail offers of the same product ranging from $100.00 to $175.00, you as a consumer would lose confidence about the true value of the product, resulting in customer confusion and a potential decrease in sales.
+  <br><br>
+  However, For these products in your catalog, where there is currently no FBA offer and they must drop ship directly from your shipping facility, the unit price provided to 123Stores exceeds the retail price already updated on Amazon.
+  <br><br>
+  If the Unit Price provided to 123Stores is incorrect, kindly edit the Unit Price. If you're unhappy with the retail price that is being offered by the conflicting provider, contact the conflicting provider, and get them to correct their retail price, so that customer confusion is avoided. Once the conflicting provider corrects their retail price, the product offers will be automatically updated.
+  `;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

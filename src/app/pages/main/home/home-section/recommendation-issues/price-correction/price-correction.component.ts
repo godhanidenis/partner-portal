@@ -11,9 +11,12 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class PriceCorrectionComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
-
+  description: string = `It is important to retail products with fairly consistent pricing on Amazon & other channels to build customer confidence and maintain brand image.
+  <br><br>
+  These products have not got a single sale in the last 3 months, and we are listed at a price that is much higher than the current retail price on Amazon. The Possible Reasons could be Incorrect Pricing (Prices not updated), Higher Pricing Slab (Partner not encouraging dropship), Promotion not provided, No Co-Op Allowance or No Rebate.
+  <br><br>
+  We have recommended a Discount or Promotion % required to make these products competitive. If the Unit Price provided to 123Stores is incorrect, kindly edit the Unit Price. 
+  `;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

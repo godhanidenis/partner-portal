@@ -11,9 +11,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class DiscontinuedUpdateComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
-
+  description: string = `These are products that you asked us to mark as "Discontinued" in the past. These are currently not being offered for sale. If any of these are in stock, and if you would like for us to sell them, you can edit the product status to "Active". If you would not like 123Stores to sell these products, you can edit the product status to "Partner Restricted".`;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

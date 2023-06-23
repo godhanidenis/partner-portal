@@ -85,7 +85,7 @@ export class DashboardService {
       .set('user_id', this.payload.user_id)
       .set('code', action.code);
     if (action.product_search) {
-      params = params.append('product_search', action.product_search);
+      params = params.append('search_term', action.product_search);
     }
 
     return this.http.get(this.url + '/agendas-data', {

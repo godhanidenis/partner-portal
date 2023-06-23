@@ -11,9 +11,12 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class ProductsLosingImportanceOnAmazonComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo expedita aperiam saepe beatae deserunt natus maxime accusantium cum modi nemo.Quae dolores error nemo tenetur assumenda similique molestias beataedicta.';
-
+  description: string = `It is important to retail products with fairly consistent pricing on Amazon & other channels to build customer confidence and maintain brand image.
+  <br><br>
+  These products have not got a single sale in the last 3 months, and Amazon has removed the Buybox from the page due to higher retail price listed viz a viz other retail websites. The Possible Reasons could be Promotion running on other sales channels, Brand was running a promotion and has stopped the promotion, causing the retail price to rise, Brand has recently increased prices or Brand's competing products are priced lower
+  <br><br>
+  We have recommended a Discount or Promotion % required to check which products have the potential to get the Buybox reinstated. If the Unit Price provided to 123Stores is incorrect, kindly edit the Unit Price.
+  `;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;
