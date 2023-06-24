@@ -40,8 +40,6 @@ export class EditTimeComponent implements OnInit {
     if (this.editTimeForm.valid) {
       this.isLoading = true;
       let data: any = {
-        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
         product: {
           mpn: this.editData.mpn,
           sku: this.editData.sku,

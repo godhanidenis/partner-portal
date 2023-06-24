@@ -35,8 +35,6 @@ export class UploadModelComponent implements OnInit {
     if (this.uploadForm.valid) {
       this.isLoading = true;
       let formData = new FormData();
-      formData.append('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d');
-      formData.append('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
       formData.append('uploaded_file', this.selectFile);
       this.inventoryService.inventoryFeedUpload(formData).subscribe(
         (res: any) => {

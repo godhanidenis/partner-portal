@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import {
-  Promotion,
-  StopPromotions,
-} from 'src/app/shared/model/promotion.model';
+import { StopPromotions } from 'src/app/shared/model/promotion.model';
 import { PromotionsService } from 'src/app/shared/service/promotions.service';
 
 @Component({
@@ -27,8 +24,6 @@ export class PromotionDetailsComponent implements OnInit {
     this.promoCode =
       this.activatedRoute.snapshot.paramMap.get('promo_code') ?? '';
     const data: StopPromotions = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       promo_code: this.promoCode,
     };
     this.promotionsService.getPromotion(data).subscribe(
@@ -46,8 +41,6 @@ export class PromotionDetailsComponent implements OnInit {
 
   downloadDetails(promo_code: string) {
     const data: StopPromotions = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       promo_code: promo_code,
     };
     this.promotionsService

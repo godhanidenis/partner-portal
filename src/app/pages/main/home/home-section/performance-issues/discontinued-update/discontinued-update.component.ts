@@ -68,7 +68,7 @@ export class DiscontinuedUpdateComponent implements OnInit {
   ) {
     this.isLoading = true;
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
     // dashboardService.discontinuedUpdate().subscribe(
     //   (res: any) => {
     //     this.isLoading = false;
@@ -81,10 +81,11 @@ export class DiscontinuedUpdateComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  getData(code: string, search: string) {
+  getData(pageIndex: number, code: string, search: string) {
     this.isLoading = true;
     if (this.code) {
       const data = {
+        page: pageIndex,
         code: code,
         product_search: search ? search : '',
       };
@@ -100,9 +101,14 @@ export class DiscontinuedUpdateComponent implements OnInit {
     }
   }
 
+  pageIndexChange(page: number) {
+    this.pageIndex = page;
+    this.getData(this.pageIndex, this.code, this.product_search);
+  }
+
   searchValue(event: string) {
     this.product_search = event;
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
   }
 
   navigateAsin(asin: string) {

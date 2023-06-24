@@ -48,7 +48,13 @@
             ></span
           >
           <span
-            ><a [href]="editData.processed_file_url" class="link"
+            ><a
+              [href]="
+                feedResult.toLocaleLowerCase() === 'processed'
+                  ? editData.processed_file_url
+                  : editData.rejected_file_url
+              "
+              class="link"
               >Download
               {{
                 feedResult.toLocaleLowerCase() === "processed"

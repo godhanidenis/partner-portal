@@ -326,25 +326,21 @@ export class AddEditProductComponent implements OnInit {
     this.isLoading = true;
 
     let data: any = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-      product: {
-        mpn: this.addEditProductForm.value.mpn,
-        upc: this.addEditProductForm.value.upc,
-        asin: this.addEditProductForm.value.amazon_asin,
-        name: this.addEditProductForm.value.product_name,
-        brand: this.addEditProductForm.value.brand,
-        collection: this.addEditProductForm.value.collection,
-        product_category: this.addEditProductForm.value.product_category,
-        sales_tier: this.addEditProductForm.value.sales_tier,
-        unit_price: this.addEditProductForm.value.unit_price,
-        map: this.addEditProductForm.value.map,
-        msrp: this.addEditProductForm.value.msrp,
-        handling_time: this.addEditProductForm.value.handling_time,
-        shipping_method: this.addEditProductForm.value.shipping_Method,
-        product_status: this.addEditProductForm.value.product_status,
-        number_of_boxes: this.addEditProductForm.value.number_of_boxes ?? 1,
-      },
+      mpn: this.addEditProductForm.value.mpn,
+      upc: this.addEditProductForm.value.upc,
+      asin: this.addEditProductForm.value.amazon_asin,
+      name: this.addEditProductForm.value.product_name,
+      brand: this.addEditProductForm.value.brand,
+      collection: this.addEditProductForm.value.collection,
+      product_category: this.addEditProductForm.value.product_category,
+      sales_tier: this.addEditProductForm.value.sales_tier,
+      unit_price: this.addEditProductForm.value.unit_price,
+      map: this.addEditProductForm.value.map,
+      msrp: this.addEditProductForm.value.msrp,
+      handling_time: this.addEditProductForm.value.handling_time,
+      shipping_method: this.addEditProductForm.value.shipping_Method,
+      product_status: this.addEditProductForm.value.product_status,
+      number_of_boxes: this.addEditProductForm.value.number_of_boxes ?? 1,
     };
     let dimensions: any[] = [];
     this.shippingDimensionsOfBoxes.value.map((res: any, index: number) => {
@@ -356,11 +352,10 @@ export class AddEditProductComponent implements OnInit {
         weight: +res.gross_weight,
       });
     });
-    data.product['shipping_dimensions'] = dimensions;
+    data['shipping_dimensions'] = dimensions;
 
     if (this.editSection) {
       data['sku'] = this.sku;
-      data.product['sku'] = this.sku;
       this.productService.editProduct(data).subscribe(
         (res: any) => {
           console.log(res);

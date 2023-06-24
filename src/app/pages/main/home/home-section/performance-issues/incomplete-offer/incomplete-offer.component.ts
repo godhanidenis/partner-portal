@@ -71,14 +71,15 @@ export class IncompleteOfferComponent implements OnInit {
   ) {
     this.isLoading = true;
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
   }
   ngOnInit(): void {}
 
-  getData(code: string, search: string) {
+  getData(pageIndex: number, code: string, search: string) {
     this.isLoading = true;
     if (this.code) {
       const data = {
+        page: pageIndex,
         code: code,
         product_search: search ? search : '',
       };
@@ -96,7 +97,12 @@ export class IncompleteOfferComponent implements OnInit {
 
   searchValue(event: string) {
     this.product_search = event;
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
+  }
+
+  pageIndexChange(page: number) {
+    this.pageIndex = page;
+    this.getData(this.pageIndex, this.code, this.product_search);
   }
 
   matchValue(mpn: string, asin: number, recommendations: any, sku: string) {

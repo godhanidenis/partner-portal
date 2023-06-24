@@ -36,10 +36,10 @@ export class InventoryListComponent implements OnInit {
   clear_btn: boolean = false;
   selectDate: string = '';
   selectMethod: string = '';
-  selectStatus: string = '';
+  selectResult: string = '';
   dateCount: number = 0;
   methodCount: number = 0;
-  statusCount: number = 0;
+  resultCount: number = 0;
   inventory_search: string = '';
   listOfFilter!: Filters;
   userPermissions: any = '';
@@ -63,8 +63,7 @@ export class InventoryListComponent implements OnInit {
           this.selectDate[0],
           this.selectDate[1],
           this.selectMethod,
-          '',
-          this.selectStatus
+          this.selectResult
         );
       });
   }
@@ -84,8 +83,7 @@ export class InventoryListComponent implements OnInit {
       this.selectDate[0],
       this.selectDate[1],
       this.selectMethod,
-      '',
-      this.selectStatus
+      this.selectResult
     );
   }
 
@@ -95,8 +93,7 @@ export class InventoryListComponent implements OnInit {
     filter_start_date: string,
     filter_end_date: string,
     filter_inventory_method: string,
-    filter_feed_result: string,
-    filter_feed_status: string
+    filter_feed_result: string
   ) {
     this.isLoading = true;
     this.inventoryService
@@ -106,7 +103,6 @@ export class InventoryListComponent implements OnInit {
         filter_end_date: filter_end_date,
         filter_inventory_method: filter_inventory_method,
         filter_feed_result: filter_feed_result,
-        filter_feed_status: filter_feed_status,
         search_term: search_term,
       })
       .subscribe(
@@ -127,8 +123,7 @@ export class InventoryListComponent implements OnInit {
       this.selectDate[0],
       this.selectDate[1],
       this.selectMethod,
-      '',
-      this.selectStatus
+      this.selectResult
     );
   }
 
@@ -155,11 +150,11 @@ export class InventoryListComponent implements OnInit {
   tagFunction() {
     this.selectDate = '';
     this.selectMethod = '';
-    this.selectStatus = '';
+    this.selectResult = '';
 
     this.dateCount = 0;
     this.methodCount = 0;
-    this.statusCount = 0;
+    this.resultCount = 0;
 
     this.badgeTotal = 0;
     this.clear_btn = false;
@@ -170,14 +165,13 @@ export class InventoryListComponent implements OnInit {
       this.selectDate[0],
       this.selectDate[1],
       this.selectMethod,
-      '',
-      this.selectStatus
+      this.selectResult
     );
     this.listOfFilter = {
       filter_start_date: this.selectDate[0],
       filter_end_date: this.selectDate[1],
       filter_inventory_method: this.selectMethod,
-      filter_inventory_result: this.selectStatus,
+      filter_inventory_result: this.selectResult,
     };
   }
 
@@ -196,10 +190,10 @@ export class InventoryListComponent implements OnInit {
           this.methodCount = 0;
           this.badgeTotal--;
           break;
-        case 'Status':
+        case 'Result':
           this.filter.controls['status'].reset();
-          this.selectStatus = '';
-          this.statusCount = 0;
+          this.selectResult = '';
+          this.resultCount = 0;
           this.badgeTotal--;
           break;
         default:
@@ -211,14 +205,13 @@ export class InventoryListComponent implements OnInit {
         this.selectDate[0],
         this.selectDate[1],
         this.selectMethod,
-        '',
-        this.selectStatus
+        this.selectResult
       );
       this.listOfFilter = {
         filter_start_date: this.selectDate[0],
         filter_end_date: this.selectDate[1],
         filter_inventory_method: this.selectMethod,
-        filter_inventory_result: this.selectStatus,
+        filter_inventory_result: this.selectResult,
       };
     }
   }
@@ -249,11 +242,11 @@ export class InventoryListComponent implements OnInit {
           }
           break;
 
-        case 'Status':
+        case 'Result':
           this.clear_btn = true;
-          this.selectStatus = value;
-          if (this.statusCount == 0) {
-            this.statusCount++;
+          this.selectResult = value;
+          if (this.resultCount == 0) {
+            this.resultCount++;
             this.badgeTotal++;
           }
           break;
@@ -264,14 +257,13 @@ export class InventoryListComponent implements OnInit {
         this.selectDate[0],
         this.selectDate[1],
         this.selectMethod,
-        '',
-        this.selectStatus
+        this.selectResult
       );
       this.listOfFilter = {
         filter_start_date: this.selectDate[0],
         filter_end_date: this.selectDate[1],
         filter_inventory_method: this.selectMethod,
-        filter_inventory_result: this.selectStatus,
+        filter_inventory_result: this.selectResult,
       };
     } else {
       if (this.badgeTotal > 0 && value !== null) {
@@ -286,9 +278,9 @@ export class InventoryListComponent implements OnInit {
             this.methodCount--;
             this.badgeTotal--;
             break;
-          case 'Status':
-            this.selectStatus = '';
-            this.statusCount--;
+          case 'Result':
+            this.selectResult = '';
+            this.resultCount--;
             this.badgeTotal--;
             break;
         }
@@ -299,14 +291,13 @@ export class InventoryListComponent implements OnInit {
         this.selectDate[0],
         this.selectDate[1],
         this.selectMethod,
-        '',
-        this.selectStatus
+        this.selectResult
       );
       this.listOfFilter = {
         filter_start_date: this.selectDate[0],
         filter_end_date: this.selectDate[1],
         filter_inventory_method: this.selectMethod,
-        filter_inventory_result: this.selectStatus,
+        filter_inventory_result: this.selectResult,
       };
     }
   }

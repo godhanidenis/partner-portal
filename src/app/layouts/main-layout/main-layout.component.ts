@@ -49,7 +49,7 @@ export class MainLayoutComponent implements OnInit {
   getPartnerDetails() {
     if (this.loggedinUser) {
       this.userPermissionService
-        .getPartnerPermission(this.loggedinUser.partner_id)
+        .getPartnerPermission()
         .subscribe((res: any) => {
           this.userPartnerName = res?.partner_display_name;
           this.userPartnerCode = res?.partner_code;

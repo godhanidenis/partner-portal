@@ -8,6 +8,8 @@
     [tabName]="'Scheduled Promotions'"
     (action)="editEndDate($event)"
     (pageChange)="pageIndexChange($event)"
+    (searchChange)="searchDataChanges($event)"
+    (filterChange)="filterDataChanges($event)"
   ></app-promotion-table>
 
   <nz-modal

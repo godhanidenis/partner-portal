@@ -43,6 +43,7 @@
       [pageIndex]="pageIndex"
       [isLoading]="isLoading"
       [tabName]="'Price Correction'"
+      (changePages)="pageIndexChange($event)"
     ></app-recommendation-issue-table>
 
     <!-- <div #mySidenav class="filter-section">

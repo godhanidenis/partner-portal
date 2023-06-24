@@ -24,8 +24,6 @@ export class SalesReportComponent implements OnInit {
     this.type = this.route.snapshot.paramMap.get('type') ?? '';
     this.isLoading = true;
     const reqData: SalesReport = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       type: this.type,
     };
     dashboardService.salesReport(reqData).subscribe(
@@ -49,8 +47,6 @@ export class SalesReportComponent implements OnInit {
 
   downloadReport() {
     const reqData: SalesReport = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       type: this.type,
     };
     this.dashboardService.downloadSalesReport(reqData).subscribe(

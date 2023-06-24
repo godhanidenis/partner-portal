@@ -15,12 +15,22 @@ export class CompletedPromotionsComponent implements OnInit {
   pageIndex = 1;
   pageSizeOptions = [100];
   badgeTotal: number = 0;
+  filter_start_date: string = '';
+  filter_end_date: string = '';
+  filter_status: string = '';
+  search_term: string = '';
 
   completedPromotionsList = [];
   searchForm!: FormGroup;
 
   constructor(private promotionsService: PromotionsService) {
-    this.getAllCompletedPromotions(1);
+    this.getAllCompletedPromotions(
+      this.pageIndex,
+      this.filter_start_date,
+      this.filter_end_date,
+      this.filter_status,
+      this.search_term
+    );
   }
 
   ngOnInit(): void {
@@ -29,10 +39,20 @@ export class CompletedPromotionsComponent implements OnInit {
     });
   }
 
-  getAllCompletedPromotions(page: number) {
+  getAllCompletedPromotions(
+    page: number,
+    filter_start_date: string,
+    filter_end_date: string,
+    filter_status: string,
+    search_term: string
+  ) {
     this.isLoading = true;
     const data: Promotions = {
       page: page,
+      filter_start_date: filter_start_date,
+      filter_end_date: filter_end_date,
+      filter_status: filter_status,
+      search_term: search_term,
       open: false,
     };
     this.promotionsService.getAllPromotions(data).subscribe(
@@ -47,6 +67,36 @@ export class CompletedPromotionsComponent implements OnInit {
 
   pageIndexChange(page: number) {
     this.pageIndex = page;
-    this.getAllCompletedPromotions(this.pageIndex);
+    this.getAllCompletedPromotions(
+      this.pageIndex,
+      this.filter_start_date,
+      this.filter_end_date,
+      this.filter_status,
+      this.search_term
+    );
+  }
+
+  searchDataChanges(event: string) {
+    this.search_term = event;
+    this.getAllCompletedPromotions(
+      this.pageIndex,
+      this.filter_start_date,
+      this.filter_end_date,
+      this.filter_status,
+      this.search_term
+    );
+  }
+
+  filterDataChanges(filters: any) {
+    (this.filter_start_date = filters?.start_date),
+      (this.filter_end_date = filters?.end_date),
+      (this.filter_status = filters?.promo_status),
+      this.getAllCompletedPromotions(
+        this.pageIndex,
+        this.filter_start_date,
+        this.filter_end_date,
+        this.filter_status,
+        this.search_term
+      );
   }
 }

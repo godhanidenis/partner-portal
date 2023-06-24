@@ -12,8 +12,6 @@ import {
 } from 'src/app/shared/model/product.model';
 
 export interface Filters {
-  partner_id?: string;
-  user_id?: string;
   filter_product_status?: string;
   filter_inventory_status?: string;
   filter_brand?: string;

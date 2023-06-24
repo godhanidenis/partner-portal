@@ -54,10 +54,7 @@ export class HomeSectionComponent implements OnInit {
     ['A19', 'products/add-product'],
     ['A20', 'dashboard/recommendation-issues/A20'],
     ['A21', 'dashboard/recommendation-issues/A21'],
-    [
-      'A22',
-      'dashboard/recommendation-issues/A22',
-    ],
+    ['A22', 'dashboard/recommendation-issues/A22'],
     ['A23', 'dashboard/recommendation-issues/A23'],
     ['A24', 'profile/allowances/co-op'],
     ['A25', 'profile/allowances/rebate'],
@@ -143,10 +140,6 @@ export class HomeSectionComponent implements OnInit {
   ngOnInit(): void {}
 
   loadAPIs() {
-    const data = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-    };
     this.dashboardService.dashboardSales().subscribe(async (result: any) => {
       if (result.success) {
         this.todaySales = result?.sales_overview?.sales_today;

@@ -48,6 +48,7 @@
       [nzPageIndex]="pageIndex"
       [nzLoading]="isLoading"
       [nzScroll]="{ x: '100%' }"
+      (nzPageIndexChange)="pageIndexChange($event)"
     >
       <thead>
         <tr>

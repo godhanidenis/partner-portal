@@ -26,10 +26,7 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {}
 
   getAllProduct(action: Action) {
-    let params = new HttpParams()
-      .set('page', action.page)
-      .set('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d')
-      .set('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
+    let params = new HttpParams().set('page', action.page);
 
     if (action.filter_product_status) {
       params = params.append(
@@ -68,10 +65,7 @@ export class ProductService {
   }
 
   getProduct(sku: string) {
-    let params = new HttpParams()
-      .set('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d')
-      .set('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036')
-      .set('sku', sku);
+    let params = new HttpParams().set('sku', sku);
     return this.httpClient.get(this.url + '/product', {
       params: params,
     });
@@ -92,9 +86,7 @@ export class ProductService {
   }
 
   downloadTemplates(action: DownloadTemplates) {
-    let params = new HttpParams()
-      .set('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d')
-      .set('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
+    let params = new HttpParams();
     if (action.template_type) {
       params = params.append('template_type', action.template_type);
     }
@@ -102,7 +94,7 @@ export class ProductService {
       params = params.append('include_data', action.include_data);
     }
 
-    return this.httpClient.get(this.url + '/templates', {
+    return this.httpClient.get(this.url + '/product-template', {
       params: params,
     });
   }

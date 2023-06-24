@@ -33,8 +33,6 @@ export class AddPromotionsComponent implements OnInit {
 
   selectDownloadTemplate(event: boolean) {
     const data: PromoTemplate = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       include_data: event,
     };
     this.promotionsService.promoTemplate(data).subscribe((res: any) => {
@@ -56,8 +54,6 @@ export class AddPromotionsComponent implements OnInit {
     this.isLoading = true;
     if (this.add_promotion?.valid) {
       let formData = new FormData();
-      formData.append('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d');
-      formData.append('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
       formData.append(
         'start_date',
         this.add_promotion.value.startAndEndDate[0]

@@ -31,6 +31,8 @@ export class PromotionTableComponent implements OnInit {
 
   @Output() action = new EventEmitter();
   @Output() pageChange = new EventEmitter();
+  @Output() filterChange = new EventEmitter();
+  @Output() searchChange = new EventEmitter();
 
   pageSizeOptions = [100];
   filter!: FormGroup;
@@ -55,7 +57,7 @@ export class PromotionTableComponent implements OnInit {
     this.accountSearch
       .pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((value: any) => {
-        console.log(value);
+        this.searchChange.emit(value.target.value);
       });
   }
   ngOnInit(): void {
@@ -90,8 +92,6 @@ export class PromotionTableComponent implements OnInit {
           nzContent: `Promo Code : <b>${promo_code}</b> `,
           nzOnOk: () => {
             const data: StopPromotions = {
-              partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-              user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
               promo_code: promo_code,
             };
 
@@ -113,8 +113,6 @@ export class PromotionTableComponent implements OnInit {
           nzContent: `Promo Code : <b>${promo_code}</b> `,
           nzOnOk: () => {
             const dataNow: StopPromotions = {
-              partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-              user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
               promo_code: promo_code,
             };
 
@@ -155,10 +153,11 @@ export class PromotionTableComponent implements OnInit {
     this.clear_btn = false;
     this.filter.reset();
     this.listOfFilter = {
-      promo_status: this.selectStatus,
-      start_date: this.selectDate[0],
-      end_date: this.selectDate[1],
+      promo_status: this.selectStatus ?? '',
+      start_date: this.selectDate[0] ?? '',
+      end_date: this.selectDate[1] ?? '',
     };
+    this.filterChange.emit(this.listOfFilter);
   }
 
   close(type: string) {
@@ -178,10 +177,11 @@ export class PromotionTableComponent implements OnInit {
           break;
       }
       this.listOfFilter = {
-        promo_status: this.selectStatus,
-        start_date: this.selectDate[0],
-        end_date: this.selectDate[1],
+        promo_status: this.selectStatus ?? '',
+        start_date: this.selectDate[0] ?? '',
+        end_date: this.selectDate[1] ?? '',
       };
+      this.filterChange.emit(this.listOfFilter);
     }
   }
 
@@ -206,10 +206,11 @@ export class PromotionTableComponent implements OnInit {
           break;
       }
       this.listOfFilter = {
-        promo_status: this.selectStatus,
-        start_date: this.selectDate[0],
-        end_date: this.selectDate[1],
+        promo_status: this.selectStatus ?? '',
+        start_date: this.selectDate[0] ?? '',
+        end_date: this.selectDate[1] ?? '',
       };
+      this.filterChange.emit(this.listOfFilter);
     } else {
       if (this.badgeTotal > 0 && value !== null) {
         switch (type) {
@@ -225,10 +226,11 @@ export class PromotionTableComponent implements OnInit {
             break;
         }
         this.listOfFilter = {
-          promo_status: this.selectStatus,
-          start_date: this.selectDate[0],
-          end_date: this.selectDate[1],
+          promo_status: this.selectStatus ?? '',
+          start_date: this.selectDate[0] ?? '',
+          end_date: this.selectDate[1] ?? '',
         };
+        this.filterChange.emit(this.listOfFilter);
       }
     }
   }

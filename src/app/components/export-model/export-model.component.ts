@@ -39,10 +39,7 @@ export class ExportModelComponent implements OnInit {
   submit() {
     this.isLoading = true;
     if (this.sectionName === 'product') {
-      let filters: any = {
-        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-      };
+      let filters: any = {};
 
       filters['filter_product_status'] = this.exportType
         ? this.listOfFilter?.filter_product_status
@@ -83,12 +80,7 @@ export class ExportModelComponent implements OnInit {
         (err) => (this.isLoading = false)
       );
     } else if (this.sectionName === 'inventory') {
-      let filters: any = {
-        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-      };
-      console.log(this.exportType);
-
+      let filters: any = {};
       filters['filter_start_date'] = this.exportType
         ? this.listOfFilter?.filter_start_date
         : '';
@@ -116,17 +108,17 @@ export class ExportModelComponent implements OnInit {
         (err: any) => (this.isLoading = false)
       );
     } else if (this.sectionName === 'promotion') {
-      let filters: any = {
-        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
-      };
-      filters['promo_status'] = this.exportType
+      let filters: any = {};
+
+      filters['filter_promo_status'] = this.exportType
         ? this.listOfFilter?.promo_status
         : '';
-      filters['start_date'] = this.exportType
+      filters['filter_start_date'] = this.exportType
         ? this.listOfFilter?.start_date
         : '';
-      filters['end_date'] = this.exportType ? this.listOfFilter?.end_date : '';
+      filters['filter_end_date'] = this.exportType
+        ? this.listOfFilter?.end_date
+        : '';
       this.promotionsService.exportPromo(filters).subscribe(
         (response: any) => {
           console.log(response);
@@ -143,8 +135,6 @@ export class ExportModelComponent implements OnInit {
       );
     } else if (!this.showFilterOptions) {
       const data: ExportDash = {
-        partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-        user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
         code: this.code,
       };
       this.dashboardService.exportData(data).subscribe(

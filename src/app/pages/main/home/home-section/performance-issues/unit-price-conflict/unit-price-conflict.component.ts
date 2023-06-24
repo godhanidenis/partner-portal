@@ -94,16 +94,17 @@ export class UnitPriceConflictComponent implements OnInit {
     private dashboardService: DashboardService
   ) {
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
   }
   ngOnInit(): void {}
 
-  getData(code: string, product_search: string) {
+  getData(pageIndex: number, code: string, search: string) {
     this.isLoading = true;
     if (this.code) {
       const data = {
+        page: pageIndex,
         code: code,
-        product_search: product_search ? product_search : '',
+        product_search: search ? search : '',
       };
       this.dashboardService.getAgendasDataByCode(data).subscribe(
         (res: any) => {
@@ -119,7 +120,12 @@ export class UnitPriceConflictComponent implements OnInit {
 
   searchValue(event: string) {
     this.product_search = event;
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
+  }
+
+  pageIndexChange(page: number) {
+    this.pageIndex = page;
+    this.getData(this.pageIndex, this.code, this.product_search);
   }
 
   navigateAsin(asin: string) {

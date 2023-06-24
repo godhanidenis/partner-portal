@@ -4,17 +4,18 @@ export interface LoginReq {
 }
 
 export interface ResetPasswordReq {
-  password: string;
+  verification_token: string;
+  new_password: string;
 }
 
 export interface ForgotPasswordReq {
   email: string;
 }
 
-export interface ChangePasswordToken {
-  token: string;
-  password: string;
-}
+// export interface ChangePasswordToken {
+//   token: string;
+//   password: string;
+// }
 
 export interface ChangePassword {
   old_password: string;

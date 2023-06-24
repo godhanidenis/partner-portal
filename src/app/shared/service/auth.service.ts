@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   ChangePassword,
-  ChangePasswordToken,
   ForgotPasswordReq,
   LoginReq,
   RefreshToken,
@@ -59,19 +58,16 @@ export class AuthService {
   }
 
   resetPassword(payload: ResetPasswordReq) {
-    return this.httpClient.post(
-      this.url + '/reset-password-first-time',
-      payload
-    );
+    return this.httpClient.post(this.url + '/reset-password', payload);
   }
 
   forgotPassword(payload: ForgotPasswordReq) {
     return this.httpClient.post(this.url + '/forgot-password', payload);
   }
 
-  changePasswordToken(payload: ChangePasswordToken) {
-    return this.httpClient.post(this.url + '/change-password-token', payload);
-  }
+  // changePasswordToken(payload: ChangePasswordToken) {
+  //   return this.httpClient.post(this.url + '/change-password-token', payload);
+  // }
 
   changePassword(payload: ChangePassword) {
     return this.httpClient.post(this.url + '/change-password', payload);
@@ -82,6 +78,7 @@ export class AuthService {
   }
 
   logOutUser() {
+    this.httpClient.post(this.url + '/logout', '');
     localStorage.clear();
     this.router.navigate(['']);
   }

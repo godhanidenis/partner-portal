@@ -163,15 +163,13 @@ export class EditMultipleProductsComponent implements OnInit {
   submit() {
     this.isLoading = true;
     const data = new FormData();
-    data.append('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d');
-    data.append('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036');
     data.append(
       'template_type',
       this.multiProduct.controls['selectType'].value
         ? this.multiProduct.controls['selectType'].value
         : 'ADD_PRODUCT'
     );
-    data.append('uploaded_file_url', this.selectFile);
+    data.append('uploaded_file', this.selectFile);
 
     this.productService.productAddEditUpload(data).subscribe(
       (result: any) => {

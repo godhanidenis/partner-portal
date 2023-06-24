@@ -26,12 +26,22 @@ export class ScheduledPromotionsComponent implements OnInit {
   badgeTotal: number = 0;
   promoCode: string = '';
   startDate: string = '';
+  filter_start_date: string = '';
+  filter_end_date: string = '';
+  filter_status: string = '';
+  search_term: string = '';
 
   constructor(
     private promotionsService: PromotionsService,
     private message: NzMessageService
   ) {
-    this.getAllScheduledPromotions(1);
+    this.getAllScheduledPromotions(
+      this.pageIndex,
+      this.filter_start_date,
+      this.filter_end_date,
+      this.filter_status,
+      this.search_term
+    );
   }
   ngOnInit(): void {
     this.addDateForm = new FormGroup({
@@ -47,10 +57,20 @@ export class ScheduledPromotionsComponent implements OnInit {
     return endValue.getTime() <= new Date(this.startDate).getTime();
   };
 
-  getAllScheduledPromotions(page: number) {
+  getAllScheduledPromotions(
+    page: number,
+    filter_start_date: string,
+    filter_end_date: string,
+    filter_status: string,
+    search_term: string
+  ) {
     this.isLoading = true;
     const data: Promotions = {
       page: page,
+      filter_start_date: filter_start_date,
+      filter_end_date: filter_end_date,
+      filter_status: filter_status,
+      search_term: search_term,
       open: true,
     };
     this.promotionsService.getAllPromotions(data).subscribe(
@@ -65,7 +85,37 @@ export class ScheduledPromotionsComponent implements OnInit {
 
   pageIndexChange(page: number) {
     this.pageIndex = page;
-    this.getAllScheduledPromotions(this.pageIndex);
+    this.getAllScheduledPromotions(
+      this.pageIndex,
+      this.filter_start_date,
+      this.filter_end_date,
+      this.filter_status,
+      this.search_term
+    );
+  }
+
+  searchDataChanges(event: string) {
+    this.search_term = event;
+    this.getAllScheduledPromotions(
+      this.pageIndex,
+      this.filter_start_date,
+      this.filter_end_date,
+      this.filter_status,
+      this.search_term
+    );
+  }
+
+  filterDataChanges(filters: any) {
+    (this.filter_start_date = filters?.start_date),
+      (this.filter_end_date = filters?.end_date),
+      (this.filter_status = filters?.promo_status),
+      this.getAllScheduledPromotions(
+        this.pageIndex,
+        this.filter_start_date,
+        this.filter_end_date,
+        this.filter_status,
+        this.search_term
+      );
   }
 
   editEndDate(event: { code: string; date: string }) {
@@ -90,8 +140,6 @@ export class ScheduledPromotionsComponent implements OnInit {
   submitForm() {
     this.isLoading = true;
     const data: EditEndDatePromotions = {
-      partner_id: '03b0b0e6-2118-42fc-8495-a091365bee1d',
-      user_id: 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036',
       promo_code: this.promoCode,
     };
     if (this.startDate) {

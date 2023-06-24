@@ -67,7 +67,7 @@ export class StrandedInCatalogComponent implements OnInit {
   ) {
     this.isLoading = true;
     this.code = this.dashboardService.getLastSectionOfUrl(router.url);
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
     // dashboardService.restrictedViaOrderCancellation().subscribe(
     //   (res: any) => {
     //     this.isLoading = false;
@@ -80,10 +80,11 @@ export class StrandedInCatalogComponent implements OnInit {
   }
   ngOnInit(): void {}
 
-  getData(code: string, search: string) {
+  getData(pageIndex: number, code: string, search: string) {
     this.isLoading = true;
     if (this.code) {
       const data = {
+        page: pageIndex,
         code: code,
         product_search: search ? search : '',
       };
@@ -101,7 +102,12 @@ export class StrandedInCatalogComponent implements OnInit {
 
   searchValue(event: string) {
     this.product_search = event;
-    this.getData(this.code, this.product_search);
+    this.getData(this.pageIndex, this.code, this.product_search);
+  }
+
+  pageIndexChange(page: number) {
+    this.pageIndex = page;
+    this.getData(this.pageIndex, this.code, this.product_search);
   }
 
   navigateAsin(asin: string) {

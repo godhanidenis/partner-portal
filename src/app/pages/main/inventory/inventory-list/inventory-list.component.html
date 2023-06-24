@@ -68,10 +68,10 @@
         >{{ selectMethod }}</nz-tag
       >
       <nz-tag
-        *ngIf="selectStatus"
+        *ngIf="selectResult"
         nzMode="closeable"
-        (nzOnClose)="close('Status')"
-        >{{ selectStatus }}</nz-tag
+        (nzOnClose)="close('Result')"
+        >{{ selectResult }}</nz-tag
       >
       <button
         *ngIf="badgeTotal >= 1"
@@ -177,15 +177,15 @@
 
       <nz-divider
         style="margin-top: 20px"
-        nzText="Status"
+        nzText="Result"
         nzOrientation="left"
       ></nz-divider>
       <nz-select
         nzShowSearch
         nzAllowClear
-        (ngModelChange)="change(filter.value.status ? $event : '', 'Status')"
+        (ngModelChange)="change(filter.value.status ? $event : '', 'Result')"
         formControlName="status"
-        nzPlaceHolder="Select a Status"
+        nzPlaceHolder="Select a Result"
       >
         <nz-option
           *ngFor="let data of statusDropdown"

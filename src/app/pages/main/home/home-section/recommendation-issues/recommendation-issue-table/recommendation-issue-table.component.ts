@@ -15,6 +15,8 @@ export class RecommendationIssueTableComponent implements OnInit {
 
   @Output() changeModel = new EventEmitter();
 
+  @Output() changePages = new EventEmitter();
+
   pageSizeOptions = [100];
   editData: { mpn: string; current: number; sku: string } = {
     mpn: 'string',
@@ -29,6 +31,11 @@ export class RecommendationIssueTableComponent implements OnInit {
 
   navigateAsin(asin: string) {
     window.open(`https://www.amazon.com/dp/${asin}`);
+  }
+
+  pageIndexChange(page: number) {
+    this.pageIndex = page;
+    this.changePages.emit(this.pageIndex);
   }
 
   matchValue(mpn: string, unit_price: number, sku: string) {

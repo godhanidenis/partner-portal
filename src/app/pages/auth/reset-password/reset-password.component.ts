@@ -7,10 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import {
-  ChangePasswordToken,
-  ResetPasswordReq,
-} from 'src/app/shared/model/auth.model';
+import { ResetPasswordReq } from 'src/app/shared/model/auth.model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
@@ -59,9 +56,10 @@ export class ResetPasswordComponent implements OnInit {
     this.submitError = true;
     if (this.resetForm.valid) {
       this.isLoading = true;
-      if (!this.token) {
+      if (this.token) {
         const req: ResetPasswordReq = {
-          password: this.resetForm.controls['newPassword'].value,
+          verification_token: this.token,
+          new_password: this.resetForm.controls['newPassword'].value,
         };
         this.authService.resetPassword(req).subscribe(
           (result: any) => {
@@ -69,34 +67,34 @@ export class ResetPasswordComponent implements OnInit {
             if (result.success) {
               this.message.success('Reset password successfully!!');
 
-              this.authService.setAccessToken(result.access_token);
-              this.authService.setRefreshToken(result.refresh_token);
-              this.authService.saveUser(result.user_profile);
+              // this.authService.setAccessToken(result.access_token);
+              // this.authService.setRefreshToken(result.refresh_token);
+              // this.authService.saveUser(result.user_profile);
 
-              if (result.user_profile.is_first) {
-                this.router.navigate(['/auth/reset-password']);
-              } else {
-                this.router.navigate(['/main/dashboard']);
-              }
+              // if (result.user_profile.is_first) {
+              //   this.router.navigate(['/auth/reset-password']);
+              // } else {
+              this.router.navigate(['/main/dashboard']);
+              // }
             }
           },
           (err) => (this.isLoading = false)
         );
-      } else {
-        const req: ChangePasswordToken = {
-          token: this.token,
-          password: this.resetForm.controls['newPassword'].value,
-        };
-        this.authService.changePasswordToken(req).subscribe(
-          (result: any) => {
-            this.isLoading = false;
-            if (result.success) {
-              this.message.success('Forgot password successfully!!');
-              this.router.navigate(['/auth/login']);
-            }
-          },
-          (err) => (this.isLoading = false)
-        );
+        // } else {
+        //   const req: ChangePasswordToken = {
+        //     token: this.token,
+        //     password: this.resetForm.controls['newPassword'].value,
+        //   };
+        //   this.authService.changePasswordToken(req).subscribe(
+        //     (result: any) => {
+        //       this.isLoading = false;
+        //       if (result.success) {
+        //         this.message.success('Forgot password successfully!!');
+        //         this.router.navigate(['/auth/login']);
+        //       }
+        //     },
+        //     (err) => (this.isLoading = false)
+        //   );
       }
     }
   }

@@ -18,10 +18,20 @@ export class PromotionsService {
 
   getAllPromotions(action: Promotions) {
     let params = new HttpParams()
-      .set('partner_id', '03b0b0e6-2118-42fc-8495-a091365bee1d')
-      .set('user_id', 'ab1a0fbb-bd96-4e70-85e6-e1bc76111036')
       .set('page', action.page)
       .set('open', action.open);
+    if (action.filter_start_date) {
+      params = params.append('filter_start_date', action?.filter_start_date);
+    }
+    if (action.filter_end_date) {
+      params = params.append('filter_end_date', action?.filter_end_date);
+    }
+    if (action.filter_status) {
+      params = params.append('filter_status', action?.filter_status);
+    }
+    if (action.search_term) {
+      params = params.append('search_term', action?.search_term);
+    }
 
     return this.http.get(this.url + '/promos', {
       params: params,
@@ -41,10 +51,7 @@ export class PromotionsService {
   }
 
   getPromotion(action: StopPromotions) {
-    let params = new HttpParams()
-      .set('partner_id', action.partner_id)
-      .set('user_id', action.user_id)
-      .set('promo_code', action.promo_code);
+    let params = new HttpParams().set('promo_code', action.promo_code);
 
     return this.http.get(this.url + '/promo', {
       params: params,
@@ -56,10 +63,7 @@ export class PromotionsService {
   }
 
   downloadPromotionDetails(action: StopPromotions) {
-    let params = new HttpParams()
-      .set('partner_id', action.partner_id)
-      .set('user_id', action.user_id)
-      .set('promo_code', action.promo_code);
+    let params = new HttpParams().set('promo_code', action.promo_code);
 
     return this.http.get(this.url + '/download-promotion-details', {
       params: params,
@@ -67,10 +71,7 @@ export class PromotionsService {
   }
 
   promoTemplate(action: PromoTemplate) {
-    let params = new HttpParams()
-      .set('partner_id', action.partner_id)
-      .set('user_id', action.user_id)
-      .set('include_data', action.include_data);
+    let params = new HttpParams().set('include_data', action.include_data);
 
     return this.http.get(this.url + '/promo-template', {
       params: params,
