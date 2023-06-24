@@ -10,13 +10,13 @@ const routes: Routes = [
     component: SignInComponent,
   },
   {
-    path: 'reset-password',
+    path: 'reset-password/:token',
     component: ResetPasswordComponent,
   },
-  {
-    path: 'forgot-password/:token',
-    component: ResetPasswordComponent,
-  },
+  // {
+  //   path: 'forgot-password/:token',
+  //   component: ResetPasswordComponent,
+  // },
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent,
