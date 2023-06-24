@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Description } from 'src/app/shared/model/description.model';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
@@ -11,12 +12,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class MapConflictComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string = `Implementing MAP loosely is one of the worst outcomes for a brand, driving sales from authorized partners to unauthorized resellers (increasing chances of counterfeit replacements) & compromising consumer confidence in the brand's value proposition. If implemented, being consistent & standing by MAP guidelines, regardless of the violator or the extent of the violation leads to the best results.
-  <br><br>
-  However, For these products in your catalog, where there is currently no FBA offer and they must drop ship directly from your shipping facility, the retail price already updated on Amazon is lower than the MAP provided to 123Stores.
-  <br><br>
-  If the MAP provided to 123Stores is incorrect, kindly edit the MAP Price. To remove MAP from a particular SKU, simply update MAP as $0 for that SKU. If you're unhappy with the retail price that is being offered by the conflicting provider, contact the conflicting provider, and get them to correct their retail price, so that customer confusion is avoided. Once the conflicting provider corrects their retail price, the product offers will be automatically updated.
-  `;
+  description: string = Description.MAPConflict;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

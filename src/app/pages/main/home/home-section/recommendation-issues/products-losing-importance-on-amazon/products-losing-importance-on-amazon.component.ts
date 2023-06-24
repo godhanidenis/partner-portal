@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Description } from 'src/app/shared/model/description.model';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
@@ -11,12 +12,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class ProductsLosingImportanceOnAmazonComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string = `It is important to retail products with fairly consistent pricing on Amazon & other channels to build customer confidence and maintain brand image.
-  <br><br>
-  These products have not got a single sale in the last 3 months, and Amazon has removed the Buybox from the page due to higher retail price listed viz a viz other retail websites. The Possible Reasons could be Promotion running on other sales channels, Brand was running a promotion and has stopped the promotion, causing the retail price to rise, Brand has recently increased prices or Brand's competing products are priced lower
-  <br><br>
-  We have recommended a Discount or Promotion % required to check which products have the potential to get the Buybox reinstated. If the Unit Price provided to 123Stores is incorrect, kindly edit the Unit Price.
-  `;
+  description: string = Description.ProductsLosingImportanceOnAmazon;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

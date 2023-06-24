@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Description } from 'src/app/shared/model/description.model';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
@@ -58,12 +59,7 @@ export class HandlingTimeConflictComponent implements OnInit {
 
   // clear_btn: boolean = false;
   isMultipleProductsVisible: boolean = false;
-  description: string = `Handling time is the time taken by you to ship the product once the customer has placed an order. You have currently updated with us a specific handling time for each individual SKU. When products are offered for sale, an expected ship date as well as an expected delivery date is also committed to the customer. The expected ship & delivery dates are calculated based on the handling time provided by you. A lower handling time leads to higher sales as customers expect items to reach them faster.\n
-  <br><br>
-  However, For these products in your catalog, where there is currently no FBA offer and they must drop ship directly from your shipping facility, the handling time already updated on Amazon conflicts with the handling time provided to us. This will result in customer confusion and a potential decrease in sales.<br>
-  <br>
-  If the Handling Time provided to 123Stores is incorrect, kindly edit the handling time. If you're unhappy with the handling time that is being offered by the conflicting provider, contact the conflicting provider, and get them to correct their handling time, so that customer confusion is avoided. Once the conflicting provider corrects their handling time, the product offers will be automatically updated. 
-  `;
+  description: string = Description.HandlingTimeConflict;
   editLabel: string[] = [];
   code: any = '';
   search: string = '';

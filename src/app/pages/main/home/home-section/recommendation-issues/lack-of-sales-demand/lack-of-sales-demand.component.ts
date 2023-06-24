@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Description } from 'src/app/shared/model/description.model';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
@@ -11,12 +12,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class LackOfSalesDemandComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string = `It is important to retail products with fairly consistent pricing on Amazon & other channels to build customer confidence and maintain brand image.
-  <br><br>
-  These products have not got a single sale in the last 3 months, and we are listed at the best retail price on Amazon already. The Possible Reasons could be Brand's competing products are priced lower, No demand, Incorrect Pricing (Prices not updated), Higher Pricing Slab (Partner not encouraging dropship), Promotion not provided, No Co-Op Allowance or No Rebate.
-  <br><br>
-  We have recommended a Discount or Promotion % required to check which products have the potential to sell. If the Unit Price provided to 123Stores is incorrect, kindly edit the Unit Price.
-  `;
+  description: string = Description.LackOfSalesDemand;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

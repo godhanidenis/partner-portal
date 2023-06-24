@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Description } from 'src/app/shared/model/description.model';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
@@ -11,10 +12,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class IncompleteOfferComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string = `For these products in your catalog, you have not updated an Amazon ASIN against the MPN. Without an Amazon ASIN a product cannot be offered for sale. 
-  <br><br>
-  123Stores is able to generate some Amazon ASIN recommendations. However, you must verify that the description of the product mentioned in the Amazon product detail page matches the actual product so that a Mis-Ship is avoided. Only on your confirmation, will these MPN-ASINs combinations be updated. If you already have the Amazon ASIN handy, you can update that, irrespective of the receommendation. 
-  `;
+  description: string = Description.AmazonASINOfferIncomplete;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;

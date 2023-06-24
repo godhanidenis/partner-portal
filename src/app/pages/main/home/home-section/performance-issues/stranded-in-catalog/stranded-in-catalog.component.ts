@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { Description } from 'src/app/shared/model/description.model';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class StrandedInCatalogComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
-  description: string = `These are products that are in your catalog but missing from the inventory feed. These can be made active by adding them to the inventory feed. If the products are discontinued and will never be coming back, you can edit the product status to "Discontinued". If you would not like 123Stores to sell these products, you can edit the product status to "Partner Restricted".`;
+  description: string = Description.StrandedInCatalog;
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;
