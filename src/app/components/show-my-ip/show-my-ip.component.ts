@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-show-my-ip',
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 export class ShowMyIpComponent {
   myIpAddress: string = "";
   isLoading: boolean = true;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private message: NzMessageService) {
     this.httpClient.get('https://api.ipify.org?format=json').subscribe({
       next: (res:any) => {
         console.log('IP Address :', res);
@@ -18,6 +19,10 @@ export class ShowMyIpComponent {
       },
       error: (er) => {
         console.log('IP Address Error :', er);
+        this.message.create(
+          'error',
+          'something went wrong!'
+        );
         this.isLoading = false;
       },
     });
