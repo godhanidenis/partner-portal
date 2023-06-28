@@ -18,11 +18,12 @@ import { ListNgZorroModule } from './shared/list-ng-zorro/list-ng-zorro.module';
 import { MainModule } from './pages/main/main.module';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AuthInterceptor } from './shared/interceptor/auth.interceptor';
+import { ShowMyIpComponent } from './components/show-my-ip/show-my-ip.component';
 
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [AppComponent, MainLayoutComponent, AuthLayoutComponent],
+  declarations: [AppComponent, MainLayoutComponent, AuthLayoutComponent, ShowMyIpComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

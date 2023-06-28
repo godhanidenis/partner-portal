@@ -12,6 +12,7 @@ export class UserPermissionService {
   constructor(private httpClient: HttpClient) {}
 
   getPartnerPermission() {
-    return this.httpClient.get(this.url + '/partner-details');
+    // return this.httpClient.get(this.url + '/partner-details');
+    return this.httpClient.get('https://api.123stores.com/partner-details');
   }
 }
