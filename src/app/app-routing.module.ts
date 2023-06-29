@@ -5,11 +5,16 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { authGuard } from './shared/guard/auth.guard';
 import { logoutGuard } from './shared/guard/logout.guard';
 import { ShowMyIpComponent } from './components/show-my-ip/show-my-ip.component';
+import { ZendeskSSOComponent } from './components/zendesk-sso/zendesk-sso.component';
 
 const routes: Routes = [
   {
     path: 'showmyip',
     component: ShowMyIpComponent,
+  },
+  {
+    path: 'zendesk/sso',
+    component: ZendeskSSOComponent,
   },
   {
     path: '',
