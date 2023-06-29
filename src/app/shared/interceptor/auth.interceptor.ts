@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): any {
     let authReq = req;
     const token = this.authService.getAccessToken();
-    if (token != null && !authReq.url.includes('api.ipify.org')) {
+    if (token != null && !authReq.url.includes('api.ipify.org') && !authReq.url.includes('generate_zendesk_token')) {
       authReq = this.addTokenHeader(req, token);
     }
 
