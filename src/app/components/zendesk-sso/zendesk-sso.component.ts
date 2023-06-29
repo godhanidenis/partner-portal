@@ -10,7 +10,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class ZendeskSSOComponent {
 
-  url = "https://flyontechsolutions.zendesk.com/access/jwt?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODgwMzY4NDAsImp0aSI6IjFkYzBjZjY4LTE2NmQtMTFlZS1hOTljLTMwMjQzMjdiZjU3ZSIsIm5hbWUiOiJEZW5pcyIsImVtYWlsIjoiZGdvZGhhbmkxODAyQGdtYWlsLmNvbSJ9.thJe4kEyKZDyd4Ywh_qrSIgCDzaesojgEnB8OZaHxfQ"
+  url = "https://flyontechsolutions.zendesk.com/access/jwt?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODgwMzc0NzgsImp0aSI6IjlhNTVhNDY0LTE2NmUtMTFlZS04YjUyLTMwMjQzMjdiZjU3ZSIsIm5hbWUiOiJEZW5pcyIsImVtYWlsIjoiZGdvZGhhbmkxODAyQGdtYWlsLmNvbSJ9.3fzeTeNkKOlUmRIKoYprVxAIR9QHrysmcPLI36dsFYc"
   constructor(
     private httpClient: HttpClient,
     private message: NzMessageService,
@@ -19,7 +19,6 @@ export class ZendeskSSOComponent {
 
   }
   ngOnInit(): void {
-    alert('Okay I am processding for auth');
     window.location.href = this.url;
   }
 }
