@@ -10,7 +10,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class ZendeskSSOComponent {
 
-  url = "https://flyontechsolutions.zendesk.com/access/jwt?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODgwMzc0NzgsImp0aSI6IjlhNTVhNDY0LTE2NmUtMTFlZS04YjUyLTMwMjQzMjdiZjU3ZSIsIm5hbWUiOiJEZW5pcyIsImVtYWlsIjoiZGdvZGhhbmkxODAyQGdtYWlsLmNvbSJ9.3fzeTeNkKOlUmRIKoYprVxAIR9QHrysmcPLI36dsFYc"
+  url = "https://flyontechsolutions.zendesk.com/access/jwt?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODgwMzkxOTksImp0aSI6IjliZTAzNWUxLTE2NzItMTFlZS1hOGY4LTMwMjQzMjdiZjU3ZSIsIm5hbWUiOiJEZW5pcyIsImVtYWlsIjoiZGdvZGhhbmkxODAyQGdtYWlsLmNvbSIsImV4cCI6IjI1OTIwMDAifQ.6bbJx6rRbGyRx71p_3gCVLidA9R4ruIB5mjRkMhHXaY"
   constructor(
     private httpClient: HttpClient,
     private message: NzMessageService,
