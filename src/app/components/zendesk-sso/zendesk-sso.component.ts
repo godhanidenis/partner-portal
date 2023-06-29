@@ -10,15 +10,15 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class ZendeskSSOComponent {
 
-  url = "https://flyontechsolutions.zendesk.com/access/jwt?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODgwMzkxOTksImp0aSI6IjliZTAzNWUxLTE2NzItMTFlZS1hOGY4LTMwMjQzMjdiZjU3ZSIsIm5hbWUiOiJEZW5pcyIsImVtYWlsIjoiZGdvZGhhbmkxODAyQGdtYWlsLmNvbSIsImV4cCI6IjI1OTIwMDAifQ.6bbJx6rRbGyRx71p_3gCVLidA9R4ruIB5mjRkMhHXaY"
   constructor(
     private httpClient: HttpClient,
     private message: NzMessageService,
     private router: Router,
   ) {
-
+    this.httpClient.get('https://ticket-resolver-test-api.flyontech.com/auth/generate_zendesk_token').subscribe((res:any)=>{
+      window.location.href = res;
+    });
   }
   ngOnInit(): void {
-    window.location.href = this.url;
   }
 }
