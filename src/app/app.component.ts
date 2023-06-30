@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserPermissionService } from './shared/service/user-permission.service';
+import { AuthService } from './shared/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,8 @@ import { UserPermissionService } from './shared/service/user-permission.service'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private userPermissionService: UserPermissionService) {
+  constructor(private userPermissionService: UserPermissionService, private authService: AuthService) {
+    this.authService.setMode();
     // this.userPermissionService.getPartnerPermission('NPS').subscribe(
     //   (res: any) => {
     //     this.userPermissionService.userPermission.next(res);

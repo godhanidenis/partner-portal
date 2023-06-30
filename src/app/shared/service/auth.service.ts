@@ -14,13 +14,18 @@ import { Route, Router } from '@angular/router';
 const TOKEN_KEY = 'access_token';
 const REFRESHTOKEN_KEY = 'refresh_token';
 const USER_KEY = 'user_profile';
+const MODE_KEY = 'mode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  url = environment.baseUrl;
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  mode = localStorage.getItem('mode');
+  url = (this.mode === "live") ? environment.prodUrl : environment.baseUrl;
+
+  constructor(private httpClient: HttpClient, private router: Router) {
+    
+  }
 
   login(payload: LoginReq) {
     return this.httpClient.post(this.url + '/login', payload);
@@ -28,6 +33,10 @@ export class AuthService {
 
   setAccessToken(token: string) {
     localStorage.setItem(TOKEN_KEY, token);
+  }
+
+  setMode(){
+    localStorage.getItem(MODE_KEY) ? '' : localStorage.setItem(MODE_KEY, 'live');
   }
 
   clearToken() {

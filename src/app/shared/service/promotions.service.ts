@@ -13,7 +13,8 @@ import {
   providedIn: 'root',
 })
 export class PromotionsService {
-  url = environment.baseUrl;
+  mode = localStorage.getItem('mode');
+  url = (this.mode === "live") ? environment.prodUrl : environment.baseUrl;
   constructor(private http: HttpClient) {}
 
   getAllPromotions(action: Promotions) {

@@ -7,12 +7,14 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserPermissionService {
-  url = environment.baseUrl;
+  mode = localStorage.getItem('mode');
+  url = (this.mode === "live") ? environment.prodUrl : environment.baseUrl;
+  
   userPermission = new BehaviorSubject('');
   constructor(private httpClient: HttpClient) {}
 
   getPartnerPermission() {
-    // return this.httpClient.get(this.url + '/partner-details');
-    return this.httpClient.get('https://api.123stores.com/partner-details');
+    return this.httpClient.get(this.url + '/partner-details');
+    // return this.httpClient.get('https://api.123stores.com/partner-details');
   }
 }
