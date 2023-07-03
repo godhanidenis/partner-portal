@@ -38,11 +38,12 @@ export class AuthService {
   setMode() {
     localStorage.getItem(MODE_KEY)
       ? ''
-      : localStorage.setItem(MODE_KEY, 'live');
+      : localStorage.setItem(MODE_KEY, 'test');
   }
 
   clearToken() {
     localStorage.clear();
+    this.setMode();
   }
 
   getAccessToken() {
@@ -91,6 +92,7 @@ export class AuthService {
   logOutUser() {
     this.httpClient.post(this.url + '/logout', '');
     localStorage.clear();
+    this.setMode();
     this.router.navigate(['']);
   }
 
