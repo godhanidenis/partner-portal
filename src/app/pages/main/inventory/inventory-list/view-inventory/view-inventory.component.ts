@@ -37,16 +37,17 @@ export class ViewInventoryComponent implements OnInit {
           this.isLoading = false;
           this.editData = res;
           this.total =
-            res?.active_in_stock +
-            res?.active_out_of_stock +
-            res?.discontinued_in_stock +
-            res?.discontinued_out_of_stock +
-            res?.restricted_in_stock +
-            res?.restricted_out_of_stock +
-            res?.ltl_in_stock +
-            res?.ltl_out_of_stock +
-            res?.stranded_in_feed_in_stock +
-            res?.stranded_in_feed_out_of_stock;
+            res?.active_in_stock ??
+            0 + res?.active_out_of_stock ??
+            0 + res?.discontinued_in_stock ??
+            0 + res?.discontinued_out_of_stock ??
+            0 + res?.restricted_in_stock ??
+            0 + res?.restricted_out_of_stock ??
+            0 + res?.ltl_in_stock ??
+            0 + res?.ltl_out_of_stock ??
+            0 + res?.stranded_in_feed_in_stock ??
+            0 + res?.stranded_in_feed_out_of_stock ??
+            0;
         },
         (err) => (this.isLoading = false)
       );

@@ -53,7 +53,6 @@ export class SignInComponent implements OnInit {
           this.isLoading = false;
           if (result.success) {
             this.message.success('User login successfully!!');
-
             this.authService.setAccessToken(result.access_token);
             this.authService.setRefreshToken(result.refresh_token);
             this.authService.saveUser(result.user_profile);

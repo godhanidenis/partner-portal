@@ -108,7 +108,8 @@
       ></span>
       <div class="profile-menu">
         <span class="name">{{ userPartnerName }} ({{ userPartnerCode }})</span>
-        <a style="color: #2121c3" target="_blank" href="https://flyontechsolutions.zendesk.com/hc/en-us/requests/">Help</a>
+        <a style="color: #2121c3" target="_blank" (click)="help()">Help</a>
+        <!-- href="https://flyontechsolutions.zendesk.com/hc/en-us/requests/" -->
         <div class="profile-menu">
           <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
             <nz-avatar
@@ -129,11 +130,11 @@
               <div>
                 <div class="user-type">
                   <span>{{
-                    loggedinUser?.first_name + " " + loggedinUser?.last_name
+                    loggedInUser?.firstname + " " + loggedInUser?.lastname
                   }}</span>
                 </div>
-                <div *ngIf="loggedinUser?.email" class="user-email">
-                  <span>{{ loggedinUser?.email }}</span>
+                <div *ngIf="loggedInUser?.email" class="user-email">
+                  <span>{{ loggedInUser?.email }}</span>
                 </div>
               </div>
             </div>

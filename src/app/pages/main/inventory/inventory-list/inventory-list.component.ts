@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { PermissionList } from 'src/app/shared/model/permission.model';
 import { InventoryService } from 'src/app/shared/service/inventory.service';
 import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
 
@@ -19,10 +20,10 @@ export interface Filters {
 export class InventoryListComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   isLoading: boolean = false;
-  total = 1;
-  pageSize = 100;
-  pageIndex = 1;
-  pageSizeOptions = [100];
+  total: number = 1;
+  pageSize: number = 100;
+  pageIndex: number = 1;
+  pageSizeOptions: number[] = [100];
 
   isUploadVisible: boolean = false;
   isDownloadVisible: boolean = false;
@@ -42,7 +43,7 @@ export class InventoryListComponent implements OnInit {
   resultCount: number = 0;
   inventory_search: string = '';
   listOfFilter!: Filters;
-  userPermissions: any = '';
+  userPermissions: PermissionList | undefined;
   statusDropdown = ['Processed', 'Rejected'];
 
   constructor(
@@ -50,9 +51,11 @@ export class InventoryListComponent implements OnInit {
     private inventoryService: InventoryService,
     private userPermissionService: UserPermissionService
   ) {
-    userPermissionService.userPermission.subscribe((permission: any) => {
-      this.userPermissions = permission;
-    });
+    userPermissionService.userPermission.subscribe(
+      (permission: PermissionList | any) => {
+        this.userPermissions = permission;
+      }
+    );
     this.accountSearch
       .pipe(debounceTime(400), distinctUntilChanged())
       .subscribe((value: any) => {

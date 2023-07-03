@@ -14,7 +14,7 @@
           class="left-section"
         >
           <span *ngIf="feedResult.toLocaleLowerCase() === 'processed'"
-            ><b>Feed Code : </b>{{ editData.requested_feed_code }}</span
+            ><b>Feed Code : </b>{{ editData.requsted_feed_code }}</span
           >
           <span
             ><b>Date (EST) : </b
@@ -144,15 +144,15 @@
             <tr>
               <td>Partner Restricted</td>
               <td class="text-end">
-                {{ editData?.restricted_in_stock }}
+                {{ editData?.restricted_in_stock ?? 0 }}
               </td>
               <td class="text-end">
-                {{ editData?.restricted_out_of_stock }}
+                {{ editData?.restricted_out_of_stock ?? 0 }}
               </td>
               <td class="text-end">
                 {{
-                  editData?.restricted_in_stock +
-                    editData?.restricted_out_of_stock
+                  (editData?.restricted_in_stock ?? 0) +
+                    (editData?.restricted_out_of_stock ?? 0)
                 }}
               </td>
             </tr>
@@ -176,34 +176,37 @@
               <td><b>Total</b></td>
               <td class="text-end">
                 <b>{{
-                  editData?.active_in_stock +
-                    editData?.discontinued_in_stock +
-                    editData?.restricted_in_stock +
-                    editData?.ltl_in_stock +
-                    editData?.stranded_in_feed_in_stock
+                  editData?.active_in_stock ??
+                    0 + editData?.discontinued_in_stock ??
+                    0 + editData?.restricted_in_stock ??
+                    0 + editData?.ltl_in_stock ??
+                    0 + editData?.stranded_in_feed_in_stock ??
+                    0
                 }}</b>
               </td>
               <td class="text-end">
                 <b>{{
-                  editData?.active_out_of_stock +
-                    editData?.discontinued_out_of_stock +
-                    editData?.restricted_out_of_stock +
-                    editData?.ltl_out_of_stock +
-                    editData?.stranded_in_feed_out_of_stock
+                  editData?.active_out_of_stock ??
+                    0 + editData?.discontinued_out_of_stock ??
+                    0 + editData?.restricted_out_of_stock ??
+                    0 + editData?.ltl_out_of_stock ??
+                    0 + editData?.stranded_in_feed_out_of_stock ??
+                    0
                 }}</b>
               </td>
               <td class="text-end">
                 <b>{{
-                  editData?.active_in_stock +
-                    editData?.active_out_of_stock +
-                    editData?.discontinued_in_stock +
-                    editData?.discontinued_out_of_stock +
-                    editData?.restricted_in_stock +
-                    editData?.restricted_out_of_stock +
-                    editData?.ltl_in_stock +
-                    editData?.ltl_out_of_stock +
-                    editData?.stranded_in_feed_in_stock +
-                    editData?.stranded_in_feed_out_of_stock
+                  editData?.active_in_stock ??
+                    0 + editData?.active_out_of_stock ??
+                    0 + editData?.discontinued_in_stock ??
+                    0 + editData?.discontinued_out_of_stock ??
+                    0 + editData?.restricted_in_stock ??
+                    0 + editData?.restricted_out_of_stock ??
+                    0 + editData?.ltl_in_stock ??
+                    0 + editData?.ltl_out_of_stock ??
+                    0 + editData?.stranded_in_feed_in_stock ??
+                    0 + editData?.stranded_in_feed_out_of_stock ??
+                    0
                 }}</b>
               </td>
             </tr>

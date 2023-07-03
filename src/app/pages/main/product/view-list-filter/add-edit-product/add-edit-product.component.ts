@@ -361,6 +361,7 @@ export class AddEditProductComponent implements OnInit {
           console.log(res);
           if (res.success) {
             this.message.create('success', 'Edit product successfully!');
+            this.backButton();
           }
           this.isLoading = false;
         },
@@ -371,6 +372,7 @@ export class AddEditProductComponent implements OnInit {
         (res: any) => {
           console.log(res);
           if (res.success) {
+            this.backButton();
             this.message.create('success', 'Add product successfully!');
           }
           this.isLoading = false;
@@ -388,7 +390,7 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
-  backButton(path: string) {
-    this.router.navigate([`/main/${path}`]);
+  backButton() {
+    this.router.navigate([`/main/products`]);
   }
 }

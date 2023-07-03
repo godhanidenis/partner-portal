@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
+import { ZendeskService } from 'src/app/shared/service/zendesk.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -14,7 +15,7 @@ export class MainLayoutComponent implements OnInit {
   isCollapsed = false;
   avatarCharacters: string = '';
   userName: string = '';
-  loggedinUser: any;
+  loggedInUser: any;
   userPartnerName = '';
   userPartnerCode = '';
 
@@ -22,7 +23,8 @@ export class MainLayoutComponent implements OnInit {
     public router: Router,
     private userPermissionService: UserPermissionService,
     private authService: AuthService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private zendeskService: ZendeskService
   ) {}
 
   ngOnInit() {
@@ -34,20 +36,28 @@ export class MainLayoutComponent implements OnInit {
     this.dashboardService.getAllIssues();
   }
 
+  help() {
+    this.zendeskService.zendeskHelp().subscribe((res: any) => {
+      if (res.url) {
+        window.open(res?.url);
+      }
+    });
+  }
+
   getLoggedInUser() {
-    this.loggedinUser = this.authService.getUser();
-    if (this.loggedinUser) {
-      this.loggedinUser.fullName =
-        (this.loggedinUser?.first_name ?? '') +
+    this.loggedInUser = this.authService.getUser();
+    if (this.loggedInUser) {
+      this.loggedInUser.fullName =
+        (this.loggedInUser?.firstname ?? '') +
         ' ' +
-        (this.loggedinUser?.last_name ?? '');
-      var matches = this.loggedinUser.fullName?.match(/\b(\w)/g);
+        (this.loggedInUser?.lastname ?? '');
+      var matches = this.loggedInUser.fullName?.match(/\b(\w)/g);
       this.avatarCharacters = matches?.join('');
     }
   }
 
   getPartnerDetails() {
-    if (this.loggedinUser) {
+    if (this.loggedInUser) {
       this.userPermissionService
         .getPartnerPermission()
         .subscribe((res: any) => {

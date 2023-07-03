@@ -45,7 +45,7 @@
         <td>{{ data?.unit_sold }}</td>
         <td>{{ data?.amount_sold | currency }}</td>
       </tr>
-      <tr>
+      <tr *ngIf="reportList.length > 0">
         <td></td>
         <td></td>
         <td></td>
