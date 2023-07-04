@@ -32,7 +32,6 @@ export class SignInComponent implements OnInit {
     private zendeskService: ZendeskService
   ) {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      console.log(params);
       this.paramsObject = params;
     });
     // http://localhost:4200/auth/login?brand_id=16482819213329&locale_id=1&return_to=https:%2F%2Fsupport.123stores.com%2Fhc%2Fen-us&timestamp=1688387072
@@ -65,8 +64,7 @@ export class SignInComponent implements OnInit {
             this.authService.setRefreshToken(result.refresh_token);
             this.authService.saveUser(result.user_profile);
             if (
-              this.paramsObject.return_to ===
-              'https://support.123stores.com/hc/en-us'
+              this.paramsObject?.return_to?.includes('support.123stores.com')
             ) {
               this.zendeskService.zendeskHelp().subscribe(
                 (res: any) => {
@@ -80,9 +78,6 @@ export class SignInComponent implements OnInit {
                 },
                 (err) => (this.isLoading = false)
               );
-              //  var objectUrl = res.template_url;
-
-              //  a.download = 'document';
             } else {
               this.router.navigate(['/main/dashboard']);
               this.isLoading = false;

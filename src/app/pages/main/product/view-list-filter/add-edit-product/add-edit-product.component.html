@@ -1,31 +1,31 @@
 <app-breadcrumb *ngIf="!editSection"></app-breadcrumb>
-
-<div class="add-product-section">
-  <div *ngIf="!editSection" class="user-content">
-    <div class="tab-header">
-      <span>Add Product</span>
+<nz-spin [nzSpinning]="isMainLoading">
+  <div class="add-product-section">
+    <div *ngIf="!editSection" class="user-content">
+      <div class="tab-header">
+        <span>Add Product</span>
+      </div>
     </div>
-  </div>
-  <div
-    style="
-      width: 100%;
-      display: flex;
-      justify-content: end;
-      padding-right: 28px;
-    "
-  >
-    <button
-      *ngIf="!editSection"
-      nz-button
-      nzType="primary"
-      class="action-button"
-      style="height: 35px"
-      (click)="isImportVisible = true"
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        padding-right: 28px;
+      "
     >
-      <span nz-icon nzType="plus" nzTheme="outline"></span>
-      Add Products
-    </button>
-    <!-- <button
+      <button
+        *ngIf="!editSection"
+        nz-button
+        nzType="primary"
+        class="action-button"
+        style="height: 35px"
+        (click)="isImportVisible = true"
+      >
+        <span nz-icon nzType="plus" nzTheme="outline"></span>
+        Add Products
+      </button>
+      <!-- <button
       *ngIf="editSection"
       nz-button
       class="action-button"
@@ -36,667 +36,676 @@
       <span nz-icon nzType="edit" nzTheme="outline"></span>
       Edit
     </button> -->
-  </div>
-  <div [ngClass]="{ display: !editSection }" class="body-section">
-    <form nz-form [formGroup]="addEditProductForm">
-      <div nz-row [nzGutter]="16">
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="mpn">
-            <nz-form-label nzFor="mpn"
-              >MPN<span style="color: red; font-weight: 500">*</span>
-            </nz-form-label>
-            <nz-input-group>
-              <input
-                formControlName="mpn"
-                type="text"
-                nz-input
-                placeholder="Enter MPN"
-              />
-              <ng-template #mpn let-control>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 24 characters!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your MPN!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('pattern')"
-                  >Please input only number and characters!</ng-container
+    </div>
+    <div [ngClass]="{ display: !editSection }" class="body-section">
+      <form nz-form [formGroup]="addEditProductForm">
+        <div nz-row [nzGutter]="16">
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="mpn">
+              <nz-form-label nzFor="mpn"
+                >MPN<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
+              <nz-input-group>
+                <input
+                  formControlName="mpn"
+                  type="text"
+                  nz-input
+                  placeholder="Enter MPN"
+                />
+                <ng-template #mpn let-control>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 24 characters!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your MPN!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('pattern')"
+                    >Please input only number and characters!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="upc">
+              <nz-form-label nzFor="upc"
+                >UPC<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
+              <nz-input-group>
+                <input
+                  formControlName="upc"
+                  type="text"
+                  nz-input
+                  placeholder="Enter UPC"
+                />
+                <ng-template #upc let-control>
+                  <ng-container *ngIf="control.hasError('minlength')"
+                    >Please input minimum 12 digits!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 14 digits!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your UPC!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('pattern')"
+                    >Please input only digits!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="amazon_asin">
+              <nz-form-label nzFor="amazon_asin">Amazon ASIN </nz-form-label>
+              <nz-input-group>
+                <input
+                  formControlName="amazon_asin"
+                  type="text"
+                  nz-input
+                  placeholder="Enter Amazon ASIN"
+                />
+                <ng-template #amazon_asin let-control>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 10 characters!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your Amazon ASIN!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('pattern')"
+                    >Please input Only 0-9 & A-Z characters!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="product_name">
+              <nz-form-label nzFor="product_name"
+                >Product Name<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
+              <nz-input-group>
+                <input
+                  formControlName="product_name"
+                  type="text"
+                  nz-input
+                  placeholder="Enter Product Name"
+                />
+                <ng-template #product_name let-control>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 34 characters!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your Product Name!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="brand">
+              <nz-form-label nzFor="brand"
+                >Brand<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
+              <nz-input-group>
+                <nz-select
+                  nzShowSearch
+                  formControlName="brand"
+                  nzAllowClear
+                  nzPlaceHolder="Select Brand"
+                  (nzOnSearch)="searchValue($event, 'Brand')"
+                  (ngModelChange)="addItem('Brand')"
                 >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="upc">
-            <nz-form-label nzFor="upc"
-              >UPC<span style="color: red; font-weight: 500">*</span>
-            </nz-form-label>
-            <nz-input-group>
-              <input
-                formControlName="upc"
-                type="text"
-                nz-input
-                placeholder="Enter UPC"
-              />
-              <ng-template #upc let-control>
-                <ng-container *ngIf="control.hasError('minlength')"
-                  >Please input minimum 12 digits!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 14 digits!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your UPC!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('pattern')"
-                  >Please input only digits!</ng-container
+                  <nz-option
+                    *ngFor="let item of listOfBrand"
+                    [nzLabel]="item"
+                    [nzValue]="item"
+                  ></nz-option>
+                  <nz-option
+                    *ngIf="setDropDownValue && searchList.length === 0"
+                    [nzLabel]="setDropDownValue"
+                    [nzValue]="setDropDownValue"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #brand let-control>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 34 characters!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your Brand!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="collection">
+              <nz-form-label nzFor="collection">Collection </nz-form-label>
+              <nz-input-group>
+                <nz-select
+                  nzShowSearch
+                  formControlName="collection"
+                  nzAllowClear
+                  nzPlaceHolder="Select Collection"
+                  (nzOnSearch)="searchValue($event, 'Collection')"
+                  (ngModelChange)="addItem('Collection')"
                 >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="amazon_asin">
-            <nz-form-label nzFor="amazon_asin">Amazon ASIN </nz-form-label>
-            <nz-input-group>
-              <input
-                formControlName="amazon_asin"
-                type="text"
-                nz-input
-                placeholder="Enter Amazon ASIN"
-              />
-              <ng-template #amazon_asin let-control>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 10 characters!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your Amazon ASIN!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('pattern')"
-                  >Please input Only 0-9 & A-Z characters!</ng-container
+                  <nz-option
+                    *ngFor="let item of listOfCollection"
+                    [nzLabel]="item"
+                    [nzValue]="item"
+                  ></nz-option>
+                  <nz-option
+                    *ngIf="setDropDownValue && searchList.length === 0"
+                    [nzLabel]="setDropDownValue"
+                    [nzValue]="setDropDownValue"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #collection let-control>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 34 characters!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="product_category">
+              <nz-form-label nzFor="product_category"
+                >Product Category
+              </nz-form-label>
+              <nz-input-group>
+                <nz-select
+                  nzShowSearch
+                  formControlName="product_category"
+                  nzAllowClear
+                  nzPlaceHolder="Select Product Category"
+                  (nzOnSearch)="searchValue($event, 'Product Category')"
+                  (ngModelChange)="addItem('Product Category')"
                 >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="product_name">
-            <nz-form-label nzFor="product_name"
-              >Product Name<span style="color: red; font-weight: 500">*</span>
-            </nz-form-label>
-            <nz-input-group>
-              <input
-                formControlName="product_name"
-                type="text"
-                nz-input
-                placeholder="Enter Product Name"
-              />
-              <ng-template #product_name let-control>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 34 characters!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your Product Name!</ng-container
+                  <nz-option
+                    *ngFor="let item of listOfProductCategory"
+                    [nzLabel]="item"
+                    [nzValue]="item"
+                  ></nz-option>
+                  <nz-option
+                    *ngIf="setDropDownValue && searchList.length === 0"
+                    [nzLabel]="setDropDownValue"
+                    [nzValue]="setDropDownValue"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #product_category let-control>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 34 characters!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="sales_tier">
+              <nz-form-label nzFor="sales_tier">Sales Tier </nz-form-label>
+              <nz-input-group>
+                <nz-select
+                  nzShowSearch
+                  formControlName="sales_tier"
+                  nzAllowClear
+                  nzPlaceHolder="Select Sales Tier"
+                  (nzOnSearch)="searchValue($event, 'Sales Tier')"
+                  (ngModelChange)="addItem('Sales Tier')"
                 >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="brand">
-            <nz-form-label nzFor="brand"
-              >Brand<span style="color: red; font-weight: 500">*</span>
-            </nz-form-label>
-            <nz-input-group>
-              <nz-select
-                nzShowSearch
-                formControlName="brand"
-                nzAllowClear
-                nzPlaceHolder="Select Brand"
-                (nzOnSearch)="searchValue($event, 'Brand')"
-                (ngModelChange)="addItem('Brand')"
-              >
-                <nz-option
-                  *ngFor="let item of listOfBrand"
-                  [nzLabel]="item"
-                  [nzValue]="item"
-                ></nz-option>
-                <nz-option
-                  *ngIf="setDropDownValue && searchList.length === 0"
-                  [nzLabel]="setDropDownValue"
-                  [nzValue]="setDropDownValue"
-                ></nz-option>
-              </nz-select>
-              <ng-template #brand let-control>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 34 characters!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your Brand!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="collection">
-            <nz-form-label nzFor="collection">Collection </nz-form-label>
-            <nz-input-group>
-              <nz-select
-                nzShowSearch
-                formControlName="collection"
-                nzAllowClear
-                nzPlaceHolder="Select Collection"
-                (nzOnSearch)="searchValue($event, 'Collection')"
-                (ngModelChange)="addItem('Collection')"
-              >
-                <nz-option
-                  *ngFor="let item of listOfCollection"
-                  [nzLabel]="item"
-                  [nzValue]="item"
-                ></nz-option>
-                <nz-option
-                  *ngIf="setDropDownValue && searchList.length === 0"
-                  [nzLabel]="setDropDownValue"
-                  [nzValue]="setDropDownValue"
-                ></nz-option>
-              </nz-select>
-              <ng-template #collection let-control>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 34 characters!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="product_category">
-            <nz-form-label nzFor="product_category"
-              >Product Category
-            </nz-form-label>
-            <nz-input-group>
-              <nz-select
-                nzShowSearch
-                formControlName="product_category"
-                nzAllowClear
-                nzPlaceHolder="Select Product Category"
-                (nzOnSearch)="searchValue($event, 'Product Category')"
-                (ngModelChange)="addItem('Product Category')"
-              >
-                <nz-option
-                  *ngFor="let item of listOfProductCategory"
-                  [nzLabel]="item"
-                  [nzValue]="item"
-                ></nz-option>
-                <nz-option
-                  *ngIf="setDropDownValue && searchList.length === 0"
-                  [nzLabel]="setDropDownValue"
-                  [nzValue]="setDropDownValue"
-                ></nz-option>
-              </nz-select>
-              <ng-template #product_category let-control>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 34 characters!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="sales_tier">
-            <nz-form-label nzFor="sales_tier">Sales Tier </nz-form-label>
-            <nz-input-group>
-              <nz-select
-                nzShowSearch
-                formControlName="sales_tier"
-                nzAllowClear
-                nzPlaceHolder="Select Sales Tier"
-                (nzOnSearch)="searchValue($event, 'Sales Tier')"
-                (ngModelChange)="addItem('Sales Tier')"
-              >
-                <nz-option
-                  *ngFor="let item of listOfSalesTier"
-                  [nzLabel]="item"
-                  [nzValue]="item"
-                ></nz-option>
-                <nz-option
-                  *ngIf="setDropDownValue && searchList.length === 0"
-                  [nzLabel]="setDropDownValue"
-                  [nzValue]="setDropDownValue"
-                ></nz-option>
-              </nz-select>
-              <ng-template #sales_tier let-control>
-                <ng-container *ngIf="control.hasError('maxlength')"
-                  >Please input maximum 34 characters!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="unit_price">
-            <nz-form-label nzFor="unit_price"
-              >Unit Price<span style="color: red; font-weight: 500">*</span>
-            </nz-form-label>
-            <nz-input-group nzPrefix="$">
-              <input
-                formControlName="unit_price"
-                type="textbox"
-                nz-input
-                placeholder="Enter Unit Price"
-                appTwoDigitDecimaNumber
-              />
-              <ng-template #unit_price let-control>
-                <ng-container *ngIf="control.hasError('pattern')"
-                  >Please input more than 2 decimal!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your Unit Price!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item
-          nz-col
-          class="gutter-row"
-          [nzSm]="24"
-          [nzXl]="12"
-          *ngIf="userPermissions.partner_map"
-        >
-          <nz-form-control [nzErrorTip]="map">
-            <nz-form-label nzFor="map">MAP </nz-form-label>
-            <nz-input-group nzPrefix="$">
-              <input
-                formControlName="map"
-                type="textbox"
-                nz-input
-                placeholder="Enter MAP"
-                appTwoDigitDecimaNumber
-              />
-              <ng-template #map let-control>
-                <ng-container *ngIf="control.hasError('pattern')"
-                  >Please input more than 2 decimal!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="msrp">
-            <nz-form-label nzFor="msrp">MSRP </nz-form-label>
-            <nz-input-group nzPrefix="$">
-              <input
-                formControlName="msrp"
-                type="textbox"
-                nz-input
-                placeholder="Enter MSRP "
-                appTwoDigitDecimaNumber
-              />
-              <ng-template #msrp let-control>
-                <ng-container *ngIf="control.hasError('pattern')"
-                  >Please input more than 2 decimal!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item
-          nz-col
-          class="gutter-row"
-          [nzSm]="24"
-          [nzXl]="12"
-          *ngIf="userPermissions.partner_sku_level_handling"
-        >
-          <nz-form-control [nzErrorTip]="handling_time">
-            <nz-form-label nzFor="handling_time"
-              >Handling Time (In Days)<span style="color: red; font-weight: 500"
-                >*</span
-              >
-            </nz-form-label>
-            <nz-input-group>
-              <input
-                formControlName="handling_time"
-                type="number"
-                nz-input
-                placeholder="Handling Time 1 to 30"
-              />
-              <ng-template #handling_time let-control>
-                <ng-container *ngIf="control.hasError('min')"
-                  >Please input minimum 1 Day!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('max')"
-                  >Please input maximum 30 Days!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your Handling Time!<br
-                /></ng-container>
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="shipping_Method">
-            <nz-form-label nzFor="shipping_Method"
-              >Shipping Method<span style="color: red; font-weight: 500"
-                >*</span
-              >
-            </nz-form-label>
-            <nz-input-group>
-              <nz-select
-                nzAllowClear
-                formControlName="shipping_Method"
-                nzPlaceHolder="Select Shipping Method"
-              >
-                <nz-option
-                  nzLabel="Small Parcel"
-                  nzValue="Small Parcel"
-                ></nz-option>
-                <nz-option nzLabel="LTL" nzValue="LTR"></nz-option>
-              </nz-select>
-              <ng-template #shipping_Method let-control>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please select your shipping method!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item
-          *ngIf="editSection"
-          nz-col
-          class="gutter-row"
-          [nzSm]="24"
-          [nzXl]="12"
-        >
-          <nz-form-control [nzErrorTip]="product_status">
-            <nz-form-label nzFor="product_status"
-              >Product Status<span style="color: red; font-weight: 500">*</span>
-            </nz-form-label>
-            <nz-input-group>
-              <nz-select
-                nzAllowClear
-                formControlName="product_status"
-                nzPlaceHolder="Select Product Status"
-              >
-                <nz-option nzLabel="Active" nzValue="Active"></nz-option>
-                <nz-option nzLabel="LTL" nzValue="LTL"></nz-option>
-                <nz-option
-                  nzLabel="Discontinued"
-                  nzValue="Discontinued"
-                ></nz-option>
-                <nz-option
-                  nzLabel="Restricted"
-                  nzValue="Restricted"
-                ></nz-option>
-                <nz-option
-                  nzLabel="Suppressed"
-                  nzValue="Suppressed"
-                ></nz-option>
-              </nz-select>
-              <ng-template #product_status let-control>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your product status!</ng-container
-                >
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
-          <nz-form-control [nzErrorTip]="number_of_boxes">
-            <nz-form-label nzFor="number_of_boxes"
-              >Number Of Boxes<span style="color: red; font-weight: 500"
-                >*</span
-              >
-            </nz-form-label>
-            <nz-input-group>
-              <input
-                [readOnly]="true"
-                formControlName="number_of_boxes"
-                type="number"
-                nz-input
-                placeholder="Number Of Boxes 1 to 10"
-              />
-              <!-- (input)="createBoxes()" -->
-              <ng-template #number_of_boxes let-control>
-                <ng-container *ngIf="control.hasError('min')"
-                  >Please input minimum 1 Day!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('max')"
-                  >Please input maximum 10 Days!<br
-                /></ng-container>
-                <ng-container *ngIf="control.hasError('required')"
-                  >Please input your Number Of Boxes!<br
-                /></ng-container>
-              </ng-template>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <nz-card
-        style="margin-top: 10px"
-        nzType="inner"
-        nzTitle="Shipping Box Dimensions"
-      >
-        <div
-          nz-row
-          [nzGutter]="16"
-          formArrayName="shipping_dimensions_of_box"
-          [ngClass]="{ isDisable: disabledFiled }"
-        >
-          <div
+                  <nz-option
+                    *ngFor="let item of listOfSalesTier"
+                    [nzLabel]="item"
+                    [nzValue]="item"
+                  ></nz-option>
+                  <nz-option
+                    *ngIf="setDropDownValue && searchList.length === 0"
+                    [nzLabel]="setDropDownValue"
+                    [nzValue]="setDropDownValue"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #sales_tier let-control>
+                  <ng-container *ngIf="control.hasError('maxlength')"
+                    >Please input maximum 34 characters!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="unit_price">
+              <nz-form-label nzFor="unit_price"
+                >Unit Price<span style="color: red; font-weight: 500">*</span>
+              </nz-form-label>
+              <nz-input-group nzPrefix="$">
+                <input
+                  formControlName="unit_price"
+                  type="textbox"
+                  nz-input
+                  placeholder="Enter Unit Price"
+                  appTwoDigitDecimaNumber
+                />
+                <ng-template #unit_price let-control>
+                  <ng-container *ngIf="control.hasError('pattern')"
+                    >Please input more than 2 decimal!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your Unit Price!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item
             nz-col
             class="gutter-row"
-            [nzXl]="24"
-            *ngFor="
-              let email of shippingDimensionsOfBoxes.controls;
-              let i = index
-            "
+            [nzSm]="24"
+            [nzXl]="12"
+            *ngIf="userPermissions.partner_map"
           >
-            <div nz-row [formGroupName]="i">
-              <h3 style="display: flex; align-items: end; margin-bottom: 10px">
-                {{ i + 1 }}.
-              </h3>
-              <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-                <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Length (inches)<span style="color: red; font-weight: 500"
-                    >*</span
+            <nz-form-control [nzErrorTip]="map">
+              <nz-form-label nzFor="map">MAP </nz-form-label>
+              <nz-input-group nzPrefix="$">
+                <input
+                  formControlName="map"
+                  type="textbox"
+                  nz-input
+                  placeholder="Enter MAP"
+                  appTwoDigitDecimaNumber
+                />
+                <ng-template #map let-control>
+                  <ng-container *ngIf="control.hasError('pattern')"
+                    >Please input more than 2 decimal!</ng-container
                   >
-                </nz-form-label>
-                <nz-form-control [nzErrorTip]="length">
-                  <nz-input-group>
-                    <input
-                      formControlName="length"
-                      type="textbox"
-                      nz-input
-                      placeholder="Enter Length"
-                      appTwoDigitDecimaNumber
-                    />
-                    <ng-template #length let-control>
-                      <ng-container *ngIf="control.hasError('pattern')"
-                        >Please input more than 2 decimal!<br
-                      /></ng-container>
-                      <ng-container *ngIf="control.hasError('required')"
-                        >Please input your Length!</ng-container
-                      >
-                    </ng-template>
-                  </nz-input-group>
-                </nz-form-control>
-              </nz-form-item>
-              <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-                <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Width (inches)<span style="color: red; font-weight: 500"
-                    >*</span
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="msrp">
+              <nz-form-label nzFor="msrp">MSRP </nz-form-label>
+              <nz-input-group nzPrefix="$">
+                <input
+                  formControlName="msrp"
+                  type="textbox"
+                  nz-input
+                  placeholder="Enter MSRP "
+                  appTwoDigitDecimaNumber
+                />
+                <ng-template #msrp let-control>
+                  <ng-container *ngIf="control.hasError('pattern')"
+                    >Please input more than 2 decimal!</ng-container
                   >
-                </nz-form-label>
-                <nz-form-control [nzErrorTip]="width">
-                  <nz-input-group>
-                    <input
-                      formControlName="width"
-                      type="textbox"
-                      nz-input
-                      placeholder="Enter Width"
-                      appTwoDigitDecimaNumber
-                    />
-                    <ng-template #width let-control>
-                      <ng-container *ngIf="control.hasError('pattern')"
-                        >Please input more than 2 decimal!<br
-                      /></ng-container>
-                      <ng-container *ngIf="control.hasError('required')"
-                        >Please input your Width!</ng-container
-                      >
-                    </ng-template>
-                  </nz-input-group>
-                </nz-form-control>
-              </nz-form-item>
-              <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-                <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Height (inches)<span style="color: red; font-weight: 500"
-                    >*</span
-                  >
-                </nz-form-label>
-                <nz-form-control [nzErrorTip]="height">
-                  <nz-input-group>
-                    <input
-                      formControlName="height"
-                      type="textbox"
-                      nz-input
-                      placeholder="Enter Height"
-                      appTwoDigitDecimaNumber
-                    />
-                    <ng-template #height let-control>
-                      <ng-container *ngIf="control.hasError('pattern')"
-                        >Please input more than 2 decimal!<br
-                      /></ng-container>
-                      <ng-container *ngIf="control.hasError('required')"
-                        >Please input your Height!</ng-container
-                      >
-                    </ng-template>
-                  </nz-input-group>
-                </nz-form-control>
-              </nz-form-item>
-              <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
-                <nz-form-label nzFor="brand" *ngIf="i === 0"
-                  >Gross Weight (lbs)<span style="color: red; font-weight: 500"
-                    >*</span
-                  >
-                </nz-form-label>
-                <nz-form-control [nzErrorTip]="gross_weight">
-                  <nz-input-group>
-                    <input
-                      formControlName="gross_weight"
-                      type="textbox"
-                      nz-input
-                      placeholder="Enter Gross Weight"
-                      appTwoDigitDecimaNumber
-                    />
-                    <ng-template #gross_weight let-control>
-                      <ng-container *ngIf="control.hasError('pattern')"
-                        >Please input more than 2 decimal!<br
-                      /></ng-container>
-                      <ng-container *ngIf="control.hasError('required')"
-                        >Please input your Gross Weight!</ng-container
-                      >
-                    </ng-template>
-                  </nz-input-group>
-                </nz-form-control>
-              </nz-form-item>
-              <div style="display: flex; align-items: end; margin-bottom: 10px">
-                <button
-                  nz-button
-                  nzType="primary"
-                  nzShape="circle"
-                  *ngIf="i === shippingDimensionsOfBoxes.controls.length - 1"
-                  style="
-                    background: #00c13b !important;
-                    margin-left: 8px;
-                    border: 0;
-                  "
-                  (click)="addShippingDimensionsOfBoxes()"
-                  nzSize="small"
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item
+            nz-col
+            class="gutter-row"
+            [nzSm]="24"
+            [nzXl]="12"
+            *ngIf="userPermissions.partner_sku_level_handling"
+          >
+            <nz-form-control [nzErrorTip]="handling_time">
+              <nz-form-label nzFor="handling_time"
+                >Handling Time (In Days)<span
+                  style="color: red; font-weight: 500"
+                  >*</span
                 >
-                  <span nz-icon nzType="plus"></span>
-                </button>
-                <button
-                  nz-button
-                  nzType="primary"
-                  nzShape="circle"
-                  *ngIf="i !== shippingDimensionsOfBoxes.controls.length - 1"
-                  style="
-                    background: #f41e2c !important;
-                    margin-left: 8px;
-                    border: 0;
-                  "
-                  (click)="removeShippingDimensionsOfBoxes(i)"
-                  nzSize="small"
+              </nz-form-label>
+              <nz-input-group>
+                <input
+                  formControlName="handling_time"
+                  type="number"
+                  nz-input
+                  placeholder="Handling Time 1 to 30"
+                />
+                <ng-template #handling_time let-control>
+                  <ng-container *ngIf="control.hasError('min')"
+                    >Please input minimum 1 Day!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('max')"
+                    >Please input maximum 30 Days!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your Handling Time!<br
+                  /></ng-container>
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="shipping_Method">
+              <nz-form-label nzFor="shipping_Method"
+                >Shipping Method<span style="color: red; font-weight: 500"
+                  >*</span
                 >
-                  <span nz-icon nzType="minus"></span>
-                </button>
+              </nz-form-label>
+              <nz-input-group>
+                <nz-select
+                  nzAllowClear
+                  formControlName="shipping_Method"
+                  nzPlaceHolder="Select Shipping Method"
+                >
+                  <nz-option
+                    nzLabel="Small Parcel"
+                    nzValue="Small Parcel"
+                  ></nz-option>
+                  <nz-option nzLabel="LTL" nzValue="LTR"></nz-option>
+                </nz-select>
+                <ng-template #shipping_Method let-control>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please select your shipping method!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item
+            *ngIf="editSection"
+            nz-col
+            class="gutter-row"
+            [nzSm]="24"
+            [nzXl]="12"
+          >
+            <nz-form-control [nzErrorTip]="product_status">
+              <nz-form-label nzFor="product_status"
+                >Product Status<span style="color: red; font-weight: 500"
+                  >*</span
+                >
+              </nz-form-label>
+              <nz-input-group>
+                <nz-select
+                  nzAllowClear
+                  formControlName="product_status"
+                  nzPlaceHolder="Select Product Status"
+                >
+                  <nz-option nzLabel="Active" nzValue="Active"></nz-option>
+                  <nz-option nzLabel="LTL" nzValue="LTL"></nz-option>
+                  <nz-option
+                    nzLabel="Discontinued"
+                    nzValue="Discontinued"
+                  ></nz-option>
+                  <nz-option
+                    nzLabel="Restricted"
+                    nzValue="Restricted"
+                  ></nz-option>
+                  <nz-option
+                    nzLabel="Suppressed"
+                    nzValue="Suppressed"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #product_status let-control>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your product status!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="12">
+            <nz-form-control [nzErrorTip]="number_of_boxes">
+              <nz-form-label nzFor="number_of_boxes"
+                >Number Of Boxes<span style="color: red; font-weight: 500"
+                  >*</span
+                >
+              </nz-form-label>
+              <nz-input-group>
+                <input
+                  [readOnly]="true"
+                  formControlName="number_of_boxes"
+                  type="number"
+                  nz-input
+                  placeholder="Number Of Boxes 1 to 10"
+                />
+                <!-- (input)="createBoxes()" -->
+                <ng-template #number_of_boxes let-control>
+                  <ng-container *ngIf="control.hasError('min')"
+                    >Please input minimum 1 Day!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('max')"
+                    >Please input maximum 10 Days!<br
+                  /></ng-container>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your Number Of Boxes!<br
+                  /></ng-container>
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <nz-card
+          style="margin-top: 10px"
+          nzType="inner"
+          nzTitle="Shipping Box Dimensions"
+        >
+          <div
+            nz-row
+            [nzGutter]="16"
+            formArrayName="shipping_dimensions_of_box"
+            [ngClass]="{ isDisable: disabledFiled }"
+          >
+            <div
+              nz-col
+              class="gutter-row"
+              [nzXl]="24"
+              *ngFor="
+                let email of shippingDimensionsOfBoxes.controls;
+                let i = index
+              "
+            >
+              <div nz-row [formGroupName]="i">
+                <h3
+                  style="display: flex; align-items: end; margin-bottom: 10px"
+                >
+                  {{ i + 1 }}.
+                </h3>
+                <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+                  <nz-form-label nzFor="brand" *ngIf="i === 0"
+                    >Length (inches)<span style="color: red; font-weight: 500"
+                      >*</span
+                    >
+                  </nz-form-label>
+                  <nz-form-control [nzErrorTip]="length">
+                    <nz-input-group>
+                      <input
+                        formControlName="length"
+                        type="textbox"
+                        nz-input
+                        placeholder="Enter Length"
+                        appTwoDigitDecimaNumber
+                      />
+                      <ng-template #length let-control>
+                        <ng-container *ngIf="control.hasError('pattern')"
+                          >Please input more than 2 decimal!<br
+                        /></ng-container>
+                        <ng-container *ngIf="control.hasError('required')"
+                          >Please input your Length!</ng-container
+                        >
+                      </ng-template>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+                  <nz-form-label nzFor="brand" *ngIf="i === 0"
+                    >Width (inches)<span style="color: red; font-weight: 500"
+                      >*</span
+                    >
+                  </nz-form-label>
+                  <nz-form-control [nzErrorTip]="width">
+                    <nz-input-group>
+                      <input
+                        formControlName="width"
+                        type="textbox"
+                        nz-input
+                        placeholder="Enter Width"
+                        appTwoDigitDecimaNumber
+                      />
+                      <ng-template #width let-control>
+                        <ng-container *ngIf="control.hasError('pattern')"
+                          >Please input more than 2 decimal!<br
+                        /></ng-container>
+                        <ng-container *ngIf="control.hasError('required')"
+                          >Please input your Width!</ng-container
+                        >
+                      </ng-template>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+                  <nz-form-label nzFor="brand" *ngIf="i === 0"
+                    >Height (inches)<span style="color: red; font-weight: 500"
+                      >*</span
+                    >
+                  </nz-form-label>
+                  <nz-form-control [nzErrorTip]="height">
+                    <nz-input-group>
+                      <input
+                        formControlName="height"
+                        type="textbox"
+                        nz-input
+                        placeholder="Enter Height"
+                        appTwoDigitDecimaNumber
+                      />
+                      <ng-template #height let-control>
+                        <ng-container *ngIf="control.hasError('pattern')"
+                          >Please input more than 2 decimal!<br
+                        /></ng-container>
+                        <ng-container *ngIf="control.hasError('required')"
+                          >Please input your Height!</ng-container
+                        >
+                      </ng-template>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item nz-col class="gutter-row" [nzSm]="24" [nzXl]="5">
+                  <nz-form-label nzFor="brand" *ngIf="i === 0"
+                    >Gross Weight (lbs)<span
+                      style="color: red; font-weight: 500"
+                      >*</span
+                    >
+                  </nz-form-label>
+                  <nz-form-control [nzErrorTip]="gross_weight">
+                    <nz-input-group>
+                      <input
+                        formControlName="gross_weight"
+                        type="textbox"
+                        nz-input
+                        placeholder="Enter Gross Weight"
+                        appTwoDigitDecimaNumber
+                      />
+                      <ng-template #gross_weight let-control>
+                        <ng-container *ngIf="control.hasError('pattern')"
+                          >Please input more than 2 decimal!<br
+                        /></ng-container>
+                        <ng-container *ngIf="control.hasError('required')"
+                          >Please input your Gross Weight!</ng-container
+                        >
+                      </ng-template>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <div
+                  style="display: flex; align-items: end; margin-bottom: 10px"
+                >
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    *ngIf="i === shippingDimensionsOfBoxes.controls.length - 1"
+                    style="
+                      background: #00c13b !important;
+                      margin-left: 8px;
+                      border: 0;
+                    "
+                    (click)="addShippingDimensionsOfBoxes()"
+                    nzSize="small"
+                  >
+                    <span nz-icon nzType="plus"></span>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    *ngIf="i !== shippingDimensionsOfBoxes.controls.length - 1"
+                    style="
+                      background: #f41e2c !important;
+                      margin-left: 8px;
+                      border: 0;
+                    "
+                    (click)="removeShippingDimensionsOfBoxes(i)"
+                    nzSize="small"
+                  >
+                    <span nz-icon nzType="minus"></span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </nz-card>
+        </nz-card>
 
-      <div nz-row *ngIf="!disabledFiled">
-        <div nz-col [nzXs]="24">
-          <button
-            nz-button
-            class="action-button"
-            style="height: 35px"
-            [nzType]="'primary'"
-            (click)="submit()"
-          >
-            <!-- [disabled]="!addEditProductForm.valid"
+        <div nz-row *ngIf="!disabledFiled">
+          <div nz-col [nzXs]="24">
+            <button
+              nz-button
+              class="action-button"
+              style="height: 35px"
+              [nzType]="'primary'"
+              (click)="submit()"
+            >
+              <!-- [disabled]="!addEditProductForm.valid"
             [ngClass]="{
               'button-disabled': !addEditProductForm.valid || isLoading
             }" -->
-            <span
-              *ngIf="isLoading"
-              style="color: white; font-size: 16px"
-              nz-icon
-              nzType="loading"
-            ></span>
-            <span
-              *ngIf="!isLoading"
-              nz-icon
-              nzType="file-text"
-              nzTheme="outline"
-            ></span>
-            Save
-          </button>
+              <span
+                *ngIf="isLoading"
+                style="color: white; font-size: 16px"
+                nz-icon
+                nzType="loading"
+              ></span>
+              <span
+                *ngIf="!isLoading"
+                nz-icon
+                nzType="file-text"
+                nzTheme="outline"
+              ></span>
+              Save
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
+
+    <nz-modal
+      [(nzVisible)]="isImportVisible"
+      nzTitle="Add products"
+      (nzOnCancel)="isImportVisible = false"
+    >
+      <ng-container *nzModalContent>
+        <app-edit-multiple-products
+          [actionType]="'Add'"
+          (closeModel)="closeMultiProduct($event)"
+        ></app-edit-multiple-products>
+      </ng-container>
+    </nz-modal>
+
+    <nz-modal [(nzVisible)]="isVisible">
+      <ng-container *nzModalContent>
+        <nz-result
+          nzStatus="success"
+          [nzTitle]="'Reference Code : ' + referenceCode"
+          [nzSubTitle]="'Add multiple product successfully'"
+        >
+          <div nz-result-extra>
+            <button nz-button nzType="primary" (click)="isVisible = false">
+              OK
+            </button>
+          </div>
+        </nz-result>
+      </ng-container>
+    </nz-modal>
   </div>
-
-  <nz-modal
-    [(nzVisible)]="isImportVisible"
-    nzTitle="Add products"
-    (nzOnCancel)="isImportVisible = false"
-  >
-    <ng-container *nzModalContent>
-      <app-edit-multiple-products
-        [actionType]="'Add'"
-        (closeModel)="closeMultiProduct($event)"
-      ></app-edit-multiple-products>
-    </ng-container>
-  </nz-modal>
-
-  <nz-modal [(nzVisible)]="isVisible">
-    <ng-container *nzModalContent>
-      <nz-result
-        nzStatus="success"
-        [nzTitle]="'Reference Code : ' + referenceCode"
-        [nzSubTitle]="'Add multiple product successfully'"
-      >
-        <div nz-result-extra>
-          <button nz-button nzType="primary" (click)="isVisible = false">
-            OK
-          </button>
-        </div>
-      </nz-result>
-    </ng-container>
-  </nz-modal>
-</div>
+</nz-spin>

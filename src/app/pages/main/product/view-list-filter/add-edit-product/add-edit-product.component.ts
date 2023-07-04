@@ -42,6 +42,7 @@ export class AddEditProductComponent implements OnInit {
   searchList: string[] = [];
   editSku: string = '';
   isLoading: boolean = false;
+  isMainLoading: boolean = false;
   userPermissions: any = '';
   disabledFiled: boolean = false;
   sku: string = '';
@@ -129,10 +130,12 @@ export class AddEditProductComponent implements OnInit {
       // this.disabledFiled = true;
 
       if (this.sku) {
+        this.isMainLoading = true;
         this.editSku = this.sku;
         this.productService.getProduct(this.sku).subscribe(
           (res: any) => {
             if (res.success) {
+              this.isMainLoading = false;
               this.editData = res.products;
 
               if (this.editData) {
