@@ -9,6 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LoginReq, LoginRes } from 'src/app/shared/model/auth.model';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { ZendeskService } from 'src/app/shared/service/zendesk.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -27,7 +28,8 @@ export class SignInComponent implements OnInit {
     private router: Router,
     private message: NzMessageService,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private zendeskService: ZendeskService
   ) {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       console.log(params);
@@ -57,7 +59,6 @@ export class SignInComponent implements OnInit {
       };
       this.authService.login(dataReq).subscribe(
         (result: any) => {
-          this.isLoading = false;
           if (result.success) {
             this.message.success('User login successfully!!');
             this.authService.setAccessToken(result.access_token);
@@ -67,17 +68,34 @@ export class SignInComponent implements OnInit {
               this.paramsObject.return_to ===
               'https://support.123stores.com/hc/en-us'
             ) {
+              this.zendeskService.zendeskHelp().subscribe(
+                (res: any) => {
+                  if (res.url) {
+                    // window.open(res?.url);
+                    var a = document.createElement('a');
+                    a.href = res?.url;
+                    a.click();
+                  }
+                  this.isLoading = false;
+                },
+                (err) => (this.isLoading = false)
+              );
               //  var objectUrl = res.template_url;
-              var a = document.createElement('a');
+
               //  a.download = 'document';
-              a.href = this.paramsObject.return_to;
-              a.click();
             } else {
               this.router.navigate(['/main/dashboard']);
+              this.isLoading = false;
             }
+          } else {
+            this.message.error(result?.error_message);
+            this.isLoading = false;
           }
         },
-        (err) => (this.isLoading = false)
+        (err) => {
+          this.isLoading = false;
+          this.message.success('User login fail!!');
+        }
       );
     }
   }
