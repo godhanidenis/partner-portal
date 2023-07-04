@@ -36,9 +36,7 @@ export class AuthService {
   }
 
   setMode() {
-    localStorage.getItem(MODE_KEY)
-      ? ''
-      : localStorage.setItem(MODE_KEY, 'test');
+    localStorage.setItem(MODE_KEY, this.mode ? this.mode : 'test');
   }
 
   clearToken() {
