@@ -15,7 +15,7 @@ export class HandlingTimeConflictComponent implements OnInit {
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;
-  total = 1;
+  total = 0;
   pageSize = 100;
   pageIndex = 1;
   pageSizeOptions = [100];
@@ -96,6 +96,7 @@ export class HandlingTimeConflictComponent implements OnInit {
           console.log(res);
           this.isLoading = false;
           if (res.success) {
+            this.total = +res.pagination?.total_rows ?? 0;
             this.handlingTimeConflictList = res.data;
           }
         },

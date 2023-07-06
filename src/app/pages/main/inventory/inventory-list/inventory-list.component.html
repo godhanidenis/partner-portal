@@ -19,41 +19,51 @@
 
   <div class="body-section">
     <div class="button-group">
-      <nz-badge
-        style="margin-right: 10px"
-        [nzShowZero]="false"
-        [nzCount]="badgeTotal"
-      >
-        <button (click)="openNav()" nz-button nzType="primary" nzShape="round">
-          <span nz-icon nzType="filter" nzTheme="outline"></span>
-          Filter
-        </button>
-      </nz-badge>
-      <div>
-        <button
-          (click)="openModal('Upload')"
+      <h3 style="display: flex; align-items: center; margin-bottom: 0">
+        <span><b>Total Record : </b>{{ total }}</span>
+      </h3>
+      <div style="display: flex">
+        <nz-badge
           style="margin-right: 10px"
-          nz-button
-          nzType="primary"
-          nzShape="round"
+          [nzShowZero]="false"
+          [nzCount]="badgeTotal"
         >
-          <span nz-icon nzType="upload" nzTheme="outline"></span> Export
-        </button>
+          <button
+            (click)="openNav()"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+          >
+            <span nz-icon nzType="filter" nzTheme="outline"></span>
+            Filter
+          </button>
+        </nz-badge>
+        <div>
+          <button
+            (click)="openModal('Upload')"
+            style="margin-right: 10px"
+            nz-button
+            nzType="primary"
+            nzShape="round"
+          >
+            <span nz-icon nzType="upload" nzTheme="outline"></span> Export
+          </button>
+        </div>
+        <form nz-form [formGroup]="searchInventory">
+          <nz-form-item style="margin-bottom: 0 !important">
+            <nz-form-control nzErrorTip="Please input your valid code!">
+              <nz-input-group nzPrefixIcon="search" class="search">
+                <input
+                  (keyup)="accountSearch.next($event)"
+                  formControlName="search"
+                  nz-input
+                  placeholder="Search..."
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
       </div>
-      <form nz-form [formGroup]="searchInventory">
-        <nz-form-item style="margin-bottom: 0 !important">
-          <nz-form-control nzErrorTip="Please input your valid code!">
-            <nz-input-group nzPrefixIcon="search" class="search">
-              <input
-                (keyup)="accountSearch.next($event)"
-                formControlName="search"
-                nz-input
-                placeholder="Search..."
-              />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-      </form>
     </div>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
@@ -173,6 +183,7 @@
       >
         <label nz-radio nzValue="Email">Email</label>
         <label nz-radio nzValue="EDI">EDI</label>
+        <label nz-radio nzValue="Upload">Upload</label>
       </nz-radio-group>
 
       <nz-divider
@@ -222,6 +233,7 @@
       [listOfFilter]="listOfFilter"
       [sectionName]="'inventory'"
       [description]="
+        total +
         'Your Inventory Feed History will be exported as a CSV file and sent to your email'
       "
       (close)="handleCancel('Upload')"

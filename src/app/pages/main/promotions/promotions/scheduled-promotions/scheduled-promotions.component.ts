@@ -14,7 +14,7 @@ import { PromotionsService } from 'src/app/shared/service/promotions.service';
 })
 export class ScheduledPromotionsComponent implements OnInit {
   isLoading: boolean = false;
-  total = 1;
+  total = 0;
   pageSize = 100;
   pageIndex = 1;
   pageSizeOptions = [100];

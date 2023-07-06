@@ -87,6 +87,7 @@ export class PriceCorrectionComponent implements OnInit {
         (res: any) => {
           this.isLoading = false;
           if (res.success) {
+            this.total = +res.pagination?.total_rows ?? 0;
             this.priceCorrectionList = res.data;
           }
         },

@@ -90,7 +90,7 @@ export class ExportModelComponent implements OnInit {
       filters['filter_inventory_method'] = this.exportType
         ? this.listOfFilter?.filter_inventory_method
         : '';
-      filters['filter_inventory_result'] = this.exportType
+      filters['filter_feed_result'] = this.exportType
         ? this.listOfFilter?.filter_inventory_result
         : '';
       this.inventoryService.inventoryFeedHistory(filters).subscribe(

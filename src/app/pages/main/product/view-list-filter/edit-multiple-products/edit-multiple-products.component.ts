@@ -153,6 +153,11 @@ export class EditMultipleProductsComponent implements OnInit {
     });
   }
 
+  setFileName(path: string) {
+    const fileName = path.replace(/\//g, ' ').substring(1).split('\\')[2];
+    return fileName;
+  }
+
   actionFile(type: string) {
     if (type === 'upload') {
       this.isUploadVisible = true;

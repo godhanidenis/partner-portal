@@ -16,7 +16,7 @@ export class DiscontinuedUpdateComponent implements OnInit {
   addAddressVisible: boolean = false;
   editAddressVisible: boolean = false;
   isLoading: boolean = false;
-  total = 1;
+  total = 0;
   pageSize = 100;
   pageIndex = 1;
   pageSizeOptions = [100];
@@ -94,6 +94,7 @@ export class DiscontinuedUpdateComponent implements OnInit {
         (res: any) => {
           this.isLoading = false;
           if (res.success) {
+            this.total = +res.pagination?.total_rows ?? 0;
             this.discontinuedUpdateList = res.data;
           }
         },

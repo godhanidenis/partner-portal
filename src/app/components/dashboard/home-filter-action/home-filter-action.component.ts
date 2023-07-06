@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 })
 export class HomeFilterActionComponent implements OnInit {
   @Input() badgeTotal: number = 0;
+  @Input() totalRecord: number = 0;
   @Input() issueName: string = '';
   @Input() code: string = '';
   @Output() showFilter = new EventEmitter();

@@ -67,7 +67,7 @@ export class ViewListFilterComponent implements OnInit {
   selectSales: string = '';
   product_search: string = '';
 
-  total = 1;
+  total = 0;
   pageSize = 100;
   pageIndex = 1;
   pageSizeOptions = [100];

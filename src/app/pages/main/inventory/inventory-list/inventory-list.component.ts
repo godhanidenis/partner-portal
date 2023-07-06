@@ -20,7 +20,7 @@ export interface Filters {
 export class InventoryListComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
   isLoading: boolean = false;
-  total: number = 1;
+  total: number = 0;
   pageSize: number = 100;
   pageIndex: number = 1;
   pageSizeOptions: number[] = [100];
@@ -235,7 +235,7 @@ export class InventoryListComponent implements OnInit {
           break;
 
         case 'Method':
-          if (value == 'Email' || value == 'EDI') {
+          if (value == 'Email' || value == 'EDI' || value == 'Upload') {
             this.clear_btn = true;
             this.selectMethod = value;
             if (this.methodCount == 0) {

@@ -27,22 +27,26 @@
 
     <div class="view-edit-products-section-content">
       <div class="action">
-        <nz-badge
-          style="margin-right: 10px"
-          [nzShowZero]="false"
-          [nzCount]="badgeTotal"
-        >
-          <button
-            (click)="openNav()"
-            nz-button
-            nzType="primary"
-            nzShape="round"
+        <h3 style="display: flex; align-items: center; margin-bottom: 0">
+          <span><b>Total Record : </b>{{ total }}</span>
+        </h3>
+        <div style="display: flex">
+          <nz-badge
+            style="margin-right: 10px"
+            [nzShowZero]="false"
+            [nzCount]="badgeTotal"
           >
-            <span nz-icon nzType="filter" nzTheme="outline"></span>
-            Filter
-          </button>
-        </nz-badge>
-        <!-- <button
+            <button
+              (click)="openNav()"
+              nz-button
+              nzType="primary"
+              nzShape="round"
+            >
+              <span nz-icon nzType="filter" nzTheme="outline"></span>
+              Filter
+            </button>
+          </nz-badge>
+          <!-- <button
           style="margin-right: 10px"
           nz-button
           (click)="showUploadModal('upload')"
@@ -51,30 +55,31 @@
         >
           <span nz-icon nzType="download" nzTheme="outline"></span> Import
         </button> -->
-        <button
-          style="margin-right: 10px"
-          nz-button
-          (click)="showUploadModal('download')"
-          nzType="primary"
-          nzShape="round"
-        >
-          <span nz-icon nzType="upload" nzTheme="outline"></span> Export
-        </button>
+          <button
+            style="margin-right: 10px"
+            nz-button
+            (click)="showUploadModal('download')"
+            nzType="primary"
+            nzShape="round"
+          >
+            <span nz-icon nzType="upload" nzTheme="outline"></span> Export
+          </button>
 
-        <form nz-form [formGroup]="viewEditProducts">
-          <nz-form-item style="margin-bottom: 0 !important">
-            <nz-form-control nzErrorTip="Please input your valid code!">
-              <nz-input-group nzPrefixIcon="search" class="search">
-                <input
-                  (keyup)="accountSearch.next($event)"
-                  formControlName="search"
-                  nz-input
-                  placeholder="Search..."
-                />
-              </nz-input-group>
-            </nz-form-control>
-          </nz-form-item>
-        </form>
+          <form nz-form [formGroup]="viewEditProducts">
+            <nz-form-item style="margin-bottom: 0 !important">
+              <nz-form-control nzErrorTip="Please input your valid code!">
+                <nz-input-group nzPrefixIcon="search" class="search">
+                  <input
+                    (keyup)="accountSearch.next($event)"
+                    formControlName="search"
+                    nz-input
+                    placeholder="Search..."
+                  />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </div>
       </div>
 
       <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
