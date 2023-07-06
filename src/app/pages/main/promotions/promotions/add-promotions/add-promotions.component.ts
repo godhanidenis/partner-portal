@@ -27,6 +27,11 @@ export class AddPromotionsComponent implements OnInit {
     });
   }
 
+  setFileName(path: string) {
+    const fileName = path.replace(/\//g, ' ').substring(1).split('\\')[2];
+    return fileName;
+  }
+
   selectFiles(event: any) {
     this.selectFile = event?.target?.files[0];
   }
