@@ -37,17 +37,34 @@ export class ViewInventoryComponent implements OnInit {
           this.isLoading = false;
           this.editData = res;
           this.total =
-            res?.active_in_stock ??
-            0 + res?.active_out_of_stock ??
-            0 + res?.discontinued_in_stock ??
-            0 + res?.discontinued_out_of_stock ??
-            0 + res?.restricted_in_stock ??
-            0 + res?.restricted_out_of_stock ??
-            0 + res?.ltl_in_stock ??
-            0 + res?.ltl_out_of_stock ??
-            0 + res?.stranded_in_feed_in_stock ??
-            0 + res?.stranded_in_feed_out_of_stock ??
-            0;
+            (this.editData?.active_in_stock
+              ? this.editData?.active_in_stock
+              : 0) +
+            (this.editData?.active_out_of_stock
+              ? this.editData?.active_out_of_stock
+              : 0) +
+            (this.editData?.discontinued_in_stock
+              ? this.editData?.discontinued_in_stock
+              : 0) +
+            (this.editData?.discontinued_out_of_stock
+              ? this.editData?.discontinued_out_of_stock
+              : 0) +
+            (this.editData?.restricted_in_stock
+              ? this.editData?.restricted_in_stock
+              : 0) +
+            (this.editData?.restricted_out_of_stock
+              ? this.editData?.restricted_out_of_stock
+              : 0) +
+            (this.editData?.ltl_in_stock ? this.editData?.ltl_in_stock : 0) +
+            (this.editData?.ltl_out_of_stock
+              ? this.editData?.ltl_out_of_stock
+              : 0) +
+            (this.editData?.stranded_in_feed_in_stock
+              ? this.editData?.stranded_in_feed_in_stock
+              : 0) +
+            (this.editData?.stranded_in_feed_out_of_stock
+              ? this.editData?.stranded_in_feed_out_of_stock
+              : 0);
         },
         (err) => (this.isLoading = false)
       );
