@@ -129,6 +129,21 @@
               </td>
             </tr> -->
             <tr>
+              <td>123Stores Restricted</td>
+              <td class="text-end">
+                {{ editData?.suppressed_in_stock }}
+              </td>
+              <td class="text-end">
+                {{ editData?.suppressed_out_of_stock }}
+              </td>
+              <td class="text-end">
+                {{
+                  editData?.suppressed_in_stock +
+                    editData?.suppressed_out_of_stock
+                }}
+              </td>
+            </tr>
+            <tr>
               <td>LTL</td>
               <td class="text-end">
                 {{ editData?.ltl_in_stock }}
@@ -191,6 +206,9 @@
               <td class="text-end">
                 <b>{{
                   (editData?.active_in_stock ? editData?.active_in_stock : 0) +
+                    (this.editData?.suppressed_in_stock
+                      ? this.editData?.suppressed_in_stock
+                      : 0) +
                     (editData?.discontinued_in_stock
                       ? editData?.discontinued_in_stock
                       : 0) +
@@ -208,6 +226,9 @@
                   (editData?.active_out_of_stock
                     ? editData?.active_out_of_stock
                     : 0) +
+                    (this.editData?.suppressed_out_of_stock
+                      ? this.editData?.suppressed_out_of_stock
+                      : 0) +
                     (editData?.discontinued_out_of_stock
                       ? editData?.discontinued_out_of_stock
                       : 0) +
@@ -227,6 +248,12 @@
                   (editData?.active_in_stock ? editData?.active_in_stock : 0) +
                     (editData?.active_out_of_stock
                       ? editData?.active_out_of_stock
+                      : 0) +
+                    (this.editData?.suppressed_in_stock
+                      ? this.editData?.suppressed_in_stock
+                      : 0) +
+                    (this.editData?.suppressed_out_of_stock
+                      ? this.editData?.suppressed_out_of_stock
                       : 0) +
                     (editData?.discontinued_in_stock
                       ? editData?.discontinued_in_stock
