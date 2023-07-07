@@ -164,14 +164,8 @@
                       "
                       >Amazon ASIN : </span
                     ><span style="padding-left: 4px"
-                      ><a
-                        class="link"
-                        [href]="
-                          'https://www.amazon.com/dp/' + recom?.amazon_asin
-                        "
-                        >{{ recom?.amazon_asin }}</a
-                      ></span
-                    >
+                      ><app-asin [asin]="recom?.amazon_asin"></app-asin
+                    ></span>
                   </div>
                   <div style="display: flex; flex-wrap: nowrap">
                     <span

@@ -171,11 +171,7 @@
             <td>{{ data.mpn }}</td>
             <td>{{ data?.upc }}</td>
             <td style="width: 150px">
-              <a
-                class="link"
-                [href]="'https://www.amazon.com/dp/' + data?.asin"
-                >{{ data?.asin }}</a
-              >
+              <app-asin [asin]="data?.asin"></app-asin>
             </td>
             <!-- <td style="width: 150px">{{ data.asin }}</td> -->
             <td>{{ data.name }}</td>

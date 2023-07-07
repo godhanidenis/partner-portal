@@ -22,6 +22,7 @@ import { AddEditMultipleProductsComponent } from './add-edit-multiple-products/a
 import { ExportMailBoxesComponent } from './export-mail-boxes/export-mail-boxes.component';
 import { ShowReferenceCodeComponent } from './show-reference-code/show-reference-code.component';
 import { EditTimeComponent } from './edit-time/edit-time.component';
+import { AsinComponent } from './asin/asin.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { EditTimeComponent } from './edit-time/edit-time.component';
     ExportMailBoxesComponent,
     ShowReferenceCodeComponent,
     EditTimeComponent,
+    AsinComponent
   ],
   imports: [
     CommonModule,
@@ -69,6 +71,7 @@ import { EditTimeComponent } from './edit-time/edit-time.component';
     ExportMailBoxesComponent,
     ShowReferenceCodeComponent,
     EditTimeComponent,
+    AsinComponent
   ],
 })
 export class ComponentModule {}

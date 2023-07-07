@@ -72,11 +72,7 @@
           <td>{{ data?.upc }}</td>
           <td>{{ data?.name }}</td>
           <td>
-            <a
-              class="link"
-              [href]="'https://www.amazon.com/dp/' + data?.asin"
-              >{{ data?.asin }}</a
-            >
+            <app-asin [asin]="data?.asin"></app-asin>
           </td>
           <td nzRight>
             <div style="display: flex; align-items: center">
