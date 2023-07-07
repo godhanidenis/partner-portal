@@ -396,7 +396,6 @@ export class ViewListFilterComponent implements OnInit {
         case 'inventory':
           if (
             value == 'In Stock' ||
-            value == 'Low Stock' ||
             value == 'Out of Stock'
           ) {
             this.clear_btn = true;

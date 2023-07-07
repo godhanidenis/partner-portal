@@ -43,6 +43,12 @@ export class ViewInventoryComponent implements OnInit {
             (this.editData?.active_out_of_stock
               ? this.editData?.active_out_of_stock
               : 0) +
+            (this.editData?.suppressed_in_stock
+              ? this.editData?.suppressed_in_stock
+              : 0) +
+            (this.editData?.suppressed_out_of_stock
+              ? this.editData?.suppressed_out_of_stock
+              : 0) +
             (this.editData?.discontinued_in_stock
               ? this.editData?.discontinued_in_stock
               : 0) +
