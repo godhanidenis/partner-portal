@@ -45,6 +45,8 @@ export class InventoryListComponent implements OnInit {
   listOfFilter!: Filters;
   userPermissions: PermissionList | undefined;
   statusDropdown = ['Processed', 'Rejected'];
+  isVisible: boolean = false;
+  referenceCode: string = '';
 
   constructor(
     private router: Router,
@@ -302,6 +304,14 @@ export class InventoryListComponent implements OnInit {
         filter_inventory_method: this.selectMethod,
         filter_inventory_result: this.selectResult,
       };
+    }
+  }
+
+  closeMultiProduct(event: string) {
+    this.handleCancel('download');
+    if (event) {
+      this.referenceCode = event;
+      this.isVisible = true;
     }
   }
 

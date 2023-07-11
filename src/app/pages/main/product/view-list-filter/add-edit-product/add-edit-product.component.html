@@ -356,12 +356,17 @@
                 >
               </nz-form-label>
               <nz-input-group>
-                <input
+                <nz-select
+                  nzAllowClear
+                  nzPlaceHolder="Select a Days"
                   formControlName="handling_time"
-                  type="number"
-                  nz-input
-                  placeholder="Handling Time 1 to 30"
-                />
+                >
+                  <nz-option
+                    *ngFor="let no of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                    [nzLabel]="no"
+                    [nzValue]="no"
+                  ></nz-option>
+                </nz-select>
                 <ng-template #handling_time let-control>
                   <ng-container *ngIf="control.hasError('min')"
                     >Please input minimum 1 Day!<br

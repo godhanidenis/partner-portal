@@ -8,16 +8,23 @@
 
     .user-content {
 
+
         .table-layout {
             padding: 15px;
         }
 
         .tab-header {
-            border-bottom: none;
+            border-bottom: 1px solid $border;
             font-size: 16px;
             font-weight: 700;
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
+
+            a {
+                color: $black;
+            }
         }
     }
 

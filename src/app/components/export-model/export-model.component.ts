@@ -1,3 +1,4 @@
+import { OrdersService } from 'src/app/shared/service/orders.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Filters } from 'src/app/pages/main/product/view-list-filter/view-list-filter.component';
@@ -32,7 +33,8 @@ export class ExportModelComponent implements OnInit {
     private message: NzMessageService,
     private inventoryService: InventoryService,
     private promotionsService: PromotionsService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private ordersService: OrdersService
   ) {}
   ngOnInit(): void {}
 
@@ -129,6 +131,44 @@ export class ExportModelComponent implements OnInit {
             );
           }
           this.handleCancel();
+          this.isLoading = false;
+        },
+        (err: any) => (this.isLoading = false)
+      );
+    } else if (this.sectionName === 'order') {
+      let filters: any = {};
+
+      filters['filter_po_list_type'] = this.exportType
+        ? this.listOfFilter?.filter_po_list_type
+        : '';
+      filters['filter_sku'] = this.exportType
+        ? this.listOfFilter?.filter_sku
+        : '';
+      filters['filter_ship_out_location'] = this.exportType
+        ? this.listOfFilter?.filter_ship_out_location
+        : '';
+      filters['filter_carrier'] = this.exportType
+        ? this.listOfFilter?.filter_carrier
+        : '';
+      filters['filter_committed_ship_date'] = this.exportType
+        ? this.listOfFilter?.filter_committed_ship_date
+        : '';
+      filters['filter_from_po_date'] = this.exportType
+        ? this.listOfFilter?.filter_from_po_date
+        : '';
+      filters['filter_to_po_date'] = this.exportType
+        ? this.listOfFilter?.filter_to_po_date
+        : '';
+      this.ordersService.exportOrders(filters).subscribe(
+        (response: any) => {
+          this.handleCancel();
+          console.log(response);
+          if (response.success) {
+            this.message.create(
+              'success',
+              'Export mail has been sent successfully!'
+            );
+          }
           this.isLoading = false;
         },
         (err: any) => (this.isLoading = false)

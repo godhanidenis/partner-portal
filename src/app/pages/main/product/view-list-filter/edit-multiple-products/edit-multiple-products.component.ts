@@ -118,7 +118,7 @@ export class EditMultipleProductsComponent implements OnInit {
       };
       this.productService.downloadTemplates(data).subscribe((res: any) => {
         if (res.success) {
-          this.message.create('success', 'download product successfully!');
+          this.message.create('success', 'Template Downloaded Successfully!');
           var objectUrl = res.template_url;
           var a = document.createElement('a');
           a.download = 'document';
@@ -143,7 +143,7 @@ export class EditMultipleProductsComponent implements OnInit {
     };
     this.productService.downloadTemplates(data).subscribe((res: any) => {
       if (res.success) {
-        this.message.create('success', 'download product successfully!');
+        this.message.create('success', 'Template Downloaded Successfully!');
         var objectUrl = res.template_url;
         var a = document.createElement('a');
         a.download = 'document';

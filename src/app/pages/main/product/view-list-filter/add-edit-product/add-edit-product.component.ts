@@ -48,6 +48,7 @@ export class AddEditProductComponent implements OnInit {
   sku: string = '';
   isVisible: boolean = false;
   referenceCode: string = '';
+  resReferenceCode: string = '';
 
   constructor(
     private router: Router,
@@ -363,6 +364,7 @@ export class AddEditProductComponent implements OnInit {
         (res: any) => {
           console.log(res);
           if (res.success) {
+            this.resReferenceCode = res?.reference_code;
             this.message.create('success', 'Edit product successfully!');
             this.backButton();
           }
@@ -394,6 +396,12 @@ export class AddEditProductComponent implements OnInit {
   }
 
   backButton() {
-    this.router.navigate([`/main/products`]);
+    if (this.editSection) {
+      this.router.navigateByUrl('/main/products', {
+        state: { code: this.resReferenceCode },
+      });
+    } else {
+      this.router.navigate([`/main/products`]);
+    }
   }
 }

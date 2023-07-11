@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { OrdersService } from 'src/app/shared/service/orders.service';
 
 @Component({
   selector: 'app-po-detail-page',
@@ -7,35 +9,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./po-detail-page.component.scss'],
 })
 export class PoDetailPageComponent implements OnInit {
-  total = 1;
-  pageSize = 50;
+  total = 0;
+  pageSize = 100;
   pageIndex = 1;
-  pageSizeOptions = [50, 100, 250, 500];
+  pageSizeOptions = [100];
+  poDetailData: any = '';
   isLoading: boolean = false;
-  orderSummary = {
-    shipByDate: 'IMMEDIATE',
-    shippingCarrier: 'EasyShip UPS',
-    shippingService: 'GROUND',
-    shippingTerms: 'Collect',
-    poDate: 'Monday, Apr 03,2023',
-    committedShipDate: 'Monday, Apr 03,2023',
-    cancelAfterDate: 'Monday, Apr 10,2023',
-  };
+  poNotExist: boolean = true;
+
   orderStatus = {
     status: 'Pending Shipment',
     action: 'Cancel Order',
     actions: 'Mark as shipped',
-  };
-
-  shipFrom = {
-    name: 'Panacea Product Corporation (ANT)',
-    address: '90 McMillen RD Antioch, IL 60002, US',
-    locationCode: 'WDK-LOC-001',
-  };
-  shipTo = {
-    name: 'Renee Stipa',
-    address: '129 SPRING OAK DR MALVERN, PA 19355-8739,US',
-    phone: '(646) 760-8776',
   };
   poDescriptionData = [
     {
@@ -60,10 +45,61 @@ export class PoDetailPageComponent implements OnInit {
   ];
   poNo: string = '';
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private ordersService: OrdersService,
+    private message: NzMessageService
+  ) {
+    this.isLoading = true;
     this.route.params.subscribe((params) => {
       this.poNo = params['poNo'];
     });
+    ordersService.getSingleOrder(this.poNo).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.isLoading = false;
+        if (res.success) {
+          this.poDetailData = res?.order;
+        } else {
+          this.poNotExist = res.success;
+        }
+      },
+      (err) => (this.isLoading = true)
+    );
   }
   ngOnInit(): void {}
+
+  downloadAction(type: string) {
+    switch (type) {
+      case 'Download PO':
+        this.ordersService.downloadPo(this.poNo).subscribe((res: any) => {
+          if (res.success) {
+            this.message.success('Download po successfully!');
+            window.open(res.label);
+          }
+        });
+        break;
+      case 'Download Shipping Labels':
+        this.ordersService.downloadLabel(this.poNo).subscribe((res: any) => {
+          if (res.success) {
+            this.message.success('Download label successfully!');
+            window.open(res.label);
+          }
+        });
+        break;
+      case 'PO Clarification':
+        const data = {
+          po_number: this.poNo,
+          clarification_message: 'Shipping Issue',
+          contact_via: 'Email',
+          user_email: 'sudip.das@123srores.com',
+        };
+        this.ordersService.clarificationOrders(data).subscribe((res: any) => {
+          if (res.success) {
+            this.message.success('PO clarification successfully!');
+          }
+        });
+        break;
+    }
+  }
 }

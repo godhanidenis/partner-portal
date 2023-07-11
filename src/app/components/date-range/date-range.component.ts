@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { endOfMonth } from 'date-fns';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-date-range',
@@ -9,6 +11,8 @@ import { endOfMonth } from 'date-fns';
 export class DateRangeComponent implements OnInit {
   @Output() modelChange = new EventEmitter();
   @Output() filterChange = new EventEmitter();
+  @Output() searchChange = new EventEmitter();
+  @Output() export = new EventEmitter();
   @Input() badgeTotal: number = 0;
   ranges = {
     Today: [new Date(), new Date()],
@@ -35,9 +39,25 @@ export class DateRangeComponent implements OnInit {
     ],
     // Custom: [],
   };
+  searchForm!: FormGroup;
+  accountSearch = new Subject<any>();
 
-  constructor() {}
-  ngOnInit(): void {}
+  constructor() {
+    this.accountSearch
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe((value: any) => {
+        this.searchChange.emit(value.target.value);
+      });
+  }
+  ngOnInit(): void {
+    this.searchForm = new FormGroup({
+      search: new FormControl(''),
+    });
+  }
+
+  exportData() {
+    this.export.emit();
+  }
 
   onChange(event: Date[]) {
     this.modelChange.emit(event);

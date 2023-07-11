@@ -1,13 +1,17 @@
 <div class="date-range-section">
-  <div class="date-range">
+  <!-- <div class="date-range">
     <nz-range-picker
       [nzRanges]="ranges"
       ngModel
       (ngModelChange)="onChange($event)"
     ></nz-range-picker>
-  </div>
+  </div> -->
   <div class="filter">
-    <nz-badge [nzShowZero]="false" [nzCount]="badgeTotal">
+    <nz-badge
+      style="margin-right: 10px"
+      [nzShowZero]="false"
+      [nzCount]="badgeTotal"
+    >
       <button
         (click)="onFilterChange()"
         nz-button
@@ -18,5 +22,28 @@
         Filter
       </button>
     </nz-badge>
+    <button
+      style="margin-right: 10px"
+      nz-button
+      nzType="primary"
+      nzShape="round"
+      (click)="exportData()"
+    >
+      <span nz-icon nzType="upload" nzTheme="outline"></span> Export
+    </button>
+    <form nz-form [formGroup]="searchForm">
+      <nz-form-item style="margin-bottom: 0 !important">
+        <nz-form-control nzErrorTip="Please input your valid code!">
+          <nz-input-group nzPrefixIcon="search" class="search">
+            <input
+              (keyup)="accountSearch.next($event)"
+              formControlName="search"
+              nz-input
+              placeholder="Search..."
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
   </div>
 </div>

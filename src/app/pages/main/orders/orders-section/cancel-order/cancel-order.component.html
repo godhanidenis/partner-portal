@@ -14,8 +14,20 @@
             <label nz-radio nzValue="D">Prize Error</label>
             <label nz-radio nzValue="E">Cannot Ship Group</label>
             <label nz-radio nzValue="F">Cannot Ship Before Cancel Data</label>
-            <label nz-radio nzValue="G">Other</label>
+            <label nz-radio nzValue="other">Other</label>
           </nz-radio-group>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="cancelOrderForm.controls['option'].value === 'other'">
+      <nz-form-control>
+        <nz-input-group>
+          <input
+            type="text"
+            formControlName="otherOption"
+            nz-input
+            placeholder="Enter Other"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>

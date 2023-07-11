@@ -15,6 +15,7 @@ export class FilterTagComponent implements OnInit {
   @Input() selectCarrier = '';
   @Input() selectDate = '';
   @Input() selectStatus = '';
+  @Input() selectRangeDate = '';
 
   constructor() {}
 

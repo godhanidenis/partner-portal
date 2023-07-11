@@ -16,6 +16,7 @@ export class CancelOrderComponent implements OnInit {
   ngOnInit(): void {
     this.cancelOrderForm = new FormGroup({
       option: new FormControl(''),
+      otherOption: new FormControl(''),
     });
   }
 

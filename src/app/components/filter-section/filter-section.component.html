@@ -81,7 +81,7 @@
             type="text"
             nz-input
             placeholder="Enter SKU"
-            (input)="changeValue(sku ? sku : '', 'sku')"
+            (keyup)="accountSearch.next($event)"
           />
         </nz-input-group>
       </nz-form-control>
@@ -135,6 +135,17 @@
         changeValue(committedShipDate ? $event : '', 'committedShipDate')
       "
     ></nz-date-picker>
+
+    <!-- Range Date -->
+    <nz-divider
+      style="margin-top: 20px"
+      nzText="Date"
+      nzOrientation="left"
+    ></nz-divider>
+    <nz-range-picker
+      [(ngModel)]="rangeDate"
+      (ngModelChange)="changeValue(rangeDate ? $event : '', 'rangeDate')"
+    ></nz-range-picker>
 
     <nz-divider
       *ngIf="

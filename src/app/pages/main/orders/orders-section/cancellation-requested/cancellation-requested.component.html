@@ -1,9 +1,10 @@
 <div #section class="cancellation-requested-section">
   <div class="body-section">
     <app-date-range
-      (modelChange)="onChange($event)"
+      (export)="isExportVisible = true"
       [badgeTotal]="badgeTotal"
       (filterChange)="openNav()"
+      (searchChange)="searchDataChanges($event)"
     ></app-date-range>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
@@ -12,6 +13,7 @@
         (tagRemove)="tagRemove()"
         [badgeTotal]="badgeTotal"
         [selectStatus]="selectStatus"
+        [selectRangeDate]="selectRangeDate"
       ></app-filter-tag>
     </div>
 
@@ -30,6 +32,25 @@
       (changeData)="change($event)"
       [status]="selectStatus"
       [tabName]="'cancellationRequested'"
+      [rangeDate]="selectRangeDate"
     ></app-filter-section>
   </div>
+  <nz-modal
+    [(nzVisible)]="isExportVisible"
+    nzTitle="Which order would you like to export?"
+    (nzOnCancel)="isExportVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-export-model
+        [exportType]="false"
+        [sectionName]="'order'"
+        [description]="
+          'Your order will be exported as a CSV file and sent to your email.'
+        "
+        [listOfFilter]="listOfFilter"
+        [noOfFilter]="total"
+        (close)="isExportVisible = false"
+      ></app-export-model>
+    </ng-container>
+  </nz-modal>
 </div>

@@ -28,6 +28,14 @@
     >{{ selectStatus }}</nz-tag
   >
 
+  <nz-tag
+    *ngIf="selectRangeDate"
+    nzMode="closeable"
+    (nzOnClose)="close('rangeDate')"
+    >{{ selectRangeDate[0] | date : "dd/MM/yyyy" }} To
+    {{ selectRangeDate[1] | date : "dd/MM/yyyy" }}</nz-tag
+  >
+
   <button
     *ngIf="badgeTotal >= 1"
     nz-button

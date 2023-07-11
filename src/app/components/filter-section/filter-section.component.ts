@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-filter-section',
@@ -9,6 +10,7 @@ export class FilterSectionComponent implements OnInit {
   @Output() closeNav = new EventEmitter();
   @Output() changeData = new EventEmitter();
 
+  @Input() rangeDate: string = '';
   @Input() shipOutLocation: string = '';
   @Input() sku: string = '';
   @Input() carrier: string = '';
@@ -16,8 +18,15 @@ export class FilterSectionComponent implements OnInit {
   @Input() status: string = '';
 
   @Input() tabName: string = '';
+  accountSearch = new Subject<any>();
 
-  constructor() {}
+  constructor() {
+    this.accountSearch
+      .pipe(debounceTime(400), distinctUntilChanged())
+      .subscribe((value: any) => {
+        this.changeValue(value.target.value ? value.target.value : '', 'sku');
+      });
+  }
   ngOnInit(): void {}
 
   closeSideBar() {

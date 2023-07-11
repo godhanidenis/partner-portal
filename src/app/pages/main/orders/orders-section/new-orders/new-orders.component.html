@@ -1,9 +1,10 @@
 <div #section class="new-order-section">
   <div class="body-section">
     <app-date-range
-      (modelChange)="onChange($event)"
+      (export)="isExportVisible = true"
       [badgeTotal]="badgeTotal"
       (filterChange)="openNav()"
+      (searchChange)="searchDataChanges($event)"
     ></app-date-range>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
@@ -15,6 +16,7 @@
         [selectSku]="selectSku"
         [selectCarrier]="selectCarrier"
         [selectDate]="selectDate"
+        [selectRangeDate]="selectRangeDate"
       ></app-filter-tag>
     </div>
 
@@ -25,7 +27,6 @@
       [pageIndex]="pageIndex"
       [isLoading]="isLoading"
       [tabName]="'new'"
-      (changeModel)="selectAction($event)"
     ></app-order-table>
   </div>
   <div #mySidenav class="filter-section">
@@ -36,19 +37,27 @@
       [sku]="selectSku"
       [carrier]="selectCarrier"
       [committedShipDate]="selectDate"
+      [rangeDate]="selectRangeDate"
       [tabName]="'new'"
     ></app-filter-section>
   </div>
-</div>
 
-<nz-modal
-  [(nzVisible)]="isCancelOrderVisible"
-  nzTitle="Cancel Order"
-  (nzOnCancel)="isCancelOrderVisible = false"
->
-  <ng-container *nzModalContent>
-    <app-cancel-order
-      (closeModel)="isCancelOrderVisible = false"
-    ></app-cancel-order>
-  </ng-container>
-</nz-modal>
+  <nz-modal
+    [(nzVisible)]="isExportVisible"
+    nzTitle="Which order would you like to export?"
+    (nzOnCancel)="isExportVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-export-model
+        [exportType]="false"
+        [sectionName]="'order'"
+        [description]="
+          'Your order will be exported as a CSV file and sent to your email.'
+        "
+        [listOfFilter]="listOfFilter"
+        [noOfFilter]="total"
+        (close)="isExportVisible = false"
+      ></app-export-model>
+    </ng-container>
+  </nz-modal>
+</div>

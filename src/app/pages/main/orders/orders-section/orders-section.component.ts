@@ -6,14 +6,15 @@ import { Router } from '@angular/router';
   templateUrl: './orders-section.component.html',
   styleUrls: ['./orders-section.component.scss'],
 })
-
 export class OrdersSectionComponent implements OnInit {
   selectedTab: number = 0;
 
-  constructor(private router:Router) {
+  constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
-    const state =navigation? navigation.extras.state as {index: number}:'';
-    this.selectedTab =state? state.index:0;
+    const state = navigation
+      ? (navigation.extras.state as { index: number })
+      : '';
+    this.selectedTab = state ? state.index : 0;
   }
 
   ngOnInit(): void {}

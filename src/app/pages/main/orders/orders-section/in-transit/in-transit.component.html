@@ -1,9 +1,10 @@
 <div #section class="in-transit-section">
   <div class="body-section">
     <app-date-range
-      (modelChange)="onChange($event)"
+      (export)="isExportVisible = true"
       [badgeTotal]="badgeTotal"
       (filterChange)="openNav()"
+      (searchChange)="searchDataChanges($event)"
     ></app-date-range>
 
     <div *ngIf="clear_btn && badgeTotal !== 0" class="tag-section">
@@ -14,6 +15,7 @@
         [selectSku]="selectSku"
         [selectCarrier]="selectCarrier"
         [selectStatus]="selectStatus"
+        [selectRangeDate]="selectRangeDate"
       ></app-filter-tag>
     </div>
 
@@ -34,7 +36,27 @@
       [sku]="selectSku"
       [carrier]="selectCarrier"
       [status]="selectStatus"
+      [rangeDate]="selectRangeDate"
       [tabName]="'inTransit'"
     ></app-filter-section>
   </div>
+
+  <nz-modal
+    [(nzVisible)]="isExportVisible"
+    nzTitle="Which order would you like to export?"
+    (nzOnCancel)="isExportVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-export-model
+        [exportType]="false"
+        [sectionName]="'order'"
+        [description]="
+          'Your order will be exported as a CSV file and sent to your email.'
+        "
+        [listOfFilter]="listOfFilter"
+        [noOfFilter]="total"
+        (close)="isExportVisible = false"
+      ></app-export-model>
+    </ng-container>
+  </nz-modal>
 </div>

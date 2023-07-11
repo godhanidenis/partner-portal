@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-show-reference-code',
@@ -9,6 +9,13 @@ export class ShowReferenceCodeComponent implements OnInit {
   @Input() isVisible: boolean = false;
   @Input() referenceCode: string = '';
 
+  @Output() close = new EventEmitter();
+
   constructor() {}
   ngOnInit(): void {}
+
+  submit() {
+    this.isVisible = false;
+    this.close.emit();
+  }
 }

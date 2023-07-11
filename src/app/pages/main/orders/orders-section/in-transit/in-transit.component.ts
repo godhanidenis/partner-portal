@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { endOfMonth } from 'date-fns';
 import { StatusEnum } from 'src/app/components/status-badge/status-badge.component';
+import { GetAllOrders } from 'src/app/shared/model/orders.model';
+import { OrdersService } from 'src/app/shared/service/orders.service';
 
 @Component({
   selector: 'app-in-transit',
@@ -12,58 +14,85 @@ export class InTransitComponent implements OnInit {
   @ViewChild('mySidenav', { static: false }) sidenavSection!: ElementRef;
 
   total = 1;
-  pageSize = 50;
+  pageSize = 100;
   pageIndex = 1;
   isLoading: boolean = false;
   mode = 'date';
-  inTransitData = [
-    {
-      id: 1,
-      poNumber: 'CLP 4031',
-      customerName: 'AB Kajaria',
-      address: 'Miami, Florida',
-      products: '89932',
-      quantity: 2,
-      poTotal: '125.05',
-      shippingDetails: {
-        name: 'Ekart Logistics',
-        number: 'AWB:SRTP5737737138',
-      },
-      status: 'Out for Delivery',
-    },
-    {
-      id: 2,
-      poNumber: 'CLP 4035',
-      customerName: 'Nidhi',
-      address: 'Miami, Florida',
-      products: '89932',
-      quantity: 2,
-      poTotal: '80.50',
-      shippingDetails: {
-        name: 'Ekart Logistics',
-        number: 'AWB:SRTP5737737138',
-      },
-      status: 'In-Transi',
-    },
-  ];
+  inTransitData: any[] = [];
   clear_btn: boolean = false;
 
   badgeTotal: number = 0;
   statusCount: number = 0;
   skuCount: number = 0;
   carrierCount: number = 0;
+  rangeDateCount: number = 0;
 
   selectStatus: string = '';
   selectSku: string = '';
   selectCarrier: string = '';
+  selectRangeDate: string = '';
+  search_term: string = '';
+
+  isExportVisible: boolean = false;
+  listOfFilter: any = '';
   statusEnum: typeof StatusEnum = StatusEnum;
 
-  constructor() {}
+  constructor(private ordersService: OrdersService) {
+    this.getOrderList(
+      this.pageIndex,
+      this.selectSku,
+      this.selectCarrier,
+      this.selectRangeDate[0],
+      this.selectRangeDate[1],
+      this.search_term
+    );
+  }
 
   ngOnInit(): void {}
 
-  onChange(result: Date[]): void {
-    console.log('From: ', result[0], ', to: ', result[1]);
+  getOrderList(
+    page: number,
+    sku?: string,
+    carrier?: string,
+    from_po_date?: string,
+    to_po_date?: string,
+    search_term?: string
+  ) {
+    this.isLoading = true;
+    this.ordersService
+      .getAllOrder({
+        page: page,
+        po_list_type: 'In Transit',
+        sku: sku,
+        carrier: carrier,
+        from_po_date: from_po_date,
+        to_po_date: to_po_date,
+        search_term: search_term,
+      })
+      .subscribe(
+        (response: GetAllOrders) => {
+          if (response.success) {
+            this.isLoading = false;
+            this.total = response?.pagination?.total_rows ?? 0;
+            this.inTransitData = response.orders ?? [];
+          } else {
+            this.isLoading = false;
+          }
+        },
+        (err) => (this.isLoading = true)
+      );
+  }
+
+  searchDataChanges(event: string) {
+    this.search_term = event;
+    this.getOrderList(
+      this.pageIndex,
+      this.selectSku,
+      this.selectCarrier,
+      this.selectRangeDate[0],
+      this.selectRangeDate[1],
+      this.search_term
+    );
   }
 
   openNav() {
@@ -114,7 +143,32 @@ export class InTransitComponent implements OnInit {
             }
           }
           break;
+        case 'rangeDate':
+          this.clear_btn = true;
+          this.selectRangeDate = data.value;
+          if (this.rangeDateCount === 0) {
+            this.rangeDateCount++;
+            this.badgeTotal++;
+          }
+          break;
       }
+      this.getOrderList(
+        this.pageIndex,
+        this.selectSku,
+        this.selectCarrier,
+        this.selectRangeDate[0],
+        this.selectRangeDate[1],
+        this.search_term
+      );
+      this.listOfFilter = {
+        filter_po_list_type: 'New',
+        filter_sku: this.selectSku,
+        filter_ship_out_location: '',
+        filter_carrier: this.selectCarrier,
+        filter_committed_ship_date: '',
+        filter_from_po_date: this.selectRangeDate[0],
+        filter_to_po_date: this.selectRangeDate[1],
+      };
     } else {
       if (this.badgeTotal > 0 && data.value !== null) {
         switch (data.type) {
@@ -133,7 +187,29 @@ export class InTransitComponent implements OnInit {
             this.carrierCount = 0;
             this.badgeTotal--;
             break;
+          case 'rangeDate':
+            this.selectRangeDate = '';
+            this.rangeDateCount = 0;
+            this.badgeTotal--;
+            break;
         }
+        this.getOrderList(
+          this.pageIndex,
+          this.selectSku,
+          this.selectCarrier,
+          this.selectRangeDate[0],
+          this.selectRangeDate[1],
+          this.search_term
+        );
+        this.listOfFilter = {
+          filter_po_list_type: 'New',
+          filter_sku: this.selectSku,
+          filter_ship_out_location: '',
+          filter_carrier: this.selectCarrier,
+          filter_committed_ship_date: '',
+          filter_from_po_date: this.selectRangeDate[0],
+          filter_to_po_date: this.selectRangeDate[1],
+        };
       }
     }
   }
@@ -142,13 +218,32 @@ export class InTransitComponent implements OnInit {
     this.selectStatus = '';
     this.selectSku = '';
     this.selectCarrier = '';
+    this.selectRangeDate = '';
 
     this.statusCount = 0;
     this.skuCount = 0;
     this.carrierCount = 0;
+    this.rangeDateCount = 0;
 
     this.badgeTotal = 0;
     this.clear_btn = false;
+    this.getOrderList(
+      this.pageIndex,
+      this.selectSku,
+      this.selectCarrier,
+      this.selectRangeDate[0],
+      this.selectRangeDate[1],
+      this.search_term
+    );
+    this.listOfFilter = {
+      filter_po_list_type: 'New',
+      filter_sku: this.selectSku,
+      filter_ship_out_location: '',
+      filter_carrier: this.selectCarrier,
+      filter_committed_ship_date: '',
+      filter_from_po_date: this.selectRangeDate[0],
+      filter_to_po_date: this.selectRangeDate[1],
+    };
   }
 
   close(type: string) {
@@ -169,7 +264,29 @@ export class InTransitComponent implements OnInit {
           this.carrierCount = 0;
           this.badgeTotal--;
           break;
+        case 'rangeDate':
+          this.selectRangeDate = '';
+          this.rangeDateCount = 0;
+          this.badgeTotal--;
+          break;
       }
+      this.getOrderList(
+        this.pageIndex,
+        this.selectSku,
+        this.selectCarrier,
+        this.selectRangeDate[0],
+        this.selectRangeDate[1],
+        this.search_term
+      );
+      this.listOfFilter = {
+        filter_po_list_type: 'New',
+        filter_sku: this.selectSku,
+        filter_ship_out_location: '',
+        filter_carrier: this.selectCarrier,
+        filter_committed_ship_date: '',
+        filter_from_po_date: this.selectRangeDate[0],
+        filter_to_po_date: this.selectRangeDate[1],
+      };
     }
   }
 }

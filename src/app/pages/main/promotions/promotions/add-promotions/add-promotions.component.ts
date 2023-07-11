@@ -42,11 +42,8 @@ export class AddPromotionsComponent implements OnInit {
     };
     this.promotionsService.promoTemplate(data).subscribe((res: any) => {
       if (res.success) {
-        this.message.create(
-          'success',
-          'Download promotion template successfully!'
-        );
-        var objectUrl = res.temlate_url;
+        this.message.create('success', 'Template Downloaded Successfully!');
+        var objectUrl = res.template_url;
         var a = document.createElement('a');
         a.download = 'document';
         a.href = objectUrl;

@@ -1,233 +1,285 @@
 <div class="po-detail-page">
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Order Details PO# {{ poNo }}</span>
-    </div>
-  </div>
-  <div
-    style="margin-top: 0; padding-top: 0"
-    class="section"
-    nz-row
-    [nzGutter]="16"
-  >
-    <div nz-col [nzXl]="12" [nzSm]="24">
-      <div class="card">
-        <div class="user-content">
-          <div class="tab-header">
-            <span>Order Summary</span>
-          </div>
-        </div>
-        <div class="sub-section">
-          <div class="sub-section-one">
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Ship By Date"
-                ><b>{{ orderSummary.shipByDate }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Shipping Carrier"
-                ><b>{{ orderSummary.shippingCarrier }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Shipping Service"
-                ><b>{{ orderSummary.shippingService }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Shipping Terms"
-                ><b>{{ orderSummary.shippingTerms }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-          </div>
-          <div class="sub-section-two">
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="PO Date"
-                ><b>{{ orderSummary.poDate }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Committed Ship Date"
-                ><b>{{ orderSummary.committedShipDate }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Cancel After Date"
-                ><b>{{ orderSummary.cancelAfterDate }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-          </div>
-        </div>
+  <nz-spin [nzSpinning]="isLoading">
+    <div class="user-content">
+      <div class="tab-header">
+        <span>Order Details PO# {{ poNo }}</span>
+        <a routerLink="/main/orders/order-section"
+          ><span nz-icon nzType="close" nzTheme="outline"></span
+        ></a>
       </div>
     </div>
-    <div nz-col [nzXl]="12" [nzSm]="24">
-      <div class="card">
-        <div class="user-content">
-          <div class="tab-header">
-            <span>Order Status</span>
-          </div>
-        </div>
-        <div class="sub-section">
-          <div class="sub-section-one">
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Status"
-                ><b>{{ orderStatus.status }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Action"
-                ><b>{{ orderStatus.action }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Action"
-                ><b>{{ orderStatus.actions }}</b>
-              </nz-descriptions-item>
-            </nz-descriptions>
-          </div>
-          <div class="sub-section-two">
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Download PO Copy"
-                ><a href="#" class="link">Click Hear</a>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="Download Shipping Labels"
-                ><a href="#" class="link">Click Hear</a>
-              </nz-descriptions-item>
-            </nz-descriptions>
-            <nz-descriptions>
-              <nz-descriptions-item nzTitle="PO Clarification"
-                ><a href="#" class="link">Click Hear</a>
-              </nz-descriptions-item>
-            </nz-descriptions>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section section-two" nz-row [nzGutter]="16">
-    <div nz-col [nzXl]="12" [nzSm]="24">
-      <div class="card">
-        <div class="user-content">
-          <div class="tab-header">
-            <span>Ship From</span>
-          </div>
-        </div>
-        <div class="sub-section">
-          <div class="sub-section-one">
-            <div>
-              <b>{{ shipFrom.name }}</b>
-            </div>
-            <div>
-              <b>{{ shipFrom.address }}</b>
-            </div>
-            <div>
-              <b>Location Code : {{ shipFrom.locationCode }}</b>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div nz-col [nzXl]="12" [nzSm]="24">
-      <div class="card">
-        <div class="user-content">
-          <div class="tab-header">
-            <span>Ship To</span>
-          </div>
-        </div>
-        <div class="sub-section">
-          <div class="sub-section-one">
-            <div class="sub-section-one">
-              <div>
-                <b>{{ shipTo.name }}</b>
-              </div>
-              <div>
-                <b>{{ shipTo.address }}</b>
-              </div>
-              <div>
-                <b>Phone : {{ shipTo.phone }}</b>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="user-content">
-    <div class="tab-header">
-      <span>Order Contents</span>
-    </div>
-  </div>
-  <div class="section" style="margin-top: 0; padding-top: 0">
-    <nz-table
-      #nzTable
-      nzShowSizeChanger
-      nzBordered
-      [nzPageSizeOptions]="pageSizeOptions"
-      [nzFrontPagination]="false"
-      [nzTotal]="total"
-      [nzPageSize]="pageSize"
-      [nzPageIndex]="pageIndex"
-      [nzLoading]="isLoading"
-      [nzData]="poDescriptionData"
+    <div
+      *ngIf="!poNotExist"
+      style="display: flex; justify-content: center; padding: 15px 0"
     >
-      <thead>
-        <tr>
-          <th>SI. NO.</th>
-          <th>Product Description</th>
-          <th>Qty</th>
-          <th>Unit Price</th>
-          <th>Unit Allowances</th>
-          <th>Unit Extended Price</th>
-          <th>Extended Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of nzTable.data; let i = index">
-          <td style="text-align: center">{{ i + 1 }}</td>
-          <td>
-            <div>
-              <b>MPN : {{ data.productDescription.mpn }}</b>
+      <nz-alert
+        style="width: 50%"
+        nzType="error"
+        nzMessage="No such PO exist"
+      ></nz-alert>
+    </div>
+    <div *ngIf="poNotExist">
+      <div
+        style="margin-top: 0; padding-top: 0"
+        class="section"
+        nz-row
+        [nzGutter]="16"
+      >
+        <div nz-col [nzXl]="12" [nzSm]="24">
+          <div class="card">
+            <div class="user-content">
+              <div class="tab-header">
+                <span>Order Summary</span>
+              </div>
             </div>
-            <div>Description : {{ data.productDescription.description }}</div>
-            <div>UPC : {{ data.productDescription.upc }}</div>
-            <div>Brand : {{ data.productDescription.brand }}</div>
-            <div>ASIN : {{ data?.productDescription?.asin }}</div>
-            <div>
-              Total No Of Box : {{ data?.productDescription?.totalNoOfBox }}
+            <div class="sub-section">
+              <div class="sub-section-one">
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Ship By Date"
+                    ><b>{{ poDetailData?.order_summary?.ship_by_date }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Shipping Carrier"
+                    ><b>{{ poDetailData?.order_summary?.shipping_carrier }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Shipping Service"
+                    ><b>{{ poDetailData?.order_summary?.shipping_service }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Shipping Terms"
+                    ><b>{{ poDetailData?.order_summary?.shipping_terms }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+              </div>
+              <div class="sub-section-two">
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="PO Date"
+                    ><b>{{
+                      poDetailData?.order_summary?.po_date
+                        | date : "yyyy-MM-dd hh:MM"
+                    }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Committed Ship Date"
+                    ><b>{{
+                      poDetailData?.order_summary?.committed_ship_date
+                    }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Cancel After Date"
+                    ><b>{{ poDetailData?.order_summary?.cancel_after_date }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+              </div>
             </div>
-            <div>Unit : {{ data?.productDescription?.unit }}</div>
-            <div>
-              Shipping Dims : {{ data?.productDescription?.shippingDims }}
+          </div>
+        </div>
+        <div nz-col [nzXl]="12" [nzSm]="24">
+          <div class="card">
+            <div class="user-content">
+              <div class="tab-header">
+                <span>Order Status</span>
+              </div>
             </div>
-            <div>Tracking No : {{ data?.productDescription?.trackingNo }}</div>
-          </td>
-          <td style="text-align: center">{{ data?.qty }}</td>
-          <td style="text-align: center">{{ data?.unitPrice | currency }}</td>
-          <td style="text-align: center">
-            {{ data?.unitAllowances | currency }}
-          </td>
-          <td style="text-align: center">
-            {{ data?.unitExtendedPrice | currency }}
-          </td>
-          <td style="text-align: center">
-            {{ data?.extendedTotal | currency }}
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4"></td>
-          <td colspan="2" style="text-align: end">Sub Total</td>
-          <td style="text-align: center">{{ 64.06 | currency }}</td>
-        </tr>
-        <tr>
-          <td colspan="4"></td>
-          <td colspan="2" style="text-align: end"><b>PO Total</b></td>
-          <td style="text-align: center">{{ 64.06 | currency }}</td>
-        </tr>
-      </tbody>
-    </nz-table>
-  </div>
+            <div class="sub-section">
+              <div class="sub-section-one">
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Status"
+                    ><b>{{ poDetailData?.order_status?.status }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <!-- <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Action"
+                    ><b>{{ orderStatus.action }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Action"
+                    ><b>{{ orderStatus.actions }}</b>
+                  </nz-descriptions-item>
+                </nz-descriptions> -->
+              </div>
+              <div class="sub-section-two">
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Download PO Copy"
+                    ><a class="link" (click)="downloadAction('Download PO')"
+                      >Click Hear</a
+                    >
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="Download Shipping Labels"
+                    ><a
+                      class="link"
+                      (click)="downloadAction('Download Shipping Labels')"
+                      >Click Hear</a
+                    >
+                  </nz-descriptions-item>
+                </nz-descriptions>
+                <nz-descriptions>
+                  <nz-descriptions-item nzTitle="PO Clarification"
+                    ><a
+                      class="link"
+                      (click)="downloadAction('PO Clarification')"
+                      >Click Hear</a
+                    >
+                  </nz-descriptions-item>
+                </nz-descriptions>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section-two" nz-row [nzGutter]="16">
+        <div nz-col [nzXl]="12" [nzSm]="24">
+          <div class="card">
+            <div class="user-content">
+              <div class="tab-header">
+                <span>Ship From</span>
+              </div>
+            </div>
+            <div class="sub-section">
+              <div class="sub-section-one">
+                <div>
+                  <b>{{ poDetailData?.ship_from?.company_name }}</b>
+                </div>
+                <div>
+                  <b
+                    >{{
+                      poDetailData?.ship_from?.address_line1 ??
+                        poDetailData?.ship_from?.address_line2
+                    }}, {{ poDetailData?.ship_from?.city }},
+                    {{ poDetailData?.ship_from?.state_code }}
+                    {{ poDetailData?.ship_from?.postal_code }},
+                    {{ poDetailData?.ship_from?.country_code }}
+                  </b>
+                </div>
+                <div>
+                  <b
+                    >Location Code :
+                    {{ poDetailData?.ship_from?.location_code }}</b
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div nz-col [nzXl]="12" [nzSm]="24">
+          <div class="card">
+            <div class="user-content">
+              <div class="tab-header">
+                <span>Ship To</span>
+              </div>
+            </div>
+            <div class="sub-section">
+              <div class="sub-section-one">
+                <div class="sub-section-one">
+                  <div>
+                    <b>{{ poDetailData?.ship_to?.name }}</b>
+                  </div>
+                  <div>
+                    <b
+                      >{{ poDetailData?.ship_to?.address_line1 }},
+                      {{ poDetailData?.ship_to?.city }},
+                      {{ poDetailData?.ship_to?.state_code }}
+                      {{ poDetailData?.ship_to?.postal_code }},
+                      {{ poDetailData?.ship_to?.country_code }}
+                    </b>
+                  </div>
+                  <div>
+                    <b>Phone : {{ poDetailData?.ship_to?.phone }}</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-content">
+        <div class="tab-header">
+          <span>Order Contents</span>
+        </div>
+      </div>
+      <div class="section" style="margin-top: 0; padding-top: 0">
+        <nz-table
+          #nzTable
+          nzShowSizeChanger
+          nzBordered
+          [nzPageSizeOptions]="poDetailData.order_item"
+          [nzFrontPagination]="false"
+          [nzTotal]="total"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex"
+          [nzLoading]="isLoading"
+          [nzData]="poDescriptionData"
+        >
+          <thead>
+            <tr>
+              <th>SI. NO.</th>
+              <th>Product Description</th>
+              <th>Qty</th>
+              <th>Unit Price</th>
+              <th>Unit Allowances</th>
+              <th>Unit Extended Price</th>
+              <th>Extended Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of poDetailData.order_item; let i = index">
+              <td style="text-align: center">{{ i + 1 }}</td>
+              <td>
+                <div>
+                  <b>MPN : {{ data?.mpn }}</b>
+                </div>
+                <div>Description : {{ data?.description }}</div>
+                <div>UPC : {{ data?.upc }}</div>
+                <div>Brand : {{ data?.brand }}</div>
+                <div>ASIN : {{ data?.asin }}</div>
+                <div>Total No Of Box : {{ data?.number_of_boxes }}</div>
+                <div>Unit : {{ data?.unit }}</div>
+                <div>
+                  Shipping Dims : {{ data?.shipping_dimensions[0].height }} X
+                  {{ data?.shipping_dimensions[0].length }} X
+                  {{ data?.shipping_dimensions[0].weight }} X
+                  {{ data?.shipping_dimensions[0].width }}
+                </div>
+                <div>Tracking No : {{ data.trackingNo }}</div>
+              </td>
+              <td style="text-align: center">{{ data?.qty }}</td>
+              <td style="text-align: center">
+                {{ data?.unit_price | currency }}
+              </td>
+              <td style="text-align: center">
+                {{ data?.unitAllowances | currency }}
+              </td>
+              <td style="text-align: center">
+                {{ data?.unitExtendedPrice | currency }}
+              </td>
+              <td style="text-align: center">
+                {{ data?.extendedTotal | currency }}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4"></td>
+              <td colspan="2" style="text-align: end">Sub Total</td>
+              <td style="text-align: center">{{ 64.06 | currency }}</td>
+            </tr>
+            <tr>
+              <td colspan="4"></td>
+              <td colspan="2" style="text-align: end"><b>PO Total</b></td>
+              <td style="text-align: center">{{ 64.06 | currency }}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </nz-spin>
 </div>

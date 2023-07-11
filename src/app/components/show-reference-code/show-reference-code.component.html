@@ -3,12 +3,10 @@
     <nz-result
       nzStatus="success"
       [nzTitle]="'Reference Code : ' + referenceCode"
-      [nzSubTitle]="'Edit multiple product successfully'"
+      [nzSubTitle]="'Edit multiple product successfully initiated.'"
     >
       <div nz-result-extra>
-        <button nz-button nzType="primary" (click)="isVisible = false">
-          OK
-        </button>
+        <button nz-button nzType="primary" (click)="submit()">OK</button>
       </div>
     </nz-result>
   </ng-container>

@@ -15,7 +15,6 @@
     <app-home-filter-action
       [badgeTotal]="badgeTotal"
       [issueName]="'1'"
-      [totalRecord]="total"
       [code]="code"
       (search)="searchValue($event)"
     ></app-home-filter-action>
@@ -45,6 +44,7 @@
       [nzPageSizeOptions]="pageSizeOptions"
       [nzFrontPagination]="false"
       [nzTotal]="total"
+      [nzShowTotal]="totalTemplate"
       [nzPageSize]="pageSize"
       [nzPageIndex]="pageIndex"
       [nzLoading]="isLoading"
@@ -113,6 +113,9 @@
         </tr>
       </tbody>
     </nz-table>
+    <ng-template #totalTemplate let-total
+      >Total <b>{{ total }}</b> items</ng-template
+    >
 
     <!-- <div #mySidenav class="filter-section">
       <app-home-filter-section

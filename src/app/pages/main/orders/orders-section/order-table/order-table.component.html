@@ -5,6 +5,7 @@
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
     [nzTotal]="total"
+    [nzShowTotal]="totalTemplate"
     [nzPageSize]="pageSize"
     [nzPageIndex]="pageIndex"
     [nzLoading]="isLoading"
@@ -72,22 +73,24 @@
         <td>
           <div style="display: flex; flex-direction: column">
             <span>
-              <a [routerLink]="'po-details/' + data?.poNumber" class="link">{{
-                data.poNumber
+              <a [routerLink]="'po-details/' + data?.po_no" class="link">{{
+                data.po_no
               }}</a>
             </span>
-            <span class="sub-date"> 05-11-2023 | 04:52 PM </span>
-            <span class="sub-date"> EDI </span>
+            <span class="sub-date">
+              {{ data?.po_date | date : "dd-MM-yyyy hh:MM a" }}
+            </span>
+            <span class="sub-date"> {{ data?.po_method }} </span>
           </div>
         </td>
         <td>
           <div style="display: flex; flex-direction: column">
-            <div>{{ data.customerName }}</div>
-            <div>{{ data.address }}</div>
+            <div>{{ data.customer_name }}</div>
+            <div>{{ data?.customer_city }}</div>
           </div>
         </td>
         <td>
-          {{ data.products }}
+          {{ data.mpn }}
           <ul class="sub-section">
             <li class="no-wrap">
               <div class="sub-val">
@@ -97,7 +100,7 @@
             </li>
           </ul>
         </td>
-        <td>{{ data.poTotal | currency }}</td>
+        <td>{{ data.po_total | currency }}</td>
         <td
           *ngIf="
             tabName === 'new' ||
@@ -105,7 +108,7 @@
             tabName === 'Cancellation Requested'
           "
         >
-          {{ data.committedShip }}
+          {{ data.committed_ship_date | date : "dd-MM-yyyy" }}
         </td>
         <td
           *ngIf="
@@ -114,7 +117,7 @@
             tabName === 'Cancellation Requested'
           "
         >
-          {{ data.afterDate }}
+          {{ data.cancel_after_date | date : "dd-MM-yyyy" }}
         </td>
         <td
           *ngIf="
@@ -132,6 +135,7 @@
               class="action-button"
               nz-button
               nzType="primary"
+              (click)="markOrderShipped(data?.po_no)"
             >
               Mark as shipped
             </button>
@@ -140,19 +144,29 @@
               class="action-button"
               nz-button
               nzType="primary"
+              (click)="acknowledgeOrders(data?.po_no)"
             >
               Acknowledge
             </button>
             <app-three-dot-menu-btn [menu]="menu"></app-three-dot-menu-btn>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu>
-                <li (click)="selectAction('Download PO')" nz-menu-item>
+                <li
+                  (click)="selectAction(data?.po_no, 'Download PO')"
+                  nz-menu-item
+                >
                   Download PO
                 </li>
-                <li (click)="selectAction('Download Label')" nz-menu-item>
+                <li
+                  (click)="selectAction(data?.po_no, 'Download Label')"
+                  nz-menu-item
+                >
                   Download Label
                 </li>
-                <li (click)="selectAction('Cancel Order')" nz-menu-item>
+                <li
+                  (click)="selectAction(data?.po_no, 'Cancel Order')"
+                  nz-menu-item
+                >
                   Cancel Order
                 </li>
               </ul>
@@ -162,10 +176,20 @@
             *ngIf="tabName === 'Cancellation Requested'"
             style="display: flex; align-items: center"
           >
-            <button class="action-button" nz-button nzType="primary">
+            <button
+              class="action-button"
+              nz-button
+              nzType="primary"
+              (click)="acceptCancellation(data?.po_no)"
+            >
               Accept
             </button>
-            <button class="action-button" nz-button nzType="primary">
+            <button
+              class="action-button"
+              nz-button
+              nzType="primary"
+              (click)="markOrderShipped(data?.po_no)"
+            >
               Already Shipped
             </button>
           </div>
@@ -179,12 +203,12 @@
           "
         >
           <div>
-            <b class="no-wrap">{{ data.shippingDetails.name }}</b>
+            <b class="no-wrap">{{ data?.shippingDetails?.name }}</b>
           </div>
           <ul class="sub-section">
             <li class="no-wrap">
               <div class="sub-val">
-                {{ data.shippingDetails.number }}
+                {{ data?.shippingDetails?.number }}
               </div>
             </li>
           </ul>
@@ -198,10 +222,25 @@
         >
           <app-status-badge
             [type]="statusEnum.Success"
-            [text]="data?.status"
+            [text]="data?.customer_state"
           ></app-status-badge>
         </td>
       </tr>
     </tbody>
   </nz-table>
+  <ng-template #totalTemplate let-total
+    >Total <b>{{ total }}</b> items</ng-template
+  >
+
+  <nz-modal
+    [(nzVisible)]="isCancelOrderVisible"
+    nzTitle="Cancel Order"
+    (nzOnCancel)="isCancelOrderVisible = false"
+  >
+    <ng-container *nzModalContent>
+      <app-cancel-order
+        (closeModel)="isCancelOrderVisible = false"
+      ></app-cancel-order>
+    </ng-container>
+  </nz-modal>
 </div>

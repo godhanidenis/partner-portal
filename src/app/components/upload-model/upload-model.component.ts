@@ -47,11 +47,11 @@ export class UploadModelComponent implements OnInit {
           if (res.success) {
             this.message.create('success', 'Inventory upload successfully!');
           }
-          this.handleCancel();
+          this.handleCancel(res?.feed_code);
           this.isLoading = false;
         },
         (err) => {
-          this.handleCancel();
+          this.handleCancel('');
           this.isLoading = false;
         }
       );
@@ -60,7 +60,7 @@ export class UploadModelComponent implements OnInit {
     }
   }
 
-  handleCancel() {
-    this.closeModel.emit();
+  handleCancel(feed_code: string) {
+    this.closeModel.emit(feed_code);
   }
 }

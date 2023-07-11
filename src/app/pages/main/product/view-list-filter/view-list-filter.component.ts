@@ -93,6 +93,14 @@ export class ViewListFilterComponent implements OnInit {
     private message: NzMessageService,
     private userPermissionService: UserPermissionService
   ) {
+    const { code } = window.history.state;
+
+    if (code) {
+      this.closeMultiProduct(code);
+      window.history.replaceState('', 'code', '/main/products');
+      console.log(window.history.state);
+    }
+
     userPermissionService.userPermission.subscribe((permission: any) => {
       this.userPermissions = permission;
     });
@@ -394,10 +402,7 @@ export class ViewListFilterComponent implements OnInit {
           break;
 
         case 'inventory':
-          if (
-            value == 'In Stock' ||
-            value == 'Out of Stock'
-          ) {
+          if (value == 'In Stock' || value == 'Out of Stock') {
             this.clear_btn = true;
             this.inventory = value;
             if (this.stock == 0) {

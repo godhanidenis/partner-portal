@@ -9,4 +9,23 @@
             margin-top: 10px;
         }
     }
+
+    ::ng-deep .ant-input {
+        border-radius: 5px !important;
+    }
+
+    ::ng-deep .ant-form-item {
+        margin-bottom: 0px;
+        // padding: 5px;
+    }
+
+    nz-input-group {
+        margin-top: 10px;
+        border-radius: 5px;
+
+        input {
+            height: 40px;
+            font-size: 16px;
+        }
+    }
 }

@@ -19,9 +19,6 @@
 
   <div class="body-section">
     <div class="button-group">
-      <h3 style="display: flex; align-items: center; margin-bottom: 0">
-        <span><b>Total Record : </b>{{ total }}</span>
-      </h3>
       <div style="display: flex">
         <nz-badge
           style="margin-right: 10px"
@@ -108,6 +105,7 @@
       [nzPageSizeOptions]="pageSizeOptions"
       [nzFrontPagination]="false"
       [nzTotal]="total"
+      [nzShowTotal]="totalTemplate"
       [nzPageSize]="pageSize"
       [nzPageIndex]="pageIndex"
       [nzLoading]="isLoading"
@@ -160,6 +158,9 @@
         </ng-template>
       </tbody>
     </nz-table>
+    <ng-template #totalTemplate let-total
+      >Total <b>{{ total }}</b> items</ng-template
+    >
   </div>
 </div>
 
@@ -216,7 +217,7 @@
   <ng-container *nzModalContent>
     <app-upload-model
       [sectionType]="'inventory'"
-      (closeModel)="handleCancel('download')"
+      (closeModel)="closeMultiProduct($event)"
     ></app-upload-model>
   </ng-container>
 </nz-modal>
@@ -239,3 +240,8 @@
     ></app-export-model>
   </ng-container>
 </nz-modal>
+
+<app-show-reference-code
+  [isVisible]="isVisible"
+  [referenceCode]="referenceCode"
+></app-show-reference-code>

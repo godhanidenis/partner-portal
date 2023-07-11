@@ -1,8 +1,5 @@
 <div class="promotion-table">
   <div class="action">
-    <h3 style="display: flex; align-items: center; margin-bottom: 0">
-      <span><b>Total Record : </b>{{ total }}</span>
-    </h3>
     <div style="display: flex">
       <nz-badge
         style="margin-right: 10px"
@@ -75,6 +72,7 @@
     [nzPageSizeOptions]="pageSizeOptions"
     [nzFrontPagination]="false"
     [nzTotal]="total"
+    [nzShowTotal]="totalTemplate"
     [nzPageSize]="pageSize"
     [nzPageIndex]="pageIndex"
     [nzLoading]="isLoading"
@@ -182,6 +180,10 @@
       </ng-template>
     </tbody>
   </nz-table>
+  <ng-template #totalTemplate let-total
+    >Total <b>{{ total }}</b> items</ng-template
+  >
+
   <div #mySidenav class="filter-section">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()"
       >&times;</a
@@ -205,11 +207,31 @@
           (ngModelChange)="change(filter.value.status ? $event : '', 'status')"
           formControlName="status"
         >
-          <nz-option nzLabel="Scheduled" nzValue="Scheduled"></nz-option>
-          <nz-option nzLabel="Running" nzValue="running"></nz-option>
-          <nz-option nzLabel="Completed" nzValue="Completed"></nz-option>
-          <nz-option nzLabel="Canceled" nzValue="Canceled"></nz-option>
-          <nz-option nzLabel="Stopped" nzValue="Stopped"></nz-option>
+          <nz-option
+            *ngIf="tabName === 'Scheduled Promotions'"
+            nzLabel="Scheduled"
+            nzValue="Scheduled"
+          ></nz-option>
+          <nz-option
+            *ngIf="tabName === 'Scheduled Promotions'"
+            nzLabel="Running"
+            nzValue="running"
+          ></nz-option>
+          <nz-option
+            *ngIf="tabName !== 'Scheduled Promotions'"
+            nzLabel="Completed"
+            nzValue="Completed"
+          ></nz-option>
+          <nz-option
+            *ngIf="tabName !== 'Scheduled Promotions'"
+            nzLabel="Canceled"
+            nzValue="Canceled"
+          ></nz-option>
+          <nz-option
+            *ngIf="tabName !== 'Scheduled Promotions'"
+            nzLabel="Stopped"
+            nzValue="Stopped"
+          ></nz-option>
         </nz-select>
       </div>
     </form>

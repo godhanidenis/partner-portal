@@ -27,9 +27,6 @@
 
     <div class="view-edit-products-section-content">
       <div class="action">
-        <h3 style="display: flex; align-items: center; margin-bottom: 0">
-          <span><b>Total Record : </b>{{ total }}</span>
-        </h3>
         <div style="display: flex">
           <nz-badge
             style="margin-right: 10px"
@@ -142,6 +139,7 @@
         [nzPageSizeOptions]="pageSizeOptions"
         [nzFrontPagination]="false"
         [nzTotal]="total"
+        [nzShowTotal]="totalTemplate"
         [nzPageSize]="pageSize"
         [nzPageIndex]="pageIndex"
         [nzLoading]="isLoading"
@@ -215,6 +213,9 @@
           </tr>
         </tbody>
       </nz-table>
+      <ng-template #totalTemplate let-total
+        >Total <b>{{ total }}</b> items</ng-template
+      >
     </div>
   </div>
 
@@ -385,6 +386,7 @@
   </nz-modal>
 
   <app-show-reference-code
+    (close)="isVisible = false"
     [isVisible]="isVisible"
     [referenceCode]="referenceCode"
   ></app-show-reference-code>
