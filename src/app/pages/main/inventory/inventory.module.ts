@@ -10,6 +10,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderProcessingModule } from '../profile/order-processing/order-processing.module';
 import { ComponentModule } from 'src/app/components/component.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [InventoryListComponent, ViewInventoryComponent],
@@ -23,6 +24,7 @@ import { ComponentModule } from 'src/app/components/component.module';
     FormsModule,
     OrderProcessingModule,
     ComponentModule,
+    SharedModule,
   ],
 })
 export class InventoryModule {}
