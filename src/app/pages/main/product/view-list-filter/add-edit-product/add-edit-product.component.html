@@ -428,7 +428,6 @@
                   nzPlaceHolder="Select Product Status"
                 >
                   <nz-option nzLabel="Active" nzValue="Active"></nz-option>
-                  <nz-option nzLabel="LTL" nzValue="LTL"></nz-option>
                   <nz-option
                     nzLabel="Discontinued"
                     nzValue="Discontinued"
@@ -437,14 +436,44 @@
                     nzLabel="Restricted"
                     nzValue="Restricted"
                   ></nz-option>
-                  <nz-option
-                    nzLabel="Suppressed"
-                    nzValue="Suppressed"
-                  ></nz-option>
                 </nz-select>
                 <ng-template #product_status let-control>
                   <ng-container *ngIf="control.hasError('required')"
                     >Please input your product status!</ng-container
+                  >
+                </ng-template>
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item
+            *ngIf="
+              addEditProductForm.controls['product_status'].value ===
+              'Restricted'
+            "
+            nz-col
+            class="gutter-row"
+            [nzSm]="24"
+            [nzXl]="12"
+          >
+            <nz-form-control [nzErrorTip]="restricted_reason">
+              <nz-form-label nzFor="restricted_reason"
+                >Restricted Reason
+              </nz-form-label>
+              <nz-input-group>
+                <nz-select
+                  nzAllowClear
+                  formControlName="restricted_reason"
+                  nzPlaceHolder="Select Product Status"
+                >
+                  <nz-option
+                    *ngFor="let item of restrictedReasonList"
+                    [nzLabel]="item"
+                    [nzValue]="item"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #restricted_reason let-control>
+                  <ng-container *ngIf="control.hasError('required')"
+                    >Please input your restricted reason!</ng-container
                   >
                 </ng-template>
               </nz-input-group>

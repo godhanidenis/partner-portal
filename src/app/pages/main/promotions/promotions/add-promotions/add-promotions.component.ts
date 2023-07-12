@@ -1,4 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { formatDate } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  LOCALE_ID,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { PromoTemplate } from 'src/app/shared/model/promotion.model';
@@ -17,7 +25,8 @@ export class AddPromotionsComponent implements OnInit {
 
   constructor(
     private promotionsService: PromotionsService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    @Inject(LOCALE_ID) public locale: string
   ) {}
   ngOnInit(): void {
     this.add_promotion = new FormGroup({
@@ -59,8 +68,23 @@ export class AddPromotionsComponent implements OnInit {
       formData.append(
         'start_date',
         this.add_promotion.value.startAndEndDate[0]
+          ? formatDate(
+              this.add_promotion.value.startAndEndDate[0],
+              'yyyy-MM-dd',
+              this.locale
+            )
+          : ''
       );
-      formData.append('end_date', this.add_promotion.value.startAndEndDate[1]);
+      formData.append(
+        'end_date',
+        this.add_promotion.value.startAndEndDate[1]
+          ? formatDate(
+              this.add_promotion.value.startAndEndDate[1],
+              'yyyy-MM-dd',
+              this.locale
+            )
+          : ''
+      );
       formData.append('uploaded_file', this.selectFile);
 
       this.promotionsService.createPromotion(formData).subscribe(

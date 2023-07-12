@@ -1,5 +1,13 @@
 import { OrdersService } from 'src/app/shared/service/orders.service';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  Inject,
+  LOCALE_ID,
+} from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Filters } from 'src/app/pages/main/product/view-list-filter/view-list-filter.component';
 import {
@@ -9,6 +17,7 @@ import {
 import { InventoryService } from 'src/app/shared/service/inventory.service';
 import { ProductService } from 'src/app/shared/service/product.service';
 import { PromotionsService } from 'src/app/shared/service/promotions.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-export-model',
@@ -34,7 +43,8 @@ export class ExportModelComponent implements OnInit {
     private inventoryService: InventoryService,
     private promotionsService: PromotionsService,
     private dashboardService: DashboardService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    @Inject(LOCALE_ID) public locale: string
   ) {}
   ngOnInit(): void {}
 
@@ -84,11 +94,17 @@ export class ExportModelComponent implements OnInit {
     } else if (this.sectionName === 'inventory') {
       let filters: any = {};
       filters['filter_start_date'] = this.exportType
-        ? this.listOfFilter?.filter_start_date
+        ? formatDate(
+            this.listOfFilter?.filter_start_date,
+            'yyyy-MM-dd',
+            this.locale
+          )
         : '';
-      filters['filter_end_date'] = this.exportType
-        ? this.listOfFilter?.filter_end_date
-        : '';
+      filters['filter_end_date'] = formatDate(
+        this.exportType ? this.listOfFilter?.filter_end_date : '',
+        'yyyy-MM-dd',
+        this.locale
+      );
       filters['filter_inventory_method'] = this.exportType
         ? this.listOfFilter?.filter_inventory_method
         : '';
@@ -116,10 +132,10 @@ export class ExportModelComponent implements OnInit {
         ? this.listOfFilter?.promo_status
         : '';
       filters['filter_start_date'] = this.exportType
-        ? this.listOfFilter?.start_date
+        ? formatDate(this.listOfFilter?.start_date, 'yyyy-MM-dd', this.locale)
         : '';
       filters['filter_end_date'] = this.exportType
-        ? this.listOfFilter?.end_date
+        ? formatDate(this.listOfFilter?.end_date, 'yyyy-MM-dd', this.locale)
         : '';
       this.promotionsService.exportPromo(filters).subscribe(
         (response: any) => {
@@ -151,13 +167,25 @@ export class ExportModelComponent implements OnInit {
         ? this.listOfFilter?.filter_carrier
         : '';
       filters['filter_committed_ship_date'] = this.exportType
-        ? this.listOfFilter?.filter_committed_ship_date
+        ? formatDate(
+            this.listOfFilter?.filter_committed_ship_date,
+            'yyyy-MM-dd',
+            this.locale
+          )
         : '';
       filters['filter_from_po_date'] = this.exportType
-        ? this.listOfFilter?.filter_from_po_date
+        ? formatDate(
+            this.listOfFilter?.filter_from_po_date,
+            'yyyy-MM-dd',
+            this.locale
+          )
         : '';
       filters['filter_to_po_date'] = this.exportType
-        ? this.listOfFilter?.filter_to_po_date
+        ? formatDate(
+            this.listOfFilter?.filter_to_po_date,
+            'yyyy-MM-dd',
+            this.locale
+          )
         : '';
       this.ordersService.exportOrders(filters).subscribe(
         (response: any) => {

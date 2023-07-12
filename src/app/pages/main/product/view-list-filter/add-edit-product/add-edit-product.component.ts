@@ -49,6 +49,15 @@ export class AddEditProductComponent implements OnInit {
   isVisible: boolean = false;
   referenceCode: string = '';
   resReferenceCode: string = '';
+  restrictedReasonList: string[] = [
+    'Component / Part',
+    'Exclusive with another retailer',
+    'Not to be sold on Amazon',
+    'Not Available for DropShip',
+    'Custom Product',
+    'Partner is not the Brand Owner',
+    'Other Reason',
+  ];
 
   constructor(
     private router: Router,
@@ -115,6 +124,7 @@ export class AddEditProductComponent implements OnInit {
         Validators.max(10),
       ]),
       product_status: new FormControl('active'),
+      restricted_reason: new FormControl(''),
       shipping_dimensions_of_box: this.formBuilder.array([]),
     });
     this.userPermissionService.userPermission.subscribe((permission: any) => {

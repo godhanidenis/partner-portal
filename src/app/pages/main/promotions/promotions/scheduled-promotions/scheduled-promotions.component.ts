@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
@@ -33,7 +34,8 @@ export class ScheduledPromotionsComponent implements OnInit {
 
   constructor(
     private promotionsService: PromotionsService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    @Inject(LOCALE_ID) public locale: string
   ) {
     this.getAllScheduledPromotions(
       this.pageIndex,
@@ -143,11 +145,27 @@ export class ScheduledPromotionsComponent implements OnInit {
       promo_code: this.promoCode,
     };
     if (this.startDate) {
-      data['start_date'] = new Date(this.startDate);
-      data['end_date'] = this.addDateForm.value.endDate;
+      data['start_date'] = this.startDate
+        ? formatDate(new Date(this.startDate), 'yyyy-MM-dd', this.locale)
+        : '';
+      data['end_date'] = this.addDateForm.value.endDate
+        ? formatDate(this.addDateForm.value.endDate, 'yyyy-MM-dd', this.locale)
+        : '';
     } else {
-      data['start_date'] = this.addDateForm.value.startAndEndDate[0];
-      data['end_date'] = this.addDateForm.value.startAndEndDate[1];
+      data['start_date'] = this.addDateForm.value.startAndEndDate[0]
+        ? formatDate(
+            this.addDateForm.value.startAndEndDate[0],
+            'yyyy-MM-dd',
+            this.locale
+          )
+        : '';
+      data['end_date'] = this.addDateForm.value.startAndEndDate[1]
+        ? formatDate(
+            this.addDateForm.value.startAndEndDate[1],
+            'yyyy-MM-dd',
+            this.locale
+          )
+        : '';
     }
     this.promotionsService.editEndDatePromo(data).subscribe(
       (res: any) => {
