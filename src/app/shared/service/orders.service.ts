@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
+  CancelOrders,
   ClarificationOrders,
   MarkOrderShipped,
   OrderAction,
@@ -80,7 +81,7 @@ export class OrdersService {
     return this.http.get(this.url + '/download-po', { params: params });
   }
 
-  cancelOrder(data: string) {
+  cancelOrder(data: CancelOrders) {
     return this.http.post(this.url + '/cancel-order', data);
   }
 

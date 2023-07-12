@@ -44,6 +44,7 @@ export class PoDetailPageComponent implements OnInit {
     },
   ];
   poNo: string = '';
+  poClarification: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -88,17 +89,7 @@ export class PoDetailPageComponent implements OnInit {
         });
         break;
       case 'PO Clarification':
-        const data = {
-          po_number: this.poNo,
-          clarification_message: 'Shipping Issue',
-          contact_via: 'Email',
-          user_email: 'sudip.das@123srores.com',
-        };
-        this.ordersService.clarificationOrders(data).subscribe((res: any) => {
-          if (res.success) {
-            this.message.success('PO clarification successfully!');
-          }
-        });
+        this.poClarification = true;
         break;
     }
   }

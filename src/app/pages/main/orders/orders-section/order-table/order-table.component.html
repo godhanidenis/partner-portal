@@ -239,6 +239,7 @@
   >
     <ng-container *nzModalContent>
       <app-cancel-order
+        [poNo]="poNo"
         (closeModel)="isCancelOrderVisible = false"
       ></app-cancel-order>
     </ng-container>

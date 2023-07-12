@@ -1,0 +1,60 @@
+<div class="export-model">
+  <div style="padding: 15px">
+    <form [formGroup]="poClarificationForm">
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24">Subject</nz-form-label>
+        <nz-form-control [nzSm]="20" [nzXs]="24">
+          <nz-input-group>
+            <input
+              formControlName="subject"
+              [readonly]="true"
+              type="text"
+              nz-input
+              placeholder="Enter subject"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24">Comment</nz-form-label>
+        <nz-form-control [nzSm]="20" [nzXs]="24">
+          <nz-input-group>
+            <angular-editor
+              formControlName="commentBox"
+              [placeholder]="'Enter text here...'"
+              [config]="editorConfig"
+            >
+            </angular-editor>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  <div class="model-footer">
+    <div class="model-action" style="padding: 15px">
+      <button
+        nz-button
+        nzType="default"
+        style="color: black; margin-right: 5px"
+        (click)="handleCancel()"
+      >
+        Cancel
+      </button>
+      <button
+        nz-button
+        style="margin-top: 0"
+        class="action-button"
+        [nzType]="'primary'"
+        (click)="submit()"
+      >
+        <span
+          *ngIf="isLoading"
+          style="color: white; font-size: 16px"
+          nz-icon
+          nzType="loading"
+        ></span>
+        submit
+      </button>
+    </div>
+  </div>
+</div>

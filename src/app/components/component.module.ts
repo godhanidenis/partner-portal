@@ -23,6 +23,8 @@ import { ExportMailBoxesComponent } from './export-mail-boxes/export-mail-boxes.
 import { ShowReferenceCodeComponent } from './show-reference-code/show-reference-code.component';
 import { EditTimeComponent } from './edit-time/edit-time.component';
 import { AsinComponent } from './asin/asin.component';
+import { PoClarificationComponent } from './po-clarification/po-clarification.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { AsinComponent } from './asin/asin.component';
     ExportMailBoxesComponent,
     ShowReferenceCodeComponent,
     EditTimeComponent,
-    AsinComponent
+    AsinComponent,
+    PoClarificationComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +56,7 @@ import { AsinComponent } from './asin/asin.component';
     NzMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularEditorModule,
   ],
   exports: [
     StatusBadgeComponent,
@@ -71,7 +75,7 @@ import { AsinComponent } from './asin/asin.component';
     ExportMailBoxesComponent,
     ShowReferenceCodeComponent,
     EditTimeComponent,
-    AsinComponent
+    AsinComponent,
   ],
 })
 export class ComponentModule {}

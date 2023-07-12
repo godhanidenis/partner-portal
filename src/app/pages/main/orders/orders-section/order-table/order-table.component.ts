@@ -22,6 +22,7 @@ export class OrderTableComponent implements OnInit {
   isCancelOrderVisible: boolean = false;
 
   pageSizeOptions = [100];
+  poNo: string = '';
 
   constructor(
     private ordersService: OrdersService,
@@ -76,6 +77,7 @@ export class OrderTableComponent implements OnInit {
         }
       });
     } else {
+      this.poNo = po_no;
       this.isCancelOrderVisible = true;
     }
     // this.changeModel.emit(type);

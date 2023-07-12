@@ -58,3 +58,9 @@ export interface ClarificationOrders {
   contact_via: string;
   user_email: string;
 }
+
+export interface CancelOrders {
+  po_number: string;
+  reason: string;
+  reason_others_message: string;
+}
