@@ -1,11 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
   ClarificationOrders,
   MarkOrderShipped,
   OrderAction,
 } from '../model/orders.model';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,10 @@ import {
 export class OrdersService {
   mode = localStorage.getItem('mode');
   url = this.mode === 'live' ? environment.prodUrl : environment.baseUrl;
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(LOCALE_ID) public locale: string
+  ) {}
 
   getAllOrder(action: OrderAction) {
     let params = new HttpParams().set('page', action.page);
@@ -30,13 +34,22 @@ export class OrdersService {
       params = params.append('carrier', action.carrier);
     }
     if (action.committed_ship_date) {
-      params = params.append('committed_ship_date', action.committed_ship_date);
+      params = params.append(
+        'committed_ship_date',
+        formatDate(action.committed_ship_date, 'yyyy-MM-dd', this.locale)
+      );
     }
     if (action.from_po_date) {
-      params = params.append('from_po_date', action.from_po_date);
+      params = params.append(
+        'from_po_date',
+        formatDate(action.from_po_date, 'yyyy-MM-dd', this.locale)
+      );
     }
     if (action.to_po_date) {
-      params = params.append('to_po_date', action.to_po_date);
+      params = params.append(
+        'to_po_date',
+        formatDate(action.to_po_date, 'yyyy-MM-dd', this.locale)
+      );
     }
     if (action.search_term) {
       params = params.append('search_term', action.search_term);

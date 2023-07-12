@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
   EditEndDatePromotions,
@@ -8,24 +8,34 @@ import {
   Promotions,
   StopPromotions,
 } from '../model/promotion.model';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PromotionsService {
   mode = localStorage.getItem('mode');
-  url = (this.mode === "live") ? environment.prodUrl : environment.baseUrl;
-  constructor(private http: HttpClient) {}
+  url = this.mode === 'live' ? environment.prodUrl : environment.baseUrl;
+  constructor(
+    private http: HttpClient,
+    @Inject(LOCALE_ID) public locale: string
+  ) {}
 
   getAllPromotions(action: Promotions) {
     let params = new HttpParams()
       .set('page', action.page)
       .set('open', action.open);
     if (action.filter_start_date) {
-      params = params.append('filter_start_date', action?.filter_start_date);
+      params = params.append(
+        'filter_start_date',
+        formatDate(action?.filter_start_date, 'yyyy-MM-dd', this.locale)
+      );
     }
     if (action.filter_end_date) {
-      params = params.append('filter_end_date', action?.filter_end_date);
+      params = params.append(
+        'filter_end_date',
+        formatDate(action?.filter_end_date, 'yyyy-MM-dd', this.locale)
+      );
     }
     if (action.filter_status) {
       params = params.append('filter_status', action?.filter_status);

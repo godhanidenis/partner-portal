@@ -1,5 +1,6 @@
+import { formatDate } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 export interface InventoryFeed {
@@ -19,16 +20,25 @@ export interface GetAllAction {
 })
 export class InventoryService {
   mode = localStorage.getItem('mode');
-  url = (this.mode === "live") ? environment.prodUrl : environment.baseUrl;
-  constructor(private http: HttpClient) {}
+  url = this.mode === 'live' ? environment.prodUrl : environment.baseUrl;
+  constructor(
+    private http: HttpClient,
+    @Inject(LOCALE_ID) public locale: string
+  ) {}
 
   getAllInventory(action: GetAllAction) {
     let params = new HttpParams().set('page', action.page);
     if (action.filter_start_date) {
-      params = params.append('filter_start_date', action.filter_start_date);
+      params = params.append(
+        'filter_start_date',
+        formatDate(action.filter_start_date, 'yyyy-MM-dd', this.locale)
+      );
     }
     if (action.filter_end_date) {
-      params = params.append('filter_end_date', action.filter_end_date);
+      params = params.append(
+        'filter_end_date',
+        formatDate(action.filter_end_date, 'yyyy-MM-dd', this.locale)
+      );
     }
     if (action.filter_inventory_method) {
       params = params.append(
