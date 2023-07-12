@@ -7,10 +7,12 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { MasterSignInComponent } from './master-sign-in/master-sign-in.component';
 
 @NgModule({
   declarations: [
     SignInComponent,
+    MasterSignInComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
   ],

@@ -31,6 +31,10 @@ export class AuthService {
     return this.httpClient.post(this.url + '/login', payload);
   }
 
+  masterLogin(payload: LoginReq) {
+    return this.httpClient.post(this.url + '/masterlogin', payload);
+  }
+
   setAccessToken(token: string) {
     localStorage.setItem(TOKEN_KEY, token);
   }

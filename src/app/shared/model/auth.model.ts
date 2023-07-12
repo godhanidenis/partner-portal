@@ -1,6 +1,7 @@
 export interface LoginReq {
   email: string;
   password: string;
+  partner_code?: string;
 }
 
 export interface ResetPasswordReq {

@@ -1,0 +1,119 @@
+@import'../../../../assets/variable/variable.scss';
+
+.login-form-layout {
+  display: flex;
+  justify-content: center;
+
+  .side-image {
+    width: 55%;
+    height: 100vh;
+    background-image: url(../../../../assets/img/login_side.png);
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .headers {
+    width: 70%;
+    font-size: x-large;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 0 13px;
+  }
+
+  ::ng-deep .ant-form-item-explain-error {
+    margin-left: 17px !important;
+  }
+
+  h4 {
+    text-align: end;
+    margin-right: 20px;
+
+    a {
+      color: $darkBlue;
+    }
+  }
+
+  .card {
+    padding: 0 45px;
+    min-height: 100vh;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      width: 70%;
+      margin: 0 auto;
+
+      ::ng-deep .ant-form-item-label {
+        display: flex;
+        // text-align: end;
+
+        label {
+          font-size: 16px;
+          font-weight: 500;
+          width: 100%;
+          margin-bottom: 5px;
+        }
+      }
+
+      ::ng-deep .ant-input {
+        border-radius: 40px !important;
+      }
+
+      nz-form-item {
+        margin: 15px 13px;
+      }
+
+      ::ng-deep .ant-input-prefix {
+        font-size: x-large;
+        margin-right: 10px;
+      }
+
+      nz-input-group {
+        input {
+          border: 1px solid $darkBlue !important;
+          height: 40px;
+          font-size: 15px;
+          position: relative;
+          width: 100%;
+          padding: 10px 20px;
+        }
+
+        a,
+        a:hover {
+          color: $darkBlue;
+          position: absolute;
+          top: 10px;
+          left: 90%;
+          z-index: 10;
+
+          span {
+            font-size: x-large;
+          }
+        }
+      }
+
+      .action-btn {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 20px 13px;
+        padding-top: 30px;
+
+        button {
+          width: 100%;
+          height: 40px;
+          border-radius: 40px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
