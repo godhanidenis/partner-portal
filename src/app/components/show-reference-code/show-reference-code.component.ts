@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-show-reference-code',
@@ -11,8 +12,23 @@ export class ShowReferenceCodeComponent implements OnInit {
 
   @Output() close = new EventEmitter();
 
-  constructor() {}
+  constructor(private message: NzMessageService) {}
   ngOnInit(): void {}
+
+  copyText(val: string) {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.message.create('success', 'Copied to clipboard.');
+  }
 
   submit() {
     this.isVisible = false;

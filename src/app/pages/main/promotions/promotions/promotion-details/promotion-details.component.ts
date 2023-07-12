@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { StopPromotions } from 'src/app/shared/model/promotion.model';
 import { PromotionsService } from 'src/app/shared/service/promotions.service';
+import { UserPermissionService } from 'src/app/shared/service/user-permission.service';
 
 @Component({
   selector: 'app-promotion-details',
@@ -14,12 +15,17 @@ export class PromotionDetailsComponent implements OnInit {
   promotionList: any[] = [];
   viewData: any = '';
   promoCode: string = '';
+  userPermissions: any;
 
   constructor(
     private promotionsService: PromotionsService,
     private activatedRoute: ActivatedRoute,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private userPermissionService: UserPermissionService
   ) {
+    userPermissionService.userPermission.subscribe((permission: any) => {
+      this.userPermissions = permission;
+    });
     this.isLoading = true;
     this.promoCode =
       this.activatedRoute.snapshot.paramMap.get('promo_code') ?? '';

@@ -6,6 +6,9 @@
       [nzSubTitle]="'Edit multiple product successfully initiated.'"
     >
       <div nz-result-extra>
+        <button nz-button nzType="text" (click)="copyText(referenceCode)">
+          <span nz-icon nzType="copy" nzTheme="outline"></span> Copy Code
+        </button>
         <button nz-button nzType="primary" (click)="submit()">OK</button>
       </div>
     </nz-result>

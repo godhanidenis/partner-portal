@@ -11,7 +11,9 @@
           [nzXl]="12"
           class="left-section"
         >
-          <span><b>Promotion Code : </b>{{ viewData?.promo_code }}</span>
+          <span
+            ><b>Promotion Code : </b>{{ viewData?.requested_promo_code }}</span
+          >
           <span><b>Number of SKUs : </b>{{ viewData?.total_mpn }}</span>
           <span><b>Status : </b>{{ viewData?.promo_status }}</span>
         </div>
@@ -57,6 +59,12 @@
               <th class="text-end">Promotion Unit Price ($)</th>
               <th class="text-end">Discount ($)</th>
               <th class="text-end">Discount (%)</th>
+              <th class="text-end" *ngIf="userPermissions.partner_map">
+                Map Price
+              </th>
+              <th class="text-end" *ngIf="userPermissions.partner_map">
+                Promotional Map Price
+              </th>
               <th class="text-end">Units Sold</th>
               <th class="text-end">Sales ($)</th>
             </tr>
@@ -69,13 +77,21 @@
                 <td class="text-end">
                   {{ data?.promotional_unit_price | currency }}
                 </td>
-                <td class="text-end">{{ data?.map_price | currency }}</td>
                 <td class="text-end">
-                  {{ data?.promo_map_price }}
-                  {{ data?.promo_map_price ? "%" : "" }}
+                  {{ data?.unit_price_discount | currency }}
+                </td>
+                <td class="text-end">
+                  {{ data?.unit_price_discount_percentage }}
+                  {{ data?.unit_price_discount_percentage ? "%" : "" }}
+                </td>
+                <td class="text-end" *ngIf="userPermissions.partner_map">
+                  {{ data?.map_price | currency }}
+                </td>
+                <td class="text-end" *ngIf="userPermissions.partner_map">
+                  {{ data?.promotional_map_price | currency }}
                 </td>
                 <td class="text-end">{{ data?.units_sold }}</td>
-                <td class="text-end">{{ data?.Sales | currency }}</td>
+                <td class="text-end">{{ data?.sales | currency }}</td>
               </tr>
             </ng-template>
           </tbody>
